@@ -1,3 +1,5 @@
+const path = require('path');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = () => {
@@ -14,7 +16,8 @@ module.exports = () => {
       ]
     },
     output: {
-      filename: 'js/[name].bundle.js',
+      filename: 'js/pineapple.[fullhash].js',
+      path: path.resolve(__dirname, '../../dist/Pineapple.Ui'),
       publicPath: '',
     },
     plugins: [

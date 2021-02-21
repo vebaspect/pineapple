@@ -23,8 +23,8 @@
     "webpack-dev-server": "3.11.2"
   },
   "scripts": {
-    "dev": "webpack serve --config ./webpack.config.development.js",
     "build": "webpack --config ./webpack.config.development.js",
-    "publish": "webpack --config ./webpack.config.production.js"
+    "publish": "webpack --config ./webpack.config.production.js",
+    "run": "webpack serve --config ./webpack.config.development.js --hot"
   }
 }

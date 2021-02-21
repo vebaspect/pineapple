@@ -7,4 +7,4 @@ If (Test-Path $scriptDir\dist\Pineapple.Ui) {
         -Recurse
 }
 
-# TODO
+npm run publish --prefix $scriptDir\src\Pineapple.Ui
