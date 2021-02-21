@@ -1,0 +1,55 @@
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+using Pineapple.Core.Commands;
+using Pineapple.Core.Domain.Entities;
+using Pineapple.Core.Dto;
+using Pineapple.Core.Storage.Database;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+
+namespace Pineapple.Core.Handler
+{
+    public class GetEnvironmentsCommandHandler : RequestHandler<GetEnvironmentsCommand, Task<EnvironmentDto[]>>, ICommandHandler
+    {
+        private readonly DatabaseContextFactory databaseContextFactory;
+
+        public GetEnvironmentsCommandHandler(DatabaseContextFactory databaseContextFactory)
+        {
+            if (databaseContextFactory is null)
+            {
+                throw new ArgumentNullException(nameof(databaseContextFactory));
+            }
+
+            this.databaseContextFactory = databaseContextFactory;
+        }
+
+        protected override async Task<EnvironmentDto[]> Handle(GetEnvironmentsCommand request)
+        {
+            using var databaseContext = databaseContextFactory.CreateDbContext();
+
+            var implementation = await databaseContext
+                .Implementations
+                .Include(implementation => implementation.Environments)
+                .FirstOrDefaultAsync(implementation => implementation.Id == request.ImplementationId)
+                .ConfigureAwait(false);
+
+            if (implementation is null)
+            {
+                throw new Exception($"Implementation {request.ImplementationId} not exist");
+            }
+
+            if (implementation.Environments?.Count > 0)
+            {
+                return implementation.Environments.Select(environment => Map(environment)).ToArray();
+            }
+
+            return Enumerable.Empty<EnvironmentDto>().ToArray();
+        }
+
+        private static EnvironmentDto Map(Domain.Entities.Environment environment)
+        {
+            return new EnvironmentDto(environment.Id, environment.Name, environment.Symbol, environment.Description);
+        }
+    }
+}

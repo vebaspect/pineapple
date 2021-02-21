@@ -1,0 +1,19 @@
+{
+  "Hosting": {
+    "Port": 0
+  },
+  "Logger": {
+    "File": {
+      "Enabled": false
+    }
+  },
+  "Serilog": {
+    "MinimumLevel": {
+      "Default": "",
+      "Override": {
+        "Microsoft": "",
+        "System": ""
+      }
+    }
+  }
+}

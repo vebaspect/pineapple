@@ -1,0 +1,41 @@
+# Adres URL do API.
+@url = 
+
+# Identyfikator produktu.
+@productId = 
+# Identyfikator komponentu.
+@componentId = 
+
+### /products
+GET {{url}}/products
+Content-Type: application/json
+
+### /products
+POST {{url}}/products
+Content-Type: application/json
+
+{
+    "Name": "",
+    "Description": ""
+}
+
+### /products/{productId}
+GET {{url}}/products/{{productId}}
+Content-Type: application/json
+
+### /products/{productId}/components
+GET {{url}}/products/{{productId}}/components
+Content-Type: application/json
+
+### /products/{productId}/components
+POST {{url}}/products/{{productId}}/components
+Content-Type: application/json
+
+{
+    "Name": "",
+    "Description": ""
+}
+
+### /products/{productId}/components/{componentId}
+GET {{url}}/products/{{productId}}/components/{{componentId}}
+Content-Type: application/json

@@ -1,0 +1,19 @@
+{
+  "editor.insertSpaces": true,
+  "files.exclude": {
+    "**/bin": true,
+    "**/dist": true,
+    "**/nuget": true,
+    "**/obj": true,
+    "**/packages": true
+  },
+  "files.insertFinalNewline": true,
+  "git.autofetch": true,
+  "search.exclude": {
+    "**/bin": true,
+    "**/dist": true,
+    "**/nuget": true,
+    "**/obj": true,
+    "**/packages": true
+  }
+}

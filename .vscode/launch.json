@@ -1,0 +1,24 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Pineapple Api",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Build Pineapple Api",
+            "program": "${workspaceFolder}/src/Pineapple.Api/bin/Debug/net5.0/win10-x64/Pineapple.Api.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/Pineapple.Api",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        },
+        {
+            "name": "Attach To Pineapple Api",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickProcess}"
+        }
+    ]
+}

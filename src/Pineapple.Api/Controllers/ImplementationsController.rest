@@ -1,0 +1,41 @@
+# Adres URL do API.
+@url = 
+
+# Identyfikator wdrożenia.
+@implementationId = 
+# Identyfikator środowiska.
+@environmentId = 
+
+### /implementations
+GET {{url}}/implementations
+Content-Type: application/json
+
+### /implementations
+POST {{url}}/implementations
+Content-Type: application/json
+
+{
+    "Name": "",
+    "Description": ""
+}
+
+### /implementations/{implementationId}
+GET {{url}}/implementations/{{implementationId}}
+Content-Type: application/json
+
+### /implementations/{implementationId}/environments
+GET {{url}}/implementations/{{implementationId}}/environments
+Content-Type: application/json
+
+### /implementations/{implementationId}/environments
+POST {{url}}/implementations/{{implementationId}}/environments
+Content-Type: application/json
+
+{
+    "Name": "",
+    "Description": ""
+}
+
+### /implementations/{implementationId}/environments/{environmentId}
+GET {{url}}/implementations/{{implementationId}}/environments/{{environmentId}}
+Content-Type: application/json
