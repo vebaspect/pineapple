@@ -12,7 +12,7 @@
     <VersionSuffix>alpha</VersionSuffix>
     <AssemblyTitle>Pineapple.Core.Domain</AssemblyTitle>
     <AssemblyName>Pineapple.Core.Domain</AssemblyName>
-    <Copyright>COIG S.A.</Copyright>
+    <Copyright>Grzegorz Wodniczak</Copyright>
   </PropertyGroup>
 
 </Project>

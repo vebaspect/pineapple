@@ -12,7 +12,7 @@
     <VersionSuffix>alpha</VersionSuffix>
     <AssemblyTitle>Pineapple.Api</AssemblyTitle>
     <AssemblyName>Pineapple.Api</AssemblyName>
-    <Copyright>COIG S.A.</Copyright>
+    <Copyright>Grzegorz Wodniczak</Copyright>
     <EnableDefaultContentItems>false</EnableDefaultContentItems>
   </PropertyGroup>
 

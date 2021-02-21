@@ -12,7 +12,7 @@
     <VersionSuffix>alpha</VersionSuffix>
     <AssemblyTitle>Pineapple.Core.Storage</AssemblyTitle>
     <AssemblyName>Pineapple.Core.Storage</AssemblyName>
-    <Copyright>COIG S.A.</Copyright>
+    <Copyright>Grzegorz Wodniczak</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
