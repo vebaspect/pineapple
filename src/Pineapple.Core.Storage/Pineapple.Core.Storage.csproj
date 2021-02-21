@@ -9,7 +9,7 @@
   <PropertyGroup>
     <PackageId>Pineapple.Core.Storage</PackageId>
     <VersionPrefix>1.0.0</VersionPrefix>
-    <VersionSuffix>alpha</VersionSuffix>
+    <VersionSuffix>alpha.1</VersionSuffix>
     <AssemblyTitle>Pineapple.Core.Storage</AssemblyTitle>
     <AssemblyName>Pineapple.Core.Storage</AssemblyName>
     <Copyright>Grzegorz Wodniczak</Copyright>
