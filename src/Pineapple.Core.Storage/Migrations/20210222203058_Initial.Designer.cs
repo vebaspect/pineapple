@@ -10,7 +10,7 @@ using Pineapple.Core.Storage.Database;
 namespace Pineapple.Core.Storage.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210222110711_Initial")]
+    [Migration("20210222203058_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,6 +30,9 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Property<string>("Description")
                         .HasMaxLength(4000)
                         .HasColumnType("character varying(4000)");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -64,6 +67,9 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Property<Guid>("ImplementationId")
                         .HasColumnType("uuid");
 
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("Phone")
                         .HasMaxLength(20)
                         .HasColumnType("character varying(20)");
@@ -87,6 +93,9 @@ namespace Pineapple.Core.Storage.Migrations
 
                     b.Property<Guid>("ImplementationId")
                         .HasColumnType("uuid");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -115,6 +124,9 @@ namespace Pineapple.Core.Storage.Migrations
                         .HasMaxLength(4000)
                         .HasColumnType("character varying(4000)");
 
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -134,6 +146,9 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Property<string>("Description")
                         .HasMaxLength(4000)
                         .HasColumnType("character varying(4000)");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()

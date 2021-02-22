@@ -13,7 +13,8 @@ namespace Pineapple.Core.Storage.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
-                    Description = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: true)
+                    Description = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -26,7 +27,8 @@ namespace Pineapple.Core.Storage.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
-                    Description = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: true)
+                    Description = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -41,7 +43,8 @@ namespace Pineapple.Core.Storage.Migrations
                     FullName = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
                     Phone = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
                     Email = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
-                    ImplementationId = table.Column<Guid>(type: "uuid", nullable: false)
+                    ImplementationId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -62,7 +65,8 @@ namespace Pineapple.Core.Storage.Migrations
                     Name = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
                     Symbol = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
                     Description = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: true),
-                    ImplementationId = table.Column<Guid>(type: "uuid", nullable: false)
+                    ImplementationId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -82,7 +86,8 @@ namespace Pineapple.Core.Storage.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
                     Description = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: true),
-                    ProductId = table.Column<Guid>(type: "uuid", nullable: false)
+                    ProductId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
                 {
