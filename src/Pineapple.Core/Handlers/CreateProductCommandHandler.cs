@@ -29,7 +29,7 @@ namespace Pineapple.Core.Handler
             var product = new Domain.Entities.Product()
             {
                 Id = productId,
-                ModifiedDate = DateTime.UtcNow,
+                ModifiedDate = DateTime.Now,
                 Name = request.Name,
                 Description = request.Description
             };

@@ -11,6 +11,9 @@ namespace Pineapple.Core.Storage.Database.Configurations
             builder.ToTable("Coordinators");
 
             builder
+                .Property(coordinator => coordinator.ModifiedDate)
+                .IsRequired();
+            builder
                 .Property(coordinator => coordinator.FullName)
                 .IsRequired()
                 .HasMaxLength(200);

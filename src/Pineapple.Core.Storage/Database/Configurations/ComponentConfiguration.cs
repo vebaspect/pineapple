@@ -11,6 +11,9 @@ namespace Pineapple.Core.Storage.Database.Configurations
             builder.ToTable("Components");
 
             builder
+                .Property(component => component.ModifiedDate)
+                .IsRequired();
+            builder
                 .Property(component => component.Name)
                 .IsRequired()
                 .HasMaxLength(200);

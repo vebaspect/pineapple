@@ -11,6 +11,9 @@ namespace Pineapple.Core.Storage.Database.Configurations
             builder.ToTable("Implementations");
 
             builder
+                .Property(implementation => implementation.ModifiedDate)
+                .IsRequired();
+            builder
                 .Property(implementation => implementation.Name)
                 .IsRequired()
                 .HasMaxLength(200);
