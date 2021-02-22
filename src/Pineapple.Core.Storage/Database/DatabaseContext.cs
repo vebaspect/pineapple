@@ -36,6 +36,11 @@ namespace Pineapple.Core.Storage.Database
         /// </summary>
         public DbSet<Product> Products { get; set; }
 
+        /// <summary>
+        /// Wersje.
+        /// </summary>
+        public DbSet<Version> Versions { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -45,7 +50,8 @@ namespace Pineapple.Core.Storage.Database
                 .ApplyConfiguration(new CoordinatorConfiguration())
                 .ApplyConfiguration(new EnvironmentConfiguration())
                 .ApplyConfiguration(new ImplementationConfiguration())
-                .ApplyConfiguration(new ProductConfiguration());
+                .ApplyConfiguration(new ProductConfiguration())
+                .ApplyConfiguration(new VersionConfiguration());
         }
     }
 }

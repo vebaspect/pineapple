@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Pineapple.Core.Domain.Entities
 {
@@ -26,5 +27,10 @@ namespace Pineapple.Core.Domain.Entities
         /// Produkt.
         /// </summary>
         public Product Product { get; set; }
+
+        /// <summary>
+        /// Wersje.
+        /// </summary>
+        public List<Version> Versions { get; set; }
     }
 }
