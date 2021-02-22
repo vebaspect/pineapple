@@ -99,5 +99,43 @@ namespace Pineapple.Api.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet]
+        [Route("{implementationId}/coordinators")]
+        public async Task<IActionResult> GetCoordinators(Guid implementationId)
+        {
+            GetCoordinatorsCommand command = new(implementationId);
+            Task<CoordinatorDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            CoordinatorDto[] result = await resultTask.ConfigureAwait(false);
+
+            return Ok(result);
+        }
+
+        [HttpPost]
+        [Route("{implementationId}/coordinators")]
+        public async Task<IActionResult> CreateCoordinator(Guid implementationId, [FromBody]CreateCoordinatorDto dto)
+        {
+            if (dto is null)
+            {
+                return BadRequest();
+            }
+
+            CreateCoordinatorCommand command = new(implementationId, dto.FullName, dto.Phone, dto.Email);
+            Task<Guid> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            Guid result = await resultTask.ConfigureAwait(false);
+
+            return Created($"/implementations/{implementationId}/coordinators/{result}", null);
+        }
+
+        [HttpGet]
+        [Route("{implementationId}/coordinators/{coordinatorId}")]
+        public async Task<IActionResult> GetCoordinator(Guid implementationId, Guid coordinatorId)
+        {
+            GetCoordinatorCommand command = new(implementationId, coordinatorId);
+            Task<CoordinatorDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            CoordinatorDto result = await resultTask.ConfigureAwait(false);
+
+            return Ok(result);
+        }
     }
 }

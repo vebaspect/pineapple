@@ -5,6 +5,8 @@
 @implementationId = 
 # Identyfikator środowiska.
 @environmentId = 
+# Identyfikator koordynatora.
+@coordinatorId = 
 
 ### /implementations
 GET {{url}}/implementations
@@ -38,4 +40,22 @@ Content-Type: application/json
 
 ### /implementations/{implementationId}/environments/{environmentId}
 GET {{url}}/implementations/{{implementationId}}/environments/{{environmentId}}
+Content-Type: application/json
+
+### /implementations/{implementationId}/coordinators
+GET {{url}}/implementations/{{implementationId}}/coordinators
+Content-Type: application/json
+
+### /implementations/{implementationId}/coordinators
+POST {{url}}/implementations/{{implementationId}}/coordinators
+Content-Type: application/json
+
+{
+    "FullName": "",
+    "Phone": "",
+    "Email": ""
+}
+
+### /implementations/{implementationId}/coordinators/{coordinatorId}
+GET {{url}}/implementations/{{implementationId}}/coordinators/{{coordinatorId}}
 Content-Type: application/json
