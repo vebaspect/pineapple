@@ -13,11 +13,11 @@ namespace Pineapple.Core.Storage.Database.Configurations
             builder
                 .Property(environment => environment.Name)
                 .IsRequired()
-                .HasMaxLength(255);
+                .HasMaxLength(200);
             builder
                 .Property(environment => environment.Symbol)
                 .IsRequired()
-                .HasMaxLength(255);
+                .HasMaxLength(200);
             builder
                 .Property(environment => environment.Description)
                 .HasMaxLength(4000);

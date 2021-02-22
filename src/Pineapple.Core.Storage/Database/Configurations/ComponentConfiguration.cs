@@ -13,7 +13,7 @@ namespace Pineapple.Core.Storage.Database.Configurations
             builder
                 .Property(component => component.Name)
                 .IsRequired()
-                .HasMaxLength(255);
+                .HasMaxLength(200);
             builder
                 .Property(component => component.Description)
                 .HasMaxLength(4000);
