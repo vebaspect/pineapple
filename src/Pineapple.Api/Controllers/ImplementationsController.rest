@@ -35,6 +35,7 @@ Content-Type: application/json
 
 {
     "Name": "",
+    "Symbol": "",
     "Description": ""
 }
 
