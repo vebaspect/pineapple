@@ -11,5 +11,10 @@ namespace Pineapple.Core.Domain.Entities
         /// Identyfikator.
         /// </summary>
         public Guid Id { get; set; }
+
+        /// <summary>
+        /// Data modyfikacji.
+        /// </summary>
+        public DateTime ModifiedDate { get; set; }
     }
 }

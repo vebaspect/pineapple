@@ -52,7 +52,7 @@ namespace Pineapple.Core.Handler
 
         private static CoordinatorDto Map(Domain.Entities.Coordinator coordinator)
         {
-            return new CoordinatorDto(coordinator.Id, coordinator.FullName, coordinator.Phone, coordinator.Email);
+            return new CoordinatorDto(coordinator.Id, coordinator.ModifiedDate, coordinator.FullName, coordinator.Phone, coordinator.Email);
         }
     }
 }

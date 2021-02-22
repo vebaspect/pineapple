@@ -48,7 +48,7 @@ namespace Pineapple.Core.Handler
 
         private static EnvironmentDto Map(Domain.Entities.Environment environment)
         {
-            return new EnvironmentDto(environment.Id, environment.Name, environment.Symbol, environment.Description);
+            return new EnvironmentDto(environment.Id, environment.ModifiedDate, environment.Name, environment.Symbol, environment.Description);
         }
     }
 }

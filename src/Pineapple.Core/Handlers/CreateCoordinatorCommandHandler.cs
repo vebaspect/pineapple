@@ -29,6 +29,7 @@ namespace Pineapple.Core.Handler
             var coordinator = new Domain.Entities.Coordinator()
             {
                 Id = coordinatorId,
+                ModifiedDate = DateTime.UtcNow,
                 FullName = request.FullName,
                 Phone = request.Phone,
                 Email = request.Email,

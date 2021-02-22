@@ -13,6 +13,11 @@ namespace Pineapple.Core.Dto
         public Guid Id { get; }
 
         /// <summary>
+        /// Data modyfikacji.
+        /// </summary>
+        public DateTime ModifiedDate { get; }
+
+        /// <summary>
         /// Nazwa.
         /// </summary>
         public string Name { get; }
@@ -27,9 +32,10 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public string Description { get; }
 
-        public EnvironmentDto(Guid id, string name, string symbol, string description)
+        public EnvironmentDto(Guid id, DateTime modifiedDate, string name, string symbol, string description)
         {
             Id = id;
+            ModifiedDate = modifiedDate;
             Name = name;
             Symbol = symbol;
             Description = description;

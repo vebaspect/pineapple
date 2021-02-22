@@ -29,6 +29,7 @@ namespace Pineapple.Core.Handler
             var environment = new Domain.Entities.Environment()
             {
                 Id = environmentId,
+                ModifiedDate = DateTime.UtcNow,
                 Name = request.Name,
                 Symbol = request.Symbol,
                 Description = request.Description,

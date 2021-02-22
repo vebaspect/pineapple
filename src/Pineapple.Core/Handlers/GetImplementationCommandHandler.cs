@@ -41,7 +41,7 @@ namespace Pineapple.Core.Handler
 
         private static ImplementationDto Map(Domain.Entities.Implementation implementation)
         {
-            return new ImplementationDto(implementation.Id, implementation.Name, implementation.Description);
+            return new ImplementationDto(implementation.Id, implementation.ModifiedDate, implementation.Name, implementation.Description);
         }
     }
 }

@@ -29,6 +29,7 @@ namespace Pineapple.Core.Handler
             var implementation = new Domain.Entities.Implementation()
             {
                 Id = implementationId,
+                ModifiedDate = DateTime.UtcNow,
                 Name = request.Name,
                 Description = request.Description
             };

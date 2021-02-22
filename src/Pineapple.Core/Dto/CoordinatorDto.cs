@@ -13,6 +13,11 @@ namespace Pineapple.Core.Dto
         public Guid Id { get; }
 
         /// <summary>
+        /// Data modyfikacji.
+        /// </summary>
+        public DateTime ModifiedDate { get; }
+
+        /// <summary>
         /// Imię i nazwisko.
         /// </summary>
         public string FullName { get; }
@@ -27,9 +32,10 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public string Email { get; }
 
-        public CoordinatorDto(Guid id, string fullName, string phone, string email)
+        public CoordinatorDto(Guid id, DateTime modifiedDate, string fullName, string phone, string email)
         {
             Id = id;
+            ModifiedDate = modifiedDate;
             FullName = fullName;
             Phone = phone;
             Email = email;
