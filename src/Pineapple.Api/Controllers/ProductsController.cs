@@ -99,5 +99,43 @@ namespace Pineapple.Api.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet]
+        [Route("{productId}/components/{componentId}/versions")]
+        public async Task<IActionResult> GetVersions(Guid productId, Guid componentId)
+        {
+            GetVersionsCommand command = new(productId, componentId);
+            Task<VersionDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            VersionDto[] result = await resultTask.ConfigureAwait(false);
+
+            return Ok(result);
+        }
+
+        [HttpPost]
+        [Route("{productId}/components/{componentId}/versions")]
+        public async Task<IActionResult> CreateVersion(Guid productId, Guid componentId, [FromBody]CreateVersionDto dto)
+        {
+            if (dto is null)
+            {
+                return BadRequest();
+            }
+
+            CreateVersionCommand command = new(componentId, dto.Major, dto.Minor, dto.Patch, dto.PreRelease, dto.Description);
+            Task<Guid> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            Guid result = await resultTask.ConfigureAwait(false);
+
+            return Created($"/products/{productId}/components/{componentId}/versions/{result}", null);
+        }
+
+        [HttpGet]
+        [Route("{productId}/components/{componentId}/versions/{versionId}")]
+        public async Task<IActionResult> GetVersion(Guid productId, Guid componentId, Guid versionId)
+        {
+            GetVersionCommand command = new(productId, componentId, versionId);
+            Task<VersionDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            VersionDto result = await resultTask.ConfigureAwait(false);
+
+            return Ok(result);
+        }
     }
 }
