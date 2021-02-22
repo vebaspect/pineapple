@@ -17,6 +17,11 @@ namespace Pineapple.Core.Storage.Database
         public DbSet<Component> Components { get; set; }
 
         /// <summary>
+        /// Koordynatorzy.
+        /// </summary>
+        public DbSet<Coordinator> Coordinators { get; set; }
+
+        /// <summary>
         /// Środowiska.
         /// </summary>
         public DbSet<Environment> Environments { get; set; }
@@ -37,6 +42,7 @@ namespace Pineapple.Core.Storage.Database
 
             modelBuilder
                 .ApplyConfiguration(new ComponentConfiguration())
+                .ApplyConfiguration(new CoordinatorConfiguration())
                 .ApplyConfiguration(new EnvironmentConfiguration())
                 .ApplyConfiguration(new ImplementationConfiguration())
                 .ApplyConfiguration(new ProductConfiguration());

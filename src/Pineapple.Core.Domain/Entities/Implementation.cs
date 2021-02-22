@@ -21,5 +21,10 @@ namespace Pineapple.Core.Domain.Entities
         /// Środowiska.
         /// </summary>
         public List<Environment> Environments { get; set; }
+
+        /// <summary>
+        /// Koordynatorzy.
+        /// </summary>
+        public List<Coordinator> Coordinators { get; set; }
     }
 }
