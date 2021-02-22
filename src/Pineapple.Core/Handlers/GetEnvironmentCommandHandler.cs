@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
-using Pineapple.Core.Domain.Entities;
 using Pineapple.Core.Dto;
 using Pineapple.Core.Storage.Database;
 using MediatR;
