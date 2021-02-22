@@ -10,7 +10,7 @@ using Pineapple.Core.Storage.Database;
 namespace Pineapple.Core.Storage.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210222203058_Initial")]
+    [Migration("20210222205433_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -160,6 +160,42 @@ namespace Pineapple.Core.Storage.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.Version", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("ComponentId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(4000)
+                        .HasColumnType("character varying(4000)");
+
+                    b.Property<int>("Major")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Minor")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("Patch")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("PreRelease")
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ComponentId");
+
+                    b.ToTable("Versions");
+                });
+
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Component", b =>
                 {
                     b.HasOne("Pineapple.Core.Domain.Entities.Product", "Product")
@@ -191,6 +227,22 @@ namespace Pineapple.Core.Storage.Migrations
                         .IsRequired();
 
                     b.Navigation("Implementation");
+                });
+
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.Version", b =>
+                {
+                    b.HasOne("Pineapple.Core.Domain.Entities.Component", "Component")
+                        .WithMany("Versions")
+                        .HasForeignKey("ComponentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Component");
+                });
+
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.Component", b =>
+                {
+                    b.Navigation("Versions");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Implementation", b =>
