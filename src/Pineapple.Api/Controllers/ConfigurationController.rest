@@ -1,0 +1,23 @@
+# Adres URL do API.
+@url = 
+
+# Identyfikator typu komponentu.
+@componentTypeId = 
+
+### /configuration/component-types
+GET {{url}}/configuration/component-types
+Content-Type: application/json
+
+### /configuration/component-types
+POST {{url}}/configuration/component-types
+Content-Type: application/json
+
+{
+    "Name": "",
+    "Symbol": "",
+    "Description": ""
+}
+
+### /configuration/component-types/{componentTypeId}
+GET {{url}}/configuration/component-types/{{componentTypeId}}
+Content-Type: application/json

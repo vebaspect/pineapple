@@ -8,6 +8,21 @@ namespace Pineapple.Core.Storage.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "ComponentTypes",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Name = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
+                    Symbol = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
+                    Description = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ComponentTypes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Implementations",
                 columns: table => new
                 {
@@ -87,11 +102,18 @@ namespace Pineapple.Core.Storage.Migrations
                     Name = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
                     Description = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: true),
                     ProductId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ComponentTypeId = table.Column<Guid>(type: "uuid", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Components", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Components_ComponentTypes_ComponentTypeId",
+                        column: x => x.ComponentTypeId,
+                        principalTable: "ComponentTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Components_Products_ProductId",
                         column: x => x.ProductId,
@@ -123,6 +145,11 @@ namespace Pineapple.Core.Storage.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Components_ComponentTypeId",
+                table: "Components",
+                column: "ComponentTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Components_ProductId",
@@ -161,6 +188,9 @@ namespace Pineapple.Core.Storage.Migrations
 
             migrationBuilder.DropTable(
                 name: "Components");
+
+            migrationBuilder.DropTable(
+                name: "ComponentTypes");
 
             migrationBuilder.DropTable(
                 name: "Products");

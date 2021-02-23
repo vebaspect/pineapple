@@ -6,11 +6,11 @@ using MediatR;
 
 namespace Pineapple.Core.Handler
 {
-    public class CreateComponentCommandHandler : RequestHandler<CreateComponentCommand, Task<Guid>>, ICommandHandler
+    public class CreateComponentTypeCommandHandler : RequestHandler<CreateComponentTypeCommand, Task<Guid>>, ICommandHandler
     {
         private readonly DatabaseContextFactory databaseContextFactory;
 
-        public CreateComponentCommandHandler(DatabaseContextFactory databaseContextFactory)
+        public CreateComponentTypeCommandHandler(DatabaseContextFactory databaseContextFactory)
         {
             if (databaseContextFactory is null)
             {
@@ -20,27 +20,26 @@ namespace Pineapple.Core.Handler
             this.databaseContextFactory = databaseContextFactory;
         }
 
-        protected override async Task<Guid> Handle(CreateComponentCommand request)
+        protected override async Task<Guid> Handle(CreateComponentTypeCommand request)
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
 
-            var componentId = Guid.NewGuid();
+            var componentTypeId = Guid.NewGuid();
 
-            var component = new Domain.Entities.Component()
+            var componentType = new Domain.Entities.ComponentType()
             {
-                Id = componentId,
+                Id = componentTypeId,
                 ModifiedDate = DateTime.Now,
                 Name = request.Name,
+                Symbol = request.Symbol,
                 Description = request.Description,
-                ProductId = request.ProductId,
-                ComponentTypeId = request.ComponentTypeId,
             };
 
-            await databaseContext.Components.AddAsync(component).ConfigureAwait(false);
+            await databaseContext.ComponentTypes.AddAsync(componentType).ConfigureAwait(false);
 
             databaseContext.SaveChanges();
 
-            return componentId;
+            return componentTypeId;
         }
     }
 }

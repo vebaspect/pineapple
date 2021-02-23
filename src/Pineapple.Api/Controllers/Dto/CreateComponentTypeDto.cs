@@ -1,11 +1,9 @@
-using System;
-
 namespace Pineapple.Api.Controllers.Dto
 {
     /// <summary>
-    /// Komponent.
+    /// Typ komponentu.
     /// </summary>
-    public class CreateComponentDto
+    public class CreateComponentTypeDto
     {
         /// <summary>
         /// Nazwa.
@@ -13,13 +11,13 @@ namespace Pineapple.Api.Controllers.Dto
         public string Name { get; set; }
 
         /// <summary>
+        /// Symbol.
+        /// </summary>
+        public string Symbol { get; set; }
+
+        /// <summary>
         /// Opis.
         /// </summary>
         public string Description { get; set; }
-
-        /// <summary>
-        /// Identyfikator typu komponentu.
-        /// </summary>
-        public Guid ComponentTypeId { get; set; }
     }
 }

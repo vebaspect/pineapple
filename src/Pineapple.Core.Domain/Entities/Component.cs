@@ -29,6 +29,16 @@ namespace Pineapple.Core.Domain.Entities
         public Product Product { get; set; }
 
         /// <summary>
+        /// Identyfikator typu komponentu.
+        /// </summary>
+        public Guid ComponentTypeId { get; set; }
+
+        /// <summary>
+        /// Typ.
+        /// </summary>
+        public ComponentType ComponentType { get; set; }
+
+        /// <summary>
         /// Wersje.
         /// </summary>
         public List<Version> Versions { get; set; }

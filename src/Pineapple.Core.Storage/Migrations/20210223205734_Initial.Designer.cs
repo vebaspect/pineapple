@@ -10,7 +10,7 @@ using Pineapple.Core.Storage.Database;
 namespace Pineapple.Core.Storage.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210222205433_Initial")]
+    [Migration("20210223205734_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,6 +25,9 @@ namespace Pineapple.Core.Storage.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("ComponentTypeId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Description")
@@ -44,9 +47,39 @@ namespace Pineapple.Core.Storage.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ComponentTypeId");
+
                     b.HasIndex("ProductId");
 
                     b.ToTable("Components");
+                });
+
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.ComponentType", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(4000)
+                        .HasColumnType("character varying(4000)");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<string>("Symbol")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ComponentTypes");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Coordinator", b =>
@@ -198,11 +231,19 @@ namespace Pineapple.Core.Storage.Migrations
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Component", b =>
                 {
+                    b.HasOne("Pineapple.Core.Domain.Entities.ComponentType", "ComponentType")
+                        .WithMany("Components")
+                        .HasForeignKey("ComponentTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Pineapple.Core.Domain.Entities.Product", "Product")
                         .WithMany("Components")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ComponentType");
 
                     b.Navigation("Product");
                 });
@@ -243,6 +284,11 @@ namespace Pineapple.Core.Storage.Migrations
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Component", b =>
                 {
                     b.Navigation("Versions");
+                });
+
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.ComponentType", b =>
+                {
+                    b.Navigation("Components");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Implementation", b =>

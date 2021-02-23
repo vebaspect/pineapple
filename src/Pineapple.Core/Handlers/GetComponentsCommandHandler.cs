@@ -30,6 +30,7 @@ namespace Pineapple.Core.Handler
             var product = await databaseContext
                 .Products
                 .Include(product => product.Components)
+                .ThenInclude(component => component.ComponentType)
                 .FirstOrDefaultAsync(product => product.Id == request.ProductId)
                 .ConfigureAwait(false);
 
@@ -48,7 +49,7 @@ namespace Pineapple.Core.Handler
 
         private static ComponentDto Map(Domain.Entities.Component component)
         {
-            return new ComponentDto(component.Id, component.ModifiedDate, component.Name, component.Description);
+            return new ComponentDto(component.Id, component.ModifiedDate, component.Name, component.Description, component.ComponentTypeId);
         }
     }
 }

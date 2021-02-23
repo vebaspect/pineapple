@@ -17,6 +17,11 @@ namespace Pineapple.Core.Storage.Database
         public DbSet<Component> Components { get; set; }
 
         /// <summary>
+        /// Typy komponentów.
+        /// </summary>
+        public DbSet<ComponentType> ComponentTypes { get; set; }
+
+        /// <summary>
         /// Koordynatorzy.
         /// </summary>
         public DbSet<Coordinator> Coordinators { get; set; }
@@ -47,6 +52,7 @@ namespace Pineapple.Core.Storage.Database
 
             modelBuilder
                 .ApplyConfiguration(new ComponentConfiguration())
+                .ApplyConfiguration(new ComponentTypeConfiguration())
                 .ApplyConfiguration(new CoordinatorConfiguration())
                 .ApplyConfiguration(new EnvironmentConfiguration())
                 .ApplyConfiguration(new ImplementationConfiguration())

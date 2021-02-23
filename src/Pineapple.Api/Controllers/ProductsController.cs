@@ -82,7 +82,7 @@ namespace Pineapple.Api.Controllers
                 return BadRequest();
             }
 
-            CreateComponentCommand command = new(productId, dto.Name, dto.Description);
+            CreateComponentCommand command = new(productId, dto.Name, dto.Description, dto.ComponentTypeId);
             Task<Guid> resultTask = await mediator.Send(command).ConfigureAwait(false);
             Guid result = await resultTask.ConfigureAwait(false);
 

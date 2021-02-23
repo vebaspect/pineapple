@@ -26,6 +26,12 @@ namespace Pineapple.Core.Storage.Database.Configurations
                 .HasForeignKey(component => component.ProductId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
+            builder
+                .HasOne(component => component.ComponentType)
+                .WithMany(componentType => componentType.Components)
+                .HasForeignKey(component => component.ComponentTypeId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

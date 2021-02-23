@@ -3,9 +3,9 @@ using System;
 namespace Pineapple.Core.Dto
 {
     /// <summary>
-    /// Komponent.
+    /// Typ komponentu.
     /// </summary>
-    public class ComponentDto : IDto
+    public class ComponentTypeDto : IDto
     {
         /// <summary>
         /// Identyfikator.
@@ -23,22 +23,22 @@ namespace Pineapple.Core.Dto
         public string Name { get; }
 
         /// <summary>
+        /// Symbol.
+        /// </summary>
+        public string Symbol { get; }
+
+        /// <summary>
         /// Opis.
         /// </summary>
         public string Description { get; }
 
-        /// <summary>
-        /// Identyfikator typu komponentu.
-        /// </summary>
-        public Guid ComponentTypeId { get; }
-
-        public ComponentDto(Guid id, DateTime modifiedDate, string name, string description, Guid componentTypeId)
+        public ComponentTypeDto(Guid id, DateTime modifiedDate, string name, string symbol, string description)
         {
             Id = id;
             ModifiedDate = modifiedDate;
             Name = name;
+            Symbol = symbol;
             Description = description;
-            ComponentTypeId = componentTypeId;
         }
     }
 }

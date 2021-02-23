@@ -35,7 +35,8 @@ Content-Type: application/json
 
 {
     "Name": "",
-    "Description": ""
+    "Description": "",
+    "ComponentTypeId": ""
 }
 
 ### /products/{productId}/components/{componentId}
