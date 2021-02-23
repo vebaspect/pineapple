@@ -63,6 +63,10 @@ namespace Pineapple.Core.Storage.Database
                 .Entity<ComponentType>()
                 .HasIndex(componentType => componentType.Symbol)
                 .IsUnique();
+            modelBuilder
+                .Entity<Environment>()
+                .HasIndex(environment => environment.Symbol)
+                .IsUnique();
         }
     }
 }
