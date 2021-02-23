@@ -157,6 +157,12 @@ namespace Pineapple.Core.Storage.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ComponentTypes_Symbol",
+                table: "ComponentTypes",
+                column: "Symbol",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Coordinators_ImplementationId",
                 table: "Coordinators",
                 column: "ImplementationId");
@@ -165,6 +171,12 @@ namespace Pineapple.Core.Storage.Migrations
                 name: "IX_Environments_ImplementationId",
                 table: "Environments",
                 column: "ImplementationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Environments_Symbol",
+                table: "Environments",
+                column: "Symbol",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Versions_ComponentId",

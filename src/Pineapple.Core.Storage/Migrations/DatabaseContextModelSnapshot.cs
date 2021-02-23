@@ -77,6 +77,9 @@ namespace Pineapple.Core.Storage.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Symbol")
+                        .IsUnique();
+
                     b.ToTable("ComponentTypes");
                 });
 
@@ -141,6 +144,9 @@ namespace Pineapple.Core.Storage.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ImplementationId");
+
+                    b.HasIndex("Symbol")
+                        .IsUnique();
 
                     b.ToTable("Environments");
                 });
