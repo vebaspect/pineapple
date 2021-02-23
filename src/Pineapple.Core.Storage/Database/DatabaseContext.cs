@@ -58,6 +58,11 @@ namespace Pineapple.Core.Storage.Database
                 .ApplyConfiguration(new ImplementationConfiguration())
                 .ApplyConfiguration(new ProductConfiguration())
                 .ApplyConfiguration(new VersionConfiguration());
+
+            modelBuilder
+                .Entity<ComponentType>()
+                .HasIndex(componentType => componentType.Symbol)
+                .IsUnique();
         }
     }
 }
