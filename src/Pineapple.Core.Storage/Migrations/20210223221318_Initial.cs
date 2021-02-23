@@ -37,6 +37,21 @@ namespace Pineapple.Core.Storage.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "OperatingSystems",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Name = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
+                    Symbol = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
+                    Description = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OperatingSystems", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -179,6 +194,12 @@ namespace Pineapple.Core.Storage.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_OperatingSystems_Symbol",
+                table: "OperatingSystems",
+                column: "Symbol",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Versions_ComponentId",
                 table: "Versions",
                 column: "ComponentId");
@@ -191,6 +212,9 @@ namespace Pineapple.Core.Storage.Migrations
 
             migrationBuilder.DropTable(
                 name: "Environments");
+
+            migrationBuilder.DropTable(
+                name: "OperatingSystems");
 
             migrationBuilder.DropTable(
                 name: "Versions");
