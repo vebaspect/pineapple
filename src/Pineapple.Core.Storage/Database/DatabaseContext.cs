@@ -37,6 +37,11 @@ namespace Pineapple.Core.Storage.Database
         public DbSet<Implementation> Implementations { get; set; }
 
         /// <summary>
+        /// Systemy operacyjne.
+        /// </summary>
+        public DbSet<OperatingSystem> OperatingSystems { get; set; }
+
+        /// <summary>
         /// Produkty.
         /// </summary>
         public DbSet<Product> Products { get; set; }
@@ -56,6 +61,7 @@ namespace Pineapple.Core.Storage.Database
                 .ApplyConfiguration(new CoordinatorConfiguration())
                 .ApplyConfiguration(new EnvironmentConfiguration())
                 .ApplyConfiguration(new ImplementationConfiguration())
+                .ApplyConfiguration(new OperatingSystemConfiguration())
                 .ApplyConfiguration(new ProductConfiguration())
                 .ApplyConfiguration(new VersionConfiguration());
 
@@ -66,6 +72,10 @@ namespace Pineapple.Core.Storage.Database
             modelBuilder
                 .Entity<Environment>()
                 .HasIndex(environment => environment.Symbol)
+                .IsUnique();
+            modelBuilder
+                .Entity<OperatingSystem>()
+                .HasIndex(operatingSystem => operatingSystem.Symbol)
                 .IsUnique();
         }
     }

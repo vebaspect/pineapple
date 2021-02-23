@@ -61,5 +61,43 @@ namespace Pineapple.Api.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet]
+        [Route("operating-systems")]
+        public async Task<IActionResult> GetOperatingSystems()
+        {
+            GetOperatingSystemsCommand command = new();
+            Task<OperatingSystemDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            OperatingSystemDto[] result = await resultTask.ConfigureAwait(false);
+
+            return Ok(result);
+        }
+
+        [HttpPost]
+        [Route("operating-systems")]
+        public async Task<IActionResult> CreateOperatingSystem([FromBody]CreateOperatingSystemDto dto)
+        {
+            if (dto is null)
+            {
+                return BadRequest();
+            }
+
+            CreateOperatingSystemCommand command = new(dto.Name, dto.Symbol, dto.Description);
+            Task<Guid> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            Guid result = await resultTask.ConfigureAwait(false);
+
+            return Created($"/operating-systems/{result}", null);
+        }
+
+        [HttpGet]
+        [Route("operating-systems/{operatingSystemId}")]
+        public async Task<IActionResult> GetOperatingSystem(Guid operatingSystemId)
+        {
+            GetOperatingSystemCommand command = new(operatingSystemId);
+            Task<OperatingSystemDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            OperatingSystemDto result = await resultTask.ConfigureAwait(false);
+
+            return Ok(result);
+        }
     }
 }
