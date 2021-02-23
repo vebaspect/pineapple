@@ -4,7 +4,7 @@
 # Identyfikator typu komponentu.
 @componentTypeId = 
 # Identyfikator systemu operacyjnego.
-@operationSystemId = 
+@operatingSystemId = 
 
 ### /configuration/component-types
 GET {{url}}/configuration/component-types
@@ -24,12 +24,12 @@ Content-Type: application/json
 GET {{url}}/configuration/component-types/{{componentTypeId}}
 Content-Type: application/json
 
-### /configuration/operation-systems
-GET {{url}}/configuration/operation-systems
+### /configuration/operating-systems
+GET {{url}}/configuration/operating-systems
 Content-Type: application/json
 
-### /configuration/operation-systems
-POST {{url}}/configuration/operation-systems
+### /configuration/operating-systems
+POST {{url}}/configuration/operating-systems
 Content-Type: application/json
 
 {
@@ -38,6 +38,6 @@ Content-Type: application/json
     "Description": ""
 }
 
-### /configuration/operation-systems/{operationSystemId}
-GET {{url}}/configuration/operation-systems/{{operationSystemId}}
+### /configuration/operating-systems/{operatingSystemId}
+GET {{url}}/configuration/operating-systems/{{operatingSystemId}}
 Content-Type: application/json
