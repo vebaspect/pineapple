@@ -1,12 +1,11 @@
 using System;
-using System.Collections.Generic;
 
 namespace Pineapple.Core.Domain.Entities
 {
     /// <summary>
-    /// Środowisko.
+    /// Serwer.
     /// </summary>
-    public class Environment : Entity
+    public class Server : Entity
     {
         /// <summary>
         /// Nazwa.
@@ -24,18 +23,23 @@ namespace Pineapple.Core.Domain.Entities
         public string Description { get; set; }
 
         /// <summary>
-        /// Identyfikator wdrożenia.
+        /// Identyfikator środowiska.
         /// </summary>
-        public Guid ImplementationId { get; set; }
+        public Guid EnvironmentId { get; set; }
 
         /// <summary>
-        /// Wdrożenie.
+        /// Środowisko.
         /// </summary>
-        public Implementation Implementation { get; set; }
+        public Environment Environment { get; set; }
 
         /// <summary>
-        /// Serwery.
+        /// Identyfikator systemu operacyjnego.
         /// </summary>
-        public List<Server> Servers { get; set; }
+        public Guid OperatingSystemId { get; set; }
+
+        /// <summary>
+        /// System operacyjny.
+        /// </summary>
+        public OperatingSystem OperatingSystem { get; set; }
     }
 }
