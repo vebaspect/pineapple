@@ -2,6 +2,21 @@
 
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
+-- Typy komponentów:
+
+INSERT INTO
+    public."ComponentTypes"("Id", "Name", "Symbol", "Description", "ModifiedDate")
+	VALUES (uuid_generate_v4(), 'Aplikacja webowa (.NET Core)', 'netcorewebapp', NULL, NOW());
+INSERT INTO
+    public."ComponentTypes"("Id", "Name", "Symbol", "Description", "ModifiedDate")
+	VALUES (uuid_generate_v4(), 'Aplikacja webowa (PHP)', 'phpwebapp', NULL, NOW());
+INSERT INTO
+    public."ComponentTypes"("Id", "Name", "Symbol", "Description", "ModifiedDate")
+	VALUES (uuid_generate_v4(), 'Aplikacja desktopowa (.NET Core)', 'netcoredesktopapp', NULL, NOW());
+INSERT INTO
+    public."ComponentTypes"("Id", "Name", "Symbol", "Description", "ModifiedDate")
+	VALUES (uuid_generate_v4(), 'Aplikacja konsolowa (.NET Core)', 'netcoreconsoleapp', NULL, NOW());
+
 -- Systemy operacyjne:
 
 INSERT INTO
