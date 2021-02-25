@@ -41,7 +41,12 @@ namespace Pineapple.Core.Handler
 
         private static ProductDto Map(Domain.Entities.Product product)
         {
-            return new ProductDto(product.Id, product.ModifiedDate, product.Name, product.Description);
+            return new ProductDto(
+                product.Id,
+                product.ModifiedDate,
+                product.Name,
+                product.Description
+            );
         }
     }
 }

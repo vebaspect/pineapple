@@ -42,7 +42,13 @@ namespace Pineapple.Core.Handler
 
         private static ComponentTypeDto Map(Domain.Entities.ComponentType componentType)
         {
-            return new ComponentTypeDto(componentType.Id, componentType.ModifiedDate, componentType.Name, componentType.Symbol, componentType.Description);
+            return new ComponentTypeDto(
+                componentType.Id,
+                componentType.ModifiedDate,
+                componentType.Name,
+                componentType.Symbol,
+                componentType.Description
+            );
         }
     }
 }

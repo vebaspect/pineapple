@@ -41,7 +41,13 @@ namespace Pineapple.Core.Handler
 
         private static OperatingSystemDto Map(Domain.Entities.OperatingSystem operatingSystem)
         {
-            return new OperatingSystemDto(operatingSystem.Id, operatingSystem.ModifiedDate, operatingSystem.Name, operatingSystem.Symbol, operatingSystem.Description);
+            return new OperatingSystemDto(
+                operatingSystem.Id,
+                operatingSystem.ModifiedDate,
+                operatingSystem.Name,
+                operatingSystem.Symbol,
+                operatingSystem.Description
+            );
         }
     }
 }

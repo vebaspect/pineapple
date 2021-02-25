@@ -62,7 +62,15 @@ namespace Pineapple.Core.Handler
 
         private static VersionDto Map(Domain.Entities.Version version)
         {
-            return new VersionDto(version.Id, version.ModifiedDate, version.Major, version.Minor, version.Patch, version.PreRelease, version.Description);
+            return new VersionDto(
+                version.Id,
+                version.ModifiedDate,
+                version.Major,
+                version.Minor,
+                version.Patch,
+                version.PreRelease,
+                version.Description
+            );
         }
     }
 }
