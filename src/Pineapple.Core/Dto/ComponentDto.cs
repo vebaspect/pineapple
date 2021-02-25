@@ -32,13 +32,19 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public Guid ComponentTypeId { get; }
 
-        public ComponentDto(Guid id, DateTime modifiedDate, string name, string description, Guid componentTypeId)
+        /// <summary>
+        /// Nazwa typu komponentu.
+        /// </summary>
+        public string ComponentTypeName { get; }
+
+        public ComponentDto(Guid id, DateTime modifiedDate, string name, string description, Guid componentTypeId, string componentTypeName)
         {
             Id = id;
             ModifiedDate = modifiedDate;
             Name = name;
             Description = description;
             ComponentTypeId = componentTypeId;
+            ComponentTypeName = componentTypeName;
         }
     }
 }

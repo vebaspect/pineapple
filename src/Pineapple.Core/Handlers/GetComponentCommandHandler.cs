@@ -53,7 +53,14 @@ namespace Pineapple.Core.Handler
 
         private static ComponentDto Map(Domain.Entities.Component component)
         {
-            return new ComponentDto(component.Id, component.ModifiedDate, component.Name, component.Description, component.ComponentTypeId);
+            return new ComponentDto(
+                component.Id,
+                component.ModifiedDate,
+                component.Name,
+                component.Description,
+                component.ComponentTypeId,
+                component.ComponentType.Name
+            );
         }
     }
 }
