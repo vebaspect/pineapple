@@ -37,7 +37,12 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public Guid OperatingSystemId { get; }
 
-        public ServerDto(Guid id, DateTime modifiedDate, string name, string symbol, string description, Guid operatingSystemId)
+        /// <summary>
+        /// Nazwa systemu operacyjnego.
+        /// </summary>
+        public string OperatingSystemName { get; }
+
+        public ServerDto(Guid id, DateTime modifiedDate, string name, string symbol, string description, Guid operatingSystemId, string operatingSystemName)
         {
             Id = id;
             ModifiedDate = modifiedDate;
@@ -45,6 +50,7 @@ namespace Pineapple.Core.Dto
             Symbol = symbol;
             Description = description;
             OperatingSystemId = operatingSystemId;
+            OperatingSystemName = operatingSystemName;
         }
     }
 }

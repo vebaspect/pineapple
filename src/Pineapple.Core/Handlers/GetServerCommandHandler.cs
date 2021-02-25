@@ -31,6 +31,7 @@ namespace Pineapple.Core.Handler
                 .Implementations
                 .Include(implementation => implementation.Environments)
                 .ThenInclude(environment => environment.Servers)
+                .ThenInclude(environment => environment.OperatingSystem)
                 .FirstOrDefaultAsync(implementation => implementation.Id == request.ImplementationId)
                 .ConfigureAwait(false);
 
@@ -62,7 +63,15 @@ namespace Pineapple.Core.Handler
 
         private static ServerDto Map(Domain.Entities.Server server)
         {
-            return new ServerDto(server.Id, server.ModifiedDate, server.Name, server.Symbol, server.Description, server.OperatingSystemId);
+            return new ServerDto(
+                server.Id,
+                server.ModifiedDate,
+                server.Name,
+                server.Symbol,
+                server.Description,
+                server.OperatingSystemId,
+                server.OperatingSystem.Name
+            );
         }
     }
 }
