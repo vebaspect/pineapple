@@ -147,6 +147,7 @@ namespace Pineapple.Core.Storage.Migrations
                     Description = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: true),
                     EnvironmentId = table.Column<Guid>(type: "uuid", nullable: false),
                     OperatingSystemId = table.Column<Guid>(type: "uuid", nullable: false),
+                    IPAddress = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>

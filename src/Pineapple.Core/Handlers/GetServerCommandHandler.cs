@@ -70,7 +70,8 @@ namespace Pineapple.Core.Handler
                 server.Symbol,
                 server.Description,
                 server.OperatingSystemId,
-                server.OperatingSystem.Name
+                server.OperatingSystem.Name,
+                server.IPAddress
             );
         }
     }

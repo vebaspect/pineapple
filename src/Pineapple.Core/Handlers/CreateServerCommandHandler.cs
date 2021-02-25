@@ -35,6 +35,7 @@ namespace Pineapple.Core.Handler
                 Description = request.Description,
                 EnvironmentId = request.EnvironmentId,
                 OperatingSystemId = request.OperatingSystemId,
+                IPAddress = request.IPAddress,
             };
 
             await databaseContext.Servers.AddAsync(server).ConfigureAwait(false);

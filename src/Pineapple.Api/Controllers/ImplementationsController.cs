@@ -158,7 +158,7 @@ namespace Pineapple.Api.Controllers
                 return BadRequest();
             }
 
-            CreateServerCommand command = new(environmentId, dto.Name, dto.Symbol, dto.Description, dto.OperatingSystemId);
+            CreateServerCommand command = new(environmentId, dto.Name, dto.Symbol, dto.Description, dto.OperatingSystemId, dto.IPAddress);
             Task<Guid> resultTask = await mediator.Send(command).ConfigureAwait(false);
             Guid result = await resultTask.ConfigureAwait(false);
 

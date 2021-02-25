@@ -36,6 +36,9 @@ namespace Pineapple.Core.Storage.Database.Configurations
                 .HasForeignKey(server => server.OperatingSystemId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
+            builder
+                .Property(server => server.IPAddress)
+                .HasMaxLength(100);
         }
     }
 }

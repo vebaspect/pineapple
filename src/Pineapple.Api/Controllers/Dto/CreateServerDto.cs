@@ -26,5 +26,10 @@ namespace Pineapple.Api.Controllers.Dto
         /// Identyfikator systemu operacyjnego.
         /// </summary>
         public Guid OperatingSystemId { get; set; }
+
+        /// <summary>
+        /// Adres IP.
+        /// </summary>
+        public string IPAddress { get; set; }
     }
 }

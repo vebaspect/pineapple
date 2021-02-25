@@ -75,7 +75,8 @@ Content-Type: application/json
     "Name": "",
     "Symbol": "",
     "Description": "",
-    "OperatingSystemId": ""
+    "OperatingSystemId": "",
+    "IPAddress": ""
 }
 
 ### /implementations/{implementationId}/environments/{environmentId}/servers/{serverId}

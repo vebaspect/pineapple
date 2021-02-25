@@ -31,13 +31,19 @@ namespace Pineapple.Core.Commands
         /// </summary>
         public Guid OperatingSystemId { get; }
 
-        public CreateServerCommand(Guid environmentId, string name, string symbol, string description, Guid operatingSystemId)
+        /// <summary>
+        /// Adres IP.
+        /// </summary>
+        public string IPAddress { get; }
+
+        public CreateServerCommand(Guid environmentId, string name, string symbol, string description, Guid operatingSystemId, string ipAddress)
         {
             EnvironmentId = environmentId;
             Name = name;
             Symbol = symbol;
             Description = description;
             OperatingSystemId = operatingSystemId;
+            IPAddress = ipAddress;
         }
     }
 }

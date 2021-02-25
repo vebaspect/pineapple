@@ -42,7 +42,12 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public string OperatingSystemName { get; }
 
-        public ServerDto(Guid id, DateTime modifiedDate, string name, string symbol, string description, Guid operatingSystemId, string operatingSystemName)
+        /// <summary>
+        /// Adres IP.
+        /// </summary>
+        public string IPAddress { get; }
+
+        public ServerDto(Guid id, DateTime modifiedDate, string name, string symbol, string description, Guid operatingSystemId, string operatingSystemName, string ipAddress)
         {
             Id = id;
             ModifiedDate = modifiedDate;
@@ -51,6 +56,7 @@ namespace Pineapple.Core.Dto
             Description = description;
             OperatingSystemId = operatingSystemId;
             OperatingSystemName = operatingSystemName;
+            IPAddress = ipAddress;
         }
     }
 }

@@ -241,6 +241,10 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Property<Guid>("EnvironmentId")
                         .HasColumnType("uuid");
 
+                    b.Property<string>("IPAddress")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("timestamp without time zone");
 

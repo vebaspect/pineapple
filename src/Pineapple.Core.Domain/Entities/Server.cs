@@ -41,5 +41,10 @@ namespace Pineapple.Core.Domain.Entities
         /// System operacyjny.
         /// </summary>
         public OperatingSystem OperatingSystem { get; set; }
+
+        /// <summary>
+        /// Adres IP.
+        /// </summary>
+        public string IPAddress { get; set; }
     }
 }
