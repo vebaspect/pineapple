@@ -63,6 +63,44 @@ namespace Pineapple.Api.Controllers
         }
 
         [HttpGet]
+        [Route("{implementationId}/coordinators")]
+        public async Task<IActionResult> GetCoordinators(Guid implementationId)
+        {
+            GetCoordinatorsCommand command = new(implementationId);
+            Task<CoordinatorDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            CoordinatorDto[] result = await resultTask.ConfigureAwait(false);
+
+            return Ok(result);
+        }
+
+        [HttpPost]
+        [Route("{implementationId}/coordinators")]
+        public async Task<IActionResult> CreateCoordinator(Guid implementationId, [FromBody]CreateCoordinatorDto dto)
+        {
+            if (dto is null)
+            {
+                return BadRequest();
+            }
+
+            CreateCoordinatorCommand command = new(implementationId, dto.FullName, dto.Phone, dto.Email);
+            Task<Guid> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            Guid result = await resultTask.ConfigureAwait(false);
+
+            return Created($"/implementations/{implementationId}/coordinators/{result}", null);
+        }
+
+        [HttpGet]
+        [Route("{implementationId}/coordinators/{coordinatorId}")]
+        public async Task<IActionResult> GetCoordinator(Guid implementationId, Guid coordinatorId)
+        {
+            GetCoordinatorCommand command = new(implementationId, coordinatorId);
+            Task<CoordinatorDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            CoordinatorDto result = await resultTask.ConfigureAwait(false);
+
+            return Ok(result);
+        }
+
+        [HttpGet]
         [Route("{implementationId}/environments")]
         public async Task<IActionResult> GetEnvironments(Guid implementationId)
         {
@@ -101,39 +139,39 @@ namespace Pineapple.Api.Controllers
         }
 
         [HttpGet]
-        [Route("{implementationId}/coordinators")]
-        public async Task<IActionResult> GetCoordinators(Guid implementationId)
+        [Route("{implementationId}/environments/{environmentId}/servers")]
+        public async Task<IActionResult> GetServers(Guid implementationId, Guid environmentId)
         {
-            GetCoordinatorsCommand command = new(implementationId);
-            Task<CoordinatorDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
-            CoordinatorDto[] result = await resultTask.ConfigureAwait(false);
+            GetServersCommand command = new(implementationId, environmentId);
+            Task<ServerDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            ServerDto[] result = await resultTask.ConfigureAwait(false);
 
             return Ok(result);
         }
 
         [HttpPost]
-        [Route("{implementationId}/coordinators")]
-        public async Task<IActionResult> CreateCoordinator(Guid implementationId, [FromBody]CreateCoordinatorDto dto)
+        [Route("{implementationId}/environments/{environmentId}/servers")]
+        public async Task<IActionResult> CreateServer(Guid implementationId, Guid environmentId, [FromBody]CreateServerDto dto)
         {
             if (dto is null)
             {
                 return BadRequest();
             }
 
-            CreateCoordinatorCommand command = new(implementationId, dto.FullName, dto.Phone, dto.Email);
+            CreateServerCommand command = new(implementationId, dto.Name, dto.Symbol, dto.Description, dto.OperatingSystemId);
             Task<Guid> resultTask = await mediator.Send(command).ConfigureAwait(false);
             Guid result = await resultTask.ConfigureAwait(false);
 
-            return Created($"/implementations/{implementationId}/coordinators/{result}", null);
+            return Created($"/implementations/{implementationId}/environments/{environmentId}/servers/{result}", null);
         }
 
         [HttpGet]
-        [Route("{implementationId}/coordinators/{coordinatorId}")]
-        public async Task<IActionResult> GetCoordinator(Guid implementationId, Guid coordinatorId)
+        [Route("{implementationId}/environments/{environmentId}/servers/{serverId}")]
+        public async Task<IActionResult> GetServer(Guid implementationId, Guid environmentId, Guid serverId)
         {
-            GetCoordinatorCommand command = new(implementationId, coordinatorId);
-            Task<CoordinatorDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
-            CoordinatorDto result = await resultTask.ConfigureAwait(false);
+            GetServerCommand command = new(implementationId, environmentId, serverId);
+            Task<ServerDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            ServerDto result = await resultTask.ConfigureAwait(false);
 
             return Ok(result);
         }

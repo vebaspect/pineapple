@@ -3,10 +3,12 @@
 
 # Identyfikator wdrożenia.
 @implementationId = 
-# Identyfikator środowiska.
-@environmentId = 
 # Identyfikator koordynatora.
 @coordinatorId = 
+# Identyfikator środowiska.
+@environmentId = 
+# Identyfikator serwera.
+@serverId = 
 
 ### /implementations
 GET {{url}}/implementations
@@ -23,6 +25,24 @@ Content-Type: application/json
 
 ### /implementations/{implementationId}
 GET {{url}}/implementations/{{implementationId}}
+Content-Type: application/json
+
+### /implementations/{implementationId}/coordinators
+GET {{url}}/implementations/{{implementationId}}/coordinators
+Content-Type: application/json
+
+### /implementations/{implementationId}/coordinators
+POST {{url}}/implementations/{{implementationId}}/coordinators
+Content-Type: application/json
+
+{
+    "FullName": "",
+    "Phone": "",
+    "Email": ""
+}
+
+### /implementations/{implementationId}/coordinators/{coordinatorId}
+GET {{url}}/implementations/{{implementationId}}/coordinators/{{coordinatorId}}
 Content-Type: application/json
 
 ### /implementations/{implementationId}/environments
@@ -43,20 +63,21 @@ Content-Type: application/json
 GET {{url}}/implementations/{{implementationId}}/environments/{{environmentId}}
 Content-Type: application/json
 
-### /implementations/{implementationId}/coordinators
-GET {{url}}/implementations/{{implementationId}}/coordinators
+### /implementations/{implementationId}/environments/{environmentId}/servers
+GET {{url}}/implementations/{{implementationId}}/environments/{{environmentId}}/servers
 Content-Type: application/json
 
-### /implementations/{implementationId}/coordinators
-POST {{url}}/implementations/{{implementationId}}/coordinators
+### /implementations/{implementationId}/environments/{environmentId}/servers
+POST {{url}}/implementations/{{implementationId}}/environments/{{environmentId}}/servers
 Content-Type: application/json
 
 {
-    "FullName": "",
-    "Phone": "",
-    "Email": ""
+    "Name": "",
+    "Symbol": "",
+    "Description": "",
+    "OperatingSystemId": ""
 }
 
-### /implementations/{implementationId}/coordinators/{coordinatorId}
-GET {{url}}/implementations/{{implementationId}}/coordinators/{{coordinatorId}}
+### /implementations/{implementationId}/environments/{environmentId}/servers/{serverId}
+GET {{url}}/implementations/{{implementationId}}/environments/{{environmentId}}/servers/{{serverId}}
 Content-Type: application/json

@@ -49,7 +49,7 @@ namespace Pineapple.Core.Storage.Database
         /// <summary>
         /// Serwery.
         /// </summary>
-        public DbSet<Product> Servers { get; set; }
+        public DbSet<Server> Servers { get; set; }
 
         /// <summary>
         /// Wersje.
