@@ -58,3 +58,33 @@ INSERT INTO
 INSERT INTO
     public."OperatingSystems"("Id", "Name", "Symbol", "Description", "ModifiedDate")
 	VALUES (uuid_generate_v4(), 'Oracle Linux 8.3', 'oraclelinux83', NULL, NOW());
+
+-- Oprogramowanie:
+
+INSERT INTO
+    public."SoftwareApplications"("Id", "Name", "Symbol", "Description", "ModifiedDate")
+	VALUES (uuid_generate_v4(), 'Baza danych (SQL Server 2008)', 'sqlserver2008', NULL, NOW());
+INSERT INTO
+    public."SoftwareApplications"("Id", "Name", "Symbol", "Description", "ModifiedDate")
+	VALUES (uuid_generate_v4(), 'Baza danych (SQL Server 2008 R2)', 'sqlserver2008r2', NULL, NOW());
+INSERT INTO
+    public."SoftwareApplications"("Id", "Name", "Symbol", "Description", "ModifiedDate")
+	VALUES (uuid_generate_v4(), 'Baza danych (SQL Server 2012)', 'sqlserver2012', NULL, NOW());
+INSERT INTO
+    public."SoftwareApplications"("Id", "Name", "Symbol", "Description", "ModifiedDate")
+	VALUES (uuid_generate_v4(), 'Baza danych (SQL Server 2014)', 'sqlserver2014', NULL, NOW());
+INSERT INTO
+    public."SoftwareApplications"("Id", "Name", "Symbol", "Description", "ModifiedDate")
+	VALUES (uuid_generate_v4(), 'Baza danych (SQL Server 2016)', 'sqlserver2016', NULL, NOW());
+INSERT INTO
+    public."SoftwareApplications"("Id", "Name", "Symbol", "Description", "ModifiedDate")
+	VALUES (uuid_generate_v4(), 'Baza danych (SQL Server 2017)', 'sqlserver2017', NULL, NOW());
+INSERT INTO
+    public."SoftwareApplications"("Id", "Name", "Symbol", "Description", "ModifiedDate")
+	VALUES (uuid_generate_v4(), 'Baza danych (SQL Server 2019)', 'sqlserver2019', NULL, NOW());
+INSERT INTO
+    public."SoftwareApplications"("Id", "Name", "Symbol", "Description", "ModifiedDate")
+	VALUES (uuid_generate_v4(), 'Baza danych (Oracle Database 21c)', 'oracledatabase21c', NULL, NOW());
+INSERT INTO
+    public."SoftwareApplications"("Id", "Name", "Symbol", "Description", "ModifiedDate")
+	VALUES (uuid_generate_v4(), 'Baza danych (PostgreSQL 13)', 'postgresql13', NULL, NOW());
