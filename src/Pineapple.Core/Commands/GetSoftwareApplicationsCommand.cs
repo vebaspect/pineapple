@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Pineapple.Core.Commands
 {
-    public class GetOperatingSystemsCommand : IRequest<Task<OperatingSystemDto[]>>, ICommand
+    public class GetSoftwareApplicationsCommand : IRequest<Task<SoftwareApplicationDto[]>>, ICommand
     {
     }
 }

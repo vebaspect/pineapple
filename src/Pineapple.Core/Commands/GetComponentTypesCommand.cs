@@ -6,8 +6,5 @@ namespace Pineapple.Core.Commands
 {
     public class GetComponentTypesCommand : IRequest<Task<ComponentTypeDto[]>>, ICommand
     {
-        public GetComponentTypesCommand()
-        {
-        }
     }
 }

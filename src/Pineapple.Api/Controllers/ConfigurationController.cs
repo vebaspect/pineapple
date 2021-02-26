@@ -99,5 +99,43 @@ namespace Pineapple.Api.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet]
+        [Route("software-applications")]
+        public async Task<IActionResult> GetSoftwareApplications()
+        {
+            GetSoftwareApplicationsCommand command = new();
+            Task<SoftwareApplicationDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            SoftwareApplicationDto[] result = await resultTask.ConfigureAwait(false);
+
+            return Ok(result);
+        }
+
+        [HttpPost]
+        [Route("software-applications")]
+        public async Task<IActionResult> CreateSoftwareApplication([FromBody]CreateSoftwareApplicationDto dto)
+        {
+            if (dto is null)
+            {
+                return BadRequest();
+            }
+
+            CreateSoftwareApplicationCommand command = new(dto.Name, dto.Symbol, dto.Description);
+            Task<Guid> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            Guid result = await resultTask.ConfigureAwait(false);
+
+            return Created($"/software-applications/{result}", null);
+        }
+
+        [HttpGet]
+        [Route("software-applications/{softwareApplicationId}")]
+        public async Task<IActionResult> GetSoftwareApplication(Guid softwareApplicationId)
+        {
+            GetSoftwareApplicationCommand command = new(softwareApplicationId);
+            Task<SoftwareApplicationDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            SoftwareApplicationDto result = await resultTask.ConfigureAwait(false);
+
+            return Ok(result);
+        }
     }
 }

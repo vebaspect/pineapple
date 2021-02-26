@@ -52,6 +52,11 @@ namespace Pineapple.Core.Storage.Database
         public DbSet<Server> Servers { get; set; }
 
         /// <summary>
+        /// Oprogramowanie.
+        /// </summary>
+        public DbSet<SoftwareApplication> SoftwareApplications { get; set; }
+
+        /// <summary>
         /// Wersje.
         /// </summary>
         public DbSet<Version> Versions { get; set; }
@@ -69,6 +74,7 @@ namespace Pineapple.Core.Storage.Database
                 .ApplyConfiguration(new OperatingSystemConfiguration())
                 .ApplyConfiguration(new ProductConfiguration())
                 .ApplyConfiguration(new ServerConfiguration())
+                .ApplyConfiguration(new SoftwareApplicationConfiguration())
                 .ApplyConfiguration(new VersionConfiguration());
 
             modelBuilder
@@ -86,6 +92,10 @@ namespace Pineapple.Core.Storage.Database
             modelBuilder
                 .Entity<Server>()
                 .HasIndex(server => server.Symbol)
+                .IsUnique();
+            modelBuilder
+                .Entity<SoftwareApplication>()
+                .HasIndex(softwareApplication => softwareApplication.Symbol)
                 .IsUnique();
         }
     }
