@@ -304,6 +304,48 @@ namespace Pineapple.Core.Storage.Migrations
                     b.ToTable("SoftwareApplications");
                 });
 
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.User", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<string>("Login")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Phone")
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Login")
+                        .IsUnique();
+
+                    b.ToTable("Users");
+
+                    b.HasDiscriminator<string>("Type").HasValue("User");
+                });
+
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Version", b =>
                 {
                     b.Property<Guid>("Id")
@@ -338,6 +380,27 @@ namespace Pineapple.Core.Storage.Migrations
                     b.HasIndex("ComponentId");
 
                     b.ToTable("Versions");
+                });
+
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.Administrator", b =>
+                {
+                    b.HasBaseType("Pineapple.Core.Domain.Entities.User");
+
+                    b.HasDiscriminator().HasValue("Administrator");
+                });
+
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.Developer", b =>
+                {
+                    b.HasBaseType("Pineapple.Core.Domain.Entities.User");
+
+                    b.HasDiscriminator().HasValue("Developer");
+                });
+
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.Operator", b =>
+                {
+                    b.HasBaseType("Pineapple.Core.Domain.Entities.User");
+
+                    b.HasDiscriminator().HasValue("Operator");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Component", b =>

@@ -81,6 +81,23 @@ namespace Pineapple.Core.Storage.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Type = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    FullName = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
+                    Login = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    Phone = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
+                    Email = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Coordinators",
                 columns: table => new
                 {
@@ -267,6 +284,12 @@ namespace Pineapple.Core.Storage.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Users_Login",
+                table: "Users",
+                column: "Login",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Versions_ComponentId",
                 table: "Versions",
                 column: "ComponentId");
@@ -282,6 +305,9 @@ namespace Pineapple.Core.Storage.Migrations
 
             migrationBuilder.DropTable(
                 name: "SoftwareApplications");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Versions");
