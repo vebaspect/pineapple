@@ -273,6 +273,37 @@ namespace Pineapple.Core.Storage.Migrations
                     b.ToTable("Servers");
                 });
 
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.SoftwareApplication", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(4000)
+                        .HasColumnType("character varying(4000)");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<string>("Symbol")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Symbol")
+                        .IsUnique();
+
+                    b.ToTable("SoftwareApplications");
+                });
+
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Version", b =>
                 {
                     b.Property<Guid>("Id")

@@ -66,6 +66,21 @@ namespace Pineapple.Core.Storage.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "SoftwareApplications",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Name = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
+                    Symbol = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
+                    Description = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SoftwareApplications", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Coordinators",
                 columns: table => new
                 {
@@ -246,6 +261,12 @@ namespace Pineapple.Core.Storage.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_SoftwareApplications_Symbol",
+                table: "SoftwareApplications",
+                column: "Symbol",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Versions_ComponentId",
                 table: "Versions",
                 column: "ComponentId");
@@ -258,6 +279,9 @@ namespace Pineapple.Core.Storage.Migrations
 
             migrationBuilder.DropTable(
                 name: "Servers");
+
+            migrationBuilder.DropTable(
+                name: "SoftwareApplications");
 
             migrationBuilder.DropTable(
                 name: "Versions");
