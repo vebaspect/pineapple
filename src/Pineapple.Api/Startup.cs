@@ -20,6 +20,7 @@ namespace Pineapple.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddCors(Configuration);
             services.AddMediatR();
             services.AddStorage();
         }
@@ -34,6 +35,8 @@ namespace Pineapple.Api
             }
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {

@@ -4,11 +4,22 @@ using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 
 namespace Pineapple.Api
 {
     public static class Extensions
     {
+        public static IServiceCollection AddCors(this IServiceCollection services, IConfiguration configuration)
+        {
+            IConfigurationSection corsConfigurationSection = configuration.GetSection("Hosting:Cors");
+            string[] origins = corsConfigurationSection.GetSection("Origins").Get<string[]>();
+
+            services.AddCors(options => options.AddDefaultPolicy(policy => policy.WithOrigins(origins)));
+
+            return services;
+        }
+
         public static IServiceCollection AddMediatR(this IServiceCollection services)
         {
             services.AddMediatR(typeof(ICommand));
