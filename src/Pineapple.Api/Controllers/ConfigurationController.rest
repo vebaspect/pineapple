@@ -45,6 +45,10 @@ Content-Type: application/json
 }
 
 ### /configuration/operating-systems/{operatingSystemId}
+DELETE {{url}}/configuration/operating-systems//{{operatingSystemId}}
+Content-Type: application/json
+
+### /configuration/operating-systems/{operatingSystemId}
 GET {{url}}/configuration/operating-systems/{{operatingSystemId}}
 Content-Type: application/json
 

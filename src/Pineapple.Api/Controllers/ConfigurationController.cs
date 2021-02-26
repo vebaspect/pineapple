@@ -99,6 +99,16 @@ namespace Pineapple.Api.Controllers
             return Created($"/operating-systems/{result}", null);
         }
 
+        [HttpDelete]
+        [Route("operating-systems/{operatingSystemId}")]
+        public async Task<IActionResult> DeleteOperatingSystem(Guid operatingSystemId)
+        {
+            DeleteOperatingSystemCommand command = new(operatingSystemId);
+            await mediator.Send(command).ConfigureAwait(false);
+
+            return Ok();
+        }
+
         [HttpGet]
         [Route("operating-systems/{operatingSystemId}")]
         public async Task<IActionResult> GetOperatingSystem(Guid operatingSystemId)
