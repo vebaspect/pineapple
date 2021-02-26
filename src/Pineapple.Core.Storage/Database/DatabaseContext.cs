@@ -61,20 +61,29 @@ namespace Pineapple.Core.Storage.Database
         /// </summary>
         public DbSet<Version> Versions { get; set; }
 
+        /// <summary>
+        /// Użytkownicy.
+        /// </summary>
+        public DbSet<User> Users { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             modelBuilder
+                .ApplyConfiguration(new AdministratorConfiguration())
                 .ApplyConfiguration(new ComponentConfiguration())
                 .ApplyConfiguration(new ComponentTypeConfiguration())
                 .ApplyConfiguration(new CoordinatorConfiguration())
+                .ApplyConfiguration(new DeveloperConfiguration())
                 .ApplyConfiguration(new EnvironmentConfiguration())
                 .ApplyConfiguration(new ImplementationConfiguration())
                 .ApplyConfiguration(new OperatingSystemConfiguration())
+                .ApplyConfiguration(new OperatorConfiguration())
                 .ApplyConfiguration(new ProductConfiguration())
                 .ApplyConfiguration(new ServerConfiguration())
                 .ApplyConfiguration(new SoftwareApplicationConfiguration())
+                .ApplyConfiguration(new UserConfiguration())
                 .ApplyConfiguration(new VersionConfiguration());
 
             modelBuilder
@@ -96,6 +105,10 @@ namespace Pineapple.Core.Storage.Database
             modelBuilder
                 .Entity<SoftwareApplication>()
                 .HasIndex(softwareApplication => softwareApplication.Symbol)
+                .IsUnique();
+            modelBuilder
+                .Entity<User>()
+                .HasIndex(user => user.Login)
                 .IsUnique();
         }
     }
