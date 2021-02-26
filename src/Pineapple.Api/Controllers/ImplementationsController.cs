@@ -53,9 +53,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("{implementationId}")]
-        public async Task<IActionResult> GetImplementation(Guid implementationId)
+        public async Task<IActionResult> GetImplementation(string implementationId)
         {
-            GetImplementationCommand command = new(implementationId);
+            GetImplementationCommand command = new(Guid.Parse(implementationId));
             Task<ImplementationDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
             ImplementationDto result = await resultTask.ConfigureAwait(false);
 
@@ -64,9 +64,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("{implementationId}/coordinators")]
-        public async Task<IActionResult> GetCoordinators(Guid implementationId)
+        public async Task<IActionResult> GetCoordinators(string implementationId)
         {
-            GetCoordinatorsCommand command = new(implementationId);
+            GetCoordinatorsCommand command = new(Guid.Parse(implementationId));
             Task<CoordinatorDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             CoordinatorDto[] result = await resultTask.ConfigureAwait(false);
 
@@ -75,14 +75,14 @@ namespace Pineapple.Api.Controllers
 
         [HttpPost]
         [Route("{implementationId}/coordinators")]
-        public async Task<IActionResult> CreateCoordinator(Guid implementationId, [FromBody]CreateCoordinatorDto dto)
+        public async Task<IActionResult> CreateCoordinator(string implementationId, [FromBody]CreateCoordinatorDto dto)
         {
             if (dto is null)
             {
                 return BadRequest();
             }
 
-            CreateCoordinatorCommand command = new(implementationId, dto.FullName, dto.Phone, dto.Email);
+            CreateCoordinatorCommand command = new(Guid.Parse(implementationId), dto.FullName, dto.Phone, dto.Email);
             Task<Guid> resultTask = await mediator.Send(command).ConfigureAwait(false);
             Guid result = await resultTask.ConfigureAwait(false);
 
@@ -91,9 +91,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("{implementationId}/coordinators/{coordinatorId}")]
-        public async Task<IActionResult> GetCoordinator(Guid implementationId, Guid coordinatorId)
+        public async Task<IActionResult> GetCoordinator(string implementationId, string coordinatorId)
         {
-            GetCoordinatorCommand command = new(implementationId, coordinatorId);
+            GetCoordinatorCommand command = new(Guid.Parse(implementationId), Guid.Parse(coordinatorId));
             Task<CoordinatorDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
             CoordinatorDto result = await resultTask.ConfigureAwait(false);
 
@@ -102,9 +102,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("{implementationId}/environments")]
-        public async Task<IActionResult> GetEnvironments(Guid implementationId)
+        public async Task<IActionResult> GetEnvironments(string implementationId)
         {
-            GetEnvironmentsCommand command = new(implementationId);
+            GetEnvironmentsCommand command = new(Guid.Parse(implementationId));
             Task<EnvironmentDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             EnvironmentDto[] result = await resultTask.ConfigureAwait(false);
 
@@ -113,14 +113,14 @@ namespace Pineapple.Api.Controllers
 
         [HttpPost]
         [Route("{implementationId}/environments")]
-        public async Task<IActionResult> CreateEnvironment(Guid implementationId, [FromBody]CreateEnvironmentDto dto)
+        public async Task<IActionResult> CreateEnvironment(string implementationId, [FromBody]CreateEnvironmentDto dto)
         {
             if (dto is null)
             {
                 return BadRequest();
             }
 
-            CreateEnvironmentCommand command = new(implementationId, dto.Name, dto.Symbol, dto.Description);
+            CreateEnvironmentCommand command = new(Guid.Parse(implementationId), dto.Name, dto.Symbol, dto.Description);
             Task<Guid> resultTask = await mediator.Send(command).ConfigureAwait(false);
             Guid result = await resultTask.ConfigureAwait(false);
 
@@ -129,9 +129,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("{implementationId}/environments/{environmentId}")]
-        public async Task<IActionResult> GetEnvironment(Guid implementationId, Guid environmentId)
+        public async Task<IActionResult> GetEnvironment(string implementationId, string environmentId)
         {
-            GetEnvironmentCommand command = new(implementationId, environmentId);
+            GetEnvironmentCommand command = new(Guid.Parse(implementationId), Guid.Parse(environmentId));
             Task<EnvironmentDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
             EnvironmentDto result = await resultTask.ConfigureAwait(false);
 
@@ -140,9 +140,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("{implementationId}/environments/{environmentId}/servers")]
-        public async Task<IActionResult> GetServers(Guid implementationId, Guid environmentId)
+        public async Task<IActionResult> GetServers(string implementationId, string environmentId)
         {
-            GetServersCommand command = new(implementationId, environmentId);
+            GetServersCommand command = new(Guid.Parse(implementationId), Guid.Parse(environmentId));
             Task<ServerDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             ServerDto[] result = await resultTask.ConfigureAwait(false);
 
@@ -151,14 +151,14 @@ namespace Pineapple.Api.Controllers
 
         [HttpPost]
         [Route("{implementationId}/environments/{environmentId}/servers")]
-        public async Task<IActionResult> CreateServer(Guid implementationId, Guid environmentId, [FromBody]CreateServerDto dto)
+        public async Task<IActionResult> CreateServer(string implementationId, string environmentId, [FromBody]CreateServerDto dto)
         {
             if (dto is null)
             {
                 return BadRequest();
             }
 
-            CreateServerCommand command = new(environmentId, dto.Name, dto.Symbol, dto.Description, dto.OperatingSystemId, dto.IPAddress);
+            CreateServerCommand command = new(Guid.Parse(environmentId), dto.Name, dto.Symbol, dto.Description, dto.OperatingSystemId, dto.IPAddress);
             Task<Guid> resultTask = await mediator.Send(command).ConfigureAwait(false);
             Guid result = await resultTask.ConfigureAwait(false);
 
@@ -167,9 +167,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("{implementationId}/environments/{environmentId}/servers/{serverId}")]
-        public async Task<IActionResult> GetServer(Guid implementationId, Guid environmentId, Guid serverId)
+        public async Task<IActionResult> GetServer(string implementationId, string environmentId, string serverId)
         {
-            GetServerCommand command = new(implementationId, environmentId, serverId);
+            GetServerCommand command = new(Guid.Parse(implementationId), Guid.Parse(environmentId), Guid.Parse(serverId));
             Task<ServerDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
             ServerDto result = await resultTask.ConfigureAwait(false);
 

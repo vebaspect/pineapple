@@ -53,9 +53,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("{productId}")]
-        public async Task<IActionResult> GetProduct(Guid productId)
+        public async Task<IActionResult> GetProduct(string productId)
         {
-            GetProductCommand command = new(productId);
+            GetProductCommand command = new(Guid.Parse(productId));
             Task<ProductDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
             ProductDto result = await resultTask.ConfigureAwait(false);
 
@@ -64,9 +64,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("{productId}/components")]
-        public async Task<IActionResult> GetComponents(Guid productId)
+        public async Task<IActionResult> GetComponents(string productId)
         {
-            GetComponentsCommand command = new(productId);
+            GetComponentsCommand command = new(Guid.Parse(productId));
             Task<ComponentDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             ComponentDto[] result = await resultTask.ConfigureAwait(false);
 
@@ -75,14 +75,14 @@ namespace Pineapple.Api.Controllers
 
         [HttpPost]
         [Route("{productId}/components")]
-        public async Task<IActionResult> CreateComponent(Guid productId, [FromBody]CreateComponentDto dto)
+        public async Task<IActionResult> CreateComponent(string productId, [FromBody]CreateComponentDto dto)
         {
             if (dto is null)
             {
                 return BadRequest();
             }
 
-            CreateComponentCommand command = new(productId, dto.Name, dto.Description, dto.ComponentTypeId);
+            CreateComponentCommand command = new(Guid.Parse(productId), dto.Name, dto.Description, dto.ComponentTypeId);
             Task<Guid> resultTask = await mediator.Send(command).ConfigureAwait(false);
             Guid result = await resultTask.ConfigureAwait(false);
 
@@ -91,9 +91,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("{productId}/components/{componentId}")]
-        public async Task<IActionResult> GetComponent(Guid productId, Guid componentId)
+        public async Task<IActionResult> GetComponent(string productId, string componentId)
         {
-            GetComponentCommand command = new(productId, componentId);
+            GetComponentCommand command = new(Guid.Parse(productId), Guid.Parse(componentId));
             Task<ComponentDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
             ComponentDto result = await resultTask.ConfigureAwait(false);
 
@@ -102,9 +102,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("{productId}/components/{componentId}/versions")]
-        public async Task<IActionResult> GetVersions(Guid productId, Guid componentId)
+        public async Task<IActionResult> GetVersions(string productId, string componentId)
         {
-            GetVersionsCommand command = new(productId, componentId);
+            GetVersionsCommand command = new(Guid.Parse(productId), Guid.Parse(componentId));
             Task<VersionDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             VersionDto[] result = await resultTask.ConfigureAwait(false);
 
@@ -113,14 +113,14 @@ namespace Pineapple.Api.Controllers
 
         [HttpPost]
         [Route("{productId}/components/{componentId}/versions")]
-        public async Task<IActionResult> CreateVersion(Guid productId, Guid componentId, [FromBody]CreateVersionDto dto)
+        public async Task<IActionResult> CreateVersion(string productId, string componentId, [FromBody]CreateVersionDto dto)
         {
             if (dto is null)
             {
                 return BadRequest();
             }
 
-            CreateVersionCommand command = new(componentId, dto.Major, dto.Minor, dto.Patch, dto.PreRelease, dto.Description);
+            CreateVersionCommand command = new(Guid.Parse(componentId), dto.Major, dto.Minor, dto.Patch, dto.PreRelease, dto.Description);
             Task<Guid> resultTask = await mediator.Send(command).ConfigureAwait(false);
             Guid result = await resultTask.ConfigureAwait(false);
 
@@ -129,9 +129,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("{productId}/components/{componentId}/versions/{versionId}")]
-        public async Task<IActionResult> GetVersion(Guid productId, Guid componentId, Guid versionId)
+        public async Task<IActionResult> GetVersion(string productId, string componentId, string versionId)
         {
-            GetVersionCommand command = new(productId, componentId, versionId);
+            GetVersionCommand command = new(Guid.Parse(productId), Guid.Parse(componentId), Guid.Parse(versionId));
             Task<VersionDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
             VersionDto result = await resultTask.ConfigureAwait(false);
 

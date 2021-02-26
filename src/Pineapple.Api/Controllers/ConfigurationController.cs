@@ -53,9 +53,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpDelete]
         [Route("component-types/{componentTypeId}")]
-        public async Task<IActionResult> DeleteComponentType(Guid componentTypeId)
+        public async Task<IActionResult> DeleteComponentType(string componentTypeId)
         {
-            DeleteComponentTypeCommand command = new(componentTypeId);
+            DeleteComponentTypeCommand command = new(Guid.Parse(componentTypeId));
             await mediator.Send(command).ConfigureAwait(false);
 
             return Ok();
@@ -63,9 +63,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("component-types/{componentTypeId}")]
-        public async Task<IActionResult> GetComponentType(Guid componentTypeId)
+        public async Task<IActionResult> GetComponentType(string componentTypeId)
         {
-            GetComponentTypeCommand command = new(componentTypeId);
+            GetComponentTypeCommand command = new(Guid.Parse(componentTypeId));
             Task<ComponentTypeDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
             ComponentTypeDto result = await resultTask.ConfigureAwait(false);
 
@@ -101,9 +101,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpDelete]
         [Route("operating-systems/{operatingSystemId}")]
-        public async Task<IActionResult> DeleteOperatingSystem(Guid operatingSystemId)
+        public async Task<IActionResult> DeleteOperatingSystem(string operatingSystemId)
         {
-            DeleteOperatingSystemCommand command = new(operatingSystemId);
+            DeleteOperatingSystemCommand command = new(Guid.Parse(operatingSystemId));
             await mediator.Send(command).ConfigureAwait(false);
 
             return Ok();
@@ -111,9 +111,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("operating-systems/{operatingSystemId}")]
-        public async Task<IActionResult> GetOperatingSystem(Guid operatingSystemId)
+        public async Task<IActionResult> GetOperatingSystem(string operatingSystemId)
         {
-            GetOperatingSystemCommand command = new(operatingSystemId);
+            GetOperatingSystemCommand command = new(Guid.Parse(operatingSystemId));
             Task<OperatingSystemDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
             OperatingSystemDto result = await resultTask.ConfigureAwait(false);
 
@@ -149,9 +149,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpDelete]
         [Route("software-applications/{softwareApplicationId}")]
-        public async Task<IActionResult> DeleteSoftwareApplication(Guid softwareApplicationId)
+        public async Task<IActionResult> DeleteSoftwareApplication(string softwareApplicationId)
         {
-            DeleteSoftwareApplicationCommand command = new(softwareApplicationId);
+            DeleteSoftwareApplicationCommand command = new(Guid.Parse(softwareApplicationId));
             await mediator.Send(command).ConfigureAwait(false);
 
             return Ok();
@@ -159,9 +159,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("software-applications/{softwareApplicationId}")]
-        public async Task<IActionResult> GetSoftwareApplication(Guid softwareApplicationId)
+        public async Task<IActionResult> GetSoftwareApplication(string softwareApplicationId)
         {
-            GetSoftwareApplicationCommand command = new(softwareApplicationId);
+            GetSoftwareApplicationCommand command = new(Guid.Parse(softwareApplicationId));
             Task<SoftwareApplicationDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
             SoftwareApplicationDto result = await resultTask.ConfigureAwait(false);
 
