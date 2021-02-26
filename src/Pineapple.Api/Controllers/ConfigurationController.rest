@@ -67,5 +67,9 @@ Content-Type: application/json
 }
 
 ### /configuration/software-application/{softwareApplicationId}
+DELETE {{url}}/configuration/software-application//{{softwareApplicationId}}
+Content-Type: application/json
+
+### /configuration/software-application/{softwareApplicationId}
 GET {{url}}/configuration/software-application/{{softwareApplicationId}}
 Content-Type: application/json

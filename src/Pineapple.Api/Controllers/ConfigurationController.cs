@@ -147,6 +147,16 @@ namespace Pineapple.Api.Controllers
             return Created($"/software-applications/{result}", null);
         }
 
+        [HttpDelete]
+        [Route("software-applications/{softwareApplicationId}")]
+        public async Task<IActionResult> DeleteSoftwareApplication(Guid softwareApplicationId)
+        {
+            DeleteSoftwareApplicationCommand command = new(softwareApplicationId);
+            await mediator.Send(command).ConfigureAwait(false);
+
+            return Ok();
+        }
+
         [HttpGet]
         [Route("software-applications/{softwareApplicationId}")]
         public async Task<IActionResult> GetSoftwareApplication(Guid softwareApplicationId)
