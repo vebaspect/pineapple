@@ -51,6 +51,16 @@ namespace Pineapple.Api.Controllers
             return Created($"/component-types/{result}", null);
         }
 
+        [HttpDelete]
+        [Route("component-types/{componentTypeId}")]
+        public async Task<IActionResult> DeleteComponentType(Guid componentTypeId)
+        {
+            DeleteComponentTypeCommand command = new(componentTypeId);
+            await mediator.Send(command).ConfigureAwait(false);
+
+            return Ok();
+        }
+
         [HttpGet]
         [Route("component-types/{componentTypeId}")]
         public async Task<IActionResult> GetComponentType(Guid componentTypeId)

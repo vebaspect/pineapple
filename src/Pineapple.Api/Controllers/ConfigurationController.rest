@@ -23,6 +23,10 @@ Content-Type: application/json
 }
 
 ### /configuration/component-types/{componentTypeId}
+DELETE {{url}}/configuration/component-types/{{componentTypeId}}
+Content-Type: application/json
+
+### /configuration/component-types/{componentTypeId}
 GET {{url}}/configuration/component-types/{{componentTypeId}}
 Content-Type: application/json
 
