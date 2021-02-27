@@ -1,0 +1,39 @@
+# Adres URL do API.
+@url = 
+
+# Identyfikator użytkownika.
+@userId = 
+
+### /users
+GET {{url}}/users
+Content-Type: application/json
+
+### /users/developers
+POST {{url}}/users/developers
+Content-Type: application/json
+
+{
+    "FullName": "",
+    "Login": "",
+    "Phone": "",
+    "Email": ""
+}
+
+### /users/operators
+POST {{url}}/users/operators
+Content-Type: application/json
+
+{
+    "FullName": "",
+    "Login": "",
+    "Phone": "",
+    "Email": ""
+}
+
+### /users/{userId}
+DELETE {{url}}/users/{{userId}}
+Content-Type: application/json
+
+### /users/{userId}
+GET {{url}}/users/{{userId}}
+Content-Type: application/json
