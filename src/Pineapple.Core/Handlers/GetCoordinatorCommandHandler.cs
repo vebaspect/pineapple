@@ -6,6 +6,7 @@ using Pineapple.Core.Dto;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Pineapple.Core.Exceptions;
 
 namespace Pineapple.Core.Handler
 {
@@ -35,7 +36,7 @@ namespace Pineapple.Core.Handler
 
             if (implementation is null)
             {
-                throw new Exception($"Implementation {request.ImplementationId} not exist");
+                throw new ImplementationNotFoundException($"Implementation {request.ImplementationId} not exist");
             }
 
             var coordinator = implementation
@@ -44,7 +45,7 @@ namespace Pineapple.Core.Handler
 
             if (coordinator is null)
             {
-                throw new Exception($"Coordinator {request.CoordinatorId} not exist");
+                throw new CoordinatorNotFoundException($"Coordinator {request.CoordinatorId} not exist");
             }
 
             return Map(coordinator);

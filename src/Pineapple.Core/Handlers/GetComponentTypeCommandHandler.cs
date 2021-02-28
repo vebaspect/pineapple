@@ -5,6 +5,7 @@ using Pineapple.Core.Dto;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Pineapple.Core.Exceptions;
 
 namespace Pineapple.Core.Handler
 {
@@ -33,7 +34,7 @@ namespace Pineapple.Core.Handler
 
             if (componentType is null)
             {
-                throw new Exception($"ComponentType {request.ComponentTypeId} not exist");
+                throw new ComponentTypeNotFoundException($"ComponentType {request.ComponentTypeId} not exist");
             }
 
             return Map(componentType);

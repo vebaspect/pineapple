@@ -5,6 +5,7 @@ using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
+using Pineapple.Core.Exceptions;
 
 namespace Pineapple.Core.Handler
 {
@@ -33,7 +34,7 @@ namespace Pineapple.Core.Handler
 
             if (softwareApplication is null)
             {
-                throw new Exception($"SoftwareApplication {request.SoftwareApplicationId} not exist");
+                throw new SoftwareApplicationNotFoundException($"SoftwareApplication {request.SoftwareApplicationId} not exist");
             }
 
             databaseContext.SoftwareApplications.Remove(softwareApplication);

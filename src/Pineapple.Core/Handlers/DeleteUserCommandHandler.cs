@@ -5,6 +5,7 @@ using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
+using Pineapple.Core.Exceptions;
 
 namespace Pineapple.Core.Handler
 {
@@ -33,7 +34,7 @@ namespace Pineapple.Core.Handler
 
             if (user is null)
             {
-                throw new Exception($"User {request.UserId} not exist");
+                throw new UserNotFoundException($"User {request.UserId} not exist");
             }
 
             databaseContext.Users.Remove(user);

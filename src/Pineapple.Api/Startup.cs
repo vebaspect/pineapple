@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Pineapple.Api.Filters;
 
 namespace Pineapple.Api
 {
@@ -19,7 +20,7 @@ namespace Pineapple.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers(options => options.Filters.Add(new GlobalExceptionActionFilter()));
             services.AddCors(Configuration);
             services.AddMediatR();
             services.AddStorage();

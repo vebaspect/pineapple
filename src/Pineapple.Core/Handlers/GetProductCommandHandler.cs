@@ -5,6 +5,7 @@ using Pineapple.Core.Dto;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Pineapple.Core.Exceptions;
 
 namespace Pineapple.Core.Handler
 {
@@ -33,7 +34,7 @@ namespace Pineapple.Core.Handler
 
             if (product is null)
             {
-                throw new Exception($"Product {request.ProductId} not exist");
+                throw new ProductNotFoundException($"Product {request.ProductId} not exist");
             }
 
             return Map(product);

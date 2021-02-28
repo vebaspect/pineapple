@@ -5,6 +5,7 @@ using Pineapple.Core.Dto;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Pineapple.Core.Exceptions;
 
 namespace Pineapple.Core.Handler
 {
@@ -33,7 +34,7 @@ namespace Pineapple.Core.Handler
 
             if (implementation is null)
             {
-                throw new Exception($"Implementation {request.ImplementationId} not exist");
+                throw new ImplementationNotFoundException($"Implementation {request.ImplementationId} not exist");
             }
 
             return Map(implementation);

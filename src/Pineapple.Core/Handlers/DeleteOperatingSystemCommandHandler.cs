@@ -5,6 +5,7 @@ using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
+using Pineapple.Core.Exceptions;
 
 namespace Pineapple.Core.Handler
 {
@@ -33,7 +34,7 @@ namespace Pineapple.Core.Handler
 
             if (operatingSystem is null)
             {
-                throw new Exception($"OperatingSystem {request.OperatingSystemId} not exist");
+                throw new OperatingSystemNotFoundException($"OperatingSystem {request.OperatingSystemId} not exist");
             }
 
             databaseContext.OperatingSystems.Remove(operatingSystem);
