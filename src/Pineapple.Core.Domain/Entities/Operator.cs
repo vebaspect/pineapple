@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Pineapple.Core.Domain.Entities
 {
     /// <summary>
@@ -5,5 +7,9 @@ namespace Pineapple.Core.Domain.Entities
     /// </summary>
     public class Operator : User
     {
+        /// <summary>
+        /// Środowiska.
+        /// </summary>
+        public List<Environment> Environments { get; set; }
     }
 }

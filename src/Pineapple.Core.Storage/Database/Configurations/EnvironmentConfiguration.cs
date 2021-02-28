@@ -30,6 +30,12 @@ namespace Pineapple.Core.Storage.Database.Configurations
                 .HasForeignKey(environment => environment.ImplementationId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
+            builder
+                .HasOne(environment => environment.Operator)
+                .WithMany(@operator => @operator.Environments)
+                .HasForeignKey(environment => environment.OperatorId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

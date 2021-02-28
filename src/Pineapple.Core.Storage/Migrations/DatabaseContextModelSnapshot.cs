@@ -136,6 +136,9 @@ namespace Pineapple.Core.Storage.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)");
 
+                    b.Property<Guid>("OperatorId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Symbol")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -144,6 +147,8 @@ namespace Pineapple.Core.Storage.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ImplementationId");
+
+                    b.HasIndex("OperatorId");
 
                     b.HasIndex("Symbol")
                         .IsUnique();
@@ -441,7 +446,15 @@ namespace Pineapple.Core.Storage.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Pineapple.Core.Domain.Entities.Operator", "Operator")
+                        .WithMany("Environments")
+                        .HasForeignKey("OperatorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Implementation");
+
+                    b.Navigation("Operator");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Server", b =>
@@ -504,6 +517,11 @@ namespace Pineapple.Core.Storage.Migrations
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Product", b =>
                 {
                     b.Navigation("Components");
+                });
+
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.Operator", b =>
+                {
+                    b.Navigation("Environments");
                 });
 #pragma warning restore 612, 618
         }

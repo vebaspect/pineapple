@@ -37,5 +37,15 @@ namespace Pineapple.Core.Domain.Entities
         /// Serwery.
         /// </summary>
         public List<Server> Servers { get; set; }
+
+        /// <summary>
+        /// Identyfikator wdrożeniowca.
+        /// </summary>
+        public Guid OperatorId { get; set; }
+
+        /// <summary>
+        /// Wdrożeniowiec.
+        /// </summary>
+        public Operator Operator { get; set; }
     }
 }

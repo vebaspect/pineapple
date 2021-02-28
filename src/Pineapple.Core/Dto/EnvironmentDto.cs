@@ -32,13 +32,25 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public string Description { get; }
 
-        public EnvironmentDto(Guid id, DateTime modifiedDate, string name, string symbol, string description)
+        /// <summary>
+        /// Identyfikator wdrożeniowca.
+        /// </summary>
+        public Guid OperatorId { get; }
+
+        /// <summary>
+        /// Imię i nazwisko wdrożeniowca.
+        /// </summary>
+        public string OperatorFullName { get; }
+
+        public EnvironmentDto(Guid id, DateTime modifiedDate, string name, string symbol, string description, Guid operatorId, string operatorFullName)
         {
             Id = id;
             ModifiedDate = modifiedDate;
             Name = name;
             Symbol = symbol;
             Description = description;
+            OperatorId = operatorId;
+            OperatorFullName = operatorFullName;
         }
     }
 }

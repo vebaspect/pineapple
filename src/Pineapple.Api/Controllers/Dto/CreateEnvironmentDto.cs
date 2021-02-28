@@ -1,3 +1,5 @@
+using System;
+
 namespace Pineapple.Api.Controllers.Dto
 {
     /// <summary>
@@ -19,5 +21,10 @@ namespace Pineapple.Api.Controllers.Dto
         /// Opis.
         /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Identyfikator wdrożeniowca.
+        /// </summary>
+        public Guid OperatorId { get; set; }
     }
 }

@@ -34,6 +34,7 @@ namespace Pineapple.Core.Handler
                 Symbol = request.Symbol,
                 Description = request.Description,
                 ImplementationId = request.ImplementationId,
+                OperatorId = request.OperatorId,
             };
 
             await databaseContext.Environments.AddAsync(environment).ConfigureAwait(false);

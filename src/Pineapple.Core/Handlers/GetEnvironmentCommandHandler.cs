@@ -30,6 +30,7 @@ namespace Pineapple.Core.Handler
             var implementation = await databaseContext
                 .Implementations
                 .Include(implementation => implementation.Environments)
+                .ThenInclude(environment => environment.Operator)
                 .FirstOrDefaultAsync(implementation => implementation.Id == request.ImplementationId)
                 .ConfigureAwait(false);
 
@@ -57,7 +58,9 @@ namespace Pineapple.Core.Handler
                 environment.ModifiedDate,
                 environment.Name,
                 environment.Symbol,
-                environment.Description
+                environment.Description,
+                environment.OperatorId,
+                environment.Operator.FullName
             );
         }
     }

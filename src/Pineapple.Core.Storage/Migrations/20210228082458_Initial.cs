@@ -120,28 +120,6 @@ namespace Pineapple.Core.Storage.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Environments",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
-                    Symbol = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
-                    Description = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: true),
-                    ImplementationId = table.Column<Guid>(type: "uuid", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Environments", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Environments_Implementations_ImplementationId",
-                        column: x => x.ImplementationId,
-                        principalTable: "Implementations",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Components",
                 columns: table => new
                 {
@@ -165,6 +143,59 @@ namespace Pineapple.Core.Storage.Migrations
                         name: "FK_Components_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Environments",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Name = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
+                    Symbol = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
+                    Description = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: true),
+                    ImplementationId = table.Column<Guid>(type: "uuid", nullable: false),
+                    OperatorId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Environments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Environments_Implementations_ImplementationId",
+                        column: x => x.ImplementationId,
+                        principalTable: "Implementations",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Environments_Users_OperatorId",
+                        column: x => x.OperatorId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Versions",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Major = table.Column<int>(type: "integer", nullable: false),
+                    Minor = table.Column<int>(type: "integer", nullable: false),
+                    Patch = table.Column<int>(type: "integer", nullable: false),
+                    PreRelease = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: true),
+                    Description = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: true),
+                    ComponentId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Versions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Versions_Components_ComponentId",
+                        column: x => x.ComponentId,
+                        principalTable: "Components",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -199,30 +230,6 @@ namespace Pineapple.Core.Storage.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Versions",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Major = table.Column<int>(type: "integer", nullable: false),
-                    Minor = table.Column<int>(type: "integer", nullable: false),
-                    Patch = table.Column<int>(type: "integer", nullable: false),
-                    PreRelease = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: true),
-                    Description = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: true),
-                    ComponentId = table.Column<Guid>(type: "uuid", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Versions", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Versions_Components_ComponentId",
-                        column: x => x.ComponentId,
-                        principalTable: "Components",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Components_ComponentTypeId",
                 table: "Components",
@@ -248,6 +255,11 @@ namespace Pineapple.Core.Storage.Migrations
                 name: "IX_Environments_ImplementationId",
                 table: "Environments",
                 column: "ImplementationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Environments_OperatorId",
+                table: "Environments",
+                column: "OperatorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Environments_Symbol",
@@ -307,9 +319,6 @@ namespace Pineapple.Core.Storage.Migrations
                 name: "SoftwareApplications");
 
             migrationBuilder.DropTable(
-                name: "Users");
-
-            migrationBuilder.DropTable(
                 name: "Versions");
 
             migrationBuilder.DropTable(
@@ -323,6 +332,9 @@ namespace Pineapple.Core.Storage.Migrations
 
             migrationBuilder.DropTable(
                 name: "Implementations");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "ComponentTypes");

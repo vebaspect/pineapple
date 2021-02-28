@@ -56,7 +56,8 @@ Content-Type: application/json
 {
     "Name": "",
     "Symbol": "",
-    "Description": ""
+    "Description": "",
+    "OperatorId": ""
 }
 
 ### /implementations/{implementationId}/environments/{environmentId}

@@ -120,7 +120,7 @@ namespace Pineapple.Api.Controllers
                 return BadRequest();
             }
 
-            CreateEnvironmentCommand command = new(Guid.Parse(implementationId), dto.Name, dto.Symbol, dto.Description);
+            CreateEnvironmentCommand command = new(Guid.Parse(implementationId), dto.Name, dto.Symbol, dto.Description, dto.OperatorId);
             Task<Guid> resultTask = await mediator.Send(command).ConfigureAwait(false);
             Guid result = await resultTask.ConfigureAwait(false);
 
