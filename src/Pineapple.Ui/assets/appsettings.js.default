@@ -1,0 +1,4 @@
+window.env = {
+  // Adres URL do API.
+  API_URL: '',
+};
