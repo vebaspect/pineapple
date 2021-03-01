@@ -1,7 +1,7 @@
 {
-	"recommendations": [
-		"humao.rest-client",
-		"josefpihrt-vscode.roslynator",
-		"ms-dotnettools.csharp"
-	]
+  "recommendations": [
+    "humao.rest-client",
+    "josefpihrt-vscode.roslynator",
+    "ms-dotnettools.csharp"
+  ]
 }
