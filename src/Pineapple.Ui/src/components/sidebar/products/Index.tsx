@@ -42,7 +42,7 @@ const Products = ({ items }: Props) => {
             items.length > 0
             ? items.map(item => {
               return (
-                <Tooltip key={item.id} title={item.description}>
+                <Tooltip key={item.id} title={item.description} placement="right">
                   <ListItem button>
                     <ListItemText>
                       {item.name}
