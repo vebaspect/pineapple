@@ -5,6 +5,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
+import Sidebar from './components/sidebar';
+
 const Root = () => {
   const theme = createMuiTheme();
 
@@ -14,16 +16,14 @@ const Root = () => {
       <Container>
         <Grid container>
           <Grid item xs={12}>
-            {'Hello world!'}
+            {'🍍 Pineapple.UI'}
           </Grid>
         </Grid>
         <Grid container>
           <Grid item xs={3}>
-            {'Hello world!'}
+            <Sidebar />
           </Grid>
-          <Grid item xs={9}>
-            {'Hello world!'}
-          </Grid>
+          <Grid item xs={9} />
         </Grid>
       </Container>
     </ThemeProvider>
