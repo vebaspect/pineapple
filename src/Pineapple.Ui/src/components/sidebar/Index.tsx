@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-import Box from '@material-ui/core/Box';
+import Implementations from './implementations';
+import Products from './products';
 
 const Sidebar = () => {
   // Wdrożenia.
@@ -14,7 +15,7 @@ const Sidebar = () => {
   }, []);
 
   const fetchImplementations = async () => {
-    await fetch('http://localhost:5005/implementations')
+    await fetch(`${window['env'].API_URL}/implementations`)
       .then(response => response.json())
       .then(data => {
         setImplementations(data);
@@ -22,7 +23,7 @@ const Sidebar = () => {
   };
 
   const fetchProducts = async () => {
-    await fetch('http://localhost:5005/products')
+    await fetch(`${window['env'].API_URL}/products`)
       .then(response => response.json())
       .then(data => {
         setProducts(data);
@@ -31,12 +32,8 @@ const Sidebar = () => {
 
   return (
     <>
-      <Box>
-        Wdrożenia ({implementations.length})
-      </Box>
-      <Box>
-        Produkty ({products.length})
-      </Box>
+      <Implementations items={implementations} />
+      <Products items={products} />
     </>
   )
 }
