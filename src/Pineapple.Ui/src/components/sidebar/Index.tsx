@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Configuration from './configuration';
 import Implementations from './implementations';
 import Products from './products';
+import Users from './users';
 
 const Sidebar = () => {
   // Flaga określająca, czy lista wdrożeń została pobrana z API.
@@ -28,12 +29,33 @@ const Sidebar = () => {
   // Liczba oprogramowania.
   const [softwareApplicationsCount, setSoftwareApplicationsCount] = useState(0);
 
+  // Flaga określająca, czy liczba programistów została pobrana z API.
+  const [isDevelopersCountFetched, setIsDevelopersCountFetched] = useState(false);
+  // Liczba programistów.
+  const [developersCount, setDevelopersCount] = useState(0);
+  // Flaga określająca, czy liczba wdrożeniowców została pobrana z API.
+  const [isOperatorsCountFetched, setIsOperatorsCountFetched] = useState(false);
+  // Liczba wdrożeniowców.
+  const [operatorsCount, setOperatorsCount] = useState(0);
+  // Flaga określająca, czy liczba menedżerów pobrana z API.
+  const [isManagersCountFetched, setIsManagersCountFetched] = useState(false);
+  // Liczba menedżerów.
+  const [managersCount, setManagersCount] = useState(0);
+  // Flaga określająca, czy liczba administratorów została pobrana z API.
+  const [isAdministratorsCountFetched, setIsAdministratorsCountFetched] = useState(false);
+  // Liczba administratorów.
+  const [administratorsCount, setAdministratorsCount] = useState(0);
+
   useEffect(() => {
     fetchImplementations();
     fetchProducts();
     fetchComponentTypesCount();
     fetchOperatingSystemsCount();
     fetchSoftwareApplicationsCount();
+    fetchDevelopersCount();
+    fetchOperatorsCount();
+    fetchManagersCount();
+    fetchAdministratorsCount();
   }, []);
 
   const fetchImplementations = async () => {
@@ -81,6 +103,42 @@ const Sidebar = () => {
       });
   }
 
+  const fetchDevelopersCount = async () => {
+    await fetch(`${window['env'].API_URL}/users/developers`)
+      .then(response => response.json())
+      .then(data => {
+        setIsDevelopersCountFetched(true);
+        setDevelopersCount(data.length);
+      });
+  }
+
+  const fetchOperatorsCount = async () => {
+    await fetch(`${window['env'].API_URL}/users/operators`)
+      .then(response => response.json())
+      .then(data => {
+        setIsOperatorsCountFetched(true);
+        setOperatorsCount(data.length);
+      });
+  }
+
+  const fetchManagersCount = async () => {
+    await fetch(`${window['env'].API_URL}/users/managers`)
+      .then(response => response.json())
+      .then(data => {
+        setIsManagersCountFetched(true);
+        setManagersCount(data.length);
+      });
+  }
+
+  const fetchAdministratorsCount = async () => {
+    await fetch(`${window['env'].API_URL}/users/administrators`)
+      .then(response => response.json())
+      .then(data => {
+        setIsAdministratorsCountFetched(true);
+        setAdministratorsCount(data.length);
+      });
+  }
+
   return (
     <>
       <Implementations
@@ -98,6 +156,16 @@ const Sidebar = () => {
         operatingSystemsCount={operatingSystemsCount}
         isSoftwareApplicationsCountFetched={isSoftwareApplicationsCountFetched}
         softwareApplicationsCount={softwareApplicationsCount}
+      />
+      <Users
+        isDevelopersCountFetched={isDevelopersCountFetched}
+        developersCount={developersCount}
+        isOperatorsCountFetched={isOperatorsCountFetched}
+        operatorsCount={operatorsCount}
+        isManagersCountFetched={isManagersCountFetched}
+        managersCount={managersCount}
+        isAdministratorsCountFetched={isAdministratorsCountFetched}
+        administratorsCount={administratorsCount}
       />
     </>
   )
