@@ -5,6 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
+import Header from './components/header';
 import Sidebar from './components/sidebar';
 
 const Root = () => {
@@ -16,7 +17,7 @@ const Root = () => {
       <Container>
         <Grid container>
           <Grid item xs={12}>
-            {'🍍 Pineapple.UI'}
+            <Header />
           </Grid>
         </Grid>
         <Grid container>
