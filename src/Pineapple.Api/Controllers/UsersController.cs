@@ -35,6 +35,44 @@ namespace Pineapple.Api.Controllers
             return Ok(result);
         }
 
+        [HttpGet]
+        [Route("administrators")]
+        public async Task<IActionResult> GetAdministrators()
+        {
+            GetAdministratorsCommand command = new();
+            Task<UserDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            UserDto[] result = await resultTask.ConfigureAwait(false);
+
+            return Ok(result);
+        }
+
+        [HttpPost]
+        [Route("administrators")]
+        public async Task<IActionResult> CreateAdministrator([FromBody]CreateAdministratorDto dto)
+        {
+            if (dto is null)
+            {
+                return BadRequest();
+            }
+
+            CreateAdministratorCommand command = new(dto.FullName, dto.Login, dto.Phone, dto.Email);
+            Task<Guid> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            Guid result = await resultTask.ConfigureAwait(false);
+
+            return Created($"/users/{result}", null);
+        }
+
+        [HttpGet]
+        [Route("developers")]
+        public async Task<IActionResult> GetDevelopers()
+        {
+            GetDevelopersCommand command = new();
+            Task<UserDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            UserDto[] result = await resultTask.ConfigureAwait(false);
+
+            return Ok(result);
+        }
+
         [HttpPost]
         [Route("developers")]
         public async Task<IActionResult> CreateDeveloper([FromBody]CreateDeveloperDto dto)
@@ -51,6 +89,17 @@ namespace Pineapple.Api.Controllers
             return Created($"/users/{result}", null);
         }
 
+        [HttpGet]
+        [Route("managers")]
+        public async Task<IActionResult> GetManagers()
+        {
+            GetManagersCommand command = new();
+            Task<UserDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            UserDto[] result = await resultTask.ConfigureAwait(false);
+
+            return Ok(result);
+        }
+
         [HttpPost]
         [Route("managers")]
         public async Task<IActionResult> CreateManager([FromBody]CreateManagerDto dto)
@@ -65,6 +114,17 @@ namespace Pineapple.Api.Controllers
             Guid result = await resultTask.ConfigureAwait(false);
 
             return Created($"/users/{result}", null);
+        }
+
+        [HttpGet]
+        [Route("operators")]
+        public async Task<IActionResult> GetOperators()
+        {
+            GetOperatorsCommand command = new();
+            Task<UserDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            UserDto[] result = await resultTask.ConfigureAwait(false);
+
+            return Ok(result);
         }
 
         [HttpPost]

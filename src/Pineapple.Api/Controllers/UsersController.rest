@@ -8,6 +8,25 @@
 GET {{url}}/users
 Content-Type: application/json
 
+### /users/administrators
+GET {{url}}/users/administrators
+Content-Type: application/json
+
+### /users/administrators
+POST {{url}}/users/administrators
+Content-Type: application/json
+
+{
+    "FullName": "",
+    "Login": "",
+    "Phone": "",
+    "Email": ""
+}
+
+### /users/developers
+GET {{url}}/users/developers
+Content-Type: application/json
+
 ### /users/developers
 POST {{url}}/users/developers
 Content-Type: application/json
@@ -20,6 +39,10 @@ Content-Type: application/json
 }
 
 ### /users/managers
+GET {{url}}/users/managers
+Content-Type: application/json
+
+### /users/managers
 POST {{url}}/users/managers
 Content-Type: application/json
 
@@ -29,6 +52,10 @@ Content-Type: application/json
     "Phone": "",
     "Email": ""
 }
+
+### /users/operators
+GET {{url}}/users/operators
+Content-Type: application/json
 
 ### /users/operators
 POST {{url}}/users/operators
