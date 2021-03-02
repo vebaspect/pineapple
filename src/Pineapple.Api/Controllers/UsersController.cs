@@ -52,6 +52,22 @@ namespace Pineapple.Api.Controllers
         }
 
         [HttpPost]
+        [Route("managers")]
+        public async Task<IActionResult> CreateManager([FromBody]CreateManagerDto dto)
+        {
+            if (dto is null)
+            {
+                return BadRequest();
+            }
+
+            CreateManagerCommand command = new(dto.FullName, dto.Login, dto.Phone, dto.Email);
+            Task<Guid> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            Guid result = await resultTask.ConfigureAwait(false);
+
+            return Created($"/users/{result}", null);
+        }
+
+        [HttpPost]
         [Route("operators")]
         public async Task<IActionResult> CreateOperator([FromBody]CreateOperatorDto dto)
         {

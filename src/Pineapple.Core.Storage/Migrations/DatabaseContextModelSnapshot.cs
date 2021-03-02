@@ -401,6 +401,13 @@ namespace Pineapple.Core.Storage.Migrations
                     b.HasDiscriminator().HasValue("Developer");
                 });
 
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.Manager", b =>
+                {
+                    b.HasBaseType("Pineapple.Core.Domain.Entities.User");
+
+                    b.HasDiscriminator().HasValue("Manager");
+                });
+
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Operator", b =>
                 {
                     b.HasBaseType("Pineapple.Core.Domain.Entities.User");

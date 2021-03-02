@@ -19,6 +19,17 @@ Content-Type: application/json
     "Email": ""
 }
 
+### /users/managers
+POST {{url}}/users/managers
+Content-Type: application/json
+
+{
+    "FullName": "",
+    "Login": "",
+    "Phone": "",
+    "Email": ""
+}
+
 ### /users/operators
 POST {{url}}/users/operators
 Content-Type: application/json

@@ -10,7 +10,7 @@ using Pineapple.Core.Storage.Database;
 namespace Pineapple.Core.Storage.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210228082458_Initial")]
+    [Migration("20210302142656_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -401,6 +401,13 @@ namespace Pineapple.Core.Storage.Migrations
                     b.HasBaseType("Pineapple.Core.Domain.Entities.User");
 
                     b.HasDiscriminator().HasValue("Developer");
+                });
+
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.Manager", b =>
+                {
+                    b.HasBaseType("Pineapple.Core.Domain.Entities.User");
+
+                    b.HasDiscriminator().HasValue("Manager");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Operator", b =>
