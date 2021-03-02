@@ -34,7 +34,7 @@ namespace Pineapple.Core.Handler
 
             if (user is null)
             {
-                throw new UserNotFoundException($"User {request.UserId} not exist");
+                throw new UserNotFoundException($"User {request.UserId} has not been found");
             }
 
             databaseContext.Users.Remove(user);

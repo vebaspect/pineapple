@@ -36,7 +36,7 @@ namespace Pineapple.Core.Handler
 
             if (implementation is null)
             {
-                throw new ImplementationNotFoundException($"Implementation {request.ImplementationId} not exist");
+                throw new ImplementationNotFoundException($"Implementation {request.ImplementationId} has not been found");
             }
 
             var coordinator = implementation
@@ -45,7 +45,7 @@ namespace Pineapple.Core.Handler
 
             if (coordinator is null)
             {
-                throw new CoordinatorNotFoundException($"Coordinator {request.CoordinatorId} not exist");
+                throw new CoordinatorNotFoundException($"Coordinator {request.CoordinatorId} has not been found");
             }
 
             return Map(coordinator);

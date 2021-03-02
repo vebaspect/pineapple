@@ -37,7 +37,7 @@ namespace Pineapple.Core.Handler
 
             if (product is null)
             {
-                throw new ProductNotFoundException($"Product {request.ProductId} not exist");
+                throw new ProductNotFoundException($"Product {request.ProductId} has not been found");
             }
 
             var component = product
@@ -46,7 +46,7 @@ namespace Pineapple.Core.Handler
 
             if (component is null)
             {
-                throw new ComponentNotFoundException($"Component {request.ComponentId} not exist");
+                throw new ComponentNotFoundException($"Component {request.ComponentId} has not been found");
             }
 
             if (component.Versions?.Count > 0)

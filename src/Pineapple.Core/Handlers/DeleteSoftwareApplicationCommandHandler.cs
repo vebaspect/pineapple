@@ -34,7 +34,7 @@ namespace Pineapple.Core.Handler
 
             if (softwareApplication is null)
             {
-                throw new SoftwareApplicationNotFoundException($"SoftwareApplication {request.SoftwareApplicationId} not exist");
+                throw new SoftwareApplicationNotFoundException($"SoftwareApplication {request.SoftwareApplicationId} has not been found");
             }
 
             databaseContext.SoftwareApplications.Remove(softwareApplication);

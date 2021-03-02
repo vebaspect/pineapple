@@ -37,7 +37,7 @@ namespace Pineapple.Core.Handler
 
             if (implementation is null)
             {
-                throw new ImplementationNotFoundException($"Implementation {request.ImplementationId} not exist");
+                throw new ImplementationNotFoundException($"Implementation {request.ImplementationId} has not been found");
             }
 
             var environment = implementation
@@ -46,7 +46,7 @@ namespace Pineapple.Core.Handler
 
             if (environment is null)
             {
-                throw new EnvironmentNotFoundException($"Environment {request.EnvironmentId} not exist");
+                throw new EnvironmentNotFoundException($"Environment {request.EnvironmentId} has not been found");
             }
 
             return Map(environment);

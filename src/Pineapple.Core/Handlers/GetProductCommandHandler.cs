@@ -34,7 +34,7 @@ namespace Pineapple.Core.Handler
 
             if (product is null)
             {
-                throw new ProductNotFoundException($"Product {request.ProductId} not exist");
+                throw new ProductNotFoundException($"Product {request.ProductId} has not been found");
             }
 
             return Map(product);

@@ -34,7 +34,7 @@ namespace Pineapple.Core.Handler
 
             if (componentType is null)
             {
-                throw new ComponentTypeNotFoundException($"ComponentType {request.ComponentTypeId} not exist");
+                throw new ComponentTypeNotFoundException($"ComponentType {request.ComponentTypeId} has not been found");
             }
 
             databaseContext.ComponentTypes.Remove(componentType);

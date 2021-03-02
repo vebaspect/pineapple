@@ -36,7 +36,7 @@ namespace Pineapple.Core.Handler
 
             if (implementation is null)
             {
-                throw new ImplementationNotFoundException($"Implementation {request.ImplementationId} not exist");
+                throw new ImplementationNotFoundException($"Implementation {request.ImplementationId} has not been found");
             }
 
             if (implementation.Coordinators?.Count > 0)
