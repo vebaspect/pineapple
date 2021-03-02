@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
@@ -9,8 +10,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Tooltip from '@material-ui/core/Tooltip';
 
 interface Props {
-  // Wdrożenia.
-  items: {
+  // Flaga określająca, czy lista wdrożeń została pobrana z API.
+  isDataFetched: boolean,
+  // Lista wdrożeń.
+  data: {
     // Identyfikator.
     id: string,
     // Nazwa.
@@ -20,7 +23,7 @@ interface Props {
   }[];
 };
 
-const Implementations = ({ items }: Props) => {
+const Implementations = ({ isDataFetched, data }: Props) => {
   // Flaga określająca, czy lista produktów jest rozwinięta.
   const [isExpanded, setIsExpanded] = React.useState(true);
 
@@ -28,24 +31,37 @@ const Implementations = ({ items }: Props) => {
     setIsExpanded(!isExpanded);
   };
 
+  if (!isDataFetched) {
+    return (
+      <List component="nav">
+        <ListItem>
+          <ListItemText>
+            Wdrożenia
+          </ListItemText>
+          <CircularProgress size={20} />
+        </ListItem>
+      </List>
+    );
+  }
+
   return (
     <List component="nav">
       <ListItem button onClick={onHeaderClick}>
         <ListItemText>
-          Wdrożenia ({items.length})
+          Wdrożenia ({data.length})
         </ListItemText>
         {isExpanded ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={isExpanded}>
         <List component="div">
           {
-            items.length > 0
-            ? items.map(item => {
+            data.length > 0
+            ? data.map(implementation => {
               return (
-                <Tooltip key={item.id} title={item.description} placement="right">
+                <Tooltip key={implementation.id} title={implementation.description} placement="right">
                   <ListItem button>
                     <ListItemText>
-                      {item.name}
+                      {implementation.name}
                     </ListItemText>
                   </ListItem>
                 </Tooltip>
