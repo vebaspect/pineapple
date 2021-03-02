@@ -25,7 +25,7 @@ interface Props {
 
 const Products = ({ isDataFetched, data }: Props) => {
   // Flaga określająca, czy lista produktów jest rozwinięta.
-  const [isExpanded, setIsExpanded] = React.useState(true);
+  const [isExpanded, setIsExpanded] = useState(true);
 
   const onHeaderClick = () => {
     setIsExpanded(!isExpanded);
