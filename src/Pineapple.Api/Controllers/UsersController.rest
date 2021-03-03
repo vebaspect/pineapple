@@ -50,6 +50,10 @@ Content-Type: application/json
 GET {{url}}/users/managers
 Content-Type: application/json
 
+### /users/managers/count
+GET {{url}}/users/managers/count
+Content-Type: application/json
+
 ### /users/managers
 POST {{url}}/users/managers
 Content-Type: application/json

@@ -27,30 +27,30 @@ namespace Pineapple.Core.Handler
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
 
-            var users = await databaseContext
+            var managers = await databaseContext
                 .Users
                 .OfType<Domain.Entities.Manager>()
                 .ToArrayAsync()
                 .ConfigureAwait(false);
 
-            if (users?.Length > 0)
+            if (managers?.Length > 0)
             {
-                return users.Select(user => Map(user)).ToArray();
+                return managers.Select(manager => Map(manager)).ToArray();
             }
 
             return Enumerable.Empty<UserDto>().ToArray();
         }
 
-        private static UserDto Map(Domain.Entities.User user)
+        private static UserDto Map(Domain.Entities.User manager)
         {
             return new UserDto(
-                user.Id,
-                user.ModifiedDate,
-                user.Type,
-                user.FullName,
-                user.Login,
-                user.Phone,
-                user.Email
+                manager.Id,
+                manager.ModifiedDate,
+                manager.Type,
+                manager.FullName,
+                manager.Login,
+                manager.Phone,
+                manager.Email
             );
         }
     }

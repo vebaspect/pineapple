@@ -122,6 +122,17 @@ namespace Pineapple.Api.Controllers
             return Ok(result);
         }
 
+        [HttpGet]
+        [Route("managers/count")]
+        public async Task<IActionResult> GetManagersCount()
+        {
+            GetManagersCountCommand command = new();
+            Task<int> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            int result = await resultTask.ConfigureAwait(false);
+
+            return Ok(new { value = result });
+        }
+
         [HttpPost]
         [Route("managers")]
         public async Task<IActionResult> CreateManager([FromBody]CreateManagerDto dto)
