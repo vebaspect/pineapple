@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Pineapple.Core.Domain.Entities
 {
@@ -41,5 +42,10 @@ namespace Pineapple.Core.Domain.Entities
         /// Komponent.
         /// </summary>
         public Component Component { get; set; }
+
+        /// <summary>
+        /// Serwery.
+        /// </summary>
+        public List<Server> Servers { get; set; }
     }
 }

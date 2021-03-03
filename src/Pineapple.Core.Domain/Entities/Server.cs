@@ -49,6 +49,11 @@ namespace Pineapple.Core.Domain.Entities
         public string IPAddress { get; set; }
 
         /// <summary>
+        /// Wersje.
+        /// </summary>
+        public List<Version> Versions { get; set; }
+
+        /// <summary>
         /// Oprogramowanie.
         /// </summary>
         public List<SoftwareApplication> SoftwareApplications { get; set; }
