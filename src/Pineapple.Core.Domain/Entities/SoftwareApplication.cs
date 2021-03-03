@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Pineapple.Core.Domain.Entities
 {
     /// <summary>
@@ -19,5 +21,10 @@ namespace Pineapple.Core.Domain.Entities
         /// Opis.
         /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Serwery.
+        /// </summary>
+        public List<Server> Servers { get; set; }
     }
 }

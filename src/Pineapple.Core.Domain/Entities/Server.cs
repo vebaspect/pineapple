@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Pineapple.Core.Domain.Entities
 {
@@ -46,5 +47,10 @@ namespace Pineapple.Core.Domain.Entities
         /// Adres IP.
         /// </summary>
         public string IPAddress { get; set; }
+
+        /// <summary>
+        /// Oprogramowanie.
+        /// </summary>
+        public List<SoftwareApplication> SoftwareApplications { get; set; }
     }
 }
