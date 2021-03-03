@@ -84,6 +84,17 @@ namespace Pineapple.Api.Controllers
             return Ok(result);
         }
 
+        [HttpGet]
+        [Route("developers/count")]
+        public async Task<IActionResult> GetDevelopersCount()
+        {
+            GetDevelopersCountCommand command = new();
+            Task<int> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            int result = await resultTask.ConfigureAwait(false);
+
+            return Ok(new { value = result });
+        }
+
         [HttpPost]
         [Route("developers")]
         public async Task<IActionResult> CreateDeveloper([FromBody]CreateDeveloperDto dto)

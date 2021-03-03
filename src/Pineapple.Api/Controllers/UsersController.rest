@@ -31,6 +31,10 @@ Content-Type: application/json
 GET {{url}}/users/developers
 Content-Type: application/json
 
+### /users/developers/count
+GET {{url}}/users/developers/count
+Content-Type: application/json
+
 ### /users/developers
 POST {{url}}/users/developers
 Content-Type: application/json
