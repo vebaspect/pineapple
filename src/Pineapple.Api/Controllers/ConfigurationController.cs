@@ -173,6 +173,17 @@ namespace Pineapple.Api.Controllers
             return Ok(result);
         }
 
+        [HttpGet]
+        [Route("software-applications/count")]
+        public async Task<IActionResult> GetSoftwareApplicationsCount()
+        {
+            GetSoftwareApplicationsCountCommand command = new();
+            Task<int> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            int result = await resultTask.ConfigureAwait(false);
+
+            return Ok(new { value = result });
+        }
+
         [HttpPost]
         [Route("software-applications")]
         public async Task<IActionResult> CreateSoftwareApplication([FromBody]CreateSoftwareApplicationDto dto)

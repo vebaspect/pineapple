@@ -64,6 +64,10 @@ Content-Type: application/json
 GET {{url}}/configuration/software-application
 Content-Type: application/json
 
+### /configuration/software-application/count
+GET {{url}}/configuration/software-application/count
+Content-Type: application/json
+
 ### /configuration/software-application
 POST {{url}}/configuration/software-application
 Content-Type: application/json
