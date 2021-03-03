@@ -77,65 +77,65 @@ const Sidebar = () => {
   };
 
   const fetchComponentTypesCount = async () => {
-    await fetch(`${window['env'].API_URL}/configuration/component-types`)
+    await fetch(`${window['env'].API_URL}/configuration/component-types/count`)
       .then(response => response.json())
       .then(data => {
         setIsComponentTypesCountFetched(true);
-        setComponentTypesCount(data.length);
+        setComponentTypesCount(data.value);
       });
   }
 
   const fetchOperatingSystemsCount = async () => {
-    await fetch(`${window['env'].API_URL}/configuration/operating-systems`)
+    await fetch(`${window['env'].API_URL}/configuration/operating-systems/count`)
       .then(response => response.json())
       .then(data => {
         setIsOperatingSystemsCountFetched(true);
-        setOperatingSystemsCount(data.length);
+        setOperatingSystemsCount(data.value);
       });
   }
 
   const fetchSoftwareApplicationsCount = async () => {
-    await fetch(`${window['env'].API_URL}/configuration/software-applications`)
+    await fetch(`${window['env'].API_URL}/configuration/software-applications/count`)
       .then(response => response.json())
       .then(data => {
         setIsSoftwareApplicationsCountFetched(true);
-        setSoftwareApplicationsCount(data.length);
+        setSoftwareApplicationsCount(data.value);
       });
   }
 
   const fetchDevelopersCount = async () => {
-    await fetch(`${window['env'].API_URL}/users/developers`)
+    await fetch(`${window['env'].API_URL}/users/developers/count`)
       .then(response => response.json())
       .then(data => {
         setIsDevelopersCountFetched(true);
-        setDevelopersCount(data.length);
+        setDevelopersCount(data.value);
       });
   }
 
   const fetchOperatorsCount = async () => {
-    await fetch(`${window['env'].API_URL}/users/operators`)
+    await fetch(`${window['env'].API_URL}/users/operators/count`)
       .then(response => response.json())
       .then(data => {
         setIsOperatorsCountFetched(true);
-        setOperatorsCount(data.length);
+        setOperatorsCount(data.value);
       });
   }
 
   const fetchManagersCount = async () => {
-    await fetch(`${window['env'].API_URL}/users/managers`)
+    await fetch(`${window['env'].API_URL}/users/managers/count`)
       .then(response => response.json())
       .then(data => {
         setIsManagersCountFetched(true);
-        setManagersCount(data.length);
+        setManagersCount(data.value);
       });
   }
 
   const fetchAdministratorsCount = async () => {
-    await fetch(`${window['env'].API_URL}/users/administrators`)
+    await fetch(`${window['env'].API_URL}/users/administrators/count`)
       .then(response => response.json())
       .then(data => {
         setIsAdministratorsCountFetched(true);
-        setAdministratorsCount(data.length);
+        setAdministratorsCount(data.value);
       });
   }
 
