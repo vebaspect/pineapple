@@ -69,6 +69,10 @@ Content-Type: application/json
 GET {{url}}/users/operators
 Content-Type: application/json
 
+### /users/operators/count
+GET {{url}}/users/operators/count
+Content-Type: application/json
+
 ### /users/operators
 POST {{url}}/users/operators
 Content-Type: application/json

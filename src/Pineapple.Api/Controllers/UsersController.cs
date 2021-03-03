@@ -160,6 +160,17 @@ namespace Pineapple.Api.Controllers
             return Ok(result);
         }
 
+        [HttpGet]
+        [Route("operators/count")]
+        public async Task<IActionResult> GetOperatorsCount()
+        {
+            GetOperatorsCountCommand command = new();
+            Task<int> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            int result = await resultTask.ConfigureAwait(false);
+
+            return Ok(new { value = result });
+        }
+
         [HttpPost]
         [Route("operators")]
         public async Task<IActionResult> CreateOperator([FromBody]CreateOperatorDto dto)
