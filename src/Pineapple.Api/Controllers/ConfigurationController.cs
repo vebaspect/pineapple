@@ -55,6 +55,11 @@ namespace Pineapple.Api.Controllers
         [Route("component-types/{componentTypeId}")]
         public async Task<IActionResult> DeleteComponentType(string componentTypeId)
         {
+            if (componentTypeId is null || !Guid.TryParse(componentTypeId, out _))
+            {
+                return BadRequest("ComponentType identifier has not been provided");
+            }
+
             DeleteComponentTypeCommand command = new(Guid.Parse(componentTypeId));
             await mediator.Send(command).ConfigureAwait(false);
 
@@ -65,6 +70,11 @@ namespace Pineapple.Api.Controllers
         [Route("component-types/{componentTypeId}")]
         public async Task<IActionResult> GetComponentType(string componentTypeId)
         {
+            if (componentTypeId is null || !Guid.TryParse(componentTypeId, out _))
+            {
+                return BadRequest("ComponentType identifier has not been provided");
+            }
+
             GetComponentTypeCommand command = new(Guid.Parse(componentTypeId));
             Task<ComponentTypeDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
             ComponentTypeDto result = await resultTask.ConfigureAwait(false);
@@ -103,6 +113,11 @@ namespace Pineapple.Api.Controllers
         [Route("operating-systems/{operatingSystemId}")]
         public async Task<IActionResult> DeleteOperatingSystem(string operatingSystemId)
         {
+            if (operatingSystemId is null || !Guid.TryParse(operatingSystemId, out _))
+            {
+                return BadRequest("OperatingSystem identifier has not been provided");
+            }
+
             DeleteOperatingSystemCommand command = new(Guid.Parse(operatingSystemId));
             await mediator.Send(command).ConfigureAwait(false);
 
@@ -113,6 +128,11 @@ namespace Pineapple.Api.Controllers
         [Route("operating-systems/{operatingSystemId}")]
         public async Task<IActionResult> GetOperatingSystem(string operatingSystemId)
         {
+            if (operatingSystemId is null || !Guid.TryParse(operatingSystemId, out _))
+            {
+                return BadRequest("OperatingSystem identifier has not been provided");
+            }
+
             GetOperatingSystemCommand command = new(Guid.Parse(operatingSystemId));
             Task<OperatingSystemDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
             OperatingSystemDto result = await resultTask.ConfigureAwait(false);
@@ -151,6 +171,11 @@ namespace Pineapple.Api.Controllers
         [Route("software-applications/{softwareApplicationId}")]
         public async Task<IActionResult> DeleteSoftwareApplication(string softwareApplicationId)
         {
+            if (softwareApplicationId is null || !Guid.TryParse(softwareApplicationId, out _))
+            {
+                return BadRequest("SoftwareApplication identifier has not been provided");
+            }
+
             DeleteSoftwareApplicationCommand command = new(Guid.Parse(softwareApplicationId));
             await mediator.Send(command).ConfigureAwait(false);
 
@@ -161,6 +186,11 @@ namespace Pineapple.Api.Controllers
         [Route("software-applications/{softwareApplicationId}")]
         public async Task<IActionResult> GetSoftwareApplication(string softwareApplicationId)
         {
+            if (softwareApplicationId is null || !Guid.TryParse(softwareApplicationId, out _))
+            {
+                return BadRequest("SoftwareApplication identifier has not been provided");
+            }
+
             GetSoftwareApplicationCommand command = new(Guid.Parse(softwareApplicationId));
             Task<SoftwareApplicationDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
             SoftwareApplicationDto result = await resultTask.ConfigureAwait(false);

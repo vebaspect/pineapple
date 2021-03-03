@@ -55,6 +55,11 @@ namespace Pineapple.Api.Controllers
         [Route("{productId}")]
         public async Task<IActionResult> GetProduct(string productId)
         {
+            if (productId is null || !Guid.TryParse(productId, out _))
+            {
+                return BadRequest("Product identifier has not been provided");
+            }
+
             GetProductCommand command = new(Guid.Parse(productId));
             Task<ProductDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
             ProductDto result = await resultTask.ConfigureAwait(false);
@@ -66,6 +71,11 @@ namespace Pineapple.Api.Controllers
         [Route("{productId}/components")]
         public async Task<IActionResult> GetComponents(string productId)
         {
+            if (productId is null || !Guid.TryParse(productId, out _))
+            {
+                return BadRequest("Product identifier has not been provided");
+            }
+
             GetComponentsCommand command = new(Guid.Parse(productId));
             Task<ComponentDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             ComponentDto[] result = await resultTask.ConfigureAwait(false);
@@ -77,6 +87,11 @@ namespace Pineapple.Api.Controllers
         [Route("{productId}/components")]
         public async Task<IActionResult> CreateComponent(string productId, [FromBody]CreateComponentDto dto)
         {
+            if (productId is null || !Guid.TryParse(productId, out _))
+            {
+                return BadRequest("Product identifier has not been provided");
+            }
+
             if (dto is null)
             {
                 return BadRequest();
@@ -93,6 +108,15 @@ namespace Pineapple.Api.Controllers
         [Route("{productId}/components/{componentId}")]
         public async Task<IActionResult> GetComponent(string productId, string componentId)
         {
+            if (productId is null || !Guid.TryParse(productId, out _))
+            {
+                return BadRequest("Product identifier has not been provided");
+            }
+            if (componentId is null || !Guid.TryParse(componentId, out _))
+            {
+                return BadRequest("Component identifier has not been provided");
+            }
+
             GetComponentCommand command = new(Guid.Parse(productId), Guid.Parse(componentId));
             Task<ComponentDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
             ComponentDto result = await resultTask.ConfigureAwait(false);
@@ -104,6 +128,15 @@ namespace Pineapple.Api.Controllers
         [Route("{productId}/components/{componentId}/versions")]
         public async Task<IActionResult> GetVersions(string productId, string componentId)
         {
+            if (productId is null || !Guid.TryParse(productId, out _))
+            {
+                return BadRequest("Product identifier has not been provided");
+            }
+            if (componentId is null || !Guid.TryParse(componentId, out _))
+            {
+                return BadRequest("Component identifier has not been provided");
+            }
+
             GetVersionsCommand command = new(Guid.Parse(productId), Guid.Parse(componentId));
             Task<VersionDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             VersionDto[] result = await resultTask.ConfigureAwait(false);
@@ -115,6 +148,15 @@ namespace Pineapple.Api.Controllers
         [Route("{productId}/components/{componentId}/versions")]
         public async Task<IActionResult> CreateVersion(string productId, string componentId, [FromBody]CreateVersionDto dto)
         {
+            if (productId is null || !Guid.TryParse(productId, out _))
+            {
+                return BadRequest("Product identifier has not been provided");
+            }
+            if (componentId is null || !Guid.TryParse(componentId, out _))
+            {
+                return BadRequest("Component identifier has not been provided");
+            }
+
             if (dto is null)
             {
                 return BadRequest();
@@ -131,6 +173,19 @@ namespace Pineapple.Api.Controllers
         [Route("{productId}/components/{componentId}/versions/{versionId}")]
         public async Task<IActionResult> GetVersion(string productId, string componentId, string versionId)
         {
+            if (productId is null || !Guid.TryParse(productId, out _))
+            {
+                return BadRequest("Product identifier has not been provided");
+            }
+            if (componentId is null || !Guid.TryParse(componentId, out _))
+            {
+                return BadRequest("Component identifier has not been provided");
+            }
+            if (versionId is null || !Guid.TryParse(versionId, out _))
+            {
+                return BadRequest("Version identifier has not been provided");
+            }
+
             GetVersionCommand command = new(Guid.Parse(productId), Guid.Parse(componentId), Guid.Parse(versionId));
             Task<VersionDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
             VersionDto result = await resultTask.ConfigureAwait(false);

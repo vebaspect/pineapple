@@ -55,6 +55,11 @@ namespace Pineapple.Api.Controllers
         [Route("{implementationId}")]
         public async Task<IActionResult> GetImplementation(string implementationId)
         {
+            if (implementationId is null || !Guid.TryParse(implementationId, out _))
+            {
+                return BadRequest("Implementation identifier has not been provided");
+            }
+
             GetImplementationCommand command = new(Guid.Parse(implementationId));
             Task<ImplementationDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
             ImplementationDto result = await resultTask.ConfigureAwait(false);
@@ -66,6 +71,11 @@ namespace Pineapple.Api.Controllers
         [Route("{implementationId}/coordinators")]
         public async Task<IActionResult> GetCoordinators(string implementationId)
         {
+            if (implementationId is null || !Guid.TryParse(implementationId, out _))
+            {
+                return BadRequest("Implementation identifier has not been provided");
+            }
+
             GetCoordinatorsCommand command = new(Guid.Parse(implementationId));
             Task<CoordinatorDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             CoordinatorDto[] result = await resultTask.ConfigureAwait(false);
@@ -77,6 +87,11 @@ namespace Pineapple.Api.Controllers
         [Route("{implementationId}/coordinators")]
         public async Task<IActionResult> CreateCoordinator(string implementationId, [FromBody]CreateCoordinatorDto dto)
         {
+            if (implementationId is null || !Guid.TryParse(implementationId, out _))
+            {
+                return BadRequest("Implementation identifier has not been provided");
+            }
+
             if (dto is null)
             {
                 return BadRequest();
@@ -93,6 +108,15 @@ namespace Pineapple.Api.Controllers
         [Route("{implementationId}/coordinators/{coordinatorId}")]
         public async Task<IActionResult> GetCoordinator(string implementationId, string coordinatorId)
         {
+            if (implementationId is null || !Guid.TryParse(implementationId, out _))
+            {
+                return BadRequest("Implementation identifier has not been provided");
+            }
+            if (coordinatorId is null || !Guid.TryParse(coordinatorId, out _))
+            {
+                return BadRequest("Coordinator identifier has not been provided");
+            }
+
             GetCoordinatorCommand command = new(Guid.Parse(implementationId), Guid.Parse(coordinatorId));
             Task<CoordinatorDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
             CoordinatorDto result = await resultTask.ConfigureAwait(false);
@@ -104,6 +128,11 @@ namespace Pineapple.Api.Controllers
         [Route("{implementationId}/environments")]
         public async Task<IActionResult> GetEnvironments(string implementationId)
         {
+            if (implementationId is null || !Guid.TryParse(implementationId, out _))
+            {
+                return BadRequest("Implementation identifier has not been provided");
+            }
+
             GetEnvironmentsCommand command = new(Guid.Parse(implementationId));
             Task<EnvironmentDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             EnvironmentDto[] result = await resultTask.ConfigureAwait(false);
@@ -115,6 +144,11 @@ namespace Pineapple.Api.Controllers
         [Route("{implementationId}/environments")]
         public async Task<IActionResult> CreateEnvironment(string implementationId, [FromBody]CreateEnvironmentDto dto)
         {
+            if (implementationId is null || !Guid.TryParse(implementationId, out _))
+            {
+                return BadRequest("Implementation identifier has not been provided");
+            }
+
             if (dto is null)
             {
                 return BadRequest();
@@ -131,6 +165,15 @@ namespace Pineapple.Api.Controllers
         [Route("{implementationId}/environments/{environmentId}")]
         public async Task<IActionResult> GetEnvironment(string implementationId, string environmentId)
         {
+            if (implementationId is null || !Guid.TryParse(implementationId, out _))
+            {
+                return BadRequest("Implementation identifier has not been provided");
+            }
+            if (environmentId is null || !Guid.TryParse(environmentId, out _))
+            {
+                return BadRequest("Environment identifier has not been provided");
+            }
+
             GetEnvironmentCommand command = new(Guid.Parse(implementationId), Guid.Parse(environmentId));
             Task<EnvironmentDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
             EnvironmentDto result = await resultTask.ConfigureAwait(false);
@@ -142,6 +185,15 @@ namespace Pineapple.Api.Controllers
         [Route("{implementationId}/environments/{environmentId}/servers")]
         public async Task<IActionResult> GetServers(string implementationId, string environmentId)
         {
+            if (implementationId is null || !Guid.TryParse(implementationId, out _))
+            {
+                return BadRequest("Implementation identifier has not been provided");
+            }
+            if (environmentId is null || !Guid.TryParse(environmentId, out _))
+            {
+                return BadRequest("Environment identifier has not been provided");
+            }
+
             GetServersCommand command = new(Guid.Parse(implementationId), Guid.Parse(environmentId));
             Task<ServerDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             ServerDto[] result = await resultTask.ConfigureAwait(false);
@@ -153,6 +205,15 @@ namespace Pineapple.Api.Controllers
         [Route("{implementationId}/environments/{environmentId}/servers")]
         public async Task<IActionResult> CreateServer(string implementationId, string environmentId, [FromBody]CreateServerDto dto)
         {
+            if (implementationId is null || !Guid.TryParse(implementationId, out _))
+            {
+                return BadRequest("Implementation identifier has not been provided");
+            }
+            if (environmentId is null || !Guid.TryParse(environmentId, out _))
+            {
+                return BadRequest("Environment identifier has not been provided");
+            }
+
             if (dto is null)
             {
                 return BadRequest();
@@ -169,6 +230,19 @@ namespace Pineapple.Api.Controllers
         [Route("{implementationId}/environments/{environmentId}/servers/{serverId}")]
         public async Task<IActionResult> GetServer(string implementationId, string environmentId, string serverId)
         {
+            if (implementationId is null || !Guid.TryParse(implementationId, out _))
+            {
+                return BadRequest("Implementation identifier has not been provided");
+            }
+            if (environmentId is null || !Guid.TryParse(environmentId, out _))
+            {
+                return BadRequest("Environment identifier has not been provided");
+            }
+            if (serverId is null || !Guid.TryParse(serverId, out _))
+            {
+                return BadRequest("Server identifier has not been provided");
+            }
+
             GetServerCommand command = new(Guid.Parse(implementationId), Guid.Parse(environmentId), Guid.Parse(serverId));
             Task<ServerDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
             ServerDto result = await resultTask.ConfigureAwait(false);

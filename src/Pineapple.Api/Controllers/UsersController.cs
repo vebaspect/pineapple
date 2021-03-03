@@ -147,6 +147,11 @@ namespace Pineapple.Api.Controllers
         [Route("{userId}")]
         public async Task<IActionResult> DeleteUser(string userId)
         {
+            if (userId is null || !Guid.TryParse(userId, out _))
+            {
+                return BadRequest("User identifier has not been provided");
+            }
+
             DeleteUserCommand command = new(Guid.Parse(userId));
             await mediator.Send(command).ConfigureAwait(false);
 
@@ -157,6 +162,11 @@ namespace Pineapple.Api.Controllers
         [Route("{userId}")]
         public async Task<IActionResult> GetUser(string userId)
         {
+            if (userId is null || !Guid.TryParse(userId, out _))
+            {
+                return BadRequest("User identifier has not been provided");
+            }
+
             GetUserCommand command = new(Guid.Parse(userId));
             Task<UserDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
             UserDto result = await resultTask.ConfigureAwait(false);
