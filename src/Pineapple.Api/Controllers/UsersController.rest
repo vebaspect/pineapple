@@ -12,6 +12,10 @@ Content-Type: application/json
 GET {{url}}/users/administrators
 Content-Type: application/json
 
+### /users/administrators/count
+GET {{url}}/users/administrators/count
+Content-Type: application/json
+
 ### /users/administrators
 POST {{url}}/users/administrators
 Content-Type: application/json
