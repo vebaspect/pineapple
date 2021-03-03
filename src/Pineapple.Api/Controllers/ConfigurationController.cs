@@ -35,6 +35,17 @@ namespace Pineapple.Api.Controllers
             return Ok(result);
         }
 
+        [HttpGet]
+        [Route("component-types/count")]
+        public async Task<IActionResult> GetComponentTypesCount()
+        {
+            GetComponentTypesCountCommand command = new();
+            Task<int> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            int result = await resultTask.ConfigureAwait(false);
+
+            return Ok(new { value = result });
+        }
+
         [HttpPost]
         [Route("component-types")]
         public async Task<IActionResult> CreateComponentType([FromBody]CreateComponentTypeDto dto)

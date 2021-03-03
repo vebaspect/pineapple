@@ -12,6 +12,10 @@
 GET {{url}}/configuration/component-types
 Content-Type: application/json
 
+### /configuration/component-types/count
+GET {{url}}/configuration/component-types/count
+Content-Type: application/json
+
 ### /configuration/component-types
 POST {{url}}/configuration/component-types
 Content-Type: application/json
