@@ -104,6 +104,17 @@ namespace Pineapple.Api.Controllers
             return Ok(result);
         }
 
+        [HttpGet]
+        [Route("operating-systems/count")]
+        public async Task<IActionResult> GetOperatingSystemsCount()
+        {
+            GetOperatingSystemsCountCommand command = new();
+            Task<int> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            int result = await resultTask.ConfigureAwait(false);
+
+            return Ok(new { value = result });
+        }
+
         [HttpPost]
         [Route("operating-systems")]
         public async Task<IActionResult> CreateOperatingSystem([FromBody]CreateOperatingSystemDto dto)

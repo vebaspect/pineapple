@@ -38,6 +38,10 @@ Content-Type: application/json
 GET {{url}}/configuration/operating-systems
 Content-Type: application/json
 
+### /configuration/operating-systems/count
+GET {{url}}/configuration/operating-systems/count
+Content-Type: application/json
+
 ### /configuration/operating-systems
 POST {{url}}/configuration/operating-systems
 Content-Type: application/json
