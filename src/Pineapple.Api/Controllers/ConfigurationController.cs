@@ -41,7 +41,7 @@ namespace Pineapple.Api.Controllers
         {
             if (dto is null)
             {
-                return BadRequest();
+                return BadRequest("ComponentType data has not been provided");
             }
 
             CreateComponentTypeCommand command = new(dto.Name, dto.Symbol, dto.Description);
@@ -99,7 +99,7 @@ namespace Pineapple.Api.Controllers
         {
             if (dto is null)
             {
-                return BadRequest();
+                return BadRequest("OperatingSystem data has not been provided");
             }
 
             CreateOperatingSystemCommand command = new(dto.Name, dto.Symbol, dto.Description);
@@ -157,7 +157,7 @@ namespace Pineapple.Api.Controllers
         {
             if (dto is null)
             {
-                return BadRequest();
+                return BadRequest("SoftwareApplication data has not been provided");
             }
 
             CreateSoftwareApplicationCommand command = new(dto.Name, dto.Symbol, dto.Description);

@@ -41,7 +41,7 @@ namespace Pineapple.Api.Controllers
         {
             if (dto is null)
             {
-                return BadRequest();
+                return BadRequest("Implementation data has not been provided");
             }
 
             CreateImplementationCommand command = new(dto.Name, dto.Description);
@@ -94,7 +94,7 @@ namespace Pineapple.Api.Controllers
 
             if (dto is null)
             {
-                return BadRequest();
+                return BadRequest("Coordinator data has not been provided");
             }
 
             CreateCoordinatorCommand command = new(Guid.Parse(implementationId), dto.FullName, dto.Phone, dto.Email);
@@ -151,7 +151,7 @@ namespace Pineapple.Api.Controllers
 
             if (dto is null)
             {
-                return BadRequest();
+                return BadRequest("Environment data has not been provided");
             }
 
             CreateEnvironmentCommand command = new(Guid.Parse(implementationId), dto.Name, dto.Symbol, dto.Description, dto.OperatorId);
@@ -216,7 +216,7 @@ namespace Pineapple.Api.Controllers
 
             if (dto is null)
             {
-                return BadRequest();
+                return BadRequest("Server data has not been provided");
             }
 
             CreateServerCommand command = new(Guid.Parse(environmentId), dto.Name, dto.Symbol, dto.Description, dto.OperatingSystemId, dto.IPAddress);

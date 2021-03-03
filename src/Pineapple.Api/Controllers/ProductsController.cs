@@ -41,7 +41,7 @@ namespace Pineapple.Api.Controllers
         {
             if (dto is null)
             {
-                return BadRequest();
+                return BadRequest("Product data has not been provided");
             }
 
             CreateProductCommand command = new(dto.Name, dto.Description);
@@ -94,7 +94,7 @@ namespace Pineapple.Api.Controllers
 
             if (dto is null)
             {
-                return BadRequest();
+                return BadRequest("Component data has not been provided");
             }
 
             CreateComponentCommand command = new(Guid.Parse(productId), dto.Name, dto.Description, dto.ComponentTypeId);
@@ -159,7 +159,7 @@ namespace Pineapple.Api.Controllers
 
             if (dto is null)
             {
-                return BadRequest();
+                return BadRequest("Version data has not been provided");
             }
 
             CreateVersionCommand command = new(Guid.Parse(componentId), dto.Major, dto.Minor, dto.Patch, dto.PreRelease, dto.Description);

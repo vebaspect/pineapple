@@ -52,7 +52,7 @@ namespace Pineapple.Api.Controllers
         {
             if (dto is null)
             {
-                return BadRequest();
+                return BadRequest("Administrator data has not been provided");
             }
 
             CreateAdministratorCommand command = new(dto.FullName, dto.Login, dto.Phone, dto.Email);
@@ -79,7 +79,7 @@ namespace Pineapple.Api.Controllers
         {
             if (dto is null)
             {
-                return BadRequest();
+                return BadRequest("Developer data has not been provided");
             }
 
             CreateDeveloperCommand command = new(dto.FullName, dto.Login, dto.Phone, dto.Email);
@@ -106,7 +106,7 @@ namespace Pineapple.Api.Controllers
         {
             if (dto is null)
             {
-                return BadRequest();
+                return BadRequest("Manager data has not been provided");
             }
 
             CreateManagerCommand command = new(dto.FullName, dto.Login, dto.Phone, dto.Email);
@@ -133,7 +133,7 @@ namespace Pineapple.Api.Controllers
         {
             if (dto is null)
             {
-                return BadRequest();
+                return BadRequest("Operator data has not been provided");
             }
 
             CreateOperatorCommand command = new(dto.FullName, dto.Login, dto.Phone, dto.Email);
