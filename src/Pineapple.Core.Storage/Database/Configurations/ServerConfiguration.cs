@@ -40,8 +40,8 @@ namespace Pineapple.Core.Storage.Database.Configurations
                 .Property(server => server.IPAddress)
                 .HasMaxLength(100);
             builder
-                .HasMany(server => server.Versions)
-                .WithMany(version => version.Servers);
+                .HasMany(server => server.ComponentVersions)
+                .WithMany(componentVersion => componentVersion.Servers);
             builder
                 .HasMany(server => server.SoftwareApplications)
                 .WithMany(softwareApplication => softwareApplication.Servers);

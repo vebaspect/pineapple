@@ -10,11 +10,11 @@ using Pineapple.Core.Exceptions;
 
 namespace Pineapple.Core.Handler
 {
-    public class GetVersionsCommandHandler : RequestHandler<GetVersionsCommand, Task<VersionDto[]>>, ICommandHandler
+    public class GetComponentVersionsCommandHandler : RequestHandler<GetComponentVersionsCommand, Task<ComponentVersionDto[]>>, ICommandHandler
     {
         private readonly DatabaseContextFactory databaseContextFactory;
 
-        public GetVersionsCommandHandler(DatabaseContextFactory databaseContextFactory)
+        public GetComponentVersionsCommandHandler(DatabaseContextFactory databaseContextFactory)
         {
             if (databaseContextFactory is null)
             {
@@ -24,14 +24,14 @@ namespace Pineapple.Core.Handler
             this.databaseContextFactory = databaseContextFactory;
         }
 
-        protected override async Task<VersionDto[]> Handle(GetVersionsCommand request)
+        protected override async Task<ComponentVersionDto[]> Handle(GetComponentVersionsCommand request)
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
 
             var product = await databaseContext
                 .Products
                 .Include(product => product.Components)
-                .ThenInclude(component => component.Versions)
+                .ThenInclude(component => component.ComponentVersions)
                 .FirstOrDefaultAsync(product => product.Id == request.ProductId)
                 .ConfigureAwait(false);
 
@@ -49,24 +49,24 @@ namespace Pineapple.Core.Handler
                 throw new ComponentNotFoundException($"Component {request.ComponentId} has not been found");
             }
 
-            if (component.Versions?.Count > 0)
+            if (component.ComponentVersions?.Count > 0)
             {
-                return component.Versions.Select(version => Map(version)).ToArray();
+                return component.ComponentVersions.Select(componentVersion => Map(componentVersion)).ToArray();
             }
 
-            return Enumerable.Empty<VersionDto>().ToArray();
+            return Enumerable.Empty<ComponentVersionDto>().ToArray();
         }
 
-        private static VersionDto Map(Domain.Entities.Version version)
+        private static ComponentVersionDto Map(Domain.Entities.ComponentVersion componentVersion)
         {
-            return new VersionDto(
-                version.Id,
-                version.ModifiedDate,
-                version.Major,
-                version.Minor,
-                version.Patch,
-                version.PreRelease,
-                version.Description
+            return new ComponentVersionDto(
+                componentVersion.Id,
+                componentVersion.ModifiedDate,
+                componentVersion.Major,
+                componentVersion.Minor,
+                componentVersion.Patch,
+                componentVersion.PreRelease,
+                componentVersion.Description
             );
         }
     }

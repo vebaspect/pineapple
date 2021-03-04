@@ -177,7 +177,7 @@ namespace Pineapple.Core.Storage.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Versions",
+                name: "ComponentVersions",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -191,9 +191,9 @@ namespace Pineapple.Core.Storage.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Versions", x => x.Id);
+                    table.PrimaryKey("PK_ComponentVersions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Versions_Components_ComponentId",
+                        name: "FK_ComponentVersions_Components_ComponentId",
                         column: x => x.ComponentId,
                         principalTable: "Components",
                         principalColumn: "Id",
@@ -231,6 +231,30 @@ namespace Pineapple.Core.Storage.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ComponentVersionServer",
+                columns: table => new
+                {
+                    ComponentVersionsId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ServersId = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ComponentVersionServer", x => new { x.ComponentVersionsId, x.ServersId });
+                    table.ForeignKey(
+                        name: "FK_ComponentVersionServer_ComponentVersions_ComponentVersionsId",
+                        column: x => x.ComponentVersionsId,
+                        principalTable: "ComponentVersions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ComponentVersionServer_Servers_ServersId",
+                        column: x => x.ServersId,
+                        principalTable: "Servers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ServerSoftwareApplication",
                 columns: table => new
                 {
@@ -254,30 +278,6 @@ namespace Pineapple.Core.Storage.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "ServerVersion",
-                columns: table => new
-                {
-                    ServersId = table.Column<Guid>(type: "uuid", nullable: false),
-                    VersionsId = table.Column<Guid>(type: "uuid", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ServerVersion", x => new { x.ServersId, x.VersionsId });
-                    table.ForeignKey(
-                        name: "FK_ServerVersion_Servers_ServersId",
-                        column: x => x.ServersId,
-                        principalTable: "Servers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ServerVersion_Versions_VersionsId",
-                        column: x => x.VersionsId,
-                        principalTable: "Versions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Components_ComponentTypeId",
                 table: "Components",
@@ -293,6 +293,16 @@ namespace Pineapple.Core.Storage.Migrations
                 table: "ComponentTypes",
                 column: "Symbol",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ComponentVersions_ComponentId",
+                table: "ComponentVersions",
+                column: "ComponentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ComponentVersionServer_ServersId",
+                table: "ComponentVersionServer",
+                column: "ServersId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Coordinators_ImplementationId",
@@ -343,11 +353,6 @@ namespace Pineapple.Core.Storage.Migrations
                 column: "SoftwareApplicationsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ServerVersion_VersionsId",
-                table: "ServerVersion",
-                column: "VersionsId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_SoftwareApplications_Symbol",
                 table: "SoftwareApplications",
                 column: "Symbol",
@@ -358,15 +363,13 @@ namespace Pineapple.Core.Storage.Migrations
                 table: "Users",
                 column: "Login",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Versions_ComponentId",
-                table: "Versions",
-                column: "ComponentId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "ComponentVersionServer");
+
             migrationBuilder.DropTable(
                 name: "Coordinators");
 
@@ -374,16 +377,16 @@ namespace Pineapple.Core.Storage.Migrations
                 name: "ServerSoftwareApplication");
 
             migrationBuilder.DropTable(
-                name: "ServerVersion");
-
-            migrationBuilder.DropTable(
-                name: "SoftwareApplications");
+                name: "ComponentVersions");
 
             migrationBuilder.DropTable(
                 name: "Servers");
 
             migrationBuilder.DropTable(
-                name: "Versions");
+                name: "SoftwareApplications");
+
+            migrationBuilder.DropTable(
+                name: "Components");
 
             migrationBuilder.DropTable(
                 name: "Environments");
@@ -392,19 +395,16 @@ namespace Pineapple.Core.Storage.Migrations
                 name: "OperatingSystems");
 
             migrationBuilder.DropTable(
-                name: "Components");
+                name: "ComponentTypes");
+
+            migrationBuilder.DropTable(
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Implementations");
 
             migrationBuilder.DropTable(
                 name: "Users");
-
-            migrationBuilder.DropTable(
-                name: "ComponentTypes");
-
-            migrationBuilder.DropTable(
-                name: "Products");
         }
     }
 }

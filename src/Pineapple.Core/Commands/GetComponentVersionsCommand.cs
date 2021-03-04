@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Pineapple.Core.Commands
 {
-    public class GetVersionCommand : IRequest<Task<VersionDto>>, ICommand
+    public class GetComponentVersionsCommand : IRequest<Task<ComponentVersionDto[]>>, ICommand
     {
         /// <summary>
         /// Identyfikator produktu.
@@ -17,16 +17,10 @@ namespace Pineapple.Core.Commands
         /// </summary>
         public Guid ComponentId { get; }
 
-        /// <summary>
-        /// Identyfikator wersji.
-        /// </summary>
-        public Guid VersionId { get; }
-
-        public GetVersionCommand(Guid productId, Guid componentId, Guid versionId)
+        public GetComponentVersionsCommand(Guid productId, Guid componentId)
         {
             ProductId = productId;
             ComponentId = componentId;
-            VersionId = versionId;
         }
     }
 }

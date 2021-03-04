@@ -34,13 +34,13 @@ namespace Pineapple.Core.Domain.Entities
         public Guid ComponentTypeId { get; set; }
 
         /// <summary>
-        /// Typ.
+        /// Typ komponentu.
         /// </summary>
         public ComponentType ComponentType { get; set; }
 
         /// <summary>
-        /// Wersje.
+        /// Wersje komponentu.
         /// </summary>
-        public List<Version> Versions { get; set; }
+        public List<ComponentVersion> ComponentVersions { get; set; }
     }
 }

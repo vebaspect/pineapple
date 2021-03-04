@@ -49,9 +49,9 @@ namespace Pineapple.Core.Domain.Entities
         public string IPAddress { get; set; }
 
         /// <summary>
-        /// Wersje.
+        /// Wersje komponentów.
         /// </summary>
-        public List<Version> Versions { get; set; }
+        public List<ComponentVersion> ComponentVersions { get; set; }
 
         /// <summary>
         /// Oprogramowanie.

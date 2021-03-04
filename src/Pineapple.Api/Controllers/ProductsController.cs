@@ -125,8 +125,8 @@ namespace Pineapple.Api.Controllers
         }
 
         [HttpGet]
-        [Route("{productId}/components/{componentId}/versions")]
-        public async Task<IActionResult> GetVersions(string productId, string componentId)
+        [Route("{productId}/components/{componentId}/component-versions")]
+        public async Task<IActionResult> GetComponentVersions(string productId, string componentId)
         {
             if (productId is null || !Guid.TryParse(productId, out _))
             {
@@ -137,16 +137,16 @@ namespace Pineapple.Api.Controllers
                 return BadRequest("Component identifier has not been provided");
             }
 
-            GetVersionsCommand command = new(Guid.Parse(productId), Guid.Parse(componentId));
-            Task<VersionDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
-            VersionDto[] result = await resultTask.ConfigureAwait(false);
+            GetComponentVersionsCommand command = new(Guid.Parse(productId), Guid.Parse(componentId));
+            Task<ComponentVersionDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            ComponentVersionDto[] result = await resultTask.ConfigureAwait(false);
 
             return Ok(result);
         }
 
         [HttpPost]
-        [Route("{productId}/components/{componentId}/versions")]
-        public async Task<IActionResult> CreateVersion(string productId, string componentId, [FromBody]CreateVersionDto dto)
+        [Route("{productId}/components/{componentId}/component-versions")]
+        public async Task<IActionResult> CreateComponentVersion(string productId, string componentId, [FromBody]CreateComponentVersionDto dto)
         {
             if (productId is null || !Guid.TryParse(productId, out _))
             {
@@ -159,19 +159,19 @@ namespace Pineapple.Api.Controllers
 
             if (dto is null)
             {
-                return BadRequest("Version data has not been provided");
+                return BadRequest("ComponentVersion data has not been provided");
             }
 
-            CreateVersionCommand command = new(Guid.Parse(componentId), dto.Major, dto.Minor, dto.Patch, dto.PreRelease, dto.Description);
+            CreateComponentVersionCommand command = new(Guid.Parse(componentId), dto.Major, dto.Minor, dto.Patch, dto.PreRelease, dto.Description);
             Task<Guid> resultTask = await mediator.Send(command).ConfigureAwait(false);
             Guid result = await resultTask.ConfigureAwait(false);
 
-            return Created($"/products/{productId}/components/{componentId}/versions/{result}", null);
+            return Created($"/products/{productId}/components/{componentId}/component-versions/{result}", null);
         }
 
         [HttpGet]
-        [Route("{productId}/components/{componentId}/versions/{versionId}")]
-        public async Task<IActionResult> GetVersion(string productId, string componentId, string versionId)
+        [Route("{productId}/components/{componentId}/component-versions/{componentVersionId}")]
+        public async Task<IActionResult> GetComponentVersion(string productId, string componentId, string componentVersionId)
         {
             if (productId is null || !Guid.TryParse(productId, out _))
             {
@@ -181,14 +181,14 @@ namespace Pineapple.Api.Controllers
             {
                 return BadRequest("Component identifier has not been provided");
             }
-            if (versionId is null || !Guid.TryParse(versionId, out _))
+            if (componentVersionId is null || !Guid.TryParse(componentVersionId, out _))
             {
-                return BadRequest("Version identifier has not been provided");
+                return BadRequest("ComponentVersion identifier has not been provided");
             }
 
-            GetVersionCommand command = new(Guid.Parse(productId), Guid.Parse(componentId), Guid.Parse(versionId));
-            Task<VersionDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
-            VersionDto result = await resultTask.ConfigureAwait(false);
+            GetComponentVersionCommand command = new(Guid.Parse(productId), Guid.Parse(componentId), Guid.Parse(componentVersionId));
+            Task<ComponentVersionDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            ComponentVersionDto result = await resultTask.ConfigureAwait(false);
 
             return Ok(result);
         }

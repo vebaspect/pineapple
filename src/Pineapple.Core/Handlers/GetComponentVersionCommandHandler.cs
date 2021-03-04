@@ -10,11 +10,11 @@ using Pineapple.Core.Exceptions;
 
 namespace Pineapple.Core.Handler
 {
-    public class GetVersionCommandHandler : RequestHandler<GetVersionCommand, Task<VersionDto>>, ICommandHandler
+    public class GetComponentVersionCommandHandler : RequestHandler<GetComponentVersionCommand, Task<ComponentVersionDto>>, ICommandHandler
     {
         private readonly DatabaseContextFactory databaseContextFactory;
 
-        public GetVersionCommandHandler(DatabaseContextFactory databaseContextFactory)
+        public GetComponentVersionCommandHandler(DatabaseContextFactory databaseContextFactory)
         {
             if (databaseContextFactory is null)
             {
@@ -24,14 +24,14 @@ namespace Pineapple.Core.Handler
             this.databaseContextFactory = databaseContextFactory;
         }
 
-        protected override async Task<VersionDto> Handle(GetVersionCommand request)
+        protected override async Task<ComponentVersionDto> Handle(GetComponentVersionCommand request)
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
 
             var product = await databaseContext
                 .Products
                 .Include(product => product.Components)
-                .ThenInclude(component => component.Versions)
+                .ThenInclude(component => component.ComponentVersions)
                 .FirstOrDefaultAsync(product => product.Id == request.ProductId)
                 .ConfigureAwait(false);
 
@@ -49,28 +49,28 @@ namespace Pineapple.Core.Handler
                 throw new ComponentNotFoundException($"Component {request.ComponentId} has not been found");
             }
 
-            var version = component
-                .Versions?
-                .FirstOrDefault(version => version.Id == request.VersionId);
+            var componentVersion = component
+                .ComponentVersions?
+                .FirstOrDefault(componentVersion => componentVersion.Id == request.ComponentVersionId);
 
-            if (version is null)
+            if (componentVersion is null)
             {
-                throw new VersionNotFoundException($"Version {request.VersionId} has not been found");
+                throw new ComponentVersionNotFoundException($"ComponentVersion {request.ComponentVersionId} has not been found");
             }
 
-            return Map(version);
+            return Map(componentVersion);
         }
 
-        private static VersionDto Map(Domain.Entities.Version version)
+        private static ComponentVersionDto Map(Domain.Entities.ComponentVersion componentVersion)
         {
-            return new VersionDto(
-                version.Id,
-                version.ModifiedDate,
-                version.Major,
-                version.Minor,
-                version.Patch,
-                version.PreRelease,
-                version.Description
+            return new ComponentVersionDto(
+                componentVersion.Id,
+                componentVersion.ModifiedDate,
+                componentVersion.Major,
+                componentVersion.Minor,
+                componentVersion.Patch,
+                componentVersion.PreRelease,
+                componentVersion.Description
             );
         }
     }

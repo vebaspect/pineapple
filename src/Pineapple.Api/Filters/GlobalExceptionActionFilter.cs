@@ -32,6 +32,16 @@ namespace Pineapple.Api.Filters
                 };
                 context.ExceptionHandled = true;
             }
+            if (context.Exception is ComponentVersionNotFoundException)
+            {
+                context.Result = new ContentResult()
+                {
+                    StatusCode = StatusCodes.Status404NotFound,
+                    Content = context.Exception.Message,
+                    ContentType = "text/plain",
+                };
+                context.ExceptionHandled = true;
+            }
             if (context.Exception is CoordinatorNotFoundException)
             {
                 context.Result = new ContentResult()
@@ -103,16 +113,6 @@ namespace Pineapple.Api.Filters
                 context.ExceptionHandled = true;
             }
             if (context.Exception is UserNotFoundException)
-            {
-                context.Result = new ContentResult()
-                {
-                    StatusCode = StatusCodes.Status404NotFound,
-                    Content = context.Exception.Message,
-                    ContentType = "text/plain",
-                };
-                context.ExceptionHandled = true;
-            }
-            if (context.Exception is VersionNotFoundException)
             {
                 context.Result = new ContentResult()
                 {

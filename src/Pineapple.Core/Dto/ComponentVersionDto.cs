@@ -3,9 +3,9 @@ using System;
 namespace Pineapple.Core.Dto
 {
     /// <summary>
-    /// Wersja.
+    /// Wersja komponentu.
     /// </summary>
-    public class VersionDto : IDto
+    public class ComponentVersionDto : IDto
     {
         /// <summary>
         /// Identyfikator.
@@ -42,7 +42,7 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public string Description { get; }
 
-        public VersionDto(Guid id, DateTime modifiedDate, int major, int minor, int patch, string preRelease, string description)
+        public ComponentVersionDto(Guid id, DateTime modifiedDate, int major, int minor, int patch, string preRelease, string description)
         {
             Id = id;
             ModifiedDate = modifiedDate;

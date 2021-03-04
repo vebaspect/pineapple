@@ -1,9 +1,12 @@
-namespace Pineapple.Api.Controllers.Dto
+using System;
+using System.Collections.Generic;
+
+namespace Pineapple.Core.Domain.Entities
 {
     /// <summary>
-    /// Wersja.
+    /// Wersja komponentu.
     /// </summary>
-    public class CreateVersionDto
+    public class ComponentVersion : Entity
     {
         /// <summary>
         /// Major.
@@ -29,5 +32,20 @@ namespace Pineapple.Api.Controllers.Dto
         /// Opis.
         /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Identyfikator komponentu.
+        /// </summary>
+        public Guid ComponentId { get; set; }
+
+        /// <summary>
+        /// Komponent.
+        /// </summary>
+        public Component Component { get; set; }
+
+        /// <summary>
+        /// Serwery.
+        /// </summary>
+        public List<Server> Servers { get; set; }
     }
 }

@@ -5,8 +5,8 @@
 @productId = 
 # Identyfikator komponentu.
 @componentId = 
-# Identyfikator wersji.
-@versionId = 
+# Identyfikator wersji komponentu.
+@componentVersionId = 
 
 ### /products
 GET {{url}}/products
@@ -43,12 +43,12 @@ Content-Type: application/json
 GET {{url}}/products/{{productId}}/components/{{componentId}}
 Content-Type: application/json
 
-### /products/{productId}/components/{componentId}/versions
-GET {{url}}/products/{{productId}}/components/{{componentId}}/versions
+### /products/{productId}/components/{componentId}/component-versions
+GET {{url}}/products/{{productId}}/components/{{componentId}}/component-versions
 Content-Type: application/json
 
-### /products/{productId}/components/{componentId}/versions
-POST {{url}}/products/{{productId}}/components/{{componentId}}/versions
+### /products/{productId}/components/{componentId}/component-versions
+POST {{url}}/products/{{productId}}/components/{{componentId}}/component-versions
 Content-Type: application/json
 
 {
@@ -59,6 +59,6 @@ Content-Type: application/json
     "Description": ""
 }
 
-### /products/{productId}/components/{componentId}/versions/{versionId}
-GET {{url}}/products/{{productId}}/components/{{componentId}}/versions/{{versionId}}
+### /products/{productId}/components/{componentId}/component-versions/{componentVersionId}
+GET {{url}}/products/{{productId}}/components/{{componentId}}/component-versions/{{componentVersionId}}
 Content-Type: application/json

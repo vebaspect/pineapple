@@ -22,6 +22,11 @@ namespace Pineapple.Core.Storage.Database
         public DbSet<ComponentType> ComponentTypes { get; set; }
 
         /// <summary>
+        /// Wersje komponentów.
+        /// </summary>
+        public DbSet<ComponentVersion> ComponentVersions { get; set; }
+
+        /// <summary>
         /// Koordynatorzy.
         /// </summary>
         public DbSet<Coordinator> Coordinators { get; set; }
@@ -57,11 +62,6 @@ namespace Pineapple.Core.Storage.Database
         public DbSet<SoftwareApplication> SoftwareApplications { get; set; }
 
         /// <summary>
-        /// Wersje.
-        /// </summary>
-        public DbSet<Version> Versions { get; set; }
-
-        /// <summary>
         /// Użytkownicy.
         /// </summary>
         public DbSet<User> Users { get; set; }
@@ -74,6 +74,7 @@ namespace Pineapple.Core.Storage.Database
                 .ApplyConfiguration(new AdministratorConfiguration())
                 .ApplyConfiguration(new ComponentConfiguration())
                 .ApplyConfiguration(new ComponentTypeConfiguration())
+                .ApplyConfiguration(new ComponentVersionConfiguration())
                 .ApplyConfiguration(new CoordinatorConfiguration())
                 .ApplyConfiguration(new DeveloperConfiguration())
                 .ApplyConfiguration(new EnvironmentConfiguration())
@@ -84,8 +85,7 @@ namespace Pineapple.Core.Storage.Database
                 .ApplyConfiguration(new ProductConfiguration())
                 .ApplyConfiguration(new ServerConfiguration())
                 .ApplyConfiguration(new SoftwareApplicationConfiguration())
-                .ApplyConfiguration(new UserConfiguration())
-                .ApplyConfiguration(new VersionConfiguration());
+                .ApplyConfiguration(new UserConfiguration());
 
             modelBuilder
                 .Entity<ComponentType>()

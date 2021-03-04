@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Pineapple.Core.Commands
 {
-    public class CreateVersionCommand : IRequest<Task<Guid>>, ICommand
+    public class CreateComponentVersionCommand : IRequest<Task<Guid>>, ICommand
     {
         /// <summary>
         /// Identyfikator komponentu.
@@ -36,7 +36,7 @@ namespace Pineapple.Core.Commands
         /// </summary>
         public string Description { get; }
 
-        public CreateVersionCommand(Guid componentId, int major, int minor, int patch, string preRelease, string description)
+        public CreateComponentVersionCommand(Guid componentId, int major, int minor, int patch, string preRelease, string description)
         {
             ComponentId = componentId;
             Major = major;
