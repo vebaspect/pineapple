@@ -36,6 +36,18 @@ namespace Pineapple.Core.Handler
 
             await databaseContext.Implementations.AddAsync(implementation).ConfigureAwait(false);
 
+            var implementationLogId = Guid.NewGuid();
+
+            var implementationLog = new Domain.Entities.ImplementationLog()
+            {
+                Id = implementationLogId,
+                ModifiedDate = DateTime.Now,
+                UserId = Guid.Parse("00000000-0000-0000-0000-000000000000"), // Mock!
+                ImplementationId = implementationId
+            };
+
+            await databaseContext.Logs.AddAsync(implementationLog).ConfigureAwait(false);
+
             databaseContext.SaveChanges();
 
             return implementationId;
