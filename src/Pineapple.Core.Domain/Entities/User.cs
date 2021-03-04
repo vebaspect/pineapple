@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Pineapple.Core.Domain.Entities
 {
     /// <summary>
@@ -29,5 +31,10 @@ namespace Pineapple.Core.Domain.Entities
         /// E-mail.
         /// </summary>
         public string Email { get; set; }
+
+        /// <summary>
+        /// Logi.
+        /// </summary>
+        public List<Log> Logs { get; set; }
     }
 }

@@ -42,6 +42,11 @@ namespace Pineapple.Core.Storage.Database
         public DbSet<Implementation> Implementations { get; set; }
 
         /// <summary>
+        /// Logi.
+        /// </summary>
+        public DbSet<Log> Logs { get; set; }
+
+        /// <summary>
         /// Systemy operacyjne.
         /// </summary>
         public DbSet<OperatingSystem> OperatingSystems { get; set; }
@@ -79,6 +84,7 @@ namespace Pineapple.Core.Storage.Database
                 .ApplyConfiguration(new DeveloperConfiguration())
                 .ApplyConfiguration(new EnvironmentConfiguration())
                 .ApplyConfiguration(new ImplementationConfiguration())
+                .ApplyConfiguration(new LogConfiguration())
                 .ApplyConfiguration(new ManagerConfiguration())
                 .ApplyConfiguration(new OperatingSystemConfiguration())
                 .ApplyConfiguration(new OperatorConfiguration())
