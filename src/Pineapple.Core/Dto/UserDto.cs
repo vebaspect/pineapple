@@ -20,7 +20,7 @@ namespace Pineapple.Core.Dto
         /// <summary>
         /// Typ.
         /// </summary>
-        public string Type { get; set; }
+        public string Type { get; }
 
         /// <summary>
         /// Imię i nazwisko.
@@ -30,7 +30,7 @@ namespace Pineapple.Core.Dto
         /// <summary>
         /// Login.
         /// </summary>
-        public string Login { get; set; }
+        public string Login { get; }
 
         /// <summary>
         /// Telefon.
