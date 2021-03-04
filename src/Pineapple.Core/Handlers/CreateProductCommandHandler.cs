@@ -36,6 +36,18 @@ namespace Pineapple.Core.Handler
 
             await databaseContext.Products.AddAsync(product).ConfigureAwait(false);
 
+            var productLogId = Guid.NewGuid();
+
+            var productLog = new Domain.Entities.ProductLog()
+            {
+                Id = productLogId,
+                ModifiedDate = DateTime.Now,
+                UserId = Guid.Parse("00000000-0000-0000-0000-000000000000"), // Mock!
+                ProductId = productId
+            };
+
+            await databaseContext.Logs.AddAsync(productLog).ConfigureAwait(false);
+
             databaseContext.SaveChanges();
 
             return productId;
