@@ -1,0 +1,6 @@
+# Adres URL do API.
+@url = 
+
+### /logs
+GET {{url}}/logs
+Content-Type: application/json
