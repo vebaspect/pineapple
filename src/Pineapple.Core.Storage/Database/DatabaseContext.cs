@@ -84,6 +84,7 @@ namespace Pineapple.Core.Storage.Database
                 .ApplyConfiguration(new DeveloperConfiguration())
                 .ApplyConfiguration(new EnvironmentConfiguration())
                 .ApplyConfiguration(new ImplementationConfiguration())
+                .ApplyConfiguration(new ImplementationLogConfiguration())
                 .ApplyConfiguration(new LogConfiguration())
                 .ApplyConfiguration(new ManagerConfiguration())
                 .ApplyConfiguration(new OperatingSystemConfiguration())

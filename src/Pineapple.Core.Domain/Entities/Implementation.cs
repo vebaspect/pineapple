@@ -26,5 +26,10 @@ namespace Pineapple.Core.Domain.Entities
         /// Koordynatorzy.
         /// </summary>
         public List<Coordinator> Coordinators { get; set; }
+
+        /// <summary>
+        /// Logi.
+        /// </summary>
+        public List<ImplementationLog> Logs { get; set; }
     }
 }
