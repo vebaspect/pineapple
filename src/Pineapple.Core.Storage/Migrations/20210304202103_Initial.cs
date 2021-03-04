@@ -184,12 +184,19 @@ namespace Pineapple.Core.Storage.Migrations
                     Type = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     UserId = table.Column<Guid>(type: "uuid", nullable: false),
                     Description = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: true),
+                    ImplementationId = table.Column<Guid>(type: "uuid", nullable: true),
                     ProductId = table.Column<Guid>(type: "uuid", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Logs", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Logs_Implementations_ImplementationId",
+                        column: x => x.ImplementationId,
+                        principalTable: "Implementations",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Logs_Products_ProductId",
                         column: x => x.ProductId,
@@ -352,6 +359,11 @@ namespace Pineapple.Core.Storage.Migrations
                 table: "Environments",
                 column: "Symbol",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Logs_ImplementationId",
+                table: "Logs",
+                column: "ImplementationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Logs_ProductId",

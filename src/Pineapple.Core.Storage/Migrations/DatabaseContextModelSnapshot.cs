@@ -447,6 +447,18 @@ namespace Pineapple.Core.Storage.Migrations
                     b.ToTable("ServerSoftwareApplication");
                 });
 
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.ImplementationLog", b =>
+                {
+                    b.HasBaseType("Pineapple.Core.Domain.Entities.Log");
+
+                    b.Property<Guid>("ImplementationId")
+                        .HasColumnType("uuid");
+
+                    b.HasIndex("ImplementationId");
+
+                    b.HasDiscriminator().HasValue("ImplementationLog");
+                });
+
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.ProductLog", b =>
                 {
                     b.HasBaseType("Pineapple.Core.Domain.Entities.Log");
@@ -607,6 +619,17 @@ namespace Pineapple.Core.Storage.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.ImplementationLog", b =>
+                {
+                    b.HasOne("Pineapple.Core.Domain.Entities.Implementation", "Implementation")
+                        .WithMany("Logs")
+                        .HasForeignKey("ImplementationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Implementation");
+                });
+
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.ProductLog", b =>
                 {
                     b.HasOne("Pineapple.Core.Domain.Entities.Product", "Product")
@@ -638,6 +661,8 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Navigation("Coordinators");
 
                     b.Navigation("Environments");
+
+                    b.Navigation("Logs");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.OperatingSystem", b =>
