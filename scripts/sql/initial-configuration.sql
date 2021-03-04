@@ -2,6 +2,12 @@
 
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
+-- Administratorzy:
+
+INSERT INTO
+    public."Users"("Id", "Type", "FullName", "Login", "Phone", "Email", "ModifiedDate")
+	VALUES ('00000000-0000-0000-0000-000000000000', 'Administrator', 'Administrator', 'admin', NULL, NULL, NOW());
+
 -- Typy komponentów:
 
 INSERT INTO
