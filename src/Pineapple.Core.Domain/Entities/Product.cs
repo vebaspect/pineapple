@@ -21,5 +21,10 @@ namespace Pineapple.Core.Domain.Entities
         /// Komponenty.
         /// </summary>
         public List<Component> Components { get; set; }
+
+        /// <summary>
+        /// Logi.
+        /// </summary>
+        public List<ProductLog> Logs { get; set; }
     }
 }
