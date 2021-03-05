@@ -23,6 +23,11 @@ namespace Pineapple.Core.Dto
         public string Type { get; }
 
         /// <summary>
+        /// Kategoria.
+        /// </summary>
+        public string Category { get; }
+
+        /// <summary>
         /// Identyfikator użytkownika.
         /// </summary>
         public Guid UserId { get; }
@@ -37,11 +42,12 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public string Description { get; }
 
-        public LogDto(Guid id, DateTime modifiedDate, string type, Guid userId, string userFullName, string description)
+        public LogDto(Guid id, DateTime modifiedDate, string type, string category, Guid userId, string userFullName, string description)
         {
             Id = id;
             ModifiedDate = modifiedDate;
             Type = type;
+            Category = category;
             UserId = userId;
             UserFullName = userFullName;
             Description = description;

@@ -48,6 +48,7 @@ namespace Pineapple.Core.Handler
                 log.Id,
                 log.ModifiedDate,
                 log.Type,
+                log.Category,
                 log.UserId,
                 log.User.FullName,
                 log.Description
