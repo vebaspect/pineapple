@@ -25,7 +25,7 @@ interface Props {
 
 const Configuration = ({ isComponentTypesCountFetched, componentTypesCount, isOperatingSystemsCountFetched, operatingSystemsCount, isSoftwareApplicationsCountFetched, softwareApplicationsCount }: Props) => {
   // Flaga określająca, czy konfiguracja jest rozwinięta.
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const onHeaderClick = () => {
     setIsExpanded(!isExpanded);
@@ -33,19 +33,17 @@ const Configuration = ({ isComponentTypesCountFetched, componentTypesCount, isOp
 
   if (!isComponentTypesCountFetched && !isOperatingSystemsCountFetched && !isSoftwareApplicationsCountFetched) {
     return (
-      <List component="nav">
-        <ListItem>
-          <ListItemText>
-            Konfiguracja
-          </ListItemText>
-          <CircularProgress size={20} />
-        </ListItem>
-      </List>
+      <ListItem>
+        <ListItemText>
+          Konfiguracja
+        </ListItemText>
+        <CircularProgress size={20} />
+      </ListItem>
     );
   }
 
   return (
-    <List component="nav">
+    <>
       <ListItem button onClick={onHeaderClick}>
         <ListItemText>
           Konfiguracja
@@ -71,7 +69,7 @@ const Configuration = ({ isComponentTypesCountFetched, componentTypesCount, isOp
           </ListItem>
         </List>
       </Collapse>
-    </List>
+    </>
   )
 }
 

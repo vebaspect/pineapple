@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+import List from '@material-ui/core/List';
+
 import Configuration from './configuration';
 import Home from './home';
 import Implementations from './implementations';
@@ -141,7 +143,7 @@ const Sidebar = () => {
   }
 
   return (
-    <>
+    <List component="nav">
       <Home />
       <Implementations
         isDataFetched={isImplementationsFetched}
@@ -169,7 +171,7 @@ const Sidebar = () => {
         isAdministratorsCountFetched={isAdministratorsCountFetched}
         administratorsCount={administratorsCount}
       />
-    </>
+    </List>
   )
 }
 

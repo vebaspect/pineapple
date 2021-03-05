@@ -25,7 +25,7 @@ interface Props {
 
 const Products = ({ isDataFetched, data }: Props) => {
   // Flaga określająca, czy lista produktów jest rozwinięta.
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const onHeaderClick = () => {
     setIsExpanded(!isExpanded);
@@ -33,19 +33,17 @@ const Products = ({ isDataFetched, data }: Props) => {
 
   if (!isDataFetched) {
     return (
-      <List component="nav">
-        <ListItem>
-          <ListItemText>
-            Produkty
-          </ListItemText>
-          <CircularProgress size={20} />
-        </ListItem>
-      </List>
+      <ListItem>
+        <ListItemText>
+          Produkty
+        </ListItemText>
+        <CircularProgress size={20} />
+      </ListItem>
     );
   }
 
   return (
-    <List component="nav">
+    <>
       <ListItem button onClick={onHeaderClick}>
         <ListItemText>
           Produkty ({data.length})
@@ -71,7 +69,7 @@ const Products = ({ isDataFetched, data }: Props) => {
           }
         </List>
       </Collapse>
-    </List>
+    </>
   )
 }
 

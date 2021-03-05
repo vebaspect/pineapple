@@ -29,7 +29,7 @@ interface Props {
 
 const Users = ({ isDevelopersCountFetched, developersCount, isOperatorsCountFetched, operatorsCount, isManagersCountFetched, managersCount, isAdministratorsCountFetched, administratorsCount }: Props) => {
   // Flaga określająca, czy konfiguracja jest rozwinięta.
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const onHeaderClick = () => {
     setIsExpanded(!isExpanded);
@@ -37,19 +37,17 @@ const Users = ({ isDevelopersCountFetched, developersCount, isOperatorsCountFetc
 
   if (!isDevelopersCountFetched && !isOperatorsCountFetched && !isManagersCountFetched && !isAdministratorsCountFetched) {
     return (
-      <List component="nav">
-        <ListItem>
-          <ListItemText>
-            Użytkownicy
-          </ListItemText>
-          <CircularProgress size={20} />
-        </ListItem>
-      </List>
+      <ListItem>
+        <ListItemText>
+          Użytkownicy
+        </ListItemText>
+        <CircularProgress size={20} />
+      </ListItem>
     );
   }
 
   return (
-    <List component="nav">
+    <>
       <ListItem button onClick={onHeaderClick}>
         <ListItemText>
           Użytkownicy
@@ -80,7 +78,7 @@ const Users = ({ isDevelopersCountFetched, developersCount, isOperatorsCountFetc
           </ListItem>
         </List>
       </Collapse>
-    </List>
+    </>
   )
 }
 
