@@ -13,6 +13,11 @@ namespace Pineapple.Core.Domain.Entities
         public string Type { get; set; }
 
         /// <summary>
+        /// Kategoria.
+        /// </summary>
+        public string Category { get; set; }
+
+        /// <summary>
         /// Identyfikator użytkownika.
         /// </summary>
         public Guid UserId { get; set; }

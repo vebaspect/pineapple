@@ -20,6 +20,9 @@ namespace Pineapple.Core.Storage.Database.Configurations
                 .IsRequired()
                 .HasMaxLength(20);
             builder
+                .Property(log => log.Category)
+                .HasMaxLength(50);
+            builder
                 .HasOne(log => log.User)
                 .WithMany(user => user.Logs)
                 .HasForeignKey(log => log.UserId)

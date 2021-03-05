@@ -182,6 +182,7 @@ namespace Pineapple.Core.Storage.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Type = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    Category = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     UserId = table.Column<Guid>(type: "uuid", nullable: false),
                     Description = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: true),
                     ImplementationId = table.Column<Guid>(type: "uuid", nullable: true),

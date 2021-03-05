@@ -10,7 +10,7 @@ using Pineapple.Core.Storage.Database;
 namespace Pineapple.Core.Storage.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210304202103_Initial")]
+    [Migration("20210305195613_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -237,6 +237,10 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
+
+                    b.Property<string>("Category")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<string>("Description")
                         .HasMaxLength(4000)

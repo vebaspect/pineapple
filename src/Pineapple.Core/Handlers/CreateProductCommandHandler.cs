@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Storage.Database;
 using MediatR;
+using Pineapple.Core.Domain;
 
 namespace Pineapple.Core.Handler
 {
@@ -42,6 +43,7 @@ namespace Pineapple.Core.Handler
             {
                 Id = productLogId,
                 ModifiedDate = DateTime.Now,
+                Category = AvailableLogCategories.AddEntity,
                 UserId = Guid.Parse("00000000-0000-0000-0000-000000000000"), // Mock!
                 ProductId = productId
             };
