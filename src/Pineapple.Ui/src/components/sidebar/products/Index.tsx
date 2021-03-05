@@ -56,7 +56,10 @@ const Products = ({ isDataFetched, data }: Props) => {
         </ListItemText>
         {isExpanded ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
-      <Collapse in={isExpanded}>
+      <Collapse
+        in={isExpanded}
+        style={{ paddingLeft: '16px' }}
+      >
         <List component="div">
           {
             data.length > 0
@@ -65,7 +68,12 @@ const Products = ({ isDataFetched, data }: Props) => {
                 <Tooltip key={product.id} title={product.description} placement="right">
                   <ListItem button>
                     <ListItemText>
-                      {product.name}
+                      <Link
+                        to={`/products/${product.id}`}
+                        style={{ fontSize: '0.9rem', textDecoration: 'none'}}
+                      >
+                        {product.name}
+                      </Link>
                     </ListItemText>
                   </ListItem>
                 </Tooltip>

@@ -56,13 +56,16 @@ const Configuration = ({ isComponentTypesCountFetched, componentTypesCount, isOp
         </ListItemText>
         {isExpanded ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
-      <Collapse in={isExpanded}>
+      <Collapse
+        in={isExpanded}
+        style={{ paddingLeft: '16px' }}
+      >
         <List component="div">
           <ListItem button>
             <ListItemText>
               <Link
                 to="/component-types"
-                style={{ textDecoration: 'none'}}
+                style={{ fontSize: '0.9rem', textDecoration: 'none'}}
               >
                 Typy komponentów ({componentTypesCount})
               </Link>
@@ -72,7 +75,7 @@ const Configuration = ({ isComponentTypesCountFetched, componentTypesCount, isOp
             <ListItemText>
               <Link
                 to="/operating-systems"
-                style={{ textDecoration: 'none'}}
+                style={{ fontSize: '0.9rem', textDecoration: 'none'}}
               >
                 Systemy operacyjne ({operatingSystemsCount})
               </Link>
@@ -82,7 +85,7 @@ const Configuration = ({ isComponentTypesCountFetched, componentTypesCount, isOp
             <ListItemText>
               <Link
                 to="/software-applications"
-                style={{ textDecoration: 'none'}}
+                style={{ fontSize: '0.9rem', textDecoration: 'none'}}
               >
                 Oprogramowanie ({softwareApplicationsCount})
               </Link>

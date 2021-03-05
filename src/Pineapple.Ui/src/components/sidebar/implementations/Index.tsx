@@ -56,7 +56,10 @@ const Implementations = ({ isDataFetched, data }: Props) => {
         </ListItemText>
         {isExpanded ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
-      <Collapse in={isExpanded}>
+      <Collapse
+        in={isExpanded}
+        style={{ paddingLeft: '16px' }}
+      >
         <List component="div">
           {
             data.length > 0
@@ -65,7 +68,12 @@ const Implementations = ({ isDataFetched, data }: Props) => {
                 <Tooltip key={implementation.id} title={implementation.description} placement="right">
                   <ListItem button>
                     <ListItemText>
-                      {implementation.name}
+                      <Link
+                        to={`/implementations/${implementation.id}`}
+                        style={{ fontSize: '0.9rem', textDecoration: 'none'}}
+                      >
+                        {implementation.name}
+                      </Link>
                     </ListItemText>
                   </ListItem>
                 </Tooltip>

@@ -60,13 +60,16 @@ const Users = ({ isDevelopersCountFetched, developersCount, isOperatorsCountFetc
         </ListItemText>
         {isExpanded ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
-      <Collapse in={isExpanded}>
+      <Collapse
+        in={isExpanded}
+        style={{ paddingLeft: '16px' }}
+      >
         <List component="div">
           <ListItem button>
             <ListItemText>
               <Link
                 to="/developers"
-                style={{ textDecoration: 'none'}}
+                style={{ fontSize: '0.9rem', textDecoration: 'none'}}
               >
                 Programiści ({developersCount})
               </Link>
@@ -76,7 +79,7 @@ const Users = ({ isDevelopersCountFetched, developersCount, isOperatorsCountFetc
             <ListItemText>
               <Link
                 to="/operators"
-                style={{ textDecoration: 'none'}}
+                style={{ fontSize: '0.9rem', textDecoration: 'none'}}
               >
                 Wdrożeniowcy ({operatorsCount})
               </Link>
@@ -86,7 +89,7 @@ const Users = ({ isDevelopersCountFetched, developersCount, isOperatorsCountFetc
             <ListItemText>
               <Link
                 to="/managers"
-                style={{ textDecoration: 'none'}}
+                style={{ fontSize: '0.9rem', textDecoration: 'none'}}
               >
                 Menedżerowie ({managersCount})
               </Link>
@@ -96,7 +99,7 @@ const Users = ({ isDevelopersCountFetched, developersCount, isOperatorsCountFetc
             <ListItemText>
               <Link
                 to="/administrators"
-                style={{ textDecoration: 'none'}}
+                style={{ fontSize: '0.9rem', textDecoration: 'none'}}
               >
                 Administratorzy ({administratorsCount})
               </Link>

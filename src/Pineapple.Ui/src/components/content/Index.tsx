@@ -9,10 +9,12 @@ import ComponentTypes from './componentTypes';
 import Configuration from './configuration';
 import Developers from './developers';
 import Home from './home';
+import Implementation from './implementation';
 import Implementations from './implementations';
 import Managers from './managers';
 import OperatingSystems from './operatingSystems';
 import Operators from './operators';
+import Product from './product';
 import Products from './products';
 import SoftwareApplications from './softwareApplications';
 import Users from './users'
@@ -32,6 +34,9 @@ const Title = () => {
       <Route path="/developers">
         <Developers />
       </Route>
+      <Route path="/implementations/:implementationId">
+        <Implementation />
+      </Route>
       <Route path="/implementations">
         <Implementations />
       </Route>
@@ -43,6 +48,9 @@ const Title = () => {
       </Route>
       <Route path="/operators">
         <Operators />
+      </Route>
+      <Route path="/products/:productId">
+        <Product />
       </Route>
       <Route path="/products">
         <Products />
