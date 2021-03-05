@@ -4,16 +4,16 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
-const Header = () => {
+const Home = () => {
   return (
     <List component="nav">
-      <ListItem>
+      <ListItem button>
         <ListItemText>
-          🍍 Pineapple.UI
+          Strona główna
         </ListItemText>
       </ListItem>
     </List>
-  );
+  )
 }
 
-export default Header;
+export default Home;

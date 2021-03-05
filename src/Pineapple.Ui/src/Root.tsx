@@ -16,12 +16,8 @@ const Root = () => {
       <CssBaseline />
       <Container>
         <Grid container>
-          <Grid item xs={12}>
-            <Header />
-          </Grid>
-        </Grid>
-        <Grid container>
           <Grid item xs={3}>
+            <Header />
             <Sidebar />
           </Grid>
           <Grid item xs={9} />

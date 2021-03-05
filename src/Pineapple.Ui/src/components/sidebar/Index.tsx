@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import Configuration from './configuration';
+import Home from './home';
 import Implementations from './implementations';
 import Products from './products';
 import Users from './users';
@@ -141,6 +142,7 @@ const Sidebar = () => {
 
   return (
     <>
+      <Home />
       <Implementations
         isDataFetched={isImplementationsFetched}
         data={implementations}
