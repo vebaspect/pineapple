@@ -1,15 +1,47 @@
 import {
   LOG_TYPE__IMPLEMENTATION,
   LOG_TYPE__PRODUCT,
+  LOG_CATEGORY__ADD_ENTITY,
 } from './constants';
 
-export const logFormatter = (log: { id?: string; type: any; description?: string; }) => {
+interface Log {
+  // Identyfikator.
+  id: string,
+  // Typ.
+  type: string,
+  // Kategoria.
+  category: string,
+  // Imię i nazwisko użytkownika.
+  userFullName: string,
+  // Opis.
+  description: string,
+};
+
+export const format = (log: Log) => {
   switch (log.type) {
     case LOG_TYPE__IMPLEMENTATION:
-      return 'Wdrożenie';
+      return formatImplementationLog(log);
     case LOG_TYPE__PRODUCT:
-      return 'Produkt';
+      return formatProductLog(log);
     default:
-      break;
+      return '';
+  }
+};
+
+const formatImplementationLog = (log: Log) => {
+  switch (log.category) {
+    case LOG_CATEGORY__ADD_ENTITY:
+      return `Użytkownik ${log.userFullName} dodał(a) wdrożenie [X]`;
+    default:
+      return '';
+  }
+};
+
+const formatProductLog = (log: Log) => {
+  switch (log.category) {
+    case LOG_CATEGORY__ADD_ENTITY:
+      return `Użytkownik ${log.userFullName} dodał(a) produkt [X]`;
+    default:
+      return '';
   }
 };
