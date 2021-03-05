@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Collapse from '@material-ui/core/Collapse';
@@ -46,7 +47,12 @@ const Configuration = ({ isComponentTypesCountFetched, componentTypesCount, isOp
     <>
       <ListItem button onClick={onHeaderClick}>
         <ListItemText>
-          Konfiguracja
+          <Link
+            to="/configuration"
+            style={{ textDecoration: 'none'}}
+          >
+            Konfiguracja
+          </Link>
         </ListItemText>
         {isExpanded ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
@@ -54,17 +60,32 @@ const Configuration = ({ isComponentTypesCountFetched, componentTypesCount, isOp
         <List component="div">
           <ListItem button>
             <ListItemText>
-              Typy komponentów ({componentTypesCount})
+              <Link
+                to="/component-types"
+                style={{ textDecoration: 'none'}}
+              >
+                Typy komponentów ({componentTypesCount})
+              </Link>
             </ListItemText>
           </ListItem>
           <ListItem button>
             <ListItemText>
-              Systemy operacyjne ({operatingSystemsCount})
+              <Link
+                to="/operating-systems"
+                style={{ textDecoration: 'none'}}
+              >
+                Systemy operacyjne ({operatingSystemsCount})
+              </Link>
             </ListItemText>
           </ListItem>
           <ListItem button>
             <ListItemText>
-              Oprogramowanie ({softwareApplicationsCount})
+              <Link
+                to="/software-applications"
+                style={{ textDecoration: 'none'}}
+              >
+                Oprogramowanie ({softwareApplicationsCount})
+              </Link>
             </ListItemText>
           </ListItem>
         </List>

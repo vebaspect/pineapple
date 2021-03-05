@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Collapse from '@material-ui/core/Collapse';
@@ -50,7 +51,12 @@ const Users = ({ isDevelopersCountFetched, developersCount, isOperatorsCountFetc
     <>
       <ListItem button onClick={onHeaderClick}>
         <ListItemText>
-          Użytkownicy
+          <Link
+            to="/users"
+            style={{ textDecoration: 'none'}}
+          >
+            Użytkownicy
+          </Link>
         </ListItemText>
         {isExpanded ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
@@ -58,22 +64,42 @@ const Users = ({ isDevelopersCountFetched, developersCount, isOperatorsCountFetc
         <List component="div">
           <ListItem button>
             <ListItemText>
-              Programiści ({developersCount})
+              <Link
+                to="/developers"
+                style={{ textDecoration: 'none'}}
+              >
+                Programiści ({developersCount})
+              </Link>
             </ListItemText>
           </ListItem>
           <ListItem button>
             <ListItemText>
-              Wdrożeniowcy ({operatorsCount})
+              <Link
+                to="/operators"
+                style={{ textDecoration: 'none'}}
+              >
+                Wdrożeniowcy ({operatorsCount})
+              </Link>
             </ListItemText>
           </ListItem>
           <ListItem button>
             <ListItemText>
-              Menedżerowie ({managersCount})
+              <Link
+                to="/managers"
+                style={{ textDecoration: 'none'}}
+              >
+                Menedżerowie ({managersCount})
+              </Link>
             </ListItemText>
           </ListItem>
           <ListItem button>
             <ListItemText>
-              Administratorzy ({administratorsCount})
+              <Link
+                to="/administrators"
+                style={{ textDecoration: 'none'}}
+              >
+                Administratorzy ({administratorsCount})
+              </Link>
             </ListItemText>
           </ListItem>
         </List>

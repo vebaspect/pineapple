@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Collapse from '@material-ui/core/Collapse';
@@ -46,7 +47,12 @@ const Products = ({ isDataFetched, data }: Props) => {
     <>
       <ListItem button onClick={onHeaderClick}>
         <ListItemText>
-          Produkty ({data.length})
+          <Link
+            to="/products"
+            style={{ textDecoration: 'none'}}
+          >
+            Produkty ({data.length})
+          </Link>
         </ListItemText>
         {isExpanded ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
