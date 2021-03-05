@@ -72,23 +72,23 @@ const Implementations = ({ isDataFetched, data }: Props) => {
         <List component="div">
           {
             data.length > 0
-            ? data.map(implementation => {
-              return (
-                <Tooltip key={implementation.id} title={implementation.description} placement="right">
-                  <ListItem button>
-                    <ListItemText>
-                      <Link
-                        to={`/implementations/${implementation.id}`}
-                        style={{ fontSize: '0.9rem', textDecoration: 'none'}}
-                      >
-                        {implementation.name}
-                      </Link>
-                    </ListItemText>
-                  </ListItem>
-                </Tooltip>
-              )
-            })
-            : null
+              ? data.map(implementation => {
+                return (
+                  <Tooltip key={implementation.id} title={implementation.description} placement="right">
+                    <ListItem button>
+                      <ListItemText>
+                        <Link
+                          to={`/implementations/${implementation.id}`}
+                          style={{ fontSize: '0.9rem', textDecoration: 'none'}}
+                        >
+                          {implementation.name}
+                        </Link>
+                      </ListItemText>
+                    </ListItem>
+                  </Tooltip>
+                )
+              })
+              : null
           }
         </List>
       </Collapse>

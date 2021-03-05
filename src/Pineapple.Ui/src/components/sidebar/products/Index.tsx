@@ -72,23 +72,23 @@ const Products = ({ isDataFetched, data }: Props) => {
         <List component="div">
           {
             data.length > 0
-            ? data.map(product => {
-              return (
-                <Tooltip key={product.id} title={product.description} placement="right">
-                  <ListItem button>
-                    <ListItemText>
-                      <Link
-                        to={`/products/${product.id}`}
-                        style={{ fontSize: '0.9rem', textDecoration: 'none'}}
-                      >
-                        {product.name}
-                      </Link>
-                    </ListItemText>
-                  </ListItem>
-                </Tooltip>
-              )
-            })
-            : null
+              ? data.map(product => {
+                return (
+                  <Tooltip key={product.id} title={product.description} placement="right">
+                    <ListItem button>
+                      <ListItemText>
+                        <Link
+                          to={`/products/${product.id}`}
+                          style={{ fontSize: '0.9rem', textDecoration: 'none'}}
+                        >
+                          {product.name}
+                        </Link>
+                      </ListItemText>
+                    </ListItem>
+                  </Tooltip>
+                )
+              })
+              : null
           }
         </List>
       </Collapse>
