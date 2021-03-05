@@ -7,8 +7,11 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Tooltip from '@material-ui/core/Tooltip';
+
+import AppsIcon from '@material-ui/icons/Apps';
 
 interface Props {
   // Flaga określająca, czy lista produktów została pobrana z API.
@@ -35,6 +38,9 @@ const Products = ({ isDataFetched, data }: Props) => {
   if (!isDataFetched) {
     return (
       <ListItem>
+        <ListItemIcon>
+          <AppsIcon />
+        </ListItemIcon>
         <ListItemText>
           Produkty
         </ListItemText>
@@ -46,6 +52,9 @@ const Products = ({ isDataFetched, data }: Props) => {
   return (
     <>
       <ListItem button onClick={onHeaderClick}>
+        <ListItemIcon>
+          <AppsIcon />
+        </ListItemIcon>
         <ListItemText>
           <Link
             to="/products"

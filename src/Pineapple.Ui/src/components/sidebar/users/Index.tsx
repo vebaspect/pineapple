@@ -7,7 +7,10 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 
 interface Props {
   // Flaga określająca, czy liczba programistów została pobrana z API.
@@ -39,6 +42,9 @@ const Users = ({ isDevelopersCountFetched, developersCount, isOperatorsCountFetc
   if (!isDevelopersCountFetched && !isOperatorsCountFetched && !isManagersCountFetched && !isAdministratorsCountFetched) {
     return (
       <ListItem>
+        <ListItemIcon>
+          <SupervisorAccountIcon />
+        </ListItemIcon>
         <ListItemText>
           Użytkownicy
         </ListItemText>
@@ -50,6 +56,9 @@ const Users = ({ isDevelopersCountFetched, developersCount, isOperatorsCountFetc
   return (
     <>
       <ListItem button onClick={onHeaderClick}>
+        <ListItemIcon>
+          <SupervisorAccountIcon />
+        </ListItemIcon>
         <ListItemText>
           <Link
             to="/users"

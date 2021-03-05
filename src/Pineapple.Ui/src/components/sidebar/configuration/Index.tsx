@@ -7,7 +7,10 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+
+import SettingsIcon from '@material-ui/icons/Settings';
 
 interface Props {
   // Flaga określająca, czy liczba typów komponentów została pobrana z API.
@@ -35,6 +38,9 @@ const Configuration = ({ isComponentTypesCountFetched, componentTypesCount, isOp
   if (!isComponentTypesCountFetched && !isOperatingSystemsCountFetched && !isSoftwareApplicationsCountFetched) {
     return (
       <ListItem>
+        <ListItemIcon>
+          <SettingsIcon />
+        </ListItemIcon>
         <ListItemText>
           Konfiguracja
         </ListItemText>
@@ -46,6 +52,9 @@ const Configuration = ({ isComponentTypesCountFetched, componentTypesCount, isOp
   return (
     <>
       <ListItem button onClick={onHeaderClick}>
+        <ListItemIcon>
+          <SettingsIcon />
+        </ListItemIcon>
         <ListItemText>
           <Link
             to="/configuration"

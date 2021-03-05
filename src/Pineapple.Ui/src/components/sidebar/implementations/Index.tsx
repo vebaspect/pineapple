@@ -7,8 +7,11 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Tooltip from '@material-ui/core/Tooltip';
+
+import PowerIcon from '@material-ui/icons/Power';
 
 interface Props {
   // Flaga określająca, czy lista wdrożeń została pobrana z API.
@@ -35,6 +38,9 @@ const Implementations = ({ isDataFetched, data }: Props) => {
   if (!isDataFetched) {
     return (
       <ListItem>
+        <ListItemIcon>
+          <PowerIcon />
+        </ListItemIcon>
         <ListItemText>
           Wdrożenia
         </ListItemText>
@@ -46,6 +52,9 @@ const Implementations = ({ isDataFetched, data }: Props) => {
   return (
     <>
       <ListItem button onClick={onHeaderClick}>
+        <ListItemIcon>
+          <PowerIcon />
+        </ListItemIcon>
         <ListItemText>
           <Link
             to="/implementations"
