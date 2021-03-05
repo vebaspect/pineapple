@@ -372,3 +372,6 @@ storagesettings.json
 
 # Plik "appsettings.js"
 appsettings.js
+
+# Wykluczenie folderu "src/Pineapple.Ui/src/components/log"
+!src/Pineapple.Ui/src/components/log
