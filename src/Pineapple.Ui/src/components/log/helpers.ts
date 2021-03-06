@@ -31,7 +31,7 @@ export const format = (log: Log) => {
 const formatImplementationLog = (log: Log) => {
   switch (log.category) {
     case LOG_CATEGORY__ADD_ENTITY:
-      return `Użytkownik ${log.userFullName} dodał(a) wdrożenie [X]`;
+      return `Użytkownik ${log.userFullName} dodał nowe wdrożenie`;
     default:
       return '';
   }
@@ -40,7 +40,7 @@ const formatImplementationLog = (log: Log) => {
 const formatProductLog = (log: Log) => {
   switch (log.category) {
     case LOG_CATEGORY__ADD_ENTITY:
-      return `Użytkownik ${log.userFullName} dodał(a) produkt [X]`;
+      return `Użytkownik ${log.userFullName} dodał nowy produkt`;
     default:
       return '';
   }
