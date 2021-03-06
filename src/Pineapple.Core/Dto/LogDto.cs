@@ -38,11 +38,21 @@ namespace Pineapple.Core.Dto
         public string UserFullName { get; }
 
         /// <summary>
+        /// Identyfikator encji.
+        /// </summary>
+        public Guid EntityId { get; }
+
+        /// <summary>
+        /// Nazwa encji.
+        /// </summary>
+        public string EntityName { get; }
+
+        /// <summary>
         /// Opis.
         /// </summary>
         public string Description { get; }
 
-        public LogDto(Guid id, DateTime modifiedDate, string type, string category, Guid userId, string userFullName, string description)
+        public LogDto(Guid id, DateTime modifiedDate, string type, string category, Guid userId, string userFullName, Guid entityId, string entityName, string description)
         {
             Id = id;
             ModifiedDate = modifiedDate;
@@ -50,6 +60,8 @@ namespace Pineapple.Core.Dto
             Category = category;
             UserId = userId;
             UserFullName = userFullName;
+            EntityId = entityId;
+            EntityName = entityName;
             Description = description;
         }
     }

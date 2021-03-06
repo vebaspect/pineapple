@@ -6,6 +6,7 @@ using Pineapple.Core.Dto;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace Pineapple.Core.Handler
 {
@@ -27,31 +28,65 @@ namespace Pineapple.Core.Handler
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
 
-            var logs = await databaseContext
+            var implementationLogs = await databaseContext
                 .Logs
+                .OfType<Domain.Entities.ImplementationLog>()
                 .Include(log => log.User)
+                .Include(log => log.Implementation)
                 .OrderByDescending(log => log.ModifiedDate)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
 
-            if (logs?.Length > 0)
+            var productLogs = await databaseContext
+                .Logs
+                .OfType<Domain.Entities.ProductLog>()
+                .Include(log => log.User)
+                .Include(log => log.Product)
+                .OrderByDescending(log => log.ModifiedDate)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
+
+            var logs = new List<LogDto>();
+
+            if (implementationLogs?.Length > 0)
             {
-                return logs.Select(log => Map(log)).ToArray();
+                logs.AddRange(implementationLogs.Select(implementationLog => Map(implementationLog)));
+            }
+            if (productLogs?.Length > 0)
+            {
+                logs.AddRange(productLogs.Select(productLog => Map(productLog)));
             }
 
-            return Enumerable.Empty<LogDto>().ToArray();
+            return logs.ToArray();
         }
 
-        private static LogDto Map(Domain.Entities.Log log)
+        private static LogDto Map(Domain.Entities.ImplementationLog implementationLog)
         {
             return new LogDto(
-                log.Id,
-                log.ModifiedDate,
-                log.Type,
-                log.Category,
-                log.UserId,
-                log.User.FullName,
-                log.Description
+                implementationLog.Id,
+                implementationLog.ModifiedDate,
+                implementationLog.Type,
+                implementationLog.Category,
+                implementationLog.UserId,
+                implementationLog.User.FullName,
+                implementationLog.ImplementationId,
+                implementationLog.Implementation.Name,
+                implementationLog.Description
+            );
+        }
+
+        private static LogDto Map(Domain.Entities.ProductLog productLog)
+        {
+            return new LogDto(
+                productLog.Id,
+                productLog.ModifiedDate,
+                productLog.Type,
+                productLog.Category,
+                productLog.UserId,
+                productLog.User.FullName,
+                productLog.ProductId,
+                productLog.Product.Name,
+                productLog.Description
             );
         }
     }
