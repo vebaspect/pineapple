@@ -13,6 +13,8 @@ import {
 interface Props {
   // Typ.
   type: string,
+  // Kategoria.
+  category: string,
 };
 
 const Icon = ({ type }: Props) => {

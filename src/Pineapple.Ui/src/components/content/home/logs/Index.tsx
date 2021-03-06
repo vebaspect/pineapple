@@ -9,7 +9,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
 import Icon from '../../../log/Icon';
-import { format } from '../../../log/helpers';
+import Text from '../../../log/Text';
 
 interface Props {
   // Flaga określająca, czy lista logów została pobrana z API.
@@ -26,6 +26,8 @@ interface Props {
     category: string,
     // Imię i nazwisko użytkownika.
     userFullName: string,
+    // Nazwa encji.
+    entityName: string,
     // Opis.
     description: string,
   }[];
@@ -51,12 +53,23 @@ const Logs = ({ isDataFetched, data }: Props) => {
             return (
               <ListItem key={log.id}>
                 <ListItemIcon>
-                  <Icon type={log.type} />
+                  <Icon
+                    type={log.type}
+                    category={log.category}
+                  />
                 </ListItemIcon>
                 <ListItemText>
-                  {format(log)}
+                  <Box>
+                    <Text
+                      type={log.type}
+                      category={log.category}
+                      userFullName={log.userFullName}
+                      entityName={log.entityName}
+                    />
+                  </Box>
                   <Box
-                    fontSize="0.9rem"
+                    color="text.disabled"
+                    fontSize="0.8rem"
                   >
                     {moment(log.modifiedDate).format('LLL')}
                   </Box>
