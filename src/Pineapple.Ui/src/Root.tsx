@@ -1,3 +1,5 @@
+import moment from 'moment';
+import 'moment/locale/pl';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -11,6 +13,8 @@ import Sidebar from './components/sidebar';
 import Title from './components/title';
 
 const Root = () => {
+  moment.locale('pl');
+
   const theme = createMuiTheme();
 
   return (
