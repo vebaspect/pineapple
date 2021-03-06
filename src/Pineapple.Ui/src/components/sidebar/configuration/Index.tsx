@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from 'react-router-dom';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import Link from '@material-ui/core/Link';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -57,8 +58,8 @@ const Configuration = ({ isComponentTypesCountFetched, componentTypesCount, isOp
         </ListItemIcon>
         <ListItemText>
           <Link
+            component={RouterLink}
             to="/configuration"
-            style={{ textDecoration: 'none'}}
           >
             Konfiguracja
           </Link>
@@ -73,8 +74,9 @@ const Configuration = ({ isComponentTypesCountFetched, componentTypesCount, isOp
           <ListItem button>
             <ListItemText>
               <Link
+                component={RouterLink}
                 to="/component-types"
-                style={{ fontSize: '0.9rem', textDecoration: 'none'}}
+                style={{ fontSize: '0.9rem' }}
               >
                 Typy komponentów ({componentTypesCount})
               </Link>
@@ -83,8 +85,9 @@ const Configuration = ({ isComponentTypesCountFetched, componentTypesCount, isOp
           <ListItem button>
             <ListItemText>
               <Link
+                component={RouterLink}
                 to="/operating-systems"
-                style={{ fontSize: '0.9rem', textDecoration: 'none'}}
+                style={{ fontSize: '0.9rem' }}
               >
                 Systemy operacyjne ({operatingSystemsCount})
               </Link>
@@ -93,8 +96,9 @@ const Configuration = ({ isComponentTypesCountFetched, componentTypesCount, isOp
           <ListItem button>
             <ListItemText>
               <Link
+                component={RouterLink}
                 to="/software-applications"
-                style={{ fontSize: '0.9rem', textDecoration: 'none'}}
+                style={{ fontSize: '0.9rem' }}
               >
                 Oprogramowanie ({softwareApplicationsCount})
               </Link>

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from 'react-router-dom';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import Link from '@material-ui/core/Link';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -61,8 +62,8 @@ const Users = ({ isDevelopersCountFetched, developersCount, isOperatorsCountFetc
         </ListItemIcon>
         <ListItemText>
           <Link
+            component={RouterLink}
             to="/users"
-            style={{ textDecoration: 'none'}}
           >
             Użytkownicy
           </Link>
@@ -77,8 +78,9 @@ const Users = ({ isDevelopersCountFetched, developersCount, isOperatorsCountFetc
           <ListItem button>
             <ListItemText>
               <Link
+                component={RouterLink}
                 to="/developers"
-                style={{ fontSize: '0.9rem', textDecoration: 'none'}}
+                style={{ fontSize: '0.9rem' }}
               >
                 Programiści ({developersCount})
               </Link>
@@ -87,8 +89,9 @@ const Users = ({ isDevelopersCountFetched, developersCount, isOperatorsCountFetc
           <ListItem button>
             <ListItemText>
               <Link
+                component={RouterLink}
                 to="/operators"
-                style={{ fontSize: '0.9rem', textDecoration: 'none'}}
+                style={{ fontSize: '0.9rem' }}
               >
                 Wdrożeniowcy ({operatorsCount})
               </Link>
@@ -97,8 +100,9 @@ const Users = ({ isDevelopersCountFetched, developersCount, isOperatorsCountFetc
           <ListItem button>
             <ListItemText>
               <Link
+                component={RouterLink}
                 to="/managers"
-                style={{ fontSize: '0.9rem', textDecoration: 'none'}}
+                style={{ fontSize: '0.9rem' }}
               >
                 Menedżerowie ({managersCount})
               </Link>
@@ -107,8 +111,9 @@ const Users = ({ isDevelopersCountFetched, developersCount, isOperatorsCountFetc
           <ListItem button>
             <ListItemText>
               <Link
+                component={RouterLink}
                 to="/administrators"
-                style={{ fontSize: '0.9rem', textDecoration: 'none'}}
+                style={{ fontSize: '0.9rem' }}
               >
                 Administratorzy ({administratorsCount})
               </Link>
