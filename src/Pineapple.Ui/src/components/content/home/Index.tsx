@@ -32,10 +32,15 @@ const Home = () => {
       >
         Strona główna
       </Box>
-      <Logs
-        isDataFetched={isLogsFetched}
-        data={logs}
-      />
+      <Box>
+        <Box>
+          Ostatnie aktywności:
+        </Box>
+        <Logs
+          isDataFetched={isLogsFetched}
+          data={logs}
+        />
+      </Box>
     </>
   );
 }
