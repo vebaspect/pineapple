@@ -68,7 +68,7 @@ const Products = ({ isDataFetched, data }: Props) => {
       </ListItem>
       <Collapse
         in={isExpanded}
-        style={{ paddingLeft: '16px' }}
+        style={{ paddingLeft: '56px' }}
       >
         <List component="div">
           {
