@@ -3,6 +3,7 @@ import React from 'react';
 
 import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -51,30 +52,34 @@ const Logs = ({ isDataFetched, data }: Props) => {
         data.length > 0
           ? data.map(log => {
             return (
-              <ListItem key={log.id}>
-                <ListItemIcon>
-                  <Icon
-                    type={log.type}
-                    category={log.category}
-                  />
-                </ListItemIcon>
-                <ListItemText>
-                  <Box>
-                    <Text
+              <React.Fragment key={log.id}>
+                <ListItem>
+                  <ListItemIcon>
+                    <Icon
                       type={log.type}
                       category={log.category}
-                      userFullName={log.userFullName}
-                      entityName={log.entityName}
                     />
-                  </Box>
-                  <Box
-                    color="text.disabled"
-                    fontSize="0.8rem"
-                  >
-                    {moment(log.modifiedDate).format('LLL')}
-                  </Box>
-                </ListItemText>
-              </ListItem>
+                  </ListItemIcon>
+                  <ListItemText>
+                    <Box>
+                      <Text
+                        type={log.type}
+                        category={log.category}
+                        userFullName={log.userFullName}
+                        entityName={log.entityName}
+                      />
+                    </Box>
+                    <Box
+                      color="text.disabled"
+                      fontSize="0.8rem"
+                      fontStyle="italic"
+                    >
+                      {moment(log.modifiedDate).format('LLL')}
+                    </Box>
+                  </ListItemText>
+                </ListItem>
+                <Divider />
+              </React.Fragment>
             )
           })
           : null
