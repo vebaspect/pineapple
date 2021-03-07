@@ -9,5 +9,10 @@ namespace Pineapple.Core.Domain
         /// Dodanie encji.
         /// </summary>
         public const string AddEntity = "AddEntity";
+
+        /// <summary>
+        /// Usunięcie encji.
+        /// </summary>
+        public const string RemoveEntity = "RemoveEntity";
     }
 }
