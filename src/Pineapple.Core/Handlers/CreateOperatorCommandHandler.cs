@@ -31,6 +31,7 @@ namespace Pineapple.Core.Handler
             {
                 Id = operatorId,
                 ModifiedDate = DateTime.Now,
+                IsDeleted = false,
                 FullName = request.FullName,
                 Login = request.Login,
                 Phone = request.Phone,
@@ -45,6 +46,7 @@ namespace Pineapple.Core.Handler
             {
                 Id = userLogId,
                 ModifiedDate = DateTime.Now,
+                IsDeleted = false,
                 Category = AvailableLogCategories.AddEntity,
                 OwnerId = Guid.Parse("00000000-0000-0000-0000-000000000000"), // Mock!
                 UserId = operatorId

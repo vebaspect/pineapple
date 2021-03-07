@@ -37,7 +37,7 @@ namespace Pineapple.Core.Handler
                 throw new SoftwareApplicationNotFoundException($"SoftwareApplication {request.SoftwareApplicationId} has not been found");
             }
 
-            databaseContext.SoftwareApplications.Remove(softwareApplication);
+            softwareApplication.SetAsDeleted();
 
             databaseContext.SaveChanges();
 

@@ -46,6 +46,7 @@ namespace Pineapple.Core.Handler
             return new ImplementationDto(
                 implementation.Id,
                 implementation.ModifiedDate,
+                implementation.IsDeleted,
                 implementation.Name,
                 implementation.Description
             );

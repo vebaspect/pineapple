@@ -30,6 +30,7 @@ namespace Pineapple.Core.Handler
             {
                 Id = componentId,
                 ModifiedDate = DateTime.Now,
+                IsDeleted = false,
                 Name = request.Name,
                 Description = request.Description,
                 ProductId = request.ProductId,

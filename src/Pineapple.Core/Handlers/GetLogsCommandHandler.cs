@@ -78,6 +78,7 @@ namespace Pineapple.Core.Handler
             return new LogDto(
                 implementationLog.Id,
                 implementationLog.ModifiedDate,
+                implementationLog.IsDeleted,
                 implementationLog.Type,
                 implementationLog.Category,
                 implementationLog.OwnerId,
@@ -93,6 +94,7 @@ namespace Pineapple.Core.Handler
             return new LogDto(
                 productLog.Id,
                 productLog.ModifiedDate,
+                productLog.IsDeleted,
                 productLog.Type,
                 productLog.Category,
                 productLog.OwnerId,
@@ -108,6 +110,7 @@ namespace Pineapple.Core.Handler
             return new LogDto(
                 userLog.Id,
                 userLog.ModifiedDate,
+                userLog.IsDeleted,
                 userLog.Type,
                 userLog.Category,
                 userLog.OwnerId,

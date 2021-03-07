@@ -18,6 +18,11 @@ namespace Pineapple.Core.Dto
         public DateTime ModifiedDate { get; }
 
         /// <summary>
+        /// Flaga określająca, czy log został usunięty.
+        /// </summary>
+        public bool IsDeleted { get; }
+
+        /// <summary>
         /// Typ.
         /// </summary>
         public string Type { get; }
@@ -52,10 +57,11 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public string Description { get; }
 
-        public LogDto(Guid id, DateTime modifiedDate, string type, string category, Guid ownerId, string ownerFullName, Guid entityId, string entityName, string description)
+        public LogDto(Guid id, DateTime modifiedDate, bool isDeleted, string type, string category, Guid ownerId, string ownerFullName, Guid entityId, string entityName, string description)
         {
             Id = id;
             ModifiedDate = modifiedDate;
+            IsDeleted = isDeleted;
             Type = type;
             Category = category;
             OwnerId = ownerId;

@@ -37,7 +37,7 @@ namespace Pineapple.Core.Handler
                 throw new ComponentTypeNotFoundException($"ComponentType {request.ComponentTypeId} has not been found");
             }
 
-            databaseContext.ComponentTypes.Remove(componentType);
+            componentType.SetAsDeleted();
 
             databaseContext.SaveChanges();
 

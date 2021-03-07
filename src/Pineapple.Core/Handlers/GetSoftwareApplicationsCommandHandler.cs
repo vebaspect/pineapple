@@ -45,6 +45,7 @@ namespace Pineapple.Core.Handler
             return new SoftwareApplicationDto(
                 softwareApplication.Id,
                 softwareApplication.ModifiedDate,
+                softwareApplication.IsDeleted,
                 softwareApplication.Name,
                 softwareApplication.Symbol,
                 softwareApplication.Description

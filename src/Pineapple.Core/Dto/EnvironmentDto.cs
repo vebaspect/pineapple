@@ -18,6 +18,11 @@ namespace Pineapple.Core.Dto
         public DateTime ModifiedDate { get; }
 
         /// <summary>
+        /// Flaga określająca, czy środowisko zostało usunięte.
+        /// </summary>
+        public bool IsDeleted { get; }
+
+        /// <summary>
         /// Nazwa.
         /// </summary>
         public string Name { get; }
@@ -42,10 +47,11 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public string OperatorFullName { get; }
 
-        public EnvironmentDto(Guid id, DateTime modifiedDate, string name, string symbol, string description, Guid operatorId, string operatorFullName)
+        public EnvironmentDto(Guid id, DateTime modifiedDate, bool isDeleted, string name, string symbol, string description, Guid operatorId, string operatorFullName)
         {
             Id = id;
             ModifiedDate = modifiedDate;
+            IsDeleted = isDeleted;
             Name = name;
             Symbol = symbol;
             Description = description;

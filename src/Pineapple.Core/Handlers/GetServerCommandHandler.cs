@@ -67,6 +67,7 @@ namespace Pineapple.Core.Handler
             return new ServerDto(
                 server.Id,
                 server.ModifiedDate,
+                server.IsDeleted,
                 server.Name,
                 server.Symbol,
                 server.Description,

@@ -45,6 +45,7 @@ namespace Pineapple.Core.Handler
             return new OperatingSystemDto(
                 operatingSystem.Id,
                 operatingSystem.ModifiedDate,
+                operatingSystem.IsDeleted,
                 operatingSystem.Name,
                 operatingSystem.Symbol,
                 operatingSystem.Description

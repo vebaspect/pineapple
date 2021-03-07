@@ -52,6 +52,7 @@ namespace Pineapple.Core.Handler
             return new CoordinatorDto(
                 coordinator.Id,
                 coordinator.ModifiedDate,
+                coordinator.IsDeleted,
                 coordinator.FullName,
                 coordinator.Phone,
                 coordinator.Email

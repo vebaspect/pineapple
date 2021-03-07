@@ -30,6 +30,7 @@ namespace Pineapple.Core.Handler
             {
                 Id = coordinatorId,
                 ModifiedDate = DateTime.Now,
+                IsDeleted = false,
                 FullName = request.FullName,
                 Phone = request.Phone,
                 Email = request.Email,

@@ -31,6 +31,7 @@ namespace Pineapple.Core.Handler
             {
                 Id = implementationId,
                 ModifiedDate = DateTime.Now,
+                IsDeleted = false,
                 Name = request.Name,
                 Description = request.Description
             };
@@ -43,6 +44,7 @@ namespace Pineapple.Core.Handler
             {
                 Id = implementationLogId,
                 ModifiedDate = DateTime.Now,
+                IsDeleted = false,
                 Category = AvailableLogCategories.AddEntity,
                 OwnerId = Guid.Parse("00000000-0000-0000-0000-000000000000"), // Mock!
                 ImplementationId = implementationId

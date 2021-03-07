@@ -18,6 +18,11 @@ namespace Pineapple.Core.Dto
         public DateTime ModifiedDate { get; }
 
         /// <summary>
+        /// Flaga określająca, czy wersja komponentu została usunięta.
+        /// </summary>
+        public bool IsDeleted { get; }
+
+        /// <summary>
         /// Major.
         /// </summary>
         public int Major { get; }
@@ -42,10 +47,11 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public string Description { get; }
 
-        public ComponentVersionDto(Guid id, DateTime modifiedDate, int major, int minor, int patch, string preRelease, string description)
+        public ComponentVersionDto(Guid id, DateTime modifiedDate, bool isDeleted, int major, int minor, int patch, string preRelease, string description)
         {
             Id = id;
             ModifiedDate = modifiedDate;
+            IsDeleted = isDeleted;
             Major = major;
             Minor = minor;
             Patch = patch;

@@ -37,7 +37,7 @@ namespace Pineapple.Core.Handler
                 throw new OperatingSystemNotFoundException($"OperatingSystem {request.OperatingSystemId} has not been found");
             }
 
-            databaseContext.OperatingSystems.Remove(operatingSystem);
+            operatingSystem.SetAsDeleted();
 
             databaseContext.SaveChanges();
 

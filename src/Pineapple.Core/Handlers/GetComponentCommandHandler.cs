@@ -57,6 +57,7 @@ namespace Pineapple.Core.Handler
             return new ComponentDto(
                 component.Id,
                 component.ModifiedDate,
+                component.IsDeleted,
                 component.Name,
                 component.Description,
                 component.ComponentTypeId,

@@ -30,6 +30,7 @@ namespace Pineapple.Core.Handler
             {
                 Id = serverId,
                 ModifiedDate = DateTime.Now,
+                IsDeleted = false,
                 Name = request.Name,
                 Symbol = request.Symbol,
                 Description = request.Description,

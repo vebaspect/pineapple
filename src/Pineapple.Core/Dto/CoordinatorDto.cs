@@ -18,6 +18,11 @@ namespace Pineapple.Core.Dto
         public DateTime ModifiedDate { get; }
 
         /// <summary>
+        /// Flaga określająca, czy koordynator został usunięty.
+        /// </summary>
+        public bool IsDeleted { get; }
+
+        /// <summary>
         /// Imię i nazwisko.
         /// </summary>
         public string FullName { get; }
@@ -32,10 +37,11 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public string Email { get; }
 
-        public CoordinatorDto(Guid id, DateTime modifiedDate, string fullName, string phone, string email)
+        public CoordinatorDto(Guid id, DateTime modifiedDate, bool isDeleted, string fullName, string phone, string email)
         {
             Id = id;
             ModifiedDate = modifiedDate;
+            IsDeleted = isDeleted;
             FullName = fullName;
             Phone = phone;
             Email = email;

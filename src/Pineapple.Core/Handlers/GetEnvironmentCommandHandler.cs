@@ -57,6 +57,7 @@ namespace Pineapple.Core.Handler
             return new EnvironmentDto(
                 environment.Id,
                 environment.ModifiedDate,
+                environment.IsDeleted,
                 environment.Name,
                 environment.Symbol,
                 environment.Description,

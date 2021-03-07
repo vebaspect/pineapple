@@ -45,6 +45,7 @@ namespace Pineapple.Core.Handler
             return new ProductDto(
                 product.Id,
                 product.ModifiedDate,
+                product.IsDeleted,
                 product.Name,
                 product.Description
             );

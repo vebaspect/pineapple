@@ -6,6 +6,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using Pineapple.Core.Exceptions;
+using Pineapple.Core.Domain;
 
 namespace Pineapple.Core.Handler
 {
@@ -37,7 +38,20 @@ namespace Pineapple.Core.Handler
                 throw new UserNotFoundException($"User {request.UserId} has not been found");
             }
 
-            databaseContext.Users.Remove(user);
+            user.SetAsDeleted();
+
+            var userLogId = Guid.NewGuid();
+
+            var userLog = new Domain.Entities.UserLog()
+            {
+                Id = userLogId,
+                ModifiedDate = DateTime.Now,
+                Category = AvailableLogCategories.RemoveEntity,
+                OwnerId = Guid.Parse("00000000-0000-0000-0000-000000000000"), // Mock!
+                UserId = request.UserId
+            };
+
+            await databaseContext.Logs.AddAsync(userLog, cancellationToken).ConfigureAwait(false);
 
             databaseContext.SaveChanges();
 

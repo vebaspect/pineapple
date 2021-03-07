@@ -18,6 +18,11 @@ namespace Pineapple.Core.Dto
         public DateTime ModifiedDate { get; }
 
         /// <summary>
+        /// Flaga określająca, czy produkt został usunięty.
+        /// </summary>
+        public bool IsDeleted { get; }
+
+        /// <summary>
         /// Nazwa.
         /// </summary>
         public string Name { get; }
@@ -27,10 +32,11 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public string Description { get; }
 
-        public ProductDto(Guid id, DateTime modifiedDate, string name, string description)
+        public ProductDto(Guid id, DateTime modifiedDate, bool isDeleted, string name, string description)
         {
             Id = id;
             ModifiedDate = modifiedDate;
+            IsDeleted = isDeleted;
             Name = name;
             Description = description;
         }

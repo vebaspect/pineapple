@@ -18,6 +18,11 @@ namespace Pineapple.Core.Dto
         public DateTime ModifiedDate { get; }
 
         /// <summary>
+        /// Flaga określająca, czy komponent został usunięty.
+        /// </summary>
+        public bool IsDeleted { get; }
+
+        /// <summary>
         /// Nazwa.
         /// </summary>
         public string Name { get; }
@@ -37,10 +42,11 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public string ComponentTypeName { get; }
 
-        public ComponentDto(Guid id, DateTime modifiedDate, string name, string description, Guid componentTypeId, string componentTypeName)
+        public ComponentDto(Guid id, DateTime modifiedDate, bool isDeleted, string name, string description, Guid componentTypeId, string componentTypeName)
         {
             Id = id;
             ModifiedDate = modifiedDate;
+            IsDeleted = isDeleted;
             Name = name;
             Description = description;
             ComponentTypeId = componentTypeId;

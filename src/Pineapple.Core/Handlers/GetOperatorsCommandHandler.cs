@@ -46,6 +46,7 @@ namespace Pineapple.Core.Handler
             return new UserDto(
                 @operator.Id,
                 @operator.ModifiedDate,
+                @operator.IsDeleted,
                 @operator.Type,
                 @operator.FullName,
                 @operator.Login,

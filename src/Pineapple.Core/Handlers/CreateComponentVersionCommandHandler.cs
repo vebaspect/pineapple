@@ -30,6 +30,7 @@ namespace Pineapple.Core.Handler
             {
                 Id = componentVersionId,
                 ModifiedDate = DateTime.Now,
+                IsDeleted = false,
                 Major = request.Major,
                 Minor = request.Minor,
                 Patch = request.Patch,

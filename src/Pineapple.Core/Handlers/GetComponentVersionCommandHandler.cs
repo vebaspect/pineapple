@@ -66,6 +66,7 @@ namespace Pineapple.Core.Handler
             return new ComponentVersionDto(
                 componentVersion.Id,
                 componentVersion.ModifiedDate,
+                componentVersion.IsDeleted,
                 componentVersion.Major,
                 componentVersion.Minor,
                 componentVersion.Patch,
