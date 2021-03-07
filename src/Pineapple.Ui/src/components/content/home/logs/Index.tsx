@@ -25,8 +25,8 @@ interface Props {
     type: string,
     // Kategoria.
     category: string,
-    // Imię i nazwisko użytkownika.
-    userFullName: string,
+    // Imię i nazwisko właściciela.
+    ownerFullName: string,
     // Nazwa encji.
     entityName: string,
     // Opis.
@@ -65,7 +65,7 @@ const Logs = ({ isDataFetched, data }: Props) => {
                       <Text
                         type={log.type}
                         category={log.category}
-                        userFullName={log.userFullName}
+                        ownerFullName={log.ownerFullName}
                         entityName={log.entityName}
                       />
                     </Box>

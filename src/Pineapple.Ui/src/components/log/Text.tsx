@@ -13,13 +13,13 @@ interface Props {
   type: string,
   // Kategoria.
   category: string,
-  // Imię i nazwisko użytkownika.
-  userFullName: string,
+  // Imię i nazwisko właściciela.
+  ownerFullName: string,
   // Nazwa encji.
   entityName: string,
 };
 
-const Text = ({ type, category, userFullName, entityName }: Props) => {
+const Text = ({ type, category, ownerFullName, entityName }: Props) => {
   switch (type) {
     case LOG_TYPE__IMPLEMENTATION: {
       switch (category) {
@@ -32,7 +32,7 @@ const Text = ({ type, category, userFullName, entityName }: Props) => {
                 color="text.secondary"
                 mx={0.5}
               >
-                {`@${userFullName}`}
+                {`@${ownerFullName}`}
               </Box>
               dodał nowe wdrożenie:
               <Box
@@ -61,7 +61,7 @@ const Text = ({ type, category, userFullName, entityName }: Props) => {
                 color="text.secondary"
                 mx={0.5}
               >
-                {`@${userFullName}`}
+                {`@${ownerFullName}`}
               </Box>
               dodał nowy produkt:
               <Box
