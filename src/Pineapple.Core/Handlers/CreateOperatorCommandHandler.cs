@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Storage.Database;
 using MediatR;
+using Pineapple.Core.Domain;
 
 namespace Pineapple.Core.Handler
 {
@@ -37,6 +38,19 @@ namespace Pineapple.Core.Handler
             };
 
             await databaseContext.Users.AddAsync(@operator).ConfigureAwait(false);
+
+            var userLogId = Guid.NewGuid();
+
+            var userLog = new Domain.Entities.UserLog()
+            {
+                Id = userLogId,
+                ModifiedDate = DateTime.Now,
+                Category = AvailableLogCategories.AddEntity,
+                OwnerId = Guid.Parse("00000000-0000-0000-0000-000000000000"), // Mock!
+                UserId = operatorId
+            };
+
+            await databaseContext.Logs.AddAsync(userLog).ConfigureAwait(false);
 
             databaseContext.SaveChanges();
 
