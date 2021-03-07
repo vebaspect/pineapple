@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <ListItem button>
       <ListItemIcon>
-        <HomeIcon />
+        <HomeIcon color="primary" />
       </ListItemIcon>
       <ListItemText>
         <Link

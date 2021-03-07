@@ -40,7 +40,7 @@ const Configuration = ({ isComponentTypesCountFetched, componentTypesCount, isOp
     return (
       <ListItem>
         <ListItemIcon>
-          <SettingsIcon />
+          <SettingsIcon color="primary" />
         </ListItemIcon>
         <ListItemText>
           Konfiguracja
@@ -54,7 +54,7 @@ const Configuration = ({ isComponentTypesCountFetched, componentTypesCount, isOp
     <>
       <ListItem button onClick={onHeaderClick}>
         <ListItemIcon>
-          <SettingsIcon />
+          <SettingsIcon color="primary" />
         </ListItemIcon>
         <ListItemText>
           <Link

@@ -40,7 +40,7 @@ const Implementations = ({ isDataFetched, data }: Props) => {
     return (
       <ListItem>
         <ListItemIcon>
-          <PowerIcon />
+          <PowerIcon color="primary" />
         </ListItemIcon>
         <ListItemText>
           Wdrożenia
@@ -54,7 +54,7 @@ const Implementations = ({ isDataFetched, data }: Props) => {
     <>
       <ListItem button onClick={onHeaderClick}>
         <ListItemIcon>
-          <PowerIcon />
+          <PowerIcon color="primary" />
         </ListItemIcon>
         <ListItemText>
           <Link

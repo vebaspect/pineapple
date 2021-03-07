@@ -44,7 +44,7 @@ const Users = ({ isDevelopersCountFetched, developersCount, isOperatorsCountFetc
     return (
       <ListItem>
         <ListItemIcon>
-          <SupervisorAccountIcon />
+          <SupervisorAccountIcon color="primary" />
         </ListItemIcon>
         <ListItemText>
           Użytkownicy
@@ -58,7 +58,7 @@ const Users = ({ isDevelopersCountFetched, developersCount, isOperatorsCountFetc
     <>
       <ListItem button onClick={onHeaderClick}>
         <ListItemIcon>
-          <SupervisorAccountIcon />
+          <SupervisorAccountIcon color="primary" />
         </ListItemIcon>
         <ListItemText>
           <Link

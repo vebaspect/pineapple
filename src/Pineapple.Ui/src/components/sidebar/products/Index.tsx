@@ -40,7 +40,7 @@ const Products = ({ isDataFetched, data }: Props) => {
     return (
       <ListItem>
         <ListItemIcon>
-          <AppsIcon />
+          <AppsIcon color="primary" />
         </ListItemIcon>
         <ListItemText>
           Produkty
@@ -54,7 +54,7 @@ const Products = ({ isDataFetched, data }: Props) => {
     <>
       <ListItem button onClick={onHeaderClick}>
         <ListItemIcon>
-          <AppsIcon />
+          <AppsIcon color="primary" />
         </ListItemIcon>
         <ListItemText>
           <Link
