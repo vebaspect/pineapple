@@ -11,18 +11,21 @@ namespace Pineapple.Core.Storage.Database.Configurations
             builder.ToTable("SoftwareApplications");
 
             builder
-                .Property(software => software.ModifiedDate)
+                .Property(softwareApplication => softwareApplication.ModifiedDate)
                 .IsRequired();
             builder
-                .Property(software => software.Name)
+                .Property(softwareApplication => softwareApplication.IsDeleted)
+                .IsRequired();
+            builder
+                .Property(softwareApplication => softwareApplication.Name)
                 .IsRequired()
                 .HasMaxLength(200);
             builder
-                .Property(software => software.Symbol)
+                .Property(softwareApplication => softwareApplication.Symbol)
                 .IsRequired()
                 .HasMaxLength(200);
             builder
-                .Property(software => software.Description)
+                .Property(softwareApplication => softwareApplication.Description)
                 .HasMaxLength(4000);
         }
     }

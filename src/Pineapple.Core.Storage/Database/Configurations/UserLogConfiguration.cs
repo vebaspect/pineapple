@@ -8,12 +8,6 @@ namespace Pineapple.Core.Storage.Database.Configurations
     {
         public void Configure(EntityTypeBuilder<UserLog> builder)
         {
-            builder
-                .HasOne(userLog => userLog.User)
-                .WithMany(user => user.EntityLogs)
-                .HasForeignKey(userLog => userLog.UserId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

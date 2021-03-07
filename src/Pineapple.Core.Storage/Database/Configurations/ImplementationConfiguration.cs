@@ -14,12 +14,20 @@ namespace Pineapple.Core.Storage.Database.Configurations
                 .Property(implementation => implementation.ModifiedDate)
                 .IsRequired();
             builder
+                .Property(implementation => implementation.IsDeleted)
+                .IsRequired();
+            builder
                 .Property(implementation => implementation.Name)
                 .IsRequired()
                 .HasMaxLength(200);
             builder
                 .Property(implementation => implementation.Description)
                 .HasMaxLength(4000);
+            builder
+                .HasMany(implementation => implementation.EntityLogs)
+                .WithOne(log => log.Implementation)
+                .HasForeignKey(log => log.ImplementationId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

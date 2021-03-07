@@ -14,6 +14,9 @@ namespace Pineapple.Core.Storage.Database.Configurations
                 .Property(coordinator => coordinator.ModifiedDate)
                 .IsRequired();
             builder
+                .Property(coordinator => coordinator.IsDeleted)
+                .IsRequired();
+            builder
                 .Property(coordinator => coordinator.FullName)
                 .IsRequired()
                 .HasMaxLength(200);

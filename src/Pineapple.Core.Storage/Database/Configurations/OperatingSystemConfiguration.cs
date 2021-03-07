@@ -14,6 +14,9 @@ namespace Pineapple.Core.Storage.Database.Configurations
                 .Property(operatingSystem => operatingSystem.ModifiedDate)
                 .IsRequired();
             builder
+                .Property(operatingSystem => operatingSystem.IsDeleted)
+                .IsRequired();
+            builder
                 .Property(operatingSystem => operatingSystem.Name)
                 .IsRequired()
                 .HasMaxLength(200);
