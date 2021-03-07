@@ -3,6 +3,7 @@ import React from 'react';
 import {
   green,
   indigo,
+  red,
 } from '@material-ui/core/colors';
 import {
   createStyles,
@@ -15,6 +16,7 @@ import Box from '@material-ui/core/Box';
 
 import AddIcon from '@material-ui/icons/Add';
 import AppsIcon from '@material-ui/icons/Apps';
+import DeleteIcon from '@material-ui/icons/Delete';
 import PowerIcon from '@material-ui/icons/Power';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 
@@ -23,12 +25,19 @@ import {
   LOG_TYPE__PRODUCT,
   LOG_TYPE__USER,
   LOG_CATEGORY__ADD_ENTITY,
+  LOG_CATEGORY__REMOVE_ENTITY,
 } from './constants';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    category: {
+    categoryGreen: {
       backgroundColor: green[500],
+      color: '#fff',
+      height: theme.spacing(2.75),
+      width: theme.spacing(2.75),
+    },
+    categoryRed: {
+      backgroundColor: red[500],
       color: '#fff',
       height: theme.spacing(2.75),
       width: theme.spacing(2.75),
@@ -52,6 +61,7 @@ const Icon = ({ type, category }: Props) => {
 
   let typeIcon = null;
   let categoryIcon = null;
+  let categoryClassName = null;
 
   switch (type) {
     case LOG_TYPE__IMPLEMENTATION:
@@ -69,7 +79,12 @@ const Icon = ({ type, category }: Props) => {
 
   switch (category) {
     case LOG_CATEGORY__ADD_ENTITY:
-      categoryIcon = <AddIcon />;
+      categoryIcon = <AddIcon style={{ fontSize: 18 }} />;
+      categoryClassName = styles.categoryGreen;
+      break;
+    case LOG_CATEGORY__REMOVE_ENTITY:
+      categoryIcon = <DeleteIcon style={{ fontSize: 18 }} />;
+      categoryClassName = styles.categoryRed;
       break;
     default:
       break;
@@ -87,7 +102,7 @@ const Icon = ({ type, category }: Props) => {
         position="absolute"
         top={24}
       >
-        <Avatar className={styles.category}>
+        <Avatar className={categoryClassName}>
           {categoryIcon}
         </Avatar>
       </Box>

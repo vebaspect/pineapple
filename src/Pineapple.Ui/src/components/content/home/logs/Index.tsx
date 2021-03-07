@@ -3,7 +3,6 @@ import React from 'react';
 
 import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -78,7 +77,6 @@ const Logs = ({ isDataFetched, data }: Props) => {
                     </Box>
                   </ListItemText>
                 </ListItem>
-                <Divider />
               </React.Fragment>
             )
           })

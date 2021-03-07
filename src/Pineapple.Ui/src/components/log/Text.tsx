@@ -7,6 +7,7 @@ import {
   LOG_TYPE__PRODUCT,
   LOG_TYPE__USER,
   LOG_CATEGORY__ADD_ENTITY,
+  LOG_CATEGORY__REMOVE_ENTITY,
 } from './constants';
 
 interface Props {
@@ -35,7 +36,7 @@ const Text = ({ type, category, ownerFullName, entityName }: Props) => {
               >
                 {`@${ownerFullName}`}
               </Box>
-              dodał nowe wdrożenie:
+              dodał wdrożenie
               <Box
                 component="span"
                 color="info.main"
@@ -45,7 +46,7 @@ const Text = ({ type, category, ownerFullName, entityName }: Props) => {
               </Box>
               .
             </>
-          )
+          );
         default:
           return null;
       }
@@ -63,7 +64,7 @@ const Text = ({ type, category, ownerFullName, entityName }: Props) => {
               >
                 {`@${ownerFullName}`}
               </Box>
-              dodał nowy produkt:
+              dodał produkt
               <Box
                 component="span"
                 color="info.main"
@@ -73,7 +74,7 @@ const Text = ({ type, category, ownerFullName, entityName }: Props) => {
               </Box>
               .
             </>
-          )
+          );
         default:
           return null;
       }
@@ -91,7 +92,7 @@ const Text = ({ type, category, ownerFullName, entityName }: Props) => {
               >
                 {`@${ownerFullName}`}
               </Box>
-              dodał nowego użytkownika:
+              dodał użytkownika
               <Box
                 component="span"
                 color="info.main"
@@ -101,7 +102,29 @@ const Text = ({ type, category, ownerFullName, entityName }: Props) => {
               </Box>
               .
             </>
-          )
+          );
+        case LOG_CATEGORY__REMOVE_ENTITY:
+          return (
+            <>
+              Użytkownik
+              <Box
+                component="span"
+                color="text.secondary"
+                mx={0.5}
+              >
+                {`@${ownerFullName}`}
+              </Box>
+              usunął użytkownika
+              <Box
+                component="span"
+                color="info.main"
+                ml={0.5}
+              >
+                {entityName}
+              </Box>
+              .
+            </>
+          );
         default:
           return null;
       }

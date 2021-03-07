@@ -7,3 +7,5 @@ export const LOG_TYPE__USER = 'UserLog';
 
 // Kategoria logu: dodanie encji.
 export const LOG_CATEGORY__ADD_ENTITY = 'AddEntity';
+// Kategoria logu: usunięcie encji.
+export const LOG_CATEGORY__REMOVE_ENTITY = 'RemoveEntity';
