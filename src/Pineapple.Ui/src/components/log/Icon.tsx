@@ -16,10 +16,12 @@ import Box from '@material-ui/core/Box';
 import AddIcon from '@material-ui/icons/Add';
 import AppsIcon from '@material-ui/icons/Apps';
 import PowerIcon from '@material-ui/icons/Power';
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 
 import {
   LOG_TYPE__IMPLEMENTATION,
   LOG_TYPE__PRODUCT,
+  LOG_TYPE__USER,
   LOG_CATEGORY__ADD_ENTITY,
 } from './constants';
 
@@ -57,6 +59,9 @@ const Icon = ({ type, category }: Props) => {
       break;
     case LOG_TYPE__PRODUCT:
       typeIcon = <AppsIcon />;
+      break;
+    case LOG_TYPE__USER:
+      typeIcon = <SupervisorAccountIcon />;
       break;
     default:
       break;

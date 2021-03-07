@@ -5,6 +5,7 @@ import Box from '@material-ui/core/Box';
 import {
   LOG_TYPE__IMPLEMENTATION,
   LOG_TYPE__PRODUCT,
+  LOG_TYPE__USER,
   LOG_CATEGORY__ADD_ENTITY,
 } from './constants';
 
@@ -50,7 +51,7 @@ const Text = ({ type, category, ownerFullName, entityName }: Props) => {
           return null;
       }
     }
-    case LOG_TYPE__PRODUCT:
+    case LOG_TYPE__PRODUCT: {
       switch (category) {
         case LOG_CATEGORY__ADD_ENTITY:
           return (
@@ -78,6 +79,36 @@ const Text = ({ type, category, ownerFullName, entityName }: Props) => {
         default:
           return null;
       }
+    }
+    case LOG_TYPE__USER: {
+      switch (category) {
+        case LOG_CATEGORY__ADD_ENTITY:
+          return (
+            <>
+              Użytkownik
+              <Box
+                component="span"
+                color="text.secondary"
+                mx={0.5}
+              >
+                {`@${ownerFullName}`}
+              </Box>
+              dodał nowego użytkownika:
+              <Box
+                component="span"
+                color="info.main"
+                fontStyle="italic"
+                ml={0.5}
+              >
+                {entityName}
+              </Box>
+              .
+            </>
+          )
+        default:
+          return null;
+      }
+    }
     default:
       return null;
   }
