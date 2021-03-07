@@ -65,7 +65,7 @@ const Users = ({ isDevelopersCountFetched, developersCount, isOperatorsCountFetc
             component={RouterLink}
             to="/users"
           >
-            Użytkownicy
+            Użytkownicy ({developersCount + operatorsCount + managersCount + administratorsCount})
           </Link>
         </ListItemText>
         {isExpanded ? <ExpandLess /> : <ExpandMore />}
