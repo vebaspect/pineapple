@@ -23,6 +23,7 @@ namespace Pineapple.Core.Storage.Database
 
             var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
             optionsBuilder.UseNpgsql(connectionString);
+            optionsBuilder.EnableSensitiveDataLogging();
 
             return new DatabaseContext(optionsBuilder.Options);
         }
