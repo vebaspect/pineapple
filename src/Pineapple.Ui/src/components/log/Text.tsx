@@ -39,7 +39,6 @@ const Text = ({ type, category, ownerFullName, entityName }: Props) => {
               <Box
                 component="span"
                 color="info.main"
-                fontStyle="italic"
                 ml={0.5}
               >
                 {entityName}
@@ -68,7 +67,6 @@ const Text = ({ type, category, ownerFullName, entityName }: Props) => {
               <Box
                 component="span"
                 color="info.main"
-                fontStyle="italic"
                 ml={0.5}
               >
                 {entityName}
@@ -97,7 +95,6 @@ const Text = ({ type, category, ownerFullName, entityName }: Props) => {
               <Box
                 component="span"
                 color="info.main"
-                fontStyle="italic"
                 ml={0.5}
               >
                 {entityName}

@@ -1,5 +1,5 @@
 # Adres URL do API.
-@url = 
+@url = http://localhost:5005
 
 # Identyfikator użytkownika.
 @userId = 
@@ -21,10 +21,10 @@ POST {{url}}/users/administrators
 Content-Type: application/json
 
 {
-    "FullName": "",
-    "Login": "",
+    "FullName": "Anna Pietruszka",
+    "Login": "apietruszka",
     "Phone": "",
-    "Email": ""
+    "Email": "anna.pietruszka@coig.pl"
 }
 
 ### /users/developers
@@ -40,10 +40,10 @@ POST {{url}}/users/developers
 Content-Type: application/json
 
 {
-    "FullName": "",
-    "Login": "",
+    "FullName": "Andrzej Nowak",
+    "Login": "anowak",
     "Phone": "",
-    "Email": ""
+    "Email": "andrzej.nowak@coig.pl"
 }
 
 ### /users/managers
