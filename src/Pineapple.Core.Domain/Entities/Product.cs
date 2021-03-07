@@ -23,8 +23,8 @@ namespace Pineapple.Core.Domain.Entities
         public List<Component> Components { get; set; }
 
         /// <summary>
-        /// Logi.
+        /// Logi dotyczące encji.
         /// </summary>
-        public List<ProductLog> Logs { get; set; }
+        public List<ProductLog> EntityLogs { get; set; }
     }
 }

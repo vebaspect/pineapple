@@ -18,14 +18,14 @@ namespace Pineapple.Core.Domain.Entities
         public string Category { get; set; }
 
         /// <summary>
-        /// Identyfikator użytkownika.
+        /// Identyfikator właściciela.
         /// </summary>
-        public Guid UserId { get; set; }
+        public Guid OwnerId { get; set; }
 
         /// <summary>
-        /// Użytkownik.
+        /// Właściciel.
         /// </summary>
-        public User User { get; set; }
+        public User Owner { get; set; }
 
         /// <summary>
         /// Opis.

@@ -93,7 +93,8 @@ namespace Pineapple.Core.Storage.Database
                 .ApplyConfiguration(new ProductLogConfiguration())
                 .ApplyConfiguration(new ServerConfiguration())
                 .ApplyConfiguration(new SoftwareApplicationConfiguration())
-                .ApplyConfiguration(new UserConfiguration());
+                .ApplyConfiguration(new UserConfiguration())
+                .ApplyConfiguration(new UserLogConfiguration());
 
             modelBuilder
                 .Entity<ComponentType>()

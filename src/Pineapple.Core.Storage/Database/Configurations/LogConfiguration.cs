@@ -23,9 +23,9 @@ namespace Pineapple.Core.Storage.Database.Configurations
                 .Property(log => log.Category)
                 .HasMaxLength(50);
             builder
-                .HasOne(log => log.User)
-                .WithMany(user => user.Logs)
-                .HasForeignKey(log => log.UserId)
+                .HasOne(log => log.Owner)
+                .WithMany(user => user.OwnedLogs)
+                .HasForeignKey(log => log.OwnerId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
             builder

@@ -10,7 +10,7 @@ namespace Pineapple.Core.Storage.Database.Configurations
         {
             builder
                 .HasOne(productLog => productLog.Product)
-                .WithMany(product => product.Logs)
+                .WithMany(product => product.EntityLogs)
                 .HasForeignKey(productLog => productLog.ProductId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);

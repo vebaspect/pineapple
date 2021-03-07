@@ -31,7 +31,7 @@ namespace Pineapple.Core.Handler
             var implementationLogs = await databaseContext
                 .Logs
                 .OfType<Domain.Entities.ImplementationLog>()
-                .Include(log => log.User)
+                .Include(log => log.Owner)
                 .Include(log => log.Implementation)
                 .OrderByDescending(log => log.ModifiedDate)
                 .ToArrayAsync()
@@ -40,8 +40,17 @@ namespace Pineapple.Core.Handler
             var productLogs = await databaseContext
                 .Logs
                 .OfType<Domain.Entities.ProductLog>()
-                .Include(log => log.User)
+                .Include(log => log.Owner)
                 .Include(log => log.Product)
+                .OrderByDescending(log => log.ModifiedDate)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
+
+            var userLogs = await databaseContext
+                .Logs
+                .OfType<Domain.Entities.UserLog>()
+                .Include(log => log.Owner)
+                .Include(log => log.User)
                 .OrderByDescending(log => log.ModifiedDate)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
@@ -56,6 +65,10 @@ namespace Pineapple.Core.Handler
             {
                 logs.AddRange(productLogs.Select(productLog => Map(productLog)));
             }
+            if (userLogs?.Length > 0)
+            {
+                logs.AddRange(userLogs.Select(userLog => Map(userLog)));
+            }
 
             return logs.ToArray();
         }
@@ -67,8 +80,8 @@ namespace Pineapple.Core.Handler
                 implementationLog.ModifiedDate,
                 implementationLog.Type,
                 implementationLog.Category,
-                implementationLog.UserId,
-                implementationLog.User.FullName,
+                implementationLog.OwnerId,
+                implementationLog.Owner.FullName,
                 implementationLog.ImplementationId,
                 implementationLog.Implementation.Name,
                 implementationLog.Description
@@ -82,11 +95,26 @@ namespace Pineapple.Core.Handler
                 productLog.ModifiedDate,
                 productLog.Type,
                 productLog.Category,
-                productLog.UserId,
-                productLog.User.FullName,
+                productLog.OwnerId,
+                productLog.Owner.FullName,
                 productLog.ProductId,
                 productLog.Product.Name,
                 productLog.Description
+            );
+        }
+
+        private static LogDto Map(Domain.Entities.UserLog userLog)
+        {
+            return new LogDto(
+                userLog.Id,
+                userLog.ModifiedDate,
+                userLog.Type,
+                userLog.Category,
+                userLog.OwnerId,
+                userLog.Owner.FullName,
+                userLog.UserId,
+                userLog.User.FullName,
+                userLog.Description
             );
         }
     }

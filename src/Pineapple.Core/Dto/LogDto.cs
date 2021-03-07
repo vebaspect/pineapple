@@ -28,14 +28,14 @@ namespace Pineapple.Core.Dto
         public string Category { get; }
 
         /// <summary>
-        /// Identyfikator użytkownika.
+        /// Identyfikator właściciela.
         /// </summary>
-        public Guid UserId { get; }
+        public Guid OwnerId { get; }
 
         /// <summary>
-        /// Imię i nazwisko użytkownika.
+        /// Imię i nazwisko właściciela.
         /// </summary>
-        public string UserFullName { get; }
+        public string OwnerFullName { get; }
 
         /// <summary>
         /// Identyfikator encji.
@@ -52,14 +52,14 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public string Description { get; }
 
-        public LogDto(Guid id, DateTime modifiedDate, string type, string category, Guid userId, string userFullName, Guid entityId, string entityName, string description)
+        public LogDto(Guid id, DateTime modifiedDate, string type, string category, Guid ownerId, string ownerFullName, Guid entityId, string entityName, string description)
         {
             Id = id;
             ModifiedDate = modifiedDate;
             Type = type;
             Category = category;
-            UserId = userId;
-            UserFullName = userFullName;
+            OwnerId = ownerId;
+            OwnerFullName = ownerFullName;
             EntityId = entityId;
             EntityName = entityName;
             Description = description;

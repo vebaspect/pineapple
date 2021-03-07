@@ -28,8 +28,8 @@ namespace Pineapple.Core.Domain.Entities
         public List<Coordinator> Coordinators { get; set; }
 
         /// <summary>
-        /// Logi.
+        /// Logi dotyczące encji.
         /// </summary>
-        public List<ImplementationLog> Logs { get; set; }
+        public List<ImplementationLog> EntityLogs { get; set; }
     }
 }

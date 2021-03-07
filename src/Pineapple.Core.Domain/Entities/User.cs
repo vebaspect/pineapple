@@ -33,8 +33,13 @@ namespace Pineapple.Core.Domain.Entities
         public string Email { get; set; }
 
         /// <summary>
-        /// Logi.
+        /// Logi posiadane przez użytkownika.
         /// </summary>
-        public List<Log> Logs { get; set; }
+        public List<Log> OwnedLogs { get; set; }
+
+        /// <summary>
+        /// Logi dotyczące encji.
+        /// </summary>
+        public List<UserLog> EntityLogs { get; set; }
     }
 }

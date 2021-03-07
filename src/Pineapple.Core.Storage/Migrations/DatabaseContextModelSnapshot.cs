@@ -247,17 +247,17 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("timestamp without time zone");
 
+                    b.Property<Guid>("OwnerId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("character varying(20)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("OwnerId");
 
                     b.ToTable("Logs");
 
@@ -475,6 +475,18 @@ namespace Pineapple.Core.Storage.Migrations
                     b.HasDiscriminator().HasValue("ProductLog");
                 });
 
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.UserLog", b =>
+                {
+                    b.HasBaseType("Pineapple.Core.Domain.Entities.Log");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasIndex("UserId");
+
+                    b.HasDiscriminator().HasValue("UserLog");
+                });
+
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Administrator", b =>
                 {
                     b.HasBaseType("Pineapple.Core.Domain.Entities.User");
@@ -580,13 +592,13 @@ namespace Pineapple.Core.Storage.Migrations
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Log", b =>
                 {
-                    b.HasOne("Pineapple.Core.Domain.Entities.User", "User")
-                        .WithMany("Logs")
-                        .HasForeignKey("UserId")
+                    b.HasOne("Pineapple.Core.Domain.Entities.User", "Owner")
+                        .WithMany("OwnedLogs")
+                        .HasForeignKey("OwnerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("User");
+                    b.Navigation("Owner");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Server", b =>
@@ -626,7 +638,7 @@ namespace Pineapple.Core.Storage.Migrations
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.ImplementationLog", b =>
                 {
                     b.HasOne("Pineapple.Core.Domain.Entities.Implementation", "Implementation")
-                        .WithMany("Logs")
+                        .WithMany("EntityLogs")
                         .HasForeignKey("ImplementationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -637,12 +649,23 @@ namespace Pineapple.Core.Storage.Migrations
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.ProductLog", b =>
                 {
                     b.HasOne("Pineapple.Core.Domain.Entities.Product", "Product")
-                        .WithMany("Logs")
+                        .WithMany("EntityLogs")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.UserLog", b =>
+                {
+                    b.HasOne("Pineapple.Core.Domain.Entities.User", "User")
+                        .WithMany("EntityLogs")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Component", b =>
@@ -664,9 +687,9 @@ namespace Pineapple.Core.Storage.Migrations
                 {
                     b.Navigation("Coordinators");
 
-                    b.Navigation("Environments");
+                    b.Navigation("EntityLogs");
 
-                    b.Navigation("Logs");
+                    b.Navigation("Environments");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.OperatingSystem", b =>
@@ -678,12 +701,14 @@ namespace Pineapple.Core.Storage.Migrations
                 {
                     b.Navigation("Components");
 
-                    b.Navigation("Logs");
+                    b.Navigation("EntityLogs");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.User", b =>
                 {
-                    b.Navigation("Logs");
+                    b.Navigation("EntityLogs");
+
+                    b.Navigation("OwnedLogs");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Operator", b =>

@@ -10,7 +10,7 @@ namespace Pineapple.Core.Storage.Database.Configurations
         {
             builder
                 .HasOne(implementationLog => implementationLog.Implementation)
-                .WithMany(implementation => implementation.Logs)
+                .WithMany(implementation => implementation.EntityLogs)
                 .HasForeignKey(implementationLog => implementationLog.ImplementationId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);

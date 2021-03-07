@@ -183,10 +183,11 @@ namespace Pineapple.Core.Storage.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Type = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     Category = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
-                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
+                    OwnerId = table.Column<Guid>(type: "uuid", nullable: false),
                     Description = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: true),
                     ImplementationId = table.Column<Guid>(type: "uuid", nullable: true),
                     ProductId = table.Column<Guid>(type: "uuid", nullable: true),
+                    UserId = table.Column<Guid>(type: "uuid", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
@@ -202,6 +203,12 @@ namespace Pineapple.Core.Storage.Migrations
                         name: "FK_Logs_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Logs_Users_OwnerId",
+                        column: x => x.OwnerId,
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -365,6 +372,11 @@ namespace Pineapple.Core.Storage.Migrations
                 name: "IX_Logs_ImplementationId",
                 table: "Logs",
                 column: "ImplementationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Logs_OwnerId",
+                table: "Logs",
+                column: "OwnerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Logs_ProductId",
