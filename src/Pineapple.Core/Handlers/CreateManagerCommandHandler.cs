@@ -27,16 +27,7 @@ namespace Pineapple.Core.Handler
 
             var managerId = Guid.NewGuid();
 
-            var manager = new Domain.Entities.Manager()
-            {
-                Id = managerId,
-                ModifiedDate = DateTime.Now,
-                IsDeleted = false,
-                FullName = request.FullName,
-                Login = request.Login,
-                Phone = request.Phone,
-                Email = request.Email,
-            };
+            var manager = Domain.Entities.Manager.Create(managerId, request.FullName, request.Login, request.Phone, request.Email);
 
             await databaseContext.Users.AddAsync(manager).ConfigureAwait(false);
 

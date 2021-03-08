@@ -26,15 +26,7 @@ namespace Pineapple.Core.Handler
 
             var softwareApplicationId = Guid.NewGuid();
 
-            var softwareApplication = new Domain.Entities.SoftwareApplication()
-            {
-                Id = softwareApplicationId,
-                ModifiedDate = DateTime.Now,
-                IsDeleted = false,
-                Name = request.Name,
-                Symbol = request.Symbol,
-                Description = request.Description,
-            };
+            var softwareApplication = Domain.Entities.SoftwareApplication.Create(softwareApplicationId, request.Name, request.Symbol, request.Description);
 
             await databaseContext.SoftwareApplications.AddAsync(softwareApplication).ConfigureAwait(false);
 

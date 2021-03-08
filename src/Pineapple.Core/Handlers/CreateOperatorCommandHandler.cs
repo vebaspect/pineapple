@@ -27,16 +27,7 @@ namespace Pineapple.Core.Handler
 
             var operatorId = Guid.NewGuid();
 
-            var @operator = new Domain.Entities.Operator()
-            {
-                Id = operatorId,
-                ModifiedDate = DateTime.Now,
-                IsDeleted = false,
-                FullName = request.FullName,
-                Login = request.Login,
-                Phone = request.Phone,
-                Email = request.Email,
-            };
+            var @operator = Domain.Entities.Operator.Create(operatorId, request.FullName, request.Login, request.Phone, request.Email);
 
             await databaseContext.Users.AddAsync(@operator).ConfigureAwait(false);
 

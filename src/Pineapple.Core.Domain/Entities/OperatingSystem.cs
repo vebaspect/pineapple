@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Pineapple.Core.Domain.Entities
@@ -5,7 +6,7 @@ namespace Pineapple.Core.Domain.Entities
     /// <summary>
     /// System operacyjny.
     /// </summary>
-    public class OperatingSystem : Entity
+    public sealed class OperatingSystem : Entity
     {
         /// <summary>
         /// Nazwa.
@@ -26,5 +27,23 @@ namespace Pineapple.Core.Domain.Entities
         /// Serwery.
         /// </summary>
         public List<Server> Servers { get; set; }
+
+        private OperatingSystem(Guid id, string name, string symbol, string description)
+        {
+            Id = id;
+            ModifiedDate = DateTime.Now;
+            IsDeleted = false;
+            Name = name;
+            Symbol = symbol;
+            Description = description;
+        }
+
+        /// <summary>
+        /// Stwórz system operacyjny.
+        /// </summary>
+        public static OperatingSystem Create(Guid id, string name, string symbol, string description)
+        {
+            return new OperatingSystem(id, name, symbol, description);
+        }
     }
 }

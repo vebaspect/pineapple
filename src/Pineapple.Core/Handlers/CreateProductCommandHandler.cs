@@ -27,14 +27,7 @@ namespace Pineapple.Core.Handler
 
             var productId = Guid.NewGuid();
 
-            var product = new Domain.Entities.Product()
-            {
-                Id = productId,
-                ModifiedDate = DateTime.Now,
-                IsDeleted = false,
-                Name = request.Name,
-                Description = request.Description
-            };
+            var product = Domain.Entities.Product.Create(productId, request.Name, request.Description);
 
             await databaseContext.Products.AddAsync(product).ConfigureAwait(false);
 

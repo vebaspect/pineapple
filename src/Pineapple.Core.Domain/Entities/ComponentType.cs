@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Pineapple.Core.Domain.Entities
@@ -5,7 +6,7 @@ namespace Pineapple.Core.Domain.Entities
     /// <summary>
     /// Typ komponentu.
     /// </summary>
-    public class ComponentType : Entity
+    public sealed class ComponentType : Entity
     {
         /// <summary>
         /// Nazwa.
@@ -26,5 +27,23 @@ namespace Pineapple.Core.Domain.Entities
         /// Komponenty.
         /// </summary>
         public List<Component> Components { get; set; }
+
+        private ComponentType(Guid id, string name, string symbol, string description)
+        {
+            Id = id;
+            ModifiedDate = DateTime.Now;
+            IsDeleted = false;
+            Name = name;
+            Symbol = symbol;
+            Description = description;
+        }
+
+        /// <summary>
+        /// Stwórz typ komponentu.
+        /// </summary>
+        public static ComponentType Create(Guid id, string name, string symbol, string description)
+        {
+            return new ComponentType(id, name, symbol, description);
+        }
     }
 }

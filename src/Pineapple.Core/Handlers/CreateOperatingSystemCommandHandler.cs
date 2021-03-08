@@ -26,15 +26,7 @@ namespace Pineapple.Core.Handler
 
             var operatingSystemId = Guid.NewGuid();
 
-            var operatingSystem = new Domain.Entities.OperatingSystem()
-            {
-                Id = operatingSystemId,
-                ModifiedDate = DateTime.Now,
-                IsDeleted = false,
-                Name = request.Name,
-                Symbol = request.Symbol,
-                Description = request.Description,
-            };
+            var operatingSystem = Domain.Entities.OperatingSystem.Create(operatingSystemId, request.Name, request.Symbol, request.Description);
 
             await databaseContext.OperatingSystems.AddAsync(operatingSystem).ConfigureAwait(false);
 

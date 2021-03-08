@@ -38,7 +38,7 @@ namespace Pineapple.Core.Domain.Entities
         public List<Log> OwnedLogs { get; set; }
 
         /// <summary>
-        /// Logi dotyczące encji.
+        /// Logi dotyczące użytkownika.
         /// </summary>
         public List<UserLog> EntityLogs { get; set; }
     }

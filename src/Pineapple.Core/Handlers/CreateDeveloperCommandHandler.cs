@@ -27,16 +27,7 @@ namespace Pineapple.Core.Handler
 
             var developerId = Guid.NewGuid();
 
-            var developer = new Domain.Entities.Developer()
-            {
-                Id = developerId,
-                ModifiedDate = DateTime.Now,
-                IsDeleted = false,
-                FullName = request.FullName,
-                Login = request.Login,
-                Phone = request.Phone,
-                Email = request.Email,
-            };
+            var developer = Domain.Entities.Developer.Create(developerId, request.FullName, request.Login, request.Phone, request.Email);
 
             await databaseContext.Users.AddAsync(developer).ConfigureAwait(false);
 
