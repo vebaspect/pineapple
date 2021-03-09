@@ -11,42 +11,42 @@ namespace Pineapple.Core.Domain.Entities
         /// <summary>
         /// Major.
         /// </summary>
-        public int Major { get; set; }
+        public int Major { get; }
 
         /// <summary>
         /// Minor.
         /// </summary>
-        public int Minor { get; set; }
+        public int Minor { get; }
 
         /// <summary>
         /// Patch.
         /// </summary>
-        public int Patch { get; set; }
+        public int Patch { get; }
 
         /// <summary>
         /// Wydanie przedpremierowe.
         /// </summary>
-        public string PreRelease { get; set; }
+        public string PreRelease { get; }
 
         /// <summary>
         /// Opis.
         /// </summary>
-        public string Description { get; set; }
+        public string Description { get; }
 
         /// <summary>
         /// Identyfikator komponentu.
         /// </summary>
-        public Guid ComponentId { get; set; }
+        public Guid ComponentId { get; }
 
         /// <summary>
         /// Komponent.
         /// </summary>
-        public Component Component { get; set; }
+        public Component Component { get; }
 
         /// <summary>
         /// Serwery.
         /// </summary>
-        public List<Server> Servers { get; set; }
+        public List<Server> Servers { get; }
 
         private ComponentVersion(Guid id, int major, int minor, int patch, string preRelease, string description, Guid componentId)
         {

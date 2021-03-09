@@ -10,27 +10,27 @@ namespace Pineapple.Core.Domain.Entities
         /// <summary>
         /// Imię i nazwisko.
         /// </summary>
-        public string FullName { get; set; }
+        public string FullName { get; }
 
         /// <summary>
         /// Telefon.
         /// </summary>
-        public string Phone { get; set; }
+        public string Phone { get; }
 
         /// <summary>
         /// E-mail.
         /// </summary>
-        public string Email { get; set; }
+        public string Email { get; }
 
         /// <summary>
         /// Identyfikator wdrożenia.
         /// </summary>
-        public Guid ImplementationId { get; set; }
+        public Guid ImplementationId { get; }
 
         /// <summary>
         /// Wdrożenie.
         /// </summary>
-        public Implementation Implementation { get; set; }
+        public Implementation Implementation { get; }
 
         private Coordinator(Guid id, string fullName, string phone, string email, Guid implementationId)
         {

@@ -10,36 +10,36 @@ namespace Pineapple.Core.Domain.Entities
         /// <summary>
         /// Typ.
         /// </summary>
-        public string Type { get; set; }
+        public string Type { get; protected set;}
 
         /// <summary>
         /// Imię i nazwisko.
         /// </summary>
-        public string FullName { get; set; }
+        public string FullName { get; protected set;}
 
         /// <summary>
         /// Login.
         /// </summary>
-        public string Login { get; set; }
+        public string Login { get; protected set;}
 
         /// <summary>
         /// Telefon.
         /// </summary>
-        public string Phone { get; set; }
+        public string Phone { get; protected set;}
 
         /// <summary>
         /// E-mail.
         /// </summary>
-        public string Email { get; set; }
+        public string Email { get; protected set;}
 
         /// <summary>
         /// Logi posiadane przez użytkownika.
         /// </summary>
-        public List<Log> OwnedLogs { get; set; }
+        public List<Log> OwnedLogs { get; protected set;}
 
         /// <summary>
         /// Logi dotyczące użytkownika.
         /// </summary>
-        public List<UserLog> EntityLogs { get; set; }
+        public List<UserLog> EntityLogs { get; protected set;}
     }
 }

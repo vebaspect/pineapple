@@ -11,7 +11,7 @@ namespace Pineapple.Core.Domain.Entities
         /// <summary>
         /// Środowiska.
         /// </summary>
-        public List<Environment> Environments { get; set; }
+        public List<Environment> Environments { get; }
 
         private Operator(Guid id, string fullName, string login, string phone, string email)
         {

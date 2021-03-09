@@ -10,17 +10,17 @@ namespace Pineapple.Core.Domain.Entities
         /// <summary>
         /// Identyfikator.
         /// </summary>
-        public Guid Id { get; set; }
+        public Guid Id { get; protected set; }
 
         /// <summary>
         /// Data modyfikacji.
         /// </summary>
-        public DateTime ModifiedDate { get; set; }
+        public DateTime ModifiedDate { get; protected set; }
 
         /// <summary>
         /// Flaga określająca, czy encja została usunięta.
         /// </summary>
-        public bool IsDeleted { get; set; }
+        public bool IsDeleted { get; protected set; }
 
         /// <summary>
         /// Oznacz encję jako usuniętą.

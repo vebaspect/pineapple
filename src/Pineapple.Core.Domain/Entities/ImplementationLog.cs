@@ -10,12 +10,12 @@ namespace Pineapple.Core.Domain.Entities
         /// <summary>
         /// Identyfikator wdrożenia.
         /// </summary>
-        public Guid ImplementationId { get; set; }
+        public Guid ImplementationId { get; }
 
         /// <summary>
         /// Wdrożenie.
         /// </summary>
-        public Implementation Implementation { get; set; }
+        public Implementation Implementation { get; }
 
         private ImplementationLog(Guid id, string category, Guid ownerId, Guid implementationId)
         {

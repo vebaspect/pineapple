@@ -11,42 +11,42 @@ namespace Pineapple.Core.Domain.Entities
         /// <summary>
         /// Nazwa.
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; }
 
         /// <summary>
         /// Symbol.
         /// </summary>
-        public string Symbol { get; set; }
+        public string Symbol { get; }
 
         /// <summary>
         /// Opis.
         /// </summary>
-        public string Description { get; set; }
+        public string Description { get; }
 
         /// <summary>
         /// Identyfikator wdrożenia.
         /// </summary>
-        public Guid ImplementationId { get; set; }
+        public Guid ImplementationId { get; }
 
         /// <summary>
         /// Wdrożenie.
         /// </summary>
-        public Implementation Implementation { get; set; }
+        public Implementation Implementation { get; }
 
         /// <summary>
         /// Serwery.
         /// </summary>
-        public List<Server> Servers { get; set; }
+        public List<Server> Servers { get; }
 
         /// <summary>
         /// Identyfikator wdrożeniowca.
         /// </summary>
-        public Guid OperatorId { get; set; }
+        public Guid OperatorId { get; }
 
         /// <summary>
         /// Wdrożeniowiec.
         /// </summary>
-        public Operator Operator { get; set; }
+        public Operator Operator { get; }
 
         private Environment(Guid id, string name, string symbol, string description, Guid implementationId, Guid operatorId)
         {

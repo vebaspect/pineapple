@@ -10,12 +10,12 @@ namespace Pineapple.Core.Domain.Entities
         /// <summary>
         /// Identyfikator użytkownika.
         /// </summary>
-        public Guid UserId { get; set; }
+        public Guid UserId { get; }
 
         /// <summary>
         /// Użytkownik.
         /// </summary>
-        public User User { get; set; }
+        public User User { get; }
 
         private UserLog(Guid id, string category, Guid ownerId, Guid userId)
         {

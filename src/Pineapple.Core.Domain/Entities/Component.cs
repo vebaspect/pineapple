@@ -11,37 +11,37 @@ namespace Pineapple.Core.Domain.Entities
         /// <summary>
         /// Nazwa.
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; }
 
         /// <summary>
         /// Opis.
         /// </summary>
-        public string Description { get; set; }
+        public string Description { get; }
 
         /// <summary>
         /// Identyfikator produktu.
         /// </summary>
-        public Guid ProductId { get; set; }
+        public Guid ProductId { get; }
 
         /// <summary>
         /// Produkt.
         /// </summary>
-        public Product Product { get; set; }
+        public Product Product { get; }
 
         /// <summary>
         /// Identyfikator typu komponentu.
         /// </summary>
-        public Guid ComponentTypeId { get; set; }
+        public Guid ComponentTypeId { get; }
 
         /// <summary>
         /// Typ komponentu.
         /// </summary>
-        public ComponentType ComponentType { get; set; }
+        public ComponentType ComponentType { get; }
 
         /// <summary>
         /// Wersje komponentu.
         /// </summary>
-        public List<ComponentVersion> ComponentVersions { get; set; }
+        public List<ComponentVersion> ComponentVersions { get; }
 
         private Component(Guid id, string name, string description, Guid productId, Guid componentTypeId)
         {
