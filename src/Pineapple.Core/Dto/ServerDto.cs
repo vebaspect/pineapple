@@ -50,7 +50,7 @@ namespace Pineapple.Core.Dto
         /// <summary>
         /// Adres IP.
         /// </summary>
-        public string IPAddress { get; }
+        public string IpAddress { get; }
 
         public ServerDto(Guid id, DateTime modifiedDate, bool isDeleted, string name, string symbol, string description, Guid operatingSystemId, string operatingSystemName, string ipAddress)
         {
@@ -62,7 +62,7 @@ namespace Pineapple.Core.Dto
             Description = description;
             OperatingSystemId = operatingSystemId;
             OperatingSystemName = operatingSystemName;
-            IPAddress = ipAddress;
+            IpAddress = ipAddress;
         }
     }
 }

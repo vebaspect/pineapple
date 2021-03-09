@@ -46,7 +46,7 @@ namespace Pineapple.Core.Domain.Entities
         /// <summary>
         /// Adres IP.
         /// </summary>
-        public string IPAddress { get; set; }
+        public string IpAddress { get; set; }
 
         /// <summary>
         /// Wersje komponentów.
@@ -68,7 +68,7 @@ namespace Pineapple.Core.Domain.Entities
             Description = description;
             EnvironmentId = environmentId;
             OperatingSystemId = operatingSystemId;
-            IPAddress = ipAddress;
+            IpAddress = ipAddress;
         }
 
         /// <summary>

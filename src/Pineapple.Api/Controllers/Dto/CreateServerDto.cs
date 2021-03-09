@@ -30,6 +30,6 @@ namespace Pineapple.Api.Controllers.Dto
         /// <summary>
         /// Adres IP.
         /// </summary>
-        public string IPAddress { get; set; }
+        public string IpAddress { get; set; }
     }
 }

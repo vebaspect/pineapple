@@ -34,7 +34,7 @@ namespace Pineapple.Core.Commands
         /// <summary>
         /// Adres IP.
         /// </summary>
-        public string IPAddress { get; }
+        public string IpAddress { get; }
 
         public CreateServerCommand(Guid environmentId, string name, string symbol, string description, Guid operatingSystemId, string ipAddress)
         {
@@ -43,7 +43,7 @@ namespace Pineapple.Core.Commands
             Symbol = symbol;
             Description = description;
             OperatingSystemId = operatingSystemId;
-            IPAddress = ipAddress;
+            IpAddress = ipAddress;
         }
     }
 }

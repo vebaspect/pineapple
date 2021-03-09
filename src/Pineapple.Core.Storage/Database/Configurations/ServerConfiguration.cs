@@ -40,7 +40,7 @@ namespace Pineapple.Core.Storage.Database.Configurations
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
             builder
-                .Property(server => server.IPAddress)
+                .Property(server => server.IpAddress)
                 .HasMaxLength(100);
             builder
                 .HasMany(server => server.ComponentVersions)
