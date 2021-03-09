@@ -26,16 +26,7 @@ namespace Pineapple.Core.Handler
 
             var coordinatorId = Guid.NewGuid();
 
-            var coordinator = new Domain.Entities.Coordinator()
-            {
-                Id = coordinatorId,
-                ModifiedDate = DateTime.Now,
-                IsDeleted = false,
-                FullName = request.FullName,
-                Phone = request.Phone,
-                Email = request.Email,
-                ImplementationId = request.ImplementationId,
-            };
+            var coordinator = Domain.Entities.Coordinator.Create(coordinatorId, request.FullName, request.Phone, request.Email, request.ImplementationId);
 
             await databaseContext.Coordinators.AddAsync(coordinator).ConfigureAwait(false);
 

@@ -6,7 +6,7 @@ namespace Pineapple.Core.Domain.Entities
     /// <summary>
     /// Komponent.
     /// </summary>
-    public class Component : Entity
+    public sealed class Component : Entity
     {
         /// <summary>
         /// Nazwa.
@@ -42,5 +42,24 @@ namespace Pineapple.Core.Domain.Entities
         /// Wersje komponentu.
         /// </summary>
         public List<ComponentVersion> ComponentVersions { get; set; }
+
+        private Component(Guid id, string name, string description, Guid productId, Guid componentTypeId)
+        {
+            Id = id;
+            ModifiedDate = DateTime.Now;
+            IsDeleted = false;
+            Name = name;
+            Description = description;
+            ProductId = productId;
+            ComponentTypeId = componentTypeId;
+        }
+
+        /// <summary>
+        /// Stwórz komponent.
+        /// </summary>
+        public static Component Create(Guid id, string name, string description, Guid productId, Guid componentTypeId)
+        {
+            return new Component(id, name, description, productId, componentTypeId);
+        }
     }
 }

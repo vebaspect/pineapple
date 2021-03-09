@@ -6,7 +6,7 @@ namespace Pineapple.Core.Domain.Entities
     /// <summary>
     /// Środowisko.
     /// </summary>
-    public class Environment : Entity
+    public sealed class Environment : Entity
     {
         /// <summary>
         /// Nazwa.
@@ -47,5 +47,25 @@ namespace Pineapple.Core.Domain.Entities
         /// Wdrożeniowiec.
         /// </summary>
         public Operator Operator { get; set; }
+
+        private Environment(Guid id, string name, string symbol, string description, Guid implementationId, Guid operatorId)
+        {
+            Id = id;
+            ModifiedDate = DateTime.Now;
+            IsDeleted = false;
+            Name = name;
+            Symbol = symbol;
+            Description = description;
+            ImplementationId = implementationId;
+            OperatorId = operatorId;
+        }
+
+        /// <summary>
+        /// Stwórz środowisko.
+        /// </summary>
+        public static Environment Create(Guid id, string name, string symbol, string description, Guid implementationId, Guid operatorId)
+        {
+            return new Environment(id, name, symbol, description, implementationId, operatorId);
+        }
     }
 }

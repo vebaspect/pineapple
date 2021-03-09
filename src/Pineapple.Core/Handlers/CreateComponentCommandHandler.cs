@@ -26,16 +26,7 @@ namespace Pineapple.Core.Handler
 
             var componentId = Guid.NewGuid();
 
-            var component = new Domain.Entities.Component()
-            {
-                Id = componentId,
-                ModifiedDate = DateTime.Now,
-                IsDeleted = false,
-                Name = request.Name,
-                Description = request.Description,
-                ProductId = request.ProductId,
-                ComponentTypeId = request.ComponentTypeId,
-            };
+            var component = Domain.Entities.Component.Create(componentId, request.Name, request.Description, request.ProductId, request.ComponentTypeId);
 
             await databaseContext.Components.AddAsync(component).ConfigureAwait(false);
 

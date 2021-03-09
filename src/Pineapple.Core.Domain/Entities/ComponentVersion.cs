@@ -6,7 +6,7 @@ namespace Pineapple.Core.Domain.Entities
     /// <summary>
     /// Wersja komponentu.
     /// </summary>
-    public class ComponentVersion : Entity
+    public sealed class ComponentVersion : Entity
     {
         /// <summary>
         /// Major.
@@ -47,5 +47,26 @@ namespace Pineapple.Core.Domain.Entities
         /// Serwery.
         /// </summary>
         public List<Server> Servers { get; set; }
+
+        private ComponentVersion(Guid id, int major, int minor, int patch, string preRelease, string description, Guid componentId)
+        {
+            Id = id;
+            ModifiedDate = DateTime.Now;
+            IsDeleted = false;
+            Major = major;
+            Minor = minor;
+            Patch = patch;
+            PreRelease = preRelease;
+            Description = description;
+            ComponentId = componentId;
+        }
+
+        /// <summary>
+        /// Stwórz wersję komponentu.
+        /// </summary>
+        public static ComponentVersion Create(Guid id, int major, int minor, int patch, string preRelease, string description, Guid componentId)
+        {
+            return new ComponentVersion(id, major, minor, patch, preRelease, description, componentId);
+        }
     }
 }

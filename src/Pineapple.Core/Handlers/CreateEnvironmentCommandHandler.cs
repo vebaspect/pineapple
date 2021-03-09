@@ -26,17 +26,7 @@ namespace Pineapple.Core.Handler
 
             var environmentId = Guid.NewGuid();
 
-            var environment = new Domain.Entities.Environment()
-            {
-                Id = environmentId,
-                ModifiedDate = DateTime.Now,
-                IsDeleted = false,
-                Name = request.Name,
-                Symbol = request.Symbol,
-                Description = request.Description,
-                ImplementationId = request.ImplementationId,
-                OperatorId = request.OperatorId,
-            };
+            var environment = Domain.Entities.Environment.Create(environmentId, request.Name, request.Symbol, request.Description, request.ImplementationId, request.OperatorId);
 
             await databaseContext.Environments.AddAsync(environment).ConfigureAwait(false);
 

@@ -26,18 +26,7 @@ namespace Pineapple.Core.Handler
 
             var componentVersionId = Guid.NewGuid();
 
-            var componentVersion = new Domain.Entities.ComponentVersion()
-            {
-                Id = componentVersionId,
-                ModifiedDate = DateTime.Now,
-                IsDeleted = false,
-                Major = request.Major,
-                Minor = request.Minor,
-                Patch = request.Patch,
-                PreRelease = request.PreRelease,
-                Description = request.Description,
-                ComponentId = request.ComponentId
-            };
+            var componentVersion = Domain.Entities.ComponentVersion.Create(componentVersionId, request.Major, request.Minor, request.Patch, request.PreRelease, request.Description, request.ComponentId);
 
             await databaseContext.ComponentVersions.AddAsync(componentVersion).ConfigureAwait(false);
 
