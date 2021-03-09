@@ -6,7 +6,7 @@ namespace Pineapple.Core.Domain.Entities
     /// <summary>
     /// Serwer.
     /// </summary>
-    public class Server : Entity
+    public sealed class Server : Entity
     {
         /// <summary>
         /// Nazwa.
@@ -57,5 +57,26 @@ namespace Pineapple.Core.Domain.Entities
         /// Oprogramowanie.
         /// </summary>
         public List<SoftwareApplication> SoftwareApplications { get; set; }
+
+        private Server(Guid id, string name, string symbol, string description, Guid environmentId, Guid operatingSystemId, string ipAddress)
+        {
+            Id = id;
+            ModifiedDate = DateTime.Now;
+            IsDeleted = false;
+            Name = name;
+            Symbol = symbol;
+            Description = description;
+            EnvironmentId = environmentId;
+            OperatingSystemId = operatingSystemId;
+            IPAddress = ipAddress;
+        }
+
+        /// <summary>
+        /// Stwórz serwer.
+        /// </summary>
+        public static Server Create(Guid id, string name, string symbol, string description, Guid environmentId, Guid operatingSystemId, string ipAddress)
+        {
+            return new Server(id, name, symbol, description, environmentId, operatingSystemId, ipAddress);
+        }
     }
 }

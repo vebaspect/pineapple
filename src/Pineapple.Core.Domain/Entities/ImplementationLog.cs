@@ -5,7 +5,7 @@ namespace Pineapple.Core.Domain.Entities
     /// <summary>
     /// Log dotyczący wdrożenia.
     /// </summary>
-    public class ImplementationLog : Log
+    public sealed class ImplementationLog : Log
     {
         /// <summary>
         /// Identyfikator wdrożenia.
@@ -16,5 +16,23 @@ namespace Pineapple.Core.Domain.Entities
         /// Wdrożenie.
         /// </summary>
         public Implementation Implementation { get; set; }
+
+        private ImplementationLog(Guid id, string category, Guid ownerId, Guid implementationId)
+        {
+            Id = id;
+            ModifiedDate = DateTime.Now;
+            IsDeleted = false;
+            Category = category;
+            OwnerId = ownerId;
+            ImplementationId = implementationId;
+        }
+
+        /// <summary>
+        /// Stwórz log.
+        /// </summary>
+        public static ImplementationLog Create(Guid id, string category, Guid ownerId, Guid implementationId)
+        {
+            return new ImplementationLog(id, category, ownerId, implementationId);
+        }
     }
 }

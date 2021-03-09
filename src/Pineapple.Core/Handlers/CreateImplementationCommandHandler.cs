@@ -27,28 +27,13 @@ namespace Pineapple.Core.Handler
 
             var implementationId = Guid.NewGuid();
 
-            var implementation = new Domain.Entities.Implementation()
-            {
-                Id = implementationId,
-                ModifiedDate = DateTime.Now,
-                IsDeleted = false,
-                Name = request.Name,
-                Description = request.Description
-            };
+            var implementation = Domain.Entities.Implementation.Create(implementationId, request.Name, request.Description);
 
             await databaseContext.Implementations.AddAsync(implementation).ConfigureAwait(false);
 
             var implementationLogId = Guid.NewGuid();
 
-            var implementationLog = new Domain.Entities.ImplementationLog()
-            {
-                Id = implementationLogId,
-                ModifiedDate = DateTime.Now,
-                IsDeleted = false,
-                Category = AvailableLogCategories.AddEntity,
-                OwnerId = Guid.Parse("00000000-0000-0000-0000-000000000000"), // Mock!
-                ImplementationId = implementationId
-            };
+            var implementationLog = Domain.Entities.ImplementationLog.Create(implementationLogId, AvailableLogCategories.AddEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), implementationId); // Mock!
 
             await databaseContext.Logs.AddAsync(implementationLog).ConfigureAwait(false);
 

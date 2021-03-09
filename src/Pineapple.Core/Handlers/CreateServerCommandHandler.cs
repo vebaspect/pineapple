@@ -26,18 +26,7 @@ namespace Pineapple.Core.Handler
 
             var serverId = Guid.NewGuid();
 
-            var server = new Domain.Entities.Server()
-            {
-                Id = serverId,
-                ModifiedDate = DateTime.Now,
-                IsDeleted = false,
-                Name = request.Name,
-                Symbol = request.Symbol,
-                Description = request.Description,
-                EnvironmentId = request.EnvironmentId,
-                OperatingSystemId = request.OperatingSystemId,
-                IPAddress = request.IPAddress,
-            };
+            var server = Domain.Entities.Server.Create(serverId, request.Name, request.Symbol, request.Description, request.EnvironmentId, request.OperatingSystemId, request.IPAddress);
 
             await databaseContext.Servers.AddAsync(server).ConfigureAwait(false);
 

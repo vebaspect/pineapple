@@ -5,7 +5,7 @@ namespace Pineapple.Core.Domain.Entities
     /// <summary>
     /// Log dotyczący użytkownika.
     /// </summary>
-    public class UserLog : Log
+    public sealed class UserLog : Log
     {
         /// <summary>
         /// Identyfikator użytkownika.
@@ -16,5 +16,23 @@ namespace Pineapple.Core.Domain.Entities
         /// Użytkownik.
         /// </summary>
         public User User { get; set; }
+
+        private UserLog(Guid id, string category, Guid ownerId, Guid userId)
+        {
+            Id = id;
+            ModifiedDate = DateTime.Now;
+            IsDeleted = false;
+            Category = category;
+            OwnerId = ownerId;
+            UserId = userId;
+        }
+
+        /// <summary>
+        /// Stwórz log.
+        /// </summary>
+        public static UserLog Create(Guid id, string category, Guid ownerId, Guid userId)
+        {
+            return new UserLog(id, category, ownerId, userId);
+        }
     }
 }

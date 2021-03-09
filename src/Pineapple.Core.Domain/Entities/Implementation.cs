@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Pineapple.Core.Domain.Entities
@@ -5,7 +6,7 @@ namespace Pineapple.Core.Domain.Entities
     /// <summary>
     /// Wdrożenie.
     /// </summary>
-    public class Implementation : Entity
+    public sealed class Implementation : Entity
     {
         /// <summary>
         /// Nazwa.
@@ -31,5 +32,22 @@ namespace Pineapple.Core.Domain.Entities
         /// Logi dotyczące wdrożenia.
         /// </summary>
         public List<ImplementationLog> EntityLogs { get; set; }
+
+        private Implementation(Guid id, string name, string description)
+        {
+            Id = id;
+            ModifiedDate = DateTime.Now;
+            IsDeleted = false;
+            Name = name;
+            Description = description;
+        }
+
+        /// <summary>
+        /// Stwórz wdrożenie.
+        /// </summary>
+        public static Implementation Create(Guid id, string name, string description)
+        {
+            return new Implementation(id, name, description);
+        }
     }
 }
