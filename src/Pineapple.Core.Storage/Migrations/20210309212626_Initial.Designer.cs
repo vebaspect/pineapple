@@ -10,7 +10,7 @@ using Pineapple.Core.Storage.Database;
 namespace Pineapple.Core.Storage.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210307212315_Initial")]
+    [Migration("20210309212626_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -360,7 +360,7 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Property<Guid>("EnvironmentId")
                         .HasColumnType("uuid");
 
-                    b.Property<string>("IPAddress")
+                    b.Property<string>("IpAddress")
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 

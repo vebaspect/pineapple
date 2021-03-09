@@ -358,7 +358,7 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Property<Guid>("EnvironmentId")
                         .HasColumnType("uuid");
 
-                    b.Property<string>("IPAddress")
+                    b.Property<string>("IpAddress")
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
