@@ -11,22 +11,22 @@ namespace Pineapple.Core.Domain.Entities
         /// <summary>
         /// Nazwa.
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; }
 
         /// <summary>
         /// Opis.
         /// </summary>
-        public string Description { get; set; }
+        public string Description { get; }
 
         /// <summary>
         /// Komponenty.
         /// </summary>
-        public List<Component> Components { get; set; }
+        public List<Component> Components { get; }
 
         /// <summary>
         /// Logi dotyczące produktu.
         /// </summary>
-        public List<ProductLog> EntityLogs { get; set; }
+        public List<ProductLog> EntityLogs { get; }
 
         private Product(Guid id, string name, string description)
         {

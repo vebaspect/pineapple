@@ -10,12 +10,12 @@ namespace Pineapple.Core.Domain.Entities
         /// <summary>
         /// Identyfikator produktu.
         /// </summary>
-        public Guid ProductId { get; set; }
+        public Guid ProductId { get; }
 
         /// <summary>
         /// Produkt.
         /// </summary>
-        public Product Product { get; set; }
+        public Product Product { get; }
 
         private ProductLog(Guid id, string category, Guid ownerId, Guid productId)
         {
