@@ -1,12 +1,49 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+
+import Box from '@material-ui/core/Box';
+
+import Logs from './logs';
 
 const Implementation = () => {
   const { implementationId } = useParams();
 
+  // Flaga określająca, czy lista logów została pobrana z API.
+  const [isLogsFetched, setIsLogsFetched] = useState(false);
+  // Lista logów.
+  const [logs, setLogs] = useState([]);
+
+  useEffect(() => {
+    fetchLogs();
+  }, [implementationId]);
+
+  const fetchLogs = async () => {
+    await fetch(`${window['env'].API_URL}/logs/implementations/${implementationId}`)
+      .then(response => response.json())
+      .then(data => {
+        setIsLogsFetched(true);
+        setLogs(data);
+      });
+  };
+
   return (
     <>
-      Wdrożenie {implementationId}
+      <Box
+        fontSize="h6.fontSize"
+        m={2}
+        textAlign="center"
+      >
+        Wdrożenie
+      </Box>
+      <Box>
+        <Box>
+          Ostatnie aktywności:
+        </Box>
+        <Logs
+          isDataFetched={isLogsFetched}
+          data={logs}
+        />
+      </Box>
     </>
   );
 }
