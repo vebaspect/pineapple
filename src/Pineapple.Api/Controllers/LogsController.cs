@@ -34,5 +34,16 @@ namespace Pineapple.Api.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet]
+        [Route("products")]
+        public async Task<IActionResult> GetProductsLogs()
+        {
+            GetProductsLogsCommand command = new();
+            Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            LogDto[] result = await resultTask.ConfigureAwait(false);
+
+            return Ok(result);
+        }
     }
 }
