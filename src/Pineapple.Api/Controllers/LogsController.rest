@@ -1,12 +1,19 @@
 # Adres URL do API.
 @url = 
 
+# Identyfikator wdrożenia.
+@implementationId = 
+
 ### /logs
 GET {{url}}/logs
 Content-Type: application/json
 
 ### /logs/implementations
 GET {{url}}/logs/implementations
+Content-Type: application/json
+
+### /logs/implementations/{implementationId}
+GET {{url}}/logs/implementations/{{implementationId}}
 Content-Type: application/json
 
 ### /logs/products

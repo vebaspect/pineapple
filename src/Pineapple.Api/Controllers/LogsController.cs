@@ -47,6 +47,22 @@ namespace Pineapple.Api.Controllers
         }
 
         [HttpGet]
+        [Route("implementations/{implementationId}")]
+        public async Task<IActionResult> GetImplementationLogs(string implementationId)
+        {
+            if (implementationId is null || !Guid.TryParse(implementationId, out _))
+            {
+                return BadRequest("Implementation identifier has not been provided");
+            }
+
+            GetImplementationLogsCommand command = new(Guid.Parse(implementationId));
+            Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            LogDto[] result = await resultTask.ConfigureAwait(false);
+
+            return Ok(result);
+        }
+
+        [HttpGet]
         [Route("products")]
         public async Task<IActionResult> GetProductsLogs()
         {
