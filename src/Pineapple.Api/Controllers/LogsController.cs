@@ -72,5 +72,21 @@ namespace Pineapple.Api.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet]
+        [Route("products/{productId}")]
+        public async Task<IActionResult> GetProductLogs(string productId)
+        {
+            if (productId is null || !Guid.TryParse(productId, out _))
+            {
+                return BadRequest("Product identifier has not been provided");
+            }
+
+            GetProductLogsCommand command = new(Guid.Parse(productId));
+            Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            LogDto[] result = await resultTask.ConfigureAwait(false);
+
+            return Ok(result);
+        }
     }
 }
