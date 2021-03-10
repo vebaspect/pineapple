@@ -4,3 +4,11 @@
 ### /logs
 GET {{url}}/logs
 Content-Type: application/json
+
+### /logs/implementations
+GET {{url}}/logs/implementations
+Content-Type: application/json
+
+### /logs/products
+GET {{url}}/logs/products
+Content-Type: application/json
