@@ -51,6 +51,21 @@ namespace Pineapple.Api.Controllers
             return Created($"/products/{result}", null);
         }
 
+        [HttpDelete]
+        [Route("{productId}")]
+        public async Task<IActionResult> DeleteProduct(string productId)
+        {
+            if (productId is null || !Guid.TryParse(productId, out _))
+            {
+                return BadRequest("Product identifier has not been provided");
+            }
+
+            DeleteProductCommand command = new(Guid.Parse(productId));
+            await mediator.Send(command).ConfigureAwait(false);
+
+            return Ok();
+        }
+
         [HttpGet]
         [Route("{productId}")]
         public async Task<IActionResult> GetProduct(string productId)

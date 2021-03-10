@@ -75,6 +75,28 @@ const Text = ({ type, category, ownerFullName, entityName }: Props) => {
               .
             </>
           );
+        case LOG_CATEGORY__REMOVE_ENTITY:
+          return (
+            <>
+              Użytkownik
+              <Box
+                component="span"
+                color="text.secondary"
+                mx={0.5}
+              >
+                {`@${ownerFullName}`}
+              </Box>
+              usunął produkt
+              <Box
+                component="span"
+                color="info.main"
+                ml={0.5}
+              >
+                {entityName}
+              </Box>
+              .
+            </>
+          );
         default:
           return null;
       }
