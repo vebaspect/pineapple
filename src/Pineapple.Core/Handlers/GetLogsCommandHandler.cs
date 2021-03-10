@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
@@ -6,7 +7,6 @@ using Pineapple.Core.Dto;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 
 namespace Pineapple.Core.Handler
 {
