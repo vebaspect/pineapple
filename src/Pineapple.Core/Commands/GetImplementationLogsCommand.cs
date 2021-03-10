@@ -1,7 +1,7 @@
+using System;
 using System.Threading.Tasks;
 using Pineapple.Core.Dto;
 using MediatR;
-using System;
 
 namespace Pineapple.Core.Commands
 {
