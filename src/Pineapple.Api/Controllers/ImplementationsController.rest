@@ -24,6 +24,10 @@ Content-Type: application/json
 }
 
 ### /implementations/{implementationId}
+DELETE {{url}}/implementations/{{implementationId}}
+Content-Type: application/json
+
+### /implementations/{implementationId}
 GET {{url}}/implementations/{{implementationId}}
 Content-Type: application/json
 

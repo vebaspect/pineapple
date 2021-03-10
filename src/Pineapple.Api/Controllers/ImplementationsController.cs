@@ -51,6 +51,21 @@ namespace Pineapple.Api.Controllers
             return Created($"/implementations/{result}", null);
         }
 
+        [HttpDelete]
+        [Route("{implementationId}")]
+        public async Task<IActionResult> DeleteImplementation(string implementationId)
+        {
+            if (implementationId is null || !Guid.TryParse(implementationId, out _))
+            {
+                return BadRequest("Implementation identifier has not been provided");
+            }
+
+            DeleteImplementationCommand command = new(Guid.Parse(implementationId));
+            await mediator.Send(command).ConfigureAwait(false);
+
+            return Ok();
+        }
+
         [HttpGet]
         [Route("{implementationId}")]
         public async Task<IActionResult> GetImplementation(string implementationId)
