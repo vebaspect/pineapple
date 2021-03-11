@@ -36,6 +36,33 @@ namespace Pineapple.Api.Controllers
         }
 
         [HttpGet]
+        [Route("components")]
+        public async Task<IActionResult> GetComponentsLogs()
+        {
+            GetComponentsLogsCommand command = new();
+            Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            LogDto[] result = await resultTask.ConfigureAwait(false);
+
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("components/{componentId}")]
+        public async Task<IActionResult> GetComponentLogs(string componentId)
+        {
+            if (componentId is null || !Guid.TryParse(componentId, out _))
+            {
+                return BadRequest("Component identifier has not been provided");
+            }
+
+            GetComponentLogsCommand command = new(Guid.Parse(componentId));
+            Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            LogDto[] result = await resultTask.ConfigureAwait(false);
+
+            return Ok(result);
+        }
+
+        [HttpGet]
         [Route("implementations")]
         public async Task<IActionResult> GetImplementationsLogs()
         {

@@ -1,6 +1,8 @@
 # Adres URL do API.
 @url = 
 
+# Identyfikator komponentu.
+@componentId = 
 # Identyfikator wdrożenia.
 @implementationId = 
 # Identyfikator produktu.
@@ -8,6 +10,14 @@
 
 ### /logs
 GET {{url}}/logs
+Content-Type: application/json
+
+### /logs/components
+GET {{url}}/logs/components
+Content-Type: application/json
+
+### /logs/components/{componentId}
+GET {{url}}/logs/components/{{componentId}}
 Content-Type: application/json
 
 ### /logs/implementations
