@@ -53,11 +53,21 @@ namespace Pineapple.Core.Dto
         public string EntityName { get; }
 
         /// <summary>
+        /// Identyfikator encji nadrzędnej.
+        /// </summary>
+        public Guid? ParentEntityId { get; }
+
+        /// <summary>
+        /// Nazwa encji nadrzędnej.
+        /// </summary>
+        public string ParentEntityName { get; }
+
+        /// <summary>
         /// Opis.
         /// </summary>
         public string Description { get; }
 
-        public LogDto(Guid id, DateTime modifiedDate, bool isDeleted, string type, string category, Guid ownerId, string ownerFullName, Guid entityId, string entityName, string description)
+        public LogDto(Guid id, DateTime modifiedDate, bool isDeleted, string type, string category, Guid ownerId, string ownerFullName, Guid entityId, string entityName, Guid? parentEntityId, string parentEntityName, string description)
         {
             Id = id;
             ModifiedDate = modifiedDate;
@@ -68,6 +78,8 @@ namespace Pineapple.Core.Dto
             OwnerFullName = ownerFullName;
             EntityId = entityId;
             EntityName = entityName;
+            ParentEntityId = parentEntityId;
+            ParentEntityName = parentEntityName;
             Description = description;
         }
     }

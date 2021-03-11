@@ -33,6 +33,7 @@ namespace Pineapple.Core.Handler
                 .OfType<Domain.Entities.ComponentLog>()
                 .Include(log => log.Owner)
                 .Include(log => log.Component)
+                .ThenInclude(component => component.Product)
                 .OrderByDescending(log => log.ModifiedDate)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
@@ -98,6 +99,8 @@ namespace Pineapple.Core.Handler
                 componentLog.Owner.FullName,
                 componentLog.ComponentId,
                 componentLog.Component.Name,
+                componentLog.Component.ProductId,
+                componentLog.Component.Product.Name,
                 componentLog.Description
             );
         }
@@ -114,6 +117,8 @@ namespace Pineapple.Core.Handler
                 implementationLog.Owner.FullName,
                 implementationLog.ImplementationId,
                 implementationLog.Implementation.Name,
+                null,
+                null,
                 implementationLog.Description
             );
         }
@@ -130,6 +135,8 @@ namespace Pineapple.Core.Handler
                 productLog.Owner.FullName,
                 productLog.ProductId,
                 productLog.Product.Name,
+                null,
+                null,
                 productLog.Description
             );
         }
@@ -146,6 +153,8 @@ namespace Pineapple.Core.Handler
                 userLog.Owner.FullName,
                 userLog.UserId,
                 userLog.User.FullName,
+                null,
+                null,
                 userLog.Description
             );
         }

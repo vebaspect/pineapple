@@ -57,6 +57,8 @@ namespace Pineapple.Core.Handler
                 log.Owner.FullName,
                 log.ProductId,
                 log.Product.Name,
+                null,
+                null,
                 log.Description
             );
         }

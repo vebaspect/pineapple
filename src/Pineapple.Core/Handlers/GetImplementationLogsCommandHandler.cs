@@ -57,6 +57,8 @@ namespace Pineapple.Core.Handler
                 log.Owner.FullName,
                 log.ImplementationId,
                 log.Implementation.Name,
+                null,
+                null,
                 log.Description
             );
         }
