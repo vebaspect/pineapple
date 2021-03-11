@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
+using Pineapple.Core.Domain;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 
@@ -29,6 +30,12 @@ namespace Pineapple.Core.Handler
             var component = Domain.Entities.Component.Create(componentId, request.Name, request.Description, request.ProductId, request.ComponentTypeId);
 
             await databaseContext.Components.AddAsync(component).ConfigureAwait(false);
+
+            var componentLogId = Guid.NewGuid();
+
+            var componentLog = Domain.Entities.ComponentLog.Create(componentLogId, AvailableLogCategories.AddEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), componentId); // Mock!
+
+            await databaseContext.Logs.AddAsync(componentLog).ConfigureAwait(false);
 
             databaseContext.SaveChanges();
 
