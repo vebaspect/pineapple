@@ -78,6 +78,7 @@ namespace Pineapple.Core.Storage.Database
             modelBuilder
                 .ApplyConfiguration(new AdministratorConfiguration())
                 .ApplyConfiguration(new ComponentConfiguration())
+                .ApplyConfiguration(new ComponentLogConfiguration())
                 .ApplyConfiguration(new ComponentTypeConfiguration())
                 .ApplyConfiguration(new ComponentVersionConfiguration())
                 .ApplyConfiguration(new CoordinatorConfiguration())

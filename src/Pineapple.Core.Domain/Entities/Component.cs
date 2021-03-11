@@ -43,6 +43,11 @@ namespace Pineapple.Core.Domain.Entities
         /// </summary>
         public List<ComponentVersion> ComponentVersions { get; }
 
+        /// <summary>
+        /// Logi dotyczące komponentu.
+        /// </summary>
+        public List<ComponentLog> EntityLogs { get; }
+
         private Component(Guid id, string name, string description, Guid productId, Guid componentTypeId)
         {
             Id = id;
