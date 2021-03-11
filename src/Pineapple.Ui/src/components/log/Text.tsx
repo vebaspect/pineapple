@@ -20,9 +20,11 @@ interface Props {
   ownerFullName: string,
   // Nazwa encji.
   entityName: string,
+  // Nazwa encji nadrzędnej.
+  parentEntityName: string,
 };
 
-const Text = ({ type, category, ownerFullName, entityName }: Props) => {
+const Text = ({ type, category, ownerFullName, entityName, parentEntityName }: Props) => {
   switch (type) {
     case LOG_TYPE__COMPONENT: {
       switch (category) {
@@ -41,9 +43,17 @@ const Text = ({ type, category, ownerFullName, entityName }: Props) => {
               <Box
                 component="span"
                 color="info.main"
-                ml={0.5}
+                mx={0.5}
               >
                 {entityName}
+              </Box>
+              do produktu
+              <Box
+                component="span"
+                color="info.main"
+                ml={0.5}
+              >
+                {parentEntityName}
               </Box>
               .
             </>
@@ -63,9 +73,17 @@ const Text = ({ type, category, ownerFullName, entityName }: Props) => {
               <Box
                 component="span"
                 color="info.main"
-                ml={0.5}
+                mx={0.5}
               >
                 {entityName}
+              </Box>
+              z produktu
+              <Box
+                component="span"
+                color="info.main"
+                ml={0.5}
+              >
+                {parentEntityName}
               </Box>
               .
             </>

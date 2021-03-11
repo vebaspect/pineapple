@@ -20,9 +20,11 @@ interface Props {
   ownerFullName: string,
   // Nazwa encji.
   entityName: string,
+  // Nazwa encji nadrzędnej.
+  parentEntityName: string,
 };
 
-const Log = ({ modifiedDate, type, category, ownerFullName, entityName }: Props) => {
+const Log = ({ modifiedDate, type, category, ownerFullName, entityName, parentEntityName }: Props) => {
   return (
     <ListItem>
       <ListItemIcon>
@@ -38,6 +40,7 @@ const Log = ({ modifiedDate, type, category, ownerFullName, entityName }: Props)
             category={category}
             ownerFullName={ownerFullName}
             entityName={entityName}
+            parentEntityName={parentEntityName}
           />
         </Box>
         <Box

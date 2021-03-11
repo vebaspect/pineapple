@@ -23,6 +23,8 @@ interface Props {
     ownerFullName: string,
     // Nazwa encji.
     entityName: string,
+    // Nazwa encji nadrzędnej.
+    parentEntityName: string,
     // Opis.
     description: string,
   }[];
@@ -53,6 +55,7 @@ const Logs = ({ isDataFetched, data }: Props) => {
                 category={log.category}
                 ownerFullName={log.ownerFullName}
                 entityName={log.entityName}
+                parentEntityName={log.parentEntityName}
               />
             );
           })
