@@ -10,7 +10,7 @@ using Pineapple.Core.Storage.Database;
 namespace Pineapple.Core.Storage.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210309212921_Initial")]
+    [Migration("20210311213315_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -489,6 +489,18 @@ namespace Pineapple.Core.Storage.Migrations
                     b.ToTable("ServerSoftwareApplication");
                 });
 
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.ComponentLog", b =>
+                {
+                    b.HasBaseType("Pineapple.Core.Domain.Entities.Log");
+
+                    b.Property<Guid>("ComponentId")
+                        .HasColumnType("uuid");
+
+                    b.HasIndex("ComponentId");
+
+                    b.HasDiscriminator().HasValue("ComponentLog");
+                });
+
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.ImplementationLog", b =>
                 {
                     b.HasBaseType("Pineapple.Core.Domain.Entities.Log");
@@ -673,6 +685,17 @@ namespace Pineapple.Core.Storage.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.ComponentLog", b =>
+                {
+                    b.HasOne("Pineapple.Core.Domain.Entities.Component", "Component")
+                        .WithMany("EntityLogs")
+                        .HasForeignKey("ComponentId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Component");
+                });
+
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.ImplementationLog", b =>
                 {
                     b.HasOne("Pineapple.Core.Domain.Entities.Implementation", "Implementation")
@@ -709,6 +732,8 @@ namespace Pineapple.Core.Storage.Migrations
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Component", b =>
                 {
                     b.Navigation("ComponentVersions");
+
+                    b.Navigation("EntityLogs");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.ComponentType", b =>
