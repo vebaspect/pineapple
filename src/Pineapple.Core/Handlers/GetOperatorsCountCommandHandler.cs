@@ -29,6 +29,7 @@ namespace Pineapple.Core.Handler
             var operatorsCount = await databaseContext
                 .Users
                 .OfType<Domain.Entities.Operator>()
+                .Where(@operator => !@operator.IsDeleted)
                 .CountAsync()
                 .ConfigureAwait(false);
 

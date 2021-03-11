@@ -29,6 +29,7 @@ namespace Pineapple.Core.Handler
             var developersCount = await databaseContext
                 .Users
                 .OfType<Domain.Entities.Developer>()
+                .Where(developer => !developer.IsDeleted)
                 .CountAsync()
                 .ConfigureAwait(false);
 

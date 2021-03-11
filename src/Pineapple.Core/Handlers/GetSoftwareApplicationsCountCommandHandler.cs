@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Storage.Database;
@@ -27,6 +28,7 @@ namespace Pineapple.Core.Handler
 
             var softwareApplicationsCount = await databaseContext
                 .SoftwareApplications
+                .Where(softwareApplication => !softwareApplication.IsDeleted)
                 .CountAsync()
                 .ConfigureAwait(false);
 

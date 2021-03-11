@@ -29,6 +29,7 @@ namespace Pineapple.Core.Handler
             var managersCount = await databaseContext
                 .Users
                 .OfType<Domain.Entities.Manager>()
+                .Where(manager => !manager.IsDeleted)
                 .CountAsync()
                 .ConfigureAwait(false);
 
