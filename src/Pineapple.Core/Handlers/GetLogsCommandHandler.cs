@@ -28,6 +28,15 @@ namespace Pineapple.Core.Handler
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
 
+            var componentLogs = await databaseContext
+                .Logs
+                .OfType<Domain.Entities.ComponentLog>()
+                .Include(log => log.Owner)
+                .Include(log => log.Component)
+                .OrderByDescending(log => log.ModifiedDate)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
+
             var implementationLogs = await databaseContext
                 .Logs
                 .OfType<Domain.Entities.ImplementationLog>()
@@ -57,6 +66,10 @@ namespace Pineapple.Core.Handler
 
             var logs = new List<LogDto>();
 
+            if (componentLogs?.Length > 0)
+            {
+                logs.AddRange(componentLogs.Select(componentLog => Map(componentLog)));
+            }
             if (implementationLogs?.Length > 0)
             {
                 logs.AddRange(implementationLogs.Select(implementationLog => Map(implementationLog)));
@@ -71,6 +84,22 @@ namespace Pineapple.Core.Handler
             }
 
             return logs.ToArray();
+        }
+
+        private static LogDto Map(Domain.Entities.ComponentLog componentLog)
+        {
+            return new LogDto(
+                componentLog.Id,
+                componentLog.ModifiedDate,
+                componentLog.IsDeleted,
+                componentLog.Type,
+                componentLog.Category,
+                componentLog.OwnerId,
+                componentLog.Owner.FullName,
+                componentLog.ComponentId,
+                componentLog.Component.Name,
+                componentLog.Description
+            );
         }
 
         private static LogDto Map(Domain.Entities.ImplementationLog implementationLog)
