@@ -1,3 +1,5 @@
+// Typ logu: log dotyczący komponentu.
+export const LOG_TYPE__COMPONENT = 'ComponentLog';
 // Typ logu: log dotyczący wdrożenia.
 export const LOG_TYPE__IMPLEMENTATION = 'ImplementationLog';
 // Typ logu: log dotyczący produktu.

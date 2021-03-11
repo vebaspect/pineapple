@@ -3,6 +3,7 @@ import React from 'react';
 import Box from '@material-ui/core/Box';
 
 import {
+  LOG_TYPE__COMPONENT,
   LOG_TYPE__IMPLEMENTATION,
   LOG_TYPE__PRODUCT,
   LOG_TYPE__USER,
@@ -23,6 +24,56 @@ interface Props {
 
 const Text = ({ type, category, ownerFullName, entityName }: Props) => {
   switch (type) {
+    case LOG_TYPE__COMPONENT: {
+      switch (category) {
+        case LOG_CATEGORY__ADD_ENTITY:
+          return (
+            <>
+              Użytkownik
+              <Box
+                component="span"
+                color="text.secondary"
+                mx={0.5}
+              >
+                {`@${ownerFullName}`}
+              </Box>
+              dodał komponent
+              <Box
+                component="span"
+                color="info.main"
+                ml={0.5}
+              >
+                {entityName}
+              </Box>
+              .
+            </>
+          );
+        case LOG_CATEGORY__REMOVE_ENTITY:
+          return (
+            <>
+              Użytkownik
+              <Box
+                component="span"
+                color="text.secondary"
+                mx={0.5}
+              >
+                {`@${ownerFullName}`}
+              </Box>
+              usunął komponent
+              <Box
+                component="span"
+                color="info.main"
+                ml={0.5}
+              >
+                {entityName}
+              </Box>
+              .
+            </>
+          );
+        default:
+          return null;
+      }
+    }
     case LOG_TYPE__IMPLEMENTATION: {
       switch (category) {
         case LOG_CATEGORY__ADD_ENTITY:
