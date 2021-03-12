@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
@@ -27,7 +28,17 @@ namespace Pineapple.Core.Handler
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
 
-            var logs = await databaseContext
+            var componentLogs = await databaseContext
+                .Logs
+                .OfType<Domain.Entities.ComponentLog>()
+                .Include(log => log.Owner)
+                .Include(log => log.Component)
+                .ThenInclude(component => component.Product)
+                .OrderByDescending(log => log.ModifiedDate)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
+
+            var productLogs = await databaseContext
                 .Logs
                 .OfType<Domain.Entities.ProductLog>()
                 .Include(log => log.Owner)
@@ -36,29 +47,53 @@ namespace Pineapple.Core.Handler
                 .ToArrayAsync()
                 .ConfigureAwait(false);
 
-            if (logs?.Length > 0)
+            var logs = new List<LogDto>();
+
+            if (componentLogs?.Length > 0)
             {
-                return logs.Select(log => Map(log)).ToArray();
+                logs.AddRange(componentLogs.Select(componentLog => Map(componentLog)));
+            }
+            if (productLogs?.Length > 0)
+            {
+                logs.AddRange(productLogs.Select(productLog => Map(productLog)));
             }
 
-            return Enumerable.Empty<LogDto>().ToArray();
+            return logs.ToArray();
         }
 
-        private static LogDto Map(Domain.Entities.ProductLog log)
+        private static LogDto Map(Domain.Entities.ComponentLog componentLog)
         {
             return new LogDto(
-                log.Id,
-                log.ModifiedDate,
-                log.IsDeleted,
-                log.Type,
-                log.Category,
-                log.OwnerId,
-                log.Owner.FullName,
-                log.ProductId,
-                log.Product.Name,
+                componentLog.Id,
+                componentLog.ModifiedDate,
+                componentLog.IsDeleted,
+                componentLog.Type,
+                componentLog.Category,
+                componentLog.OwnerId,
+                componentLog.Owner.FullName,
+                componentLog.ComponentId,
+                componentLog.Component.Name,
+                componentLog.Component.ProductId,
+                componentLog.Component.Product.Name,
+                componentLog.Description
+            );
+        }
+
+        private static LogDto Map(Domain.Entities.ProductLog productLog)
+        {
+            return new LogDto(
+                productLog.Id,
+                productLog.ModifiedDate,
+                productLog.IsDeleted,
+                productLog.Type,
+                productLog.Category,
+                productLog.OwnerId,
+                productLog.Owner.FullName,
+                productLog.ProductId,
+                productLog.Product.Name,
                 null,
                 null,
-                log.Description
+                productLog.Description
             );
         }
     }
