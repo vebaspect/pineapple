@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Dto;
+using Pineapple.Core.Mappers;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -51,52 +52,16 @@ namespace Pineapple.Core.Handler
 
             if (componentLogs?.Length > 0)
             {
-                logs.AddRange(componentLogs.Select(componentLog => Map(componentLog)));
+                logs.AddRange(componentLogs.Select(componentLog => componentLog.ToDto()));
             }
             if (productLogs?.Length > 0)
             {
-                logs.AddRange(productLogs.Select(productLog => Map(productLog)));
+                logs.AddRange(productLogs.Select(productLog => productLog.ToDto()));
             }
 
             return logs
                 .OrderByDescending(log => log.ModifiedDate)
                 .ToArray();
-        }
-
-        private static LogDto Map(Domain.Entities.ComponentLog componentLog)
-        {
-            return new LogDto(
-                componentLog.Id,
-                componentLog.ModifiedDate,
-                componentLog.IsDeleted,
-                componentLog.Type,
-                componentLog.Category,
-                componentLog.OwnerId,
-                componentLog.Owner.FullName,
-                componentLog.ComponentId,
-                componentLog.Component.Name,
-                componentLog.Component.ProductId,
-                componentLog.Component.Product.Name,
-                componentLog.Description
-            );
-        }
-
-        private static LogDto Map(Domain.Entities.ProductLog productLog)
-        {
-            return new LogDto(
-                productLog.Id,
-                productLog.ModifiedDate,
-                productLog.IsDeleted,
-                productLog.Type,
-                productLog.Category,
-                productLog.OwnerId,
-                productLog.Owner.FullName,
-                productLog.ProductId,
-                productLog.Product.Name,
-                null,
-                null,
-                productLog.Description
-            );
         }
     }
 }

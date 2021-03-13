@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Dto;
+using Pineapple.Core.Mappers;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -40,28 +41,10 @@ namespace Pineapple.Core.Handler
 
             if (logs?.Length > 0)
             {
-                return logs.Select(log => Map(log)).ToArray();
+                return logs.Select(log => log.ToDto()).ToArray();
             }
 
             return Enumerable.Empty<LogDto>().ToArray();
-        }
-
-        private static LogDto Map(Domain.Entities.ComponentLog log)
-        {
-            return new LogDto(
-                log.Id,
-                log.ModifiedDate,
-                log.IsDeleted,
-                log.Type,
-                log.Category,
-                log.OwnerId,
-                log.Owner.FullName,
-                log.ComponentId,
-                log.Component.Name,
-                log.Component.ProductId,
-                log.Component.Product.Name,
-                log.Description
-            );
         }
     }
 }

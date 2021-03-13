@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Dto;
+using Pineapple.Core.Mappers;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -65,96 +66,24 @@ namespace Pineapple.Core.Handler
 
             if (componentLogs?.Length > 0)
             {
-                logs.AddRange(componentLogs.Select(componentLog => Map(componentLog)));
+                logs.AddRange(componentLogs.Select(componentLog => componentLog.ToDto()));
             }
             if (implementationLogs?.Length > 0)
             {
-                logs.AddRange(implementationLogs.Select(implementationLog => Map(implementationLog)));
+                logs.AddRange(implementationLogs.Select(implementationLog => implementationLog.ToDto()));
             }
             if (productLogs?.Length > 0)
             {
-                logs.AddRange(productLogs.Select(productLog => Map(productLog)));
+                logs.AddRange(productLogs.Select(productLog => productLog.ToDto()));
             }
             if (userLogs?.Length > 0)
             {
-                logs.AddRange(userLogs.Select(userLog => Map(userLog)));
+                logs.AddRange(userLogs.Select(userLog => userLog.ToDto()));
             }
 
             return logs
                 .OrderByDescending(log => log.ModifiedDate)
                 .ToArray();
-        }
-
-        private static LogDto Map(Domain.Entities.ComponentLog componentLog)
-        {
-            return new LogDto(
-                componentLog.Id,
-                componentLog.ModifiedDate,
-                componentLog.IsDeleted,
-                componentLog.Type,
-                componentLog.Category,
-                componentLog.OwnerId,
-                componentLog.Owner.FullName,
-                componentLog.ComponentId,
-                componentLog.Component.Name,
-                componentLog.Component.ProductId,
-                componentLog.Component.Product.Name,
-                componentLog.Description
-            );
-        }
-
-        private static LogDto Map(Domain.Entities.ImplementationLog implementationLog)
-        {
-            return new LogDto(
-                implementationLog.Id,
-                implementationLog.ModifiedDate,
-                implementationLog.IsDeleted,
-                implementationLog.Type,
-                implementationLog.Category,
-                implementationLog.OwnerId,
-                implementationLog.Owner.FullName,
-                implementationLog.ImplementationId,
-                implementationLog.Implementation.Name,
-                null,
-                null,
-                implementationLog.Description
-            );
-        }
-
-        private static LogDto Map(Domain.Entities.ProductLog productLog)
-        {
-            return new LogDto(
-                productLog.Id,
-                productLog.ModifiedDate,
-                productLog.IsDeleted,
-                productLog.Type,
-                productLog.Category,
-                productLog.OwnerId,
-                productLog.Owner.FullName,
-                productLog.ProductId,
-                productLog.Product.Name,
-                null,
-                null,
-                productLog.Description
-            );
-        }
-
-        private static LogDto Map(Domain.Entities.UserLog userLog)
-        {
-            return new LogDto(
-                userLog.Id,
-                userLog.ModifiedDate,
-                userLog.IsDeleted,
-                userLog.Type,
-                userLog.Category,
-                userLog.OwnerId,
-                userLog.Owner.FullName,
-                userLog.UserId,
-                userLog.User.FullName,
-                null,
-                null,
-                userLog.Description
-            );
         }
     }
 }

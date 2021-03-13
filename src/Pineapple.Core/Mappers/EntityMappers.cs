@@ -83,6 +83,78 @@ namespace Pineapple.Core.Mappers
             );
         }
 
+        public static LogDto ToDto(this Domain.Entities.ComponentLog log)
+        {
+            return new LogDto(
+                log.Id,
+                log.ModifiedDate,
+                log.IsDeleted,
+                log.Type,
+                log.Category,
+                log.OwnerId,
+                log.Owner.FullName,
+                log.ComponentId,
+                log.Component.Name,
+                log.Component.ProductId,
+                log.Component.Product.Name,
+                log.Description
+            );
+        }
+
+        public static LogDto ToDto(this Domain.Entities.ImplementationLog log)
+        {
+            return new LogDto(
+                log.Id,
+                log.ModifiedDate,
+                log.IsDeleted,
+                log.Type,
+                log.Category,
+                log.OwnerId,
+                log.Owner.FullName,
+                log.ImplementationId,
+                log.Implementation.Name,
+                null,
+                null,
+                log.Description
+            );
+        }
+
+        public static LogDto ToDto(this Domain.Entities.ProductLog productLog)
+        {
+            return new LogDto(
+                productLog.Id,
+                productLog.ModifiedDate,
+                productLog.IsDeleted,
+                productLog.Type,
+                productLog.Category,
+                productLog.OwnerId,
+                productLog.Owner.FullName,
+                productLog.ProductId,
+                productLog.Product.Name,
+                null,
+                null,
+                productLog.Description
+            );
+        }
+
+        public static LogDto ToDto(this Domain.Entities.UserLog userLog)
+        {
+            return new LogDto(
+                userLog.Id,
+                userLog.ModifiedDate,
+                userLog.IsDeleted,
+                userLog.Type,
+                userLog.Category,
+                userLog.OwnerId,
+                userLog.Owner.FullName,
+                userLog.UserId,
+                userLog.User.FullName,
+                null,
+                null,
+                userLog.Description
+            );
+        }
+
         public static OperatingSystemDto ToDto(this Domain.Entities.OperatingSystem operatingSystem)
         {
             return new OperatingSystemDto(
