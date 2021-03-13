@@ -32,9 +32,13 @@ const Configuration = ({ isComponentTypesCountFetched, componentTypesCount, isOp
   // Flaga określająca, czy konfiguracja jest rozwinięta.
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const onHeaderClick = () => {
-    setIsExpanded(!isExpanded);
-  };
+  const onExpandLessButtonClick = () => {
+    setIsExpanded(false);
+  }
+
+  const onExpandMoreButtonClick = () => {
+    setIsExpanded(true);
+  }
 
   if (!isComponentTypesCountFetched && !isOperatingSystemsCountFetched && !isSoftwareApplicationsCountFetched) {
     return (
@@ -52,7 +56,7 @@ const Configuration = ({ isComponentTypesCountFetched, componentTypesCount, isOp
 
   return (
     <>
-      <ListItem button onClick={onHeaderClick}>
+      <ListItem button>
         <ListItemIcon>
           <SettingsIcon color="primary" />
         </ListItemIcon>
@@ -64,7 +68,7 @@ const Configuration = ({ isComponentTypesCountFetched, componentTypesCount, isOp
             Konfiguracja
           </Link>
         </ListItemText>
-        {isExpanded ? <ExpandLess /> : <ExpandMore />}
+        {isExpanded ? <ExpandLess onClick={onExpandLessButtonClick} /> : <ExpandMore onClick={onExpandMoreButtonClick} />}
       </ListItem>
       <Collapse
         in={isExpanded}

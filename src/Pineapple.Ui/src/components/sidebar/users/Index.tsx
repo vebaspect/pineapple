@@ -36,9 +36,13 @@ const Users = ({ isDevelopersCountFetched, developersCount, isOperatorsCountFetc
   // Flaga określająca, czy konfiguracja jest rozwinięta.
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const onHeaderClick = () => {
-    setIsExpanded(!isExpanded);
-  };
+  const onExpandLessButtonClick = () => {
+    setIsExpanded(false);
+  }
+
+  const onExpandMoreButtonClick = () => {
+    setIsExpanded(true);
+  }
 
   if (!isDevelopersCountFetched && !isOperatorsCountFetched && !isManagersCountFetched && !isAdministratorsCountFetched) {
     return (
@@ -56,7 +60,7 @@ const Users = ({ isDevelopersCountFetched, developersCount, isOperatorsCountFetc
 
   return (
     <>
-      <ListItem button onClick={onHeaderClick}>
+      <ListItem button>
         <ListItemIcon>
           <SupervisorAccountIcon color="primary" />
         </ListItemIcon>
@@ -68,7 +72,7 @@ const Users = ({ isDevelopersCountFetched, developersCount, isOperatorsCountFetc
             Użytkownicy ({developersCount + operatorsCount + managersCount + administratorsCount})
           </Link>
         </ListItemText>
-        {isExpanded ? <ExpandLess /> : <ExpandMore />}
+        {isExpanded ? <ExpandLess onClick={onExpandLessButtonClick} /> : <ExpandMore onClick={onExpandMoreButtonClick} />}
       </ListItem>
       <Collapse
         in={isExpanded}

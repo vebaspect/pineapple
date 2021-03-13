@@ -32,9 +32,13 @@ const Implementations = ({ isDataFetched, data }: Props) => {
   // Flaga określająca, czy lista produktów jest rozwinięta.
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const onHeaderClick = () => {
-    setIsExpanded(!isExpanded);
-  };
+  const onExpandLessButtonClick = () => {
+    setIsExpanded(false);
+  }
+
+  const onExpandMoreButtonClick = () => {
+    setIsExpanded(true);
+  }
 
   if (!isDataFetched) {
     return (
@@ -52,7 +56,7 @@ const Implementations = ({ isDataFetched, data }: Props) => {
 
   return (
     <>
-      <ListItem button onClick={onHeaderClick}>
+      <ListItem button>
         <ListItemIcon>
           <PowerIcon color="primary" />
         </ListItemIcon>
@@ -64,7 +68,7 @@ const Implementations = ({ isDataFetched, data }: Props) => {
             Wdrożenia ({data.length})
           </Link>
         </ListItemText>
-        {isExpanded ? <ExpandLess /> : <ExpandMore />}
+        {isExpanded ? <ExpandLess onClick={onExpandLessButtonClick} /> : <ExpandMore onClick={onExpandMoreButtonClick} />}
       </ListItem>
       <Collapse
         in={isExpanded}
