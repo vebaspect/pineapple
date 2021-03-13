@@ -2,10 +2,11 @@ using System;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Dto;
+using Pineapple.Core.Exceptions;
+using Pineapple.Core.Mappers;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Pineapple.Core.Exceptions;
 
 namespace Pineapple.Core.Handler
 {
@@ -37,21 +38,7 @@ namespace Pineapple.Core.Handler
                 throw new UserNotFoundException($"User {request.UserId} has not been found");
             }
 
-            return Map(user);
-        }
-
-        private static UserDto Map(Domain.Entities.User user)
-        {
-            return new UserDto(
-                user.Id,
-                user.ModifiedDate,
-                user.IsDeleted,
-                user.Type,
-                user.FullName,
-                user.Login,
-                user.Phone,
-                user.Email
-            );
+            return user.ToDto();
         }
     }
 }

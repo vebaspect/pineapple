@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Dto;
+using Pineapple.Core.Mappers;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -35,24 +36,10 @@ namespace Pineapple.Core.Handler
 
             if (administrators?.Length > 0)
             {
-                return administrators.Select(administrator => Map(administrator)).ToArray();
+                return administrators.Select(administrator => administrator.ToDto()).ToArray();
             }
 
             return Enumerable.Empty<UserDto>().ToArray();
-        }
-
-        private static UserDto Map(Domain.Entities.User administrator)
-        {
-            return new UserDto(
-                administrator.Id,
-                administrator.ModifiedDate,
-                administrator.IsDeleted,
-                administrator.Type,
-                administrator.FullName,
-                administrator.Login,
-                administrator.Phone,
-                administrator.Email
-            );
         }
     }
 }
