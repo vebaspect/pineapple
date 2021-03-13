@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Dto;
+using Pineapple.Core.Mappers;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -34,22 +35,10 @@ namespace Pineapple.Core.Handler
 
             if (componentTypes?.Length > 0)
             {
-                return componentTypes.Select(componentType => Map(componentType)).ToArray();
+                return componentTypes.Select(componentType => componentType.ToDto()).ToArray();
             }
 
             return Enumerable.Empty<ComponentTypeDto>().ToArray();
-        }
-
-        private static ComponentTypeDto Map(Domain.Entities.ComponentType componentType)
-        {
-            return new ComponentTypeDto(
-                componentType.Id,
-                componentType.ModifiedDate,
-                componentType.IsDeleted,
-                componentType.Name,
-                componentType.Symbol,
-                componentType.Description
-            );
         }
     }
 }

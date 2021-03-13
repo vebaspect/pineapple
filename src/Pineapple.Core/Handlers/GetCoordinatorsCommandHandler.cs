@@ -3,10 +3,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Dto;
+using Pineapple.Core.Exceptions;
+using Pineapple.Core.Mappers;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Pineapple.Core.Exceptions;
 
 namespace Pineapple.Core.Handler
 {
@@ -41,22 +42,10 @@ namespace Pineapple.Core.Handler
 
             if (implementation.Coordinators?.Count > 0)
             {
-                return implementation.Coordinators.Select(coordinator => Map(coordinator)).ToArray();
+                return implementation.Coordinators.Select(coordinator => coordinator.ToDto()).ToArray();
             }
 
             return Enumerable.Empty<CoordinatorDto>().ToArray();
-        }
-
-        private static CoordinatorDto Map(Domain.Entities.Coordinator coordinator)
-        {
-            return new CoordinatorDto(
-                coordinator.Id,
-                coordinator.ModifiedDate,
-                coordinator.IsDeleted,
-                coordinator.FullName,
-                coordinator.Phone,
-                coordinator.Email
-            );
         }
     }
 }

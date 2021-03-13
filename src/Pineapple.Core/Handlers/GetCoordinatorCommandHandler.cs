@@ -3,10 +3,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Dto;
+using Pineapple.Core.Exceptions;
+using Pineapple.Core.Mappers;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Pineapple.Core.Exceptions;
 
 namespace Pineapple.Core.Handler
 {
@@ -48,19 +49,7 @@ namespace Pineapple.Core.Handler
                 throw new CoordinatorNotFoundException($"Coordinator {request.CoordinatorId} has not been found");
             }
 
-            return Map(coordinator);
-        }
-
-        private static CoordinatorDto Map(Domain.Entities.Coordinator coordinator)
-        {
-            return new CoordinatorDto(
-                coordinator.Id,
-                coordinator.ModifiedDate,
-                coordinator.IsDeleted,
-                coordinator.FullName,
-                coordinator.Phone,
-                coordinator.Email
-            );
+            return coordinator.ToDto();
         }
     }
 }

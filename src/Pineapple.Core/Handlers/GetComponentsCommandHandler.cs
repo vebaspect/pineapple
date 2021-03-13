@@ -3,10 +3,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Dto;
+using Pineapple.Core.Exceptions;
+using Pineapple.Core.Mappers;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Pineapple.Core.Exceptions;
 
 namespace Pineapple.Core.Handler
 {
@@ -42,23 +43,10 @@ namespace Pineapple.Core.Handler
 
             if (product.Components?.Count > 0)
             {
-                return product.Components.Select(component => Map(component)).ToArray();
+                return product.Components.Select(component => component.ToDto()).ToArray();
             }
 
             return Enumerable.Empty<ComponentDto>().ToArray();
-        }
-
-        private static ComponentDto Map(Domain.Entities.Component component)
-        {
-            return new ComponentDto(
-                component.Id,
-                component.ModifiedDate,
-                component.IsDeleted,
-                component.Name,
-                component.Description,
-                component.ComponentTypeId,
-                component.ComponentType.Name
-            );
         }
     }
 }

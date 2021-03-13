@@ -2,10 +2,11 @@ using System;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Dto;
+using Pineapple.Core.Exceptions;
+using Pineapple.Core.Mappers;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Pineapple.Core.Exceptions;
 
 namespace Pineapple.Core.Handler
 {
@@ -37,19 +38,7 @@ namespace Pineapple.Core.Handler
                 throw new ComponentTypeNotFoundException($"ComponentType {request.ComponentTypeId} has not been found");
             }
 
-            return Map(componentType);
-        }
-
-        private static ComponentTypeDto Map(Domain.Entities.ComponentType componentType)
-        {
-            return new ComponentTypeDto(
-                componentType.Id,
-                componentType.ModifiedDate,
-                componentType.IsDeleted,
-                componentType.Name,
-                componentType.Symbol,
-                componentType.Description
-            );
+            return componentType.ToDto();
         }
     }
 }

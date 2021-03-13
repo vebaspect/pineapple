@@ -3,10 +3,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Dto;
+using Pineapple.Core.Exceptions;
+using Pineapple.Core.Mappers;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Pineapple.Core.Exceptions;
 
 namespace Pineapple.Core.Handler
 {
@@ -58,21 +59,7 @@ namespace Pineapple.Core.Handler
                 throw new ComponentVersionNotFoundException($"ComponentVersion {request.ComponentVersionId} has not been found");
             }
 
-            return Map(componentVersion);
-        }
-
-        private static ComponentVersionDto Map(Domain.Entities.ComponentVersion componentVersion)
-        {
-            return new ComponentVersionDto(
-                componentVersion.Id,
-                componentVersion.ModifiedDate,
-                componentVersion.IsDeleted,
-                componentVersion.Major,
-                componentVersion.Minor,
-                componentVersion.Patch,
-                componentVersion.PreRelease,
-                componentVersion.Description
-            );
+            return componentVersion.ToDto();
         }
     }
 }
