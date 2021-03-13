@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Dto;
+using Pineapple.Core.Mappers;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -34,21 +35,10 @@ namespace Pineapple.Core.Handler
 
             if (products?.Length > 0)
             {
-                return products.Select(product => Map(product)).ToArray();
+                return products.Select(product => product.ToDto()).ToArray();
             }
 
             return Enumerable.Empty<ProductDto>().ToArray();
-        }
-
-        private static ProductDto Map(Domain.Entities.Product product)
-        {
-            return new ProductDto(
-                product.Id,
-                product.ModifiedDate,
-                product.IsDeleted,
-                product.Name,
-                product.Description
-            );
         }
     }
 }

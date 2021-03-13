@@ -2,10 +2,11 @@ using System;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Dto;
+using Pineapple.Core.Exceptions;
+using Pineapple.Core.Mappers;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Pineapple.Core.Exceptions;
 
 namespace Pineapple.Core.Handler
 {
@@ -37,19 +38,7 @@ namespace Pineapple.Core.Handler
                 throw new OperatingSystemNotFoundException($"OperatingSystem {request.OperatingSystemId} has not been found");
             }
 
-            return Map(operatingSystem);
-        }
-
-        private static OperatingSystemDto Map(Domain.Entities.OperatingSystem operatingSystem)
-        {
-            return new OperatingSystemDto(
-                operatingSystem.Id,
-                operatingSystem.ModifiedDate,
-                operatingSystem.IsDeleted,
-                operatingSystem.Name,
-                operatingSystem.Symbol,
-                operatingSystem.Description
-            );
+            return operatingSystem.ToDto();
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Dto;
+using Pineapple.Core.Mappers;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -34,21 +35,10 @@ namespace Pineapple.Core.Handler
 
             if (implementations?.Length > 0)
             {
-                return implementations.Select(implementation => Map(implementation)).ToArray();
+                return implementations.Select(implementation => implementation.ToDto()).ToArray();
             }
 
             return Enumerable.Empty<ImplementationDto>().ToArray();
-        }
-
-        private static ImplementationDto Map(Domain.Entities.Implementation implementation)
-        {
-            return new ImplementationDto(
-                implementation.Id,
-                implementation.ModifiedDate,
-                implementation.IsDeleted,
-                implementation.Name,
-                implementation.Description
-            );
         }
     }
 }

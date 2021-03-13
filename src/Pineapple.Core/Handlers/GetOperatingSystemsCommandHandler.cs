@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Dto;
+using Pineapple.Core.Mappers;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -34,22 +35,10 @@ namespace Pineapple.Core.Handler
 
             if (operatingSystems?.Length > 0)
             {
-                return operatingSystems.Select(operatingSystem => Map(operatingSystem)).ToArray();
+                return operatingSystems.Select(operatingSystem =>operatingSystem.ToDto()).ToArray();
             }
 
             return Enumerable.Empty<OperatingSystemDto>().ToArray();
-        }
-
-        private static OperatingSystemDto Map(Domain.Entities.OperatingSystem operatingSystem)
-        {
-            return new OperatingSystemDto(
-                operatingSystem.Id,
-                operatingSystem.ModifiedDate,
-                operatingSystem.IsDeleted,
-                operatingSystem.Name,
-                operatingSystem.Symbol,
-                operatingSystem.Description
-            );
         }
     }
 }

@@ -2,10 +2,11 @@ using System;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Dto;
+using Pineapple.Core.Exceptions;
+using Pineapple.Core.Mappers;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Pineapple.Core.Exceptions;
 
 namespace Pineapple.Core.Handler
 {
@@ -37,18 +38,7 @@ namespace Pineapple.Core.Handler
                 throw new ImplementationNotFoundException($"Implementation {request.ImplementationId} has not been found");
             }
 
-            return Map(implementation);
-        }
-
-        private static ImplementationDto Map(Domain.Entities.Implementation implementation)
-        {
-            return new ImplementationDto(
-                implementation.Id,
-                implementation.ModifiedDate,
-                implementation.IsDeleted,
-                implementation.Name,
-                implementation.Description
-            );
+            return implementation.ToDto();
         }
     }
 }

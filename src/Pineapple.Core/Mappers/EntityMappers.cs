@@ -58,6 +58,54 @@ namespace Pineapple.Core.Mappers
             );
         }
 
+        public static EnvironmentDto ToDto(this Domain.Entities.Environment environment)
+        {
+            return new EnvironmentDto(
+                environment.Id,
+                environment.ModifiedDate,
+                environment.IsDeleted,
+                environment.Name,
+                environment.Symbol,
+                environment.Description,
+                environment.OperatorId,
+                environment.Operator.FullName
+            );
+        }
+
+        public static ImplementationDto ToDto(this Domain.Entities.Implementation implementation)
+        {
+            return new ImplementationDto(
+                implementation.Id,
+                implementation.ModifiedDate,
+                implementation.IsDeleted,
+                implementation.Name,
+                implementation.Description
+            );
+        }
+
+        public static OperatingSystemDto ToDto(this Domain.Entities.OperatingSystem operatingSystem)
+        {
+            return new OperatingSystemDto(
+                operatingSystem.Id,
+                operatingSystem.ModifiedDate,
+                operatingSystem.IsDeleted,
+                operatingSystem.Name,
+                operatingSystem.Symbol,
+                operatingSystem.Description
+            );
+        }
+
+        public static ProductDto ToDto(this Domain.Entities.Product product)
+        {
+            return new ProductDto(
+                product.Id,
+                product.ModifiedDate,
+                product.IsDeleted,
+                product.Name,
+                product.Description
+            );
+        }
+
         public static UserDto ToDto(this Domain.Entities.Administrator administrator)
         {
             return (administrator as Domain.Entities.User).ToDto();

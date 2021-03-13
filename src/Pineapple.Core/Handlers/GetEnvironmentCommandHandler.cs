@@ -3,10 +3,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Dto;
+using Pineapple.Core.Exceptions;
+using Pineapple.Core.Mappers;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Pineapple.Core.Exceptions;
 
 namespace Pineapple.Core.Handler
 {
@@ -49,21 +50,7 @@ namespace Pineapple.Core.Handler
                 throw new EnvironmentNotFoundException($"Environment {request.EnvironmentId} has not been found");
             }
 
-            return Map(environment);
-        }
-
-        private static EnvironmentDto Map(Domain.Entities.Environment environment)
-        {
-            return new EnvironmentDto(
-                environment.Id,
-                environment.ModifiedDate,
-                environment.IsDeleted,
-                environment.Name,
-                environment.Symbol,
-                environment.Description,
-                environment.OperatorId,
-                environment.Operator.FullName
-            );
+            return environment.ToDto();
         }
     }
 }

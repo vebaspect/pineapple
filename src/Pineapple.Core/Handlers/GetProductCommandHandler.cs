@@ -2,10 +2,11 @@ using System;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Dto;
+using Pineapple.Core.Exceptions;
+using Pineapple.Core.Mappers;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Pineapple.Core.Exceptions;
 
 namespace Pineapple.Core.Handler
 {
@@ -37,18 +38,7 @@ namespace Pineapple.Core.Handler
                 throw new ProductNotFoundException($"Product {request.ProductId} has not been found");
             }
 
-            return Map(product);
-        }
-
-        private static ProductDto Map(Domain.Entities.Product product)
-        {
-            return new ProductDto(
-                product.Id,
-                product.ModifiedDate,
-                product.IsDeleted,
-                product.Name,
-                product.Description
-            );
+            return product.ToDto();
         }
     }
 }
