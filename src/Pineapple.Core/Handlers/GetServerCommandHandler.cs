@@ -3,10 +3,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Dto;
+using Pineapple.Core.Exceptions;
+using Pineapple.Core.Mappers;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Pineapple.Core.Exceptions;
 
 namespace Pineapple.Core.Handler
 {
@@ -59,22 +60,7 @@ namespace Pineapple.Core.Handler
                 throw new ServerNotFoundException($"Server {request.ServerId} has not been found");
             }
 
-            return Map(server);
-        }
-
-        private static ServerDto Map(Domain.Entities.Server server)
-        {
-            return new ServerDto(
-                server.Id,
-                server.ModifiedDate,
-                server.IsDeleted,
-                server.Name,
-                server.Symbol,
-                server.Description,
-                server.OperatingSystemId,
-                server.OperatingSystem.Name,
-                server.IpAddress
-            );
+            return server.ToDto();
         }
     }
 }

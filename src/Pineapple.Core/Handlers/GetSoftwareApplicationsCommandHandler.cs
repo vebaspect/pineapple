@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Dto;
+using Pineapple.Core.Mappers;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -34,22 +35,10 @@ namespace Pineapple.Core.Handler
 
             if (softwareApplications?.Length > 0)
             {
-                return softwareApplications.Select(softwareApplication => Map(softwareApplication)).ToArray();
+                return softwareApplications.Select(softwareApplication => softwareApplication.ToDto()).ToArray();
             }
 
             return Enumerable.Empty<SoftwareApplicationDto>().ToArray();
-        }
-
-        private static SoftwareApplicationDto Map(Domain.Entities.SoftwareApplication softwareApplication)
-        {
-            return new SoftwareApplicationDto(
-                softwareApplication.Id,
-                softwareApplication.ModifiedDate,
-                softwareApplication.IsDeleted,
-                softwareApplication.Name,
-                softwareApplication.Symbol,
-                softwareApplication.Description
-            );
         }
     }
 }

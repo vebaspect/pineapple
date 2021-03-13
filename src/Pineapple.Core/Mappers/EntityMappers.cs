@@ -106,6 +106,33 @@ namespace Pineapple.Core.Mappers
             );
         }
 
+        public static ServerDto ToDto(this Domain.Entities.Server server)
+        {
+            return new ServerDto(
+                server.Id,
+                server.ModifiedDate,
+                server.IsDeleted,
+                server.Name,
+                server.Symbol,
+                server.Description,
+                server.OperatingSystemId,
+                server.OperatingSystem.Name,
+                server.IpAddress
+            );
+        }
+
+        public static SoftwareApplicationDto ToDto(this Domain.Entities.SoftwareApplication softwareApplication)
+        {
+            return new SoftwareApplicationDto(
+                softwareApplication.Id,
+                softwareApplication.ModifiedDate,
+                softwareApplication.IsDeleted,
+                softwareApplication.Name,
+                softwareApplication.Symbol,
+                softwareApplication.Description
+            );
+        }
+
         public static UserDto ToDto(this Domain.Entities.Administrator administrator)
         {
             return (administrator as Domain.Entities.User).ToDto();

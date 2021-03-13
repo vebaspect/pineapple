@@ -2,10 +2,11 @@ using System;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Dto;
+using Pineapple.Core.Exceptions;
+using Pineapple.Core.Mappers;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Pineapple.Core.Exceptions;
 
 namespace Pineapple.Core.Handler
 {
@@ -37,19 +38,7 @@ namespace Pineapple.Core.Handler
                 throw new SoftwareApplicationNotFoundException($"SoftwareApplication {request.SoftwareApplicationId} has not been found");
             }
 
-            return Map(softwareApplication);
-        }
-
-        private static SoftwareApplicationDto Map(Domain.Entities.SoftwareApplication softwareApplication)
-        {
-            return new SoftwareApplicationDto(
-                softwareApplication.Id,
-                softwareApplication.ModifiedDate,
-                softwareApplication.IsDeleted,
-                softwareApplication.Name,
-                softwareApplication.Symbol,
-                softwareApplication.Description
-            );
+            return softwareApplication.ToDto();
         }
     }
 }

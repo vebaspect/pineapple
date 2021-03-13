@@ -3,10 +3,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Dto;
+using Pineapple.Core.Exceptions;
+using Pineapple.Core.Mappers;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Pineapple.Core.Exceptions;
 
 namespace Pineapple.Core.Handler
 {
@@ -52,25 +53,10 @@ namespace Pineapple.Core.Handler
 
             if (environment.Servers?.Count > 0)
             {
-                return environment.Servers.Select(server => Map(server)).ToArray();
+                return environment.Servers.Select(server => server.ToDto()).ToArray();
             }
 
             return Enumerable.Empty<ServerDto>().ToArray();
-        }
-
-        private static ServerDto Map(Domain.Entities.Server server)
-        {
-            return new ServerDto(
-                server.Id,
-                server.ModifiedDate,
-                server.IsDeleted,
-                server.Name,
-                server.Symbol,
-                server.Description,
-                server.OperatingSystemId,
-                server.OperatingSystem.Name,
-                server.IpAddress
-            );
         }
     }
 }
