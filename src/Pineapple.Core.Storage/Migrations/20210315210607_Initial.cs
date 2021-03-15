@@ -211,52 +211,6 @@ namespace Pineapple.Core.Storage.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Logs",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Type = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    Category = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
-                    OwnerId = table.Column<Guid>(type: "uuid", nullable: false),
-                    Description = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: true),
-                    ComponentId = table.Column<Guid>(type: "uuid", nullable: true),
-                    ImplementationId = table.Column<Guid>(type: "uuid", nullable: true),
-                    ProductId = table.Column<Guid>(type: "uuid", nullable: true),
-                    UserId = table.Column<Guid>(type: "uuid", nullable: true),
-                    ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Logs", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Logs_Components_ComponentId",
-                        column: x => x.ComponentId,
-                        principalTable: "Components",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Logs_Implementations_ImplementationId",
-                        column: x => x.ImplementationId,
-                        principalTable: "Implementations",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Logs_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Logs_Users_OwnerId",
-                        column: x => x.OwnerId,
-                        principalTable: "Users",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Logs_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Servers",
                 columns: table => new
                 {
@@ -285,6 +239,58 @@ namespace Pineapple.Core.Storage.Migrations
                         principalTable: "OperatingSystems",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Logs",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Type = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    Category = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
+                    OwnerId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Description = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: true),
+                    ComponentId = table.Column<Guid>(type: "uuid", nullable: true),
+                    ComponentVersionId = table.Column<Guid>(type: "uuid", nullable: true),
+                    ImplementationId = table.Column<Guid>(type: "uuid", nullable: true),
+                    ProductId = table.Column<Guid>(type: "uuid", nullable: true),
+                    UserId = table.Column<Guid>(type: "uuid", nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Logs", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Logs_Components_ComponentId",
+                        column: x => x.ComponentId,
+                        principalTable: "Components",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Logs_ComponentVersions_ComponentVersionId",
+                        column: x => x.ComponentVersionId,
+                        principalTable: "ComponentVersions",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Logs_Implementations_ImplementationId",
+                        column: x => x.ImplementationId,
+                        principalTable: "Implementations",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Logs_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Logs_Users_OwnerId",
+                        column: x => x.OwnerId,
+                        principalTable: "Users",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Logs_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -386,6 +392,11 @@ namespace Pineapple.Core.Storage.Migrations
                 name: "IX_Logs_ComponentId",
                 table: "Logs",
                 column: "ComponentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Logs_ComponentVersionId",
+                table: "Logs",
+                column: "ComponentVersionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Logs_ImplementationId",
