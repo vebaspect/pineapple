@@ -4,6 +4,7 @@ import Box from '@material-ui/core/Box';
 
 import {
   LOG_TYPE__COMPONENT,
+  LOG_TYPE__COMPONENT_VERSION,
   LOG_TYPE__IMPLEMENTATION,
   LOG_TYPE__PRODUCT,
   LOG_TYPE__USER,
@@ -78,6 +79,42 @@ const Text = ({ type, category, ownerFullName, entityName, parentEntityName }: P
                 {entityName}
               </Box>
               z produktu
+              <Box
+                component="span"
+                color="info.main"
+                ml={0.5}
+              >
+                {parentEntityName}
+              </Box>
+              .
+            </>
+          );
+        default:
+          return null;
+      }
+    }
+    case LOG_TYPE__COMPONENT_VERSION: {
+      switch (category) {
+        case LOG_CATEGORY__ADD_ENTITY:
+          return (
+            <>
+              Użytkownik
+              <Box
+                component="span"
+                color="text.secondary"
+                mx={0.5}
+              >
+                {`@${ownerFullName}`}
+              </Box>
+              wydał wersję
+              <Box
+                component="span"
+                color="info.main"
+                mx={0.5}
+              >
+                {entityName}
+              </Box>
+              komponentu
               <Box
                 component="span"
                 color="info.main"
