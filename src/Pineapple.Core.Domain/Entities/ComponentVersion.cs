@@ -48,6 +48,11 @@ namespace Pineapple.Core.Domain.Entities
         /// </summary>
         public List<Server> Servers { get; }
 
+        /// <summary>
+        /// Logi dotyczące komponentu.
+        /// </summary>
+        public List<ComponentVersionLog> EntityLogs { get; }
+
         private ComponentVersion(Guid id, int major, int minor, int patch, string preRelease, string description, Guid componentId)
         {
             Id = id;
@@ -67,6 +72,19 @@ namespace Pineapple.Core.Domain.Entities
         public static ComponentVersion Create(Guid id, int major, int minor, int patch, string preRelease, string description, Guid componentId)
         {
             return new ComponentVersion(id, major, minor, patch, preRelease, description, componentId);
+        }
+
+        /// <summary>
+        /// Zwróć numer wersji komponentu w postaci sformatowanej (zgodnej z Semantic Versioning).
+        /// </summary>
+        public string GetFormattedNumber()
+        {
+            if (string.IsNullOrEmpty(PreRelease))
+            {
+                return $"{Major}.{Minor}.{Patch}";
+            }
+
+            return $"{Major}.{Minor}.{Patch}-{PreRelease}";
         }
     }
 }

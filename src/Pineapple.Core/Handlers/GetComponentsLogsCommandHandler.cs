@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
@@ -28,22 +29,38 @@ namespace Pineapple.Core.Handler
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
 
-            var logs = await databaseContext
+            var componentLogs = await databaseContext
                 .Logs
                 .OfType<Domain.Entities.ComponentLog>()
                 .Include(log => log.Owner)
                 .Include(log => log.Component)
                 .ThenInclude(component => component.Product)
-                .OrderByDescending(log => log.ModifiedDate)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
 
-            if (logs?.Length > 0)
+            var componentVersionLogs = await databaseContext
+                .Logs
+                .OfType<Domain.Entities.ComponentVersionLog>()
+                .Include(log => log.Owner)
+                .Include(log => log.ComponentVersion)
+                .ThenInclude(componentVersion => componentVersion.Component)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
+
+            var logs = new List<LogDto>();
+
+            if (componentLogs?.Length > 0)
             {
-                return logs.Select(log => log.ToDto()).ToArray();
+                logs.AddRange(componentLogs.Select(componentLog => componentLog.ToDto()).ToArray());
+            }
+            if (componentVersionLogs?.Length > 0)
+            {
+                logs.AddRange(componentVersionLogs.Select(componentVersionLog => componentVersionLog.ToDto()).ToArray());
             }
 
-            return Enumerable.Empty<LogDto>().ToArray();
+            return logs
+                .OrderByDescending(log => log.ModifiedDate)
+                .ToArray();
         }
     }
 }

@@ -38,6 +38,15 @@ namespace Pineapple.Core.Handler
                 .ToArrayAsync()
                 .ConfigureAwait(false);
 
+            var componentVersionLogs = await databaseContext
+                .Logs
+                .OfType<Domain.Entities.ComponentVersionLog>()
+                .Include(log => log.Owner)
+                .Include(log => log.ComponentVersion)
+                .ThenInclude(componentVersion => componentVersion.Component)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
+
             var productLogs = await databaseContext
                 .Logs
                 .OfType<Domain.Entities.ProductLog>()
@@ -51,6 +60,10 @@ namespace Pineapple.Core.Handler
             if (componentLogs?.Length > 0)
             {
                 logs.AddRange(componentLogs.Select(componentLog => componentLog.ToDto()));
+            }
+            if (componentVersionLogs?.Length > 0)
+            {
+                logs.AddRange(componentVersionLogs.Select(componentVersionLog => componentVersionLog.ToDto()));
             }
             if (productLogs?.Length > 0)
             {
