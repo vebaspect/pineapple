@@ -68,7 +68,11 @@ const Implementations = ({ isDataFetched, data }: Props) => {
             Wdrożenia ({data.length})
           </Link>
         </ListItemText>
-        {isExpanded ? <ExpandLess onClick={onExpandLessButtonClick} /> : <ExpandMore onClick={onExpandMoreButtonClick} />}
+        {
+          data.length > 0
+            ? (isExpanded ? <ExpandLess onClick={onExpandLessButtonClick} /> : <ExpandMore onClick={onExpandMoreButtonClick} />)
+            : null 
+        }
       </ListItem>
       <Collapse
         in={isExpanded}

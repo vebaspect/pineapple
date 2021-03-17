@@ -68,7 +68,11 @@ const Products = ({ isDataFetched, data }: Props) => {
             Produkty ({data.length})
           </Link>
         </ListItemText>
-        {isExpanded ? <ExpandLess onClick={onExpandLessButtonClick} /> : <ExpandMore onClick={onExpandMoreButtonClick} />}
+        {
+          data.length
+            ? (isExpanded ? <ExpandLess onClick={onExpandLessButtonClick} /> : <ExpandMore onClick={onExpandMoreButtonClick} />)
+            : null 
+        }
       </ListItem>
       <Collapse
         in={isExpanded}
