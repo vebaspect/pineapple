@@ -22,6 +22,10 @@ Content-Type: application/json
 GET {{url}}/logs/components/{{componentId}}
 Content-Type: application/json
 
+### /logs/configuration
+GET {{url}}/logs/configuration
+Content-Type: application/json
+
 ### /logs/environments
 GET {{url}}/logs/environments
 Content-Type: application/json

@@ -376,6 +376,9 @@ appsettings.js
 # Wykluczenie folderu "src/Pineapple.Ui/src/components/log"
 !src/Pineapple.Ui/src/components/log
 
+# Wykluczenie folderu "src/Pineapple.Ui/src/components/content/configuration/logs"
+!src/Pineapple.Ui/src/components/content/configuration/logs
+
 # Wykluczenie folderu "src/Pineapple.Ui/src/components/content/home/logs"
 !src/Pineapple.Ui/src/components/content/home/logs
 

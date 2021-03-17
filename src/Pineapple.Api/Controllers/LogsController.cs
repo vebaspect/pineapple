@@ -63,6 +63,17 @@ namespace Pineapple.Api.Controllers
         }
 
         [HttpGet]
+        [Route("configuration")]
+        public async Task<IActionResult> GetConfigurationLogs()
+        {
+            GetConfigurationLogsCommand command = new();
+            Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            LogDto[] result = await resultTask.ConfigureAwait(false);
+
+            return Ok(result);
+        }
+
+        [HttpGet]
         [Route("environments")]
         public async Task<IActionResult> GetEnvironmentsLogs()
         {
