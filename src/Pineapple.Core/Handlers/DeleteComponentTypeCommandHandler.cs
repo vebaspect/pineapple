@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Domain;
@@ -6,7 +7,6 @@ using Pineapple.Core.Exceptions;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System.Threading;
 
 namespace Pineapple.Core.Handler
 {
