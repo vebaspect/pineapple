@@ -17,6 +17,7 @@ import AddIcon from '@material-ui/icons/Add';
 import AppsIcon from '@material-ui/icons/Apps';
 import CategoryIcon from '@material-ui/icons/Category';
 import DeleteIcon from '@material-ui/icons/Delete';
+import DesktopWindowsIcon from '@material-ui/icons/DesktopWindows';
 import ExtensionIcon from '@material-ui/icons/Extension';
 import NewReleasesIcon from '@material-ui/icons/NewReleases';
 import PersonIcon from '@material-ui/icons/Person';
@@ -30,6 +31,7 @@ import {
   LOG_TYPE__COMPONENT_VERSION,
   LOG_TYPE__ENVIRONMENT,
   LOG_TYPE__IMPLEMENTATION,
+  LOG_TYPE__OPERATING_SYSTEM,
   LOG_TYPE__PRODUCT,
   LOG_TYPE__SERVER,
   LOG_TYPE__USER,
@@ -69,6 +71,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     implementation: {
       backgroundColor: '#00695f',
+      color: '#fff',
+    },
+    operatingSystem: {
+      backgroundColor: '#ffac33',
       color: '#fff',
     },
     product: {
@@ -121,6 +127,10 @@ const Icon = ({ type, category }: Props) => {
     case LOG_TYPE__IMPLEMENTATION:
       typeIcon = <PowerIcon />;
       typeClassName = styles.implementation;
+      break;
+    case LOG_TYPE__OPERATING_SYSTEM:
+      typeIcon = <DesktopWindowsIcon />;
+      typeClassName = styles.operatingSystem;
       break;
     case LOG_TYPE__PRODUCT:
       typeIcon = <AppsIcon />;

@@ -8,6 +8,7 @@ import {
   LOG_TYPE__COMPONENT_VERSION,
   LOG_TYPE__ENVIRONMENT,
   LOG_TYPE__IMPLEMENTATION,
+  LOG_TYPE__OPERATING_SYSTEM,
   LOG_TYPE__PRODUCT,
   LOG_TYPE__SERVER,
   LOG_TYPE__USER,
@@ -254,6 +255,56 @@ const Text = ({ type, category, ownerFullName, entityName, parentEntityName }: P
                 {`@${ownerFullName}`}
               </Box>
               usunął wdrożenie
+              <Box
+                component="span"
+                color="info.main"
+                ml={0.5}
+              >
+                {entityName}
+              </Box>
+              .
+            </>
+          );
+        default:
+          return null;
+      }
+    }
+    case LOG_TYPE__OPERATING_SYSTEM: {
+      switch (category) {
+        case LOG_CATEGORY__ADD_ENTITY:
+          return (
+            <>
+              Użytkownik
+              <Box
+                component="span"
+                color="text.secondary"
+                mx={0.5}
+              >
+                {`@${ownerFullName}`}
+              </Box>
+              dodał system operacyjny
+              <Box
+                component="span"
+                color="info.main"
+                ml={0.5}
+              >
+                {entityName}
+              </Box>
+              .
+            </>
+          );
+        case LOG_CATEGORY__REMOVE_ENTITY:
+          return (
+            <>
+              Użytkownik
+              <Box
+                component="span"
+                color="text.secondary"
+                mx={0.5}
+              >
+                {`@${ownerFullName}`}
+              </Box>
+              usunął system operacyjny
               <Box
                 component="span"
                 color="info.main"

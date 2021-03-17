@@ -8,6 +8,8 @@ export const LOG_TYPE__COMPONENT_VERSION = 'ComponentVersionLog';
 export const LOG_TYPE__ENVIRONMENT = 'EnvironmentLog';
 // Typ logu: log dotyczący wdrożenia.
 export const LOG_TYPE__IMPLEMENTATION = 'ImplementationLog';
+// Typ logu: log dotyczący systemu operacyjnego.
+export const LOG_TYPE__OPERATING_SYSTEM = 'OperatingSystemLog';
 // Typ logu: log dotyczący produktu.
 export const LOG_TYPE__PRODUCT = 'ProductLog';
 // Typ logu: log dotyczący serwera.

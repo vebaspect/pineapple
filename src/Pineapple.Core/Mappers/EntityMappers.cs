@@ -173,6 +173,24 @@ namespace Pineapple.Core.Mappers
             );
         }
 
+        public static LogDto ToDto(this Domain.Entities.OperatingSystemLog operatingSystemLog)
+        {
+            return new LogDto(
+                operatingSystemLog.Id,
+                operatingSystemLog.ModifiedDate,
+                operatingSystemLog.IsDeleted,
+                operatingSystemLog.Type,
+                operatingSystemLog.Category,
+                operatingSystemLog.OwnerId,
+                operatingSystemLog.Owner.FullName,
+                operatingSystemLog.OperatingSystemId,
+                operatingSystemLog.OperatingSystem.Name,
+                null,
+                null,
+                operatingSystemLog.Description
+            );
+        }
+
         public static LogDto ToDto(this Domain.Entities.ProductLog productLog)
         {
             return new LogDto(

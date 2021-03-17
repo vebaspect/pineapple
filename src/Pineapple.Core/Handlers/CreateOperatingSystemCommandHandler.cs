@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
+using Pineapple.Core.Domain;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 
@@ -29,6 +30,12 @@ namespace Pineapple.Core.Handler
             var operatingSystem = Domain.Entities.OperatingSystem.Create(operatingSystemId, request.Name, request.Symbol, request.Description);
 
             await databaseContext.OperatingSystems.AddAsync(operatingSystem).ConfigureAwait(false);
+
+            var operatingSystemLogId = Guid.NewGuid();
+
+            var operatingSystemLog = Domain.Entities.OperatingSystemLog.Create(operatingSystemLogId, AvailableLogCategories.AddEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), operatingSystemId); // Mock!
+
+            await databaseContext.Logs.AddAsync(operatingSystemLog).ConfigureAwait(false);
 
             databaseContext.SaveChanges();
 
