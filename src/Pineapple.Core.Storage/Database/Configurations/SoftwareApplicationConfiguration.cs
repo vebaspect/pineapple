@@ -27,6 +27,11 @@ namespace Pineapple.Core.Storage.Database.Configurations
             builder
                 .Property(softwareApplication => softwareApplication.Description)
                 .HasMaxLength(4000);
+            builder
+                .HasMany(softwareApplication => softwareApplication.EntityLogs)
+                .WithOne(log => log.SoftwareApplication)
+                .HasForeignKey(log => log.SoftwareApplicationId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

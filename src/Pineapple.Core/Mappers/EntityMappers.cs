@@ -227,6 +227,24 @@ namespace Pineapple.Core.Mappers
             );
         }
 
+        public static LogDto ToDto(this Domain.Entities.SoftwareApplicationLog softwareApplicationLog)
+        {
+            return new LogDto(
+                softwareApplicationLog.Id,
+                softwareApplicationLog.ModifiedDate,
+                softwareApplicationLog.IsDeleted,
+                softwareApplicationLog.Type,
+                softwareApplicationLog.Category,
+                softwareApplicationLog.OwnerId,
+                softwareApplicationLog.Owner.FullName,
+                softwareApplicationLog.SoftwareApplicationId,
+                softwareApplicationLog.SoftwareApplication.Name,
+                null,
+                null,
+                softwareApplicationLog.Description
+            );
+        }
+
         public static LogDto ToDto(this Domain.Entities.UserLog userLog)
         {
             return new LogDto(

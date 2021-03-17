@@ -28,6 +28,11 @@ namespace Pineapple.Core.Domain.Entities
         /// </summary>
         public List<Server> Servers { get; }
 
+        /// <summary>
+        /// Logi dotyczące oprogramowania.
+        /// </summary>
+        public List<SoftwareApplicationLog> EntityLogs { get; }
+
         private SoftwareApplication(Guid id, string name, string symbol, string description)
         {
             Id = id;

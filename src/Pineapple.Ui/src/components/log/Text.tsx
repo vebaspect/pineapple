@@ -11,6 +11,7 @@ import {
   LOG_TYPE__OPERATING_SYSTEM,
   LOG_TYPE__PRODUCT,
   LOG_TYPE__SERVER,
+  LOG_TYPE__SOFTWARE_APPLICATION,
   LOG_TYPE__USER,
   LOG_CATEGORY__ADD_ENTITY,
   LOG_CATEGORY__REMOVE_ENTITY,
@@ -397,6 +398,56 @@ const Text = ({ type, category, ownerFullName, entityName, parentEntityName }: P
                 ml={0.5}
               >
                 {parentEntityName}
+              </Box>
+              .
+            </>
+          );
+        default:
+          return null;
+      }
+    }
+    case LOG_TYPE__SOFTWARE_APPLICATION: {
+      switch (category) {
+        case LOG_CATEGORY__ADD_ENTITY:
+          return (
+            <>
+              Użytkownik
+              <Box
+                component="span"
+                color="text.secondary"
+                mx={0.5}
+              >
+                {`@${ownerFullName}`}
+              </Box>
+              dodał oprogramowanie
+              <Box
+                component="span"
+                color="info.main"
+                ml={0.5}
+              >
+                {entityName}
+              </Box>
+              .
+            </>
+          );
+        case LOG_CATEGORY__REMOVE_ENTITY:
+          return (
+            <>
+              Użytkownik
+              <Box
+                component="span"
+                color="text.secondary"
+                mx={0.5}
+              >
+                {`@${ownerFullName}`}
+              </Box>
+              usunął oprogramowanie
+              <Box
+                component="span"
+                color="info.main"
+                ml={0.5}
+              >
+                {entityName}
               </Box>
               .
             </>

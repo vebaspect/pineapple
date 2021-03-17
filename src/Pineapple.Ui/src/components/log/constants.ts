@@ -14,6 +14,8 @@ export const LOG_TYPE__OPERATING_SYSTEM = 'OperatingSystemLog';
 export const LOG_TYPE__PRODUCT = 'ProductLog';
 // Typ logu: log dotyczący serwera.
 export const LOG_TYPE__SERVER = 'ServerLog';
+// Typ logu: log dotyczący oprogramowania.
+export const LOG_TYPE__SOFTWARE_APPLICATION = 'SoftwareApplicationLog';
 // Typ logu: log dotyczący użytkownika.
 export const LOG_TYPE__USER = 'UserLog';
 

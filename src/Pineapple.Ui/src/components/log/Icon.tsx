@@ -22,6 +22,7 @@ import ExtensionIcon from '@material-ui/icons/Extension';
 import NewReleasesIcon from '@material-ui/icons/NewReleases';
 import PersonIcon from '@material-ui/icons/Person';
 import PowerIcon from '@material-ui/icons/Power';
+import SaveIcon from '@material-ui/icons/Save';
 import StorageIcon from '@material-ui/icons/Storage';
 import WebIcon from '@material-ui/icons/Web';
 
@@ -34,6 +35,7 @@ import {
   LOG_TYPE__OPERATING_SYSTEM,
   LOG_TYPE__PRODUCT,
   LOG_TYPE__SERVER,
+  LOG_TYPE__SOFTWARE_APPLICATION,
   LOG_TYPE__USER,
   LOG_CATEGORY__ADD_ENTITY,
   LOG_CATEGORY__REMOVE_ENTITY,
@@ -83,6 +85,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     server: {
       backgroundColor: '#33ab9f',
+      color: '#fff',
+    },
+    softwareApplication: {
+      backgroundColor: '#ffac33',
       color: '#fff',
     },
     user: {
@@ -139,6 +145,10 @@ const Icon = ({ type, category }: Props) => {
     case LOG_TYPE__SERVER:
       typeIcon = <StorageIcon />;
       typeClassName = styles.server;
+      break;
+    case LOG_TYPE__SOFTWARE_APPLICATION:
+      typeIcon = <SaveIcon />;
+      typeClassName = styles.softwareApplication;
       break;
     case LOG_TYPE__USER:
       typeIcon = <PersonIcon />;
