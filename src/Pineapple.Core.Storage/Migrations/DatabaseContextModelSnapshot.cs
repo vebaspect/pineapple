@@ -273,8 +273,8 @@ namespace Pineapple.Core.Storage.Migrations
 
                     b.Property<string>("Type")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.HasKey("Id");
 
@@ -499,6 +499,18 @@ namespace Pineapple.Core.Storage.Migrations
                     b.HasDiscriminator().HasValue("ComponentLog");
                 });
 
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.ComponentTypeLog", b =>
+                {
+                    b.HasBaseType("Pineapple.Core.Domain.Entities.Log");
+
+                    b.Property<Guid>("ComponentTypeId")
+                        .HasColumnType("uuid");
+
+                    b.HasIndex("ComponentTypeId");
+
+                    b.HasDiscriminator().HasValue("ComponentTypeLog");
+                });
+
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.ComponentVersionLog", b =>
                 {
                     b.HasBaseType("Pineapple.Core.Domain.Entities.Log");
@@ -535,6 +547,18 @@ namespace Pineapple.Core.Storage.Migrations
                     b.HasDiscriminator().HasValue("ImplementationLog");
                 });
 
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.OperatingSystemLog", b =>
+                {
+                    b.HasBaseType("Pineapple.Core.Domain.Entities.Log");
+
+                    b.Property<Guid>("OperatingSystemId")
+                        .HasColumnType("uuid");
+
+                    b.HasIndex("OperatingSystemId");
+
+                    b.HasDiscriminator().HasValue("OperatingSystemLog");
+                });
+
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.ProductLog", b =>
                 {
                     b.HasBaseType("Pineapple.Core.Domain.Entities.Log");
@@ -557,6 +581,18 @@ namespace Pineapple.Core.Storage.Migrations
                     b.HasIndex("ServerId");
 
                     b.HasDiscriminator().HasValue("ServerLog");
+                });
+
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.SoftwareApplicationLog", b =>
+                {
+                    b.HasBaseType("Pineapple.Core.Domain.Entities.Log");
+
+                    b.Property<Guid>("SoftwareApplicationId")
+                        .HasColumnType("uuid");
+
+                    b.HasIndex("SoftwareApplicationId");
+
+                    b.HasDiscriminator().HasValue("SoftwareApplicationLog");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.UserLog", b =>
@@ -730,6 +766,17 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Navigation("Component");
                 });
 
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.ComponentTypeLog", b =>
+                {
+                    b.HasOne("Pineapple.Core.Domain.Entities.ComponentType", "ComponentType")
+                        .WithMany("EntityLogs")
+                        .HasForeignKey("ComponentTypeId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("ComponentType");
+                });
+
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.ComponentVersionLog", b =>
                 {
                     b.HasOne("Pineapple.Core.Domain.Entities.ComponentVersion", "ComponentVersion")
@@ -763,6 +810,17 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Navigation("Implementation");
                 });
 
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.OperatingSystemLog", b =>
+                {
+                    b.HasOne("Pineapple.Core.Domain.Entities.OperatingSystem", "OperatingSystem")
+                        .WithMany("EntityLogs")
+                        .HasForeignKey("OperatingSystemId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("OperatingSystem");
+                });
+
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.ProductLog", b =>
                 {
                     b.HasOne("Pineapple.Core.Domain.Entities.Product", "Product")
@@ -783,6 +841,17 @@ namespace Pineapple.Core.Storage.Migrations
                         .IsRequired();
 
                     b.Navigation("Server");
+                });
+
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.SoftwareApplicationLog", b =>
+                {
+                    b.HasOne("Pineapple.Core.Domain.Entities.SoftwareApplication", "SoftwareApplication")
+                        .WithMany("EntityLogs")
+                        .HasForeignKey("SoftwareApplicationId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("SoftwareApplication");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.UserLog", b =>
@@ -806,6 +875,8 @@ namespace Pineapple.Core.Storage.Migrations
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.ComponentType", b =>
                 {
                     b.Navigation("Components");
+
+                    b.Navigation("EntityLogs");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.ComponentVersion", b =>
@@ -831,6 +902,8 @@ namespace Pineapple.Core.Storage.Migrations
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.OperatingSystem", b =>
                 {
+                    b.Navigation("EntityLogs");
+
                     b.Navigation("Servers");
                 });
 
@@ -842,6 +915,11 @@ namespace Pineapple.Core.Storage.Migrations
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Server", b =>
+                {
+                    b.Navigation("EntityLogs");
+                });
+
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.SoftwareApplication", b =>
                 {
                     b.Navigation("EntityLogs");
                 });

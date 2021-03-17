@@ -270,16 +270,19 @@ namespace Pineapple.Core.Storage.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Type = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    Type = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     Category = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     OwnerId = table.Column<Guid>(type: "uuid", nullable: false),
                     Description = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: true),
                     ComponentId = table.Column<Guid>(type: "uuid", nullable: true),
+                    ComponentTypeId = table.Column<Guid>(type: "uuid", nullable: true),
                     ComponentVersionId = table.Column<Guid>(type: "uuid", nullable: true),
                     EnvironmentId = table.Column<Guid>(type: "uuid", nullable: true),
                     ImplementationId = table.Column<Guid>(type: "uuid", nullable: true),
+                    OperatingSystemId = table.Column<Guid>(type: "uuid", nullable: true),
                     ProductId = table.Column<Guid>(type: "uuid", nullable: true),
                     ServerId = table.Column<Guid>(type: "uuid", nullable: true),
+                    SoftwareApplicationId = table.Column<Guid>(type: "uuid", nullable: true),
                     UserId = table.Column<Guid>(type: "uuid", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
@@ -291,6 +294,11 @@ namespace Pineapple.Core.Storage.Migrations
                         name: "FK_Logs_Components_ComponentId",
                         column: x => x.ComponentId,
                         principalTable: "Components",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Logs_ComponentTypes_ComponentTypeId",
+                        column: x => x.ComponentTypeId,
+                        principalTable: "ComponentTypes",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Logs_ComponentVersions_ComponentVersionId",
@@ -308,6 +316,11 @@ namespace Pineapple.Core.Storage.Migrations
                         principalTable: "Implementations",
                         principalColumn: "Id");
                     table.ForeignKey(
+                        name: "FK_Logs_OperatingSystems_OperatingSystemId",
+                        column: x => x.OperatingSystemId,
+                        principalTable: "OperatingSystems",
+                        principalColumn: "Id");
+                    table.ForeignKey(
                         name: "FK_Logs_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
@@ -316,6 +329,11 @@ namespace Pineapple.Core.Storage.Migrations
                         name: "FK_Logs_Servers_ServerId",
                         column: x => x.ServerId,
                         principalTable: "Servers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Logs_SoftwareApplications_SoftwareApplicationId",
+                        column: x => x.SoftwareApplicationId,
+                        principalTable: "SoftwareApplications",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Logs_Users_OwnerId",
@@ -406,6 +424,11 @@ namespace Pineapple.Core.Storage.Migrations
                 column: "ComponentId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Logs_ComponentTypeId",
+                table: "Logs",
+                column: "ComponentTypeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Logs_ComponentVersionId",
                 table: "Logs",
                 column: "ComponentVersionId");
@@ -421,6 +444,11 @@ namespace Pineapple.Core.Storage.Migrations
                 column: "ImplementationId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Logs_OperatingSystemId",
+                table: "Logs",
+                column: "OperatingSystemId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Logs_OwnerId",
                 table: "Logs",
                 column: "OwnerId");
@@ -434,6 +462,11 @@ namespace Pineapple.Core.Storage.Migrations
                 name: "IX_Logs_ServerId",
                 table: "Logs",
                 column: "ServerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Logs_SoftwareApplicationId",
+                table: "Logs",
+                column: "SoftwareApplicationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Logs_UserId",
