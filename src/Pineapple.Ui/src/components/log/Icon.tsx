@@ -18,9 +18,9 @@ import AppsIcon from '@material-ui/icons/Apps';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ExtensionIcon from '@material-ui/icons/Extension';
 import NewReleasesIcon from '@material-ui/icons/NewReleases';
+import PersonIcon from '@material-ui/icons/Person';
 import PowerIcon from '@material-ui/icons/Power';
 import StorageIcon from '@material-ui/icons/Storage';
-import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import WebIcon from '@material-ui/icons/Web';
 
 import {
@@ -73,6 +73,10 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: '#33ab9f',
       color: '#fff',
     },
+    user: {
+      backgroundColor: '#af52bf',
+      color: '#fff',
+    },
   }),
 );
 
@@ -117,7 +121,8 @@ const Icon = ({ type, category }: Props) => {
       typeClassName = styles.server;
       break;
     case LOG_TYPE__USER:
-      typeIcon = <SupervisorAccountIcon />;
+      typeIcon = <PersonIcon />;
+      typeClassName = styles.user;
       break;
     default:
       break;
