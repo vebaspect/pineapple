@@ -60,16 +60,16 @@ Content-Type: application/json
 GET {{url}}/configuration/operating-systems/{{operatingSystemId}}
 Content-Type: application/json
 
-### /configuration/software-application
-GET {{url}}/configuration/software-application
+### /configuration/software-applications
+GET {{url}}/configuration/software-applications
 Content-Type: application/json
 
-### /configuration/software-application/count
-GET {{url}}/configuration/software-application/count
+### /configuration/software-applications/count
+GET {{url}}/configuration/software-applications/count
 Content-Type: application/json
 
-### /configuration/software-application
-POST {{url}}/configuration/software-application
+### /configuration/software-applications
+POST {{url}}/configuration/software-applications
 Content-Type: application/json
 
 {
@@ -78,10 +78,10 @@ Content-Type: application/json
     "Description": ""
 }
 
-### /configuration/software-application/{softwareApplicationId}
-DELETE {{url}}/configuration/software-application//{{softwareApplicationId}}
+### /configuration/software-applications/{softwareApplicationId}
+DELETE {{url}}/configuration/software-applications/{{softwareApplicationId}}
 Content-Type: application/json
 
-### /configuration/software-application/{softwareApplicationId}
-GET {{url}}/configuration/software-application/{{softwareApplicationId}}
+### /configuration/software-applications/{softwareApplicationId}
+GET {{url}}/configuration/software-applications/{{softwareApplicationId}}
 Content-Type: application/json
