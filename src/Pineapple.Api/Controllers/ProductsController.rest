@@ -44,6 +44,10 @@ Content-Type: application/json
 }
 
 ### /products/{productId}/components/{componentId}
+DELETE {{url}}/products/{{productId}}/components/{{componentId}}
+Content-Type: application/json
+
+### /products/{productId}/components/{componentId}
 GET {{url}}/products/{{productId}}/components/{{componentId}}
 Content-Type: application/json
 

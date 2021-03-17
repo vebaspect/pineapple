@@ -119,6 +119,25 @@ namespace Pineapple.Api.Controllers
             return Created($"/products/{productId}/components/{result}", null);
         }
 
+        [HttpDelete]
+        [Route("{productId}/components/{componentId}")]
+        public async Task<IActionResult> DeleteComponent(string productId, string componentId)
+        {
+            if (productId is null || !Guid.TryParse(productId, out _))
+            {
+                return BadRequest("Product identifier has not been provided");
+            }
+            if (componentId is null || !Guid.TryParse(componentId, out _))
+            {
+                return BadRequest("Component identifier has not been provided");
+            }
+
+            DeleteComponentCommand command = new(Guid.Parse(productId), Guid.Parse(componentId));
+            await mediator.Send(command).ConfigureAwait(false);
+
+            return Ok();
+        }
+
         [HttpGet]
         [Route("{productId}/components/{componentId}")]
         public async Task<IActionResult> GetComponent(string productId, string componentId)
