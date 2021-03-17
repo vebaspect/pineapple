@@ -2,7 +2,6 @@ import React from 'react';
 
 import {
   green,
-  indigo,
   red,
 } from '@material-ui/core/colors';
 import {
@@ -46,8 +45,16 @@ const useStyles = makeStyles((theme: Theme) =>
       height: theme.spacing(2.75),
       width: theme.spacing(2.75),
     },
-    type: {
-      backgroundColor: indigo[500],
+    typeBlue: {
+      backgroundColor: '#3f51b5',
+      color: '#fff',
+    },
+    typeLightBlue: {
+      backgroundColor: '#6573c3',
+      color: '#fff',
+    },
+    typeIndigo: {
+      backgroundColor: '#2c387e',
       color: '#fff',
     },
   }),
@@ -64,21 +71,25 @@ const Icon = ({ type, category }: Props) => {
   const styles = useStyles();
 
   let typeIcon = null;
+  let typeClassName = null;
   let categoryIcon = null;
   let categoryClassName = null;
 
   switch (type) {
     case LOG_TYPE__COMPONENT:
       typeIcon = <ExtensionIcon />;
+      typeClassName = styles.typeBlue;
       break;
     case LOG_TYPE__COMPONENT_VERSION:
       typeIcon = <NewReleasesIcon />;
+      typeClassName = styles.typeLightBlue;
       break;
     case LOG_TYPE__IMPLEMENTATION:
       typeIcon = <PowerIcon />;
       break;
     case LOG_TYPE__PRODUCT:
       typeIcon = <AppsIcon />;
+      typeClassName = styles.typeIndigo;
       break;
     case LOG_TYPE__USER:
       typeIcon = <SupervisorAccountIcon />;
@@ -103,7 +114,7 @@ const Icon = ({ type, category }: Props) => {
   return (
     <Box position="relative">
       <Box position="relative">
-        <Avatar className={styles.type}>
+        <Avatar className={typeClassName}>
           {typeIcon}
         </Avatar>
       </Box>
