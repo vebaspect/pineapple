@@ -29,9 +29,20 @@ namespace Pineapple.Core.Handler
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
 
+            var componentTypeLogs = await databaseContext
+                .Logs
+                .OfType<Domain.Entities.ComponentTypeLog>()
+                .Include(log => log.Owner)
+                .Include(log => log.ComponentType)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
+
             var logs = new List<LogDto>();
 
-            // TODO
+            if (componentTypeLogs?.Length > 0)
+            {
+                logs.AddRange(componentTypeLogs.Select(componentTypeLog => componentTypeLog.ToDto()));
+            }
 
             return logs
                 .OrderByDescending(log => log.ModifiedDate)

@@ -28,6 +28,11 @@ namespace Pineapple.Core.Domain.Entities
         /// </summary>
         public List<Component> Components { get; }
 
+        /// <summary>
+        /// Logi dotyczące typu komponentu.
+        /// </summary>
+        public List<ComponentTypeLog> EntityLogs { get; }
+
         private ComponentType(Guid id, string name, string symbol, string description)
         {
             Id = id;

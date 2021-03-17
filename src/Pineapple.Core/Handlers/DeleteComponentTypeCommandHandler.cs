@@ -1,11 +1,12 @@
 using System;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
+using Pineapple.Core.Domain;
+using Pineapple.Core.Exceptions;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
-using Pineapple.Core.Exceptions;
 
 namespace Pineapple.Core.Handler
 {
@@ -38,6 +39,12 @@ namespace Pineapple.Core.Handler
             }
 
             componentType.SetAsDeleted();
+
+            var componentTypeLogId = Guid.NewGuid();
+
+            var componentTypeLog = Domain.Entities.ComponentTypeLog.Create(componentTypeLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), request.ComponentTypeId); // Mock!
+
+            await databaseContext.Logs.AddAsync(componentTypeLog, cancellationToken).ConfigureAwait(false);
 
             databaseContext.SaveChanges();
 

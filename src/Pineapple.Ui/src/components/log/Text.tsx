@@ -4,6 +4,7 @@ import Box from '@material-ui/core/Box';
 
 import {
   LOG_TYPE__COMPONENT,
+  LOG_TYPE__COMPONENT_TYPE,
   LOG_TYPE__COMPONENT_VERSION,
   LOG_TYPE__ENVIRONMENT,
   LOG_TYPE__IMPLEMENTATION,
@@ -87,6 +88,56 @@ const Text = ({ type, category, ownerFullName, entityName, parentEntityName }: P
                 ml={0.5}
               >
                 {parentEntityName}
+              </Box>
+              .
+            </>
+          );
+        default:
+          return null;
+      }
+    }
+    case LOG_TYPE__COMPONENT_TYPE: {
+      switch (category) {
+        case LOG_CATEGORY__ADD_ENTITY:
+          return (
+            <>
+              Użytkownik
+              <Box
+                component="span"
+                color="text.secondary"
+                mx={0.5}
+              >
+                {`@${ownerFullName}`}
+              </Box>
+              dodał typ komponentu
+              <Box
+                component="span"
+                color="info.main"
+                ml={0.5}
+              >
+                {entityName}
+              </Box>
+              .
+            </>
+          );
+        case LOG_CATEGORY__REMOVE_ENTITY:
+          return (
+            <>
+              Użytkownik
+              <Box
+                component="span"
+                color="text.secondary"
+                mx={0.5}
+              >
+                {`@${ownerFullName}`}
+              </Box>
+              usunął typ komponentu
+              <Box
+                component="span"
+                color="info.main"
+                ml={0.5}
+              >
+                {entityName}
               </Box>
               .
             </>

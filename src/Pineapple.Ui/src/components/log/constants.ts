@@ -1,5 +1,7 @@
 // Typ logu: log dotyczący komponentu.
 export const LOG_TYPE__COMPONENT = 'ComponentLog';
+// Typ logu: log dotyczący typu komponentu.
+export const LOG_TYPE__COMPONENT_TYPE = 'ComponentTypeLog';
 // Typ logu: log dotyczący wersji komponentu.
 export const LOG_TYPE__COMPONENT_VERSION = 'ComponentVersionLog';
 // Typ logu: log dotyczący środowiska.

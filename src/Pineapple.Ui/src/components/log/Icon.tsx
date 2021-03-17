@@ -15,6 +15,7 @@ import Box from '@material-ui/core/Box';
 
 import AddIcon from '@material-ui/icons/Add';
 import AppsIcon from '@material-ui/icons/Apps';
+import CategoryIcon from '@material-ui/icons/Category';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ExtensionIcon from '@material-ui/icons/Extension';
 import NewReleasesIcon from '@material-ui/icons/NewReleases';
@@ -25,6 +26,7 @@ import WebIcon from '@material-ui/icons/Web';
 
 import {
   LOG_TYPE__COMPONENT,
+  LOG_TYPE__COMPONENT_TYPE,
   LOG_TYPE__COMPONENT_VERSION,
   LOG_TYPE__ENVIRONMENT,
   LOG_TYPE__IMPLEMENTATION,
@@ -51,6 +53,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     component: {
       backgroundColor: '#3f51b5',
+      color: '#fff',
+    },
+    componentType: {
+      backgroundColor: '#ffac33',
       color: '#fff',
     },
     componentVersion: {
@@ -99,6 +105,10 @@ const Icon = ({ type, category }: Props) => {
     case LOG_TYPE__COMPONENT:
       typeIcon = <ExtensionIcon />;
       typeClassName = styles.component;
+      break;
+    case LOG_TYPE__COMPONENT_TYPE:
+      typeIcon = <CategoryIcon />;
+      typeClassName = styles.componentType;
       break;
     case LOG_TYPE__COMPONENT_VERSION:
       typeIcon = <NewReleasesIcon />;
