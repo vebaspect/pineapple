@@ -142,5 +142,16 @@ namespace Pineapple.Api.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet]
+        [Route("users")]
+        public async Task<IActionResult> GetUsersLogs()
+        {
+            GetUsersLogsCommand command = new();
+            Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            LogDto[] result = await resultTask.ConfigureAwait(false);
+
+            return Ok(result);
+        }
     }
 }
