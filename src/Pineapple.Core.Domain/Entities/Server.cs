@@ -58,6 +58,11 @@ namespace Pineapple.Core.Domain.Entities
         /// </summary>
         public List<SoftwareApplication> SoftwareApplications { get; }
 
+        /// <summary>
+        /// Logi dotyczące serwera.
+        /// </summary>
+        public List<ServerLog> EntityLogs { get; }
+
         private Server(Guid id, string name, string symbol, string description, Guid environmentId, Guid operatingSystemId, string ipAddress)
         {
             Id = id;

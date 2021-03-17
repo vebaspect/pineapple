@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
+using Pineapple.Core.Domain;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 
@@ -29,6 +30,12 @@ namespace Pineapple.Core.Handler
             var server = Domain.Entities.Server.Create(serverId, request.Name, request.Symbol, request.Description, request.EnvironmentId, request.OperatingSystemId, request.IpAddress);
 
             await databaseContext.Servers.AddAsync(server).ConfigureAwait(false);
+
+            var serverLogId = Guid.NewGuid();
+
+            var serverLog = Domain.Entities.ServerLog.Create(serverLogId, AvailableLogCategories.AddEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), serverId); // Mock!
+
+            await databaseContext.Logs.AddAsync(serverLog).ConfigureAwait(false);
 
             databaseContext.SaveChanges();
 

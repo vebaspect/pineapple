@@ -39,11 +39,25 @@ namespace Pineapple.Core.Handler
                 .ToArrayAsync()
                 .ConfigureAwait(false);
 
+            var serverLogs = await databaseContext
+                .Logs
+                .OfType<Domain.Entities.ServerLog>()
+                .Include(log => log.Owner)
+                .Include(log => log.Server)
+                .ThenInclude(server => server.Environment)
+                .Where(log => log.Server.EnvironmentId == request.EnvironmentId)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
+
             var logs = new List<LogDto>();
 
             if (environmentLogs?.Length > 0)
             {
                 logs.AddRange(environmentLogs.Select(environmentLog => environmentLog.ToDto()).ToArray());
+            }
+            if (serverLogs?.Length > 0)
+            {
+                logs.AddRange(serverLogs.Select(serverLog => serverLog.ToDto()).ToArray());
             }
 
             return logs

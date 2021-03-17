@@ -95,6 +95,7 @@ namespace Pineapple.Core.Storage.Database
                 .ApplyConfiguration(new ProductConfiguration())
                 .ApplyConfiguration(new ProductLogConfiguration())
                 .ApplyConfiguration(new ServerConfiguration())
+                .ApplyConfiguration(new ServerLogConfiguration())
                 .ApplyConfiguration(new SoftwareApplicationConfiguration())
                 .ApplyConfiguration(new UserConfiguration())
                 .ApplyConfiguration(new UserLogConfiguration());

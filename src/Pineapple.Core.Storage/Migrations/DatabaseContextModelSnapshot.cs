@@ -511,6 +511,18 @@ namespace Pineapple.Core.Storage.Migrations
                     b.HasDiscriminator().HasValue("ComponentVersionLog");
                 });
 
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.EnvironmentLog", b =>
+                {
+                    b.HasBaseType("Pineapple.Core.Domain.Entities.Log");
+
+                    b.Property<Guid>("EnvironmentId")
+                        .HasColumnType("uuid");
+
+                    b.HasIndex("EnvironmentId");
+
+                    b.HasDiscriminator().HasValue("EnvironmentLog");
+                });
+
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.ImplementationLog", b =>
                 {
                     b.HasBaseType("Pineapple.Core.Domain.Entities.Log");
@@ -533,6 +545,18 @@ namespace Pineapple.Core.Storage.Migrations
                     b.HasIndex("ProductId");
 
                     b.HasDiscriminator().HasValue("ProductLog");
+                });
+
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.ServerLog", b =>
+                {
+                    b.HasBaseType("Pineapple.Core.Domain.Entities.Log");
+
+                    b.Property<Guid>("ServerId")
+                        .HasColumnType("uuid");
+
+                    b.HasIndex("ServerId");
+
+                    b.HasDiscriminator().HasValue("ServerLog");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.UserLog", b =>
@@ -717,6 +741,17 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Navigation("ComponentVersion");
                 });
 
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.EnvironmentLog", b =>
+                {
+                    b.HasOne("Pineapple.Core.Domain.Entities.Environment", "Environment")
+                        .WithMany("EntityLogs")
+                        .HasForeignKey("EnvironmentId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Environment");
+                });
+
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.ImplementationLog", b =>
                 {
                     b.HasOne("Pineapple.Core.Domain.Entities.Implementation", "Implementation")
@@ -737,6 +772,17 @@ namespace Pineapple.Core.Storage.Migrations
                         .IsRequired();
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.ServerLog", b =>
+                {
+                    b.HasOne("Pineapple.Core.Domain.Entities.Server", "Server")
+                        .WithMany("EntityLogs")
+                        .HasForeignKey("ServerId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Server");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.UserLog", b =>
@@ -769,6 +815,8 @@ namespace Pineapple.Core.Storage.Migrations
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Environment", b =>
                 {
+                    b.Navigation("EntityLogs");
+
                     b.Navigation("Servers");
                 });
 
@@ -790,6 +838,11 @@ namespace Pineapple.Core.Storage.Migrations
                 {
                     b.Navigation("Components");
 
+                    b.Navigation("EntityLogs");
+                });
+
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.Server", b =>
+                {
                     b.Navigation("EntityLogs");
                 });
 

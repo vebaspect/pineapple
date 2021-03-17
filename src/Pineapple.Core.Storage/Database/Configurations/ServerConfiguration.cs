@@ -48,6 +48,11 @@ namespace Pineapple.Core.Storage.Database.Configurations
             builder
                 .HasMany(server => server.SoftwareApplications)
                 .WithMany(softwareApplication => softwareApplication.Servers);
+            builder
+                .HasMany(server => server.EntityLogs)
+                .WithOne(log => log.Server)
+                .HasForeignKey(log => log.ServerId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
