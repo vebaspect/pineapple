@@ -29,7 +29,7 @@ namespace Pineapple.Core.Handler
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
 
-            var usersLogs = await databaseContext
+            var userLogs = await databaseContext
                 .Logs
                 .OfType<Domain.Entities.UserLog>()
                 .Include(log => log.Owner)
@@ -39,9 +39,9 @@ namespace Pineapple.Core.Handler
 
             var logs = new List<LogDto>();
 
-            if (usersLogs?.Length > 0)
+            if (userLogs?.Length > 0)
             {
-                logs.AddRange(usersLogs.Select(usersLog => usersLog.ToDto()));
+                logs.AddRange(userLogs.Select(userLog => userLog.ToDto()));
             }
 
             return logs
