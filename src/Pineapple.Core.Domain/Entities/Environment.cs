@@ -48,6 +48,11 @@ namespace Pineapple.Core.Domain.Entities
         /// </summary>
         public Operator Operator { get; }
 
+        /// <summary>
+        /// Logi dotyczące środowiska.
+        /// </summary>
+        public List<EnvironmentLog> EntityLogs { get; }
+
         private Environment(Guid id, string name, string symbol, string description, Guid implementationId, Guid operatorId)
         {
             Id = id;

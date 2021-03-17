@@ -3,6 +3,8 @@
 
 # Identyfikator komponentu.
 @componentId = 
+# Identyfikator środowiska.
+@environmentId = 
 # Identyfikator wdrożenia.
 @implementationId = 
 # Identyfikator produktu.
@@ -18,6 +20,14 @@ Content-Type: application/json
 
 ### /logs/components/{componentId}
 GET {{url}}/logs/components/{{componentId}}
+Content-Type: application/json
+
+### /logs/environments
+GET {{url}}/logs/environments
+Content-Type: application/json
+
+### /logs/environments/{environmentId}
+GET {{url}}/logs/environments/{{environmentId}}
 Content-Type: application/json
 
 ### /logs/implementations

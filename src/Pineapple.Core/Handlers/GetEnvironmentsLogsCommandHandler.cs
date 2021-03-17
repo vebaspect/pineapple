@@ -11,11 +11,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Pineapple.Core.Handler
 {
-    public class GetImplementationLogsCommandHandler : RequestHandler<GetImplementationLogsCommand, Task<LogDto[]>>, ICommandHandler
+    public class GetEnvironmentsLogsCommandHandler : RequestHandler<GetEnvironmentsLogsCommand, Task<LogDto[]>>, ICommandHandler
     {
         private readonly DatabaseContextFactory databaseContextFactory;
 
-        public GetImplementationLogsCommandHandler(DatabaseContextFactory databaseContextFactory)
+        public GetEnvironmentsLogsCommandHandler(DatabaseContextFactory databaseContextFactory)
         {
             if (databaseContextFactory is null)
             {
@@ -25,7 +25,7 @@ namespace Pineapple.Core.Handler
             this.databaseContextFactory = databaseContextFactory;
         }
 
-        protected override async Task<LogDto[]> Handle(GetImplementationLogsCommand request)
+        protected override async Task<LogDto[]> Handle(GetEnvironmentsLogsCommand request)
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
 
@@ -35,16 +35,6 @@ namespace Pineapple.Core.Handler
                 .Include(log => log.Owner)
                 .Include(log => log.Environment)
                 .ThenInclude(environment => environment.Implementation)
-                .Where(log => log.Environment.ImplementationId == request.ImplementationId)
-                .ToArrayAsync()
-                .ConfigureAwait(false);
-
-            var implementationLogs = await databaseContext
-                .Logs
-                .OfType<Domain.Entities.ImplementationLog>()
-                .Include(log => log.Owner)
-                .Include(log => log.Implementation)
-                .Where(log => log.ImplementationId == request.ImplementationId)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
 
@@ -52,11 +42,7 @@ namespace Pineapple.Core.Handler
 
             if (environmentLogs?.Length > 0)
             {
-                logs.AddRange(environmentLogs.Select(environmentLog => environmentLog.ToDto()));
-            }
-            if (implementationLogs?.Length > 0)
-            {
-                logs.AddRange(implementationLogs.Select(implementationLog => implementationLog.ToDto()));
+                logs.AddRange(environmentLogs.Select(environmentLog => environmentLog.ToDto()).ToArray());
             }
 
             return logs

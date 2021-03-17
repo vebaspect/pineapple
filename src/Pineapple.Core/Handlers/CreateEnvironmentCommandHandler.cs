@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
+using Pineapple.Core.Domain;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 
@@ -29,6 +30,12 @@ namespace Pineapple.Core.Handler
             var environment = Domain.Entities.Environment.Create(environmentId, request.Name, request.Symbol, request.Description, request.ImplementationId, request.OperatorId);
 
             await databaseContext.Environments.AddAsync(environment).ConfigureAwait(false);
+
+            var environmentLogId = Guid.NewGuid();
+
+            var environmentLog = Domain.Entities.EnvironmentLog.Create(environmentLogId, AvailableLogCategories.AddEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), environmentId); // Mock!
+
+            await databaseContext.Logs.AddAsync(environmentLog).ConfigureAwait(false);
 
             databaseContext.SaveChanges();
 

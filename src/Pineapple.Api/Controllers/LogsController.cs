@@ -63,6 +63,33 @@ namespace Pineapple.Api.Controllers
         }
 
         [HttpGet]
+        [Route("environments")]
+        public async Task<IActionResult> GetEnvironmentsLogs()
+        {
+            GetEnvironmentsLogsCommand command = new();
+            Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            LogDto[] result = await resultTask.ConfigureAwait(false);
+
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("environments/{environmentId}")]
+        public async Task<IActionResult> GetEnvironmentLogs(string environmentId)
+        {
+            if (environmentId is null || !Guid.TryParse(environmentId, out _))
+            {
+                return BadRequest("Environment identifier has not been provided");
+            }
+
+            GetEnvironmentLogsCommand command = new(Guid.Parse(environmentId));
+            Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            LogDto[] result = await resultTask.ConfigureAwait(false);
+
+            return Ok(result);
+        }
+
+        [HttpGet]
         [Route("implementations")]
         public async Task<IActionResult> GetImplementationsLogs()
         {

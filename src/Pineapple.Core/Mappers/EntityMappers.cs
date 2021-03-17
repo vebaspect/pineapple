@@ -119,6 +119,24 @@ namespace Pineapple.Core.Mappers
             );
         }
 
+        public static LogDto ToDto(this Domain.Entities.EnvironmentLog log)
+        {
+            return new LogDto(
+                log.Id,
+                log.ModifiedDate,
+                log.IsDeleted,
+                log.Type,
+                log.Category,
+                log.OwnerId,
+                log.Owner.FullName,
+                log.EnvironmentId,
+                log.Environment.Name,
+                log.Environment.ImplementationId,
+                log.Environment.Implementation.Name,
+                log.Description
+            );
+        }
+
         public static LogDto ToDto(this Domain.Entities.ImplementationLog log)
         {
             return new LogDto(

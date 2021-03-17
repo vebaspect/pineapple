@@ -47,6 +47,15 @@ namespace Pineapple.Core.Handler
                 .ToArrayAsync()
                 .ConfigureAwait(false);
 
+            var environmentLogs = await databaseContext
+                .Logs
+                .OfType<Domain.Entities.EnvironmentLog>()
+                .Include(log => log.Owner)
+                .Include(log => log.Environment)
+                .ThenInclude(environment => environment.Implementation)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
+
             var implementationLogs = await databaseContext
                 .Logs
                 .OfType<Domain.Entities.ImplementationLog>()
@@ -80,6 +89,10 @@ namespace Pineapple.Core.Handler
             if (componentVersionLogs?.Length > 0)
             {
                 logs.AddRange(componentVersionLogs.Select(componentVersionLog => componentVersionLog.ToDto()));
+            }
+            if (environmentLogs?.Length > 0)
+            {
+                logs.AddRange(environmentLogs.Select(environmentLog => environmentLog.ToDto()));
             }
             if (implementationLogs?.Length > 0)
             {
