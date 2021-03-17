@@ -19,13 +19,17 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import ExtensionIcon from '@material-ui/icons/Extension';
 import NewReleasesIcon from '@material-ui/icons/NewReleases';
 import PowerIcon from '@material-ui/icons/Power';
+import StorageIcon from '@material-ui/icons/Storage';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
+import WebIcon from '@material-ui/icons/Web';
 
 import {
   LOG_TYPE__COMPONENT,
   LOG_TYPE__COMPONENT_VERSION,
+  LOG_TYPE__ENVIRONMENT,
   LOG_TYPE__IMPLEMENTATION,
   LOG_TYPE__PRODUCT,
+  LOG_TYPE__SERVER,
   LOG_TYPE__USER,
   LOG_CATEGORY__ADD_ENTITY,
   LOG_CATEGORY__REMOVE_ENTITY,
@@ -33,28 +37,40 @@ import {
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    categoryGreen: {
+    addEntity: {
       backgroundColor: green[500],
       color: '#fff',
       height: theme.spacing(2.75),
       width: theme.spacing(2.75),
     },
-    categoryRed: {
+    removeEntity: {
       backgroundColor: red[500],
       color: '#fff',
       height: theme.spacing(2.75),
       width: theme.spacing(2.75),
     },
-    typeBlue: {
+    component: {
       backgroundColor: '#3f51b5',
       color: '#fff',
     },
-    typeLightBlue: {
+    componentVersion: {
       backgroundColor: '#6573c3',
       color: '#fff',
     },
-    typeIndigo: {
+    environment: {
+      backgroundColor: '#009688',
+      color: '#fff',
+    },
+    implementation: {
+      backgroundColor: '#00695f',
+      color: '#fff',
+    },
+    product: {
       backgroundColor: '#2c387e',
+      color: '#fff',
+    },
+    server: {
+      backgroundColor: '#33ab9f',
       color: '#fff',
     },
   }),
@@ -78,18 +94,27 @@ const Icon = ({ type, category }: Props) => {
   switch (type) {
     case LOG_TYPE__COMPONENT:
       typeIcon = <ExtensionIcon />;
-      typeClassName = styles.typeBlue;
+      typeClassName = styles.component;
       break;
     case LOG_TYPE__COMPONENT_VERSION:
       typeIcon = <NewReleasesIcon />;
-      typeClassName = styles.typeLightBlue;
+      typeClassName = styles.componentVersion;
+      break;
+    case LOG_TYPE__ENVIRONMENT:
+      typeIcon = <WebIcon />;
+      typeClassName = styles.environment;
       break;
     case LOG_TYPE__IMPLEMENTATION:
       typeIcon = <PowerIcon />;
+      typeClassName = styles.implementation;
       break;
     case LOG_TYPE__PRODUCT:
       typeIcon = <AppsIcon />;
-      typeClassName = styles.typeIndigo;
+      typeClassName = styles.product;
+      break;
+    case LOG_TYPE__SERVER:
+      typeIcon = <StorageIcon />;
+      typeClassName = styles.server;
       break;
     case LOG_TYPE__USER:
       typeIcon = <SupervisorAccountIcon />;
@@ -101,11 +126,11 @@ const Icon = ({ type, category }: Props) => {
   switch (category) {
     case LOG_CATEGORY__ADD_ENTITY:
       categoryIcon = <AddIcon style={{ fontSize: 18 }} />;
-      categoryClassName = styles.categoryGreen;
+      categoryClassName = styles.addEntity;
       break;
     case LOG_CATEGORY__REMOVE_ENTITY:
       categoryIcon = <DeleteIcon style={{ fontSize: 18 }} />;
-      categoryClassName = styles.categoryRed;
+      categoryClassName = styles.removeEntity;
       break;
     default:
       break;

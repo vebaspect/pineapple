@@ -5,8 +5,10 @@ import Box from '@material-ui/core/Box';
 import {
   LOG_TYPE__COMPONENT,
   LOG_TYPE__COMPONENT_VERSION,
+  LOG_TYPE__ENVIRONMENT,
   LOG_TYPE__IMPLEMENTATION,
   LOG_TYPE__PRODUCT,
+  LOG_TYPE__SERVER,
   LOG_TYPE__USER,
   LOG_CATEGORY__ADD_ENTITY,
   LOG_CATEGORY__REMOVE_ENTITY,
@@ -129,6 +131,42 @@ const Text = ({ type, category, ownerFullName, entityName, parentEntityName }: P
           return null;
       }
     }
+    case LOG_TYPE__ENVIRONMENT: {
+      switch (category) {
+        case LOG_CATEGORY__ADD_ENTITY:
+          return (
+            <>
+              Użytkownik
+              <Box
+                component="span"
+                color="text.secondary"
+                mx={0.5}
+              >
+                {`@${ownerFullName}`}
+              </Box>
+              dodał środowisko
+              <Box
+                component="span"
+                color="info.main"
+                mx={0.5}
+              >
+                {entityName}
+              </Box>
+              do wdrożenia
+              <Box
+                component="span"
+                color="info.main"
+                ml={0.5}
+              >
+                {parentEntityName}
+              </Box>
+              .
+            </>
+          );
+        default:
+          return null;
+      }
+    }
     case LOG_TYPE__IMPLEMENTATION: {
       switch (category) {
         case LOG_CATEGORY__ADD_ENTITY:
@@ -221,6 +259,42 @@ const Text = ({ type, category, ownerFullName, entityName, parentEntityName }: P
                 ml={0.5}
               >
                 {entityName}
+              </Box>
+              .
+            </>
+          );
+        default:
+          return null;
+      }
+    }
+    case LOG_TYPE__SERVER: {
+      switch (category) {
+        case LOG_CATEGORY__ADD_ENTITY:
+          return (
+            <>
+              Użytkownik
+              <Box
+                component="span"
+                color="text.secondary"
+                mx={0.5}
+              >
+                {`@${ownerFullName}`}
+              </Box>
+              dodał serwer
+              <Box
+                component="span"
+                color="info.main"
+                mx={0.5}
+              >
+                {entityName}
+              </Box>
+              do wdrożenia
+              <Box
+                component="span"
+                color="info.main"
+                ml={0.5}
+              >
+                {parentEntityName}
               </Box>
               .
             </>
