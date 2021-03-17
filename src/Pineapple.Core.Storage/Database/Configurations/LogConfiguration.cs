@@ -21,7 +21,7 @@ namespace Pineapple.Core.Storage.Database.Configurations
             builder
                 .Property(log => log.Type)
                 .IsRequired()
-                .HasMaxLength(20);
+                .HasMaxLength(50);
             builder
                 .Property(log => log.Category)
                 .HasMaxLength(50);
