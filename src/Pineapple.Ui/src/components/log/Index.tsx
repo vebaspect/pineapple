@@ -26,7 +26,7 @@ interface Props {
 
 const Log = ({ modifiedDate, type, category, ownerFullName, entityName, parentEntityName }: Props) => {
   return (
-    <ListItem>
+    <ListItem component="div">
       <ListItemIcon>
         <Icon
           type={type}
