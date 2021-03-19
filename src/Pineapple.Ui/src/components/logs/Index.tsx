@@ -4,9 +4,9 @@ import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import List from '@material-ui/core/List';
 
-import Log from '../../../log';
+import Log from './log';
 
-import { groupLogsByDate } from '../../../log/helpers';
+import { groupLogsByDate } from './log/helpers';
 
 interface Props {
   // Flaga określająca, czy lista logów została pobrana z API.

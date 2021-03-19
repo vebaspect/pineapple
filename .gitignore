@@ -373,26 +373,8 @@ storagesettings.json
 # Plik "appsettings.js"
 appsettings.js
 
-# Wykluczenie folderu "src/Pineapple.Ui/src/components/log"
-!src/Pineapple.Ui/src/components/log
+# Wykluczenie folderu "src/Pineapple.Ui/src/components/logs"
+!src/Pineapple.Ui/src/components/logs
 
-# Wykluczenie folderu "src/Pineapple.Ui/src/components/content/configuration/logs"
-!src/Pineapple.Ui/src/components/content/configuration/logs
-
-# Wykluczenie folderu "src/Pineapple.Ui/src/components/content/home/logs"
-!src/Pineapple.Ui/src/components/content/home/logs
-
-# Wykluczenie folderu "src/Pineapple.Ui/src/components/content/implementation/logs"
-!src/Pineapple.Ui/src/components/content/implementation/logs
-
-# Wykluczenie folderu "src/Pineapple.Ui/src/components/content/implementations/logs"
-!src/Pineapple.Ui/src/components/content/implementations/logs
-
-# Wykluczenie folderu "src/Pineapple.Ui/src/components/content/product/logs"
-!src/Pineapple.Ui/src/components/content/product/logs
-
-# Wykluczenie folderu "src/Pineapple.Ui/src/components/content/products/logs"
-!src/Pineapple.Ui/src/components/content/products/logs
-
-# Wykluczenie folderu "src/Pineapple.Ui/src/components/content/users/logs"
-!src/Pineapple.Ui/src/components/content/users/logs
+# Wykluczenie folderu "src/Pineapple.Ui/src/components/logs/log"
+!src/Pineapple.Ui/src/components/logs/log

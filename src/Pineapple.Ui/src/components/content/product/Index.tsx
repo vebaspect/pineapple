@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import Box from '@material-ui/core/Box';
 
-import Logs from './logs';
+import Logs from '../../logs';
 
 const Product = () => {
   const { productId } = useParams();

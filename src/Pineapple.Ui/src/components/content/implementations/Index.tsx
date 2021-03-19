@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import Box from '@material-ui/core/Box';
 
-import Logs from './logs';
+import Logs from '../../logs';
 
 const Implementations = () => {
   // Flaga określająca, czy lista logów została pobrana z API.
