@@ -25,6 +25,8 @@ interface Props {
     name: string,
     // Opis.
     description: string,
+    // Flaga określająca, czy wdrożenie zostało usunięte.
+    isDeleted: boolean,
   }[];
 };
 
@@ -81,7 +83,7 @@ const Implementations = ({ isDataFetched, data }: Props) => {
         <List component="div">
           {
             data.length > 0
-              ? data.map(implementation => {
+              ? data.filter(implementation => !implementation.isDeleted).map(implementation => {
                 return (
                   <Tooltip key={implementation.id} title={implementation.description} placement="right">
                     <ListItem button>

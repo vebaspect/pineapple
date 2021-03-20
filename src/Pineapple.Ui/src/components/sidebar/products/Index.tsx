@@ -25,6 +25,8 @@ interface Props {
     name: string,
     // Opis.
     description: string,
+    // Flaga określająca, czy produkt został usunięty.
+    isDeleted: boolean,
   }[];
 };
 
@@ -81,7 +83,7 @@ const Products = ({ isDataFetched, data }: Props) => {
         <List component="div">
           {
             data.length > 0
-              ? data.map(product => {
+              ? data.filter(product => !product.isDeleted).map(product => {
                 return (
                   <Tooltip key={product.id} title={product.description} placement="right">
                     <ListItem button>
