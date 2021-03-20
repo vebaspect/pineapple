@@ -67,7 +67,7 @@ const Products = ({ isDataFetched, data }: Props) => {
             component={RouterLink}
             to="/products"
           >
-            Produkty ({data.length})
+            Produkty ({data.filter(product => !product.isDeleted).length})
           </Link>
         </ListItemText>
         {

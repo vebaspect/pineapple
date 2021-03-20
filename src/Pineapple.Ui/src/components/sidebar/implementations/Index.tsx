@@ -67,7 +67,7 @@ const Implementations = ({ isDataFetched, data }: Props) => {
             component={RouterLink}
             to="/implementations"
           >
-            Wdrożenia ({data.length})
+            Wdrożenia ({data.filter(implementation => !implementation.isDeleted).length})
           </Link>
         </ListItemText>
         {
