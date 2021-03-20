@@ -1,10 +1,6 @@
 import React from 'react';
 
 import {
-  green,
-  red,
-} from '@material-ui/core/colors';
-import {
   createStyles,
   makeStyles,
   Theme,
@@ -44,13 +40,13 @@ import {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     addEntity: {
-      backgroundColor: green[500],
+      backgroundColor: '#4caf50',
       color: '#fff',
       height: theme.spacing(2.75),
       width: theme.spacing(2.75),
     },
     removeEntity: {
-      backgroundColor: red[500],
+      backgroundColor: '#f44336',
       color: '#fff',
       height: theme.spacing(2.75),
       width: theme.spacing(2.75),
