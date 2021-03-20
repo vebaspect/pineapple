@@ -10,8 +10,11 @@
 # Identyfikator produktu.
 @productId = 
 
-### /logs
-GET {{url}}/logs
+# Liczba logów, które mają zostać zwrócone.
+@count = 
+
+### /logs?count={count}
+GET {{url}}/logs?count={{count}}
 Content-Type: application/json
 
 ### /logs/components

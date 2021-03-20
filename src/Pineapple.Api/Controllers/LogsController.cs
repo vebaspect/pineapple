@@ -26,9 +26,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("")]
-        public async Task<IActionResult> GetLogs()
+        public async Task<IActionResult> GetLogs([FromQuery]int? count)
         {
-            GetLogsCommand command = new();
+            GetLogsCommand command = new(count);
             Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             LogDto[] result = await resultTask.ConfigureAwait(false);
 
