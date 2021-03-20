@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import Box from '@material-ui/core/Box';
+import Link from '@material-ui/core/Link';
 
 import Logs from '../../logs';
 
@@ -14,7 +15,7 @@ const Users = () => {
 
   useEffect(() => {
     fetchLogs();
-  }, []);
+  }, [count]);
 
   const fetchLogs = async () => {
     await fetch(`${window['env'].API_URL}/logs/users?count=${count}`)
@@ -23,6 +24,12 @@ const Users = () => {
         setIsLogsFetched(true);
         setLogs(data);
       });
+  };
+
+  const fetchMoreLogs = () => {
+    if (count <= logs.length) {
+      setCount(count + 10);
+    }
   };
 
   return (
@@ -42,6 +49,14 @@ const Users = () => {
           isDataFetched={isLogsFetched}
           data={logs}
         />
+        <Box
+          m={2}
+          textAlign="center"
+        >
+          <Link onClick={fetchMoreLogs}>
+            Pobierz więcej
+          </Link>
+        </Box>
       </Box>
     </>
   );

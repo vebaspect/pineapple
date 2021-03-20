@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Box from '@material-ui/core/Box';
+import Link from '@material-ui/core/Link';
 
 import Logs from '../../logs';
 
@@ -17,7 +18,7 @@ const Implementation = () => {
 
   useEffect(() => {
     fetchLogs();
-  }, [implementationId]);
+  }, [implementationId, count]);
 
   const fetchLogs = async () => {
     await fetch(`${window['env'].API_URL}/logs/implementations/${implementationId}?count=${count}`)
@@ -26,6 +27,12 @@ const Implementation = () => {
         setIsLogsFetched(true);
         setLogs(data);
       });
+  };
+
+  const fetchMoreLogs = () => {
+    if (count <= logs.length) {
+      setCount(count + 10);
+    }
   };
 
   return (
@@ -45,6 +52,14 @@ const Implementation = () => {
           isDataFetched={isLogsFetched}
           data={logs}
         />
+        <Box
+          m={2}
+          textAlign="center"
+        >
+          <Link onClick={fetchMoreLogs}>
+            Pobierz więcej
+          </Link>
+        </Box>
       </Box>
     </>
   );
