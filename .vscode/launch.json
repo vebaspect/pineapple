@@ -6,7 +6,7 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "Build Pineapple Api",
-      "program": "${workspaceFolder}/src/Pineapple.Api/bin/Debug/net5.0/win10-x64/Pineapple.Api.dll",
+      "program": "${workspaceFolder}/src/Pineapple.Api/bin/Debug/net5.0/Pineapple.Api.dll",
       "args": [],
       "cwd": "${workspaceFolder}/src/Pineapple.Api",
       "stopAtEntry": false,
