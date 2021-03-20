@@ -12,9 +12,15 @@ namespace Pineapple.Core.Commands
         /// </summary>
         public Guid ComponentId { get; }
 
-        public GetComponentLogsCommand(Guid componentId)
+        /// <summary>
+        /// Liczba logów, które mają zostać zwrócone.
+        /// </summary>
+        public int? Count { get; }
+
+        public GetComponentLogsCommand(Guid componentId, int? count)
         {
             ComponentId = componentId;
+            Count = count;
         }
     }
 }

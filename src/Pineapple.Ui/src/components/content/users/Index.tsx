@@ -9,13 +9,15 @@ const Users = () => {
   const [isLogsFetched, setIsLogsFetched] = useState(false);
   // Lista logów.
   const [logs, setLogs] = useState([]);
+  // Liczba logów, które mają zostać zwrócone.
+  const [count, setCount] = useState(10);
 
   useEffect(() => {
     fetchLogs();
   }, []);
 
   const fetchLogs = async () => {
-    await fetch(`${window['env'].API_URL}/logs/users`)
+    await fetch(`${window['env'].API_URL}/logs/users?count=${count}`)
       .then(response => response.json())
       .then(data => {
         setIsLogsFetched(true);

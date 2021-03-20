@@ -12,9 +12,15 @@ namespace Pineapple.Core.Commands
         /// </summary>
         public Guid EnvironmentId { get; }
 
-        public GetEnvironmentLogsCommand(Guid environmentId)
+        /// <summary>
+        /// Liczba logów, które mają zostać zwrócone.
+        /// </summary>
+        public int? Count { get; }
+
+        public GetEnvironmentLogsCommand(Guid environmentId, int? count)
         {
             EnvironmentId = environmentId;
+            Count = count;
         }
     }
 }

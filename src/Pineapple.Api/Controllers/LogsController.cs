@@ -37,9 +37,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("components")]
-        public async Task<IActionResult> GetComponentsLogs()
+        public async Task<IActionResult> GetComponentsLogs([FromQuery]int? count)
         {
-            GetComponentsLogsCommand command = new();
+            GetComponentsLogsCommand command = new(count);
             Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             LogDto[] result = await resultTask.ConfigureAwait(false);
 
@@ -48,14 +48,14 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("components/{componentId}")]
-        public async Task<IActionResult> GetComponentLogs(string componentId)
+        public async Task<IActionResult> GetComponentLogs(string componentId, [FromQuery]int? count)
         {
             if (componentId is null || !Guid.TryParse(componentId, out _))
             {
                 return BadRequest("Component identifier has not been provided");
             }
 
-            GetComponentLogsCommand command = new(Guid.Parse(componentId));
+            GetComponentLogsCommand command = new(Guid.Parse(componentId), count);
             Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             LogDto[] result = await resultTask.ConfigureAwait(false);
 
@@ -64,9 +64,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("configuration")]
-        public async Task<IActionResult> GetConfigurationLogs()
+        public async Task<IActionResult> GetConfigurationLogs([FromQuery]int? count)
         {
-            GetConfigurationLogsCommand command = new();
+            GetConfigurationLogsCommand command = new(count);
             Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             LogDto[] result = await resultTask.ConfigureAwait(false);
 
@@ -75,9 +75,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("environments")]
-        public async Task<IActionResult> GetEnvironmentsLogs()
+        public async Task<IActionResult> GetEnvironmentsLogs([FromQuery]int? count)
         {
-            GetEnvironmentsLogsCommand command = new();
+            GetEnvironmentsLogsCommand command = new(count);
             Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             LogDto[] result = await resultTask.ConfigureAwait(false);
 
@@ -86,14 +86,14 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("environments/{environmentId}")]
-        public async Task<IActionResult> GetEnvironmentLogs(string environmentId)
+        public async Task<IActionResult> GetEnvironmentLogs(string environmentId, [FromQuery]int? count)
         {
             if (environmentId is null || !Guid.TryParse(environmentId, out _))
             {
                 return BadRequest("Environment identifier has not been provided");
             }
 
-            GetEnvironmentLogsCommand command = new(Guid.Parse(environmentId));
+            GetEnvironmentLogsCommand command = new(Guid.Parse(environmentId), count);
             Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             LogDto[] result = await resultTask.ConfigureAwait(false);
 
@@ -102,9 +102,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("implementations")]
-        public async Task<IActionResult> GetImplementationsLogs()
+        public async Task<IActionResult> GetImplementationsLogs([FromQuery]int? count)
         {
-            GetImplementationsLogsCommand command = new();
+            GetImplementationsLogsCommand command = new(count);
             Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             LogDto[] result = await resultTask.ConfigureAwait(false);
 
@@ -113,14 +113,14 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("implementations/{implementationId}")]
-        public async Task<IActionResult> GetImplementationLogs(string implementationId)
+        public async Task<IActionResult> GetImplementationLogs(string implementationId, [FromQuery]int? count)
         {
             if (implementationId is null || !Guid.TryParse(implementationId, out _))
             {
                 return BadRequest("Implementation identifier has not been provided");
             }
 
-            GetImplementationLogsCommand command = new(Guid.Parse(implementationId));
+            GetImplementationLogsCommand command = new(Guid.Parse(implementationId), count);
             Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             LogDto[] result = await resultTask.ConfigureAwait(false);
 
@@ -129,9 +129,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("products")]
-        public async Task<IActionResult> GetProductsLogs()
+        public async Task<IActionResult> GetProductsLogs([FromQuery]int? count)
         {
-            GetProductsLogsCommand command = new();
+            GetProductsLogsCommand command = new(count);
             Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             LogDto[] result = await resultTask.ConfigureAwait(false);
 
@@ -140,14 +140,14 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("products/{productId}")]
-        public async Task<IActionResult> GetProductLogs(string productId)
+        public async Task<IActionResult> GetProductLogs(string productId, [FromQuery]int? count)
         {
             if (productId is null || !Guid.TryParse(productId, out _))
             {
                 return BadRequest("Product identifier has not been provided");
             }
 
-            GetProductLogsCommand command = new(Guid.Parse(productId));
+            GetProductLogsCommand command = new(Guid.Parse(productId), count);
             Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             LogDto[] result = await resultTask.ConfigureAwait(false);
 
@@ -156,9 +156,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("users")]
-        public async Task<IActionResult> GetUsersLogs()
+        public async Task<IActionResult> GetUsersLogs([FromQuery]int? count)
         {
-            GetUsersLogsCommand command = new();
+            GetUsersLogsCommand command = new(count);
             Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             LogDto[] result = await resultTask.ConfigureAwait(false);
 

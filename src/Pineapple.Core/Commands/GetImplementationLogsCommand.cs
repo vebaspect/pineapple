@@ -12,9 +12,15 @@ namespace Pineapple.Core.Commands
         /// </summary>
         public Guid ImplementationId { get; }
 
-        public GetImplementationLogsCommand(Guid implementationId)
+        /// <summary>
+        /// Liczba logów, które mają zostać zwrócone.
+        /// </summary>
+        public int? Count { get; }
+
+        public GetImplementationLogsCommand(Guid implementationId, int? count)
         {
             ImplementationId = implementationId;
+            Count = count;
         }
     }
 }

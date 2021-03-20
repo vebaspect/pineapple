@@ -17,42 +17,42 @@
 GET {{url}}/logs?count={{count}}
 Content-Type: application/json
 
-### /logs/components
-GET {{url}}/logs/components
+### /logs/components?count={count}
+GET {{url}}/logs/components?count={{count}}
 Content-Type: application/json
 
-### /logs/components/{componentId}
-GET {{url}}/logs/components/{{componentId}}
+### /logs/components/{componentId}?count={count}
+GET {{url}}/logs/components/{{componentId}}?count={{count}}
 Content-Type: application/json
 
-### /logs/configuration
-GET {{url}}/logs/configuration
+### /logs/configuration?count={count}
+GET {{url}}/logs/configuration?count={{count}}
 Content-Type: application/json
 
-### /logs/environments
-GET {{url}}/logs/environments
+### /logs/environments?count={count}
+GET {{url}}/logs/environments?count={{count}}
 Content-Type: application/json
 
-### /logs/environments/{environmentId}
-GET {{url}}/logs/environments/{{environmentId}}
+### /logs/environments/{environmentId}?count={count}
+GET {{url}}/logs/environments/{{environmentId}}?count={{count}}
 Content-Type: application/json
 
-### /logs/implementations
-GET {{url}}/logs/implementations
+### /logs/implementations?count={count}
+GET {{url}}/logs/implementations?count={{count}}
 Content-Type: application/json
 
-### /logs/implementations/{implementationId}
-GET {{url}}/logs/implementations/{{implementationId}}
+### /logs/implementations/{implementationId}?count={count}
+GET {{url}}/logs/implementations/{{implementationId}}?count={{count}}
 Content-Type: application/json
 
-### /logs/products
-GET {{url}}/logs/products
+### /logs/products?count={count}
+GET {{url}}/logs/products?count={{count}}
 Content-Type: application/json
 
-### /logs/products/{productId}
-GET {{url}}/logs/products/{{productId}}
+### /logs/products/{productId}?count={count}
+GET {{url}}/logs/products/{{productId}}?count={{count}}
 Content-Type: application/json
 
-### /logs/users
-GET {{url}}/logs/users
+### /logs/users?count={count}
+GET {{url}}/logs/users?count={{count}}
 Content-Type: application/json

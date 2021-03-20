@@ -44,6 +44,14 @@ namespace Pineapple.Core.Handler
                 logs.AddRange(userLogs.Select(userLog => userLog.ToDto()));
             }
 
+            if (request.Count.HasValue)
+            {
+                return logs
+                    .OrderByDescending(log => log.ModifiedDate)
+                    .Take(request.Count.Value)
+                    .ToArray();
+            }
+
             return logs
                 .OrderByDescending(log => log.ModifiedDate)
                 .ToArray();
