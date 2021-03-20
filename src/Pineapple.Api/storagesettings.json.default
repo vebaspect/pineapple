@@ -1,3 +1,6 @@
 {
-  "ConnectionString": ""
+  "Database": {
+    "Type": "",
+    "ConnectionString": ""
+  }
 }

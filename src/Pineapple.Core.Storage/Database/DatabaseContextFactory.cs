@@ -2,6 +2,7 @@ using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
+using Pineapple.Core.Storage.Exceptions;
 
 namespace Pineapple.Core.Storage.Database
 {
@@ -19,10 +20,23 @@ namespace Pineapple.Core.Storage.Database
                 .AddJsonFile("storagesettings.json")
                 .Build();
 
-            string connectionString = configuration.GetValue<string>("ConnectionString");
+            string databaseType = configuration.GetValue<string>("Database:Type");
+            string databaseConnectionString = configuration.GetValue<string>("Database:ConnectionString");
 
             var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
-            optionsBuilder.UseNpgsql(connectionString);
+
+            switch (databaseType)
+            {
+                case "PostgreSQL":
+                    optionsBuilder.UseNpgsql(databaseConnectionString);
+                    break;
+                case "SqlServer":
+                    optionsBuilder.UseSqlServer(databaseConnectionString);
+                    break;
+                default:
+                    throw new StorageSettingsException($"Database type ${databaseType} is invalid");
+            }
+
             optionsBuilder.EnableSensitiveDataLogging();
 
             return new DatabaseContext(optionsBuilder.Options);
