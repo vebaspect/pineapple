@@ -43,7 +43,7 @@ const Logs = ({ isDataFetched, data }: Props) => {
   if (!isDataFetched) {
     return (
       <Box
-        m={2}
+        p={2}
         textAlign="center"
       >
         <CircularProgress />
