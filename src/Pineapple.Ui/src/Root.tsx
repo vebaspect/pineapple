@@ -15,7 +15,13 @@ import Title from './components/title';
 const Root = () => {
   moment.locale('pl');
 
-  const theme = createMuiTheme();
+  const theme = createMuiTheme({
+    palette: {
+      background: {
+        default: '#f5f5f5',
+      },
+    },
+  });
 
   return (
     <BrowserRouter>
