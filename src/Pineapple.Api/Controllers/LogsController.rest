@@ -10,7 +10,7 @@
 # Identyfikator produktu.
 @productId = 
 
-# Liczba logów, które mają zostać zwrócone.
+# Liczba elementów, które mają zostać zwrócone.
 @count = 
 
 ### /logs?count={count}
