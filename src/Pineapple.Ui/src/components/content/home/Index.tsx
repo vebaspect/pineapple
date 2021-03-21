@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import Box from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';
+import Paper from '@material-ui/core/Paper';
 
 import Logs from '../../logs';
 
@@ -41,22 +42,43 @@ const Home = () => {
       >
         Strona główna
       </Box>
-      <Box>
-        <Box>
-          Ostatnie aktywności:
-        </Box>
-        <Logs
-          isDataFetched={isLogsFetched}
-          data={logs}
-        />
-        <Box
-          m={2}
-          textAlign="center"
-        >
-          <Link onClick={fetchMoreLogs}>
-            Pobierz więcej
-          </Link>
-        </Box>
+      <Box
+        mb={3}
+      >
+        <Paper>
+          <Box
+            border={1}
+            borderLeft={0}
+            borderRight={0}
+            borderTop={0}
+            borderColor="#e0e0e0"
+            py={1.5}
+            textAlign="center"
+          >
+            Ostatnie aktywności
+          </Box>
+          <Box
+            mx={2}
+          >
+            <Logs
+              isDataFetched={isLogsFetched}
+              data={logs}
+            />
+          </Box>
+          <Box
+            border={1}
+            borderBottom={0}
+            borderLeft={0}
+            borderRight={0}
+            borderColor="#e0e0e0"
+            py={1.5}
+            textAlign="center"
+          >
+            <Link onClick={fetchMoreLogs}>
+              Pobierz więcej
+            </Link>
+          </Box>
+        </Paper>
       </Box>
     </>
   );

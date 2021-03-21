@@ -101,7 +101,7 @@ const Implementations = () => {
             py={1.5}
             textAlign="center"
           >
-            Ostatnie aktywności:
+            Ostatnie aktywności
           </Box>
           <Box
             mx={2}
