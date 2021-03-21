@@ -37,10 +37,10 @@ const List = ({ isDataFetched, data }: Props) => {
   }
 
   return (
-    <Table>
+    <Table size="small">
       <TableHead>
         <TableRow>
-          <TableCell>Lp</TableCell>
+          <TableCell style={{ width: 60 }}>Lp</TableCell>
           <TableCell>Nazwa</TableCell>
           <TableCell>Opis</TableCell>
         </TableRow>
