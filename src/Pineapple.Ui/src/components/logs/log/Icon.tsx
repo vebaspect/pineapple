@@ -18,6 +18,7 @@ import ExtensionIcon from '@material-ui/icons/Extension';
 import NewReleasesIcon from '@material-ui/icons/NewReleases';
 import PersonIcon from '@material-ui/icons/Person';
 import PowerIcon from '@material-ui/icons/Power';
+import ReportProblemIcon from '@material-ui/icons/ReportProblem';
 import SaveIcon from '@material-ui/icons/Save';
 import StorageIcon from '@material-ui/icons/Storage';
 import WebIcon from '@material-ui/icons/Web';
@@ -39,14 +40,12 @@ import {
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    addEntity: {
-      backgroundColor: '#4caf50',
+    unknownType: {
+      backgroundColor: '#bdbdbd',
       color: '#fff',
-      height: theme.spacing(2.75),
-      width: theme.spacing(2.75),
     },
-    removeEntity: {
-      backgroundColor: '#f44336',
+    unknownCategory: {
+      backgroundColor: '#bdbdbd',
       color: '#fff',
       height: theme.spacing(2.75),
       width: theme.spacing(2.75),
@@ -90,6 +89,18 @@ const useStyles = makeStyles((theme: Theme) =>
     user: {
       backgroundColor: '#af52bf',
       color: '#fff',
+    },
+    addEntity: {
+      backgroundColor: '#4caf50',
+      color: '#fff',
+      height: theme.spacing(2.75),
+      width: theme.spacing(2.75),
+    },
+    removeEntity: {
+      backgroundColor: '#f44336',
+      color: '#fff',
+      height: theme.spacing(2.75),
+      width: theme.spacing(2.75),
     },
   }),
 );
@@ -151,6 +162,8 @@ const Icon = ({ type, category }: Props) => {
       typeClassName = styles.user;
       break;
     default:
+      typeIcon = <ReportProblemIcon />;
+      typeClassName = styles.unknownType;
       break;
   }
 
@@ -164,6 +177,8 @@ const Icon = ({ type, category }: Props) => {
       categoryClassName = styles.removeEntity;
       break;
     default:
+      categoryIcon = <ReportProblemIcon style={{ fontSize: 18 }} />;
+      categoryClassName = styles.unknownCategory;
       break;
   }
 
