@@ -8,8 +8,11 @@
 # Identyfikator wersji komponentu.
 @componentVersionId = 
 
-### /products
-GET {{url}}/products
+# Liczba elementów, które mają zostać zwrócone.
+@count = 
+
+### /products?count={count}
+GET {{url}}/products?count={{count}}
 Content-Type: application/json
 
 ### /products

@@ -26,9 +26,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("")]
-        public async Task<IActionResult> GetProducts()
+        public async Task<IActionResult> GetProducts([FromQuery]int? count)
         {
-            GetProductsCommand command = new();
+            GetProductsCommand command = new(count);
             Task<ProductDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             ProductDto[] result = await resultTask.ConfigureAwait(false);
 

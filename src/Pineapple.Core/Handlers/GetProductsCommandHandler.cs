@@ -28,10 +28,23 @@ namespace Pineapple.Core.Handler
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
 
-            var products = await databaseContext
-                .Products
-                .ToArrayAsync()
-                .ConfigureAwait(false);
+            Domain.Entities.Product[] products = null;
+
+            if (request.Count.HasValue)
+            {
+                products = await databaseContext
+                    .Products
+                    .Take(request.Count.Value)
+                    .ToArrayAsync()
+                    .ConfigureAwait(false);
+            }
+            else
+            {
+                products = await databaseContext
+                    .Products
+                    .ToArrayAsync()
+                    .ConfigureAwait(false);
+            }
 
             if (products?.Length > 0)
             {
