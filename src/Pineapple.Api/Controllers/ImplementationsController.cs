@@ -26,9 +26,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("")]
-        public async Task<IActionResult> GetImplementations()
+        public async Task<IActionResult> GetImplementations([FromQuery]int? count)
         {
-            GetImplementationsCommand command = new();
+            GetImplementationsCommand command = new(count);
             Task<ImplementationDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             ImplementationDto[] result = await resultTask.ConfigureAwait(false);
 

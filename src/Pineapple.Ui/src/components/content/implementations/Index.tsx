@@ -5,20 +5,42 @@ import Link from '@material-ui/core/Link';
 
 import Logs from '../../logs';
 
+import List from './List';
+
 const Implementations = () => {
+  // Flaga określająca, czy lista wdrożeń została pobrana z API.
+  const [isImplementationsFetched, setIsImplementationsFetched] = useState(false);
+  // Lista wdrożeń.
+  const [implementations, setImplementations] = useState([]);
+  // Liczba wdrożeń, które mają zostać pobrane.
+  const [implementationsCount, setImplementationsCount] = useState(10);
+
   // Flaga określająca, czy lista logów została pobrana z API.
   const [isLogsFetched, setIsLogsFetched] = useState(false);
   // Lista logów.
   const [logs, setLogs] = useState([]);
   // Liczba logów, które mają zostać zwrócone.
-  const [count, setCount] = useState(10);
+  const [logsCount, setLogsCount] = useState(10);
+
+  useEffect(() => {
+    fetchImplementations();
+  }, [implementationsCount]);
 
   useEffect(() => {
     fetchLogs();
-  }, [count]);
+  }, [logsCount]);
+
+  const fetchImplementations = async () => {
+    await fetch(`${window['env'].API_URL}/implementations?count=${implementationsCount}`)
+      .then(response => response.json())
+      .then(data => {
+        setIsImplementationsFetched(true);
+        setImplementations(data);
+      });
+  };
 
   const fetchLogs = async () => {
-    await fetch(`${window['env'].API_URL}/logs/implementations?count=${count}`)
+    await fetch(`${window['env'].API_URL}/logs/implementations?count=${logsCount}`)
       .then(response => response.json())
       .then(data => {
         setIsLogsFetched(true);
@@ -26,9 +48,15 @@ const Implementations = () => {
       });
   };
 
+  const fetchMoreImplementations = () => {
+    if (implementationsCount <= implementations.length) {
+      setImplementationsCount(implementationsCount + 10);
+    }
+  };
+
   const fetchMoreLogs = () => {
-    if (count <= logs.length) {
-      setCount(count + 10);
+    if (logsCount <= logs.length) {
+      setLogsCount(logsCount + 10);
     }
   };
 
@@ -42,7 +70,28 @@ const Implementations = () => {
         Wdrożenia
       </Box>
       <Box>
-        <Box>
+        <Box
+          my={2}
+        >
+          Lista wdrożeń:
+        </Box>
+        <List
+          isDataFetched={isImplementationsFetched}
+          data={implementations}
+        />
+        <Box
+          my={2}
+          textAlign="center"
+        >
+          <Link onClick={fetchMoreImplementations}>
+            Pobierz więcej
+          </Link>
+        </Box>
+      </Box>
+      <Box>
+        <Box
+          mt={3}
+        >
           Ostatnie aktywności:
         </Box>
         <Logs
@@ -50,7 +99,7 @@ const Implementations = () => {
           data={logs}
         />
         <Box
-          m={2}
+          my={2}
           textAlign="center"
         >
           <Link onClick={fetchMoreLogs}>

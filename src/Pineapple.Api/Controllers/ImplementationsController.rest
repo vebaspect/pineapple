@@ -10,8 +10,11 @@
 # Identyfikator serwera.
 @serverId = 
 
-### /implementations
-GET {{url}}/implementations
+# Liczba elementów, które mają zostać zwrócone.
+@count = 
+
+### /implementations?count={count}
+GET {{url}}/implementations?count={{count}}
 Content-Type: application/json
 
 ### /implementations
