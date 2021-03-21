@@ -28,7 +28,7 @@ const Root = () => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Container>
-          <Grid container>
+          <Grid container spacing={2}>
             <Grid item xs={3}>
               <Title />
               <Sidebar />

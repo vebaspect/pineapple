@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import List from '@material-ui/core/List';
+import Paper from '@material-ui/core/Paper';
 
 import Configuration from './configuration';
 import Home from './home';
@@ -143,35 +144,37 @@ const Sidebar = () => {
   }
 
   return (
-    <List component="nav">
-      <Home />
-      <Implementations
-        isDataFetched={isImplementationsFetched}
-        data={implementations}
-      />
-      <Products
-        isDataFetched={isProductsFetched}
-        data={products}
-      />
-      <Configuration
-        isComponentTypesCountFetched={isComponentTypesCountFetched}
-        componentTypesCount={componentTypesCount}
-        isOperatingSystemsCountFetched={isOperatingSystemsCountFetched}
-        operatingSystemsCount={operatingSystemsCount}
-        isSoftwareApplicationsCountFetched={isSoftwareApplicationsCountFetched}
-        softwareApplicationsCount={softwareApplicationsCount}
-      />
-      <Users
-        isDevelopersCountFetched={isDevelopersCountFetched}
-        developersCount={developersCount}
-        isOperatorsCountFetched={isOperatorsCountFetched}
-        operatorsCount={operatorsCount}
-        isManagersCountFetched={isManagersCountFetched}
-        managersCount={managersCount}
-        isAdministratorsCountFetched={isAdministratorsCountFetched}
-        administratorsCount={administratorsCount}
-      />
-    </List>
+    <Paper>
+      <List component="nav">
+        <Home />
+        <Implementations
+          isDataFetched={isImplementationsFetched}
+          data={implementations}
+        />
+        <Products
+          isDataFetched={isProductsFetched}
+          data={products}
+        />
+        <Configuration
+          isComponentTypesCountFetched={isComponentTypesCountFetched}
+          componentTypesCount={componentTypesCount}
+          isOperatingSystemsCountFetched={isOperatingSystemsCountFetched}
+          operatingSystemsCount={operatingSystemsCount}
+          isSoftwareApplicationsCountFetched={isSoftwareApplicationsCountFetched}
+          softwareApplicationsCount={softwareApplicationsCount}
+        />
+        <Users
+          isDevelopersCountFetched={isDevelopersCountFetched}
+          developersCount={developersCount}
+          isOperatorsCountFetched={isOperatorsCountFetched}
+          operatorsCount={operatorsCount}
+          isManagersCountFetched={isManagersCountFetched}
+          managersCount={managersCount}
+          isAdministratorsCountFetched={isAdministratorsCountFetched}
+          administratorsCount={administratorsCount}
+        />
+      </List>
+    </Paper>
   )
 }
 
