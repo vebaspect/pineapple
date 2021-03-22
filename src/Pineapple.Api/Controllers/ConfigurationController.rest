@@ -37,8 +37,8 @@ Content-Type: application/json
 GET {{url}}/configuration/component-types/{{componentTypeId}}
 Content-Type: application/json
 
-### /configuration/operating-systems
-GET {{url}}/configuration/operating-systems
+### /configuration/operating-systems?count={count}
+GET {{url}}/configuration/operating-systems?count={{count}}
 Content-Type: application/json
 
 ### /configuration/operating-systems/count

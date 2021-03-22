@@ -95,9 +95,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("operating-systems")]
-        public async Task<IActionResult> GetOperatingSystems()
+        public async Task<IActionResult> GetOperatingSystems([FromQuery]int? count)
         {
-            GetOperatingSystemsCommand command = new();
+            GetOperatingSystemsCommand command = new(count);
             Task<OperatingSystemDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             OperatingSystemDto[] result = await resultTask.ConfigureAwait(false);
 

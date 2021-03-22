@@ -28,10 +28,23 @@ namespace Pineapple.Core.Handler
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
 
-            var operatingSystems = await databaseContext
-                .OperatingSystems
-                .ToArrayAsync()
-                .ConfigureAwait(false);
+            Domain.Entities.OperatingSystem[] operatingSystems = null;
+
+            if (request.Count.HasValue)
+            {
+                operatingSystems = await databaseContext
+                    .OperatingSystems
+                    .Take(request.Count.Value)
+                    .ToArrayAsync()
+                    .ConfigureAwait(false);
+            }
+            else
+            {
+                operatingSystems = await databaseContext
+                    .OperatingSystems
+                    .ToArrayAsync()
+                    .ConfigureAwait(false);
+            }
 
             if (operatingSystems?.Length > 0)
             {
