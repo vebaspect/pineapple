@@ -63,8 +63,8 @@ Content-Type: application/json
 GET {{url}}/configuration/operating-systems/{{operatingSystemId}}
 Content-Type: application/json
 
-### /configuration/software-applications
-GET {{url}}/configuration/software-applications
+### /configuration/software-applications?count={count}
+GET {{url}}/configuration/software-applications?count={{count}}
 Content-Type: application/json
 
 ### /configuration/software-applications/count

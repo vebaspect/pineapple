@@ -28,10 +28,23 @@ namespace Pineapple.Core.Handler
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
 
-            var softwareApplications = await databaseContext
-                .SoftwareApplications
-                .ToArrayAsync()
-                .ConfigureAwait(false);
+            Domain.Entities.SoftwareApplication[] softwareApplications = null;
+
+            if (request.Count.HasValue)
+            {
+                softwareApplications = await databaseContext
+                    .SoftwareApplications
+                    .Take(request.Count.Value)
+                    .ToArrayAsync()
+                    .ConfigureAwait(false);
+            }
+            else
+            {
+                softwareApplications = await databaseContext
+                    .SoftwareApplications
+                    .ToArrayAsync()
+                    .ConfigureAwait(false);
+            }
 
             if (softwareApplications?.Length > 0)
             {

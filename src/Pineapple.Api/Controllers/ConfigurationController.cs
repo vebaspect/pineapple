@@ -164,9 +164,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("software-applications")]
-        public async Task<IActionResult> GetSoftwareApplications()
+        public async Task<IActionResult> GetSoftwareApplications([FromQuery]int? count)
         {
-            GetSoftwareApplicationsCommand command = new();
+            GetSoftwareApplicationsCommand command = new(count);
             Task<SoftwareApplicationDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             SoftwareApplicationDto[] result = await resultTask.ConfigureAwait(false);
 
