@@ -28,11 +28,25 @@ namespace Pineapple.Core.Handler
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
 
-            var administrators = await databaseContext
-                .Users
-                .OfType<Domain.Entities.Administrator>()
-                .ToArrayAsync()
-                .ConfigureAwait(false);
+            Domain.Entities.Administrator[] administrators = null;
+
+            if (request.Count.HasValue)
+            {
+                administrators = await databaseContext
+                    .Users
+                    .OfType<Domain.Entities.Administrator>()
+                    .Take(request.Count.Value)
+                    .ToArrayAsync()
+                    .ConfigureAwait(false);
+            }
+            else
+            {
+                administrators = await databaseContext
+                    .Users
+                    .OfType<Domain.Entities.Administrator>()
+                    .ToArrayAsync()
+                    .ConfigureAwait(false);
+            }
 
             if (administrators?.Length > 0)
             {

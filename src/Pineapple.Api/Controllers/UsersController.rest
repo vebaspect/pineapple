@@ -1,15 +1,18 @@
 # Adres URL do API.
-@url = http://localhost:5005
+@url = 
 
 # Identyfikator użytkownika.
 @userId = 
+
+# Liczba elementów, które mają zostać zwrócone.
+@count = 
 
 ### /users
 GET {{url}}/users
 Content-Type: application/json
 
-### /users/administrators
-GET {{url}}/users/administrators
+### /users/administrators?count={count}
+GET {{url}}/users/administrators?count={{count}}
 Content-Type: application/json
 
 ### /users/administrators/count
@@ -21,14 +24,14 @@ POST {{url}}/users/administrators
 Content-Type: application/json
 
 {
-    "FullName": "Anna Pietruszka",
-    "Login": "apietruszka",
+    "FullName": "",
+    "Login": "",
     "Phone": "",
-    "Email": "anna.pietruszka@coig.pl"
+    "Email": ""
 }
 
-### /users/developers
-GET {{url}}/users/developers
+### /users/developers?count={count}
+GET {{url}}/users/developers?count={{count}}
 Content-Type: application/json
 
 ### /users/developers/count
@@ -40,14 +43,14 @@ POST {{url}}/users/developers
 Content-Type: application/json
 
 {
-    "FullName": "Andrzej Nowak",
-    "Login": "anowak",
+    "FullName": "",
+    "Login": "",
     "Phone": "",
-    "Email": "andrzej.nowak@coig.pl"
+    "Email": ""
 }
 
-### /users/managers
-GET {{url}}/users/managers
+### /users/managers?count={count}
+GET {{url}}/users/managers?count={{count}}
 Content-Type: application/json
 
 ### /users/managers/count
@@ -65,8 +68,8 @@ Content-Type: application/json
     "Email": ""
 }
 
-### /users/operators
-GET {{url}}/users/operators
+### /users/operators?count={count}
+GET {{url}}/users/operators?count={{count}}
 Content-Type: application/json
 
 ### /users/operators/count

@@ -37,9 +37,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("administrators")]
-        public async Task<IActionResult> GetAdministrators()
+        public async Task<IActionResult> GetAdministrators([FromQuery]int? count)
         {
-            GetAdministratorsCommand command = new();
+            GetAdministratorsCommand command = new(count);
             Task<UserDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             UserDto[] result = await resultTask.ConfigureAwait(false);
 
@@ -75,9 +75,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("developers")]
-        public async Task<IActionResult> GetDevelopers()
+        public async Task<IActionResult> GetDevelopers([FromQuery]int? count)
         {
-            GetDevelopersCommand command = new();
+            GetDevelopersCommand command = new(count);
             Task<UserDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             UserDto[] result = await resultTask.ConfigureAwait(false);
 
@@ -113,9 +113,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("managers")]
-        public async Task<IActionResult> GetManagers()
+        public async Task<IActionResult> GetManagers([FromQuery]int? count)
         {
-            GetManagersCommand command = new();
+            GetManagersCommand command = new(count);
             Task<UserDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             UserDto[] result = await resultTask.ConfigureAwait(false);
 
@@ -151,9 +151,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("operators")]
-        public async Task<IActionResult> GetOperators()
+        public async Task<IActionResult> GetOperators([FromQuery]int? count)
         {
-            GetOperatorsCommand command = new();
+            GetOperatorsCommand command = new(count);
             Task<UserDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             UserDto[] result = await resultTask.ConfigureAwait(false);
 
