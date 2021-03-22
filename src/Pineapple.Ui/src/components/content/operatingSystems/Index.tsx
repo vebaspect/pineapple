@@ -33,6 +33,18 @@ const OperatingSystems = () => {
     }
   };
 
+  const deleteOperatingSystem = async (id) => {
+    await fetch(
+      `${window['env'].API_URL}/configuration/operating-systems/${id}`,
+      {
+        method: 'DELETE',
+      },
+    )
+    .then(() => {
+      fetchOperatingSystems();
+    });
+  };
+
   return (
     <>
       <Box
@@ -49,6 +61,7 @@ const OperatingSystems = () => {
           <List
             isDataFetched={isOperatingSystemsFetched}
             data={operatingSystems}
+            onDelete={deleteOperatingSystem}
           />
           <Box
             py={1.5}
