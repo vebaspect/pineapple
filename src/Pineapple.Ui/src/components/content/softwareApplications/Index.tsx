@@ -33,6 +33,18 @@ const SoftwareApplications = () => {
     }
   };
 
+  const deleteSoftwareApplication = async (id) => {
+    await fetch(
+      `${window['env'].API_URL}/configuration/software-applications/${id}`,
+      {
+        method: 'DELETE',
+      },
+    )
+    .then(() => {
+      fetchSoftwareApplications();
+    });
+  };
+
   return (
     <>
       <Box
@@ -49,6 +61,7 @@ const SoftwareApplications = () => {
           <List
             isDataFetched={isSoftwareApplicationsFetched}
             data={softwareApplications}
+            onDelete={deleteSoftwareApplication}
           />
           <Box
             py={1.5}

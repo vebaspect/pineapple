@@ -2,11 +2,15 @@ import React from 'react';
 
 import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import IconButton from '@material-ui/core/IconButton';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import Tooltip from '@material-ui/core/Tooltip';
+
+import DeleteIcon from '@material-ui/icons/Delete';
 
 interface Props {
   // Flaga określająca, czy lista oprogramowania została pobrana z API.
@@ -23,10 +27,12 @@ interface Props {
     description: string,
     // Flaga określająca, czy oprogramowanie zostało usunięte.
     isDeleted: boolean,
-  }[];
+  }[],
+  // Zdarzenie usunięcia oprogramowania.
+  onDelete: Function,
 };
 
-const List = ({ isDataFetched, data }: Props) => {
+const List = ({ isDataFetched, data, onDelete }: Props) => {
   if (!isDataFetched) {
     return (
       <Box
@@ -46,6 +52,7 @@ const List = ({ isDataFetched, data }: Props) => {
           <TableCell>Nazwa</TableCell>
           <TableCell>Symbol</TableCell>
           <TableCell>Opis</TableCell>
+          <TableCell style={{ width: 60 }} />
         </TableRow>
       </TableHead>
       <TableBody>
@@ -56,6 +63,17 @@ const List = ({ isDataFetched, data }: Props) => {
               <TableCell>{softwareApplication.name}</TableCell>
               <TableCell>{softwareApplication.symbol}</TableCell>
               <TableCell>{softwareApplication.description}</TableCell>
+              <TableCell align="right">
+                <Tooltip title="Usuń">
+                  <IconButton
+                    color="secondary"
+                    size="small"
+                    onClick={() => onDelete(softwareApplication.id)}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </Tooltip>
+              </TableCell>
             </TableRow>
           ))
         }
