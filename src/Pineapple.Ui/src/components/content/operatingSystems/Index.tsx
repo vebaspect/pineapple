@@ -11,7 +11,7 @@ const OperatingSystems = () => {
   const [isOperatingSystemsFetched, setIsOperatingSystemsFetched] = useState(false);
   // Lista systemów operacyjnych.
   const [operatingSystems, setOperatingSystems] = useState([]);
-  // Liczba systemów operacyjnych, które mają zostać pobrane.
+  // Liczba systemów operacyjnych, które mają zostać zwrócone.
   const [operatingSystemsCount, setOperatingSystemsCount] = useState(10);
 
   useEffect(() => {

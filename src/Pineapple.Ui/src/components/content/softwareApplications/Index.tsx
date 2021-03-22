@@ -11,7 +11,7 @@ const SoftwareApplications = () => {
   const [isSoftwareApplicationsFetched, setIsSoftwareApplicationsFetched] = useState(false);
   // Lista oprogramowania.
   const [softwareApplications, setSoftwareApplications] = useState([]);
-  // Liczba oprogramowania, które mają zostać pobrane.
+  // Liczba oprogramowania, które mają zostać zwrócone.
   const [softwareApplicationsCount, setSoftwareApplicationsCount] = useState(10);
 
   useEffect(() => {

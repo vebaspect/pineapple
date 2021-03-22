@@ -11,7 +11,7 @@ const ComponentTypes = () => {
   const [isComponentTypesFetched, setIsComponentTypesFetched] = useState(false);
   // Lista typów komponentów.
   const [componentTypes, setComponentTypes] = useState([]);
-  // Liczba typów komponentów, które mają zostać pobrane.
+  // Liczba typów komponentów, które mają zostać zwrócone.
   const [componentTypesCount, setComponentTypesCount] = useState(10);
 
   useEffect(() => {

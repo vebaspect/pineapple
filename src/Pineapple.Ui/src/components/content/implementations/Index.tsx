@@ -13,7 +13,7 @@ const Implementations = () => {
   const [isImplementationsFetched, setIsImplementationsFetched] = useState(false);
   // Lista wdrożeń.
   const [implementations, setImplementations] = useState([]);
-  // Liczba wdrożeń, które mają zostać pobrane.
+  // Liczba wdrożeń, które mają zostać zwrócone.
   const [implementationsCount, setImplementationsCount] = useState(10);
 
   // Flaga określająca, czy lista logów została pobrana z API.

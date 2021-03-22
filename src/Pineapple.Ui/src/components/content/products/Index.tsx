@@ -13,7 +13,7 @@ const Products = () => {
   const [isProductsFetched, setIsProductsFetched] = useState(false);
   // Lista produktów.
   const [products, setProducts] = useState([]);
-  // Liczba produktów, które mają zostać pobrane.
+  // Liczba produktów, które mają zostać zwrócone.
   const [productsCount, setProductsCount] = useState(10);
 
   // Flaga określająca, czy lista logów została pobrana z API.
