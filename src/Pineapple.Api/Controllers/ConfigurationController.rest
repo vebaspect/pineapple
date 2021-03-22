@@ -8,8 +8,11 @@
 # Identyfikator oprgoramowania.
 @softwareApplicationId = 
 
-### /configuration/component-types
-GET {{url}}/configuration/component-types
+# Liczba elementów, które mają zostać zwrócone.
+@count = 
+
+### /configuration/component-types?count={count}
+GET {{url}}/configuration/component-types?count={{count}}
 Content-Type: application/json
 
 ### /configuration/component-types/count

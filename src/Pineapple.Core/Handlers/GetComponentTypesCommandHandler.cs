@@ -28,10 +28,23 @@ namespace Pineapple.Core.Handler
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
 
-            var componentTypes = await databaseContext
-                .ComponentTypes
-                .ToArrayAsync()
-                .ConfigureAwait(false);
+            Domain.Entities.ComponentType[] componentTypes = null;
+
+            if (request.Count.HasValue)
+            {
+                componentTypes = await databaseContext
+                    .ComponentTypes
+                    .Take(request.Count.Value)
+                    .ToArrayAsync()
+                    .ConfigureAwait(false);
+            }
+            else
+            {
+                componentTypes = await databaseContext
+                    .ComponentTypes
+                    .ToArrayAsync()
+                    .ConfigureAwait(false);
+            }
 
             if (componentTypes?.Length > 0)
             {

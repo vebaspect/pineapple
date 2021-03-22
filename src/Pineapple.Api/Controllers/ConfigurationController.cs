@@ -26,9 +26,9 @@ namespace Pineapple.Api.Controllers
 
         [HttpGet]
         [Route("component-types")]
-        public async Task<IActionResult> GetComponentTypes()
+        public async Task<IActionResult> GetComponentTypes([FromQuery]int? count)
         {
-            GetComponentTypesCommand command = new();
+            GetComponentTypesCommand command = new(count);
             Task<ComponentTypeDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             ComponentTypeDto[] result = await resultTask.ConfigureAwait(false);
 
