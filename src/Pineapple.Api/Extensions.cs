@@ -15,7 +15,14 @@ namespace Pineapple.Api
             IConfigurationSection corsConfigurationSection = configuration.GetSection("Hosting:Cors");
             string[] origins = corsConfigurationSection.GetSection("Origins").Get<string[]>();
 
-            services.AddCors(options => options.AddDefaultPolicy(policy => policy.WithOrigins(origins)));
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(policy =>
+                {
+                    policy.WithOrigins(origins)
+                        .AllowAnyMethod();
+                });
+            });
 
             return services;
         }
