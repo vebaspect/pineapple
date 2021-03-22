@@ -33,6 +33,18 @@ const ComponentTypes = () => {
     }
   };
 
+  const deleteComponentType = async (id) => {
+    await fetch(
+      `${window['env'].API_URL}/configuration/component-types/${id}`,
+      {
+        method: 'DELETE',
+      },
+    )
+    .then(() => {
+      fetchComponentTypes();
+    });
+  };
+
   return (
     <>
       <Box
@@ -49,6 +61,7 @@ const ComponentTypes = () => {
           <List
             isDataFetched={isComponentTypesFetched}
             data={componentTypes}
+            onDelete={deleteComponentType}
           />
           <Box
             py={1.5}
