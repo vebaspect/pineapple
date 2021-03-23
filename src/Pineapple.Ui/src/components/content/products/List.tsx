@@ -1,8 +1,10 @@
 import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 
 import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import IconButton from '@material-ui/core/IconButton';
+import Link from '@material-ui/core/Link';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -57,7 +59,14 @@ const List = ({ isDataFetched, data, onDelete }: Props) => {
           data.filter((product) => !product.isDeleted).map((product, index) => (
             <TableRow key={product.id}>
               <TableCell>{index + 1}.</TableCell>
-              <TableCell>{product.name}</TableCell>
+              <TableCell>
+                <Link
+                  component={RouterLink}
+                  to={`/products/${product.id}`}
+                >
+                  {product.name}
+                </Link>
+              </TableCell>
               <TableCell>{product.description}</TableCell>
               <TableCell align="right">
                 <Tooltip title="Usuń">
