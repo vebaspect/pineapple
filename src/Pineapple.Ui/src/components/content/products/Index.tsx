@@ -61,6 +61,18 @@ const Products = () => {
     }
   };
 
+  const deleteProduct = async (id) => {
+    await fetch(
+      `${window['env'].API_URL}/products/${id}`,
+      {
+        method: 'DELETE',
+      },
+    )
+    .then(() => {
+      fetchProducts();
+    });
+  };
+
   return (
     <>
       <Box
@@ -77,6 +89,7 @@ const Products = () => {
           <List
             isDataFetched={isProductsFetched}
             data={products}
+            onDelete={deleteProduct}
           />
           <Box
             py={1.5}
