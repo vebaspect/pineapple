@@ -19,6 +19,9 @@ import Products from './products';
 import SoftwareApplications from './softwareApplications';
 import Users from './users'
 
+import CreateImplementationEditor from '../editors/implementations/createImplementationEditor';
+import CreateProductEditor from '../editors/products/createProductEditor';
+
 const Title = () => {
   return (
     <Switch>
@@ -34,6 +37,9 @@ const Title = () => {
       <Route path="/developers">
         <Developers />
       </Route>
+      <Route path="/implementations/create">
+        <CreateImplementationEditor />
+      </Route>
       <Route path="/implementations/:implementationId">
         <Implementation />
       </Route>
@@ -48,6 +54,9 @@ const Title = () => {
       </Route>
       <Route path="/operators">
         <Operators />
+      </Route>
+      <Route path="/products/create">
+        <CreateProductEditor />
       </Route>
       <Route path="/products/:productId">
         <Product />

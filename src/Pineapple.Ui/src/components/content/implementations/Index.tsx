@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from "react-router-dom";
 
 import {
   createStyles,
@@ -38,6 +39,7 @@ const Implementations = () => {
   // Liczba logów, które mają zostać zwrócone.
   const [logsCount, setLogsCount] = useState(10);
 
+  const history = useHistory();
   const styles = useStyles();
 
   useEffect(() => {
@@ -73,7 +75,7 @@ const Implementations = () => {
   };
 
   const addImplementation = () => {
-    // TODO
+    history.push("/implementations/create");
   };
 
   const editImplementation = () => {
