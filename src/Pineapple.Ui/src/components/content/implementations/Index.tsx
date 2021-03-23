@@ -61,6 +61,18 @@ const Implementations = () => {
     }
   };
 
+  const deleteImplementation = async (id) => {
+    await fetch(
+      `${window['env'].API_URL}/implementations/${id}`,
+      {
+        method: 'DELETE',
+      },
+    )
+    .then(() => {
+      fetchImplementations();
+    });
+  };
+
   return (
     <>
       <Box
@@ -77,6 +89,7 @@ const Implementations = () => {
           <List
             isDataFetched={isImplementationsFetched}
             data={implementations}
+            onDelete={deleteImplementation}
           />
           <Box
             py={1.5}
