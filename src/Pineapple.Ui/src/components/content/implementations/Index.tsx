@@ -1,20 +1,35 @@
 import React, { useEffect, useState } from 'react';
 
+import {
+  createStyles,
+  makeStyles,
+  Theme,
+} from '@material-ui/core/styles';
+
 import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 
-import Logs from '../../logs';
+import AddIcon from '@material-ui/icons/Add';
 
+import Logs from '../../logs';
 import List from './List';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    add: {
+      backgroundColor: '#4caf50',
+      color: '#fff',
+    },
+  }),
+);
 
 const Implementations = () => {
   // Flaga określająca, czy lista wdrożeń została pobrana z API.
   const [isImplementationsFetched, setIsImplementationsFetched] = useState(false);
   // Lista wdrożeń.
   const [implementations, setImplementations] = useState([]);
-  // Liczba wdrożeń, które mają zostać zwrócone.
-  const [implementationsCount, setImplementationsCount] = useState(10);
 
   // Flaga określająca, czy lista logów została pobrana z API.
   const [isLogsFetched, setIsLogsFetched] = useState(false);
@@ -23,16 +38,18 @@ const Implementations = () => {
   // Liczba logów, które mają zostać zwrócone.
   const [logsCount, setLogsCount] = useState(10);
 
+  const styles = useStyles();
+
   useEffect(() => {
     fetchImplementations();
-  }, [implementationsCount]);
+  }, []);
 
   useEffect(() => {
     fetchLogs();
   }, [logsCount]);
 
   const fetchImplementations = async () => {
-    await fetch(`${window['env'].API_URL}/implementations?count=${implementationsCount}`)
+    await fetch(`${window['env'].API_URL}/implementations`)
       .then(response => response.json())
       .then(data => {
         setIsImplementationsFetched(true);
@@ -49,16 +66,18 @@ const Implementations = () => {
       });
   };
 
-  const fetchMoreImplementations = () => {
-    if (implementationsCount <= implementations.length) {
-      setImplementationsCount(implementationsCount + 10);
-    }
-  };
-
   const fetchMoreLogs = () => {
     if (logsCount <= logs.length) {
       setLogsCount(logsCount + 10);
     }
+  };
+
+  const addImplementation = () => {
+    // TODO
+  };
+
+  const editImplementation = () => {
+    // TODO
   };
 
   const deleteImplementation = async (id) => {
@@ -90,15 +109,22 @@ const Implementations = () => {
           <List
             isDataFetched={isImplementationsFetched}
             data={implementations}
+            onEdit={editImplementation}
             onDelete={deleteImplementation}
           />
           <Box
-            py={1.5}
-            textAlign="center"
+            p={1.5}
+            textAlign="right"
           >
-            <Link onClick={fetchMoreImplementations}>
-              Pobierz więcej
-            </Link>
+            <Button
+              className={styles.add}
+              size="small"
+              startIcon={<AddIcon />}
+              variant="contained"
+              onClick={addImplementation}
+            >
+              Dodaj
+            </Button>
           </Box>
         </Paper>
       </Box>
