@@ -1,20 +1,35 @@
 import React, { useEffect, useState } from 'react';
 
+import {
+  createStyles,
+  makeStyles,
+  Theme,
+} from '@material-ui/core/styles';
+
 import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 
-import Logs from '../../logs';
+import AddIcon from '@material-ui/icons/Add';
 
+import Logs from '../../logs';
 import List from './List';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    add: {
+      backgroundColor: '#4caf50',
+      color: '#fff',
+    },
+  }),
+);
 
 const Products = () => {
   // Flaga określająca, czy lista produktów została pobrana z API.
   const [isProductsFetched, setIsProductsFetched] = useState(false);
   // Lista produktów.
   const [products, setProducts] = useState([]);
-  // Liczba produktów, które mają zostać zwrócone.
-  const [productsCount, setProductsCount] = useState(10);
 
   // Flaga określająca, czy lista logów została pobrana z API.
   const [isLogsFetched, setIsLogsFetched] = useState(false);
@@ -23,16 +38,18 @@ const Products = () => {
   // Liczba logów, które mają zostać zwrócone.
   const [logsCount, setLogsCount] = useState(10);
 
+  const styles = useStyles();
+
   useEffect(() => {
     fetchProducts();
-  }, [productsCount]);
+  }, []);
 
   useEffect(() => {
     fetchLogs();
   }, [logsCount]);
 
   const fetchProducts = async () => {
-    await fetch(`${window['env'].API_URL}/products?count=${productsCount}`)
+    await fetch(`${window['env'].API_URL}/products`)
       .then(response => response.json())
       .then(data => {
         setIsProductsFetched(true);
@@ -49,16 +66,18 @@ const Products = () => {
       });
   };
 
-  const fetchMoreProducts = () => {
-    if (productsCount <= products.length) {
-      setProductsCount(productsCount + 10);
-    }
-  };
-
   const fetchMoreLogs = () => {
     if (logsCount <= logs.length) {
       setLogsCount(logsCount + 10);
     }
+  };
+
+  const addProduct = () => {
+    // TODO
+  };
+
+  const editProduct = () => {
+    // TODO
   };
 
   const deleteProduct = async (id) => {
@@ -90,15 +109,22 @@ const Products = () => {
           <List
             isDataFetched={isProductsFetched}
             data={products}
+            onEdit={editProduct}
             onDelete={deleteProduct}
           />
           <Box
-            py={1.5}
-            textAlign="center"
+            p={1.5}
+            textAlign="right"
           >
-            <Link onClick={fetchMoreProducts}>
-              Pobierz więcej
-            </Link>
+            <Button
+              className={styles.add}
+              size="small"
+              startIcon={<AddIcon />}
+              variant="contained"
+              onClick={addProduct}
+            >
+              Dodaj
+            </Button>
           </Box>
         </Paper>
       </Box>
