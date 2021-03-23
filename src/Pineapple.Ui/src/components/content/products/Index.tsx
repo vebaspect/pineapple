@@ -70,6 +70,7 @@ const Products = () => {
     )
     .then(() => {
       fetchProducts();
+      fetchLogs();
     });
   };
 
