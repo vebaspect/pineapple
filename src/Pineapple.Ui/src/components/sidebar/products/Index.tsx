@@ -27,7 +27,7 @@ interface Props {
     description: string,
     // Flaga określająca, czy produkt został usunięty.
     isDeleted: boolean,
-  }[];
+  }[],
 };
 
 const Products = ({ isDataFetched, data }: Props) => {

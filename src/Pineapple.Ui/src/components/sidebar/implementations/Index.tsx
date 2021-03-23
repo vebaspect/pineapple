@@ -27,7 +27,7 @@ interface Props {
     description: string,
     // Flaga określająca, czy wdrożenie zostało usunięte.
     isDeleted: boolean,
-  }[];
+  }[],
 };
 
 const Implementations = ({ isDataFetched, data }: Props) => {

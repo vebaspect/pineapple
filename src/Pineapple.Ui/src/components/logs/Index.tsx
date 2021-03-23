@@ -29,7 +29,7 @@ interface Props {
     parentEntityName: string,
     // Opis.
     description: string,
-  }[];
+  }[],
 };
 
 const Logs = ({ isDataFetched, data }: Props) => {
