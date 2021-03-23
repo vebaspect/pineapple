@@ -33,6 +33,18 @@ const Administrators = () => {
     }
   };
 
+  const deleteAdministrator = async (id) => {
+    await fetch(
+      `${window['env'].API_URL}/users/${id}`,
+      {
+        method: 'DELETE',
+      },
+    )
+    .then(() => {
+      fetchAdministrators();
+    });
+  };
+
   return (
     <>
       <Box
@@ -49,6 +61,7 @@ const Administrators = () => {
           <List
             isDataFetched={isAdministratorsFetched}
             data={administrators}
+            onDelete={deleteAdministrator}
           />
           <Box
             py={1.5}

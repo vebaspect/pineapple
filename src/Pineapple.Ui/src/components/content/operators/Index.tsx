@@ -33,6 +33,18 @@ const Operators = () => {
     }
   };
 
+  const deleteOperator = async (id) => {
+    await fetch(
+      `${window['env'].API_URL}/users/${id}`,
+      {
+        method: 'DELETE',
+      },
+    )
+    .then(() => {
+      fetchOperators();
+    });
+  };
+
   return (
     <>
       <Box
@@ -49,6 +61,7 @@ const Operators = () => {
           <List
             isDataFetched={isOperatorsFetched}
             data={operators}
+            onDelete={deleteOperator}
           />
           <Box
             py={1.5}

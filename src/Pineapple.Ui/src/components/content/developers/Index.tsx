@@ -33,6 +33,18 @@ const Developers = () => {
     }
   };
 
+  const deleteDeveloper = async (id) => {
+    await fetch(
+      `${window['env'].API_URL}/users/${id}`,
+      {
+        method: 'DELETE',
+      },
+    )
+    .then(() => {
+      fetchDevelopers();
+    });
+  };
+
   return (
     <>
       <Box
@@ -49,6 +61,7 @@ const Developers = () => {
           <List
             isDataFetched={isDevelopersFetched}
             data={developers}
+            onDelete={deleteDeveloper}
           />
           <Box
             py={1.5}
