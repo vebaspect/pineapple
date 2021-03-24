@@ -20,6 +20,7 @@ namespace Pineapple.Api
                 options.AddDefaultPolicy(policy =>
                 {
                     policy.WithOrigins(origins)
+                        .AllowAnyHeader()
                         .AllowAnyMethod();
                 });
             });
