@@ -23,6 +23,7 @@ import CreateComponentTypeEditor from '../editors/configuration/createComponentT
 import CreateImplementationEditor from '../editors/implementations/createImplementationEditor';
 import CreateOperatingSystemEditor from '../editors/configuration/createOperatingSystemEditor';
 import CreateProductEditor from '../editors/products/createProductEditor';
+import CreateSoftwareApplicationEditor from '../editors/configuration/createSoftwareApplicationEditor';
 
 const Title = () => {
   return (
@@ -71,6 +72,9 @@ const Title = () => {
       </Route>
       <Route path="/products">
         <Products />
+      </Route>
+      <Route path="/software-applications/create">
+        <CreateSoftwareApplicationEditor />
       </Route>
       <Route path="/software-applications">
         <SoftwareApplications />

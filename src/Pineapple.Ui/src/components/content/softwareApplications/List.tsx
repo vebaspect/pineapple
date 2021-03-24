@@ -11,6 +11,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Tooltip from '@material-ui/core/Tooltip';
 
 import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
 interface Props {
   // Flaga określająca, czy lista oprogramowania została pobrana z API.
@@ -28,11 +29,13 @@ interface Props {
     // Flaga określająca, czy oprogramowanie zostało usunięte.
     isDeleted: boolean,
   }[],
+  // Zdarzenie edycji oprogramowania.
+  onEdit: Function,
   // Zdarzenie usunięcia oprogramowania.
   onDelete: Function,
 };
 
-const List = ({ isDataFetched, data, onDelete }: Props) => {
+const List = ({ isDataFetched, data, onEdit, onDelete }: Props) => {
   if (!isDataFetched) {
     return (
       <Box
@@ -52,7 +55,7 @@ const List = ({ isDataFetched, data, onDelete }: Props) => {
           <TableCell>Nazwa</TableCell>
           <TableCell>Symbol</TableCell>
           <TableCell>Opis</TableCell>
-          <TableCell style={{ width: 60 }} />
+          <TableCell style={{ width: 100 }} />
         </TableRow>
       </TableHead>
       <TableBody>
@@ -64,6 +67,14 @@ const List = ({ isDataFetched, data, onDelete }: Props) => {
               <TableCell>{softwareApplication.symbol}</TableCell>
               <TableCell>{softwareApplication.description}</TableCell>
               <TableCell align="right">
+                <Tooltip title="Edytuj">
+                  <IconButton
+                    size="small"
+                    onClick={() => onEdit(softwareApplication.id)}
+                  >
+                    <EditIcon />
+                  </IconButton>
+                </Tooltip>
                 <Tooltip title="Usuń">
                   <IconButton
                     color="secondary"
