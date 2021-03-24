@@ -1,25 +1,44 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from "react-router-dom";
+
+import {
+  createStyles,
+  makeStyles,
+  Theme,
+} from '@material-ui/core/styles';
 
 import Box from '@material-ui/core/Box';
-import Link from '@material-ui/core/Link';
+import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 
+import AddIcon from '@material-ui/icons/Add';
+
 import List from './List';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    add: {
+      backgroundColor: '#4caf50',
+      color: '#fff',
+    },
+  }),
+);
 
 const Developers = () => {
   // Flaga określająca, czy lista programistów została pobrana z API.
   const [isDevelopersFetched, setIsDevelopersFetched] = useState(false);
   // Lista programistów.
   const [developers, setDevelopers] = useState([]);
-  // Liczba programistów, którzy mają zostać zwróceni.
-  const [developersCount, setDevelopersCount] = useState(10);
+
+  const history = useHistory();
+  const styles = useStyles();
 
   useEffect(() => {
     fetchDevelopers();
-  }, [developersCount]);
+  }, []);
 
   const fetchDevelopers = async () => {
-    await fetch(`${window['env'].API_URL}/users/developers?count=${developersCount}`)
+    await fetch(`${window['env'].API_URL}/users/developers`)
       .then(response => response.json())
       .then(data => {
         setIsDevelopersFetched(true);
@@ -27,10 +46,12 @@ const Developers = () => {
       });
   };
 
-  const fetchMoreDevelopers = () => {
-    if (developersCount <= developers.length) {
-      setDevelopersCount(developersCount + 10);
-    }
+  const addDeveloper = () => {
+    history.push("/developers/create");
+  };
+
+  const editDeveloper = () => {
+    // TODO
   };
 
   const deleteDeveloper = async (id) => {
@@ -61,15 +82,22 @@ const Developers = () => {
           <List
             isDataFetched={isDevelopersFetched}
             data={developers}
+            onEdit={editDeveloper}
             onDelete={deleteDeveloper}
           />
           <Box
-            py={1.5}
-            textAlign="center"
+            p={1.5}
+            textAlign="right"
           >
-            <Link onClick={fetchMoreDevelopers}>
-              Pobierz więcej
-            </Link>
+            <Button
+              className={styles.add}
+              size="small"
+              startIcon={<AddIcon />}
+              variant="contained"
+              onClick={addDeveloper}
+            >
+              Dodaj
+            </Button>
           </Box>
         </Paper>
       </Box>

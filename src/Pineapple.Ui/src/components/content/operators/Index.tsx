@@ -1,25 +1,44 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from "react-router-dom";
+
+import {
+  createStyles,
+  makeStyles,
+  Theme,
+} from '@material-ui/core/styles';
 
 import Box from '@material-ui/core/Box';
-import Link from '@material-ui/core/Link';
+import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 
+import AddIcon from '@material-ui/icons/Add';
+
 import List from './List';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    add: {
+      backgroundColor: '#4caf50',
+      color: '#fff',
+    },
+  }),
+);
 
 const Operators = () => {
   // Flaga określająca, czy lista wdrożeniowców została pobrana z API.
   const [isOperatorsFetched, setIsOperatorsFetched] = useState(false);
   // Lista wdrożeniowców.
   const [operators, setOperators] = useState([]);
-  // Liczba wdrożeniowców, którzy mają zostać zwróceni.
-  const [operatorsCount, setOperatorsCount] = useState(10);
+
+  const history = useHistory();
+  const styles = useStyles();
 
   useEffect(() => {
     fetchOperators();
-  }, [operatorsCount]);
+  }, []);
 
   const fetchOperators = async () => {
-    await fetch(`${window['env'].API_URL}/users/operators?count=${operatorsCount}`)
+    await fetch(`${window['env'].API_URL}/users/operators`)
       .then(response => response.json())
       .then(data => {
         setIsOperatorsFetched(true);
@@ -27,10 +46,12 @@ const Operators = () => {
       });
   };
 
-  const fetchMoreOperators = () => {
-    if (operatorsCount <= operators.length) {
-      setOperatorsCount(operatorsCount + 10);
-    }
+  const addOperator = () => {
+    history.push("/operators/create");
+  };
+
+  const editOperator = () => {
+    // TODO
   };
 
   const deleteOperator = async (id) => {
@@ -61,15 +82,22 @@ const Operators = () => {
           <List
             isDataFetched={isOperatorsFetched}
             data={operators}
+            onEdit={editOperator}
             onDelete={deleteOperator}
           />
           <Box
-            py={1.5}
-            textAlign="center"
+            p={1.5}
+            textAlign="right"
           >
-            <Link onClick={fetchMoreOperators}>
-              Pobierz więcej
-            </Link>
+            <Button
+              className={styles.add}
+              size="small"
+              startIcon={<AddIcon />}
+              variant="contained"
+              onClick={addOperator}
+            >
+              Dodaj
+            </Button>
           </Box>
         </Paper>
       </Box>

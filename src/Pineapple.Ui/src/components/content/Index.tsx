@@ -19,15 +19,22 @@ import Products from './products';
 import SoftwareApplications from './softwareApplications';
 import Users from './users'
 
+import CreateAdministratorEditor from '../editors/users/createAdministratorEditor';
 import CreateComponentTypeEditor from '../editors/configuration/createComponentTypeEditor';
+import CreateDeveloperEditor from '../editors/users/createDeveloperEditor';
 import CreateImplementationEditor from '../editors/implementations/createImplementationEditor';
+import CreateManagerEditor from '../editors/users/createManagerEditor';
 import CreateOperatingSystemEditor from '../editors/configuration/createOperatingSystemEditor';
+import CreateOperatorEditor from '../editors/users/createOperatorEditor';
 import CreateProductEditor from '../editors/products/createProductEditor';
 import CreateSoftwareApplicationEditor from '../editors/configuration/createSoftwareApplicationEditor';
 
 const Title = () => {
   return (
     <Switch>
+      <Route path="/administrators/create">
+        <CreateAdministratorEditor />
+      </Route>
       <Route path="/administrators">
         <Administrators />
       </Route>
@@ -39,6 +46,9 @@ const Title = () => {
       </Route>
       <Route path="/configuration">
         <Configuration />
+      </Route>
+      <Route path="/developers/create">
+        <CreateDeveloperEditor />
       </Route>
       <Route path="/developers">
         <Developers />
@@ -52,6 +62,9 @@ const Title = () => {
       <Route path="/implementations">
         <Implementations />
       </Route>
+      <Route path="/managers/create">
+        <CreateManagerEditor />
+      </Route>
       <Route path="/managers">
         <Managers />
       </Route>
@@ -60,6 +73,9 @@ const Title = () => {
       </Route>
       <Route path="/operating-systems">
         <OperatingSystems />
+      </Route>
+      <Route path="/operators/create">
+        <CreateOperatorEditor />
       </Route>
       <Route path="/operators">
         <Operators />

@@ -1,25 +1,44 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from "react-router-dom";
+
+import {
+  createStyles,
+  makeStyles,
+  Theme,
+} from '@material-ui/core/styles';
 
 import Box from '@material-ui/core/Box';
-import Link from '@material-ui/core/Link';
+import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 
+import AddIcon from '@material-ui/icons/Add';
+
 import List from './List';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    add: {
+      backgroundColor: '#4caf50',
+      color: '#fff',
+    },
+  }),
+);
 
 const Administrators = () => {
   // Flaga określająca, czy lista administratorów została pobrana z API.
   const [isAdministratorsFetched, setIsAdministratorsFetched] = useState(false);
   // Lista administratorów.
   const [administrators, setAdministrators] = useState([]);
-  // Liczba administratorów, którzy mają zostać zwróceni.
-  const [administratorsCount, setAdministratorsCount] = useState(10);
+
+  const history = useHistory();
+  const styles = useStyles();
 
   useEffect(() => {
     fetchAdministrators();
-  }, [administratorsCount]);
+  }, []);
 
   const fetchAdministrators = async () => {
-    await fetch(`${window['env'].API_URL}/users/administrators?count=${administratorsCount}`)
+    await fetch(`${window['env'].API_URL}/users/administrators`)
       .then(response => response.json())
       .then(data => {
         setIsAdministratorsFetched(true);
@@ -27,10 +46,12 @@ const Administrators = () => {
       });
   };
 
-  const fetchMoreAdministrators = () => {
-    if (administratorsCount <= administrators.length) {
-      setAdministratorsCount(administratorsCount + 10);
-    }
+  const addAdministrator = () => {
+    history.push("/administrators/create");
+  };
+
+  const editAdministrator = () => {
+    // TODO
   };
 
   const deleteAdministrator = async (id) => {
@@ -61,15 +82,22 @@ const Administrators = () => {
           <List
             isDataFetched={isAdministratorsFetched}
             data={administrators}
+            onEdit={editAdministrator}
             onDelete={deleteAdministrator}
           />
           <Box
-            py={1.5}
-            textAlign="center"
+            p={1.5}
+            textAlign="right"
           >
-            <Link onClick={fetchMoreAdministrators}>
-              Pobierz więcej
-            </Link>
+            <Button
+              className={styles.add}
+              size="small"
+              startIcon={<AddIcon />}
+              variant="contained"
+              onClick={addAdministrator}
+            >
+              Dodaj
+            </Button>
           </Box>
         </Paper>
       </Box>

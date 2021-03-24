@@ -1,25 +1,44 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from "react-router-dom";
+
+import {
+  createStyles,
+  makeStyles,
+  Theme,
+} from '@material-ui/core/styles';
 
 import Box from '@material-ui/core/Box';
-import Link from '@material-ui/core/Link';
+import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 
+import AddIcon from '@material-ui/icons/Add';
+
 import List from './List';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    add: {
+      backgroundColor: '#4caf50',
+      color: '#fff',
+    },
+  }),
+);
 
 const Managers = () => {
   // Flaga określająca, czy lista menedżerów została pobrana z API.
   const [isManagersFetched, setIsManagersFetched] = useState(false);
   // Lista menedżerów.
   const [managers, setManagers] = useState([]);
-  // Liczba menedżerów, którzy mają zostać zwróceni.
-  const [managersCount, setManagersCount] = useState(10);
+
+  const history = useHistory();
+  const styles = useStyles();
 
   useEffect(() => {
     fetchManagers();
-  }, [managersCount]);
+  }, []);
 
   const fetchManagers = async () => {
-    await fetch(`${window['env'].API_URL}/users/managers?count=${managersCount}`)
+    await fetch(`${window['env'].API_URL}/users/managers`)
       .then(response => response.json())
       .then(data => {
         setIsManagersFetched(true);
@@ -27,10 +46,12 @@ const Managers = () => {
       });
   };
 
-  const fetchMoreManagers = () => {
-    if (managersCount <= managers.length) {
-      setManagersCount(managersCount + 10);
-    }
+  const addManager = () => {
+    history.push("/managers/create");
+  };
+
+  const editManager = () => {
+    // TODO
   };
 
   const deleteManager = async (id) => {
@@ -61,15 +82,22 @@ const Managers = () => {
           <List
             isDataFetched={isManagersFetched}
             data={managers}
+            onEdit={editManager}
             onDelete={deleteManager}
           />
           <Box
-            py={1.5}
-            textAlign="center"
+            p={1.5}
+            textAlign="right"
           >
-            <Link onClick={fetchMoreManagers}>
-              Pobierz więcej
-            </Link>
+            <Button
+              className={styles.add}
+              size="small"
+              startIcon={<AddIcon />}
+              variant="contained"
+              onClick={addManager}
+            >
+              Dodaj
+            </Button>
           </Box>
         </Paper>
       </Box>

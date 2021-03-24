@@ -11,6 +11,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Tooltip from '@material-ui/core/Tooltip';
 
 import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
 interface Props {
   // Flaga określająca, czy lista menedżerów została pobrana z API.
@@ -30,11 +31,13 @@ interface Props {
     // Flaga określająca, czy menedżer został usunięty.
     isDeleted: boolean,
   }[],
+  // Zdarzenie edycji menedżera.
+  onEdit: Function,
   // Zdarzenie usunięcia menedżera.
   onDelete: Function,
 };
 
-const List = ({ isDataFetched, data, onDelete }: Props) => {
+const List = ({ isDataFetched, data, onEdit, onDelete }: Props) => {
   if (!isDataFetched) {
     return (
       <Box
@@ -55,7 +58,7 @@ const List = ({ isDataFetched, data, onDelete }: Props) => {
           <TableCell>Login</TableCell>
           <TableCell>Telefon</TableCell>
           <TableCell>E-mail</TableCell>
-          <TableCell style={{ width: 60 }} />
+          <TableCell style={{ width: 100 }} />
         </TableRow>
       </TableHead>
       <TableBody>
@@ -68,6 +71,14 @@ const List = ({ isDataFetched, data, onDelete }: Props) => {
               <TableCell>{manager.phone}</TableCell>
               <TableCell>{manager.email}</TableCell>
               <TableCell align="right">
+                <Tooltip title="Edytuj">
+                  <IconButton
+                    size="small"
+                    onClick={() => onEdit(manager.id)}
+                  >
+                    <EditIcon />
+                  </IconButton>
+                </Tooltip>
                 <Tooltip title="Usuń">
                   <IconButton
                     color="secondary"
