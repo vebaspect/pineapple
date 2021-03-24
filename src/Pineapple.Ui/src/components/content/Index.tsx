@@ -19,6 +19,7 @@ import Products from './products';
 import SoftwareApplications from './softwareApplications';
 import Users from './users'
 
+import CreateComponentTypeEditor from '../editors/configuration/createComponentTypeEditor';
 import CreateImplementationEditor from '../editors/implementations/createImplementationEditor';
 import CreateProductEditor from '../editors/products/createProductEditor';
 
@@ -27,6 +28,9 @@ const Title = () => {
     <Switch>
       <Route path="/administrators">
         <Administrators />
+      </Route>
+      <Route path="/component-types/create">
+        <CreateComponentTypeEditor />
       </Route>
       <Route path="/component-types">
         <ComponentTypes />

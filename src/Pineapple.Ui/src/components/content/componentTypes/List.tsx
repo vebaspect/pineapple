@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 
 import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -11,6 +12,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Tooltip from '@material-ui/core/Tooltip';
 
 import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
 interface Props {
   // Flaga określająca, czy lista typów komponentów została pobrana z API.
@@ -28,11 +30,13 @@ interface Props {
     // Flaga określająca, czy typ komponentu został usunięty.
     isDeleted: boolean,
   }[],
+  // Zdarzenie edycji typu komponentu.
+  onEdit: Function,
   // Zdarzenie usunięcia typu komponentu.
   onDelete: Function,
 };
 
-const List = ({ isDataFetched, data, onDelete }: Props) => {
+const List = ({ isDataFetched, data, onEdit, onDelete }: Props) => {
   if (!isDataFetched) {
     return (
       <Box
@@ -52,7 +56,7 @@ const List = ({ isDataFetched, data, onDelete }: Props) => {
           <TableCell>Nazwa</TableCell>
           <TableCell>Symbol</TableCell>
           <TableCell>Opis</TableCell>
-          <TableCell style={{ width: 60 }} />
+          <TableCell style={{ width: 100 }} />
         </TableRow>
       </TableHead>
       <TableBody>
@@ -64,6 +68,14 @@ const List = ({ isDataFetched, data, onDelete }: Props) => {
               <TableCell>{componentType.symbol}</TableCell>
               <TableCell>{componentType.description}</TableCell>
               <TableCell align="right">
+                <Tooltip title="Edytuj">
+                  <IconButton
+                    size="small"
+                    onClick={() => onEdit(componentType.id)}
+                  >
+                    <EditIcon />
+                  </IconButton>
+                </Tooltip>
                 <Tooltip title="Usuń">
                   <IconButton
                     color="secondary"

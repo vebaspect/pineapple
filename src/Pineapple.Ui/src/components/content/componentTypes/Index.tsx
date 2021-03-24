@@ -1,25 +1,45 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from "react-router-dom";
+
+import {
+  createStyles,
+  makeStyles,
+  Theme,
+} from '@material-ui/core/styles';
 
 import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 
+import AddIcon from '@material-ui/icons/Add';
+
 import List from './List';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    add: {
+      backgroundColor: '#4caf50',
+      color: '#fff',
+    },
+  }),
+);
 
 const ComponentTypes = () => {
   // Flaga określająca, czy lista typów komponentów została pobrana z API.
   const [isComponentTypesFetched, setIsComponentTypesFetched] = useState(false);
   // Lista typów komponentów.
   const [componentTypes, setComponentTypes] = useState([]);
-  // Liczba typów komponentów, które mają zostać zwrócone.
-  const [componentTypesCount, setComponentTypesCount] = useState(10);
+
+  const history = useHistory();
+  const styles = useStyles();
 
   useEffect(() => {
     fetchComponentTypes();
-  }, [componentTypesCount]);
+  }, []);
 
   const fetchComponentTypes = async () => {
-    await fetch(`${window['env'].API_URL}/configuration/component-types?count=${componentTypesCount}`)
+    await fetch(`${window['env'].API_URL}/configuration/component-types`)
       .then(response => response.json())
       .then(data => {
         setIsComponentTypesFetched(true);
@@ -27,10 +47,12 @@ const ComponentTypes = () => {
       });
   };
 
-  const fetchMoreComponentTypes = () => {
-    if (componentTypesCount <= componentTypes.length) {
-      setComponentTypesCount(componentTypesCount + 10);
-    }
+  const addComponentType = () => {
+    history.push("/component-types/create");
+  };
+
+  const editComponentType = () => {
+    // TODO
   };
 
   const deleteComponentType = async (id) => {
@@ -61,15 +83,22 @@ const ComponentTypes = () => {
           <List
             isDataFetched={isComponentTypesFetched}
             data={componentTypes}
+            onEdit={editComponentType}
             onDelete={deleteComponentType}
           />
           <Box
-            py={1.5}
-            textAlign="center"
+            p={1.5}
+            textAlign="right"
           >
-            <Link onClick={fetchMoreComponentTypes}>
-              Pobierz więcej
-            </Link>
+            <Button
+              className={styles.add}
+              size="small"
+              startIcon={<AddIcon />}
+              variant="contained"
+              onClick={addComponentType}
+            >
+              Dodaj
+            </Button>
           </Box>
         </Paper>
       </Box>
