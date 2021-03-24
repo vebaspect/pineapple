@@ -1,25 +1,44 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from "react-router-dom";
+
+import {
+  createStyles,
+  makeStyles,
+  Theme,
+} from '@material-ui/core/styles';
 
 import Box from '@material-ui/core/Box';
-import Link from '@material-ui/core/Link';
+import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 
+import AddIcon from '@material-ui/icons/Add';
+
 import List from './List';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    add: {
+      backgroundColor: '#4caf50',
+      color: '#fff',
+    },
+  }),
+);
 
 const OperatingSystems = () => {
   // Flaga określająca, czy lista systemów operacyjnych została pobrana z API.
   const [isOperatingSystemsFetched, setIsOperatingSystemsFetched] = useState(false);
   // Lista systemów operacyjnych.
   const [operatingSystems, setOperatingSystems] = useState([]);
-  // Liczba systemów operacyjnych, które mają zostać zwrócone.
-  const [operatingSystemsCount, setOperatingSystemsCount] = useState(10);
+
+  const history = useHistory();
+  const styles = useStyles();
 
   useEffect(() => {
     fetchOperatingSystems();
-  }, [operatingSystemsCount]);
+  }, []);
 
   const fetchOperatingSystems = async () => {
-    await fetch(`${window['env'].API_URL}/configuration/operating-systems?count=${operatingSystemsCount}`)
+    await fetch(`${window['env'].API_URL}/configuration/operating-systems`)
       .then(response => response.json())
       .then(data => {
         setIsOperatingSystemsFetched(true);
@@ -27,10 +46,12 @@ const OperatingSystems = () => {
       });
   };
 
-  const fetchMoreOperatingSystems = () => {
-    if (operatingSystemsCount <= operatingSystems.length) {
-      setOperatingSystemsCount(operatingSystemsCount + 10);
-    }
+  const addOperatingSystem = () => {
+    history.push("/operating-systems/create");
+  };
+
+  const editOperatingSystem = () => {
+    // TODO
   };
 
   const deleteOperatingSystem = async (id) => {
@@ -61,15 +82,22 @@ const OperatingSystems = () => {
           <List
             isDataFetched={isOperatingSystemsFetched}
             data={operatingSystems}
+            onEdit={editOperatingSystem}
             onDelete={deleteOperatingSystem}
           />
           <Box
-            py={1.5}
-            textAlign="center"
+            p={1.5}
+            textAlign="right"
           >
-            <Link onClick={fetchMoreOperatingSystems}>
-              Pobierz więcej
-            </Link>
+            <Button
+              className={styles.add}
+              size="small"
+              startIcon={<AddIcon />}
+              variant="contained"
+              onClick={addOperatingSystem}
+            >
+              Dodaj
+            </Button>
           </Box>
         </Paper>
       </Box>

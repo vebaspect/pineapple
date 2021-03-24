@@ -21,6 +21,7 @@ import Users from './users'
 
 import CreateComponentTypeEditor from '../editors/configuration/createComponentTypeEditor';
 import CreateImplementationEditor from '../editors/implementations/createImplementationEditor';
+import CreateOperatingSystemEditor from '../editors/configuration/createOperatingSystemEditor';
 import CreateProductEditor from '../editors/products/createProductEditor';
 
 const Title = () => {
@@ -52,6 +53,9 @@ const Title = () => {
       </Route>
       <Route path="/managers">
         <Managers />
+      </Route>
+      <Route path="/operating-systems/create">
+        <CreateOperatingSystemEditor />
       </Route>
       <Route path="/operating-systems">
         <OperatingSystems />
