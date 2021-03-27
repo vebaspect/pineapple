@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Route,
   Switch,
-} from "react-router-dom";
+} from 'react-router-dom';
 
 import Administrators from './administrators';
 import ComponentTypes from './componentTypes';

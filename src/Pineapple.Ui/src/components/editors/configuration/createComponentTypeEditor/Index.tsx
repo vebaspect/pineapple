@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
@@ -52,7 +52,7 @@ const CreateComponentTypeEditor = () => {
       },
     )
     .then(() => {
-      history.push("/component-types");
+      history.push('/component-types');
     });
   };
 

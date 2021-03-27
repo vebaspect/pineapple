@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 import {
   createStyles,
@@ -47,7 +47,7 @@ const Operators = () => {
   };
 
   const addOperator = () => {
-    history.push("/operators/create");
+    history.push('/operators/create');
   };
 
   const editOperator = () => {

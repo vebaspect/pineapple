@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 import {
   createStyles,
@@ -47,7 +47,7 @@ const SoftwareApplications = () => {
   };
 
   const addSoftwareApplication = () => {
-    history.push("/software-applications/create");
+    history.push('/software-applications/create');
   };
 
   const editSoftwareApplication = () => {

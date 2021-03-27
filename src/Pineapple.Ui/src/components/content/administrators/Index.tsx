@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 import {
   createStyles,
@@ -47,7 +47,7 @@ const Administrators = () => {
   };
 
   const addAdministrator = () => {
-    history.push("/administrators/create");
+    history.push('/administrators/create');
   };
 
   const editAdministrator = () => {

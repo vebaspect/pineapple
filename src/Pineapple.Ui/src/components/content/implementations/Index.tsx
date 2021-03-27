@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 import {
   createStyles,
@@ -75,7 +75,7 @@ const Implementations = () => {
   };
 
   const addImplementation = () => {
-    history.push("/implementations/create");
+    history.push('/implementations/create');
   };
 
   const editImplementation = () => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 import {
   createStyles,
@@ -47,7 +47,7 @@ const OperatingSystems = () => {
   };
 
   const addOperatingSystem = () => {
-    history.push("/operating-systems/create");
+    history.push('/operating-systems/create');
   };
 
   const editOperatingSystem = () => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 import {
   createStyles,
@@ -75,7 +75,7 @@ const Products = () => {
   };
 
   const addProduct = () => {
-    history.push("/products/create");
+    history.push('/products/create');
   };
 
   const editProduct = () => {
