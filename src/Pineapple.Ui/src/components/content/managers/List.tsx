@@ -32,9 +32,9 @@ interface Props {
     isDeleted: boolean,
   }[],
   // Zdarzenie edycji menedżera.
-  onEdit: Function,
+  onEdit: (id: string) => void,
   // Zdarzenie usunięcia menedżera.
-  onDelete: Function,
+  onDelete: (id: string) => void,
 }
 
 const List: React.FC<Props> = ({ isDataFetched, data, onEdit, onDelete }: Props) => {

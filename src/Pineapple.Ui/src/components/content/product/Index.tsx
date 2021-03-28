@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Box from '@material-ui/core/Box';
@@ -17,18 +17,18 @@ const Product: React.VFC = () => {
   // Liczba logów, które mają zostać zwrócone.
   const [count, setCount] = useState(10);
 
-  useEffect(() => {
-    fetchLogs();
-  }, [productId, count]);
-
-  const fetchLogs = async () => {
+  const fetchLogs = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/logs/products/${productId}?count=${count}`)
       .then(response => response.json())
       .then(data => {
         setIsLogsFetched(true);
         setLogs(data);
       });
-  };
+  }, [productId, count]);
+
+  useEffect(() => {
+    fetchLogs();
+  }, [productId, count, fetchLogs]);
 
   const fetchMoreLogs = () => {
     if (count <= logs.length) {

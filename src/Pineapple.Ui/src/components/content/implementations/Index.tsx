@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import {
   createStyles,
   makeStyles,
-  Theme,
 } from '@material-ui/core/styles';
 
 import Box from '@material-ui/core/Box';
@@ -46,9 +45,18 @@ const Implementations: React.VFC = () => {
     fetchImplementations();
   }, []);
 
+  const fetchLogs = useCallback(async () => {
+    await fetch(`${window['env'].API_URL}/logs/implementations?count=${logsCount}`)
+      .then(response => response.json())
+      .then(data => {
+        setIsLogsFetched(true);
+        setLogs(data);
+      });
+  }, [logsCount]);
+
   useEffect(() => {
     fetchLogs();
-  }, [logsCount]);
+  }, [logsCount, fetchLogs]);
 
   const fetchImplementations = async () => {
     await fetch(`${window['env'].API_URL}/implementations`)
@@ -56,15 +64,6 @@ const Implementations: React.VFC = () => {
       .then(data => {
         setIsImplementationsFetched(true);
         setImplementations(data);
-      });
-  };
-
-  const fetchLogs = async () => {
-    await fetch(`${window['env'].API_URL}/logs/implementations?count=${logsCount}`)
-      .then(response => response.json())
-      .then(data => {
-        setIsLogsFetched(true);
-        setLogs(data);
       });
   };
 

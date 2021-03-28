@@ -30,9 +30,9 @@ interface Props {
     isDeleted: boolean,
   }[],
   // Zdarzenie edycji typu komponentu.
-  onEdit: Function,
+  onEdit: (id: string) => void,
   // Zdarzenie usunięcia typu komponentu.
-  onDelete: Function,
+  onDelete: (id: string) => void,
 }
 
 const List: React.FC<Props> = ({ isDataFetched, data, onEdit, onDelete }: Props) => {

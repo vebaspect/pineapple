@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 import {
   createStyles,
   makeStyles,
-  Theme,
 } from '@material-ui/core/styles';
 
 import Box from '@material-ui/core/Box';

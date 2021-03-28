@@ -1,33 +1,18 @@
-export const initialFormState = () => {
-  return {
+import {
+  FormState,
+  FormStateValidationResult,
+} from './interfaces';
+
+export const initialFormState = () : FormState => {
+  const formState: FormState = {
     name: '',
     symbol: '',
     description: '',
   };
+  return formState;
 };
 
-interface FormState {
-  // Nazwa.
-  name: string,
-  // Symbol.
-  symbol: string,
-  // Opis.
-  description: string,
-}
-
-interface FormStateValidationResult {
-  // Flaga określająca, czy stan formularza jest poprawny.
-  isValid: boolean,
-  // Stan poszczególnych pól formularza.
-  details: {
-    // Nazwa.
-    name: string,
-    // Symbol.
-    symbol: string,
-  },
-}
-
-export const validateFormState = (formState: FormState) => {
+export const validateFormState = (formState: FormState) : FormStateValidationResult => {
   const formStateValidationResult: FormStateValidationResult = {
     isValid: true,
     details: {
