@@ -1,7 +1,10 @@
+using System.Text.Json;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Pineapple.Core.Domain.Exceptions;
 using Pineapple.Core.Exceptions;
+using Pineapple.Core.Validation;
 
 namespace Pineapple.Api.Filters
 {
@@ -12,6 +15,8 @@ namespace Pineapple.Api.Filters
     {
         public void OnActionExecuted(ActionExecutedContext context)
         {
+            // Wyjątki na poziomie "Pineapple.Core":
+
             if (context.Exception is ComponentNotFoundException)
             {
                 context.Result = new ContentResult()
@@ -119,6 +124,29 @@ namespace Pineapple.Api.Filters
                     StatusCode = StatusCodes.Status404NotFound,
                     Content = context.Exception.Message,
                     ContentType = "text/plain",
+                };
+                context.ExceptionHandled = true;
+            }
+
+            // Wyjątki na poziomie "Pineapple.Core.Domain":
+
+            if (context.Exception is ValueRequiredValidationException)
+            {
+                context.Result = new ContentResult()
+                {
+                    StatusCode = StatusCodes.Status400BadRequest,
+                    Content = JsonSerializer.Serialize(
+                        new
+                        {
+                            Property = context.Exception.Message,
+                            ErrorType = AvailableValidationErrorTypes.ValueRequired
+                        },
+                        new JsonSerializerOptions
+                        {
+                            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                        }
+                    ),
+                    ContentType = "application/json",
                 };
                 context.ExceptionHandled = true;
             }
