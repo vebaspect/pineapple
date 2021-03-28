@@ -30,7 +30,7 @@ interface Props {
     // Opis.
     description: string,
   }[],
-};
+}
 
 const Logs = ({ isDataFetched, data }: Props) => {
   // Logi zgrupowane względem daty modyfikacji.

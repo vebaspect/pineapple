@@ -22,7 +22,7 @@ interface Props {
   entityName: string,
   // Nazwa encji nadrzędnej.
   parentEntityName: string,
-};
+}
 
 const Log = ({ modifiedDate, type, category, ownerFullName, entityName, parentEntityName }: Props) => {
   return (

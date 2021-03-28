@@ -28,7 +28,7 @@ interface Props {
   entityName: string,
   // Nazwa encji nadrzędnej.
   parentEntityName: string,
-};
+}
 
 const Text = ({ type, category, ownerFullName, entityName, parentEntityName }: Props) => {
   switch (type) {

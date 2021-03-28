@@ -110,7 +110,7 @@ interface Props {
   type: string,
   // Kategoria.
   category: string,
-};
+}
 
 const Icon = ({ type, category }: Props) => {
   const styles = useStyles();

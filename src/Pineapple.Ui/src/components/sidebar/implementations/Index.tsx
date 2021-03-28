@@ -28,7 +28,7 @@ interface Props {
     // Flaga określająca, czy wdrożenie zostało usunięte.
     isDeleted: boolean,
   }[],
-};
+}
 
 const Implementations = ({ isDataFetched, data }: Props) => {
   // Flaga określająca, czy lista produktów jest rozwinięta.

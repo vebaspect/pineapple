@@ -13,7 +13,7 @@ interface FormState {
   symbol: string,
   // Opis.
   description: string,
-};
+}
 
 interface FormStateValidationResult {
   // Flaga określająca, czy stan formularza jest poprawny.
@@ -25,10 +25,10 @@ interface FormStateValidationResult {
     // Symbol.
     symbol: string,
   },
-};
+}
 
 export const validateFormState = (formState: FormState) => {
-  let formStateValidationResult: FormStateValidationResult = {
+  const formStateValidationResult: FormStateValidationResult = {
     isValid: true,
     details: {
       name: null,
