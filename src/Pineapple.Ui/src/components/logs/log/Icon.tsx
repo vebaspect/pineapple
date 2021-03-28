@@ -112,7 +112,7 @@ interface Props {
   category: string,
 }
 
-const Icon = ({ type, category }: Props) => {
+const Icon: React.FC<Props> = ({ type, category }: Props) => {
   const styles = useStyles();
 
   let typeIcon = null;

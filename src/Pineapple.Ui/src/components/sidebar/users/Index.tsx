@@ -32,7 +32,7 @@ interface Props {
   administratorsCount: number,
 }
 
-const Users = ({ isDevelopersCountFetched, developersCount, isOperatorsCountFetched, operatorsCount, isManagersCountFetched, managersCount, isAdministratorsCountFetched, administratorsCount }: Props) => {
+const Users: React.FC<Props> = ({ isDevelopersCountFetched, developersCount, isOperatorsCountFetched, operatorsCount, isManagersCountFetched, managersCount, isAdministratorsCountFetched, administratorsCount }: Props) => {
   // Flaga określająca, czy konfiguracja jest rozwinięta.
   const [isExpanded, setIsExpanded] = useState(false);
 

@@ -30,7 +30,7 @@ interface Props {
   parentEntityName: string,
 }
 
-const Text = ({ type, category, ownerFullName, entityName, parentEntityName }: Props) => {
+const Text: React.FC<Props> = ({ type, category, ownerFullName, entityName, parentEntityName }: Props) => {
   switch (type) {
     case LOG_TYPE__COMPONENT: {
       switch (category) {

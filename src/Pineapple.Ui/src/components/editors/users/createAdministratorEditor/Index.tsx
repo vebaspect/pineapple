@@ -2,7 +2,7 @@ import React from 'react';
 
 import Box from '@material-ui/core/Box';
 
-const CreateAdministratorEditor = () => {
+const CreateAdministratorEditor: React.VFC = () => {
   return (
     <>
       <Box

@@ -17,7 +17,7 @@ import {
   VALIDATION_ERROR_TYPE__VALUE_REQUIRED,
 } from '../../availableValidationErrorTypes';
 
-const CreateComponentTypeEditor = () => {
+const CreateComponentTypeEditor: React.VFC = () => {
   // Stan formularza.
   const [formState, setFormState] = useState(initialFormState());
   // Wynik walidacji stanu formularza.

@@ -24,7 +24,7 @@ interface Props {
   parentEntityName: string,
 }
 
-const Log = ({ modifiedDate, type, category, ownerFullName, entityName, parentEntityName }: Props) => {
+const Log: React.FC<Props> = ({ modifiedDate, type, category, ownerFullName, entityName, parentEntityName }: Props) => {
   return (
     <ListItem component="div">
       <ListItemIcon>

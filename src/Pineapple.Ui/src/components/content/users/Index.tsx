@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 
 import Logs from '../../logs';
 
-const Users = () => {
+const Users: React.VFC = () => {
   // Flaga określająca, czy lista logów została pobrana z API.
   const [isLogsFetched, setIsLogsFetched] = useState(false);
   // Lista logów.

@@ -17,7 +17,7 @@ import AddIcon from '@material-ui/icons/Add';
 import Logs from '../../logs';
 import List from './List';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     add: {
       backgroundColor: '#4caf50',
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const Products = () => {
+const Products: React.VFC = () => {
   // Flaga określająca, czy lista produktów została pobrana z API.
   const [isProductsFetched, setIsProductsFetched] = useState(false);
   // Lista produktów.

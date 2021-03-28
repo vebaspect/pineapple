@@ -29,7 +29,7 @@ import CreateOperatorEditor from '../editors/users/createOperatorEditor';
 import CreateProductEditor from '../editors/products/createProductEditor';
 import CreateSoftwareApplicationEditor from '../editors/configuration/createSoftwareApplicationEditor';
 
-const Title = () => {
+const Title: React.VFC = () => {
   return (
     <Switch>
       <Route path="/administrators/create">

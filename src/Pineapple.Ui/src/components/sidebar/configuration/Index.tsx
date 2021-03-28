@@ -28,7 +28,7 @@ interface Props {
   softwareApplicationsCount: number,
 }
 
-const Configuration = ({ isComponentTypesCountFetched, componentTypesCount, isOperatingSystemsCountFetched, operatingSystemsCount, isSoftwareApplicationsCountFetched, softwareApplicationsCount }: Props) => {
+const Configuration: React.FC<Props> = ({ isComponentTypesCountFetched, componentTypesCount, isOperatingSystemsCountFetched, operatingSystemsCount, isSoftwareApplicationsCountFetched, softwareApplicationsCount }: Props) => {
   // Flaga określająca, czy konfiguracja jest rozwinięta.
   const [isExpanded, setIsExpanded] = useState(false);
 

@@ -33,9 +33,9 @@ interface Props {
   onEdit: Function,
   // Zdarzenie usunięcia typu komponentu.
   onDelete: Function,
-};
+}
 
-const List = ({ isDataFetched, data, onEdit, onDelete }: Props) => {
+const List: React.FC<Props> = ({ isDataFetched, data, onEdit, onDelete }: Props) => {
   if (!isDataFetched) {
     return (
       <Box

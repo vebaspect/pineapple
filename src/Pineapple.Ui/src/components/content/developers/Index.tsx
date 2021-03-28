@@ -15,7 +15,7 @@ import AddIcon from '@material-ui/icons/Add';
 
 import List from './List';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     add: {
       backgroundColor: '#4caf50',
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const Developers = () => {
+const Developers: React.VFC = () => {
   // Flaga określająca, czy lista programistów została pobrana z API.
   const [isDevelopersFetched, setIsDevelopersFetched] = useState(false);
   // Lista programistów.

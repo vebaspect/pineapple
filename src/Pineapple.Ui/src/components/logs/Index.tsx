@@ -32,7 +32,7 @@ interface Props {
   }[],
 }
 
-const Logs = ({ isDataFetched, data }: Props) => {
+const Logs: React.FC<Props> = ({ isDataFetched, data }: Props) => {
   // Logi zgrupowane względem daty modyfikacji.
   const [logsGroupedByDate, setLogsGroupedByDate] = useState({});
 

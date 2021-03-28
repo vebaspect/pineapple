@@ -9,7 +9,7 @@ import Implementations from './implementations';
 import Products from './products';
 import Users from './users';
 
-const Sidebar = () => {
+const Sidebar: React.VFC = () => {
   // Flaga określająca, czy lista wdrożeń została pobrana z API.
   const [isImplementationsFetched, setIsImplementationsFetched] = useState(false);
   // Lista wdrożeń.

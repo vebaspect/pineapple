@@ -8,7 +8,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 
 import HomeIcon from '@material-ui/icons/Home';
 
-const Home = () => {
+const Home: React.VFC = () => {
   return (
     <ListItem button>
       <ListItemIcon>

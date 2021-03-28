@@ -30,7 +30,7 @@ interface Props {
   }[],
 }
 
-const Products = ({ isDataFetched, data }: Props) => {
+const Products: React.FC<Props> = ({ isDataFetched, data }: Props) => {
   // Flaga określająca, czy lista produktów jest rozwinięta.
   const [isExpanded, setIsExpanded] = useState(false);
 

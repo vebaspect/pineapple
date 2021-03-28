@@ -15,7 +15,7 @@ import AddIcon from '@material-ui/icons/Add';
 
 import List from './List';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     add: {
       backgroundColor: '#4caf50',
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const Operators = () => {
+const Operators: React.VFC = () => {
   // Flaga określająca, czy lista wdrożeniowców została pobrana z API.
   const [isOperatorsFetched, setIsOperatorsFetched] = useState(false);
   // Lista wdrożeniowców.

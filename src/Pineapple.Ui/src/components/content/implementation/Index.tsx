@@ -7,7 +7,7 @@ import Paper from '@material-ui/core/Paper';
 
 import Logs from '../../logs';
 
-const Implementation = () => {
+const Implementation: React.VFC = () => {
   const { implementationId } = useParams();
 
   // Flaga określająca, czy lista logów została pobrana z API.

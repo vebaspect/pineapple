@@ -12,7 +12,7 @@ import Content from './components/content';
 import Sidebar from './components/sidebar';
 import Title from './components/title';
 
-const Root = () => {
+const Root: React.VFC = () => {
   moment.locale('pl');
 
   const theme = createMuiTheme({
