@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Pineapple.Core.Domain.Exceptions;
 
 namespace Pineapple.Core.Domain.Entities
 {
@@ -48,6 +49,15 @@ namespace Pineapple.Core.Domain.Entities
         /// </summary>
         public static ComponentType Create(Guid id, string name, string symbol, string description)
         {
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new ValueRequiredValidationException(nameof(name));
+            }
+            if (string.IsNullOrEmpty(symbol))
+            {
+                throw new ValueRequiredValidationException(nameof(symbol));
+            }
+
             return new ComponentType(id, name, symbol, description);
         }
     }

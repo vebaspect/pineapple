@@ -8,52 +8,79 @@ import TextField from '@material-ui/core/TextField';
 
 import SaveIcon from '@material-ui/icons/Save';
 
-const initialEditorState = {
-  name: '',
-  symbol: '',
-  description: '',
-};
+import {
+  initialFormState,
+  validateFormState,
+} from './helpers';
+
+import {
+  VALIDATION_ERROR_TYPE__VALUE_REQUIRED,
+} from '../../availableValidationErrorTypes';
 
 const CreateComponentTypeEditor = () => {
-  const [editorState, setEditorState] = useState(initialEditorState);
+  // Stan formularza.
+  const [formState, setFormState] = useState(initialFormState());
+  // Wynik walidacji stanu formularza.
+  const [formStateValidationResult, setFormStateValidationResult] = useState(null);
 
   const history = useHistory();
 
   const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEditorState({
-      ...editorState,
+    setFormState({
+      ...formState,
       name: event.target.value,
     });
   };
 
   const onSymbolChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEditorState({
-      ...editorState,
+    setFormState({
+      ...formState,
       symbol: event.target.value,
     });
   };
 
   const onDescriptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEditorState({
-      ...editorState,
+    setFormState({
+      ...formState,
       description: event.target.value,
     });
   };
 
   const onSave = async () => {
-    await fetch(
-      `${window['env'].API_URL}/configuration/component-types`,
-      {
-        body: JSON.stringify(editorState),
-        headers: {
-          'Content-Type': 'application/json',
+    const validationResult = validateFormState(formState);
+    if (validationResult.isValid) {
+      await fetch(
+        `${window['env'].API_URL}/configuration/component-types`,
+        {
+          body: JSON.stringify(formState),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          method: 'POST',
         },
-        method: 'POST',
-      },
-    )
-    .then(() => {
-      history.push('/component-types');
-    });
+      )
+      .then(response => {
+        if (response.ok) {
+          history.push('/component-types');
+        } else {
+          return response.json();
+        }
+      })
+      .then(data => {
+        switch (data.errorType) {
+          case VALIDATION_ERROR_TYPE__VALUE_REQUIRED: {
+            setFormStateValidationResult({
+              [data.property]: 'Pole wymagane.',
+            });
+            break;
+          }
+          default:
+            break;
+        }
+      });
+    } else {
+      setFormStateValidationResult(validationResult.details);
+    }
   };
 
   return (
@@ -75,8 +102,9 @@ const CreateComponentTypeEditor = () => {
             <TextField
               fullWidth
               label="Nazwa"
-              helperText="Maksymalnie 200 znaków."
-              value={editorState.name}
+              helperText={formStateValidationResult?.name || 'Maksymalnie 200 znaków.'}
+              error={formStateValidationResult && formStateValidationResult.name !== undefined && formStateValidationResult.name !== null}
+              value={formState.name}
               onChange={onNameChange}
             />
           </Box>
@@ -87,8 +115,9 @@ const CreateComponentTypeEditor = () => {
             <TextField
               fullWidth
               label="Symbol"
-              helperText="Maksymalnie 200 znaków."
-              value={editorState.symbol}
+              helperText={formStateValidationResult?.symbol || 'Maksymalnie 200 znaków.'}
+              error={formStateValidationResult && formStateValidationResult.symbol !== undefined && formStateValidationResult.symbol !== null}
+              value={formState.symbol}
               onChange={onSymbolChange}
             />
           </Box>
@@ -100,7 +129,7 @@ const CreateComponentTypeEditor = () => {
               fullWidth
               label="Opis"
               helperText="Maksymalnie 4000 znaków."
-              value={editorState.description}
+              value={formState.description}
               onChange={onDescriptionChange}
             />
           </Box>
