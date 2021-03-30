@@ -17,20 +17,11 @@ import {
   LOG_CATEGORY__REMOVE_ENTITY,
 } from './constants';
 
-interface Props {
-  // Typ.
-  type: string,
-  // Kategoria.
-  category: string,
-  // Imię i nazwisko właściciela.
-  ownerFullName: string,
-  // Nazwa encji.
-  entityName: string,
-  // Nazwa encji nadrzędnej.
-  parentEntityName: string,
-}
+import {
+  TextProps,
+} from './interfaces';
 
-const Text: React.FC<Props> = ({ type, category, ownerFullName, entityName, parentEntityName }: Props) => {
+const Text: React.FC<TextProps> = ({ type, category, ownerFullName, entityName, parentEntityName }: TextProps) => {
   switch (type) {
     case LOG_TYPE__COMPONENT: {
       switch (category) {

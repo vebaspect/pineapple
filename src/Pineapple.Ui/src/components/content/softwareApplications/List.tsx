@@ -13,29 +13,11 @@ import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 
-interface Props {
-  // Flaga określająca, czy lista oprogramowania została pobrana z API.
-  isDataFetched: boolean,
-  // Lista oprogramowania.
-  data: {
-    // Identyfikator.
-    id: string,
-    // Nazwa.
-    name: string,
-    // Symbol.
-    symbol: string,
-    // Opis.
-    description: string,
-    // Flaga określająca, czy oprogramowanie zostało usunięte.
-    isDeleted: boolean,
-  }[],
-  // Zdarzenie edycji oprogramowania.
-  onEdit: (id: string) => void,
-  // Zdarzenie usunięcia oprogramowania.
-  onDelete: (id: string) => void,
-}
+import {
+  ListProps,
+} from './interfaces';
 
-const List: React.FC<Props> = ({ isDataFetched, data, onEdit, onDelete }: Props) => {
+const List: React.FC<ListProps> = ({ isDataFetched, data, onEdit, onDelete }: ListProps) => {
   if (!isDataFetched) {
     return (
       <Box

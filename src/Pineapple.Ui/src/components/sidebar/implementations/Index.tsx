@@ -14,23 +14,11 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 import PowerIcon from '@material-ui/icons/Power';
 
-interface Props {
-  // Flaga określająca, czy lista wdrożeń została pobrana z API.
-  isDataFetched: boolean,
-  // Lista wdrożeń.
-  data: {
-    // Identyfikator.
-    id: string,
-    // Nazwa.
-    name: string,
-    // Opis.
-    description: string,
-    // Flaga określająca, czy wdrożenie zostało usunięte.
-    isDeleted: boolean,
-  }[],
-}
+import {
+  ImplementationsProps,
+} from './interfaces';
 
-const Implementations: React.FC<Props> = ({ isDataFetched, data }: Props) => {
+const Implementations: React.FC<ImplementationsProps> = ({ isDataFetched, data }: ImplementationsProps) => {
   // Flaga określająca, czy lista produktów jest rozwinięta.
   const [isExpanded, setIsExpanded] = useState(false);
 

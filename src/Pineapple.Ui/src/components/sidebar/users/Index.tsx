@@ -13,26 +13,11 @@ import ListItemText from '@material-ui/core/ListItemText';
 
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 
-interface Props {
-  // Flaga określająca, czy liczba programistów została pobrana z API.
-  isDevelopersCountFetched: boolean,
-  // Liczba programistów.
-  developersCount: number,
-  // Flaga określająca, czy liczba wdrożeniowców została pobrana z API.
-  isOperatorsCountFetched: boolean,
-  // Liczba wdrożeniowców.
-  operatorsCount: number,
-  // Flaga określająca, czy liczba menedżerów pobrana z API.
-  isManagersCountFetched: boolean,
-  // Liczba menedżerów.
-  managersCount: number,
-  // Flaga określająca, czy liczba administratorów została pobrana z API.
-  isAdministratorsCountFetched: boolean,
-  // Liczba administratorów.
-  administratorsCount: number,
-}
+import {
+  UsersProps,
+} from './interfaces';
 
-const Users: React.FC<Props> = ({ isDevelopersCountFetched, developersCount, isOperatorsCountFetched, operatorsCount, isManagersCountFetched, managersCount, isAdministratorsCountFetched, administratorsCount }: Props) => {
+const Users: React.FC<UsersProps> = ({ isDevelopersCountFetched, developersCount, isOperatorsCountFetched, operatorsCount, isManagersCountFetched, managersCount, isAdministratorsCountFetched, administratorsCount }: UsersProps) => {
   // Flaga określająca, czy konfiguracja jest rozwinięta.
   const [isExpanded, setIsExpanded] = useState(false);
 

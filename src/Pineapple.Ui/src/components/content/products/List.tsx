@@ -15,27 +15,11 @@ import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 
-interface Props {
-  // Flaga określająca, czy lista produktów została pobrana z API.
-  isDataFetched: boolean,
-  // Lista produktów.
-  data: {
-    // Identyfikator.
-    id: string,
-    // Nazwa.
-    name: string,
-    // Opis.
-    description: string,
-    // Flaga określająca, czy produkt został usunięty.
-    isDeleted: boolean,
-  }[],
-  // Zdarzenie edycji produktu.
-  onEdit: (id: string) => void,
-  // Zdarzenie usunięcia produktu.
-  onDelete: (id: string) => void,
-}
+import {
+  ListProps,
+} from './interfaces';
 
-const List: React.FC<Props> = ({ isDataFetched, data, onEdit, onDelete }: Props) => {
+const List: React.FC<ListProps> = ({ isDataFetched, data, onEdit, onDelete }: ListProps) => {
   if (!isDataFetched) {
     return (
       <Box

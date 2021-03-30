@@ -14,23 +14,11 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 import AppsIcon from '@material-ui/icons/Apps';
 
-interface Props {
-  // Flaga określająca, czy lista produktów została pobrana z API.
-  isDataFetched: boolean,
-  // Lista produktów.
-  data: {
-    // Identyfikator.
-    id: string,
-    // Nazwa.
-    name: string,
-    // Opis.
-    description: string,
-    // Flaga określająca, czy produkt został usunięty.
-    isDeleted: boolean,
-  }[],
-}
+import {
+  ProductsProps,
+} from './interfaces';
 
-const Products: React.FC<Props> = ({ isDataFetched, data }: Props) => {
+const Products: React.FC<ProductsProps> = ({ isDataFetched, data }: ProductsProps) => {
   // Flaga określająca, czy lista produktów jest rozwinięta.
   const [isExpanded, setIsExpanded] = useState(false);
 

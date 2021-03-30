@@ -13,22 +13,11 @@ import ListItemText from '@material-ui/core/ListItemText';
 
 import SettingsIcon from '@material-ui/icons/Settings';
 
-interface Props {
-  // Flaga określająca, czy liczba typów komponentów została pobrana z API.
-  isComponentTypesCountFetched: boolean,
-  // Liczba typów komponentów.
-  componentTypesCount: number,
-  // Flaga określająca, czy liczba systemów operacyjnych została pobrana z API.
-  isOperatingSystemsCountFetched: boolean,
-  // Liczba systemów operacyjnych.
-  operatingSystemsCount: number,
-  // Flaga określająca, czy liczba oprogramowania została pobrana z API.
-  isSoftwareApplicationsCountFetched: boolean,
-  // Liczba oprogramowania.
-  softwareApplicationsCount: number,
-}
+import {
+  ConfigurationProps,
+} from './interfaces';
 
-const Configuration: React.FC<Props> = ({ isComponentTypesCountFetched, componentTypesCount, isOperatingSystemsCountFetched, operatingSystemsCount, isSoftwareApplicationsCountFetched, softwareApplicationsCount }: Props) => {
+const Configuration: React.FC<ConfigurationProps> = ({ isComponentTypesCountFetched, componentTypesCount, isOperatingSystemsCountFetched, operatingSystemsCount, isSoftwareApplicationsCountFetched, softwareApplicationsCount }: ConfigurationProps) => {
   // Flaga określająca, czy konfiguracja jest rozwinięta.
   const [isExpanded, setIsExpanded] = useState(false);
 

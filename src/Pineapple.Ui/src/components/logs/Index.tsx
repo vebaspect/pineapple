@@ -8,31 +8,11 @@ import Log from './log';
 
 import { groupLogsByDate } from './log/helpers';
 
-interface Props {
-  // Flaga określająca, czy lista logów została pobrana z API.
-  isDataFetched: boolean,
-  // Lista logów.
-  data: {
-    // Identyfikator.
-    id: string,
-    // Data modyfikacji.
-    modifiedDate: Date,
-    // Typ.
-    type: string,
-    // Kategoria.
-    category: string,
-    // Imię i nazwisko właściciela.
-    ownerFullName: string,
-    // Nazwa encji.
-    entityName: string,
-    // Nazwa encji nadrzędnej.
-    parentEntityName: string,
-    // Opis.
-    description: string,
-  }[],
-}
+import {
+  LogsProps,
+} from './interfaces';
 
-const Logs: React.FC<Props> = ({ isDataFetched, data }: Props) => {
+const Logs: React.FC<LogsProps> = ({ isDataFetched, data }: LogsProps) => {
   // Logi zgrupowane względem daty modyfikacji.
   const [logsGroupedByDate, setLogsGroupedByDate] = useState({});
 

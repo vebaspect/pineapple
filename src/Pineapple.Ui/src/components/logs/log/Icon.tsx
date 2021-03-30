@@ -105,14 +105,11 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-interface Props {
-  // Typ.
-  type: string,
-  // Kategoria.
-  category: string,
-}
+import {
+  IconProps,
+} from './interfaces';
 
-const Icon: React.FC<Props> = ({ type, category }: Props) => {
+const Icon: React.FC<IconProps> = ({ type, category }: IconProps) => {
   const styles = useStyles();
 
   let typeIcon = null;

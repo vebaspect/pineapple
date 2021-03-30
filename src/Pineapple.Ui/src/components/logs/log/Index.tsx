@@ -9,22 +9,11 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Icon from './Icon';
 import Text from './Text';
 
-interface Props {
-  // Data modyfikacji.
-  modifiedDate: Date,
-  // Typ.
-  type: string,
-  // Kategoria.
-  category: string,
-  // Imię i nazwisko właściciela.
-  ownerFullName: string,
-  // Nazwa encji.
-  entityName: string,
-  // Nazwa encji nadrzędnej.
-  parentEntityName: string,
-}
+import {
+  LogProps,
+} from './interfaces';
 
-const Log: React.FC<Props> = ({ modifiedDate, type, category, ownerFullName, entityName, parentEntityName }: Props) => {
+const Log: React.FC<LogProps> = ({ modifiedDate, type, category, ownerFullName, entityName, parentEntityName }: LogProps) => {
   return (
     <ListItem component="div">
       <ListItemIcon>

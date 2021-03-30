@@ -13,31 +13,11 @@ import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 
-interface Props {
-  // Flaga określająca, czy lista programistów została pobrana z API.
-  isDataFetched: boolean,
-  // Lista programistów.
-  data: {
-    // Identyfikator.
-    id: string,
-    // Imię i nazwisko.
-    fullName: string,
-    // Login.
-    login: string,
-    // Telefon.
-    phone: string,
-    // E-mail.
-    email: string,
-    // Flaga określająca, czy programista został usunięty.
-    isDeleted: boolean,
-  }[],
-  // Zdarzenie edycji programisty.
-  onEdit: (id: string) => void,
-  // Zdarzenie usunięcia programisty.
-  onDelete: (id: string) => void,
-}
+import {
+  ListProps,
+} from './interfaces';
 
-const List: React.FC<Props> = ({ isDataFetched, data, onEdit, onDelete }: Props) => {
+const List: React.FC<ListProps> = ({ isDataFetched, data, onEdit, onDelete }: ListProps) => {
   if (!isDataFetched) {
     return (
       <Box
