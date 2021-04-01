@@ -1,4 +1,5 @@
 using System;
+using Pineapple.Core.Domain.Exceptions;
 
 namespace Pineapple.Core.Domain.Entities
 {
@@ -23,6 +24,15 @@ namespace Pineapple.Core.Domain.Entities
         /// </summary>
         public static Developer Create(Guid id, string fullName, string login, string phone, string email)
         {
+            if (string.IsNullOrEmpty(fullName))
+            {
+                throw new ValueRequiredValidationException(nameof(fullName));
+            }
+            if (string.IsNullOrEmpty(login))
+            {
+                throw new ValueRequiredValidationException(nameof(login));
+            }
+
             return new Developer(id, fullName, login, phone, email);
         }
     }
