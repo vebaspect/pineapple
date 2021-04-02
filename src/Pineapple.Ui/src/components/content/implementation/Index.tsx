@@ -26,6 +26,7 @@ const useStyles = makeStyles(() =>
 );
 
 const Implementation: React.VFC = () => {
+  // Identyfikator wdrożenia.
   const { implementationId } = useParams();
 
   // Flaga określająca, czy lista środowisk została pobrana z API.

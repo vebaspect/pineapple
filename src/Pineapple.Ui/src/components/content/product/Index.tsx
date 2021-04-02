@@ -26,6 +26,7 @@ const useStyles = makeStyles(() =>
 );
 
 const Product: React.VFC = () => {
+  // Identyfikator produktu.
   const { productId } = useParams();
 
   // Flaga określająca, czy lista komponentów została pobrana z API.
