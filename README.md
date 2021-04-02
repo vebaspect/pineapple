@@ -1,3 +1,6 @@
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
+
 # 🍍 Pineapple
 
 Aplikacja ma na celu:
@@ -7,3 +10,8 @@ Aplikacja ma na celu:
 
 Aplikacja NIE ma na celu:
 * automatyzowania procesów wdrażania komponentów na środowiska.
+
+[license-shield]: https://img.shields.io/github/license/github_username/repo.svg?style=for-the-badge
+[license-url]: https://github.com/vebaspect/pineapple/blob/master/LICENSE.md
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/in/grzegorzwodniczak
