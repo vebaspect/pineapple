@@ -18,6 +18,7 @@ import OperatingSystems from './operatingSystems';
 import Operators from './operators';
 import Product from './product';
 import Products from './products';
+import SoftwareApplication from './softwareApplication';
 import SoftwareApplications from './softwareApplications';
 import Users from './users'
 
@@ -99,6 +100,9 @@ const Title: React.VFC = () => {
       </Route>
       <Route path="/software-applications/create">
         <CreateSoftwareApplicationEditor />
+      </Route>
+      <Route path="/software-applications/:softwareApplicationId">
+        <SoftwareApplication />
       </Route>
       <Route path="/software-applications">
         <SoftwareApplications />
