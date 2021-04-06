@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Pineapple.Core.Domain.Exceptions;
 
 namespace Pineapple.Core.Domain.Entities
 {
@@ -64,6 +65,19 @@ namespace Pineapple.Core.Domain.Entities
         /// </summary>
         public static Component Create(Guid id, string name, string description, Guid productId, Guid componentTypeId)
         {
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new ValueRequiredValidationException(nameof(name));
+            }
+            if (productId != Guid.Empty)
+            {
+                throw new ValueRequiredValidationException(nameof(productId));
+            }
+            if (componentTypeId != Guid.Empty)
+            {
+                throw new ValueRequiredValidationException(nameof(componentTypeId));
+            }
+
             return new Component(id, name, description, productId, componentTypeId);
         }
     }
