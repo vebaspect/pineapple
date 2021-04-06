@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Pineapple.Core.Domain.Exceptions;
 
 namespace Pineapple.Core.Domain.Entities
 {
@@ -70,6 +71,23 @@ namespace Pineapple.Core.Domain.Entities
         /// </summary>
         public static Environment Create(Guid id, string name, string symbol, string description, Guid implementationId, Guid operatorId)
         {
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new ValueRequiredValidationException(nameof(name));
+            }
+            if (string.IsNullOrEmpty(symbol))
+            {
+                throw new ValueRequiredValidationException(nameof(symbol));
+            }
+            if (implementationId != Guid.Empty)
+            {
+                throw new ValueRequiredValidationException(nameof(implementationId));
+            }
+            if (operatorId != Guid.Empty)
+            {
+                throw new ValueRequiredValidationException(nameof(operatorId));
+            }
+
             return new Environment(id, name, symbol, description, implementationId, operatorId);
         }
     }
