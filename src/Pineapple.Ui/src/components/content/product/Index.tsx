@@ -29,6 +29,11 @@ const Product: React.VFC = () => {
   // Identyfikator produktu.
   const { productId } = useParams();
 
+  // Flaga określająca, czy produkt został pobrany z API.
+  const [isProductFetched, setIsProductFetched] = useState(false);
+  // Produkt.
+  const [product, setProduct] = useState(null);
+
   // Flaga określająca, czy lista komponentów została pobrana z API.
   const [isComponentsFetched, setIsComponentsFetched] = useState(false);
   // Lista komponentów.
@@ -55,6 +60,19 @@ const Product: React.VFC = () => {
   useEffect(() => {
     fetchLogs();
   }, [productId, count, fetchLogs]);
+
+  const fetchProduct = useCallback(async () => {
+    await fetch(`${window['env'].API_URL}/products/${productId}`)
+      .then(response => response.json())
+      .then(data => {
+        setIsProductFetched(true);
+        setProduct(data);
+      });
+  }, [productId]);
+
+  useEffect(() => {
+    fetchProduct();
+  }, [fetchProduct]);
 
   const fetchComponents = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/products/${productId}/components`)
@@ -95,6 +113,18 @@ const Product: React.VFC = () => {
         textAlign="center"
       >
         Produkt
+        {
+          isProductFetched && product
+            ? (
+              <Box
+                component="span"
+                fontStyle="italic"
+                px={0.5}
+              >
+                {product.name}
+              </Box>)
+            : ''
+        }
       </Box>
       <Box
         mb={3}
