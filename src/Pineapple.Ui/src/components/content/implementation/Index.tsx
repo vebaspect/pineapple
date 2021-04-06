@@ -29,6 +29,11 @@ const Implementation: React.VFC = () => {
   // Identyfikator wdrożenia.
   const { implementationId } = useParams();
 
+  // Flaga określająca, czy wdrożenie zostało pobrane z API.
+  const [isImplementationFetched, setIsImplementationFetched] = useState(false);
+  // Wdrożenie.
+  const [implementation, setImplementation] = useState(null);
+
   // Flaga określająca, czy lista środowisk została pobrana z API.
   const [isEnvironmentsFetched, setIsEnvironmentsFetched] = useState(false);
   // Lista środowisk.
@@ -55,6 +60,19 @@ const Implementation: React.VFC = () => {
   useEffect(() => {
     fetchLogs();
   }, [implementationId, count, fetchLogs]);
+
+  const fetchImplementation = useCallback(async () => {
+    await fetch(`${window['env'].API_URL}/implementations/${implementationId}`)
+      .then(response => response.json())
+      .then(data => {
+        setIsImplementationFetched(true);
+        setImplementation(data);
+      });
+  }, [implementationId]);
+
+  useEffect(() => {
+    fetchImplementation();
+  }, [fetchImplementation]);
 
   const fetchEnvironments = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/implementations/${implementationId}/environments`)
@@ -95,6 +113,18 @@ const Implementation: React.VFC = () => {
         textAlign="center"
       >
         Wdrożenie
+        {
+          isImplementationFetched && implementation
+            ? (
+              <Box
+                component="span"
+                fontStyle="italic"
+                px={0.5}
+              >
+                {implementation.name}
+              </Box>)
+            : ''
+        }
       </Box>
       <Box
         mb={3}
