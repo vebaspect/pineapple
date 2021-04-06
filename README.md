@@ -3,6 +3,8 @@
 
 # 🍍 Pineapple
 
+## Przeznaczenie
+
 Aplikacja ma na celu:
 * wsparcie zespołu programistów w zakresie zarządzania produktami,
 * wsparcie zespołu wdrożeniowców w zakresie zarządzania wdrożeniami,
@@ -10,6 +12,12 @@ Aplikacja ma na celu:
 
 Aplikacja NIE ma na celu:
 * automatyzowania procesów wdrażania komponentów na środowiska.
+
+## Funkcje
+
+Aplikacja umożliwia:
+* wyświetlenie listy nieaktualnych wersji komponentów zainstalowanych na poszczególnych środowiskach,
+* wyświetlenie listy ostatnio wydanych wersji poszczególnych komponentów.
 
 [license-shield]: https://img.shields.io/github/license/vebaspect/pineapple.svg?style=for-the-badge
 [license-url]: https://github.com/vebaspect/pineapple/blob/master/LICENSE.md
