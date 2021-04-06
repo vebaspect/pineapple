@@ -19,6 +19,8 @@ export interface ListProps {
     // Flaga określająca, czy komponent zostało usunięte.
     isDeleted: boolean,
   }[],
+  // Identyfikator produktu.
+  productId: string,
   // Zdarzenie edycji komponentu.
   onEdit: (id: string) => void,
   // Zdarzenie usunięcia komponentu.

@@ -167,6 +167,7 @@ const Product: React.VFC = () => {
           <List
             isDataFetched={isComponentsFetched}
             data={components}
+            productId={productId}
             onEdit={editComponent}
             onDelete={deleteComponent}
           />

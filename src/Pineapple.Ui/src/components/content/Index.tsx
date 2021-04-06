@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom';
 
 import Administrators from './administrators';
+import Component from './component';
 import ComponentType from './componentType';
 import ComponentTypes from './componentTypes';
 import Configuration from './configuration';
@@ -91,6 +92,9 @@ const Title: React.VFC = () => {
       </Route>
       <Route path="/products/create">
         <CreateProductEditor />
+      </Route>
+      <Route path="/products/:productId/components/:componentId">
+        <Component />
       </Route>
       <Route path="/products/:productId">
         <Product />
