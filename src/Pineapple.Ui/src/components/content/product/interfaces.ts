@@ -1,3 +1,10 @@
+export interface DetailsProps {
+  // Nazwa.
+  name: string,
+  // Opis.
+  description: string,
+}
+
 export interface ListProps {
   // Flaga określająca, czy lista komponentów została pobrana z API.
   isDataFetched: boolean,

@@ -14,6 +14,8 @@ import Paper from '@material-ui/core/Paper';
 import AddIcon from '@material-ui/icons/Add';
 
 import Logs from '../../logs';
+
+import Details from './Details';
 import List from './List';
 
 const useStyles = makeStyles(() =>
@@ -114,14 +116,14 @@ const Product: React.VFC = () => {
       >
         Produkt
         {
-          isProductFetched && product
+          isProductFetched
             ? (
               <Box
                 component="span"
                 fontStyle="italic"
                 px={0.5}
               >
-                {product.name}
+                {product?.name}
               </Box>)
             : ''
         }
@@ -130,6 +132,38 @@ const Product: React.VFC = () => {
         mb={3}
       >
         <Paper>
+          <Box
+            border={1}
+            borderLeft={0}
+            borderRight={0}
+            borderTop={0}
+            borderColor="#e0e0e0"
+            py={1.5}
+            textAlign="center"
+          >
+            Szczegółowe informacje
+          </Box>
+          <Details
+            name={product?.name}
+            description={product?.description}
+          />
+        </Paper>
+      </Box>
+      <Box
+        mb={3}
+      >
+        <Paper>
+          <Box
+            border={1}
+            borderLeft={0}
+            borderRight={0}
+            borderTop={0}
+            borderColor="#e0e0e0"
+            py={1.5}
+            textAlign="center"
+          >
+            Lista komponentów
+          </Box>
           <List
             isDataFetched={isComponentsFetched}
             data={components}
