@@ -141,7 +141,7 @@ const Implementation: React.VFC = () => {
             py={1.5}
             textAlign="center"
           >
-            Szczegółowe informacje
+            Szczegóły
           </Box>
           <Details
             name={implementation?.name}

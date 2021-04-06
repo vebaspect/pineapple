@@ -141,7 +141,7 @@ const Product: React.VFC = () => {
             py={1.5}
             textAlign="center"
           >
-            Szczegółowe informacje
+            Szczegóły
           </Box>
           <Details
             name={product?.name}
