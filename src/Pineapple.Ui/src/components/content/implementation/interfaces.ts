@@ -19,6 +19,8 @@ export interface ListProps {
     // Flaga określająca, czy środowisko zostało usunięte.
     isDeleted: boolean,
   }[],
+  // Identyfikator wdrożenia.
+  implementationId: string,
   // Zdarzenie edycji środowiska.
   onEdit: (id: string) => void,
   // Zdarzenie usunięcia środowiska.

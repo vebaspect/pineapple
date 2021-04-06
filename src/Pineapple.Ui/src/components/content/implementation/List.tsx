@@ -1,8 +1,10 @@
 import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 
 import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import IconButton from '@material-ui/core/IconButton';
+import Link from '@material-ui/core/Link';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -17,7 +19,7 @@ import {
   ListProps,
 } from './interfaces';
 
-const List: React.FC<ListProps> = ({ isDataFetched, data, onEdit, onDelete }: ListProps) => {
+const List: React.FC<ListProps> = ({ isDataFetched, data, implementationId, onEdit, onDelete }: ListProps) => {
   if (!isDataFetched) {
     return (
       <Box
@@ -44,7 +46,14 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, onEdit, onDelete }: Li
           data.filter((environment) => !environment.isDeleted).map((environment, index) => (
             <TableRow key={environment.id}>
               <TableCell>{index + 1}.</TableCell>
-              <TableCell>{environment.name}</TableCell>
+              <TableCell>
+                <Link
+                  component={RouterLink}
+                  to={`/implementations/${implementationId}/environments/${environment.id}`}
+                >
+                  {environment.name}
+                </Link>
+              </TableCell>
               <TableCell>{environment.description}</TableCell>
               <TableCell align="right">
                 <Tooltip title="Edytuj">

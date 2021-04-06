@@ -167,6 +167,7 @@ const Implementation: React.VFC = () => {
           <List
             isDataFetched={isEnvironmentsFetched}
             data={environments}
+            implementationId={implementationId}
             onEdit={editEnvironment}
             onDelete={deleteEnvironment}
           />

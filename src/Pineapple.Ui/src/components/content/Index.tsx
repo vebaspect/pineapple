@@ -10,6 +10,7 @@ import ComponentType from './componentType';
 import ComponentTypes from './componentTypes';
 import Configuration from './configuration';
 import Developers from './developers';
+import Environment from './environment';
 import Home from './home';
 import Implementation from './implementation';
 import Implementations from './implementations';
@@ -62,6 +63,9 @@ const Title: React.VFC = () => {
       </Route>
       <Route path="/implementations/create">
         <CreateImplementationEditor />
+      </Route>
+      <Route path="/implementations/:implementationId/environments/:environmentId">
+        <Environment />
       </Route>
       <Route path="/implementations/:implementationId">
         <Implementation />
