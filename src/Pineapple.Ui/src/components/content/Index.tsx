@@ -13,6 +13,7 @@ import Home from './home';
 import Implementation from './implementation';
 import Implementations from './implementations';
 import Managers from './managers';
+import OperatingSystem from './operatingSystem';
 import OperatingSystems from './operatingSystems';
 import Operators from './operators';
 import Product from './product';
@@ -74,6 +75,9 @@ const Title: React.VFC = () => {
       </Route>
       <Route path="/operating-systems/create">
         <CreateOperatingSystemEditor />
+      </Route>
+      <Route path="/operating-systems/:operatingSystemId">
+        <OperatingSystem />
       </Route>
       <Route path="/operating-systems">
         <OperatingSystems />
