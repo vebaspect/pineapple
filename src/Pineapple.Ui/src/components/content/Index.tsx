@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom';
 
 import Administrators from './administrators';
+import ComponentType from './componentType';
 import ComponentTypes from './componentTypes';
 import Configuration from './configuration';
 import Developers from './developers';
@@ -40,6 +41,9 @@ const Title: React.VFC = () => {
       </Route>
       <Route path="/component-types/create">
         <CreateComponentTypeEditor />
+      </Route>
+      <Route path="/component-types/:componentTypeId">
+        <ComponentType />
       </Route>
       <Route path="/component-types">
         <ComponentTypes />
