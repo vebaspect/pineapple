@@ -69,11 +69,11 @@ namespace Pineapple.Core.Domain.Entities
             {
                 throw new ValueRequiredValidationException(nameof(name));
             }
-            if (productId != Guid.Empty)
+            if (productId == Guid.Empty)
             {
                 throw new ValueRequiredValidationException(nameof(productId));
             }
-            if (componentTypeId != Guid.Empty)
+            if (componentTypeId == Guid.Empty)
             {
                 throw new ValueRequiredValidationException(nameof(componentTypeId));
             }
