@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import {
   createStyles,
@@ -28,6 +28,9 @@ const useStyles = makeStyles(() =>
 );
 
 const Product: React.VFC = () => {
+  const history = useHistory();
+  const styles = useStyles();
+
   // Identyfikator produktu.
   const { productId } = useParams();
 
@@ -47,8 +50,6 @@ const Product: React.VFC = () => {
   const [logs, setLogs] = useState([]);
   // Liczba logów, które mają zostać zwrócone.
   const [count, setCount] = useState(10);
-
-  const styles = useStyles();
 
   const fetchLogs = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/logs/products/${productId}?count=${count}`)
@@ -96,7 +97,7 @@ const Product: React.VFC = () => {
   };
 
   const addComponent = () => {
-    // TODO
+    history.push(`/products/${productId}/components/create`);
   };
 
   const editComponent = () => {

@@ -25,6 +25,7 @@ import SoftwareApplications from './softwareApplications';
 import Users from './users'
 
 import CreateAdministratorEditor from '../editors/users/createAdministratorEditor';
+import CreateComponentEditor from '../editors/products/createComponentEditor';
 import CreateComponentTypeEditor from '../editors/configuration/createComponentTypeEditor';
 import CreateDeveloperEditor from '../editors/users/createDeveloperEditor';
 import CreateImplementationEditor from '../editors/implementations/createImplementationEditor';
@@ -96,6 +97,9 @@ const Title: React.VFC = () => {
       </Route>
       <Route path="/products/create">
         <CreateProductEditor />
+      </Route>
+      <Route path="/products/:productId/components/create">
+        <CreateComponentEditor />
       </Route>
       <Route path="/products/:productId/components/:componentId">
         <Component />
