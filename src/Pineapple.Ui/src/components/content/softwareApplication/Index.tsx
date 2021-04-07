@@ -17,8 +17,8 @@ const SoftwareApplication: React.VFC = () => {
 
   const fetchSoftwareApplication = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/configuration/software-applications/${softwareApplicationId}`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setIsSoftwareApplicationFetched(true);
         setSoftwareApplication(data);
       });

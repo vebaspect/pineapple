@@ -64,8 +64,8 @@ const Sidebar: React.VFC = () => {
 
   const fetchImplementations = async () => {
     await fetch(`${window['env'].API_URL}/implementations`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setIsImplementationsFetched(true);
         setImplementations(data);
       });
@@ -73,8 +73,8 @@ const Sidebar: React.VFC = () => {
 
   const fetchProducts = async () => {
     await fetch(`${window['env'].API_URL}/products`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setIsProductsFetched(true);
         setProducts(data);
       });
@@ -82,8 +82,8 @@ const Sidebar: React.VFC = () => {
 
   const fetchComponentTypesCount = async () => {
     await fetch(`${window['env'].API_URL}/configuration/component-types/count`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setIsComponentTypesCountFetched(true);
         setComponentTypesCount(data.value);
       });
@@ -91,8 +91,8 @@ const Sidebar: React.VFC = () => {
 
   const fetchOperatingSystemsCount = async () => {
     await fetch(`${window['env'].API_URL}/configuration/operating-systems/count`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setIsOperatingSystemsCountFetched(true);
         setOperatingSystemsCount(data.value);
       });
@@ -100,8 +100,8 @@ const Sidebar: React.VFC = () => {
 
   const fetchSoftwareApplicationsCount = async () => {
     await fetch(`${window['env'].API_URL}/configuration/software-applications/count`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setIsSoftwareApplicationsCountFetched(true);
         setSoftwareApplicationsCount(data.value);
       });
@@ -109,8 +109,8 @@ const Sidebar: React.VFC = () => {
 
   const fetchDevelopersCount = async () => {
     await fetch(`${window['env'].API_URL}/users/developers/count`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setIsDevelopersCountFetched(true);
         setDevelopersCount(data.value);
       });
@@ -118,8 +118,8 @@ const Sidebar: React.VFC = () => {
 
   const fetchOperatorsCount = async () => {
     await fetch(`${window['env'].API_URL}/users/operators/count`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setIsOperatorsCountFetched(true);
         setOperatorsCount(data.value);
       });
@@ -127,8 +127,8 @@ const Sidebar: React.VFC = () => {
 
   const fetchManagersCount = async () => {
     await fetch(`${window['env'].API_URL}/users/managers/count`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setIsManagersCountFetched(true);
         setManagersCount(data.value);
       });
@@ -136,8 +136,8 @@ const Sidebar: React.VFC = () => {
 
   const fetchAdministratorsCount = async () => {
     await fetch(`${window['env'].API_URL}/users/administrators/count`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setIsAdministratorsCountFetched(true);
         setAdministratorsCount(data.value);
       });

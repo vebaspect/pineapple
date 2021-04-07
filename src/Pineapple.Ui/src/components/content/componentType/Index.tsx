@@ -17,8 +17,8 @@ const ComponentType: React.VFC = () => {
 
   const fetchComponentType = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/configuration/component-types/${componentTypeId}`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setIsComponentTypeFetched(true);
         setComponentType(data);
       });

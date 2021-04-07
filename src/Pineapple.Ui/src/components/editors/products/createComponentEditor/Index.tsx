@@ -50,8 +50,8 @@ const CreateComponentEditor: React.VFC = () => {
 
   const fetchComponentTypes = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/configuration/component-types`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setIsComponentTypesFetched(true);
         setComponentTypes(convertFetchedComponentTypes(data));
       });
@@ -95,14 +95,14 @@ const CreateComponentEditor: React.VFC = () => {
           method: 'POST',
         },
       )
-      .then(response => {
+      .then((response) => {
         if (response.ok) {
           history.push(`/products/${productId}`);
         } else {
           return response.json();
         }
       })
-      .then(data => {
+      .then((data) => {
         switch (data.errorType) {
           case VALIDATION_ERROR_TYPE__VALUE_REQUIRED: {
             setFormStateValidationResult({

@@ -38,8 +38,8 @@ const Administrators: React.VFC = () => {
 
   const fetchAdministrators = async () => {
     await fetch(`${window['env'].API_URL}/users/administrators`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setIsAdministratorsFetched(true);
         setAdministrators(data);
       });

@@ -19,8 +19,8 @@ const Environment: React.VFC = () => {
 
   const fetchEnvironment = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/implementations/${implementationId}/environments/${environmentId}`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setIsEnvironmentFetched(true);
         setEnvironment(data);
       });

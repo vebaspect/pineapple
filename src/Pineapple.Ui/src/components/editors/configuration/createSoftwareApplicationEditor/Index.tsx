@@ -59,14 +59,14 @@ const CreateSoftwareApplicationEditor: React.VFC = () => {
           method: 'POST',
         },
       )
-      .then(response => {
+      .then((response) => {
         if (response.ok) {
           history.push('/software-applications');
         } else {
           return response.json();
         }
       })
-      .then(data => {
+      .then((data) => {
         switch (data.errorType) {
           case VALIDATION_ERROR_TYPE__VALUE_REQUIRED: {
             setFormStateValidationResult({

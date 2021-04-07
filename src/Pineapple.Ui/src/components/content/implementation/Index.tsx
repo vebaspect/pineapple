@@ -52,8 +52,8 @@ const Implementation: React.VFC = () => {
 
   const fetchLogs = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/logs/implementations/${implementationId}?count=${count}`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setIsLogsFetched(true);
         setLogs(data);
       });
@@ -65,8 +65,8 @@ const Implementation: React.VFC = () => {
 
   const fetchImplementation = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/implementations/${implementationId}`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setIsImplementationFetched(true);
         setImplementation(data);
       });
@@ -78,8 +78,8 @@ const Implementation: React.VFC = () => {
 
   const fetchEnvironments = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/implementations/${implementationId}/environments`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setIsEnvironmentsFetched(true);
         setEnvironments(data);
       });

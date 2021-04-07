@@ -19,8 +19,8 @@ const Component: React.VFC = () => {
 
   const fetchComponent = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/products/${productId}/components/${componentId}`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setIsComponentFetched(true);
         setComponent(data);
       });

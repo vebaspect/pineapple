@@ -38,8 +38,8 @@ const ComponentTypes: React.VFC = () => {
 
   const fetchComponentTypes = async () => {
     await fetch(`${window['env'].API_URL}/configuration/component-types`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setIsComponentTypesFetched(true);
         setComponentTypes(data);
       });

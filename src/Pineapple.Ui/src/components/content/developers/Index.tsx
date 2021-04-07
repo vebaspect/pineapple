@@ -38,8 +38,8 @@ const Developers: React.VFC = () => {
 
   const fetchDevelopers = async () => {
     await fetch(`${window['env'].API_URL}/users/developers`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setIsDevelopersFetched(true);
         setDevelopers(data);
       });

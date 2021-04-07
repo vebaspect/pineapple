@@ -38,8 +38,8 @@ const SoftwareApplications: React.VFC = () => {
 
   const fetchSoftwareApplications = async () => {
     await fetch(`${window['env'].API_URL}/configuration/software-applications`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setIsSoftwareApplicationsFetched(true);
         setSoftwareApplications(data);
       });

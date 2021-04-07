@@ -16,8 +16,8 @@ const Users: React.VFC = () => {
 
   const fetchLogs = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/logs/users?count=${count}`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setIsLogsFetched(true);
         setLogs(data);
       });

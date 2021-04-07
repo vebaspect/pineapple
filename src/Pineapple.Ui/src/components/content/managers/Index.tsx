@@ -38,8 +38,8 @@ const Managers: React.VFC = () => {
 
   const fetchManagers = async () => {
     await fetch(`${window['env'].API_URL}/users/managers`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setIsManagersFetched(true);
         setManagers(data);
       });

@@ -17,8 +17,8 @@ const OperatingSystem: React.VFC = () => {
 
   const fetchOperatingSystem = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/configuration/operating-systems/${operatingSystemId}`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setIsOperatingSystemFetched(true);
         setOperatingSystem(data);
       });

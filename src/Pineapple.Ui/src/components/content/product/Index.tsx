@@ -53,8 +53,8 @@ const Product: React.VFC = () => {
 
   const fetchLogs = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/logs/products/${productId}?count=${count}`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setIsLogsFetched(true);
         setLogs(data);
       });
@@ -66,8 +66,8 @@ const Product: React.VFC = () => {
 
   const fetchProduct = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/products/${productId}`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setIsProductFetched(true);
         setProduct(data);
       });
@@ -79,8 +79,8 @@ const Product: React.VFC = () => {
 
   const fetchComponents = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/products/${productId}/components`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setIsComponentsFetched(true);
         setComponents(data);
       });

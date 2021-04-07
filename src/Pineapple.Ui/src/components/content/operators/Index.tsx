@@ -38,8 +38,8 @@ const Operators: React.VFC = () => {
 
   const fetchOperators = async () => {
     await fetch(`${window['env'].API_URL}/users/operators`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setIsOperatorsFetched(true);
         setOperators(data);
       });

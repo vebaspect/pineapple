@@ -38,8 +38,8 @@ const OperatingSystems: React.VFC = () => {
 
   const fetchOperatingSystems = async () => {
     await fetch(`${window['env'].API_URL}/configuration/operating-systems`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setIsOperatingSystemsFetched(true);
         setOperatingSystems(data);
       });
