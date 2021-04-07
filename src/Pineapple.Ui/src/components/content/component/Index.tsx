@@ -68,6 +68,7 @@ const Component: React.VFC = () => {
           </Box>
           <Details
             name={component?.name}
+            type={component?.componentTypeName}
             description={component?.description}
           />
         </Paper>
