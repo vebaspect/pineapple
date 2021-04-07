@@ -26,12 +26,13 @@ module.exports = () => {
     output: {
       filename: 'js/pineapple.[fullhash].js',
       path: path.resolve(__dirname, '../../dist/Pineapple.Ui'),
-      publicPath: '',
+      publicPath: '/',
     },
     plugins: [
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         inject: true,
+        publicPath: '/',
         template: './assets/index.html'
       }),
       new CopyWebpackPlugin({
