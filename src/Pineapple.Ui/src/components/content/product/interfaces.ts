@@ -14,6 +14,8 @@ export interface ListProps {
     id: string,
     // Nazwa.
     name: string,
+    // Typ.
+    componentTypeName: string,
     // Opis.
     description: string,
     // Flaga określająca, czy komponent zostało usunięte.
