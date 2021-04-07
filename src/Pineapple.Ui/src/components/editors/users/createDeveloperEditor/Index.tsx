@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 
@@ -106,53 +107,57 @@ const CreateDeveloperEditor: React.VFC = () => {
             pb={2}
             pt={4}
           >
-            <TextField
-              fullWidth
-              label="Imię i nazwisko"
-              helperText={formStateValidationResult?.fullName || 'Maksymalnie 200 znaków.'}
-              error={formStateValidationResult && formStateValidationResult.fullName !== undefined && formStateValidationResult.fullName !== null}
-              value={formState.fullName}
-              onChange={onFullNameChange}
-            />
+            <FormControl fullWidth>
+              <TextField
+                label="Imię i nazwisko"
+                helperText={formStateValidationResult?.fullName || 'Maksymalnie 200 znaków.'}
+                error={formStateValidationResult && formStateValidationResult.fullName !== undefined && formStateValidationResult.fullName !== null}
+                value={formState.fullName}
+                onChange={onFullNameChange}
+              />
+            </FormControl>
           </Box>
           <Box
             px={4}
             pb={2}
           >
-            <TextField
-              fullWidth
-              label="Login"
-              helperText={formStateValidationResult?.login || 'Maksymalnie 200 znaków.'}
-              error={formStateValidationResult && formStateValidationResult.login !== undefined && formStateValidationResult.login !== null}
-              value={formState.login}
-              onChange={onLoginChange}
-            />
+            <FormControl fullWidth>
+              <TextField
+                label="Login"
+                helperText={formStateValidationResult?.login || 'Maksymalnie 200 znaków.'}
+                error={formStateValidationResult && formStateValidationResult.login !== undefined && formStateValidationResult.login !== null}
+                value={formState.login}
+                onChange={onLoginChange}
+              />
+            </FormControl>
           </Box>
           <Box
             px={4}
             pb={2}
           >
-            <TextField
-              fullWidth
-              label="Telefon"
-              helperText={formStateValidationResult?.phone || 'Maksymalnie 200 znaków.'}
-              error={formStateValidationResult && formStateValidationResult.phone !== undefined && formStateValidationResult.phone !== null}
-              value={formState.phone}
-              onChange={onPhoneChange}
-            />
+            <FormControl fullWidth>
+              <TextField
+                label="Telefon"
+                helperText={formStateValidationResult?.phone || 'Maksymalnie 200 znaków.'}
+                error={formStateValidationResult && formStateValidationResult.phone !== undefined && formStateValidationResult.phone !== null}
+                value={formState.phone}
+                onChange={onPhoneChange}
+              />
+            </FormControl>
           </Box>
           <Box
             px={4}
             pb={2}
           >
-            <TextField
-              fullWidth
-              label="E-mail"
-              helperText={formStateValidationResult?.email || 'Maksymalnie 200 znaków.'}
-              error={formStateValidationResult && formStateValidationResult.email !== undefined && formStateValidationResult.email !== null}
-              value={formState.email}
-              onChange={onEmailChange}
-            />
+            <FormControl fullWidth>
+              <TextField
+                label="E-mail"
+                helperText={formStateValidationResult?.email || 'Maksymalnie 200 znaków.'}
+                error={formStateValidationResult && formStateValidationResult.email !== undefined && formStateValidationResult.email !== null}
+                value={formState.email}
+                onChange={onEmailChange}
+              />
+            </FormControl>
           </Box>
           <Box
             pb={3}

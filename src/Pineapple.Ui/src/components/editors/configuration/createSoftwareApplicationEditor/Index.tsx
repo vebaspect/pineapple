@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 
@@ -99,39 +100,42 @@ const CreateSoftwareApplicationEditor: React.VFC = () => {
             pb={2}
             pt={4}
           >
-            <TextField
-              fullWidth
-              label="Nazwa"
-              helperText={formStateValidationResult?.name || 'Maksymalnie 200 znaków.'}
-              error={formStateValidationResult && formStateValidationResult.name !== undefined && formStateValidationResult.name !== null}
-              value={formState.name}
-              onChange={onNameChange}
-            />
+            <FormControl fullWidth>
+              <TextField
+                label="Nazwa"
+                helperText={formStateValidationResult?.name || 'Maksymalnie 200 znaków.'}
+                error={formStateValidationResult && formStateValidationResult.name !== undefined && formStateValidationResult.name !== null}
+                value={formState.name}
+                onChange={onNameChange}
+              />
+            </FormControl>
           </Box>
           <Box
             px={4}
             pb={2}
           >
-            <TextField
-              fullWidth
-              label="Symbol"
-              helperText={formStateValidationResult?.symbol || 'Maksymalnie 200 znaków.'}
-              error={formStateValidationResult && formStateValidationResult.symbol !== undefined && formStateValidationResult.symbol !== null}
-              value={formState.symbol}
-              onChange={onSymbolChange}
-            />
+            <FormControl fullWidth>
+              <TextField
+                label="Symbol"
+                helperText={formStateValidationResult?.symbol || 'Maksymalnie 200 znaków.'}
+                error={formStateValidationResult && formStateValidationResult.symbol !== undefined && formStateValidationResult.symbol !== null}
+                value={formState.symbol}
+                onChange={onSymbolChange}
+              />
+            </FormControl>
           </Box>
           <Box
             px={4}
             pb={2}
           >
-            <TextField
-              fullWidth
-              label="Opis"
-              helperText="Maksymalnie 4000 znaków."
-              value={formState.description}
-              onChange={onDescriptionChange}
-            />
+            <FormControl fullWidth>
+              <TextField
+                label="Opis"
+                helperText="Maksymalnie 4000 znaków."
+                value={formState.description}
+                onChange={onDescriptionChange}
+              />
+            </FormControl>
           </Box>
           <Box
             pb={3}
