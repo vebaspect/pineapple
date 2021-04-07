@@ -24,13 +24,13 @@ const useStyles = makeStyles(() =>
 );
 
 const Operators: React.VFC = () => {
+  const history = useHistory();
+  const styles = useStyles();
+
   // Flaga określająca, czy lista wdrożeniowców została pobrana z API.
   const [isOperatorsFetched, setIsOperatorsFetched] = useState(false);
   // Lista wdrożeniowców.
   const [operators, setOperators] = useState([]);
-
-  const history = useHistory();
-  const styles = useStyles();
 
   useEffect(() => {
     fetchOperators();

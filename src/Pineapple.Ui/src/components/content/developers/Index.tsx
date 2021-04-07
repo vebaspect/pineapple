@@ -24,13 +24,13 @@ const useStyles = makeStyles(() =>
 );
 
 const Developers: React.VFC = () => {
+  const history = useHistory();
+  const styles = useStyles();
+
   // Flaga określająca, czy lista programistów została pobrana z API.
   const [isDevelopersFetched, setIsDevelopersFetched] = useState(false);
   // Lista programistów.
   const [developers, setDevelopers] = useState([]);
-
-  const history = useHistory();
-  const styles = useStyles();
 
   useEffect(() => {
     fetchDevelopers();

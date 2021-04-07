@@ -26,6 +26,9 @@ const useStyles = makeStyles(() =>
 );
 
 const Products: React.VFC = () => {
+  const history = useHistory();
+  const styles = useStyles();
+
   // Flaga określająca, czy lista produktów została pobrana z API.
   const [isProductsFetched, setIsProductsFetched] = useState(false);
   // Lista produktów.
@@ -37,9 +40,6 @@ const Products: React.VFC = () => {
   const [logs, setLogs] = useState([]);
   // Liczba logów, które mają zostać zwrócone.
   const [logsCount, setLogsCount] = useState(10);
-
-  const history = useHistory();
-  const styles = useStyles();
 
   const fetchLogs = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/logs/products?count=${logsCount}`)

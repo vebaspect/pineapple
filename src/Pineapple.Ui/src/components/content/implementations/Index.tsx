@@ -26,6 +26,9 @@ const useStyles = makeStyles(() =>
 );
 
 const Implementations: React.VFC = () => {
+  const history = useHistory();
+  const styles = useStyles();
+
   // Flaga określająca, czy lista wdrożeń została pobrana z API.
   const [isImplementationsFetched, setIsImplementationsFetched] = useState(false);
   // Lista wdrożeń.
@@ -37,9 +40,6 @@ const Implementations: React.VFC = () => {
   const [logs, setLogs] = useState([]);
   // Liczba logów, które mają zostać zwrócone.
   const [logsCount, setLogsCount] = useState(10);
-
-  const history = useHistory();
-  const styles = useStyles();
 
   const fetchLogs = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/logs/implementations?count=${logsCount}`)

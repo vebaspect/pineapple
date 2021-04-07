@@ -18,12 +18,12 @@ import {
 } from '../../availableValidationErrorTypes';
 
 const CreateComponentTypeEditor: React.VFC = () => {
+  const history = useHistory();
+
   // Stan formularza.
   const [formState, setFormState] = useState(initialFormState());
   // Wynik walidacji stanu formularza.
   const [formStateValidationResult, setFormStateValidationResult] = useState(null);
-
-  const history = useHistory();
 
   const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormState({

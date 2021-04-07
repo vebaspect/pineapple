@@ -24,13 +24,13 @@ const useStyles = makeStyles(() =>
 );
 
 const ComponentTypes: React.VFC = () => {
+  const history = useHistory();
+  const styles = useStyles();
+
   // Flaga określająca, czy lista typów komponentów została pobrana z API.
   const [isComponentTypesFetched, setIsComponentTypesFetched] = useState(false);
   // Lista typów komponentów.
   const [componentTypes, setComponentTypes] = useState([]);
-
-  const history = useHistory();
-  const styles = useStyles();
 
   useEffect(() => {
     fetchComponentTypes();

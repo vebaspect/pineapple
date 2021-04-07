@@ -24,13 +24,13 @@ const useStyles = makeStyles(() =>
 );
 
 const OperatingSystems: React.VFC = () => {
+  const history = useHistory();
+  const styles = useStyles();
+
   // Flaga określająca, czy lista systemów operacyjnych została pobrana z API.
   const [isOperatingSystemsFetched, setIsOperatingSystemsFetched] = useState(false);
   // Lista systemów operacyjnych.
   const [operatingSystems, setOperatingSystems] = useState([]);
-
-  const history = useHistory();
-  const styles = useStyles();
 
   useEffect(() => {
     fetchOperatingSystems();

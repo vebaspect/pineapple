@@ -24,13 +24,13 @@ const useStyles = makeStyles(() =>
 );
 
 const Administrators: React.VFC = () => {
+  const history = useHistory();
+  const styles = useStyles();
+
   // Flaga określająca, czy lista administratorów została pobrana z API.
   const [isAdministratorsFetched, setIsAdministratorsFetched] = useState(false);
   // Lista administratorów.
   const [administrators, setAdministrators] = useState([]);
-
-  const history = useHistory();
-  const styles = useStyles();
 
   useEffect(() => {
     fetchAdministrators();

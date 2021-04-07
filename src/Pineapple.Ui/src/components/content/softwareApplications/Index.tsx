@@ -24,13 +24,13 @@ const useStyles = makeStyles(() =>
 );
 
 const SoftwareApplications: React.VFC = () => {
+  const history = useHistory();
+  const styles = useStyles();
+
   // Flaga określająca, czy lista oprogramowania została pobrana z API.
   const [isSoftwareApplicationsFetched, setIsSoftwareApplicationsFetched] = useState(false);
   // Lista oprogramowania.
   const [softwareApplications, setSoftwareApplications] = useState([]);
-
-  const history = useHistory();
-  const styles = useStyles();
 
   useEffect(() => {
     fetchSoftwareApplications();

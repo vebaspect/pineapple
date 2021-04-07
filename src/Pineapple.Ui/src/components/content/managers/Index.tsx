@@ -24,13 +24,13 @@ const useStyles = makeStyles(() =>
 );
 
 const Managers: React.VFC = () => {
+  const history = useHistory();
+  const styles = useStyles();
+
   // Flaga określająca, czy lista menedżerów została pobrana z API.
   const [isManagersFetched, setIsManagersFetched] = useState(false);
   // Lista menedżerów.
   const [managers, setManagers] = useState([]);
-
-  const history = useHistory();
-  const styles = useStyles();
 
   useEffect(() => {
     fetchManagers();

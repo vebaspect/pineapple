@@ -28,6 +28,8 @@ const useStyles = makeStyles(() =>
 );
 
 const Implementation: React.VFC = () => {
+  const styles = useStyles();
+
   // Identyfikator wdrożenia.
   const { implementationId } = useParams();
 
@@ -47,8 +49,6 @@ const Implementation: React.VFC = () => {
   const [logs, setLogs] = useState([]);
   // Liczba logów, które mają zostać zwrócone.
   const [count, setCount] = useState(10);
-
-  const styles = useStyles();
 
   const fetchLogs = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/logs/implementations/${implementationId}?count=${count}`)
