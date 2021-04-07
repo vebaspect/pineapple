@@ -32,10 +32,6 @@ const OperatingSystems: React.VFC = () => {
   // Lista systemów operacyjnych.
   const [operatingSystems, setOperatingSystems] = useState([]);
 
-  useEffect(() => {
-    fetchOperatingSystems();
-  }, []);
-
   const fetchOperatingSystems = async () => {
     await fetch(`${window['env'].API_URL}/configuration/operating-systems`)
       .then((response) => response.json())
@@ -44,6 +40,10 @@ const OperatingSystems: React.VFC = () => {
         setOperatingSystems(data);
       });
   };
+
+  useEffect(() => {
+    fetchOperatingSystems();
+  }, []);
 
   const addOperatingSystem = () => {
     history.push('/operating-systems/create');

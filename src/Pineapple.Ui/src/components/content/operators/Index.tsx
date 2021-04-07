@@ -32,10 +32,6 @@ const Operators: React.VFC = () => {
   // Lista wdrożeniowców.
   const [operators, setOperators] = useState([]);
 
-  useEffect(() => {
-    fetchOperators();
-  }, []);
-
   const fetchOperators = async () => {
     await fetch(`${window['env'].API_URL}/users/operators`)
       .then((response) => response.json())
@@ -44,6 +40,10 @@ const Operators: React.VFC = () => {
         setOperators(data);
       });
   };
+
+  useEffect(() => {
+    fetchOperators();
+  }, []);
 
   const addOperator = () => {
     history.push('/operators/create');

@@ -32,10 +32,6 @@ const Developers: React.VFC = () => {
   // Lista programistów.
   const [developers, setDevelopers] = useState([]);
 
-  useEffect(() => {
-    fetchDevelopers();
-  }, []);
-
   const fetchDevelopers = async () => {
     await fetch(`${window['env'].API_URL}/users/developers`)
       .then((response) => response.json())
@@ -44,6 +40,10 @@ const Developers: React.VFC = () => {
         setDevelopers(data);
       });
   };
+
+  useEffect(() => {
+    fetchDevelopers();
+  }, []);
 
   const addDeveloper = () => {
     history.push('/developers/create');

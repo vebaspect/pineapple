@@ -50,18 +50,6 @@ const Sidebar: React.VFC = () => {
   // Liczba administratorów.
   const [administratorsCount, setAdministratorsCount] = useState(0);
 
-  useEffect(() => {
-    fetchImplementations();
-    fetchProducts();
-    fetchComponentTypesCount();
-    fetchOperatingSystemsCount();
-    fetchSoftwareApplicationsCount();
-    fetchDevelopersCount();
-    fetchOperatorsCount();
-    fetchManagersCount();
-    fetchAdministratorsCount();
-  }, []);
-
   const fetchImplementations = async () => {
     await fetch(`${window['env'].API_URL}/implementations`)
       .then((response) => response.json())
@@ -142,6 +130,18 @@ const Sidebar: React.VFC = () => {
         setAdministratorsCount(data.value);
       });
   }
+
+  useEffect(() => {
+    fetchImplementations();
+    fetchProducts();
+    fetchComponentTypesCount();
+    fetchOperatingSystemsCount();
+    fetchSoftwareApplicationsCount();
+    fetchDevelopersCount();
+    fetchOperatorsCount();
+    fetchManagersCount();
+    fetchAdministratorsCount();
+  }, []);
 
   return (
     <Paper>

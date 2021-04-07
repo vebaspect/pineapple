@@ -32,10 +32,6 @@ const ComponentTypes: React.VFC = () => {
   // Lista typów komponentów.
   const [componentTypes, setComponentTypes] = useState([]);
 
-  useEffect(() => {
-    fetchComponentTypes();
-  }, []);
-
   const fetchComponentTypes = async () => {
     await fetch(`${window['env'].API_URL}/configuration/component-types`)
       .then((response) => response.json())
@@ -44,6 +40,10 @@ const ComponentTypes: React.VFC = () => {
         setComponentTypes(data);
       });
   };
+
+  useEffect(() => {
+    fetchComponentTypes();
+  }, []);
 
   const addComponentType = () => {
     history.push('/component-types/create');

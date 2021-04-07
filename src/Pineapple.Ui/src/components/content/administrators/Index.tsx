@@ -32,10 +32,6 @@ const Administrators: React.VFC = () => {
   // Lista administratorów.
   const [administrators, setAdministrators] = useState([]);
 
-  useEffect(() => {
-    fetchAdministrators();
-  }, []);
-
   const fetchAdministrators = async () => {
     await fetch(`${window['env'].API_URL}/users/administrators`)
       .then((response) => response.json())
@@ -44,6 +40,10 @@ const Administrators: React.VFC = () => {
         setAdministrators(data);
       });
   };
+
+  useEffect(() => {
+    fetchAdministrators();
+  }, []);
 
   const addAdministrator = () => {
     history.push('/administrators/create');

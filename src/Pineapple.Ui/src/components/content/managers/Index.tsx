@@ -32,10 +32,6 @@ const Managers: React.VFC = () => {
   // Lista menedżerów.
   const [managers, setManagers] = useState([]);
 
-  useEffect(() => {
-    fetchManagers();
-  }, []);
-
   const fetchManagers = async () => {
     await fetch(`${window['env'].API_URL}/users/managers`)
       .then((response) => response.json())
@@ -44,6 +40,10 @@ const Managers: React.VFC = () => {
         setManagers(data);
       });
   };
+
+  useEffect(() => {
+    fetchManagers();
+  }, []);
 
   const addManager = () => {
     history.push('/managers/create');

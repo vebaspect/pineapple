@@ -32,10 +32,6 @@ const SoftwareApplications: React.VFC = () => {
   // Lista oprogramowania.
   const [softwareApplications, setSoftwareApplications] = useState([]);
 
-  useEffect(() => {
-    fetchSoftwareApplications();
-  }, []);
-
   const fetchSoftwareApplications = async () => {
     await fetch(`${window['env'].API_URL}/configuration/software-applications`)
       .then((response) => response.json())
@@ -44,6 +40,10 @@ const SoftwareApplications: React.VFC = () => {
         setSoftwareApplications(data);
       });
   };
+
+  useEffect(() => {
+    fetchSoftwareApplications();
+  }, []);
 
   const addSoftwareApplication = () => {
     history.push('/software-applications/create');
