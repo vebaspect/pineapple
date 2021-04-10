@@ -65,6 +65,7 @@ const OperatingSystem: React.VFC = () => {
             Szczegóły
           </Box>
           <Details
+            isDataFetched={isOperatingSystemFetched}
             name={operatingSystem?.name}
             symbol={operatingSystem?.symbol}
             description={operatingSystem?.description}
