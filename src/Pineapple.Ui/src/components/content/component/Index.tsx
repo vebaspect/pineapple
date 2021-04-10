@@ -67,6 +67,7 @@ const Component: React.VFC = () => {
             Szczegóły
           </Box>
           <Details
+            isDataFetched={isComponentFetched}
             name={component?.name}
             type={component?.componentTypeName}
             description={component?.description}
