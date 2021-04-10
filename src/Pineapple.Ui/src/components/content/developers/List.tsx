@@ -1,8 +1,10 @@
 import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 
 import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import IconButton from '@material-ui/core/IconButton';
+import Link from '@material-ui/core/Link';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -46,7 +48,14 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, onEdit, onDelete }: Li
           data.filter((developer) => !developer.isDeleted).map((developer, index) => (
             <TableRow key={developer.id}>
               <TableCell>{index + 1}.</TableCell>
-              <TableCell>{developer.fullName}</TableCell>
+              <TableCell>
+                <Link
+                  component={RouterLink}
+                  to={`/developers/${developer.id}`}
+                >
+                  {developer.fullName}
+                </Link>
+              </TableCell>
               <TableCell>{developer.login}</TableCell>
               <TableCell>{developer.phone}</TableCell>
               <TableCell>{developer.email}</TableCell>
