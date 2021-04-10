@@ -1,12 +1,32 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import {
+  createStyles,
+  makeStyles,
+} from '@material-ui/core/styles';
+
 import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 
+import AddIcon from '@material-ui/icons/Add';
+
 import Details from './Details';
+import List from './List';
+
+const useStyles = makeStyles(() =>
+  createStyles({
+    add: {
+      backgroundColor: '#4caf50',
+      color: '#fff',
+    },
+  }),
+);
 
 const Component: React.VFC = () => {
+  const styles = useStyles();
+
   // Identyfikator produktu.
   const { productId } = useParams();
   // Identyfikator komponentu.
@@ -16,6 +36,11 @@ const Component: React.VFC = () => {
   const [isComponentFetched, setIsComponentFetched] = useState(false);
   // Komponent.
   const [component, setComponent] = useState(null);
+
+  // Flaga określająca, czy lista wersji komponentu została pobrana z API.
+  const [isComponentVersionsFetched, setIsComponentVersionsFetched] = useState(false);
+  // Lista wersji komponentu.
+  const [componentVersions, setComponentVersions] = useState([]);
 
   const fetchComponent = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/products/${productId}/components/${componentId}`)
@@ -29,6 +54,31 @@ const Component: React.VFC = () => {
   useEffect(() => {
     fetchComponent();
   }, [fetchComponent]);
+
+  const fetchComponentVersions = useCallback(async () => {
+    await fetch(`${window['env'].API_URL}/products/${productId}/components/${componentId}/component-versions`)
+      .then((response) => response.json())
+      .then((data) => {
+        setIsComponentVersionsFetched(true);
+        setComponentVersions(data);
+      });
+  }, [productId, componentId]);
+
+  useEffect(() => {
+    fetchComponentVersions();
+  }, [fetchComponentVersions]);
+
+  const addComponentVersion = () => {
+    // TODO
+  };
+
+  const editComponentVersion = () => {
+    // TODO
+  };
+
+  const deleteComponentVersion = () => {
+    // TODO
+  };
 
   return (
     <>
@@ -72,6 +122,45 @@ const Component: React.VFC = () => {
             type={component?.componentTypeName}
             description={component?.description}
           />
+        </Paper>
+      </Box>
+      <Box
+        mb={3}
+      >
+        <Paper>
+          <Box
+            border={1}
+            borderLeft={0}
+            borderRight={0}
+            borderTop={0}
+            borderColor="#e0e0e0"
+            py={1.5}
+            textAlign="center"
+          >
+            Lista wersji komponentu
+          </Box>
+          <List
+            isDataFetched={isComponentVersionsFetched}
+            data={componentVersions}
+            productId={productId}
+            componentId={componentId}
+            onEdit={editComponentVersion}
+            onDelete={deleteComponentVersion}
+          />
+          <Box
+            p={1.5}
+            textAlign="right"
+          >
+            <Button
+              className={styles.add}
+              size="small"
+              startIcon={<AddIcon />}
+              variant="contained"
+              onClick={addComponentVersion}
+            >
+              Dodaj
+            </Button>
+          </Box>
         </Paper>
       </Box>
     </>
