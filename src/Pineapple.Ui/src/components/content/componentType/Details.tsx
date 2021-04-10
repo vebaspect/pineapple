@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Box from '@material-ui/core/Box';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -9,7 +11,18 @@ import {
   DetailsProps,
 } from './interfaces';
 
-const Details: React.FC<DetailsProps> = ({ name, symbol, description }: DetailsProps) => {
+const Details: React.FC<DetailsProps> = ({ isDataFetched, name, symbol, description }: DetailsProps) => {
+  if (!isDataFetched) {
+    return (
+      <Box
+        p={2}
+        textAlign="center"
+      >
+        <CircularProgress />
+      </Box>
+    );
+  }
+
   return (
     <Table size="small">
       <TableBody>
