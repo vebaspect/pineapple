@@ -1,4 +1,6 @@
 export interface DetailsProps {
+  // Flaga określająca, czy produkt został pobrany z API.
+  isDataFetched: boolean,
   // Nazwa.
   name: string,
   // Opis.

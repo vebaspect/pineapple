@@ -145,6 +145,7 @@ const Product: React.VFC = () => {
             Szczegóły
           </Box>
           <Details
+            isDataFetched={isProductFetched}
             name={product?.name}
             description={product?.description}
           />
