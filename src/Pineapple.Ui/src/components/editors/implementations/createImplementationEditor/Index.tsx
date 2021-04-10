@@ -61,7 +61,7 @@ const CreateImplementationEditor: React.VFC = () => {
         }
       })
       .then((data) => {
-        switch (data.errorType) {
+        switch (data && data.errorType) {
           case VALIDATION_ERROR_TYPE__VALUE_REQUIRED: {
             setFormStateValidationResult({
               [data.property]: 'Pole wymagane.',
