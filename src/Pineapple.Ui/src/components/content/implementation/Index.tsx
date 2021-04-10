@@ -144,6 +144,7 @@ const Implementation: React.VFC = () => {
             Szczegóły
           </Box>
           <Details
+            isDataFetched={isImplementationFetched}
             name={implementation?.name}
             description={implementation?.description}
           />

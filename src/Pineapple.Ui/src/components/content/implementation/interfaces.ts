@@ -1,4 +1,6 @@
 export interface DetailsProps {
+  // Flaga określająca, czy wdrożenie zostało pobrane z API.
+  isDataFetched: boolean,
   // Nazwa.
   name: string,
   // Opis.
