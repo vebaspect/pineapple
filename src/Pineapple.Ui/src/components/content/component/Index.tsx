@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import {
   createStyles,
@@ -25,6 +25,7 @@ const useStyles = makeStyles(() =>
 );
 
 const Component: React.VFC = () => {
+  const history = useHistory();
   const styles = useStyles();
 
   // Identyfikator produktu.
@@ -69,7 +70,7 @@ const Component: React.VFC = () => {
   }, [fetchComponentVersions]);
 
   const addComponentVersion = () => {
-    // TODO
+    history.push(`/products/${productId}/components/${componentId}/component-versions/create`);
   };
 
   const editComponentVersion = () => {
@@ -137,7 +138,7 @@ const Component: React.VFC = () => {
             py={1.5}
             textAlign="center"
           >
-            Lista wersji komponentu
+            Wersje
           </Box>
           <List
             isDataFetched={isComponentVersionsFetched}

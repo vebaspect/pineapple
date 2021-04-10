@@ -163,7 +163,7 @@ const Implementation: React.VFC = () => {
             py={1.5}
             textAlign="center"
           >
-            Lista środowisk
+            Środowiska
           </Box>
           <List
             isDataFetched={isEnvironmentsFetched}

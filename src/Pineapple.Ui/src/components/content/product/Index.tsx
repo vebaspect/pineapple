@@ -164,7 +164,7 @@ const Product: React.VFC = () => {
             py={1.5}
             textAlign="center"
           >
-            Lista komponentów
+            Komponenty
           </Box>
           <List
             isDataFetched={isComponentsFetched}
