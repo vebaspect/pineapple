@@ -65,6 +65,7 @@ const SoftwareApplication: React.VFC = () => {
             Szczegóły
           </Box>
           <Details
+            isDataFetched={isSoftwareApplicationFetched}
             name={softwareApplication?.name}
             symbol={softwareApplication?.symbol}
             description={softwareApplication?.description}
