@@ -67,6 +67,7 @@ const Environment: React.VFC = () => {
             Szczegóły
           </Box>
           <Details
+            isDataFetched={isEnvironmentFetched}
             name={environment?.name}
             description={environment?.description}
           />
