@@ -66,7 +66,7 @@ import {
   TextProps,
 } from './interfaces';
 
-const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, entityId, entityName, parentEntities }: TextProps) => {
+const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, entity, parentEntities }: TextProps) => {
   const styles = useStyles();
 
   switch (type) {
@@ -96,9 +96,9 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 <Link
                   className={styles.component}
                   component={RouterLink}
-                  to={`/products/${parentEntities[0].id}/components/${entityId}`}
+                  to={`/products/${parentEntities[0].id}/components/${entity.id}`}
                 >
-                  {`«${entityName}»`}
+                  {`«${entity.name}»`}
                 </Link>
               </Box>
               do produktu
@@ -141,9 +141,9 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 <Link
                   className={styles.component}
                   component={RouterLink}
-                  to={`/products/${parentEntities[0].id}/components/${entityId}`}
+                  to={`/products/${parentEntities[0].id}/components/${entity.id}`}
                 >
-                  {`«${entityName}»`}
+                  {`«${entity.name}»`}
                 </Link>
               </Box>
               z produktu
@@ -192,9 +192,9 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 <Link
                   className={styles.componentType}
                   component={RouterLink}
-                  to={`/component-types/${entityId}`}
+                  to={`/component-types/${entity.id}`}
                 >
-                  {`«${entityName}»`}
+                  {`«${entity.name}»`}
                 </Link>
               </Box>
               .
@@ -224,9 +224,9 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 <Link
                   className={styles.componentType}
                   component={RouterLink}
-                  to={`/component-types/${entityId}`}
+                  to={`/component-types/${entity.id}`}
                 >
-                  {`«${entityName}»`}
+                  {`«${entity.name}»`}
                 </Link>
               </Box>
               .
@@ -262,9 +262,9 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 <Link
                   className={styles.componentVersion}
                   component={RouterLink}
-                  to={`/products/${parentEntities[1].id}/components/${parentEntities[0].id}/component-versions/${entityId}`}
+                  to={`/products/${parentEntities[1].id}/components/${parentEntities[0].id}/component-versions/${entity.id}`}
                 >
-                  {`«${entityName}»`}
+                  {`«${entity.name}»`}
                 </Link>
               </Box>
               komponentu
@@ -313,9 +313,9 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 <Link
                   className={styles.environment}
                   component={RouterLink}
-                  to={`/implementations/${parentEntities[0].id}/environments/${entityId}`}
+                  to={`/implementations/${parentEntities[0].id}/environments/${entity.id}`}
                 >
-                  {`«${entityName}»`}
+                  {`«${entity.name}»`}
                 </Link>
               </Box>
               do wdrożenia
@@ -364,9 +364,9 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 <Link
                   className={styles.implementation}
                   component={RouterLink}
-                  to={`/implementations/${entityId}`}
+                  to={`/implementations/${entity.id}`}
                 >
-                  {`«${entityName}»`}
+                  {`«${entity.name}»`}
                 </Link>
               </Box>
               .
@@ -396,9 +396,9 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 <Link
                   className={styles.implementation}
                   component={RouterLink}
-                  to={`/implementations/${entityId}`}
+                  to={`/implementations/${entity.id}`}
                 >
-                  {`«${entityName}»`}
+                  {`«${entity.name}»`}
                 </Link>
               </Box>
               .
@@ -434,9 +434,9 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 <Link
                   className={styles.operatingSystem}
                   component={RouterLink}
-                  to={`/operating-systems/${entityId}`}
+                  to={`/operating-systems/${entity.id}`}
                 >
-                  {`«${entityName}»`}
+                  {`«${entity.name}»`}
                 </Link>
               </Box>
               .
@@ -466,9 +466,9 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 <Link
                   className={styles.operatingSystem}
                   component={RouterLink}
-                  to={`/operating-systems/${entityId}`}
+                  to={`/operating-systems/${entity.id}`}
                 >
-                  {`«${entityName}»`}
+                  {`«${entity.name}»`}
                 </Link>
               </Box>
               .
@@ -504,9 +504,9 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 <Link
                   className={styles.product}
                   component={RouterLink}
-                  to={`/products/${entityId}`}
+                  to={`/products/${entity.id}`}
                 >
-                  {`«${entityName}»`}
+                  {`«${entity.name}»`}
                 </Link>
               </Box>
               .
@@ -536,9 +536,9 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 <Link
                   className={styles.product}
                   component={RouterLink}
-                  to={`/products/${entityId}`}
+                  to={`/products/${entity.id}`}
                 >
-                  {`«${entityName}»`}
+                  {`«${entity.name}»`}
                 </Link>
               </Box>
               .
@@ -574,9 +574,9 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 <Link
                   className={styles.server}
                   component={RouterLink}
-                  to={`/implementations/${parentEntities[1].id}/environments/${parentEntities[0].id}/servers/${entityId}`}
+                  to={`/implementations/${parentEntities[1].id}/environments/${parentEntities[0].id}/servers/${entity.id}`}
                 >
-                  {`«${entityName}»`}
+                  {`«${entity.name}»`}
                 </Link>
               </Box>
               do środowiska
@@ -625,9 +625,9 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 <Link
                   className={styles.softwareApplication}
                   component={RouterLink}
-                  to={`/software-applications/${entityId}`}
+                  to={`/software-applications/${entity.id}`}
                 >
-                  {`«${entityName}»`}
+                  {`«${entity.name}»`}
                 </Link>
               </Box>
               .
@@ -657,9 +657,9 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 <Link
                   className={styles.softwareApplication}
                   component={RouterLink}
-                  to={`/software-applications/${entityId}`}
+                  to={`/software-applications/${entity.id}`}
                 >
-                  {`«${entityName}»`}
+                  {`«${entity.name}»`}
                 </Link>
               </Box>
               .
@@ -695,9 +695,9 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 <Link
                   className={styles.user}
                   component={RouterLink}
-                  to={`/users/${entityId}`}
+                  to={`/users/${entity.id}`}
                 >
-                  {`«${entityName}»`}
+                  {`«${entity.name}»`}
                 </Link>
               </Box>
               .
@@ -727,9 +727,9 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 <Link
                   className={styles.user}
                   component={RouterLink}
-                  to={`/users/${entityId}`}
+                  to={`/users/${entity.id}`}
                 >
-                  {`«${entityName}»`}
+                  {`«${entity.name}»`}
                 </Link>
               </Box>
               .

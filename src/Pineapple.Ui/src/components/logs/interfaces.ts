@@ -13,8 +13,11 @@ export interface LogsProps {
     category: string,
     // Imię i nazwisko właściciela.
     ownerFullName: string,
-    // Nazwa encji.
-    entityName: string,
+    // Encja.
+    entity: {
+      // Nazwa.
+      name: string,
+    },
     // Encje nadrzędne.
     parentEntities: {
       // Nazwa.

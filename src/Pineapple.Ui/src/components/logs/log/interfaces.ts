@@ -9,10 +9,13 @@ export interface LogProps {
   ownerId: string,
   // Imię i nazwisko właściciela.
   ownerFullName: string,
-  // Identyfikator encji.
-  entityId: string,
-  // Nazwa encji.
-  entityName: string,
+  // Encja.
+  entity: {
+    // Identyfikator.
+    id: string,
+    // Nazwa.
+    name: string,
+  },
   // Encje nadrzędne.
   parentEntities: {
     // Identyfikator.
@@ -31,10 +34,13 @@ export interface TextProps {
   ownerId: string,
   // Imię i nazwisko właściciela.
   ownerFullName: string,
-  // Identyfikator encji.
-  entityId: string,
-  // Nazwa encji.
-  entityName: string,
+  // Encja.
+  entity: {
+    // Identyfikator.
+    id: string,
+    // Nazwa.
+    name: string,
+  },
   // Encje nadrzędne.
   parentEntities: {
     // Identyfikator.

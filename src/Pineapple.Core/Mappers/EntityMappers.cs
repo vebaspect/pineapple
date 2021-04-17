@@ -101,8 +101,10 @@ namespace Pineapple.Core.Mappers
                 componentLog.Category,
                 componentLog.OwnerId,
                 componentLog.Owner.FullName,
-                componentLog.ComponentId,
-                componentLog.Component.Name,
+                new EntityDto(
+                    componentLog.ComponentId,
+                    componentLog.Component.Name
+                ),
                 new List<EntityDto>()
                 {
                     new EntityDto(
@@ -125,8 +127,10 @@ namespace Pineapple.Core.Mappers
                 componentTypeLog.Category,
                 componentTypeLog.OwnerId,
                 componentTypeLog.Owner.FullName,
-                componentTypeLog.ComponentTypeId,
-                componentTypeLog.ComponentType.Name,
+                new EntityDto(
+                    componentTypeLog.ComponentTypeId,
+                    componentTypeLog.ComponentType.Name
+                ),
                 null,
                 componentTypeLog.Description
             );
@@ -143,8 +147,10 @@ namespace Pineapple.Core.Mappers
                 componentVersionLog.Category,
                 componentVersionLog.OwnerId,
                 componentVersionLog.Owner.FullName,
-                componentVersionLog.ComponentVersionId,
-                componentVersionLog.ComponentVersion.GetFormattedNumber(),
+                new EntityDto(
+                    componentVersionLog.ComponentVersionId,
+                    componentVersionLog.ComponentVersion.GetFormattedNumber()
+                ),
                 new List<EntityDto>()
                 {
                     new EntityDto(
@@ -171,8 +177,10 @@ namespace Pineapple.Core.Mappers
                 environmentLog.Category,
                 environmentLog.OwnerId,
                 environmentLog.Owner.FullName,
-                environmentLog.EnvironmentId,
-                environmentLog.Environment.Name,
+                new EntityDto(
+                    environmentLog.EnvironmentId,
+                    environmentLog.Environment.Name
+                ),
                 new List<EntityDto>()
                 {
                     new EntityDto(
@@ -195,8 +203,10 @@ namespace Pineapple.Core.Mappers
                 implementationLog.Category,
                 implementationLog.OwnerId,
                 implementationLog.Owner.FullName,
-                implementationLog.ImplementationId,
-                implementationLog.Implementation.Name,
+                new EntityDto(
+                    implementationLog.ImplementationId,
+                    implementationLog.Implementation.Name
+                ),
                 null,
                 implementationLog.Description
             );
@@ -213,8 +223,10 @@ namespace Pineapple.Core.Mappers
                 operatingSystemLog.Category,
                 operatingSystemLog.OwnerId,
                 operatingSystemLog.Owner.FullName,
-                operatingSystemLog.OperatingSystemId,
-                operatingSystemLog.OperatingSystem.Name,
+                new EntityDto(
+                    operatingSystemLog.OperatingSystemId,
+                    operatingSystemLog.OperatingSystem.Name
+                ),
                 null,
                 operatingSystemLog.Description
             );
@@ -231,8 +243,10 @@ namespace Pineapple.Core.Mappers
                 productLog.Category,
                 productLog.OwnerId,
                 productLog.Owner.FullName,
-                productLog.ProductId,
-                productLog.Product.Name,
+                new EntityDto(
+                    productLog.ProductId,
+                    productLog.Product.Name
+                ),
                 null,
                 productLog.Description
             );
@@ -249,8 +263,10 @@ namespace Pineapple.Core.Mappers
                 serverLog.Category,
                 serverLog.OwnerId,
                 serverLog.Owner.FullName,
-                serverLog.ServerId,
-                serverLog.Server.Name,
+                new EntityDto(
+                    serverLog.ServerId,
+                    serverLog.Server.Name
+                ),
                 new List<EntityDto>()
                 {
                     new EntityDto(
@@ -277,8 +293,10 @@ namespace Pineapple.Core.Mappers
                 softwareApplicationLog.Category,
                 softwareApplicationLog.OwnerId,
                 softwareApplicationLog.Owner.FullName,
-                softwareApplicationLog.SoftwareApplicationId,
-                softwareApplicationLog.SoftwareApplication.Name,
+                new EntityDto(
+                    softwareApplicationLog.SoftwareApplicationId,
+                    softwareApplicationLog.SoftwareApplication.Name
+                ),
                 null,
                 softwareApplicationLog.Description
             );
@@ -295,8 +313,10 @@ namespace Pineapple.Core.Mappers
                 userLog.Category,
                 userLog.OwnerId,
                 userLog.Owner.FullName,
-                userLog.UserId,
-                userLog.User.FullName,
+                new EntityDto(
+                    userLog.UserId,
+                    userLog.User.FullName
+                ),
                 null,
                 userLog.Description
             );
