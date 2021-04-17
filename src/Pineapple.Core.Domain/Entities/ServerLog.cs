@@ -18,11 +18,8 @@ namespace Pineapple.Core.Domain.Entities
         public Server Server { get; }
 
         private ServerLog(Guid id, string category, Guid ownerId, Guid serverId)
+            : base(id)
         {
-            Id = id;
-            CreationDate = DateTime.Now;
-            ModificationDate = DateTime.Now;
-            IsDeleted = false;
             Category = category;
             OwnerId = ownerId;
             ServerId = serverId;

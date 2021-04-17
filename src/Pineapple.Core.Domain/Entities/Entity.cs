@@ -27,6 +27,14 @@ namespace Pineapple.Core.Domain.Entities
         /// </summary>
         public bool IsDeleted { get; protected set; }
 
+        protected Entity(Guid id)
+        {
+            Id = id;
+            CreationDate = DateTime.Now;
+            ModificationDate = DateTime.Now;
+            IsDeleted = false;
+        }
+
         /// <summary>
         /// Oznacz encję jako usuniętą.
         /// </summary>

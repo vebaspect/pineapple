@@ -18,11 +18,8 @@ namespace Pineapple.Core.Domain.Entities
         public SoftwareApplication SoftwareApplication { get; }
 
         private SoftwareApplicationLog(Guid id, string category, Guid ownerId, Guid softwareApplicationId)
+            : base(id)
         {
-            Id = id;
-            CreationDate = DateTime.Now;
-            ModificationDate = DateTime.Now;
-            IsDeleted = false;
             Category = category;
             OwnerId = ownerId;
             SoftwareApplicationId = softwareApplicationId;

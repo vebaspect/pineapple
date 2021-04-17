@@ -31,5 +31,10 @@ namespace Pineapple.Core.Domain.Entities
         /// Opis.
         /// </summary>
         public string Description { get; protected set; }
+
+        protected Log(Guid id)
+            : base(id)
+        {
+        }
     }
 }

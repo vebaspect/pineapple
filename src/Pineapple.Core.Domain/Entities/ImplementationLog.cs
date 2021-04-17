@@ -18,11 +18,8 @@ namespace Pineapple.Core.Domain.Entities
         public Implementation Implementation { get; }
 
         private ImplementationLog(Guid id, string category, Guid ownerId, Guid implementationId)
+            : base(id)
         {
-            Id = id;
-            CreationDate = DateTime.Now;
-            ModificationDate = DateTime.Now;
-            IsDeleted = false;
             Category = category;
             OwnerId = ownerId;
             ImplementationId = implementationId;

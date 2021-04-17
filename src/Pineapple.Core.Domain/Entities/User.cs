@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Pineapple.Core.Domain.Entities
@@ -41,5 +42,10 @@ namespace Pineapple.Core.Domain.Entities
         /// Logi dotyczące użytkownika.
         /// </summary>
         public List<UserLog> EntityLogs { get; protected set;}
+
+        protected User(Guid id)
+            : base(id)
+        {
+        }
     }
 }

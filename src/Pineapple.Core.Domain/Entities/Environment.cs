@@ -55,11 +55,8 @@ namespace Pineapple.Core.Domain.Entities
         public List<EnvironmentLog> EntityLogs { get; }
 
         private Environment(Guid id, string name, string symbol, string description, Guid implementationId, Guid operatorId)
+            : base(id)
         {
-            Id = id;
-            CreationDate = DateTime.Now;
-            ModificationDate = DateTime.Now;
-            IsDeleted = false;
             Name = name;
             Symbol = symbol;
             Description = description;

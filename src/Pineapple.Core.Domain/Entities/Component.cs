@@ -50,11 +50,8 @@ namespace Pineapple.Core.Domain.Entities
         public List<ComponentLog> EntityLogs { get; }
 
         private Component(Guid id, string name, string description, Guid productId, Guid componentTypeId)
+            : base(id)
         {
-            Id = id;
-            CreationDate = DateTime.Now;
-            ModificationDate = DateTime.Now;
-            IsDeleted = false;
             Name = name;
             Description = description;
             ProductId = productId;

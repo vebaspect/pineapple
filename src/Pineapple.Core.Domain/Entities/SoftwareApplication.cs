@@ -35,11 +35,8 @@ namespace Pineapple.Core.Domain.Entities
         public List<SoftwareApplicationLog> EntityLogs { get; }
 
         private SoftwareApplication(Guid id, string name, string symbol, string description)
+            : base(id)
         {
-            Id = id;
-            CreationDate = DateTime.Now;
-            ModificationDate = DateTime.Now;
-            IsDeleted = false;
             Name = name;
             Symbol = symbol;
             Description = description;

@@ -64,11 +64,8 @@ namespace Pineapple.Core.Domain.Entities
         public List<ServerLog> EntityLogs { get; }
 
         private Server(Guid id, string name, string symbol, string description, Guid environmentId, Guid operatingSystemId, string ipAddress)
+            : base(id)
         {
-            Id = id;
-            CreationDate = DateTime.Now;
-            ModificationDate = DateTime.Now;
-            IsDeleted = false;
             Name = name;
             Symbol = symbol;
             Description = description;

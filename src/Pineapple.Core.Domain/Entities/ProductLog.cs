@@ -18,11 +18,8 @@ namespace Pineapple.Core.Domain.Entities
         public Product Product { get; }
 
         private ProductLog(Guid id, string category, Guid ownerId, Guid productId)
+            : base(id)
         {
-            Id = id;
-            CreationDate = DateTime.Now;
-            ModificationDate = DateTime.Now;
-            IsDeleted = false;
             Category = category;
             OwnerId = ownerId;
             ProductId = productId;

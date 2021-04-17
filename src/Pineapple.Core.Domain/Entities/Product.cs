@@ -30,11 +30,8 @@ namespace Pineapple.Core.Domain.Entities
         public List<ProductLog> EntityLogs { get; }
 
         private Product(Guid id, string name, string description)
+            : base(id)
         {
-            Id = id;
-            CreationDate = DateTime.Now;
-            ModificationDate = DateTime.Now;
-            IsDeleted = false;
             Name = name;
             Description = description;
         }

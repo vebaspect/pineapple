@@ -18,11 +18,8 @@ namespace Pineapple.Core.Domain.Entities
         public User User { get; }
 
         private UserLog(Guid id, string category, Guid ownerId, Guid userId)
+            : base(id)
         {
-            Id = id;
-            CreationDate = DateTime.Now;
-            ModificationDate = DateTime.Now;
-            IsDeleted = false;
             Category = category;
             OwnerId = ownerId;
             UserId = userId;

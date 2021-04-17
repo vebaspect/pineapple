@@ -18,11 +18,8 @@ namespace Pineapple.Core.Domain.Entities
         public OperatingSystem OperatingSystem { get; }
 
         private OperatingSystemLog(Guid id, string category, Guid ownerId, Guid operatingSystemId)
+            : base(id)
         {
-            Id = id;
-            CreationDate = DateTime.Now;
-            ModificationDate = DateTime.Now;
-            IsDeleted = false;
             Category = category;
             OwnerId = ownerId;
             OperatingSystemId = operatingSystemId;

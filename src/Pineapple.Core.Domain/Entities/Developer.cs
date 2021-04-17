@@ -9,11 +9,8 @@ namespace Pineapple.Core.Domain.Entities
     public sealed class Developer : User
     {
         private Developer(Guid id, string fullName, string login, string phone, string email)
+            : base(id)
         {
-            Id = id;
-            CreationDate = DateTime.Now;
-            ModificationDate = DateTime.Now;
-            IsDeleted = false;
             FullName = fullName;
             Login = login;
             Phone = phone;

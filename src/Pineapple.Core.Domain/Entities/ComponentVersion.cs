@@ -54,11 +54,8 @@ namespace Pineapple.Core.Domain.Entities
         public List<ComponentVersionLog> EntityLogs { get; }
 
         private ComponentVersion(Guid id, int major, int minor, int patch, string suffix, string description, Guid componentId)
+            : base(id)
         {
-            Id = id;
-            CreationDate = DateTime.Now;
-            ModificationDate = DateTime.Now;
-            IsDeleted = false;
             Major = major;
             Minor = minor;
             Patch = patch;

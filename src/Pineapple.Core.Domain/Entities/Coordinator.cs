@@ -33,11 +33,8 @@ namespace Pineapple.Core.Domain.Entities
         public Implementation Implementation { get; }
 
         private Coordinator(Guid id, string fullName, string phone, string email, Guid implementationId)
+            : base(id)
         {
-            Id = id;
-            CreationDate = DateTime.Now;
-            ModificationDate = DateTime.Now;
-            IsDeleted = false;
             FullName = fullName;
             Phone = phone;
             Email = email;

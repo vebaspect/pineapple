@@ -35,11 +35,8 @@ namespace Pineapple.Core.Domain.Entities
         public List<OperatingSystemLog> EntityLogs { get; }
 
         private OperatingSystem(Guid id, string name, string symbol, string description)
+            : base(id)
         {
-            Id = id;
-            CreationDate = DateTime.Now;
-            ModificationDate = DateTime.Now;
-            IsDeleted = false;
             Name = name;
             Symbol = symbol;
             Description = description;
