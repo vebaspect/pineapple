@@ -6,27 +6,27 @@ import Paper from '@material-ui/core/Paper';
 
 import Details from './Details';
 
-const Operator: React.VFC = () => {
-  // Identyfikator wdrożeniowca.
-  const { operatorId } = useParams();
+const User: React.VFC = () => {
+  // Identyfikator użytkownika.
+  const { userId } = useParams();
 
-  // Flaga określająca, czy wdrożeniowiec został pobrany z API.
-  const [isOperatorFetched, setIsOperatorFetched] = useState(false);
-  // Wdrożeniowiec.
-  const [operator, setOperator] = useState(null);
+  // Flaga określająca, czy użytkownik został pobrany z API.
+  const [isUserFetched, setIsUserFetched] = useState(false);
+  // Użytkownik.
+  const [user, setUser] = useState(null);
 
-  const fetchOperator = useCallback(async () => {
-    await fetch(`${window['env'].API_URL}/users/${operatorId}`)
+  const fetchUser = useCallback(async () => {
+    await fetch(`${window['env'].API_URL}/users/${userId}`)
       .then((response) => response.json())
       .then((data) => {
-        setIsOperatorFetched(true);
-        setOperator(data);
+        setIsUserFetched(true);
+        setUser(data);
       });
-  }, [operatorId]);
+  }, [userId]);
 
   useEffect(() => {
-    fetchOperator();
-  }, [fetchOperator]);
+    fetchUser();
+  }, [fetchUser]);
 
   return (
     <>
@@ -35,16 +35,16 @@ const Operator: React.VFC = () => {
         m={2}
         textAlign="center"
       >
-        Wdrożeniowiec
+        Użytkownik
         {
-          isOperatorFetched
+          isUserFetched
             ? (
               <Box
                 component="span"
                 fontStyle="italic"
                 px={0.5}
               >
-                {operator?.fullName}
+                {user?.fullName}
               </Box>)
             : ''
         }
@@ -65,11 +65,11 @@ const Operator: React.VFC = () => {
             Szczegóły
           </Box>
           <Details
-            isDataFetched={isOperatorFetched}
-            fullName={operator?.fullName}
-            login={operator?.login}
-            phone={operator?.phone}
-            email={operator?.email}
+            isDataFetched={isUserFetched}
+            fullName={user?.fullName}
+            login={user?.login}
+            phone={user?.phone}
+            email={user?.email}
           />
         </Paper>
       </Box>
@@ -77,4 +77,4 @@ const Operator: React.VFC = () => {
   );
 }
 
-export default Operator;
+export default User;

@@ -1,6 +1,51 @@
 import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+
+import {
+  createStyles,
+  makeStyles,
+} from '@material-ui/core/styles';
 
 import Box from '@material-ui/core/Box';
+import Link from '@material-ui/core/Link';
+
+const useStyles = makeStyles(() =>
+  createStyles({
+    component: {
+      color: '#3f51b5',
+    },
+    componentType: {
+      color: '#ffac33',
+    },
+    componentVersion: {
+      color: '#6573c3',
+    },
+    environment: {
+      color: '#009688',
+    },
+    implementation: {
+      color: '#00695f',
+    },
+    operatingSystem: {
+      color: '#ffac33',
+    },
+    product: {
+      color: '#2c387e',
+    },
+    server: {
+      color: '#33ab9f',
+    },
+    softwareApplication: {
+      color: '#ffac33',
+    },
+    user: {
+      color: '#af52bf',
+    },
+    owner: {
+      color: '#90a4ae',
+    },
+  }),
+);
 
 import {
   LOG_TYPE__COMPONENT,
@@ -21,7 +66,9 @@ import {
   TextProps,
 } from './interfaces';
 
-const Text: React.FC<TextProps> = ({ type, category, ownerFullName, entityName, parentEntityName }: TextProps) => {
+const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, entityId, entityName, parentEntityId, parentEntityName }: TextProps) => {
+  const styles = useStyles();
+
   switch (type) {
     case LOG_TYPE__COMPONENT: {
       switch (category) {
@@ -31,26 +78,41 @@ const Text: React.FC<TextProps> = ({ type, category, ownerFullName, entityName, 
               Użytkownik
               <Box
                 component="span"
-                color="text.secondary"
                 mx={0.5}
               >
-                {`@${ownerFullName}`}
+                <Link
+                  className={styles.owner}
+                  component={RouterLink}
+                  to={`/users/${ownerId}`}
+                >
+                  {`«${ownerFullName}»`}
+                </Link>
               </Box>
               dodał komponent
               <Box
                 component="span"
-                color="info.main"
                 mx={0.5}
               >
-                {entityName}
+                <Link
+                  className={styles.component}
+                  component={RouterLink}
+                  to={`/products/${parentEntityId}/components/${entityId}`}
+                >
+                  {`«${entityName}»`}
+                </Link>
               </Box>
               do produktu
               <Box
                 component="span"
-                color="info.main"
                 ml={0.5}
               >
-                {parentEntityName}
+                <Link
+                  className={styles.product}
+                  component={RouterLink}
+                  to={`/products/${parentEntityId}`}
+                >
+                  {`«${parentEntityName}»`}
+                </Link>
               </Box>
               .
             </>
@@ -61,26 +123,41 @@ const Text: React.FC<TextProps> = ({ type, category, ownerFullName, entityName, 
               Użytkownik
               <Box
                 component="span"
-                color="text.secondary"
                 mx={0.5}
               >
-                {`@${ownerFullName}`}
+                <Link
+                  className={styles.owner}
+                  component={RouterLink}
+                  to={`/users/${ownerId}`}
+                >
+                  {`«${ownerFullName}»`}
+                </Link>
               </Box>
               usunął komponent
               <Box
                 component="span"
-                color="info.main"
                 mx={0.5}
               >
-                {entityName}
+                <Link
+                  className={styles.component}
+                  component={RouterLink}
+                  to={`/products/${parentEntityId}/components/${entityId}`}
+                >
+                  {`«${entityName}»`}
+                </Link>
               </Box>
               z produktu
               <Box
                 component="span"
-                color="info.main"
                 ml={0.5}
               >
-                {parentEntityName}
+                <Link
+                  className={styles.product}
+                  component={RouterLink}
+                  to={`/products/${parentEntityId}`}
+                >
+                  {`«${parentEntityName}»`}
+                </Link>
               </Box>
               .
             </>
@@ -97,18 +174,28 @@ const Text: React.FC<TextProps> = ({ type, category, ownerFullName, entityName, 
               Użytkownik
               <Box
                 component="span"
-                color="text.secondary"
                 mx={0.5}
               >
-                {`@${ownerFullName}`}
+                <Link
+                  className={styles.owner}
+                  component={RouterLink}
+                  to={`/users/${ownerId}`}
+                >
+                  {`«${ownerFullName}»`}
+                </Link>
               </Box>
               dodał typ komponentu
               <Box
                 component="span"
-                color="info.main"
                 ml={0.5}
               >
-                {entityName}
+                <Link
+                  className={styles.componentType}
+                  component={RouterLink}
+                  to={`/component-types/${entityId}`}
+                >
+                  {`«${entityName}»`}
+                </Link>
               </Box>
               .
             </>
@@ -119,18 +206,28 @@ const Text: React.FC<TextProps> = ({ type, category, ownerFullName, entityName, 
               Użytkownik
               <Box
                 component="span"
-                color="text.secondary"
                 mx={0.5}
               >
-                {`@${ownerFullName}`}
+                <Link
+                  className={styles.owner}
+                  component={RouterLink}
+                  to={`/users/${ownerId}`}
+                >
+                  {`«${ownerFullName}»`}
+                </Link>
               </Box>
               usunął typ komponentu
               <Box
                 component="span"
-                color="info.main"
                 ml={0.5}
               >
-                {entityName}
+                <Link
+                  className={styles.componentType}
+                  component={RouterLink}
+                  to={`/component-types/${entityId}`}
+                >
+                  {`«${entityName}»`}
+                </Link>
               </Box>
               .
             </>
@@ -147,15 +244,19 @@ const Text: React.FC<TextProps> = ({ type, category, ownerFullName, entityName, 
               Użytkownik
               <Box
                 component="span"
-                color="text.secondary"
                 mx={0.5}
               >
-                {`@${ownerFullName}`}
+                <Link
+                  className={styles.owner}
+                  component={RouterLink}
+                  to={`/users/${ownerId}`}
+                >
+                  {`«${ownerFullName}»`}
+                </Link>
               </Box>
               wydał wersję
               <Box
                 component="span"
-                color="info.main"
                 mx={0.5}
               >
                 {entityName}
@@ -163,7 +264,6 @@ const Text: React.FC<TextProps> = ({ type, category, ownerFullName, entityName, 
               komponentu
               <Box
                 component="span"
-                color="info.main"
                 ml={0.5}
               >
                 {parentEntityName}
@@ -183,26 +283,41 @@ const Text: React.FC<TextProps> = ({ type, category, ownerFullName, entityName, 
               Użytkownik
               <Box
                 component="span"
-                color="text.secondary"
                 mx={0.5}
               >
-                {`@${ownerFullName}`}
+                <Link
+                  className={styles.owner}
+                  component={RouterLink}
+                  to={`/users/${ownerId}`}
+                >
+                  {`«${ownerFullName}»`}
+                </Link>
               </Box>
               dodał środowisko
               <Box
                 component="span"
-                color="info.main"
                 mx={0.5}
               >
-                {entityName}
+                <Link
+                  className={styles.environment}
+                  component={RouterLink}
+                  to={`/implementations/${parentEntityId}/environments/${entityId}`}
+                >
+                  {`«${entityName}»`}
+                </Link>
               </Box>
               do wdrożenia
               <Box
                 component="span"
-                color="info.main"
                 ml={0.5}
               >
-                {parentEntityName}
+                <Link
+                  className={styles.implementation}
+                  component={RouterLink}
+                  to={`/implementations/${parentEntityId}`}
+                >
+                  {`«${parentEntityName}»`}
+                </Link>
               </Box>
               .
             </>
@@ -219,18 +334,28 @@ const Text: React.FC<TextProps> = ({ type, category, ownerFullName, entityName, 
               Użytkownik
               <Box
                 component="span"
-                color="text.secondary"
                 mx={0.5}
               >
-                {`@${ownerFullName}`}
+                <Link
+                  className={styles.owner}
+                  component={RouterLink}
+                  to={`/users/${ownerId}`}
+                >
+                  {`«${ownerFullName}»`}
+                </Link>
               </Box>
               dodał wdrożenie
               <Box
                 component="span"
-                color="info.main"
                 ml={0.5}
               >
-                {entityName}
+                <Link
+                  className={styles.implementation}
+                  component={RouterLink}
+                  to={`/implementations/${entityId}`}
+                >
+                  {`«${entityName}»`}
+                </Link>
               </Box>
               .
             </>
@@ -241,18 +366,28 @@ const Text: React.FC<TextProps> = ({ type, category, ownerFullName, entityName, 
               Użytkownik
               <Box
                 component="span"
-                color="text.secondary"
                 mx={0.5}
               >
-                {`@${ownerFullName}`}
+                <Link
+                  className={styles.owner}
+                  component={RouterLink}
+                  to={`/users/${ownerId}`}
+                >
+                  {`«${ownerFullName}»`}
+                </Link>
               </Box>
               usunął wdrożenie
               <Box
                 component="span"
-                color="info.main"
                 ml={0.5}
               >
-                {entityName}
+                <Link
+                  className={styles.implementation}
+                  component={RouterLink}
+                  to={`/implementations/${entityId}`}
+                >
+                  {`«${entityName}»`}
+                </Link>
               </Box>
               .
             </>
@@ -269,18 +404,28 @@ const Text: React.FC<TextProps> = ({ type, category, ownerFullName, entityName, 
               Użytkownik
               <Box
                 component="span"
-                color="text.secondary"
                 mx={0.5}
               >
-                {`@${ownerFullName}`}
+                <Link
+                  className={styles.owner}
+                  component={RouterLink}
+                  to={`/users/${ownerId}`}
+                >
+                  {`«${ownerFullName}»`}
+                </Link>
               </Box>
               dodał system operacyjny
               <Box
                 component="span"
-                color="info.main"
                 ml={0.5}
               >
-                {entityName}
+                <Link
+                  className={styles.operatingSystem}
+                  component={RouterLink}
+                  to={`/operating-systems/${entityId}`}
+                >
+                  {`«${entityName}»`}
+                </Link>
               </Box>
               .
             </>
@@ -291,18 +436,28 @@ const Text: React.FC<TextProps> = ({ type, category, ownerFullName, entityName, 
               Użytkownik
               <Box
                 component="span"
-                color="text.secondary"
                 mx={0.5}
               >
-                {`@${ownerFullName}`}
+                <Link
+                  className={styles.owner}
+                  component={RouterLink}
+                  to={`/users/${ownerId}`}
+                >
+                  {`«${ownerFullName}»`}
+                </Link>
               </Box>
               usunął system operacyjny
               <Box
                 component="span"
-                color="info.main"
                 ml={0.5}
               >
-                {entityName}
+                <Link
+                  className={styles.operatingSystem}
+                  component={RouterLink}
+                  to={`/operating-systems/${entityId}`}
+                >
+                  {`«${entityName}»`}
+                </Link>
               </Box>
               .
             </>
@@ -319,18 +474,28 @@ const Text: React.FC<TextProps> = ({ type, category, ownerFullName, entityName, 
               Użytkownik
               <Box
                 component="span"
-                color="text.secondary"
                 mx={0.5}
               >
-                {`@${ownerFullName}`}
+                <Link
+                  className={styles.owner}
+                  component={RouterLink}
+                  to={`/users/${ownerId}`}
+                >
+                  {`«${ownerFullName}»`}
+                </Link>
               </Box>
               dodał produkt
               <Box
                 component="span"
-                color="info.main"
                 ml={0.5}
               >
-                {entityName}
+                <Link
+                  className={styles.product}
+                  component={RouterLink}
+                  to={`/products/${entityId}`}
+                >
+                  {`«${entityName}»`}
+                </Link>
               </Box>
               .
             </>
@@ -341,18 +506,28 @@ const Text: React.FC<TextProps> = ({ type, category, ownerFullName, entityName, 
               Użytkownik
               <Box
                 component="span"
-                color="text.secondary"
                 mx={0.5}
               >
-                {`@${ownerFullName}`}
+                <Link
+                  className={styles.owner}
+                  component={RouterLink}
+                  to={`/users/${ownerId}`}
+                >
+                  {`«${ownerFullName}»`}
+                </Link>
               </Box>
               usunął produkt
               <Box
                 component="span"
-                color="info.main"
                 ml={0.5}
               >
-                {entityName}
+                <Link
+                  className={styles.product}
+                  component={RouterLink}
+                  to={`/products/${entityId}`}
+                >
+                  {`«${entityName}»`}
+                </Link>
               </Box>
               .
             </>
@@ -369,15 +544,19 @@ const Text: React.FC<TextProps> = ({ type, category, ownerFullName, entityName, 
               Użytkownik
               <Box
                 component="span"
-                color="text.secondary"
                 mx={0.5}
               >
-                {`@${ownerFullName}`}
+                <Link
+                  className={styles.owner}
+                  component={RouterLink}
+                  to={`/users/${ownerId}`}
+                >
+                  {`«${ownerFullName}»`}
+                </Link>
               </Box>
               dodał serwer
               <Box
                 component="span"
-                color="info.main"
                 mx={0.5}
               >
                 {entityName}
@@ -385,7 +564,6 @@ const Text: React.FC<TextProps> = ({ type, category, ownerFullName, entityName, 
               do wdrożenia
               <Box
                 component="span"
-                color="info.main"
                 ml={0.5}
               >
                 {parentEntityName}
@@ -405,18 +583,28 @@ const Text: React.FC<TextProps> = ({ type, category, ownerFullName, entityName, 
               Użytkownik
               <Box
                 component="span"
-                color="text.secondary"
                 mx={0.5}
               >
-                {`@${ownerFullName}`}
+                <Link
+                  className={styles.owner}
+                  component={RouterLink}
+                  to={`/users/${ownerId}`}
+                >
+                  {`«${ownerFullName}»`}
+                </Link>
               </Box>
               dodał oprogramowanie
               <Box
                 component="span"
-                color="info.main"
                 ml={0.5}
               >
-                {entityName}
+                <Link
+                  className={styles.softwareApplication}
+                  component={RouterLink}
+                  to={`/software-applications/${entityId}`}
+                >
+                  {`«${entityName}»`}
+                </Link>
               </Box>
               .
             </>
@@ -427,18 +615,28 @@ const Text: React.FC<TextProps> = ({ type, category, ownerFullName, entityName, 
               Użytkownik
               <Box
                 component="span"
-                color="text.secondary"
                 mx={0.5}
               >
-                {`@${ownerFullName}`}
+                <Link
+                  className={styles.owner}
+                  component={RouterLink}
+                  to={`/users/${ownerId}`}
+                >
+                  {`«${ownerFullName}»`}
+                </Link>
               </Box>
               usunął oprogramowanie
               <Box
                 component="span"
-                color="info.main"
                 ml={0.5}
               >
-                {entityName}
+                <Link
+                  className={styles.softwareApplication}
+                  component={RouterLink}
+                  to={`/software-applications/${entityId}`}
+                >
+                  {`«${entityName}»`}
+                </Link>
               </Box>
               .
             </>
@@ -455,18 +653,28 @@ const Text: React.FC<TextProps> = ({ type, category, ownerFullName, entityName, 
               Użytkownik
               <Box
                 component="span"
-                color="text.secondary"
                 mx={0.5}
               >
-                {`@${ownerFullName}`}
+                <Link
+                  className={styles.owner}
+                  component={RouterLink}
+                  to={`/users/${ownerId}`}
+                >
+                  {`«${ownerFullName}»`}
+                </Link>
               </Box>
               dodał użytkownika
               <Box
                 component="span"
-                color="info.main"
                 ml={0.5}
               >
-                {entityName}
+                <Link
+                  className={styles.user}
+                  component={RouterLink}
+                  to={`/users/${entityId}`}
+                >
+                  {`«${entityName}»`}
+                </Link>
               </Box>
               .
             </>
@@ -477,18 +685,28 @@ const Text: React.FC<TextProps> = ({ type, category, ownerFullName, entityName, 
               Użytkownik
               <Box
                 component="span"
-                color="text.secondary"
                 mx={0.5}
               >
-                {`@${ownerFullName}`}
+                <Link
+                  className={styles.owner}
+                  component={RouterLink}
+                  to={`/users/${ownerId}`}
+                >
+                  {`«${ownerFullName}»`}
+                </Link>
               </Box>
               usunął użytkownika
               <Box
                 component="span"
-                color="info.main"
                 ml={0.5}
               >
-                {entityName}
+                <Link
+                  className={styles.user}
+                  component={RouterLink}
+                  to={`/users/${entityId}`}
+                >
+                  {`«${entityName}»`}
+                </Link>
               </Box>
               .
             </>

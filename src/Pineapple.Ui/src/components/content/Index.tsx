@@ -4,28 +4,25 @@ import {
   Switch,
 } from 'react-router-dom';
 
-import Administrator from './administrator';
 import Administrators from './administrators';
 import Component from './component';
 import ComponentType from './componentType';
 import ComponentTypes from './componentTypes';
 import Configuration from './configuration';
-import Developer from './developer';
 import Developers from './developers';
 import Environment from './environment';
 import Home from './home';
 import Implementation from './implementation';
 import Implementations from './implementations';
-import Manager from './manager';
 import Managers from './managers';
 import OperatingSystem from './operatingSystem';
 import OperatingSystems from './operatingSystems';
-import Operator from './operator';
 import Operators from './operators';
 import Product from './product';
 import Products from './products';
 import SoftwareApplication from './softwareApplication';
 import SoftwareApplications from './softwareApplications';
+import User from './user';
 import Users from './users'
 
 import CreateAdministratorEditor from '../editors/users/createAdministratorEditor';
@@ -46,9 +43,6 @@ const Title: React.VFC = () => {
       <Route path="/administrators/create">
         <CreateAdministratorEditor />
       </Route>
-      <Route path="/administrators/:administratorId">
-        <Administrator />
-      </Route>
       <Route path="/administrators">
         <Administrators />
       </Route>
@@ -66,9 +60,6 @@ const Title: React.VFC = () => {
       </Route>
       <Route path="/developers/create">
         <CreateDeveloperEditor />
-      </Route>
-      <Route path="/developers/:developerId">
-        <Developer />
       </Route>
       <Route path="/developers">
         <Developers />
@@ -88,9 +79,6 @@ const Title: React.VFC = () => {
       <Route path="/managers/create">
         <CreateManagerEditor />
       </Route>
-      <Route path="/managers/:managerId">
-        <Manager />
-      </Route>
       <Route path="/managers">
         <Managers />
       </Route>
@@ -105,9 +93,6 @@ const Title: React.VFC = () => {
       </Route>
       <Route path="/operators/create">
         <CreateOperatorEditor />
-      </Route>
-      <Route path="/operators/:operatorId">
-        <Operator />
       </Route>
       <Route path="/operators">
         <Operators />
@@ -138,6 +123,9 @@ const Title: React.VFC = () => {
       </Route>
       <Route path="/software-applications">
         <SoftwareApplications />
+      </Route>
+      <Route path="/users/:userId">
+        <User />
       </Route>
       <Route path="/users">
         <Users />

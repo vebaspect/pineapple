@@ -51,7 +51,7 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, onEdit, onDelete }: Li
               <TableCell>
                 <Link
                   component={RouterLink}
-                  to={`/managers/${manager.id}`}
+                  to={`/users/${manager.id}`}
                 >
                   {manager.fullName}
                 </Link>
