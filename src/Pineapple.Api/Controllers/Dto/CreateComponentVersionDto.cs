@@ -21,9 +21,9 @@ namespace Pineapple.Api.Controllers.Dto
         public int Patch { get; set; }
 
         /// <summary>
-        /// Wydanie przedpremierowe.
+        /// Przyrostek.
         /// </summary>
-        public string PreRelease { get; set; }
+        public string Suffix { get; set; }
 
         /// <summary>
         /// Opis.

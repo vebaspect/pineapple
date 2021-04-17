@@ -22,8 +22,8 @@ export interface ListProps {
     minor: number,
     // Patch.
     patch: number,
-    // Wydanie przedpremierowe.
-    preRelease: string,
+    // Przyrostek.
+    suffix: string,
     // Opis.
     description: string,
     // Flaga określająca, czy wersja komponentu została usunięta.

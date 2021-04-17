@@ -53,10 +53,10 @@ const CreateComponentVersionEditor: React.VFC = () => {
     });
   };
 
-  const onPreReleaseChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onSuffixChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormState({
       ...formState,
-      preRelease: event.target.value,
+      suffix: event.target.value,
     });
   };
 
@@ -167,11 +167,11 @@ const CreateComponentVersionEditor: React.VFC = () => {
           >
             <FormControl fullWidth>
               <TextField
-                label="Wydanie przedpremierowe"
-                helperText={formStateValidationResult?.preRelease}
-                error={formStateValidationResult && formStateValidationResult.preRelease !== undefined && formStateValidationResult.preRelease !== null}
-                value={formState.preRelease}
-                onChange={onPreReleaseChange}
+                label="Przyrostek"
+                helperText={formStateValidationResult?.suffix}
+                error={formStateValidationResult && formStateValidationResult.suffix !== undefined && formStateValidationResult.suffix !== null}
+                value={formState.suffix}
+                onChange={onSuffixChange}
               />
             </FormControl>
           </Box>

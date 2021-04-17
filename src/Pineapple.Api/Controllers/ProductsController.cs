@@ -196,7 +196,7 @@ namespace Pineapple.Api.Controllers
                 return BadRequest("ComponentVersion data has not been provided");
             }
 
-            CreateComponentVersionCommand command = new(Guid.Parse(componentId), dto.Major, dto.Minor, dto.Patch, dto.PreRelease, dto.Description);
+            CreateComponentVersionCommand command = new(Guid.Parse(componentId), dto.Major, dto.Minor, dto.Patch, dto.Suffix, dto.Description);
             Task<Guid> resultTask = await mediator.Send(command).ConfigureAwait(false);
             Guid result = await resultTask.ConfigureAwait(false);
 

@@ -27,22 +27,22 @@ namespace Pineapple.Core.Commands
         public int Patch { get; }
 
         /// <summary>
-        /// Wydanie przedpremierowe.
+        /// Przyrostek.
         /// </summary>
-        public string PreRelease { get; }
+        public string Suffix { get; }
 
         /// <summary>
         /// Opis.
         /// </summary>
         public string Description { get; }
 
-        public CreateComponentVersionCommand(Guid componentId, int major, int minor, int patch, string preRelease, string description)
+        public CreateComponentVersionCommand(Guid componentId, int major, int minor, int patch, string suffix, string description)
         {
             ComponentId = componentId;
             Major = major;
             Minor = minor;
             Patch = patch;
-            PreRelease = preRelease;
+            Suffix = suffix;
             Description = description;
         }
     }

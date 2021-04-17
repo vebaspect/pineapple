@@ -5,8 +5,8 @@ export interface ApiFormat {
   minor: number,
   // Patch.
   patch: number,
-  // Wydanie przedpremierowe.
-  preRelease: string,
+  // Przyrostek.
+  suffix: string,
   // Opis.
   description: string,
 }
@@ -18,8 +18,8 @@ export interface FormState {
   minor: string,
   // Patch.
   patch: string,
-  // Wydanie przedpremierowe.
-  preRelease: string,
+  // Przyrostek.
+  suffix: string,
   // Opis.
   description: string,
 }

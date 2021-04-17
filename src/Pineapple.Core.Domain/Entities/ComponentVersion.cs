@@ -24,9 +24,9 @@ namespace Pineapple.Core.Domain.Entities
         public int Patch { get; }
 
         /// <summary>
-        /// Wydanie przedpremierowe.
+        /// Przyrostek.
         /// </summary>
-        public string PreRelease { get; }
+        public string Suffix { get; }
 
         /// <summary>
         /// Opis.
@@ -53,7 +53,7 @@ namespace Pineapple.Core.Domain.Entities
         /// </summary>
         public List<ComponentVersionLog> EntityLogs { get; }
 
-        private ComponentVersion(Guid id, int major, int minor, int patch, string preRelease, string description, Guid componentId)
+        private ComponentVersion(Guid id, int major, int minor, int patch, string suffix, string description, Guid componentId)
         {
             Id = id;
             CreationDate = DateTime.Now;
@@ -62,7 +62,7 @@ namespace Pineapple.Core.Domain.Entities
             Major = major;
             Minor = minor;
             Patch = patch;
-            PreRelease = preRelease;
+            Suffix = suffix;
             Description = description;
             ComponentId = componentId;
         }
@@ -70,9 +70,9 @@ namespace Pineapple.Core.Domain.Entities
         /// <summary>
         /// Stwórz wersję komponentu.
         /// </summary>
-        public static ComponentVersion Create(Guid id, int major, int minor, int patch, string preRelease, string description, Guid componentId)
+        public static ComponentVersion Create(Guid id, int major, int minor, int patch, string suffix, string description, Guid componentId)
         {
-            return new ComponentVersion(id, major, minor, patch, preRelease, description, componentId);
+            return new ComponentVersion(id, major, minor, patch, suffix, description, componentId);
         }
 
         /// <summary>
@@ -80,12 +80,12 @@ namespace Pineapple.Core.Domain.Entities
         /// </summary>
         public string GetFormattedNumber()
         {
-            if (string.IsNullOrEmpty(PreRelease))
+            if (string.IsNullOrEmpty(Suffix))
             {
                 return $"{Major}.{Minor}.{Patch}";
             }
 
-            return $"{Major}.{Minor}.{Patch}-{PreRelease}";
+            return $"{Major}.{Minor}.{Patch}-{Suffix}";
         }
     }
 }

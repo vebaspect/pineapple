@@ -43,16 +43,16 @@ namespace Pineapple.Core.Dto
         public int Patch { get; }
 
         /// <summary>
-        /// Wydanie przedpremierowe.
+        /// Przyrostek.
         /// </summary>
-        public string PreRelease { get; }
+        public string Suffix { get; }
 
         /// <summary>
         /// Opis.
         /// </summary>
         public string Description { get; }
 
-        public ComponentVersionDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, int major, int minor, int patch, string preRelease, string description)
+        public ComponentVersionDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, int major, int minor, int patch, string suffix, string description)
         {
             Id = id;
             CreationDate = creationDate;
@@ -61,7 +61,7 @@ namespace Pineapple.Core.Dto
             Major = major;
             Minor = minor;
             Patch = patch;
-            PreRelease = preRelease;
+            Suffix = suffix;
             Description = description;
         }
     }

@@ -66,7 +66,7 @@ Content-Type: application/json
     "Major": 0,
     "Minor": 0,
     "Patch": 0,
-    "PreRelease": "",
+    "Suffix": "",
     "Description": ""
 }
 

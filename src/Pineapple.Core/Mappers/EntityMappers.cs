@@ -44,7 +44,7 @@ namespace Pineapple.Core.Mappers
                 componentVersion.Major,
                 componentVersion.Minor,
                 componentVersion.Patch,
-                componentVersion.PreRelease,
+                componentVersion.Suffix,
                 componentVersion.Description
             );
         }

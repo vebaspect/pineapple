@@ -9,7 +9,7 @@ export const convertFormStateToApiFormat = (formState: FormState) : ApiFormat =>
     major: parseInt(formState.major),
     minor: parseInt(formState.minor),
     patch: parseInt(formState.patch),
-    preRelease: formState.preRelease,
+    suffix: formState.suffix,
     description: formState.description,
   };
 
@@ -21,7 +21,7 @@ export const initialFormState = () : FormState => {
     major: '',
     minor: '',
     patch: '',
-    preRelease: '',
+    suffix: '',
     description: '',
   };
   return formState;

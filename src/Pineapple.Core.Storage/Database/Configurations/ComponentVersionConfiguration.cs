@@ -26,7 +26,7 @@ namespace Pineapple.Core.Storage.Database.Configurations
                 .Property(componentVersion => componentVersion.Patch)
                 .IsRequired();
             builder
-                .Property(componentVersion => componentVersion.PreRelease)
+                .Property(componentVersion => componentVersion.Suffix)
                 .HasMaxLength(30);
             builder
                 .Property(componentVersion => componentVersion.Description)

@@ -52,8 +52,8 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, productId, componentId
                   to={`/products/${productId}/components/${componentId}/component-versions/${componentVersion.id}`}
                 >
                   {
-                    componentVersion.preRelease
-                      ? `${componentVersion.major}.${componentVersion.minor}.${componentVersion.patch}-${componentVersion.preRelease}`
+                    componentVersion.suffix
+                      ? `${componentVersion.major}.${componentVersion.minor}.${componentVersion.patch}-${componentVersion.suffix}`
                       : `${componentVersion.major}.${componentVersion.minor}.${componentVersion.patch}`
                   }
                 </Link>
