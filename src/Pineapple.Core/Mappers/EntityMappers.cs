@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Pineapple.Core.Dto;
 
 namespace Pineapple.Core.Mappers
@@ -102,8 +103,13 @@ namespace Pineapple.Core.Mappers
                 componentLog.Owner.FullName,
                 componentLog.ComponentId,
                 componentLog.Component.Name,
-                componentLog.Component.ProductId,
-                componentLog.Component.Product.Name,
+                new List<EntityDto>()
+                {
+                    new EntityDto(
+                        componentLog.Component.ProductId,
+                        componentLog.Component.Product.Name
+                    ),
+                },
                 componentLog.Description
             );
         }
@@ -122,7 +128,6 @@ namespace Pineapple.Core.Mappers
                 componentTypeLog.ComponentTypeId,
                 componentTypeLog.ComponentType.Name,
                 null,
-                null,
                 componentTypeLog.Description
             );
         }
@@ -140,8 +145,17 @@ namespace Pineapple.Core.Mappers
                 componentVersionLog.Owner.FullName,
                 componentVersionLog.ComponentVersionId,
                 componentVersionLog.ComponentVersion.GetFormattedNumber(),
-                componentVersionLog.ComponentVersion.ComponentId,
-                componentVersionLog.ComponentVersion.Component.Name,
+                new List<EntityDto>()
+                {
+                    new EntityDto(
+                        componentVersionLog.ComponentVersion.ComponentId,
+                        componentVersionLog.ComponentVersion.Component.Name
+                    ),
+                    new EntityDto(
+                        componentVersionLog.ComponentVersion.Component.ProductId,
+                        componentVersionLog.ComponentVersion.Component.Product.Name
+                    ),
+                },
                 componentVersionLog.Description
             );
         }
@@ -159,8 +173,13 @@ namespace Pineapple.Core.Mappers
                 environmentLog.Owner.FullName,
                 environmentLog.EnvironmentId,
                 environmentLog.Environment.Name,
-                environmentLog.Environment.ImplementationId,
-                environmentLog.Environment.Implementation.Name,
+                new List<EntityDto>()
+                {
+                    new EntityDto(
+                        environmentLog.Environment.ImplementationId,
+                        environmentLog.Environment.Implementation.Name
+                    ),
+                },
                 environmentLog.Description
             );
         }
@@ -178,7 +197,6 @@ namespace Pineapple.Core.Mappers
                 implementationLog.Owner.FullName,
                 implementationLog.ImplementationId,
                 implementationLog.Implementation.Name,
-                null,
                 null,
                 implementationLog.Description
             );
@@ -198,7 +216,6 @@ namespace Pineapple.Core.Mappers
                 operatingSystemLog.OperatingSystemId,
                 operatingSystemLog.OperatingSystem.Name,
                 null,
-                null,
                 operatingSystemLog.Description
             );
         }
@@ -217,7 +234,6 @@ namespace Pineapple.Core.Mappers
                 productLog.ProductId,
                 productLog.Product.Name,
                 null,
-                null,
                 productLog.Description
             );
         }
@@ -235,8 +251,17 @@ namespace Pineapple.Core.Mappers
                 serverLog.Owner.FullName,
                 serverLog.ServerId,
                 serverLog.Server.Name,
-                serverLog.Server.EnvironmentId,
-                serverLog.Server.Environment.Name,
+                new List<EntityDto>()
+                {
+                    new EntityDto(
+                        serverLog.Server.EnvironmentId,
+                        serverLog.Server.Environment.Name
+                    ),
+                    new EntityDto(
+                        serverLog.Server.Environment.ImplementationId,
+                        serverLog.Server.Environment.Implementation.Name
+                    ),
+                },
                 serverLog.Description
             );
         }
@@ -255,7 +280,6 @@ namespace Pineapple.Core.Mappers
                 softwareApplicationLog.SoftwareApplicationId,
                 softwareApplicationLog.SoftwareApplication.Name,
                 null,
-                null,
                 softwareApplicationLog.Description
             );
         }
@@ -273,7 +297,6 @@ namespace Pineapple.Core.Mappers
                 userLog.Owner.FullName,
                 userLog.UserId,
                 userLog.User.FullName,
-                null,
                 null,
                 userLog.Description
             );

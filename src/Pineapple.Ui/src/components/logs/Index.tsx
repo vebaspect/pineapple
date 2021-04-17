@@ -56,8 +56,7 @@ const Logs: React.FC<LogsProps> = ({ isDataFetched, data }: LogsProps) => {
               ownerFullName={log.ownerFullName}
               entityId={log.entityId}
               entityName={log.entityName}
-              parentEntityId={log.parentEntityId}
-              parentEntityName={log.parentEntityName}
+              parentEntities={log.parentEntities}
             />
           );
         })

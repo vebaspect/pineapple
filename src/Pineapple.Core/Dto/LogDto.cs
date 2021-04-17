@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Pineapple.Core.Dto
 {
@@ -58,21 +59,16 @@ namespace Pineapple.Core.Dto
         public string EntityName { get; }
 
         /// <summary>
-        /// Identyfikator encji nadrzędnej.
+        /// Encje nadrzędne.
         /// </summary>
-        public Guid? ParentEntityId { get; }
-
-        /// <summary>
-        /// Nazwa encji nadrzędnej.
-        /// </summary>
-        public string ParentEntityName { get; }
+        public List<EntityDto> ParentEntities { get; }
 
         /// <summary>
         /// Opis.
         /// </summary>
         public string Description { get; }
 
-        public LogDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string type, string category, Guid ownerId, string ownerFullName, Guid entityId, string entityName, Guid? parentEntityId, string parentEntityName, string description)
+        public LogDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string type, string category, Guid ownerId, string ownerFullName, Guid entityId, string entityName, List<EntityDto> parentEntities, string description)
         {
             Id = id;
             CreationDate = creationDate;
@@ -84,8 +80,7 @@ namespace Pineapple.Core.Dto
             OwnerFullName = ownerFullName;
             EntityId = entityId;
             EntityName = entityName;
-            ParentEntityId = parentEntityId;
-            ParentEntityName = parentEntityName;
+            ParentEntities = parentEntities;
             Description = description;
         }
     }

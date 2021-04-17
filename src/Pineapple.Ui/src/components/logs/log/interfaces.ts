@@ -13,10 +13,13 @@ export interface LogProps {
   entityId: string,
   // Nazwa encji.
   entityName: string,
-  // Identyfikator encji nadrzędnej.
-  parentEntityId: string,
-  // Nazwa encji nadrzędnej.
-  parentEntityName: string,
+  // Encje nadrzędne.
+  parentEntities: {
+    // Identyfikator.
+    id: string,
+    // Nazwa.
+    name: string,
+  }[],
 }
 
 export interface TextProps {
@@ -32,10 +35,13 @@ export interface TextProps {
   entityId: string,
   // Nazwa encji.
   entityName: string,
-  // Identyfikator encji nadrzędnej.
-  parentEntityId: string,
-  // Nazwa encji nadrzędnej.
-  parentEntityName: string,
+  // Encje nadrzędne.
+  parentEntities: {
+    // Identyfikator.
+    id: string,
+    // Nazwa.
+    name: string,
+  }[],
 }
 
 export interface IconProps {
