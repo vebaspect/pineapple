@@ -141,7 +141,7 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Property<int>("Patch")
                         .HasColumnType("integer");
 
-                    b.Property<string>("PreRelease")
+                    b.Property<string>("Suffix")
                         .HasMaxLength(30)
                         .HasColumnType("character varying(30)");
 

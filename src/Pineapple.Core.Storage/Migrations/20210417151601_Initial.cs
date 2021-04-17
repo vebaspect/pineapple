@@ -202,7 +202,7 @@ namespace Pineapple.Core.Storage.Migrations
                     Major = table.Column<int>(type: "integer", nullable: false),
                     Minor = table.Column<int>(type: "integer", nullable: false),
                     Patch = table.Column<int>(type: "integer", nullable: false),
-                    PreRelease = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: true),
+                    Suffix = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: true),
                     Description = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: true),
                     ComponentId = table.Column<Guid>(type: "uuid", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
