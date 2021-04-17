@@ -89,22 +89,22 @@ namespace Pineapple.Core.Mappers
             );
         }
 
-        public static LogDto ToDto(this Domain.Entities.ComponentLog log)
+        public static LogDto ToDto(this Domain.Entities.ComponentLog componentLog)
         {
             return new LogDto(
-                log.Id,
-                log.CreationDate,
-                log.ModificationDate,
-                log.IsDeleted,
-                log.Type,
-                log.Category,
-                log.OwnerId,
-                log.Owner.FullName,
-                log.ComponentId,
-                log.Component.Name,
-                log.Component.ProductId,
-                log.Component.Product.Name,
-                log.Description
+                componentLog.Id,
+                componentLog.CreationDate,
+                componentLog.ModificationDate,
+                componentLog.IsDeleted,
+                componentLog.Type,
+                componentLog.Category,
+                componentLog.OwnerId,
+                componentLog.Owner.FullName,
+                componentLog.ComponentId,
+                componentLog.Component.Name,
+                componentLog.Component.ProductId,
+                componentLog.Component.Product.Name,
+                componentLog.Description
             );
         }
 
@@ -127,60 +127,60 @@ namespace Pineapple.Core.Mappers
             );
         }
 
-        public static LogDto ToDto(this Domain.Entities.ComponentVersionLog log)
+        public static LogDto ToDto(this Domain.Entities.ComponentVersionLog componentVersionLog)
         {
             return new LogDto(
-                log.Id,
-                log.CreationDate,
-                log.ModificationDate,
-                log.IsDeleted,
-                log.Type,
-                log.Category,
-                log.OwnerId,
-                log.Owner.FullName,
-                log.ComponentVersionId,
-                log.ComponentVersion.GetFormattedNumber(),
-                log.ComponentVersion.ComponentId,
-                log.ComponentVersion.Component.Name,
-                log.Description
+                componentVersionLog.Id,
+                componentVersionLog.CreationDate,
+                componentVersionLog.ModificationDate,
+                componentVersionLog.IsDeleted,
+                componentVersionLog.Type,
+                componentVersionLog.Category,
+                componentVersionLog.OwnerId,
+                componentVersionLog.Owner.FullName,
+                componentVersionLog.ComponentVersionId,
+                componentVersionLog.ComponentVersion.GetFormattedNumber(),
+                componentVersionLog.ComponentVersion.ComponentId,
+                componentVersionLog.ComponentVersion.Component.Name,
+                componentVersionLog.Description
             );
         }
 
-        public static LogDto ToDto(this Domain.Entities.EnvironmentLog log)
+        public static LogDto ToDto(this Domain.Entities.EnvironmentLog environmentLog)
         {
             return new LogDto(
-                log.Id,
-                log.CreationDate,
-                log.ModificationDate,
-                log.IsDeleted,
-                log.Type,
-                log.Category,
-                log.OwnerId,
-                log.Owner.FullName,
-                log.EnvironmentId,
-                log.Environment.Name,
-                log.Environment.ImplementationId,
-                log.Environment.Implementation.Name,
-                log.Description
+                environmentLog.Id,
+                environmentLog.CreationDate,
+                environmentLog.ModificationDate,
+                environmentLog.IsDeleted,
+                environmentLog.Type,
+                environmentLog.Category,
+                environmentLog.OwnerId,
+                environmentLog.Owner.FullName,
+                environmentLog.EnvironmentId,
+                environmentLog.Environment.Name,
+                environmentLog.Environment.ImplementationId,
+                environmentLog.Environment.Implementation.Name,
+                environmentLog.Description
             );
         }
 
-        public static LogDto ToDto(this Domain.Entities.ImplementationLog log)
+        public static LogDto ToDto(this Domain.Entities.ImplementationLog implementationLog)
         {
             return new LogDto(
-                log.Id,
-                log.CreationDate,
-                log.ModificationDate,
-                log.IsDeleted,
-                log.Type,
-                log.Category,
-                log.OwnerId,
-                log.Owner.FullName,
-                log.ImplementationId,
-                log.Implementation.Name,
+                implementationLog.Id,
+                implementationLog.CreationDate,
+                implementationLog.ModificationDate,
+                implementationLog.IsDeleted,
+                implementationLog.Type,
+                implementationLog.Category,
+                implementationLog.OwnerId,
+                implementationLog.Owner.FullName,
+                implementationLog.ImplementationId,
+                implementationLog.Implementation.Name,
                 null,
                 null,
-                log.Description
+                implementationLog.Description
             );
         }
 
@@ -222,22 +222,22 @@ namespace Pineapple.Core.Mappers
             );
         }
 
-        public static LogDto ToDto(this Domain.Entities.ServerLog log)
+        public static LogDto ToDto(this Domain.Entities.ServerLog serverLog)
         {
             return new LogDto(
-                log.Id,
-                log.CreationDate,
-                log.ModificationDate,
-                log.IsDeleted,
-                log.Type,
-                log.Category,
-                log.OwnerId,
-                log.Owner.FullName,
-                log.ServerId,
-                log.Server.Name,
-                log.Server.EnvironmentId,
-                log.Server.Environment.Name,
-                log.Description
+                serverLog.Id,
+                serverLog.CreationDate,
+                serverLog.ModificationDate,
+                serverLog.IsDeleted,
+                serverLog.Type,
+                serverLog.Category,
+                serverLog.OwnerId,
+                serverLog.Owner.FullName,
+                serverLog.ServerId,
+                serverLog.Server.Name,
+                serverLog.Server.EnvironmentId,
+                serverLog.Server.Environment.Name,
+                serverLog.Description
             );
         }
 
