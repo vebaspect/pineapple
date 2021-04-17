@@ -13,9 +13,14 @@ namespace Pineapple.Core.Dto
         public Guid Id { get; }
 
         /// <summary>
+        /// Data utworzenia.
+        /// </summary>
+        public DateTime CreationDate { get; }
+
+        /// <summary>
         /// Data modyfikacji.
         /// </summary>
-        public DateTime ModifiedDate { get; }
+        public DateTime ModificationDate { get; }
 
         /// <summary>
         /// Flaga określająca, czy serwer został usunięty.
@@ -52,10 +57,11 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public string IpAddress { get; }
 
-        public ServerDto(Guid id, DateTime modifiedDate, bool isDeleted, string name, string symbol, string description, Guid operatingSystemId, string operatingSystemName, string ipAddress)
+        public ServerDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string name, string symbol, string description, Guid operatingSystemId, string operatingSystemName, string ipAddress)
         {
             Id = id;
-            ModifiedDate = modifiedDate;
+            CreationDate = creationDate;
+            ModificationDate = modificationDate;
             IsDeleted = isDeleted;
             Name = name;
             Symbol = symbol;

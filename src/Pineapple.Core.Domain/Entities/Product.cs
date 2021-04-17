@@ -32,7 +32,8 @@ namespace Pineapple.Core.Domain.Entities
         private Product(Guid id, string name, string description)
         {
             Id = id;
-            ModifiedDate = DateTime.Now;
+            CreationDate = DateTime.Now;
+            ModificationDate = DateTime.Now;
             IsDeleted = false;
             Name = name;
             Description = description;

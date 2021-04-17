@@ -10,16 +10,16 @@ using Pineapple.Core.Storage.Database;
 namespace Pineapple.Core.Storage.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210317212346_Initial")]
+    [Migration("20210417145910_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseIdentityByDefaultColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
-                .HasAnnotation("ProductVersion", "5.0.2");
+                .HasAnnotation("ProductVersion", "5.0.5")
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
             modelBuilder.Entity("ComponentVersionServer", b =>
                 {
@@ -45,6 +45,9 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Property<Guid>("ComponentTypeId")
                         .HasColumnType("uuid");
 
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("Description")
                         .HasMaxLength(4000)
                         .HasColumnType("character varying(4000)");
@@ -52,7 +55,7 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime>("ModificationDate")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
@@ -78,6 +81,9 @@ namespace Pineapple.Core.Storage.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("Description")
                         .HasMaxLength(4000)
                         .HasColumnType("character varying(4000)");
@@ -85,7 +91,7 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime>("ModificationDate")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
@@ -115,6 +121,9 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Property<Guid>("ComponentId")
                         .HasColumnType("uuid");
 
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("Description")
                         .HasMaxLength(4000)
                         .HasColumnType("character varying(4000)");
@@ -128,7 +137,7 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Property<int>("Minor")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime>("ModificationDate")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("Patch")
@@ -151,6 +160,9 @@ namespace Pineapple.Core.Storage.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("Email")
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
@@ -166,7 +178,7 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime>("ModificationDate")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Phone")
@@ -186,6 +198,9 @@ namespace Pineapple.Core.Storage.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("Description")
                         .HasMaxLength(4000)
                         .HasColumnType("character varying(4000)");
@@ -196,7 +211,7 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime>("ModificationDate")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
@@ -230,6 +245,9 @@ namespace Pineapple.Core.Storage.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("Description")
                         .HasMaxLength(4000)
                         .HasColumnType("character varying(4000)");
@@ -237,7 +255,7 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime>("ModificationDate")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
@@ -260,6 +278,9 @@ namespace Pineapple.Core.Storage.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("Description")
                         .HasMaxLength(4000)
                         .HasColumnType("character varying(4000)");
@@ -267,7 +288,7 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime>("ModificationDate")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("OwnerId")
@@ -293,6 +314,9 @@ namespace Pineapple.Core.Storage.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("Description")
                         .HasMaxLength(4000)
                         .HasColumnType("character varying(4000)");
@@ -300,7 +324,7 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime>("ModificationDate")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
@@ -327,6 +351,9 @@ namespace Pineapple.Core.Storage.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("Description")
                         .HasMaxLength(4000)
                         .HasColumnType("character varying(4000)");
@@ -334,7 +361,7 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime>("ModificationDate")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
@@ -353,6 +380,9 @@ namespace Pineapple.Core.Storage.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("Description")
                         .HasMaxLength(4000)
                         .HasColumnType("character varying(4000)");
@@ -367,7 +397,7 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime>("ModificationDate")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
@@ -401,6 +431,9 @@ namespace Pineapple.Core.Storage.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("Description")
                         .HasMaxLength(4000)
                         .HasColumnType("character varying(4000)");
@@ -408,7 +441,7 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime>("ModificationDate")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
@@ -435,6 +468,9 @@ namespace Pineapple.Core.Storage.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("Email")
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
@@ -452,7 +488,7 @@ namespace Pineapple.Core.Storage.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
-                    b.Property<DateTime>("ModifiedDate")
+                    b.Property<DateTime>("ModificationDate")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Phone")

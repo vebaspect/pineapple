@@ -11,7 +11,7 @@ namespace Pineapple.Core.Storage.Database.Configurations
             builder.ToTable("Implementations");
 
             builder
-                .Property(implementation => implementation.ModifiedDate)
+                .Property(implementation => implementation.ModificationDate)
                 .IsRequired();
             builder
                 .Property(implementation => implementation.IsDeleted)

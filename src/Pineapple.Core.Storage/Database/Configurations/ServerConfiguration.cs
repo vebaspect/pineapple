@@ -11,7 +11,7 @@ namespace Pineapple.Core.Storage.Database.Configurations
             builder.ToTable("Servers");
 
             builder
-                .Property(server => server.ModifiedDate)
+                .Property(server => server.ModificationDate)
                 .IsRequired();
             builder
                 .Property(server => server.IsDeleted)

@@ -11,7 +11,7 @@ namespace Pineapple.Core.Storage.Database.Configurations
             builder.ToTable("ComponentTypes");
 
             builder
-                .Property(componentType => componentType.ModifiedDate)
+                .Property(componentType => componentType.ModificationDate)
                 .IsRequired();
             builder
                 .Property(componentType => componentType.IsDeleted)

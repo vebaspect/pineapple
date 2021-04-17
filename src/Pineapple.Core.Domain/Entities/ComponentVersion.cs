@@ -56,7 +56,8 @@ namespace Pineapple.Core.Domain.Entities
         private ComponentVersion(Guid id, int major, int minor, int patch, string preRelease, string description, Guid componentId)
         {
             Id = id;
-            ModifiedDate = DateTime.Now;
+            CreationDate = DateTime.Now;
+            ModificationDate = DateTime.Now;
             IsDeleted = false;
             Major = major;
             Minor = minor;

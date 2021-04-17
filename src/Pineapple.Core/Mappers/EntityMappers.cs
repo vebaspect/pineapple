@@ -11,7 +11,8 @@ namespace Pineapple.Core.Mappers
         {
             return new ComponentDto(
                 component.Id,
-                component.ModifiedDate,
+                component.CreationDate,
+                component.ModificationDate,
                 component.IsDeleted,
                 component.Name,
                 component.Description,
@@ -24,7 +25,8 @@ namespace Pineapple.Core.Mappers
         {
             return new ComponentTypeDto(
                 componentType.Id,
-                componentType.ModifiedDate,
+                componentType.CreationDate,
+                componentType.ModificationDate,
                 componentType.IsDeleted,
                 componentType.Name,
                 componentType.Symbol,
@@ -36,7 +38,8 @@ namespace Pineapple.Core.Mappers
         {
             return new ComponentVersionDto(
                 componentVersion.Id,
-                componentVersion.ModifiedDate,
+                componentVersion.CreationDate,
+                componentVersion.ModificationDate,
                 componentVersion.IsDeleted,
                 componentVersion.Major,
                 componentVersion.Minor,
@@ -50,7 +53,8 @@ namespace Pineapple.Core.Mappers
         {
             return new CoordinatorDto(
                 coordinator.Id,
-                coordinator.ModifiedDate,
+                coordinator.CreationDate,
+                coordinator.ModificationDate,
                 coordinator.IsDeleted,
                 coordinator.FullName,
                 coordinator.Phone,
@@ -62,7 +66,8 @@ namespace Pineapple.Core.Mappers
         {
             return new EnvironmentDto(
                 environment.Id,
-                environment.ModifiedDate,
+                environment.CreationDate,
+                environment.ModificationDate,
                 environment.IsDeleted,
                 environment.Name,
                 environment.Symbol,
@@ -76,7 +81,8 @@ namespace Pineapple.Core.Mappers
         {
             return new ImplementationDto(
                 implementation.Id,
-                implementation.ModifiedDate,
+                implementation.CreationDate,
+                implementation.ModificationDate,
                 implementation.IsDeleted,
                 implementation.Name,
                 implementation.Description
@@ -87,7 +93,8 @@ namespace Pineapple.Core.Mappers
         {
             return new LogDto(
                 log.Id,
-                log.ModifiedDate,
+                log.CreationDate,
+                log.ModificationDate,
                 log.IsDeleted,
                 log.Type,
                 log.Category,
@@ -105,7 +112,8 @@ namespace Pineapple.Core.Mappers
         {
             return new LogDto(
                 componentTypeLog.Id,
-                componentTypeLog.ModifiedDate,
+                componentTypeLog.CreationDate,
+                componentTypeLog.ModificationDate,
                 componentTypeLog.IsDeleted,
                 componentTypeLog.Type,
                 componentTypeLog.Category,
@@ -123,7 +131,8 @@ namespace Pineapple.Core.Mappers
         {
             return new LogDto(
                 log.Id,
-                log.ModifiedDate,
+                log.CreationDate,
+                log.ModificationDate,
                 log.IsDeleted,
                 log.Type,
                 log.Category,
@@ -141,7 +150,8 @@ namespace Pineapple.Core.Mappers
         {
             return new LogDto(
                 log.Id,
-                log.ModifiedDate,
+                log.CreationDate,
+                log.ModificationDate,
                 log.IsDeleted,
                 log.Type,
                 log.Category,
@@ -159,7 +169,8 @@ namespace Pineapple.Core.Mappers
         {
             return new LogDto(
                 log.Id,
-                log.ModifiedDate,
+                log.CreationDate,
+                log.ModificationDate,
                 log.IsDeleted,
                 log.Type,
                 log.Category,
@@ -177,7 +188,8 @@ namespace Pineapple.Core.Mappers
         {
             return new LogDto(
                 operatingSystemLog.Id,
-                operatingSystemLog.ModifiedDate,
+                operatingSystemLog.CreationDate,
+                operatingSystemLog.ModificationDate,
                 operatingSystemLog.IsDeleted,
                 operatingSystemLog.Type,
                 operatingSystemLog.Category,
@@ -195,7 +207,8 @@ namespace Pineapple.Core.Mappers
         {
             return new LogDto(
                 productLog.Id,
-                productLog.ModifiedDate,
+                productLog.CreationDate,
+                productLog.ModificationDate,
                 productLog.IsDeleted,
                 productLog.Type,
                 productLog.Category,
@@ -213,7 +226,8 @@ namespace Pineapple.Core.Mappers
         {
             return new LogDto(
                 log.Id,
-                log.ModifiedDate,
+                log.CreationDate,
+                log.ModificationDate,
                 log.IsDeleted,
                 log.Type,
                 log.Category,
@@ -231,7 +245,8 @@ namespace Pineapple.Core.Mappers
         {
             return new LogDto(
                 softwareApplicationLog.Id,
-                softwareApplicationLog.ModifiedDate,
+                softwareApplicationLog.CreationDate,
+                softwareApplicationLog.ModificationDate,
                 softwareApplicationLog.IsDeleted,
                 softwareApplicationLog.Type,
                 softwareApplicationLog.Category,
@@ -249,7 +264,8 @@ namespace Pineapple.Core.Mappers
         {
             return new LogDto(
                 userLog.Id,
-                userLog.ModifiedDate,
+                userLog.CreationDate,
+                userLog.ModificationDate,
                 userLog.IsDeleted,
                 userLog.Type,
                 userLog.Category,
@@ -267,7 +283,8 @@ namespace Pineapple.Core.Mappers
         {
             return new OperatingSystemDto(
                 operatingSystem.Id,
-                operatingSystem.ModifiedDate,
+                operatingSystem.CreationDate,
+                operatingSystem.ModificationDate,
                 operatingSystem.IsDeleted,
                 operatingSystem.Name,
                 operatingSystem.Symbol,
@@ -279,7 +296,8 @@ namespace Pineapple.Core.Mappers
         {
             return new ProductDto(
                 product.Id,
-                product.ModifiedDate,
+                product.CreationDate,
+                product.ModificationDate,
                 product.IsDeleted,
                 product.Name,
                 product.Description
@@ -290,7 +308,8 @@ namespace Pineapple.Core.Mappers
         {
             return new ServerDto(
                 server.Id,
-                server.ModifiedDate,
+                server.CreationDate,
+                server.ModificationDate,
                 server.IsDeleted,
                 server.Name,
                 server.Symbol,
@@ -305,7 +324,8 @@ namespace Pineapple.Core.Mappers
         {
             return new SoftwareApplicationDto(
                 softwareApplication.Id,
-                softwareApplication.ModifiedDate,
+                softwareApplication.CreationDate,
+                softwareApplication.ModificationDate,
                 softwareApplication.IsDeleted,
                 softwareApplication.Name,
                 softwareApplication.Symbol,
@@ -337,7 +357,8 @@ namespace Pineapple.Core.Mappers
         {
             return new UserDto(
                 user.Id,
-                user.ModifiedDate,
+                user.CreationDate,
+                user.ModificationDate,
                 user.IsDeleted,
                 user.Type,
                 user.FullName,

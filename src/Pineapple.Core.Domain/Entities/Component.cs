@@ -52,7 +52,8 @@ namespace Pineapple.Core.Domain.Entities
         private Component(Guid id, string name, string description, Guid productId, Guid componentTypeId)
         {
             Id = id;
-            ModifiedDate = DateTime.Now;
+            CreationDate = DateTime.Now;
+            ModificationDate = DateTime.Now;
             IsDeleted = false;
             Name = name;
             Description = description;

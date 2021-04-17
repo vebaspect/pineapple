@@ -13,9 +13,14 @@ namespace Pineapple.Core.Domain.Entities
         public Guid Id { get; protected set; }
 
         /// <summary>
+        /// Data utworzenia.
+        /// </summary>
+        public DateTime CreationDate { get; protected set; }
+
+        /// <summary>
         /// Data modyfikacji.
         /// </summary>
-        public DateTime ModifiedDate { get; protected set; }
+        public DateTime ModificationDate { get; protected set; }
 
         /// <summary>
         /// Flaga określająca, czy encja została usunięta.

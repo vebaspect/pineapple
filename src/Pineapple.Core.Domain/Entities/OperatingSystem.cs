@@ -37,7 +37,8 @@ namespace Pineapple.Core.Domain.Entities
         private OperatingSystem(Guid id, string name, string symbol, string description)
         {
             Id = id;
-            ModifiedDate = DateTime.Now;
+            CreationDate = DateTime.Now;
+            ModificationDate = DateTime.Now;
             IsDeleted = false;
             Name = name;
             Symbol = symbol;

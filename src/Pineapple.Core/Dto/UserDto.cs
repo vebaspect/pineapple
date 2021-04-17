@@ -13,9 +13,14 @@ namespace Pineapple.Core.Dto
         public Guid Id { get; }
 
         /// <summary>
+        /// Data utworzenia.
+        /// </summary>
+        public DateTime CreationDate { get; }
+
+        /// <summary>
         /// Data modyfikacji.
         /// </summary>
-        public DateTime ModifiedDate { get; }
+        public DateTime ModificationDate { get; }
 
         /// <summary>
         /// Flaga określająca, czy użytkownik został usunięty.
@@ -47,10 +52,11 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public string Email { get; }
 
-        public UserDto(Guid id, DateTime modifiedDate, bool isDeleted, string type, string fullName, string login, string phone, string email)
+        public UserDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string type, string fullName, string login, string phone, string email)
         {
             Id = id;
-            ModifiedDate = modifiedDate;
+            CreationDate = creationDate;
+            ModificationDate = modificationDate;
             IsDeleted = isDeleted;
             Type = type;
             FullName = fullName;

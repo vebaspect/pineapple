@@ -35,7 +35,8 @@ namespace Pineapple.Core.Domain.Entities
         private Coordinator(Guid id, string fullName, string phone, string email, Guid implementationId)
         {
             Id = id;
-            ModifiedDate = DateTime.Now;
+            CreationDate = DateTime.Now;
+            ModificationDate = DateTime.Now;
             IsDeleted = false;
             FullName = fullName;
             Phone = phone;

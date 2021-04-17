@@ -49,7 +49,7 @@ const Logs: React.FC<LogsProps> = ({ isDataFetched, data }: LogsProps) => {
           logs.push(
             <Log
               key={log.id}
-              modifiedDate={log.modifiedDate}
+              modificationDate={log.modificationDate}
               type={log.type}
               category={log.category}
               ownerFullName={log.ownerFullName}

@@ -57,7 +57,8 @@ namespace Pineapple.Core.Domain.Entities
         private Environment(Guid id, string name, string symbol, string description, Guid implementationId, Guid operatorId)
         {
             Id = id;
-            ModifiedDate = DateTime.Now;
+            CreationDate = DateTime.Now;
+            ModificationDate = DateTime.Now;
             IsDeleted = false;
             Name = name;
             Symbol = symbol;

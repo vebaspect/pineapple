@@ -11,7 +11,7 @@ namespace Pineapple.Core.Storage.Database.Configurations
             builder.ToTable("OperatingSystems");
 
             builder
-                .Property(operatingSystem => operatingSystem.ModifiedDate)
+                .Property(operatingSystem => operatingSystem.ModificationDate)
                 .IsRequired();
             builder
                 .Property(operatingSystem => operatingSystem.IsDeleted)

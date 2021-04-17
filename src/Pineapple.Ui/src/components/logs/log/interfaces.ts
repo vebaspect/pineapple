@@ -1,6 +1,6 @@
 export interface LogProps {
   // Data modyfikacji.
-  modifiedDate: Date,
+  modificationDate: Date,
   // Typ.
   type: string,
   // Kategoria.

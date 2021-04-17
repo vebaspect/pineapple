@@ -6,7 +6,7 @@ export interface LogsProps {
     // Identyfikator.
     id: string,
     // Data modyfikacji.
-    modifiedDate: Date,
+    modificationDate: Date,
     // Typ.
     type: string,
     // Kategoria.

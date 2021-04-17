@@ -76,13 +76,13 @@ namespace Pineapple.Core.Handler
             if (request.Count.HasValue)
             {
                 return logs
-                    .OrderByDescending(log => log.ModifiedDate)
+                    .OrderByDescending(log => log.ModificationDate)
                     .Take(request.Count.Value)
                     .ToArray();
             }
 
             return logs
-                .OrderByDescending(log => log.ModifiedDate)
+                .OrderByDescending(log => log.ModificationDate)
                 .ToArray();
         }
     }

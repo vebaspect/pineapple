@@ -11,7 +11,7 @@ namespace Pineapple.Core.Storage.Database.Configurations
             builder.ToTable("Coordinators");
 
             builder
-                .Property(coordinator => coordinator.ModifiedDate)
+                .Property(coordinator => coordinator.ModificationDate)
                 .IsRequired();
             builder
                 .Property(coordinator => coordinator.IsDeleted)

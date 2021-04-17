@@ -66,7 +66,8 @@ namespace Pineapple.Core.Domain.Entities
         private Server(Guid id, string name, string symbol, string description, Guid environmentId, Guid operatingSystemId, string ipAddress)
         {
             Id = id;
-            ModifiedDate = DateTime.Now;
+            CreationDate = DateTime.Now;
+            ModificationDate = DateTime.Now;
             IsDeleted = false;
             Name = name;
             Symbol = symbol;

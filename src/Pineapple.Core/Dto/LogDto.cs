@@ -13,9 +13,14 @@ namespace Pineapple.Core.Dto
         public Guid Id { get; }
 
         /// <summary>
+        /// Data utworzenia.
+        /// </summary>
+        public DateTime CreationDate { get; }
+
+        /// <summary>
         /// Data modyfikacji.
         /// </summary>
-        public DateTime ModifiedDate { get; }
+        public DateTime ModificationDate { get; }
 
         /// <summary>
         /// Flaga określająca, czy log został usunięty.
@@ -67,10 +72,11 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public string Description { get; }
 
-        public LogDto(Guid id, DateTime modifiedDate, bool isDeleted, string type, string category, Guid ownerId, string ownerFullName, Guid entityId, string entityName, Guid? parentEntityId, string parentEntityName, string description)
+        public LogDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string type, string category, Guid ownerId, string ownerFullName, Guid entityId, string entityName, Guid? parentEntityId, string parentEntityName, string description)
         {
             Id = id;
-            ModifiedDate = modifiedDate;
+            CreationDate = creationDate;
+            ModificationDate = modificationDate;
             IsDeleted = isDeleted;
             Type = type;
             Category = category;

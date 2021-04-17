@@ -13,9 +13,14 @@ namespace Pineapple.Core.Dto
         public Guid Id { get; }
 
         /// <summary>
+        /// Data utworzenia.
+        /// </summary>
+        public DateTime CreationDate { get; }
+
+        /// <summary>
         /// Data modyfikacji.
         /// </summary>
-        public DateTime ModifiedDate { get; }
+        public DateTime ModificationDate { get; }
 
         /// <summary>
         /// Flaga określająca, czy komponent został usunięty.
@@ -42,10 +47,11 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public string ComponentTypeName { get; }
 
-        public ComponentDto(Guid id, DateTime modifiedDate, bool isDeleted, string name, string description, Guid componentTypeId, string componentTypeName)
+        public ComponentDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string name, string description, Guid componentTypeId, string componentTypeName)
         {
             Id = id;
-            ModifiedDate = modifiedDate;
+            CreationDate = creationDate;
+            ModificationDate = modificationDate;
             IsDeleted = isDeleted;
             Name = name;
             Description = description;

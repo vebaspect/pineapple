@@ -11,7 +11,7 @@ namespace Pineapple.Core.Storage.Database.Configurations
             builder.ToTable("SoftwareApplications");
 
             builder
-                .Property(softwareApplication => softwareApplication.ModifiedDate)
+                .Property(softwareApplication => softwareApplication.ModificationDate)
                 .IsRequired();
             builder
                 .Property(softwareApplication => softwareApplication.IsDeleted)

@@ -13,7 +13,7 @@ import {
   LogProps,
 } from './interfaces';
 
-const Log: React.FC<LogProps> = ({ modifiedDate, type, category, ownerFullName, entityName, parentEntityName }: LogProps) => {
+const Log: React.FC<LogProps> = ({ modificationDate, type, category, ownerFullName, entityName, parentEntityName }: LogProps) => {
   return (
     <ListItem component="div">
       <ListItemIcon>
@@ -37,7 +37,7 @@ const Log: React.FC<LogProps> = ({ modifiedDate, type, category, ownerFullName, 
           fontSize="0.8rem"
           fontStyle="italic"
         >
-          {moment(modifiedDate).format('LLL')}
+          {moment(modificationDate).format('LLL')}
         </Box>
       </ListItemText>
     </ListItem>

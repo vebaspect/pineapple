@@ -11,7 +11,7 @@ namespace Pineapple.Core.Storage.Database.Configurations
             builder.ToTable("Environments");
 
             builder
-                .Property(environment => environment.ModifiedDate)
+                .Property(environment => environment.ModificationDate)
                 .IsRequired();
             builder
                 .Property(environment => environment.IsDeleted)

@@ -20,7 +20,8 @@ namespace Pineapple.Core.Domain.Entities
         private ComponentVersionLog(Guid id, string category, Guid ownerId, Guid componentVersionId)
         {
             Id = id;
-            ModifiedDate = DateTime.Now;
+            CreationDate = DateTime.Now;
+            ModificationDate = DateTime.Now;
             IsDeleted = false;
             Category = category;
             OwnerId = ownerId;

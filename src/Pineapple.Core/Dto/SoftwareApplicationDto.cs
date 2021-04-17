@@ -13,9 +13,14 @@ namespace Pineapple.Core.Dto
         public Guid Id { get; }
 
         /// <summary>
+        /// Data utworzenia.
+        /// </summary>
+        public DateTime CreationDate { get; }
+
+        /// <summary>
         /// Data modyfikacji.
         /// </summary>
-        public DateTime ModifiedDate { get; }
+        public DateTime ModificationDate { get; }
 
         /// <summary>
         /// Flaga określająca, czy oprogramowanie zostało usunięte.
@@ -37,10 +42,11 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public string Description { get; }
 
-        public SoftwareApplicationDto(Guid id, DateTime modifiedDate, bool isDeleted, string name, string symbol, string description)
+        public SoftwareApplicationDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string name, string symbol, string description)
         {
             Id = id;
-            ModifiedDate = modifiedDate;
+            CreationDate = creationDate;
+            ModificationDate = modificationDate;
             IsDeleted = isDeleted;
             Name = name;
             Symbol = symbol;

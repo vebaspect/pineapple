@@ -11,7 +11,8 @@ namespace Pineapple.Core.Domain.Entities
         private Administrator(Guid id, string fullName, string login, string phone, string email)
         {
             Id = id;
-            ModifiedDate = DateTime.Now;
+            CreationDate = DateTime.Now;
+            ModificationDate = DateTime.Now;
             IsDeleted = false;
             FullName = fullName;
             Login = login;

@@ -20,7 +20,8 @@ namespace Pineapple.Core.Domain.Entities
         private OperatingSystemLog(Guid id, string category, Guid ownerId, Guid operatingSystemId)
         {
             Id = id;
-            ModifiedDate = DateTime.Now;
+            CreationDate = DateTime.Now;
+            ModificationDate = DateTime.Now;
             IsDeleted = false;
             Category = category;
             OwnerId = ownerId;

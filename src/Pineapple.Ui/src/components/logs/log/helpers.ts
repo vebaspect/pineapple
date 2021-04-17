@@ -6,17 +6,17 @@ export const groupLogsByDate = (logs) => {
 
   if (logs && logs.length > 0) {
     logs.forEach((log) => {
-      const modifiedDate = moment(log.modifiedDate).format('LL');
+      const modificationDate = moment(log.modificationDate).format('LL');
 
-      if (groupedLogs[modifiedDate]) {
-        groupedLogs[modifiedDate] = [
-          ...groupedLogs[modifiedDate],
+      if (groupedLogs[modificationDate]) {
+        groupedLogs[modificationDate] = [
+          ...groupedLogs[modificationDate],
           log,
         ];
       } else {
         groupedLogs = {
           ...groupedLogs,
-          [modifiedDate]: [log],
+          [modificationDate]: [log],
         };
       }
     });

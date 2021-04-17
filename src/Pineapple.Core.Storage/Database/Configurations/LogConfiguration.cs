@@ -13,7 +13,7 @@ namespace Pineapple.Core.Storage.Database.Configurations
             builder.HasDiscriminator(log => log.Type);
 
             builder
-                .Property(log => log.ModifiedDate)
+                .Property(log => log.ModificationDate)
                 .IsRequired();
             builder
                 .Property(log => log.IsDeleted)

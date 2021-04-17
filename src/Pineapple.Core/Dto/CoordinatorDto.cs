@@ -13,9 +13,14 @@ namespace Pineapple.Core.Dto
         public Guid Id { get; }
 
         /// <summary>
+        /// Data utworzenia.
+        /// </summary>
+        public DateTime CreationDate { get; }
+
+        /// <summary>
         /// Data modyfikacji.
         /// </summary>
-        public DateTime ModifiedDate { get; }
+        public DateTime ModificationDate { get; }
 
         /// <summary>
         /// Flaga określająca, czy koordynator został usunięty.
@@ -37,10 +42,11 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public string Email { get; }
 
-        public CoordinatorDto(Guid id, DateTime modifiedDate, bool isDeleted, string fullName, string phone, string email)
+        public CoordinatorDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string fullName, string phone, string email)
         {
             Id = id;
-            ModifiedDate = modifiedDate;
+            CreationDate = creationDate;
+            ModificationDate = modificationDate;
             IsDeleted = isDeleted;
             FullName = fullName;
             Phone = phone;
