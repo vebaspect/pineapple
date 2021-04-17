@@ -11,37 +11,37 @@ namespace Pineapple.Core.Domain.Entities
         /// <summary>
         /// Typ.
         /// </summary>
-        public string Type { get; protected set;}
+        public string Type { get; protected set; }
 
         /// <summary>
         /// Imię i nazwisko.
         /// </summary>
-        public string FullName { get; protected set;}
+        public string FullName { get; protected set; }
 
         /// <summary>
         /// Login.
         /// </summary>
-        public string Login { get; protected set;}
+        public string Login { get; protected set; }
 
         /// <summary>
         /// Telefon.
         /// </summary>
-        public string Phone { get; protected set;}
+        public string Phone { get; protected set; }
 
         /// <summary>
         /// E-mail.
         /// </summary>
-        public string Email { get; protected set;}
+        public string Email { get; protected set; }
 
         /// <summary>
         /// Logi posiadane przez użytkownika.
         /// </summary>
-        public List<Log> OwnedLogs { get; protected set;}
+        public List<Log> OwnedLogs { get; protected set; }
 
         /// <summary>
         /// Logi dotyczące użytkownika.
         /// </summary>
-        public List<UserLog> EntityLogs { get; protected set;}
+        public List<UserLog> EntityLogs { get; protected set; }
 
         protected User(Guid id)
             : base(id)
