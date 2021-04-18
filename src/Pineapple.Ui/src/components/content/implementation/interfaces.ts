@@ -16,6 +16,10 @@ export interface ListProps {
     id: string,
     // Nazwa.
     name: string,
+    // Symbol.
+    symbol: string,
+    // Wdrożeniowiec.
+    operatorFullName: string,
     // Opis.
     description: string,
     // Flaga określająca, czy środowisko zostało usunięte.

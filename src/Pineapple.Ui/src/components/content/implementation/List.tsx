@@ -37,6 +37,8 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, implementationId, onEd
         <TableRow>
           <TableCell style={{ width: 60 }}>Lp</TableCell>
           <TableCell>Nazwa</TableCell>
+          <TableCell>Symbol</TableCell>
+          <TableCell>Wdrożeniowiec</TableCell>
           <TableCell>Opis</TableCell>
           <TableCell style={{ width: 100 }} />
         </TableRow>
@@ -54,6 +56,8 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, implementationId, onEd
                   {environment.name}
                 </Link>
               </TableCell>
+              <TableCell>{environment.symbol}</TableCell>
+              <TableCell>{environment.operatorFullName}</TableCell>
               <TableCell>{environment.description}</TableCell>
               <TableCell align="right">
                 <Tooltip title="Edytuj">
