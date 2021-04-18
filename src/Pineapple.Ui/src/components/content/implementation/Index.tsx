@@ -104,8 +104,17 @@ const Implementation: React.VFC = () => {
     // TODO
   };
 
-  const deleteEnvironment = () => {
-    // TODO
+  const deleteEnvironment = async (id) => {
+    await fetch(
+      `${window['env'].API_URL}/implementations/${implementationId}/environments/${id}`,
+      {
+        method: 'DELETE',
+      },
+    )
+    .then(() => {
+      fetchEnvironments();
+      fetchLogs();
+    });
   };
 
   return (

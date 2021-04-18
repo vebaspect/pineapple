@@ -334,6 +334,51 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
               .
             </>
           );
+        case LOG_CATEGORY__REMOVE_ENTITY:
+          return (
+            <>
+              Użytkownik
+              <Box
+                component="span"
+                mx={0.5}
+              >
+                <Link
+                  className={styles.owner}
+                  component={RouterLink}
+                  to={`/users/${ownerId}`}
+                >
+                  {`«${ownerFullName}»`}
+                </Link>
+              </Box>
+              usunął środowisko
+              <Box
+                component="span"
+                mx={0.5}
+              >
+                <Link
+                  className={styles.environment}
+                  component={RouterLink}
+                  to={`/implementations/${parentEntities[0].id}/environments/${entity.id}`}
+                >
+                  {`«${entity.name}»`}
+                </Link>
+              </Box>
+              z wdrożenia
+              <Box
+                component="span"
+                ml={0.5}
+              >
+                <Link
+                  className={styles.implementation}
+                  component={RouterLink}
+                  to={`/implementations/${parentEntities[0].id}`}
+                >
+                  {`«${parentEntities[0].name}»`}
+                </Link>
+              </Box>
+              .
+            </>
+          );
         default:
           return null;
       }
