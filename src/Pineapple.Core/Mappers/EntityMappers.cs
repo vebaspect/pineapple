@@ -50,19 +50,6 @@ namespace Pineapple.Core.Mappers
             );
         }
 
-        public static CoordinatorDto ToDto(this Domain.Entities.Coordinator coordinator)
-        {
-            return new CoordinatorDto(
-                coordinator.Id,
-                coordinator.CreationDate,
-                coordinator.ModificationDate,
-                coordinator.IsDeleted,
-                coordinator.FullName,
-                coordinator.Phone,
-                coordinator.Email
-            );
-        }
-
         public static EnvironmentDto ToDto(this Domain.Entities.Environment environment)
         {
             return new EnvironmentDto(

@@ -83,63 +83,6 @@ namespace Pineapple.Api.Controllers
         }
 
         [HttpGet]
-        [Route("{implementationId}/coordinators")]
-        public async Task<IActionResult> GetCoordinators(string implementationId)
-        {
-            if (implementationId is null || !Guid.TryParse(implementationId, out _))
-            {
-                return BadRequest("Implementation identifier has not been provided");
-            }
-
-            GetCoordinatorsCommand command = new(Guid.Parse(implementationId));
-            Task<CoordinatorDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
-            CoordinatorDto[] result = await resultTask.ConfigureAwait(false);
-
-            return Ok(result);
-        }
-
-        [HttpPost]
-        [Route("{implementationId}/coordinators")]
-        public async Task<IActionResult> CreateCoordinator(string implementationId, [FromBody]CreateCoordinatorDto dto)
-        {
-            if (implementationId is null || !Guid.TryParse(implementationId, out _))
-            {
-                return BadRequest("Implementation identifier has not been provided");
-            }
-
-            if (dto is null)
-            {
-                return BadRequest("Coordinator data has not been provided");
-            }
-
-            CreateCoordinatorCommand command = new(Guid.Parse(implementationId), dto.FullName, dto.Phone, dto.Email);
-            Task<Guid> resultTask = await mediator.Send(command).ConfigureAwait(false);
-            Guid result = await resultTask.ConfigureAwait(false);
-
-            return Created($"/implementations/{implementationId}/coordinators/{result}", null);
-        }
-
-        [HttpGet]
-        [Route("{implementationId}/coordinators/{coordinatorId}")]
-        public async Task<IActionResult> GetCoordinator(string implementationId, string coordinatorId)
-        {
-            if (implementationId is null || !Guid.TryParse(implementationId, out _))
-            {
-                return BadRequest("Implementation identifier has not been provided");
-            }
-            if (coordinatorId is null || !Guid.TryParse(coordinatorId, out _))
-            {
-                return BadRequest("Coordinator identifier has not been provided");
-            }
-
-            GetCoordinatorCommand command = new(Guid.Parse(implementationId), Guid.Parse(coordinatorId));
-            Task<CoordinatorDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
-            CoordinatorDto result = await resultTask.ConfigureAwait(false);
-
-            return Ok(result);
-        }
-
-        [HttpGet]
         [Route("{implementationId}/environments")]
         public async Task<IActionResult> GetEnvironments(string implementationId)
         {

@@ -3,8 +3,6 @@
 
 # Identyfikator wdrożenia.
 @implementationId = 
-# Identyfikator koordynatora.
-@coordinatorId = 
 # Identyfikator środowiska.
 @environmentId = 
 # Identyfikator serwera.
@@ -32,24 +30,6 @@ Content-Type: application/json
 
 ### /implementations/{implementationId}
 GET {{url}}/implementations/{{implementationId}}
-Content-Type: application/json
-
-### /implementations/{implementationId}/coordinators
-GET {{url}}/implementations/{{implementationId}}/coordinators
-Content-Type: application/json
-
-### /implementations/{implementationId}/coordinators
-POST {{url}}/implementations/{{implementationId}}/coordinators
-Content-Type: application/json
-
-{
-    "FullName": "",
-    "Phone": "",
-    "Email": ""
-}
-
-### /implementations/{implementationId}/coordinators/{coordinatorId}
-GET {{url}}/implementations/{{implementationId}}/coordinators/{{coordinatorId}}
 Content-Type: application/json
 
 ### /implementations/{implementationId}/environments

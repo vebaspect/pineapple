@@ -27,11 +27,6 @@ namespace Pineapple.Core.Storage.Database
         public DbSet<ComponentVersion> ComponentVersions { get; set; }
 
         /// <summary>
-        /// Koordynatorzy.
-        /// </summary>
-        public DbSet<Coordinator> Coordinators { get; set; }
-
-        /// <summary>
         /// Środowiska.
         /// </summary>
         public DbSet<Environment> Environments { get; set; }
@@ -83,7 +78,6 @@ namespace Pineapple.Core.Storage.Database
                 .ApplyConfiguration(new ComponentTypeLogConfiguration())
                 .ApplyConfiguration(new ComponentVersionConfiguration())
                 .ApplyConfiguration(new ComponentVersionLogConfiguration())
-                .ApplyConfiguration(new CoordinatorConfiguration())
                 .ApplyConfiguration(new DeveloperConfiguration())
                 .ApplyConfiguration(new EnvironmentConfiguration())
                 .ApplyConfiguration(new EnvironmentLogConfiguration())
