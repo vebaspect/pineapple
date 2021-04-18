@@ -18,7 +18,9 @@ export interface ListProps {
     name: string,
     // Symbol.
     symbol: string,
-    // Wdrożeniowiec.
+    // Identyfikator wdrożeniowca.
+    operatorId: string,
+    // Imię i nazwisko wdrożeniowca.
     operatorFullName: string,
     // Opis.
     description: string,

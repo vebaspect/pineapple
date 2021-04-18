@@ -57,7 +57,14 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, implementationId, onEd
                 </Link>
               </TableCell>
               <TableCell>{environment.symbol}</TableCell>
-              <TableCell>{environment.operatorFullName}</TableCell>
+              <TableCell>
+                <Link
+                  component={RouterLink}
+                  to={`/users/${environment.operatorId}`}
+                >
+                  {environment.operatorFullName}
+                </Link>
+              </TableCell>
               <TableCell>{environment.description}</TableCell>
               <TableCell align="right">
                 <Tooltip title="Edytuj">
