@@ -3,6 +3,10 @@ export interface DetailsProps {
   isDataFetched: boolean,
   // Nazwa.
   name: string,
+  // Symbol.
+  symbol: string,
+  // Wdrożeniowiec.
+  operator: string,
   // Opis.
   description: string,
 }

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import {
   createStyles,
@@ -28,6 +28,7 @@ const useStyles = makeStyles(() =>
 );
 
 const Implementation: React.VFC = () => {
+  const history = useHistory();
   const styles = useStyles();
 
   // Identyfikator wdrożenia.
@@ -96,7 +97,7 @@ const Implementation: React.VFC = () => {
   };
 
   const addEnvironment = () => {
-    // TODO
+    history.push(`/implementations/${implementationId}/environments/create`);
   };
 
   const editEnvironment = () => {

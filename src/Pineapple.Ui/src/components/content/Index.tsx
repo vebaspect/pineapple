@@ -31,6 +31,7 @@ import CreateComponentEditor from '../editors/products/createComponentEditor';
 import CreateComponentTypeEditor from '../editors/configuration/createComponentTypeEditor';
 import CreateComponentVersionEditor from '../editors/products/createComponentVersionEditor';
 import CreateDeveloperEditor from '../editors/users/createDeveloperEditor';
+import CreateEnvironmentEditor from '../editors/implementations/createEnvironmentEditor';
 import CreateImplementationEditor from '../editors/implementations/createImplementationEditor';
 import CreateManagerEditor from '../editors/users/createManagerEditor';
 import CreateOperatingSystemEditor from '../editors/configuration/createOperatingSystemEditor';
@@ -67,6 +68,9 @@ const Title: React.VFC = () => {
       </Route>
       <Route path="/implementations/create">
         <CreateImplementationEditor />
+      </Route>
+      <Route path="/implementations/:implementationId/environments/create">
+        <CreateEnvironmentEditor />
       </Route>
       <Route path="/implementations/:implementationId/environments/:environmentId">
         <Environment />

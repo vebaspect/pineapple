@@ -11,7 +11,7 @@ import {
   DetailsProps,
 } from './interfaces';
 
-const Details: React.FC<DetailsProps> = ({ isDataFetched, name, description }: DetailsProps) => {
+const Details: React.FC<DetailsProps> = ({ isDataFetched, name, symbol, operator, description }: DetailsProps) => {
   if (!isDataFetched) {
     return (
       <Box
@@ -29,6 +29,14 @@ const Details: React.FC<DetailsProps> = ({ isDataFetched, name, description }: D
         <TableRow>
           <TableCell style={{ fontWeight: 500, width: 200 }}>Nazwa</TableCell>
           <TableCell>{name}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell style={{ fontWeight: 500, width: 200 }}>Symbol</TableCell>
+          <TableCell>{symbol}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell style={{ fontWeight: 500, width: 200 }}>Wdrożeniowiec</TableCell>
+          <TableCell>{operator}</TableCell>
         </TableRow>
         <TableRow>
           <TableCell style={{ fontWeight: 500, width: 200 }}>Opis</TableCell>
