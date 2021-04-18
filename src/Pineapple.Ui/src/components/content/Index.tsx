@@ -8,6 +8,7 @@ import Administrators from './administrators';
 import Component from './component';
 import ComponentType from './componentType';
 import ComponentTypes from './componentTypes';
+import ComponentVersion from './componentVersion';
 import Configuration from './configuration';
 import Developers from './developers';
 import Environment from './environment';
@@ -102,6 +103,9 @@ const Title: React.VFC = () => {
       </Route>
       <Route path="/products/:productId/components/:componentId/component-versions/create">
         <CreateComponentVersionEditor />
+      </Route>
+      <Route path="/products/:productId/components/:componentId/component-versions/:componentVersionId">
+        <ComponentVersion />
       </Route>
       <Route path="/products/:productId/components/create">
         <CreateComponentEditor />
