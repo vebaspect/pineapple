@@ -55,7 +55,14 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, productId, onEdit, onD
                   {component.name}
                 </Link>
               </TableCell>
-              <TableCell>{component.componentTypeName}</TableCell>
+              <TableCell>
+                <Link
+                  component={RouterLink}
+                  to={`/component-types/${component.componentTypeId}`}
+                >
+                  {component.componentTypeName}
+                </Link>
+              </TableCell>
               <TableCell>{component.description}</TableCell>
               <TableCell align="right">
                 <Tooltip title="Edytuj">

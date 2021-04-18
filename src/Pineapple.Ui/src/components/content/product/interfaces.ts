@@ -16,7 +16,9 @@ export interface ListProps {
     id: string,
     // Nazwa.
     name: string,
-    // Typ.
+    // Identyfikator typu.
+    componentTypeId: string,
+    // Nazwa typu.
     componentTypeName: string,
     // Opis.
     description: string,
