@@ -48,6 +48,10 @@ Content-Type: application/json
 }
 
 ### /implementations/{implementationId}/environments/{environmentId}
+DELETE {{url}}/implementations/{{implementationId}}/environments/{{environmentId}}
+Content-Type: application/json
+
+### /implementations/{implementationId}/environments/{environmentId}
 GET {{url}}/implementations/{{implementationId}}/environments/{{environmentId}}
 Content-Type: application/json
 
