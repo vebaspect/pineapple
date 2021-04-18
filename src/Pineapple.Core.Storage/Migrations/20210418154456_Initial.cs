@@ -110,30 +110,6 @@ namespace Pineapple.Core.Storage.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Coordinators",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    FullName = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
-                    Phone = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
-                    Email = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
-                    ImplementationId = table.Column<Guid>(type: "uuid", nullable: false),
-                    CreationDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    ModificationDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Coordinators", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Coordinators_Implementations_ImplementationId",
-                        column: x => x.ImplementationId,
-                        principalTable: "Implementations",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Components",
                 columns: table => new
                 {
@@ -410,11 +386,6 @@ namespace Pineapple.Core.Storage.Migrations
                 column: "ServersId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Coordinators_ImplementationId",
-                table: "Coordinators",
-                column: "ImplementationId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Environments_ImplementationId",
                 table: "Environments",
                 column: "ImplementationId");
@@ -529,9 +500,6 @@ namespace Pineapple.Core.Storage.Migrations
         {
             migrationBuilder.DropTable(
                 name: "ComponentVersionServer");
-
-            migrationBuilder.DropTable(
-                name: "Coordinators");
 
             migrationBuilder.DropTable(
                 name: "Logs");

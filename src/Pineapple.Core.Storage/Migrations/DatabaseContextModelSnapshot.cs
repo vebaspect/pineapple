@@ -152,44 +152,6 @@ namespace Pineapple.Core.Storage.Migrations
                     b.ToTable("ComponentVersions");
                 });
 
-            modelBuilder.Entity("Pineapple.Core.Domain.Entities.Coordinator", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("character varying(200)");
-
-                    b.Property<Guid>("ImplementationId")
-                        .HasColumnType("uuid");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTime>("ModificationDate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("Phone")
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ImplementationId");
-
-                    b.ToTable("Coordinators");
-                });
-
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Environment", b =>
                 {
                     b.Property<Guid>("Id")
@@ -716,17 +678,6 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Navigation("Component");
                 });
 
-            modelBuilder.Entity("Pineapple.Core.Domain.Entities.Coordinator", b =>
-                {
-                    b.HasOne("Pineapple.Core.Domain.Entities.Implementation", "Implementation")
-                        .WithMany("Coordinators")
-                        .HasForeignKey("ImplementationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Implementation");
-                });
-
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Environment", b =>
                 {
                     b.HasOne("Pineapple.Core.Domain.Entities.Implementation", "Implementation")
@@ -929,8 +880,6 @@ namespace Pineapple.Core.Storage.Migrations
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Implementation", b =>
                 {
-                    b.Navigation("Coordinators");
-
                     b.Navigation("EntityLogs");
 
                     b.Navigation("Environments");
