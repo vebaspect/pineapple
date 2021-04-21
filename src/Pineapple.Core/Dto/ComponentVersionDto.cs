@@ -28,6 +28,11 @@ namespace Pineapple.Core.Dto
         public bool IsDeleted { get; }
 
         /// <summary>
+        /// Rodzaj.
+        /// </summary>
+        public string Kind { get; }
+
+        /// <summary>
         /// Major.
         /// </summary>
         public int Major { get; }
@@ -52,12 +57,13 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public string Description { get; }
 
-        public ComponentVersionDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, int major, int minor, int patch, string suffix, string description)
+        public ComponentVersionDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string kind, int major, int minor, int patch, string suffix, string description)
         {
             Id = id;
             CreationDate = creationDate;
             ModificationDate = modificationDate;
             IsDeleted = isDeleted;
+            Kind = kind;
             Major = major;
             Minor = minor;
             Patch = patch;

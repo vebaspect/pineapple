@@ -84,5 +84,23 @@ namespace Pineapple.Core.Domain.Entities
 
             return $"{Major}.{Minor}.{Patch}-{Suffix}";
         }
+
+        /// <summary>
+        /// Zwróć rodzaj wersji komponentu.
+        /// </summary>
+        public string GetKind()
+        {
+            if (!string.IsNullOrEmpty(Suffix))
+            {
+                return AvailableComponentVersionKinds.PreRelease;
+            }
+
+            if (Patch > 0)
+            {
+                return AvailableComponentVersionKinds.Patch;
+            }
+
+            return AvailableComponentVersionKinds.Release;
+        }
     }
 }
