@@ -16,6 +16,10 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 
 import {
+  translateKind,
+} from './helpers';
+
+import {
   ListProps,
 } from './interfaces';
 
@@ -37,6 +41,7 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, productId, componentId
         <TableRow>
           <TableCell style={{ width: 60 }}>Lp</TableCell>
           <TableCell>Numer</TableCell>
+          <TableCell>Rodzaj</TableCell>
           <TableCell>Opis</TableCell>
           <TableCell style={{ width: 100 }} />
         </TableRow>
@@ -58,6 +63,7 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, productId, componentId
                   }
                 </Link>
               </TableCell>
+              <TableCell>{translateKind(componentVersion.kind)}</TableCell>
               <TableCell>{componentVersion.description}</TableCell>
               <TableCell align="right">
                 <Tooltip title="Edytuj">

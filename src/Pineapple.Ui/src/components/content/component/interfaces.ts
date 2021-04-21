@@ -16,6 +16,8 @@ export interface ListProps {
   data: {
     // Identyfikator.
     id: string,
+    // Rodzaj.
+    kind: string,
     // Major.
     major: number,
     // Minor.
