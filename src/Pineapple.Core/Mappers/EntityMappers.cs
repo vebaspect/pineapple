@@ -74,7 +74,9 @@ namespace Pineapple.Core.Mappers
                 implementation.ModificationDate,
                 implementation.IsDeleted,
                 implementation.Name,
-                implementation.Description
+                implementation.Description,
+                implementation.ManagerId,
+                implementation.Manager.FullName
             );
         }
 

@@ -30,6 +30,7 @@ namespace Pineapple.Core.Handler
 
             var implementation = await databaseContext
                 .Implementations
+                .Include(implementation => implementation.Manager)
                 .FirstOrDefaultAsync(implementation => implementation.Id == request.ImplementationId)
                 .ConfigureAwait(false);
 

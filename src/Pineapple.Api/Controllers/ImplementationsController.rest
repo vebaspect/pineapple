@@ -21,7 +21,8 @@ Content-Type: application/json
 
 {
     "Name": "",
-    "Description": ""
+    "Description": "",
+    "ManagerId": ""
 }
 
 ### /implementations/{implementationId}

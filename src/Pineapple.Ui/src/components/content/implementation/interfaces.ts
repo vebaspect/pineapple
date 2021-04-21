@@ -3,6 +3,8 @@ export interface DetailsProps {
   isDataFetched: boolean,
   // Nazwa.
   name: string,
+  // Menedżer.
+  manager: string,
   // Opis.
   description: string,
 }

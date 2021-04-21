@@ -156,6 +156,7 @@ const Implementation: React.VFC = () => {
           <Details
             isDataFetched={isImplementationFetched}
             name={implementation?.name}
+            manager={implementation?.managerFullName}
             description={implementation?.description}
           />
         </Paper>

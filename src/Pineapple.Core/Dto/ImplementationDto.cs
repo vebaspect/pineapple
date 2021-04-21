@@ -37,7 +37,17 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public string Description { get; }
 
-        public ImplementationDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string name, string description)
+        /// <summary>
+        /// Identyfikator menedżera.
+        /// </summary>
+        public Guid ManagerId { get; }
+
+        /// <summary>
+        /// Imię i nazwisko menedżera.
+        /// </summary>
+        public string ManagerFullName { get; }
+
+        public ImplementationDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string name, string description, Guid managerId, string managerFullName)
         {
             Id = id;
             CreationDate = creationDate;
@@ -45,6 +55,8 @@ namespace Pineapple.Core.Dto
             IsDeleted = isDeleted;
             Name = name;
             Description = description;
+            ManagerId = managerId;
+            ManagerFullName = managerFullName;
         }
     }
 }

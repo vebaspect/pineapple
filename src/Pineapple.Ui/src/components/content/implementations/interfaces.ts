@@ -7,6 +7,10 @@ export interface ListProps {
     id: string,
     // Nazwa.
     name: string,
+    // Identyfikator menedżera.
+    managerId: string,
+    // Imię i nazwisko menedżera.
+    managerFullName: string,
     // Opis.
     description: string,
     // Flaga określająca, czy wdrożenie zostało usunięte.

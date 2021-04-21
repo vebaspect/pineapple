@@ -35,11 +35,6 @@ namespace Pineapple.Core.Domain.Entities
         public Implementation Implementation { get; }
 
         /// <summary>
-        /// Serwery.
-        /// </summary>
-        public List<Server> Servers { get; }
-
-        /// <summary>
         /// Identyfikator wdrożeniowca.
         /// </summary>
         public Guid OperatorId { get; }
@@ -48,6 +43,11 @@ namespace Pineapple.Core.Domain.Entities
         /// Wdrożeniowiec.
         /// </summary>
         public Operator Operator { get; }
+
+        /// <summary>
+        /// Serwery.
+        /// </summary>
+        public List<Server> Servers { get; }
 
         /// <summary>
         /// Logi dotyczące środowiska.

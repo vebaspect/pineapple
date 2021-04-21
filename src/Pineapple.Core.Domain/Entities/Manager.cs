@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Pineapple.Core.Domain.Exceptions;
 
 namespace Pineapple.Core.Domain.Entities
@@ -8,6 +9,11 @@ namespace Pineapple.Core.Domain.Entities
     /// </summary>
     public sealed class Manager : User
     {
+        /// <summary>
+        /// Wdrożenia.
+        /// </summary>
+        public List<Implementation> Implementations { get; }
+
         private Manager(Guid id, string fullName, string login, string phone, string email)
             : base(id)
         {

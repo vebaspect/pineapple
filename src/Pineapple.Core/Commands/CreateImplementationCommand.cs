@@ -16,10 +16,16 @@ namespace Pineapple.Core.Commands
         /// </summary>
         public string Description { get; }
 
-        public CreateImplementationCommand(string name, string description)
+        /// <summary>
+        /// Identyfikator menedżera.
+        /// </summary>
+        public Guid ManagerId { get; }
+
+        public CreateImplementationCommand(string name, string description, Guid managerId)
         {
             Name = name;
             Description = description;
+            ManagerId = managerId;
         }
     }
 }

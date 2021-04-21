@@ -24,6 +24,12 @@ namespace Pineapple.Core.Storage.Database.Configurations
                 .Property(implementation => implementation.Description)
                 .HasMaxLength(4000);
             builder
+                .HasOne(implementation => implementation.Manager)
+                .WithMany(manager => manager.Implementations)
+                .HasForeignKey(implementation => implementation.ManagerId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
+            builder
                 .HasMany(implementation => implementation.EntityLogs)
                 .WithOne(log => log.Implementation)
                 .HasForeignKey(log => log.ImplementationId)

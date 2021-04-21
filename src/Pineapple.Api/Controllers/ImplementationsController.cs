@@ -44,7 +44,7 @@ namespace Pineapple.Api.Controllers
                 return BadRequest("Implementation data has not been provided");
             }
 
-            CreateImplementationCommand command = new(dto.Name, dto.Description);
+            CreateImplementationCommand command = new(dto.Name, dto.Description, dto.ManagerId);
             Task<Guid> resultTask = await mediator.Send(command).ConfigureAwait(false);
             Guid result = await resultTask.ConfigureAwait(false);
 

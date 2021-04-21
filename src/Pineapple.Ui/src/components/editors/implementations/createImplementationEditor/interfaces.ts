@@ -3,6 +3,8 @@ export interface FormState {
   name: string,
   // Opis.
   description: string,
+  // Identyfikator menedżera.
+  managerId: string,
 }
 
 export interface FormStateValidationResult {
@@ -12,5 +14,7 @@ export interface FormStateValidationResult {
   details: {
     // Nazwa.
     name: string,
+    // Identyfikator menedżera.
+    managerId: string,
   },
 }

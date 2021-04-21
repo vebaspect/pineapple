@@ -34,6 +34,7 @@ namespace Pineapple.Core.Handler
             {
                 implementations = await databaseContext
                     .Implementations
+                    .Include(implementation => implementation.Manager)
                     .Take(request.Count.Value)
                     .ToArrayAsync()
                     .ConfigureAwait(false);
@@ -42,6 +43,7 @@ namespace Pineapple.Core.Handler
             {
                 implementations = await databaseContext
                     .Implementations
+                    .Include(implementation => implementation.Manager)
                     .ToArrayAsync()
                     .ConfigureAwait(false);
             }

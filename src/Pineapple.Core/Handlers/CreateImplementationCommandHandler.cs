@@ -27,7 +27,7 @@ namespace Pineapple.Core.Handler
 
             var implementationId = Guid.NewGuid();
 
-            var implementation = Domain.Entities.Implementation.Create(implementationId, request.Name, request.Description);
+            var implementation = Domain.Entities.Implementation.Create(implementationId, request.Name, request.Description, request.ManagerId);
 
             await databaseContext.Implementations.AddAsync(implementation).ConfigureAwait(false);
 

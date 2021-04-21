@@ -37,6 +37,7 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, onEdit, onDelete }: Li
         <TableRow>
           <TableCell style={{ width: 60 }}>Lp</TableCell>
           <TableCell>Nazwa</TableCell>
+          <TableCell>Menedżer</TableCell>
           <TableCell>Opis</TableCell>
           <TableCell style={{ width: 100 }} />
         </TableRow>
@@ -52,6 +53,14 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, onEdit, onDelete }: Li
                   to={`/implementations/${implementation.id}`}
                 >
                   {implementation.name}
+                </Link>
+              </TableCell>
+              <TableCell>
+                <Link
+                  component={RouterLink}
+                  to={`/users/${implementation.managerId}`}
+                >
+                  {implementation.managerFullName}
                 </Link>
               </TableCell>
               <TableCell>{implementation.description}</TableCell>

@@ -25,22 +25,6 @@ namespace Pineapple.Core.Storage.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Implementations",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
-                    Description = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: true),
-                    CreationDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    ModificationDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Implementations", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "OperatingSystems",
                 columns: table => new
                 {
@@ -140,31 +124,23 @@ namespace Pineapple.Core.Storage.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Environments",
+                name: "Implementations",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
-                    Symbol = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
                     Description = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: true),
-                    ImplementationId = table.Column<Guid>(type: "uuid", nullable: false),
-                    OperatorId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ManagerId = table.Column<Guid>(type: "uuid", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ModificationDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Environments", x => x.Id);
+                    table.PrimaryKey("PK_Implementations", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Environments_Implementations_ImplementationId",
-                        column: x => x.ImplementationId,
-                        principalTable: "Implementations",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Environments_Users_OperatorId",
-                        column: x => x.OperatorId,
+                        name: "FK_Implementations_Users_ManagerId",
+                        column: x => x.ManagerId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -192,6 +168,37 @@ namespace Pineapple.Core.Storage.Migrations
                         name: "FK_ComponentVersions_Components_ComponentId",
                         column: x => x.ComponentId,
                         principalTable: "Components",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Environments",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Name = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
+                    Symbol = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
+                    Description = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: true),
+                    ImplementationId = table.Column<Guid>(type: "uuid", nullable: false),
+                    OperatorId = table.Column<Guid>(type: "uuid", nullable: false),
+                    CreationDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    ModificationDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Environments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Environments_Implementations_ImplementationId",
+                        column: x => x.ImplementationId,
+                        principalTable: "Implementations",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Environments_Users_OperatorId",
+                        column: x => x.OperatorId,
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -400,6 +407,11 @@ namespace Pineapple.Core.Storage.Migrations
                 table: "Environments",
                 column: "Symbol",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Implementations_ManagerId",
+                table: "Implementations",
+                column: "ManagerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Logs_ComponentId",

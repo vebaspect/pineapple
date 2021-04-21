@@ -10,7 +10,7 @@ using Pineapple.Core.Storage.Database;
 namespace Pineapple.Core.Storage.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210418154456_Initial")]
+    [Migration("20210421190955_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -217,6 +217,9 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
+                    b.Property<Guid>("ManagerId")
+                        .HasColumnType("uuid");
+
                     b.Property<DateTime>("ModificationDate")
                         .HasColumnType("timestamp without time zone");
 
@@ -226,6 +229,8 @@ namespace Pineapple.Core.Storage.Migrations
                         .HasColumnType("character varying(200)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ManagerId");
 
                     b.ToTable("Implementations");
                 });
@@ -699,6 +704,17 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Navigation("Operator");
                 });
 
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.Implementation", b =>
+                {
+                    b.HasOne("Pineapple.Core.Domain.Entities.Manager", "Manager")
+                        .WithMany("Implementations")
+                        .HasForeignKey("ManagerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Manager");
+                });
+
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Log", b =>
                 {
                     b.HasOne("Pineapple.Core.Domain.Entities.User", "Owner")
@@ -916,6 +932,11 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Navigation("EntityLogs");
 
                     b.Navigation("OwnedLogs");
+                });
+
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.Manager", b =>
+                {
+                    b.Navigation("Implementations");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Operator", b =>
