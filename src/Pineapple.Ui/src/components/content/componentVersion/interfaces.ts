@@ -1,6 +1,8 @@
 export interface DetailsProps {
   // Flaga określająca, czy wersja komponentu została pobrana z API.
   isDataFetched: boolean,
+  // Rodzaj.
+  kind: string,
   // Major.
   major: number,
   // Minor.

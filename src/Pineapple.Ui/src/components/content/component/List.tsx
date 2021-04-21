@@ -17,7 +17,7 @@ import EditIcon from '@material-ui/icons/Edit';
 
 import {
   translateKind,
-} from './helpers';
+} from '../../../helpers/componentVersionHelpers';
 
 import {
   ListProps,

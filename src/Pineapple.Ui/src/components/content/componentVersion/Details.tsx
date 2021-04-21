@@ -8,10 +8,14 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 
 import {
+  translateKind,
+} from '../../../helpers/componentVersionHelpers';
+
+import {
   DetailsProps,
 } from './interfaces';
 
-const Details: React.FC<DetailsProps> = ({ isDataFetched, major, minor, patch, suffix, description }: DetailsProps) => {
+const Details: React.FC<DetailsProps> = ({ isDataFetched, kind, major, minor, patch, suffix, description }: DetailsProps) => {
   if (!isDataFetched) {
     return (
       <Box
@@ -26,6 +30,10 @@ const Details: React.FC<DetailsProps> = ({ isDataFetched, major, minor, patch, s
   return (
     <Table size="small">
       <TableBody>
+        <TableRow>
+          <TableCell style={{ fontWeight: 500, width: 200 }}>Rodzaj</TableCell>
+          <TableCell>{translateKind(kind)}</TableCell>
+        </TableRow>
         <TableRow>
           <TableCell style={{ fontWeight: 500, width: 200 }}>Major</TableCell>
           <TableCell>{major}</TableCell>
