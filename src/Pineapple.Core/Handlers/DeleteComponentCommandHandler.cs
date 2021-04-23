@@ -32,6 +32,7 @@ namespace Pineapple.Core.Handler
             var product = await databaseContext
                 .Products
                 .Include(product => product.Components)
+                .ThenInclude(component => component.ComponentVersions)
                 .FirstOrDefaultAsync(product => product.Id == request.ProductId, cancellationToken: cancellationToken)
                 .ConfigureAwait(false);
 
@@ -47,6 +48,20 @@ namespace Pineapple.Core.Handler
             if (component is null)
             {
                 throw new ComponentNotFoundException($"Component {request.ComponentId} has not been found");
+            }
+
+            if (component.ComponentVersions?.Count > 0)
+            {
+                foreach (Domain.Entities.ComponentVersion componentVersion in component.ComponentVersions)
+                {
+                    componentVersion.SetAsDeleted();
+
+                    var componentVersionLogId = Guid.NewGuid();
+
+                    var componentVersionLog = Domain.Entities.ComponentVersionLog.Create(componentVersionLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), componentVersion.Id); // Mock!
+
+                    await databaseContext.Logs.AddAsync(componentVersionLog, cancellationToken).ConfigureAwait(false);
+                }
             }
 
             component.SetAsDeleted();
