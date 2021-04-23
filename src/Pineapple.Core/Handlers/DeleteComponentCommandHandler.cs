@@ -54,13 +54,16 @@ namespace Pineapple.Core.Handler
             {
                 foreach (Domain.Entities.ComponentVersion componentVersion in component.ComponentVersions)
                 {
-                    componentVersion.SetAsDeleted();
+                    if (!component.IsDeleted)
+                    {
+                        componentVersion.SetAsDeleted();
 
-                    var componentVersionLogId = Guid.NewGuid();
+                        var componentVersionLogId = Guid.NewGuid();
 
-                    var componentVersionLog = Domain.Entities.ComponentVersionLog.Create(componentVersionLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), componentVersion.Id); // Mock!
+                        var componentVersionLog = Domain.Entities.ComponentVersionLog.Create(componentVersionLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), componentVersion.Id); // Mock!
 
-                    await databaseContext.Logs.AddAsync(componentVersionLog, cancellationToken).ConfigureAwait(false);
+                        await databaseContext.Logs.AddAsync(componentVersionLog, cancellationToken).ConfigureAwait(false);
+                    }
                 }
             }
 
