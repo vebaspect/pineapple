@@ -128,7 +128,8 @@ const Component: React.VFC = () => {
           <Details
             isDataFetched={isComponentFetched}
             name={component?.name}
-            type={component?.componentTypeName}
+            componentTypeId={component?.componentTypeId}
+            componentTypeName={component?.componentTypeName}
             description={component?.description}
           />
         </Paper>

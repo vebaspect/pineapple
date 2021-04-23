@@ -1,7 +1,9 @@
 import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 
 import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Link from '@material-ui/core/Link';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -11,7 +13,7 @@ import {
   DetailsProps,
 } from './interfaces';
 
-const Details: React.FC<DetailsProps> = ({ isDataFetched, name, type, description }: DetailsProps) => {
+const Details: React.FC<DetailsProps> = ({ isDataFetched, name, componentTypeId, componentTypeName, description }: DetailsProps) => {
   if (!isDataFetched) {
     return (
       <Box
@@ -32,7 +34,14 @@ const Details: React.FC<DetailsProps> = ({ isDataFetched, name, type, descriptio
         </TableRow>
         <TableRow>
           <TableCell style={{ fontWeight: 500, width: 200 }}>Typ</TableCell>
-          <TableCell>{type}</TableCell>
+          <TableCell>
+            <Link
+              component={RouterLink}
+              to={`/component-types/${componentTypeId}`}
+            >
+              {componentTypeName}
+            </Link>
+          </TableCell>
         </TableRow>
         <TableRow>
           <TableCell style={{ fontWeight: 500, width: 200 }}>Opis</TableCell>

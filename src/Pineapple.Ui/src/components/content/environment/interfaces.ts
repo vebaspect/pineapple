@@ -5,8 +5,10 @@ export interface DetailsProps {
   name: string,
   // Symbol.
   symbol: string,
-  // Wdrożeniowiec.
-  operator: string,
+  // Identyfikator wdrożeniowca.
+  operatorId: string,
+  // Imię i nazwisko wdrożeniowca.
+  operatorFullName: string,
   // Opis.
   description: string,
 }

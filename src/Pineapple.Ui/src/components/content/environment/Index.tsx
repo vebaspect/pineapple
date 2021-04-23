@@ -70,7 +70,8 @@ const Environment: React.VFC = () => {
             isDataFetched={isEnvironmentFetched}
             name={environment?.name}
             symbol={environment?.symbol}
-            operator={environment?.operatorFullName}
+            operatorId={environment?.operatorId}
+            operatorFullName={environment?.operatorFullName}
             description={environment?.description}
           />
         </Paper>

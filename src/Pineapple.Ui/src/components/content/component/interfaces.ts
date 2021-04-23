@@ -3,8 +3,10 @@ export interface DetailsProps {
   isDataFetched: boolean,
   // Nazwa.
   name: string,
-  // Typ.
-  type: string,
+  // Identyfikator typu komponentu.
+  componentTypeId: string,
+  // Nazwa typu komponentu.
+  componentTypeName: string,
   // Opis.
   description: string,
 }
