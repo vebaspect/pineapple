@@ -203,6 +203,29 @@ namespace Pineapple.Api.Controllers
             return Created($"/products/{productId}/components/{componentId}/component-versions/{result}", null);
         }
 
+        [HttpDelete]
+        [Route("{productId}/components/{componentId}/component-versions/{componentVersionId}")]
+        public async Task<IActionResult> DeleteComponentVersion(string productId, string componentId, string componentVersionId)
+        {
+            if (productId is null || !Guid.TryParse(productId, out _))
+            {
+                return BadRequest("Product identifier has not been provided");
+            }
+            if (componentId is null || !Guid.TryParse(componentId, out _))
+            {
+                return BadRequest("Component identifier has not been provided");
+            }
+            if (componentVersionId is null || !Guid.TryParse(componentVersionId, out _))
+            {
+                return BadRequest("ComponentVersion identifier has not been provided");
+            }
+
+            DeleteComponentVersionCommand command = new(Guid.Parse(productId), Guid.Parse(componentId), Guid.Parse(componentVersionId));
+            await mediator.Send(command).ConfigureAwait(false);
+
+            return Ok();
+        }
+
         [HttpGet]
         [Route("{productId}/components/{componentId}/component-versions/{componentVersionId}")]
         public async Task<IActionResult> GetComponentVersion(string productId, string componentId, string componentVersionId)
