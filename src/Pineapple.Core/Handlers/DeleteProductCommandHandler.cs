@@ -30,12 +30,48 @@ namespace Pineapple.Core.Handler
 
             var product = await databaseContext
                 .Products
+                .Include(product => product.Components)
+                .ThenInclude(component => component.ComponentVersions)
                 .FirstOrDefaultAsync(product => product.Id == request.ProductId, cancellationToken: cancellationToken)
                 .ConfigureAwait(false);
 
             if (product is null)
             {
                 throw new ProductNotFoundException($"Product {request.ProductId} has not been found");
+            }
+
+            if (product.Components?.Count > 0)
+            {
+                foreach (Domain.Entities.Component component in product.Components)
+                {
+                    if (!component.IsDeleted)
+                    {
+                        if (component.ComponentVersions?.Count > 0)
+                        {
+                            foreach (Domain.Entities.ComponentVersion componentVersion in component.ComponentVersions)
+                            {
+                                if (!componentVersion.IsDeleted)
+                                {
+                                    componentVersion.SetAsDeleted();
+
+                                    var componentVersionLogId = Guid.NewGuid();
+
+                                    var componentVersionLog = Domain.Entities.ComponentVersionLog.Create(componentVersionLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), componentVersion.Id); // Mock!
+
+                                    await databaseContext.Logs.AddAsync(componentVersionLog, cancellationToken).ConfigureAwait(false);
+                                }
+                            }
+                        }
+
+                        component.SetAsDeleted();
+
+                        var componentLogId = Guid.NewGuid();
+
+                        var componentLog = Domain.Entities.ComponentLog.Create(componentLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), component.Id); // Mock!
+
+                        await databaseContext.Logs.AddAsync(componentLog, cancellationToken).ConfigureAwait(false);
+                    }
+                }
             }
 
             product.SetAsDeleted();
