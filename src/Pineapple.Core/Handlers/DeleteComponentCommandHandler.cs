@@ -54,7 +54,7 @@ namespace Pineapple.Core.Handler
             {
                 foreach (Domain.Entities.ComponentVersion componentVersion in component.ComponentVersions)
                 {
-                    if (!component.IsDeleted)
+                    if (!componentVersion.IsDeleted)
                     {
                         componentVersion.SetAsDeleted();
 
@@ -67,13 +67,16 @@ namespace Pineapple.Core.Handler
                 }
             }
 
-            component.SetAsDeleted();
+            if (!component.IsDeleted)
+            {
+                component.SetAsDeleted();
 
-            var componentLogId = Guid.NewGuid();
+                var componentLogId = Guid.NewGuid();
 
-            var componentLog = Domain.Entities.ComponentLog.Create(componentLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), request.ComponentId); // Mock!
+                var componentLog = Domain.Entities.ComponentLog.Create(componentLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), request.ComponentId); // Mock!
 
-            await databaseContext.Logs.AddAsync(componentLog, cancellationToken).ConfigureAwait(false);
+                await databaseContext.Logs.AddAsync(componentLog, cancellationToken).ConfigureAwait(false);
+            }
 
             databaseContext.SaveChanges();
 

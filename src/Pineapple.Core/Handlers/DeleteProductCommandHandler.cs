@@ -74,13 +74,16 @@ namespace Pineapple.Core.Handler
                 }
             }
 
-            product.SetAsDeleted();
+            if (!product.IsDeleted)
+            {
+                product.SetAsDeleted();
 
-            var productLogId = Guid.NewGuid();
+                var productLogId = Guid.NewGuid();
 
-            var productLog = Domain.Entities.ProductLog.Create(productLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), request.ProductId); // Mock!
+                var productLog = Domain.Entities.ProductLog.Create(productLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), request.ProductId); // Mock!
 
-            await databaseContext.Logs.AddAsync(productLog, cancellationToken).ConfigureAwait(false);
+                await databaseContext.Logs.AddAsync(productLog, cancellationToken).ConfigureAwait(false);
+            }
 
             databaseContext.SaveChanges();
 

@@ -38,13 +38,16 @@ namespace Pineapple.Core.Handler
                 throw new ImplementationNotFoundException($"Implementation {request.ImplementationId} has not been found");
             }
 
-            implementation.SetAsDeleted();
+            if (!implementation.IsDeleted)
+            {
+                implementation.SetAsDeleted();
 
-            var implementationLogId = Guid.NewGuid();
+                var implementationLogId = Guid.NewGuid();
 
-            var implementationLog = Domain.Entities.ImplementationLog.Create(implementationLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), request.ImplementationId); // Mock!
+                var implementationLog = Domain.Entities.ImplementationLog.Create(implementationLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), request.ImplementationId); // Mock!
 
-            await databaseContext.Logs.AddAsync(implementationLog, cancellationToken).ConfigureAwait(false);
+                await databaseContext.Logs.AddAsync(implementationLog, cancellationToken).ConfigureAwait(false);
+            }
 
             databaseContext.SaveChanges();
 

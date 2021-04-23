@@ -49,13 +49,16 @@ namespace Pineapple.Core.Handler
                 throw new EnvironmentNotFoundException($"Environment {request.EnvironmentId} has not been found");
             }
 
-            environment.SetAsDeleted();
+            if (!environment.IsDeleted)
+            {
+                environment.SetAsDeleted();
 
-            var environmentLogId = Guid.NewGuid();
+                var environmentLogId = Guid.NewGuid();
 
-            var environmentLog = Domain.Entities.EnvironmentLog.Create(environmentLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), request.EnvironmentId); // Mock!
+                var environmentLog = Domain.Entities.EnvironmentLog.Create(environmentLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), request.EnvironmentId); // Mock!
 
-            await databaseContext.Logs.AddAsync(environmentLog, cancellationToken).ConfigureAwait(false);
+                await databaseContext.Logs.AddAsync(environmentLog, cancellationToken).ConfigureAwait(false);
+            }
 
             databaseContext.SaveChanges();
 

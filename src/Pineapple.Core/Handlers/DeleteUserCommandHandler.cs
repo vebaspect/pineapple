@@ -38,13 +38,16 @@ namespace Pineapple.Core.Handler
                 throw new UserNotFoundException($"User {request.UserId} has not been found");
             }
 
-            user.SetAsDeleted();
+            if (!user.IsDeleted)
+            {
+                user.SetAsDeleted();
 
-            var userLogId = Guid.NewGuid();
+                var userLogId = Guid.NewGuid();
 
-            var userLog = Domain.Entities.UserLog.Create(userLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), request.UserId); // Mock!
+                var userLog = Domain.Entities.UserLog.Create(userLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), request.UserId); // Mock!
 
-            await databaseContext.Logs.AddAsync(userLog, cancellationToken).ConfigureAwait(false);
+                await databaseContext.Logs.AddAsync(userLog, cancellationToken).ConfigureAwait(false);
+            }
 
             databaseContext.SaveChanges();
 

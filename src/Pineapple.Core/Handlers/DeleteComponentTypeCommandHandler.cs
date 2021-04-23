@@ -38,13 +38,16 @@ namespace Pineapple.Core.Handler
                 throw new ComponentTypeNotFoundException($"ComponentType {request.ComponentTypeId} has not been found");
             }
 
-            componentType.SetAsDeleted();
+            if (!componentType.IsDeleted)
+            {
+                componentType.SetAsDeleted();
 
-            var componentTypeLogId = Guid.NewGuid();
+                var componentTypeLogId = Guid.NewGuid();
 
-            var componentTypeLog = Domain.Entities.ComponentTypeLog.Create(componentTypeLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), request.ComponentTypeId); // Mock!
+                var componentTypeLog = Domain.Entities.ComponentTypeLog.Create(componentTypeLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), request.ComponentTypeId); // Mock!
 
-            await databaseContext.Logs.AddAsync(componentTypeLog, cancellationToken).ConfigureAwait(false);
+                await databaseContext.Logs.AddAsync(componentTypeLog, cancellationToken).ConfigureAwait(false);
+            }
 
             databaseContext.SaveChanges();
 

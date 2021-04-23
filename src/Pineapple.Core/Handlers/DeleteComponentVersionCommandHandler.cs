@@ -59,13 +59,16 @@ namespace Pineapple.Core.Handler
                 throw new ComponentVersionNotFoundException($"ComponentVersion {request.ComponentVersionId} has not been found");
             }
 
-            componentVersion.SetAsDeleted();
+            if (!componentVersion.IsDeleted)
+            {
+                componentVersion.SetAsDeleted();
 
-            var componentVersionLogId = Guid.NewGuid();
+                var componentVersionLogId = Guid.NewGuid();
 
-            var componentVersionLog = Domain.Entities.ComponentVersionLog.Create(componentVersionLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), request.ComponentVersionId); // Mock!
+                var componentVersionLog = Domain.Entities.ComponentVersionLog.Create(componentVersionLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), request.ComponentVersionId); // Mock!
 
-            await databaseContext.Logs.AddAsync(componentVersionLog, cancellationToken).ConfigureAwait(false);
+                await databaseContext.Logs.AddAsync(componentVersionLog, cancellationToken).ConfigureAwait(false);
+            }
 
             databaseContext.SaveChanges();
 

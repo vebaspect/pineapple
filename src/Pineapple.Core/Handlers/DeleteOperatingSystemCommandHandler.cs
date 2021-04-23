@@ -38,13 +38,16 @@ namespace Pineapple.Core.Handler
                 throw new OperatingSystemNotFoundException($"OperatingSystem {request.OperatingSystemId} has not been found");
             }
 
-            operatingSystem.SetAsDeleted();
+            if (!operatingSystem.IsDeleted)
+            {
+                operatingSystem.SetAsDeleted();
 
-            var operatingSystemLogId = Guid.NewGuid();
+                var operatingSystemLogId = Guid.NewGuid();
 
-            var operatingSystemLog = Domain.Entities.OperatingSystemLog.Create(operatingSystemLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), request.OperatingSystemId); // Mock!
+                var operatingSystemLog = Domain.Entities.OperatingSystemLog.Create(operatingSystemLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), request.OperatingSystemId); // Mock!
 
-            await databaseContext.Logs.AddAsync(operatingSystemLog, cancellationToken).ConfigureAwait(false);
+                await databaseContext.Logs.AddAsync(operatingSystemLog, cancellationToken).ConfigureAwait(false);
+            }
 
             databaseContext.SaveChanges();
 

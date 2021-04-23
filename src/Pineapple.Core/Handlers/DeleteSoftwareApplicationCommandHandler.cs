@@ -38,13 +38,16 @@ namespace Pineapple.Core.Handler
                 throw new SoftwareApplicationNotFoundException($"SoftwareApplication {request.SoftwareApplicationId} has not been found");
             }
 
-            softwareApplication.SetAsDeleted();
+            if (!softwareApplication.IsDeleted)
+            {
+                softwareApplication.SetAsDeleted();
 
-            var softwareApplicationLogId = Guid.NewGuid();
+                var softwareApplicationLogId = Guid.NewGuid();
 
-            var softwareApplicationLog = Domain.Entities.SoftwareApplicationLog.Create(softwareApplicationLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), request.SoftwareApplicationId); // Mock!
+                var softwareApplicationLog = Domain.Entities.SoftwareApplicationLog.Create(softwareApplicationLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), request.SoftwareApplicationId); // Mock!
 
-            await databaseContext.Logs.AddAsync(softwareApplicationLog, cancellationToken).ConfigureAwait(false);
+                await databaseContext.Logs.AddAsync(softwareApplicationLog, cancellationToken).ConfigureAwait(false);
+            }
 
             databaseContext.SaveChanges();
 
