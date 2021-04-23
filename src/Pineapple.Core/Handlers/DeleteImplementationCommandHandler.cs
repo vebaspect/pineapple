@@ -44,7 +44,7 @@ namespace Pineapple.Core.Handler
 
                 var implementationLogId = Guid.NewGuid();
 
-                var implementationLog = Domain.Entities.ImplementationLog.Create(implementationLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), request.ImplementationId); // Mock!
+                var implementationLog = Domain.Entities.ImplementationLog.Create(implementationLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), implementation.Id); // Mock!
 
                 await databaseContext.Logs.AddAsync(implementationLog, cancellationToken).ConfigureAwait(false);
             }

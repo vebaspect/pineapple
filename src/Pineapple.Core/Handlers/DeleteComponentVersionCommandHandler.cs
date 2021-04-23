@@ -65,7 +65,7 @@ namespace Pineapple.Core.Handler
 
                 var componentVersionLogId = Guid.NewGuid();
 
-                var componentVersionLog = Domain.Entities.ComponentVersionLog.Create(componentVersionLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), request.ComponentVersionId); // Mock!
+                var componentVersionLog = Domain.Entities.ComponentVersionLog.Create(componentVersionLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), componentVersion.Id); // Mock!
 
                 await databaseContext.Logs.AddAsync(componentVersionLog, cancellationToken).ConfigureAwait(false);
             }

@@ -80,7 +80,7 @@ namespace Pineapple.Core.Handler
 
                 var productLogId = Guid.NewGuid();
 
-                var productLog = Domain.Entities.ProductLog.Create(productLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), request.ProductId); // Mock!
+                var productLog = Domain.Entities.ProductLog.Create(productLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), product.Id); // Mock!
 
                 await databaseContext.Logs.AddAsync(productLog, cancellationToken).ConfigureAwait(false);
             }
