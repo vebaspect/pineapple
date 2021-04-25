@@ -16,7 +16,7 @@ const ComponentVersion: React.VFC = () => {
 
   // Flaga określająca, czy wersja komponentu została pobrana z API.
   const [isComponentVersionFetched, setIsComponentVersionFetched] = useState(false);
-  // Wersha komponentu.
+  // Wersja komponentu.
   const [componentVersion, setComponentVersion] = useState(null);
 
   const fetchComponentVersion = useCallback(async () => {
