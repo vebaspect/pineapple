@@ -37,6 +37,7 @@ import CreateManagerEditor from '../editors/users/createManagerEditor';
 import CreateOperatingSystemEditor from '../editors/configuration/createOperatingSystemEditor';
 import CreateOperatorEditor from '../editors/users/createOperatorEditor';
 import CreateProductEditor from '../editors/products/createProductEditor';
+import CreateServerEditor from '../editors/implementations/createServerEditor';
 import CreateSoftwareApplicationEditor from '../editors/configuration/createSoftwareApplicationEditor';
 
 const Title: React.VFC = () => {
@@ -68,6 +69,9 @@ const Title: React.VFC = () => {
       </Route>
       <Route path="/implementations/create">
         <CreateImplementationEditor />
+      </Route>
+      <Route path="/implementations/:implementationId/environments/:environmentId/servers/create">
+        <CreateServerEditor />
       </Route>
       <Route path="/implementations/:implementationId/environments/create">
         <CreateEnvironmentEditor />
