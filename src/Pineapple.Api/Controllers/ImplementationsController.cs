@@ -203,6 +203,29 @@ namespace Pineapple.Api.Controllers
             return Created($"/implementations/{implementationId}/environments/{environmentId}/servers/{result}", null);
         }
 
+        [HttpDelete]
+        [Route("{implementationId}/environments/{environmentId}/servers/{serverId}")]
+        public async Task<IActionResult> DeleteServer(string implementationId, string environmentId, string serverId)
+        {
+            if (implementationId is null || !Guid.TryParse(implementationId, out _))
+            {
+                return BadRequest("Implementation identifier has not been provided");
+            }
+            if (environmentId is null || !Guid.TryParse(environmentId, out _))
+            {
+                return BadRequest("Environment identifier has not been provided");
+            }
+            if (serverId is null || !Guid.TryParse(serverId, out _))
+            {
+                return BadRequest("Server identifier has not been provided");
+            }
+
+            DeleteServerCommand command = new(Guid.Parse(implementationId), Guid.Parse(environmentId), Guid.Parse(serverId));
+            await mediator.Send(command).ConfigureAwait(false);
+
+            return Ok();
+        }
+
         [HttpGet]
         [Route("{implementationId}/environments/{environmentId}/servers/{serverId}")]
         public async Task<IActionResult> GetServer(string implementationId, string environmentId, string serverId)
