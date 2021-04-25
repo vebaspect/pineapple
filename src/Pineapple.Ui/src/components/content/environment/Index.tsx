@@ -77,7 +77,7 @@ const Environment: React.VFC = () => {
     // TODO
   };
 
-  const deleteServer = async (id) => {
+  const deleteServer = async (id: string) => {
     await fetch(
       `${window['env'].API_URL}/implementations/${implementationId}/environments/${environmentId}/servers/${id}`,
       {

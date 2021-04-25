@@ -77,7 +77,7 @@ const Component: React.VFC = () => {
     // TODO
   };
 
-  const deleteComponentVersion = async (id) => {
+  const deleteComponentVersion = async (id: string) => {
     await fetch(
       `${window['env'].API_URL}/products/${productId}/components/${componentId}/component-versions/${id}`,
       {

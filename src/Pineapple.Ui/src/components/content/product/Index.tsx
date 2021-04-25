@@ -104,7 +104,7 @@ const Product: React.VFC = () => {
     // TODO
   };
 
-  const deleteComponent = async (id) => {
+  const deleteComponent = async (id: string) => {
     await fetch(
       `${window['env'].API_URL}/products/${productId}/components/${id}`,
       {

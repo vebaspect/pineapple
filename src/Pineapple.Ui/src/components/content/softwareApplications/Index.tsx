@@ -53,7 +53,7 @@ const SoftwareApplications: React.VFC = () => {
     // TODO
   };
 
-  const deleteSoftwareApplication = async (id) => {
+  const deleteSoftwareApplication = async (id: string) => {
     await fetch(
       `${window['env'].API_URL}/configuration/software-applications/${id}`,
       {

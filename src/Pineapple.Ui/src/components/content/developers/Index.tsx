@@ -53,7 +53,7 @@ const Developers: React.VFC = () => {
     // TODO
   };
 
-  const deleteDeveloper = async (id) => {
+  const deleteDeveloper = async (id: string) => {
     await fetch(
       `${window['env'].API_URL}/users/${id}`,
       {

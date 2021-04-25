@@ -104,7 +104,7 @@ const Implementation: React.VFC = () => {
     // TODO
   };
 
-  const deleteEnvironment = async (id) => {
+  const deleteEnvironment = async (id: string) => {
     await fetch(
       `${window['env'].API_URL}/implementations/${implementationId}/environments/${id}`,
       {

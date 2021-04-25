@@ -53,7 +53,7 @@ const OperatingSystems: React.VFC = () => {
     // TODO
   };
 
-  const deleteOperatingSystem = async (id) => {
+  const deleteOperatingSystem = async (id: string) => {
     await fetch(
       `${window['env'].API_URL}/configuration/operating-systems/${id}`,
       {

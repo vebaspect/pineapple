@@ -53,7 +53,7 @@ const Administrators: React.VFC = () => {
     // TODO
   };
 
-  const deleteAdministrator = async (id) => {
+  const deleteAdministrator = async (id: string) => {
     await fetch(
       `${window['env'].API_URL}/users/${id}`,
       {

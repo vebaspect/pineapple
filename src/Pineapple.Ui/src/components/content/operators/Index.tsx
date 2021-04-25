@@ -53,7 +53,7 @@ const Operators: React.VFC = () => {
     // TODO
   };
 
-  const deleteOperator = async (id) => {
+  const deleteOperator = async (id: string) => {
     await fetch(
       `${window['env'].API_URL}/users/${id}`,
       {

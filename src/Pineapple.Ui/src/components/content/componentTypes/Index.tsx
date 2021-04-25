@@ -53,7 +53,7 @@ const ComponentTypes: React.VFC = () => {
     // TODO
   };
 
-  const deleteComponentType = async (id) => {
+  const deleteComponentType = async (id: string) => {
     await fetch(
       `${window['env'].API_URL}/configuration/component-types/${id}`,
       {

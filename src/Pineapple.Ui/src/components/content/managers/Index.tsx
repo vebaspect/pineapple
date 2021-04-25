@@ -53,7 +53,7 @@ const Managers: React.VFC = () => {
     // TODO
   };
 
-  const deleteManager = async (id) => {
+  const deleteManager = async (id: string) => {
     await fetch(
       `${window['env'].API_URL}/users/${id}`,
       {
