@@ -30,12 +30,48 @@ namespace Pineapple.Core.Handler
 
             var implementation = await databaseContext
                 .Implementations
+                .Include(implementation => implementation.Environments)
+                .ThenInclude(environment => environment.Servers)
                 .FirstOrDefaultAsync(implementation => implementation.Id == request.ImplementationId, cancellationToken: cancellationToken)
                 .ConfigureAwait(false);
 
             if (implementation is null)
             {
                 throw new ImplementationNotFoundException($"Implementation {request.ImplementationId} has not been found");
+            }
+
+            if (implementation.Environments?.Count > 0)
+            {
+                foreach (Domain.Entities.Environment environment in implementation.Environments)
+                {
+                    if (!environment.IsDeleted)
+                    {
+                        if (environment.Servers?.Count > 0)
+                        {
+                            foreach (Domain.Entities.Server server in environment.Servers)
+                            {
+                                if (!server.IsDeleted)
+                                {
+                                    server.SetAsDeleted();
+
+                                    var serverLogId = Guid.NewGuid();
+
+                                    var serverLog = Domain.Entities.ServerLog.Create(serverLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), server.Id); // Mock!
+
+                                    await databaseContext.Logs.AddAsync(serverLog, cancellationToken).ConfigureAwait(false);
+                                }
+                            }
+                        }
+
+                        environment.SetAsDeleted();
+
+                        var environmentLogId = Guid.NewGuid();
+
+                        var environmentLog = Domain.Entities.EnvironmentLog.Create(environmentLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), environment.Id); // Mock!
+
+                        await databaseContext.Logs.AddAsync(environmentLog, cancellationToken).ConfigureAwait(false);
+                    }
+                }
             }
 
             if (!implementation.IsDeleted)
