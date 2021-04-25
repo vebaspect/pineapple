@@ -21,6 +21,7 @@ import OperatingSystems from './operatingSystems';
 import Operators from './operators';
 import Product from './product';
 import Products from './products';
+import Server from './server';
 import SoftwareApplication from './softwareApplication';
 import SoftwareApplications from './softwareApplications';
 import User from './user';
@@ -72,6 +73,9 @@ const Title: React.VFC = () => {
       </Route>
       <Route path="/implementations/:implementationId/environments/:environmentId/servers/create">
         <CreateServerEditor />
+      </Route>
+      <Route path="/implementations/:implementationId/environments/:environmentId/servers/:serverId">
+        <Server />
       </Route>
       <Route path="/implementations/:implementationId/environments/create">
         <CreateEnvironmentEditor />
