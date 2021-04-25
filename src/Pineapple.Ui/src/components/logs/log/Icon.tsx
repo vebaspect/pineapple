@@ -20,8 +20,8 @@ import PersonIcon from '@material-ui/icons/Person';
 import PowerIcon from '@material-ui/icons/Power';
 import ReportProblemIcon from '@material-ui/icons/ReportProblem';
 import SaveIcon from '@material-ui/icons/Save';
+import ShareIcon from '@material-ui/icons/Share';
 import StorageIcon from '@material-ui/icons/Storage';
-import WebIcon from '@material-ui/icons/Web';
 
 import {
   LOG_TYPE__COMPONENT,
@@ -131,7 +131,7 @@ const Icon: React.FC<IconProps> = ({ type, category }: IconProps) => {
       typeClassName = styles.componentVersion;
       break;
     case LOG_TYPE__ENVIRONMENT:
-      typeIcon = <WebIcon />;
+      typeIcon = <ShareIcon />;
       typeClassName = styles.environment;
       break;
     case LOG_TYPE__IMPLEMENTATION:
