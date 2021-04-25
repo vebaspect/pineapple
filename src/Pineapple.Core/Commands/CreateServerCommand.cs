@@ -22,6 +22,11 @@ namespace Pineapple.Core.Commands
         public string Symbol { get; }
 
         /// <summary>
+        /// Adres IP.
+        /// </summary>
+        public string IpAddress { get; }
+
+        /// <summary>
         /// Opis.
         /// </summary>
         public string Description { get; }
@@ -31,19 +36,14 @@ namespace Pineapple.Core.Commands
         /// </summary>
         public Guid OperatingSystemId { get; }
 
-        /// <summary>
-        /// Adres IP.
-        /// </summary>
-        public string IpAddress { get; }
-
-        public CreateServerCommand(Guid environmentId, string name, string symbol, string description, Guid operatingSystemId, string ipAddress)
+        public CreateServerCommand(Guid environmentId, string name, string symbol, string ipAddress, string description, Guid operatingSystemId)
         {
             EnvironmentId = environmentId;
             Name = name;
             Symbol = symbol;
+            IpAddress = ipAddress;
             Description = description;
             OperatingSystemId = operatingSystemId;
-            IpAddress = ipAddress;
         }
     }
 }

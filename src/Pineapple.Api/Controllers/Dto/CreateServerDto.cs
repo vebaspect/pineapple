@@ -18,6 +18,11 @@ namespace Pineapple.Api.Controllers.Dto
         public string Symbol { get; set; }
 
         /// <summary>
+        /// Adres IP.
+        /// </summary>
+        public string IpAddress { get; set; }
+
+        /// <summary>
         /// Opis.
         /// </summary>
         public string Description { get; set; }
@@ -26,10 +31,5 @@ namespace Pineapple.Api.Controllers.Dto
         /// Identyfikator systemu operacyjnego.
         /// </summary>
         public Guid OperatingSystemId { get; set; }
-
-        /// <summary>
-        /// Adres IP.
-        /// </summary>
-        public string IpAddress { get; set; }
     }
 }

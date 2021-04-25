@@ -67,9 +67,9 @@ Content-Type: application/json
 {
     "Name": "",
     "Symbol": "",
+    "IpAddress": "",
     "Description": "",
-    "OperatingSystemId": "",
-    "IpAddress": ""
+    "OperatingSystemId": ""
 }
 
 ### /implementations/{implementationId}/environments/{environmentId}/servers/{serverId}

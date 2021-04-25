@@ -38,6 +38,11 @@ namespace Pineapple.Core.Dto
         public string Symbol { get; }
 
         /// <summary>
+        /// Adres IP.
+        /// </summary>
+        public string IpAddress { get; }
+
+        /// <summary>
         /// Opis.
         /// </summary>
         public string Description { get; }
@@ -52,12 +57,7 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public string OperatingSystemName { get; }
 
-        /// <summary>
-        /// Adres IP.
-        /// </summary>
-        public string IpAddress { get; }
-
-        public ServerDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string name, string symbol, string description, Guid operatingSystemId, string operatingSystemName, string ipAddress)
+        public ServerDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string name, string symbol, string ipAddress, string description, Guid operatingSystemId, string operatingSystemName)
         {
             Id = id;
             CreationDate = creationDate;
@@ -65,10 +65,10 @@ namespace Pineapple.Core.Dto
             IsDeleted = isDeleted;
             Name = name;
             Symbol = symbol;
+            IpAddress = ipAddress;
             Description = description;
             OperatingSystemId = operatingSystemId;
             OperatingSystemName = operatingSystemName;
-            IpAddress = ipAddress;
         }
     }
 }

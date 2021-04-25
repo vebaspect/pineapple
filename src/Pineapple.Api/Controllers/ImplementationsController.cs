@@ -196,7 +196,7 @@ namespace Pineapple.Api.Controllers
                 return BadRequest("Server data has not been provided");
             }
 
-            CreateServerCommand command = new(Guid.Parse(environmentId), dto.Name, dto.Symbol, dto.Description, dto.OperatingSystemId, dto.IpAddress);
+            CreateServerCommand command = new(Guid.Parse(environmentId), dto.Name, dto.Symbol, dto.IpAddress, dto.Description, dto.OperatingSystemId);
             Task<Guid> resultTask = await mediator.Send(command).ConfigureAwait(false);
             Guid result = await resultTask.ConfigureAwait(false);
 

@@ -346,10 +346,10 @@ namespace Pineapple.Core.Mappers
                 server.IsDeleted,
                 server.Name,
                 server.Symbol,
+                server.IpAddress,
                 server.Description,
                 server.OperatingSystemId,
-                server.OperatingSystem.Name,
-                server.IpAddress
+                server.OperatingSystem.Name
             );
         }
 

@@ -25,6 +25,9 @@ namespace Pineapple.Core.Storage.Database.Configurations
                 .IsRequired()
                 .HasMaxLength(200);
             builder
+                .Property(server => server.IpAddress)
+                .HasMaxLength(100);
+            builder
                 .Property(server => server.Description)
                 .HasMaxLength(4000);
             builder
@@ -39,9 +42,6 @@ namespace Pineapple.Core.Storage.Database.Configurations
                 .HasForeignKey(server => server.OperatingSystemId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
-            builder
-                .Property(server => server.IpAddress)
-                .HasMaxLength(100);
             builder
                 .HasMany(server => server.ComponentVersions)
                 .WithMany(componentVersion => componentVersion.Servers);

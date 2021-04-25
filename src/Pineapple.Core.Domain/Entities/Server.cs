@@ -19,6 +19,11 @@ namespace Pineapple.Core.Domain.Entities
         public string Symbol { get; }
 
         /// <summary>
+        /// Adres IP.
+        /// </summary>
+        public string IpAddress { get; }
+
+        /// <summary>
         /// Opis.
         /// </summary>
         public string Description { get; }
@@ -44,11 +49,6 @@ namespace Pineapple.Core.Domain.Entities
         public OperatingSystem OperatingSystem { get; }
 
         /// <summary>
-        /// Adres IP.
-        /// </summary>
-        public string IpAddress { get; }
-
-        /// <summary>
         /// Wersje komponentów.
         /// </summary>
         public List<ComponentVersion> ComponentVersions { get; }
@@ -63,23 +63,23 @@ namespace Pineapple.Core.Domain.Entities
         /// </summary>
         public List<ServerLog> EntityLogs { get; }
 
-        private Server(Guid id, string name, string symbol, string description, Guid environmentId, Guid operatingSystemId, string ipAddress)
+        private Server(Guid id, string name, string symbol, string ipAddress, string description, Guid environmentId, Guid operatingSystemId)
             : base(id)
         {
             Name = name;
             Symbol = symbol;
+            IpAddress = ipAddress;
             Description = description;
             EnvironmentId = environmentId;
             OperatingSystemId = operatingSystemId;
-            IpAddress = ipAddress;
         }
 
         /// <summary>
         /// Stwórz serwer.
         /// </summary>
-        public static Server Create(Guid id, string name, string symbol, string description, Guid environmentId, Guid operatingSystemId, string ipAddress)
+        public static Server Create(Guid id, string name, string symbol, string ipAddress, string description, Guid environmentId, Guid operatingSystemId)
         {
-            return new Server(id, name, symbol, description, environmentId, operatingSystemId, ipAddress);
+            return new Server(id, name, symbol, ipAddress, description, environmentId, operatingSystemId);
         }
     }
 }
