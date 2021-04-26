@@ -10,7 +10,7 @@ using Pineapple.Core.Storage.Database;
 namespace Pineapple.Core.Storage.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210421190955_Initial")]
+    [Migration("20210426202434_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,21 +20,6 @@ namespace Pineapple.Core.Storage.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
                 .HasAnnotation("ProductVersion", "5.0.5")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-            modelBuilder.Entity("ComponentVersionServer", b =>
-                {
-                    b.Property<Guid>("ComponentVersionsId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("ServersId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("ComponentVersionsId", "ServersId");
-
-                    b.HasIndex("ServersId");
-
-                    b.ToTable("ComponentVersionServer");
-                });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Component", b =>
                 {
@@ -375,6 +360,9 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Property<Guid>("OperatingSystemId")
                         .HasColumnType("uuid");
 
+                    b.Property<Guid?>("SoftwareApplicationId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Symbol")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -386,10 +374,33 @@ namespace Pineapple.Core.Storage.Migrations
 
                     b.HasIndex("OperatingSystemId");
 
+                    b.HasIndex("SoftwareApplicationId");
+
                     b.HasIndex("Symbol")
                         .IsUnique();
 
                     b.ToTable("Servers");
+                });
+
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.ServerComponent", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("ComponentVersionId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("ServerId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ComponentVersionId");
+
+                    b.HasIndex("ServerId");
+
+                    b.ToTable("ServerComponents");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.SoftwareApplication", b =>
@@ -475,21 +486,6 @@ namespace Pineapple.Core.Storage.Migrations
                     b.ToTable("Users");
 
                     b.HasDiscriminator<string>("Type").HasValue("User");
-                });
-
-            modelBuilder.Entity("ServerSoftwareApplication", b =>
-                {
-                    b.Property<Guid>("ServersId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("SoftwareApplicationsId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("ServersId", "SoftwareApplicationsId");
-
-                    b.HasIndex("SoftwareApplicationsId");
-
-                    b.ToTable("ServerSoftwareApplication");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.ComponentLog", b =>
@@ -640,21 +636,6 @@ namespace Pineapple.Core.Storage.Migrations
                     b.HasDiscriminator().HasValue("Operator");
                 });
 
-            modelBuilder.Entity("ComponentVersionServer", b =>
-                {
-                    b.HasOne("Pineapple.Core.Domain.Entities.ComponentVersion", null)
-                        .WithMany()
-                        .HasForeignKey("ComponentVersionsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Pineapple.Core.Domain.Entities.Server", null)
-                        .WithMany()
-                        .HasForeignKey("ServersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Component", b =>
                 {
                     b.HasOne("Pineapple.Core.Domain.Entities.ComponentType", "ComponentType")
@@ -740,24 +721,32 @@ namespace Pineapple.Core.Storage.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Pineapple.Core.Domain.Entities.SoftwareApplication", null)
+                        .WithMany("Servers")
+                        .HasForeignKey("SoftwareApplicationId");
+
                     b.Navigation("Environment");
 
                     b.Navigation("OperatingSystem");
                 });
 
-            modelBuilder.Entity("ServerSoftwareApplication", b =>
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.ServerComponent", b =>
                 {
-                    b.HasOne("Pineapple.Core.Domain.Entities.Server", null)
-                        .WithMany()
-                        .HasForeignKey("ServersId")
+                    b.HasOne("Pineapple.Core.Domain.Entities.ComponentVersion", "ComponentVersion")
+                        .WithMany("Servers")
+                        .HasForeignKey("ComponentVersionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Pineapple.Core.Domain.Entities.SoftwareApplication", null)
-                        .WithMany()
-                        .HasForeignKey("SoftwareApplicationsId")
+                    b.HasOne("Pineapple.Core.Domain.Entities.Server", "Server")
+                        .WithMany("InstalledComponents")
+                        .HasForeignKey("ServerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ComponentVersion");
+
+                    b.Navigation("Server");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.ComponentLog", b =>
@@ -887,6 +876,8 @@ namespace Pineapple.Core.Storage.Migrations
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.ComponentVersion", b =>
                 {
                     b.Navigation("EntityLogs");
+
+                    b.Navigation("Servers");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Environment", b =>
@@ -920,11 +911,15 @@ namespace Pineapple.Core.Storage.Migrations
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Server", b =>
                 {
                     b.Navigation("EntityLogs");
+
+                    b.Navigation("InstalledComponents");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.SoftwareApplication", b =>
                 {
                     b.Navigation("EntityLogs");
+
+                    b.Navigation("Servers");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.User", b =>
