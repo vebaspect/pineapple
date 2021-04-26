@@ -249,5 +249,69 @@ namespace Pineapple.Api.Controllers
 
             return Ok(result);
         }
+
+        [HttpPost]
+        [Route("{implementationId}/environments/{environmentId}/servers/{serverId}/components")]
+        public async Task<IActionResult> InstallComponent(string implementationId, string environmentId, string serverId, [FromBody]InstallComponentDto dto)
+        {
+            if (implementationId is null || !Guid.TryParse(implementationId, out _))
+            {
+                return BadRequest("Implementation identifier has not been provided");
+            }
+            if (environmentId is null || !Guid.TryParse(environmentId, out _))
+            {
+                return BadRequest("Environment identifier has not been provided");
+            }
+            if (serverId is null || !Guid.TryParse(serverId, out _))
+            {
+                return BadRequest("Server identifier has not been provided");
+            }
+
+            if (dto is null)
+            {
+                return BadRequest("Component installation data has not been provided");
+            }
+            if (dto.ComponentVersionId is null || !Guid.TryParse(dto.ComponentVersionId, out _))
+            {
+                return BadRequest("Component version has not been provided");
+            }
+
+            InstallComponentCommand command = new(Guid.Parse(serverId), Guid.Parse(dto.ComponentVersionId));
+            await mediator.Send(command).ConfigureAwait(false);
+
+            return Ok();
+        }
+
+        [HttpDelete]
+        [Route("{implementationId}/environments/{environmentId}/servers/{serverId}/components")]
+        public async Task<IActionResult> UninstallComponent(string implementationId, string environmentId, string serverId, [FromBody]InstallComponentDto dto)
+        {
+            if (implementationId is null || !Guid.TryParse(implementationId, out _))
+            {
+                return BadRequest("Implementation identifier has not been provided");
+            }
+            if (environmentId is null || !Guid.TryParse(environmentId, out _))
+            {
+                return BadRequest("Environment identifier has not been provided");
+            }
+            if (serverId is null || !Guid.TryParse(serverId, out _))
+            {
+                return BadRequest("Server identifier has not been provided");
+            }
+
+            if (dto is null)
+            {
+                return BadRequest("Component uninstallation data has not been provided");
+            }
+            if (dto.ComponentVersionId is null || !Guid.TryParse(dto.ComponentVersionId, out _))
+            {
+                return BadRequest("Component version has not been provided");
+            }
+
+            UninstallComponentCommand command = new(Guid.Parse(serverId), Guid.Parse(dto.ComponentVersionId));
+            await mediator.Send(command).ConfigureAwait(false);
+
+            return Ok();
+        }
     }
 }

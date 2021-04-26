@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Pineapple.Core.Dto
 {
@@ -57,7 +58,12 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public string OperatingSystemName { get; }
 
-        public ServerDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string name, string symbol, string ipAddress, string description, Guid operatingSystemId, string operatingSystemName)
+        /// <summary>
+        /// Zainstalowane komponenty.
+        /// </summary>
+        public List<InstalledComponentDto> InstalledComponents { get; }
+
+        public ServerDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string name, string symbol, string ipAddress, string description, Guid operatingSystemId, string operatingSystemName, List<InstalledComponentDto> installedComponents)
         {
             Id = id;
             CreationDate = creationDate;
@@ -69,6 +75,7 @@ namespace Pineapple.Core.Dto
             Description = description;
             OperatingSystemId = operatingSystemId;
             OperatingSystemName = operatingSystemName;
+            InstalledComponents = installedComponents;
         }
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Pineapple.Core.Dto;
 
 namespace Pineapple.Core.Mappers
@@ -349,7 +350,19 @@ namespace Pineapple.Core.Mappers
                 server.IpAddress,
                 server.Description,
                 server.OperatingSystemId,
-                server.OperatingSystem.Name
+                server.OperatingSystem.Name,
+                server
+                    .InstalledComponents?
+                    .Select(installedComponent =>
+                    {
+                        return new InstalledComponentDto(
+                            installedComponent.ComponentVersion.ComponentId,
+                            installedComponent.ComponentVersion.Component.Name,
+                            installedComponent.ComponentVersionId,
+                            installedComponent.ComponentVersion.GetFormattedNumber()
+                        );
+                    })
+                    .ToList()
             );
         }
 

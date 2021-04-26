@@ -44,12 +44,12 @@ namespace Pineapple.Core.Domain.Entities
         public Component Component { get; }
 
         /// <summary>
-        /// Serwery.
+        /// Serwery na których jest zainstalowana.
         /// </summary>
-        public List<Server> Servers { get; }
+        public List<ServerComponent> Servers { get; }
 
         /// <summary>
-        /// Logi dotyczące komponentu.
+        /// Logi dotyczące wersji komponentu.
         /// </summary>
         public List<ComponentVersionLog> EntityLogs { get; }
 

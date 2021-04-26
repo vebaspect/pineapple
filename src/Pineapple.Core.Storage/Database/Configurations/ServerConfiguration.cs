@@ -43,12 +43,6 @@ namespace Pineapple.Core.Storage.Database.Configurations
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
             builder
-                .HasMany(server => server.ComponentVersions)
-                .WithMany(componentVersion => componentVersion.Servers);
-            builder
-                .HasMany(server => server.SoftwareApplications)
-                .WithMany(softwareApplication => softwareApplication.Servers);
-            builder
                 .HasMany(server => server.EntityLogs)
                 .WithOne(log => log.Server)
                 .HasForeignKey(log => log.ServerId)

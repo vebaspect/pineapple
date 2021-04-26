@@ -49,14 +49,9 @@ namespace Pineapple.Core.Domain.Entities
         public OperatingSystem OperatingSystem { get; }
 
         /// <summary>
-        /// Wersje komponentów.
+        /// Zainstalowane komponenty.
         /// </summary>
-        public List<ComponentVersion> ComponentVersions { get; }
-
-        /// <summary>
-        /// Oprogramowanie.
-        /// </summary>
-        public List<SoftwareApplication> SoftwareApplications { get; }
+        public List<ServerComponent> InstalledComponents { get; }
 
         /// <summary>
         /// Logi dotyczące serwera.
@@ -81,5 +76,37 @@ namespace Pineapple.Core.Domain.Entities
         {
             return new Server(id, name, symbol, ipAddress, description, environmentId, operatingSystemId);
         }
+
+        /// <summary>
+        /// Zainstaluj komponent.
+        /// </summary>
+        public void InstallComponent(Guid componentVersionId)
+        {
+            InstalledComponents?.Add(new(Id, componentVersionId));
+        }
+
+        /// <summary>
+        /// Odinstaluj komponent.
+        /// </summary>
+        // public void UninstallComponent()
+        // {
+        //     // TODO
+        // }
+
+        /// <summary>
+        /// Zainstaluj oprogramowanie.
+        /// </summary>
+        // public void InstallSoftwareApplication()
+        // {
+        //     // TODO
+        // }
+
+        /// <summary>
+        /// Odinstaluj oprogramowanie.
+        /// </summary>
+        // public void UninstallSoftwareApplication()
+        // {
+        //     // TODO
+        // }
     }
 }

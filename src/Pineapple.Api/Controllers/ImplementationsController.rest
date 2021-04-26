@@ -79,3 +79,19 @@ Content-Type: application/json
 ### /implementations/{implementationId}/environments/{environmentId}/servers/{serverId}
 GET {{url}}/implementations/{{implementationId}}/environments/{{environmentId}}/servers/{{serverId}}
 Content-Type: application/json
+
+### /implementations/{implementationId}/environments/{environmentId}/servers/{serverId}/components
+POST {{url}}/implementations/{{implementationId}}/environments/{{environmentId}}/servers/{{serverId}}/components
+Content-Type: application/json
+
+{
+    "ComponentVersionId": ""
+}
+
+### /implementations/{implementationId}/environments/{environmentId}/servers/{serverId}/components
+DELETE {{url}}/implementations/{{implementationId}}/environments/{{environmentId}}/servers/{{serverId}}/components
+Content-Type: application/json
+
+{
+    "ComponentVersionId": ""
+}
