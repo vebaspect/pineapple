@@ -57,6 +57,11 @@ namespace Pineapple.Core.Storage.Database
         public DbSet<Server> Servers { get; set; }
 
         /// <summary>
+        /// Komponenty zainstalowane na serwerach.
+        /// </summary>
+        public DbSet<ServerComponent> ServerComponents { get; set; }
+
+        /// <summary>
         /// Oprogramowanie.
         /// </summary>
         public DbSet<SoftwareApplication> SoftwareApplications { get; set; }

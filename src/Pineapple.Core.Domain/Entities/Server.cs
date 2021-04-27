@@ -80,9 +80,9 @@ namespace Pineapple.Core.Domain.Entities
         /// <summary>
         /// Zainstaluj komponent.
         /// </summary>
-        public void InstallComponent(Guid componentVersionId)
+        public void InstallComponent(ServerComponent component)
         {
-            InstalledComponents?.Add(new(Id, componentVersionId));
+            InstalledComponents?.Add(component);
         }
 
         /// <summary>

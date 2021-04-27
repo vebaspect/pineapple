@@ -9,11 +9,11 @@ using Pineapple.Core.Storage.Database;
 
 namespace Pineapple.Core.Handler
 {
-    public class InstallComponentCommandHandler : AsyncRequestHandler<InstallComponentCommand>, ICommandHandler
+    public class UninstallComponentCommandHandler : AsyncRequestHandler<UninstallComponentCommand>, ICommandHandler
     {
         private readonly DatabaseContextFactory databaseContextFactory;
 
-        public InstallComponentCommandHandler(DatabaseContextFactory databaseContextFactory)
+        public UninstallComponentCommandHandler(DatabaseContextFactory databaseContextFactory)
         {
             if (databaseContextFactory is null)
             {
@@ -23,7 +23,7 @@ namespace Pineapple.Core.Handler
             this.databaseContextFactory = databaseContextFactory;
         }
 
-        protected override async Task<Task> Handle(InstallComponentCommand request, CancellationToken cancellationToken)
+        protected override async Task<Task> Handle(UninstallComponentCommand request, CancellationToken cancellationToken)
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
 

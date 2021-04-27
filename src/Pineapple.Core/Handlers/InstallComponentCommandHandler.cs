@@ -9,11 +9,11 @@ using Pineapple.Core.Storage.Database;
 
 namespace Pineapple.Core.Handler
 {
-    public class UninstallComponentCommandHandler : AsyncRequestHandler<UninstallComponentCommand>, ICommandHandler
+    public class InstallComponentCommandHandler : AsyncRequestHandler<InstallComponentCommand>, ICommandHandler
     {
         private readonly DatabaseContextFactory databaseContextFactory;
 
-        public UninstallComponentCommandHandler(DatabaseContextFactory databaseContextFactory)
+        public InstallComponentCommandHandler(DatabaseContextFactory databaseContextFactory)
         {
             if (databaseContextFactory is null)
             {
@@ -23,7 +23,7 @@ namespace Pineapple.Core.Handler
             this.databaseContextFactory = databaseContextFactory;
         }
 
-        protected override async Task<Task> Handle(UninstallComponentCommand request, CancellationToken cancellationToken)
+        protected override async Task<Task> Handle(InstallComponentCommand request, CancellationToken cancellationToken)
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
 
@@ -48,7 +48,11 @@ namespace Pineapple.Core.Handler
                 throw new ServerNotFoundException($"Server {request.ServerId} has not been found");
             }
 
-            server.InstallComponent(componentVersion.Id);
+            var component = new Domain.Entities.ServerComponent(server.Id, componentVersion.Id);
+
+            await databaseContext.ServerComponents.AddAsync(component, cancellationToken).ConfigureAwait(false);
+
+            server.InstallComponent(component);
 
             databaseContext.SaveChanges();
 
