@@ -5,6 +5,7 @@ import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 
 import Details from './Details';
+import InstalledComponentsList from './InstalledComponentsList';
 
 const Server: React.VFC = () => {
   // Identyfikator wdrożenia.
@@ -76,6 +77,27 @@ const Server: React.VFC = () => {
             operatingSystemId={server?.operatingSystemId}
             operatingSystemName={server?.operatingSystemName}
             description={server?.description}
+          />
+        </Paper>
+      </Box>
+      <Box
+        mb={3}
+      >
+        <Paper>
+        <Box
+            border={1}
+            borderLeft={0}
+            borderRight={0}
+            borderTop={0}
+            borderColor="#e0e0e0"
+            py={1.5}
+            textAlign="center"
+          >
+            Zainstalowane komponenty
+          </Box>
+          <InstalledComponentsList
+            isDataFetched={isServerFetched}
+            data={server?.installedComponents}
           />
         </Paper>
       </Box>

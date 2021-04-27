@@ -14,3 +14,19 @@ export interface DetailsProps {
   // Opis.
   description: string,
 }
+
+export interface InstalledComponentsListProps {
+  // Flaga określająca, czy serwer został pobrany z API.
+  isDataFetched: boolean,
+  // Lista zainstalowanych komponentów.
+  data: {
+    // Identyfikator komponentu.
+    componentId: string,
+    // Nazwa komponentu.
+    componentName: string,
+    // Identyfikator wersji komponentu.
+    componentVersionId: string,
+    // Numer wersji komponentu.
+    componentVersionNumber: string,
+  }[],
+}
