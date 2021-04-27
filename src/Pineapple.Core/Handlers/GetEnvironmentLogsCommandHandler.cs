@@ -34,7 +34,7 @@ namespace Pineapple.Core.Handler
                 .OfType<Domain.Entities.EnvironmentLog>()
                 .Include(log => log.Owner)
                 .Include(log => log.Environment)
-                .ThenInclude(environment => environment.Implementation)
+                    .ThenInclude(environment => environment.Implementation)
                 .Where(log => log.EnvironmentId == request.EnvironmentId)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
@@ -44,7 +44,7 @@ namespace Pineapple.Core.Handler
                 .OfType<Domain.Entities.ServerLog>()
                 .Include(log => log.Owner)
                 .Include(log => log.Server)
-                .ThenInclude(server => server.Environment)
+                    .ThenInclude(server => server.Environment)
                 .Where(log => log.Server.EnvironmentId == request.EnvironmentId)
                 .ToArrayAsync()
                 .ConfigureAwait(false);

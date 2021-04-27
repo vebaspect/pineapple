@@ -32,8 +32,8 @@ namespace Pineapple.Core.Handler
             var implementation = await databaseContext
                 .Implementations
                 .Include(implementation => implementation.Environments)
-                .ThenInclude(environment => environment.Servers)
-                .ThenInclude(environment => environment.OperatingSystem)
+                    .ThenInclude(environment => environment.Servers)
+                        .ThenInclude(environment => environment.OperatingSystem)
                 .FirstOrDefaultAsync(implementation => implementation.Id == request.ImplementationId)
                 .ConfigureAwait(false);
 

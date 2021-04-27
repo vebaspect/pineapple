@@ -32,7 +32,7 @@ namespace Pineapple.Core.Handler
             var product = await databaseContext
                 .Products
                 .Include(product => product.Components)
-                .ThenInclude(component => component.ComponentType)
+                    .ThenInclude(component => component.ComponentType)
                 .FirstOrDefaultAsync(product => product.Id == request.ProductId)
                 .ConfigureAwait(false);
 
