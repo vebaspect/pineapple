@@ -16,6 +16,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 
 import {
+  formatNumber,
   translateKind,
 } from '../../../helpers/componentVersionHelpers';
 
@@ -56,11 +57,7 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, productId, componentId
                   component={RouterLink}
                   to={`/products/${productId}/components/${componentId}/component-versions/${componentVersion.id}`}
                 >
-                  {
-                    componentVersion.suffix
-                      ? `${componentVersion.major}.${componentVersion.minor}.${componentVersion.patch}-${componentVersion.suffix}`
-                      : `${componentVersion.major}.${componentVersion.minor}.${componentVersion.patch}`
-                  }
+                  {formatNumber(componentVersion.major, componentVersion.minor, componentVersion.patch, componentVersion.suffix)}
                 </Link>
               </TableCell>
               <TableCell>{translateKind(componentVersion.kind)}</TableCell>

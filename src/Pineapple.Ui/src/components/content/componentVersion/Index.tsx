@@ -4,6 +4,10 @@ import { useParams } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 
+import {
+  formatNumber,
+} from '../../../helpers/componentVersionHelpers';
+
 import Details from './Details';
 
 const ComponentVersion: React.VFC = () => {
@@ -48,11 +52,7 @@ const ComponentVersion: React.VFC = () => {
                 fontStyle="italic"
                 px={0.5}
               >
-                {
-                  componentVersion?.suffix
-                    ? `${componentVersion?.major}.${componentVersion?.minor}.${componentVersion?.patch}-${componentVersion?.suffix}`
-                    : `${componentVersion?.major}.${componentVersion?.minor}.${componentVersion?.patch}`
-                }
+                {formatNumber(componentVersion?.major, componentVersion?.minor, componentVersion?.patch, componentVersion?.suffix)}
               </Box>)
             : ''
         }

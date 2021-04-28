@@ -13,6 +13,10 @@ import Select from '@material-ui/core/Select';
 import SaveIcon from '@material-ui/icons/Save';
 
 import {
+  formatNumber,
+} from '../../../../helpers/componentVersionHelpers';
+
+import {
   initialFormState,
   validateFormState,
 } from './helpers';
@@ -293,11 +297,7 @@ const InstallServerComponentEditor: React.VFC = () => {
                             key={componentVersion.id}
                             value={componentVersion.id}
                           >
-                            {
-                              componentVersion.suffix
-                                ? `${componentVersion.major}.${componentVersion.minor}.${componentVersion.patch}-${componentVersion.suffix}`
-                                : `${componentVersion.major}.${componentVersion.minor}.${componentVersion.patch}`
-                            }
+                            {formatNumber(componentVersion.major, componentVersion.minor, componentVersion.patch, componentVersion.suffix)}
                           </MenuItem>
                         );
                       })
