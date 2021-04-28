@@ -20,6 +20,10 @@ export interface InstalledComponentsListProps {
   isDataFetched: boolean,
   // Lista zainstalowanych komponentów.
   data: {
+    // Identyfikator produktu.
+    productId: string,
+    // Nazwa produktu.
+    productName: string,
     // Identyfikator komponentu.
     componentId: string,
     // Nazwa komponentu.
