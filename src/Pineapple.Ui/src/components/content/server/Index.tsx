@@ -1,13 +1,33 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
+
+import {
+  createStyles,
+  makeStyles,
+} from '@material-ui/core/styles';
 
 import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
+
+import AddIcon from '@material-ui/icons/Add';
 
 import Details from './Details';
 import InstalledComponentsList from './InstalledComponentsList';
 
+const useStyles = makeStyles(() =>
+  createStyles({
+    add: {
+      backgroundColor: '#4caf50',
+      color: '#fff',
+    },
+  }),
+);
+
 const Server: React.VFC = () => {
+  const history = useHistory();
+  const styles = useStyles();
+
   // Identyfikator wdrożenia.
   const { implementationId } = useParams();
   // Identyfikator środowiska.
@@ -32,6 +52,10 @@ const Server: React.VFC = () => {
   useEffect(() => {
     fetchServer();
   }, [fetchServer]);
+
+  const installComponent = () => {
+    history.push(`/implementations/${implementationId}/environments/${environmentId}/servers/${serverId}/components/create`);
+  };
 
   const uninstallComponent = async (id: string) => {
     await fetch(
@@ -102,7 +126,7 @@ const Server: React.VFC = () => {
         mb={3}
       >
         <Paper>
-        <Box
+          <Box
             border={1}
             borderLeft={0}
             borderRight={0}
@@ -118,6 +142,20 @@ const Server: React.VFC = () => {
             data={server?.installedComponents}
             onUninstall={uninstallComponent}
           />
+          <Box
+            p={1.5}
+            textAlign="right"
+          >
+            <Button
+              className={styles.add}
+              size="small"
+              startIcon={<AddIcon />}
+              variant="contained"
+              onClick={installComponent}
+            >
+              Dodaj
+            </Button>
+          </Box>
         </Paper>
       </Box>
     </>
