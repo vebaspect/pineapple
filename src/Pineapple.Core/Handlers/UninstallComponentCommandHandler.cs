@@ -48,8 +48,17 @@ namespace Pineapple.Core.Handler
                 throw new ServerNotFoundException($"Server {request.ServerId} has not been found");
             }
 
-            // TODO
-            // server.UninstallComponent();
+            var component = await databaseContext
+                .ServerComponents
+                .FirstOrDefaultAsync(component => component.ServerId == request.ServerId && component.ComponentVersionId == request.ComponentVersionId, cancellationToken: cancellationToken)
+                .ConfigureAwait(false);
+
+            if (component is null)
+            {
+                throw new ServerComponentNotFoundException($"ServerComponent {request.ServerId}|{request.ComponentVersionId} has not been found");
+            }
+
+            server.UninstallComponent(component);
 
             databaseContext.SaveChanges();
 

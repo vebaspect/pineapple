@@ -3,18 +3,22 @@ import { Link as RouterLink } from 'react-router-dom';
 
 import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import IconButton from '@material-ui/core/IconButton';
 import Link from '@material-ui/core/Link';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import Tooltip from '@material-ui/core/Tooltip';
+
+import DeleteIcon from '@material-ui/icons/Delete';
 
 import {
   InstalledComponentsListProps,
 } from './interfaces';
 
-const InstalledComponentsList: React.FC<InstalledComponentsListProps> = ({ isDataFetched, data }: InstalledComponentsListProps) => {
+const InstalledComponentsList: React.FC<InstalledComponentsListProps> = ({ isDataFetched, data, onUninstall }: InstalledComponentsListProps) => {
   if (!isDataFetched) {
     return (
       <Box
@@ -66,7 +70,17 @@ const InstalledComponentsList: React.FC<InstalledComponentsListProps> = ({ isDat
                   {installedComponent.componentVersionNumber}
                 </Link>
               </TableCell>
-              <TableCell align="right" />
+              <TableCell align="right">
+                <Tooltip title="Usuń">
+                  <IconButton
+                    color="secondary"
+                    size="small"
+                    onClick={() => onUninstall(installedComponent.componentVersionId)}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </Tooltip>
+              </TableCell>
             </TableRow>
           ))
         }

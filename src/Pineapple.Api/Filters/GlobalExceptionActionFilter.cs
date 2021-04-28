@@ -97,6 +97,16 @@ namespace Pineapple.Api.Filters
                 };
                 context.ExceptionHandled = true;
             }
+            if (context.Exception is ServerComponentNotFoundException)
+            {
+                context.Result = new ContentResult()
+                {
+                    StatusCode = StatusCodes.Status404NotFound,
+                    Content = context.Exception.Message,
+                    ContentType = "text/plain",
+                };
+                context.ExceptionHandled = true;
+            }
             if (context.Exception is SoftwareApplicationNotFoundException)
             {
                 context.Result = new ContentResult()

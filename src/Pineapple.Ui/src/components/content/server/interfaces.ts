@@ -33,4 +33,6 @@ export interface InstalledComponentsListProps {
     // Numer wersji komponentu.
     componentVersionNumber: string,
   }[],
+  // Zdarzenie odinstalowania komponentu.
+  onUninstall: (id: string) => void,
 }

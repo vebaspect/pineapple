@@ -88,10 +88,10 @@ namespace Pineapple.Core.Domain.Entities
         /// <summary>
         /// Odinstaluj komponent.
         /// </summary>
-        // public void UninstallComponent()
-        // {
-        //     // TODO
-        // }
+        public void UninstallComponent(ServerComponent component)
+        {
+            InstalledComponents?.Remove(component);
+        }
 
         /// <summary>
         /// Zainstaluj oprogramowanie.

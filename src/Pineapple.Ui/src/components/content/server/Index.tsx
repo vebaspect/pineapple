@@ -33,6 +33,24 @@ const Server: React.VFC = () => {
     fetchServer();
   }, [fetchServer]);
 
+  const uninstallComponent = async (id: string) => {
+    await fetch(
+      `${window['env'].API_URL}/implementations/${implementationId}/environments/${environmentId}/servers/${serverId}/components`,
+      {
+        body: JSON.stringify({
+          componentVersionId: id,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'DELETE',
+      },
+    )
+    .then(() => {
+      fetchServer();
+    });
+  };
+
   return (
     <>
       <Box
@@ -98,6 +116,7 @@ const Server: React.VFC = () => {
           <InstalledComponentsList
             isDataFetched={isServerFetched}
             data={server?.installedComponents}
+            onUninstall={uninstallComponent}
           />
         </Paper>
       </Box>
