@@ -48,11 +48,11 @@ const Details: React.FC<DetailsProps> = ({ isDataFetched, kind, major, minor, pa
         </TableRow>
         <TableRow>
           <TableCell style={{ fontWeight: 500, width: 200 }}>Przyrostek</TableCell>
-          <TableCell>{suffix}</TableCell>
+          <TableCell>{suffix || '–'}</TableCell>
         </TableRow>
         <TableRow>
           <TableCell style={{ fontWeight: 500, width: 200 }}>Opis</TableCell>
-          <TableCell>{description}</TableCell>
+          <TableCell>{description || '–'}</TableCell>
         </TableRow>
       </TableBody>
     </Table>

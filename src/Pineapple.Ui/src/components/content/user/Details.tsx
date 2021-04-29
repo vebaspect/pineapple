@@ -36,11 +36,11 @@ const Details: React.FC<DetailsProps> = ({ isDataFetched, fullName, login, phone
         </TableRow>
         <TableRow>
           <TableCell style={{ fontWeight: 500, width: 200 }}>Telefon</TableCell>
-          <TableCell>{phone}</TableCell>
+          <TableCell>{phone || '–'}</TableCell>
         </TableRow>
         <TableRow>
           <TableCell style={{ fontWeight: 500, width: 200 }}>E-mail</TableCell>
-          <TableCell>{email}</TableCell>
+          <TableCell>{email || '–'}</TableCell>
         </TableRow>
       </TableBody>
     </Table>

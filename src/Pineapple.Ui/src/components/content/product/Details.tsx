@@ -32,7 +32,7 @@ const Details: React.FC<DetailsProps> = ({ isDataFetched, name, description }: D
         </TableRow>
         <TableRow>
           <TableCell style={{ fontWeight: 500, width: 200 }}>Opis</TableCell>
-          <TableCell>{description}</TableCell>
+          <TableCell>{description || '–'}</TableCell>
         </TableRow>
       </TableBody>
     </Table>
