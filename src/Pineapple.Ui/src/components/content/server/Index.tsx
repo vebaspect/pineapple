@@ -17,7 +17,7 @@ import InstalledComponentsList from './InstalledComponentsList';
 
 const useStyles = makeStyles(() =>
   createStyles({
-    add: {
+    install: {
       backgroundColor: '#4caf50',
       color: '#fff',
     },
@@ -147,13 +147,13 @@ const Server: React.VFC = () => {
             textAlign="right"
           >
             <Button
-              className={styles.add}
+              className={styles.install}
               size="small"
               startIcon={<AddIcon />}
               variant="contained"
               onClick={installComponent}
             >
-              Dodaj
+              Zainstaluj
             </Button>
           </Box>
         </Paper>
