@@ -113,14 +113,12 @@ namespace Pineapple.Core.Storage.Migrations
                         name: "FK_Components_ComponentTypes_ComponentTypeId",
                         column: x => x.ComponentTypeId,
                         principalTable: "ComponentTypes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Components_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -142,8 +140,7 @@ namespace Pineapple.Core.Storage.Migrations
                         name: "FK_Implementations_Users_ManagerId",
                         column: x => x.ManagerId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -168,8 +165,7 @@ namespace Pineapple.Core.Storage.Migrations
                         name: "FK_ComponentVersions_Components_ComponentId",
                         column: x => x.ComponentId,
                         principalTable: "Components",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -193,14 +189,12 @@ namespace Pineapple.Core.Storage.Migrations
                         name: "FK_Environments_Implementations_ImplementationId",
                         column: x => x.ImplementationId,
                         principalTable: "Implementations",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Environments_Users_OperatorId",
                         column: x => x.OperatorId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -226,14 +220,12 @@ namespace Pineapple.Core.Storage.Migrations
                         name: "FK_Servers_Environments_EnvironmentId",
                         column: x => x.EnvironmentId,
                         principalTable: "Environments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Servers_OperatingSystems_OperatingSystemId",
                         column: x => x.OperatingSystemId,
                         principalTable: "OperatingSystems",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Servers_SoftwareApplications_SoftwareApplicationId",
                         column: x => x.SoftwareApplicationId,
@@ -340,14 +332,12 @@ namespace Pineapple.Core.Storage.Migrations
                         name: "FK_ServerComponents_ComponentVersions_ComponentVersionId",
                         column: x => x.ComponentVersionId,
                         principalTable: "ComponentVersions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_ServerComponents_Servers_ServerId",
                         column: x => x.ServerId,
                         principalTable: "Servers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(

@@ -10,7 +10,7 @@ using Pineapple.Core.Storage.Database;
 namespace Pineapple.Core.Storage.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210426202434_Initial")]
+    [Migration("20210429195108_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -641,13 +641,13 @@ namespace Pineapple.Core.Storage.Migrations
                     b.HasOne("Pineapple.Core.Domain.Entities.ComponentType", "ComponentType")
                         .WithMany("Components")
                         .HasForeignKey("ComponentTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Pineapple.Core.Domain.Entities.Product", "Product")
                         .WithMany("Components")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("ComponentType");
@@ -660,7 +660,7 @@ namespace Pineapple.Core.Storage.Migrations
                     b.HasOne("Pineapple.Core.Domain.Entities.Component", "Component")
                         .WithMany("ComponentVersions")
                         .HasForeignKey("ComponentId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Component");
@@ -671,13 +671,13 @@ namespace Pineapple.Core.Storage.Migrations
                     b.HasOne("Pineapple.Core.Domain.Entities.Implementation", "Implementation")
                         .WithMany("Environments")
                         .HasForeignKey("ImplementationId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Pineapple.Core.Domain.Entities.Operator", "Operator")
                         .WithMany("Environments")
                         .HasForeignKey("OperatorId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Implementation");
@@ -690,7 +690,7 @@ namespace Pineapple.Core.Storage.Migrations
                     b.HasOne("Pineapple.Core.Domain.Entities.Manager", "Manager")
                         .WithMany("Implementations")
                         .HasForeignKey("ManagerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Manager");
@@ -712,13 +712,13 @@ namespace Pineapple.Core.Storage.Migrations
                     b.HasOne("Pineapple.Core.Domain.Entities.Environment", "Environment")
                         .WithMany("Servers")
                         .HasForeignKey("EnvironmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Pineapple.Core.Domain.Entities.OperatingSystem", "OperatingSystem")
                         .WithMany("Servers")
                         .HasForeignKey("OperatingSystemId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Pineapple.Core.Domain.Entities.SoftwareApplication", null)
@@ -735,13 +735,13 @@ namespace Pineapple.Core.Storage.Migrations
                     b.HasOne("Pineapple.Core.Domain.Entities.ComponentVersion", "ComponentVersion")
                         .WithMany("Servers")
                         .HasForeignKey("ComponentVersionId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Pineapple.Core.Domain.Entities.Server", "Server")
                         .WithMany("InstalledComponents")
                         .HasForeignKey("ServerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("ComponentVersion");
