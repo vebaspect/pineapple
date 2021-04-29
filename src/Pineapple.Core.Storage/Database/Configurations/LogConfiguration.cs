@@ -30,7 +30,7 @@ namespace Pineapple.Core.Storage.Database.Configurations
                 .WithMany(user => user.OwnedLogs)
                 .HasForeignKey(log => log.OwnerId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
             builder
                 .Property(log => log.Description)
                 .HasMaxLength(4000);

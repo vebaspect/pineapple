@@ -15,13 +15,13 @@ namespace Pineapple.Core.Storage.Database.Configurations
                 .WithMany(server => server.InstalledComponents)
                 .HasForeignKey(serverComponent => serverComponent.ServerId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
             builder
                 .HasOne(serverComponent => serverComponent.ComponentVersion)
                 .WithMany(componentVersion => componentVersion.Servers)
                 .HasForeignKey(serverComponent => serverComponent.ComponentVersionId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

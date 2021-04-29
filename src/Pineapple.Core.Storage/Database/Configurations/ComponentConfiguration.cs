@@ -28,13 +28,13 @@ namespace Pineapple.Core.Storage.Database.Configurations
                 .WithMany(product => product.Components)
                 .HasForeignKey(component => component.ProductId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
             builder
                 .HasOne(component => component.ComponentType)
                 .WithMany(componentType => componentType.Components)
                 .HasForeignKey(component => component.ComponentTypeId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
             builder
                 .HasMany(component => component.EntityLogs)
                 .WithOne(log => log.Component)

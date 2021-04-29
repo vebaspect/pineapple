@@ -35,13 +35,13 @@ namespace Pineapple.Core.Storage.Database.Configurations
                 .WithMany(environment => environment.Servers)
                 .HasForeignKey(server => server.EnvironmentId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
             builder
                 .HasOne(server => server.OperatingSystem)
                 .WithMany(operatingSystem => operatingSystem.Servers)
                 .HasForeignKey(server => server.OperatingSystemId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
             builder
                 .HasMany(server => server.EntityLogs)
                 .WithOne(log => log.Server)
