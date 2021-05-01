@@ -4,6 +4,8 @@ using Pineapple.Core.Commands;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Pineapple.Core.Domain;
+using Microsoft.EntityFrameworkCore;
+using Pineapple.Core.Exceptions;
 
 namespace Pineapple.Core.Handler
 {
@@ -24,6 +26,16 @@ namespace Pineapple.Core.Handler
         protected override async Task<Guid> Handle(CreateDeveloperCommand request)
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
+
+            var existingUser = await databaseContext
+                .Users
+                .FirstOrDefaultAsync(user => user.Login == request.Login)
+                .ConfigureAwait(false);
+
+            if (!(existingUser is null))
+            {
+                throw new UserAlreadyExistsException($"User {existingUser.Login} already exists");
+            }
 
             var developerId = Guid.NewGuid();
 

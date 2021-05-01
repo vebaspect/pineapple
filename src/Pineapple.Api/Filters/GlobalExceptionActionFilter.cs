@@ -127,6 +127,16 @@ namespace Pineapple.Api.Filters
                 };
                 context.ExceptionHandled = true;
             }
+            if (context.Exception is UserAlreadyExistsException)
+            {
+                context.Result = new ContentResult()
+                {
+                    StatusCode = StatusCodes.Status409Conflict,
+                    Content = context.Exception.Message,
+                    ContentType = "text/plain",
+                };
+                context.ExceptionHandled = true;
+            }
             if (context.Exception is UserNotFoundException)
             {
                 context.Result = new ContentResult()
