@@ -10,7 +10,7 @@ using Pineapple.Core.Storage.Database;
 namespace Pineapple.Core.Storage.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210429195108_Initial")]
+    [Migration("20210501092434_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -179,9 +179,6 @@ namespace Pineapple.Core.Storage.Migrations
                     b.HasIndex("ImplementationId");
 
                     b.HasIndex("OperatorId");
-
-                    b.HasIndex("Symbol")
-                        .IsUnique();
 
                     b.ToTable("Environments");
                 });
@@ -375,9 +372,6 @@ namespace Pineapple.Core.Storage.Migrations
                     b.HasIndex("OperatingSystemId");
 
                     b.HasIndex("SoftwareApplicationId");
-
-                    b.HasIndex("Symbol")
-                        .IsUnique();
 
                     b.ToTable("Servers");
                 });

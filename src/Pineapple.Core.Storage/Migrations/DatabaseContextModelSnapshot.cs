@@ -178,9 +178,6 @@ namespace Pineapple.Core.Storage.Migrations
 
                     b.HasIndex("OperatorId");
 
-                    b.HasIndex("Symbol")
-                        .IsUnique();
-
                     b.ToTable("Environments");
                 });
 
@@ -373,9 +370,6 @@ namespace Pineapple.Core.Storage.Migrations
                     b.HasIndex("OperatingSystemId");
 
                     b.HasIndex("SoftwareApplicationId");
-
-                    b.HasIndex("Symbol")
-                        .IsUnique();
 
                     b.ToTable("Servers");
                 });
