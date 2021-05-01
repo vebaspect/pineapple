@@ -48,6 +48,20 @@ namespace Pineapple.Core.Handler
                 throw new ServerNotFoundException($"Server {request.ServerId} has not been found");
             }
 
+            var existingComponent = await databaseContext
+                .ServerComponents
+                .FirstOrDefaultAsync(component =>
+                    component.ComponentVersionId == request.ComponentVersionId
+                    && component.ServerId == request.ServerId,
+                    cancellationToken: cancellationToken
+                )
+                .ConfigureAwait(false);
+
+            if (!(existingComponent is null))
+            {
+                throw new ServerComponentAlreadyExistsException($"ServerComponent {request.ServerId}|{request.ComponentVersionId} already exists");
+            }
+
             var component = new Domain.Entities.ServerComponent(server.Id, componentVersion.Id);
 
             await databaseContext.ServerComponents.AddAsync(component, cancellationToken).ConfigureAwait(false);
