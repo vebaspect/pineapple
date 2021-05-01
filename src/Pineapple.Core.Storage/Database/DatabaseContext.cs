@@ -108,16 +108,8 @@ namespace Pineapple.Core.Storage.Database
                 .HasIndex(componentType => componentType.Symbol)
                 .IsUnique();
             modelBuilder
-                .Entity<Environment>()
-                .HasIndex(environment => environment.Symbol)
-                .IsUnique();
-            modelBuilder
                 .Entity<OperatingSystem>()
                 .HasIndex(operatingSystem => operatingSystem.Symbol)
-                .IsUnique();
-            modelBuilder
-                .Entity<Server>()
-                .HasIndex(server => server.Symbol)
                 .IsUnique();
             modelBuilder
                 .Entity<SoftwareApplication>()

@@ -29,7 +29,10 @@ namespace Pineapple.Core.Handler
 
             var existingEnvironment = await databaseContext
                 .Environments
-                .FirstOrDefaultAsync(environment => environment.Symbol == request.Symbol)
+                .FirstOrDefaultAsync(environment =>
+                    environment.ImplementationId == request.ImplementationId
+                    && environment.Symbol == request.Symbol
+                )
                 .ConfigureAwait(false);
 
             if (!(existingEnvironment is null))

@@ -29,7 +29,10 @@ namespace Pineapple.Core.Handler
 
             var existingServer = await databaseContext
                 .Servers
-                .FirstOrDefaultAsync(server => server.Symbol == request.Symbol)
+                .FirstOrDefaultAsync(server =>
+                    server.EnvironmentId == request.EnvironmentId
+                    && server.Symbol == request.Symbol
+                )
                 .ConfigureAwait(false);
 
             if (!(existingServer is null))
