@@ -12,6 +12,8 @@ import Paper from '@material-ui/core/Paper';
 
 import AddIcon from '@material-ui/icons/Add';
 
+import DialogWindow from '../../windows/DialogWindow';
+
 import List from './List';
 
 const useStyles = makeStyles(() =>
@@ -31,6 +33,11 @@ const Administrators: React.VFC = () => {
   const [isAdministratorsFetched, setIsAdministratorsFetched] = useState(false);
   // Lista administratorów.
   const [administrators, setAdministrators] = useState([]);
+
+  // Flaga określająca, czy okno dialogowe potwierdzające chęć usunięcia administratora jest otwarte.
+  const [isDeleteAdministratorDialogWindowOpen, setIsDeleteAdministratorDialogWindowOpen] = useState(false);
+  // Dane wykorzystywane przez okno dialogowe potwierdzające chęć usunięcia administratora.
+  const [deleteAdministratorDialogWindowData, setDeleteAdministratorDialogWindowData] = useState(null);
 
   const fetchAdministrators = async () => {
     await fetch(`${window['env'].API_URL}/users/administrators`)
@@ -53,16 +60,32 @@ const Administrators: React.VFC = () => {
     // TODO
   };
 
-  const deleteAdministrator = async (id: string) => {
+  const deleteAdministrator = (id: string, fullName: string) => {
+    setDeleteAdministratorDialogWindowData({
+      id,
+      fullName,
+    });
+    setIsDeleteAdministratorDialogWindowOpen(true);
+  };
+
+  const deleteAdministratorConfirmed = async () => {
     await fetch(
-      `${window['env'].API_URL}/users/${id}`,
+      `${window['env'].API_URL}/users/${deleteAdministratorDialogWindowData?.id}`,
       {
         method: 'DELETE',
       },
     )
     .then(() => {
+      setIsDeleteAdministratorDialogWindowOpen(false);
+      setDeleteAdministratorDialogWindowData(null);
+
       fetchAdministrators();
     });
+  };
+
+  const deleteAdministratorCanceled = () => {
+    setIsDeleteAdministratorDialogWindowOpen(false);
+    setDeleteAdministratorDialogWindowData(null);
   };
 
   return (
@@ -100,6 +123,14 @@ const Administrators: React.VFC = () => {
           </Box>
         </Paper>
       </Box>
+      <DialogWindow
+        isOpen={isDeleteAdministratorDialogWindowOpen}
+        title="Usunięcie administratora"
+        onConfirm={deleteAdministratorConfirmed}
+        onCancel={deleteAdministratorCanceled}
+      >
+        Czy na pewno chcesz usunąć administratora <strong>{deleteAdministratorDialogWindowData?.fullName}</strong>?
+      </DialogWindow>
     </>
   );
 }

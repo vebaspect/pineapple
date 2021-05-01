@@ -19,5 +19,5 @@ export interface ListProps {
   // Zdarzenie edycji administratora.
   onEdit: (id: string) => void,
   // Zdarzenie usunięcia administratora.
-  onDelete: (id: string) => void,
+  onDelete: (id: string, fullName: string) => void,
 }
