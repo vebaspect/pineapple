@@ -37,6 +37,16 @@ namespace Pineapple.Api.Filters
                 };
                 context.ExceptionHandled = true;
             }
+            if (context.Exception is ComponentVersionAlreadyExistsException)
+            {
+                context.Result = new ContentResult()
+                {
+                    StatusCode = StatusCodes.Status409Conflict,
+                    Content = context.Exception.Message,
+                    ContentType = "text/plain",
+                };
+                context.ExceptionHandled = true;
+            }
             if (context.Exception is ComponentVersionNotFoundException)
             {
                 context.Result = new ContentResult()

@@ -1,9 +1,12 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Domain;
 using Pineapple.Core.Storage.Database;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using Pineapple.Core.Exceptions;
 
 namespace Pineapple.Core.Handler
 {
@@ -24,6 +27,22 @@ namespace Pineapple.Core.Handler
         protected override async Task<Guid> Handle(CreateComponentVersionCommand request)
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
+
+            var existingComponentVersion = await databaseContext
+                .ComponentVersions
+                .FirstOrDefaultAsync(componentVersion =>
+                    componentVersion.ComponentId == request.ComponentId
+                    && componentVersion.Major == request.Major
+                    && componentVersion.Minor == request.Minor
+                    && componentVersion.Patch == request.Patch
+                    && componentVersion.Suffix == request.Suffix
+                )
+                .ConfigureAwait(false);
+
+            if (!(existingComponentVersion is null))
+            {
+                throw new ComponentVersionAlreadyExistsException($"ComponentVersion {existingComponentVersion.GetFormattedNumber()} already exists");
+            }
 
             var componentVersionId = Guid.NewGuid();
 
