@@ -4,6 +4,8 @@ using Pineapple.Core.Commands;
 using Pineapple.Core.Domain;
 using Pineapple.Core.Storage.Database;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using Pineapple.Core.Exceptions;
 
 namespace Pineapple.Core.Handler
 {
@@ -24,6 +26,16 @@ namespace Pineapple.Core.Handler
         protected override async Task<Guid> Handle(CreateComponentTypeCommand request)
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
+
+            var existingComponentType = await databaseContext
+                .ComponentTypes
+                .FirstOrDefaultAsync(componentType => componentType.Symbol == request.Symbol)
+                .ConfigureAwait(false);
+
+            if (!(existingComponentType is null))
+            {
+                throw new ComponentTypeAlreadyExistsException($"ComponentType {existingComponentType.Symbol} already exists");
+            }
 
             var componentTypeId = Guid.NewGuid();
 

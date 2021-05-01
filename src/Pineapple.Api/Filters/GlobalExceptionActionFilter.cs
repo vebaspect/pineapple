@@ -27,6 +27,16 @@ namespace Pineapple.Api.Filters
                 };
                 context.ExceptionHandled = true;
             }
+            if (context.Exception is ComponentTypeAlreadyExistsException)
+            {
+                context.Result = new ContentResult()
+                {
+                    StatusCode = StatusCodes.Status409Conflict,
+                    Content = context.Exception.Message,
+                    ContentType = "text/plain",
+                };
+                context.ExceptionHandled = true;
+            }
             if (context.Exception is ComponentTypeNotFoundException)
             {
                 context.Result = new ContentResult()
@@ -57,6 +67,16 @@ namespace Pineapple.Api.Filters
                 };
                 context.ExceptionHandled = true;
             }
+            if (context.Exception is EnvironmentAlreadyExistsException)
+            {
+                context.Result = new ContentResult()
+                {
+                    StatusCode = StatusCodes.Status409Conflict,
+                    Content = context.Exception.Message,
+                    ContentType = "text/plain",
+                };
+                context.ExceptionHandled = true;
+            }
             if (context.Exception is EnvironmentNotFoundException)
             {
                 context.Result = new ContentResult()
@@ -72,6 +92,16 @@ namespace Pineapple.Api.Filters
                 context.Result = new ContentResult()
                 {
                     StatusCode = StatusCodes.Status404NotFound,
+                    Content = context.Exception.Message,
+                    ContentType = "text/plain",
+                };
+                context.ExceptionHandled = true;
+            }
+            if (context.Exception is OperatingSystemAlreadyExistsException)
+            {
+                context.Result = new ContentResult()
+                {
+                    StatusCode = StatusCodes.Status409Conflict,
                     Content = context.Exception.Message,
                     ContentType = "text/plain",
                 };
@@ -97,6 +127,16 @@ namespace Pineapple.Api.Filters
                 };
                 context.ExceptionHandled = true;
             }
+            if (context.Exception is ServerAlreadyExistsException)
+            {
+                context.Result = new ContentResult()
+                {
+                    StatusCode = StatusCodes.Status409Conflict,
+                    Content = context.Exception.Message,
+                    ContentType = "text/plain",
+                };
+                context.ExceptionHandled = true;
+            }
             if (context.Exception is ServerNotFoundException)
             {
                 context.Result = new ContentResult()
@@ -112,6 +152,16 @@ namespace Pineapple.Api.Filters
                 context.Result = new ContentResult()
                 {
                     StatusCode = StatusCodes.Status404NotFound,
+                    Content = context.Exception.Message,
+                    ContentType = "text/plain",
+                };
+                context.ExceptionHandled = true;
+            }
+            if (context.Exception is SoftwareApplicationAlreadyExistsException)
+            {
+                context.Result = new ContentResult()
+                {
+                    StatusCode = StatusCodes.Status409Conflict,
                     Content = context.Exception.Message,
                     ContentType = "text/plain",
                 };

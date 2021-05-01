@@ -4,6 +4,8 @@ using Pineapple.Core.Commands;
 using Pineapple.Core.Domain;
 using Pineapple.Core.Storage.Database;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using Pineapple.Core.Exceptions;
 
 namespace Pineapple.Core.Handler
 {
@@ -24,6 +26,16 @@ namespace Pineapple.Core.Handler
         protected override async Task<Guid> Handle(CreateServerCommand request)
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
+
+            var existingServer = await databaseContext
+                .Servers
+                .FirstOrDefaultAsync(server => server.Symbol == request.Symbol)
+                .ConfigureAwait(false);
+
+            if (!(existingServer is null))
+            {
+                throw new ServerAlreadyExistsException($"Server {existingServer.Symbol} already exists");
+            }
 
             var serverId = Guid.NewGuid();
 

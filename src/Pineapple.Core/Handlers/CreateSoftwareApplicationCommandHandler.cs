@@ -4,6 +4,8 @@ using Pineapple.Core.Commands;
 using Pineapple.Core.Domain;
 using Pineapple.Core.Storage.Database;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using Pineapple.Core.Exceptions;
 
 namespace Pineapple.Core.Handler
 {
@@ -24,6 +26,16 @@ namespace Pineapple.Core.Handler
         protected override async Task<Guid> Handle(CreateSoftwareApplicationCommand request)
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
+
+            var existingSoftwareApplication = await databaseContext
+                .SoftwareApplications
+                .FirstOrDefaultAsync(softwareApplication => softwareApplication.Symbol == request.Symbol)
+                .ConfigureAwait(false);
+
+            if (!(existingSoftwareApplication is null))
+            {
+                throw new SoftwareApplicationAlreadyExistsException($"SoftwareApplication {existingSoftwareApplication.Symbol} already exists");
+            }
 
             var softwareApplicationId = Guid.NewGuid();
 

@@ -4,6 +4,8 @@ using Pineapple.Core.Commands;
 using Pineapple.Core.Domain;
 using Pineapple.Core.Storage.Database;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using Pineapple.Core.Exceptions;
 
 namespace Pineapple.Core.Handler
 {
@@ -24,6 +26,16 @@ namespace Pineapple.Core.Handler
         protected override async Task<Guid> Handle(CreateEnvironmentCommand request)
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
+
+            var existingEnvironment = await databaseContext
+                .Environments
+                .FirstOrDefaultAsync(environment => environment.Symbol == request.Symbol)
+                .ConfigureAwait(false);
+
+            if (!(existingEnvironment is null))
+            {
+                throw new EnvironmentAlreadyExistsException($"Environment {existingEnvironment.Symbol} already exists");
+            }
 
             var environmentId = Guid.NewGuid();
 

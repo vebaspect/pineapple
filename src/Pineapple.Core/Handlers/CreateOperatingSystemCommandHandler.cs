@@ -4,6 +4,8 @@ using Pineapple.Core.Commands;
 using Pineapple.Core.Domain;
 using Pineapple.Core.Storage.Database;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using Pineapple.Core.Exceptions;
 
 namespace Pineapple.Core.Handler
 {
@@ -24,6 +26,16 @@ namespace Pineapple.Core.Handler
         protected override async Task<Guid> Handle(CreateOperatingSystemCommand request)
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
+
+            var existingOperatingSystem = await databaseContext
+                .OperatingSystems
+                .FirstOrDefaultAsync(operatingSystem => operatingSystem.Symbol == request.Symbol)
+                .ConfigureAwait(false);
+
+            if (!(existingOperatingSystem is null))
+            {
+                throw new OperatingSystemAlreadyExistsException($"OperatingSystem {existingOperatingSystem.Symbol} already exists");
+            }
 
             var operatingSystemId = Guid.NewGuid();
 
