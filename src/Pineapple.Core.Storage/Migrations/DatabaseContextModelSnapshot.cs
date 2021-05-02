@@ -727,13 +727,13 @@ namespace Pineapple.Core.Storage.Migrations
                     b.HasOne("Pineapple.Core.Domain.Entities.ComponentVersion", "ComponentVersion")
                         .WithMany("Servers")
                         .HasForeignKey("ComponentVersionId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Pineapple.Core.Domain.Entities.Server", "Server")
                         .WithMany("InstalledComponents")
                         .HasForeignKey("ServerId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("ComponentVersion");

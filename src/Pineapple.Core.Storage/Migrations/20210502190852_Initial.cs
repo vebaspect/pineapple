@@ -332,12 +332,14 @@ namespace Pineapple.Core.Storage.Migrations
                         name: "FK_ServerComponents_ComponentVersions_ComponentVersionId",
                         column: x => x.ComponentVersionId,
                         principalTable: "ComponentVersions",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ServerComponents_Servers_ServerId",
                         column: x => x.ServerId,
                         principalTable: "Servers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

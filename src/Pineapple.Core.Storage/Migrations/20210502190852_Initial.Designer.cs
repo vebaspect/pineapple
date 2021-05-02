@@ -10,7 +10,7 @@ using Pineapple.Core.Storage.Database;
 namespace Pineapple.Core.Storage.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210501092434_Initial")]
+    [Migration("20210502190852_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -729,13 +729,13 @@ namespace Pineapple.Core.Storage.Migrations
                     b.HasOne("Pineapple.Core.Domain.Entities.ComponentVersion", "ComponentVersion")
                         .WithMany("Servers")
                         .HasForeignKey("ComponentVersionId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Pineapple.Core.Domain.Entities.Server", "Server")
                         .WithMany("InstalledComponents")
                         .HasForeignKey("ServerId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("ComponentVersion");
