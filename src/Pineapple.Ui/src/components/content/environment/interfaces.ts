@@ -36,5 +36,5 @@ export interface ListProps {
   // Zdarzenie edycji serwera.
   onEdit: (id: string) => void,
   // Zdarzenie usunięcia serwera.
-  onDelete: (id: string) => void,
+  onDelete: (id: string, name: string) => void,
 }

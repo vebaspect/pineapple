@@ -12,6 +12,8 @@ import Paper from '@material-ui/core/Paper';
 
 import AddIcon from '@material-ui/icons/Add';
 
+import DialogWindow from '../../windows/DialogWindow';
+
 import Details from './Details';
 import List from './List';
 
@@ -42,6 +44,11 @@ const Environment: React.VFC = () => {
   const [isServersFetched, setIsServersFetched] = useState(false);
   // Lista serwerów.
   const [servers, setServers] = useState([]);
+
+  // Flaga określająca, czy okno dialogowe potwierdzające chęć usunięcia serwera jest otwarte.
+  const [isDeleteServerDialogWindowOpen, setIsDeleteServerDialogWindowOpen] = useState(false);
+  // Dane wykorzystywane przez okno dialogowe potwierdzające chęć usunięcia serwera.
+  const [deleteServerDialogWindowData, setDeleteServerDialogWindowData] = useState(null);
 
   const fetchEnvironment = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/implementations/${implementationId}/environments/${environmentId}`)
@@ -77,16 +84,32 @@ const Environment: React.VFC = () => {
     // TODO
   };
 
-  const deleteServer = async (id: string) => {
+  const deleteServer = (id: string, number: string) => {
+    setDeleteServerDialogWindowData({
+      id,
+      number,
+    });
+    setIsDeleteServerDialogWindowOpen(true);
+  };
+
+  const deleteServerConfirmed = async () => {
     await fetch(
-      `${window['env'].API_URL}/implementations/${implementationId}/environments/${environmentId}/servers/${id}`,
+      `${window['env'].API_URL}/implementations/${implementationId}/environments/${environmentId}/servers/${deleteServerDialogWindowData?.id}`,
       {
         method: 'DELETE',
       },
     )
     .then(() => {
+      setIsDeleteServerDialogWindowOpen(false);
+      setDeleteServerDialogWindowData(null);
+
       fetchServers();
     });
+  };
+
+  const deleteServerCanceled = () => {
+    setIsDeleteServerDialogWindowOpen(false);
+    setDeleteServerDialogWindowData(null);
   };
 
   return (
@@ -174,6 +197,14 @@ const Environment: React.VFC = () => {
           </Box>
         </Paper>
       </Box>
+      <DialogWindow
+        isOpen={isDeleteServerDialogWindowOpen}
+        title="Usunięcie serwera"
+        onConfirm={deleteServerConfirmed}
+        onCancel={deleteServerCanceled}
+      >
+        Czy na pewno chcesz usunąć serwer <strong>{deleteServerDialogWindowData?.number}</strong>?
+      </DialogWindow>
     </>
   );
 }

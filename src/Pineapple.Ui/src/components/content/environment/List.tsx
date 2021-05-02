@@ -70,7 +70,7 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, implementationId, envi
                   <IconButton
                     color="secondary"
                     size="small"
-                    onClick={() => onDelete(server.id)}
+                    onClick={() => onDelete(server.id, server.name)}
                   >
                     <DeleteIcon />
                   </IconButton>
