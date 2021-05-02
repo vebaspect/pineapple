@@ -72,7 +72,7 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, onEdit, onDelete }: Li
                   <IconButton
                     color="secondary"
                     size="small"
-                    onClick={() => onDelete(manager.id)}
+                    onClick={() => onDelete(manager.id, manager.fullName)}
                   >
                     <DeleteIcon />
                   </IconButton>

@@ -19,5 +19,5 @@ export interface ListProps {
   // Zdarzenie edycji menedżera.
   onEdit: (id: string) => void,
   // Zdarzenie usunięcia menedżera.
-  onDelete: (id: string) => void,
+  onDelete: (id: string, fullName: string) => void,
 }

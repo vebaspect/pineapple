@@ -12,6 +12,8 @@ import Paper from '@material-ui/core/Paper';
 
 import AddIcon from '@material-ui/icons/Add';
 
+import DialogWindow from '../../windows/DialogWindow';
+
 import List from './List';
 
 const useStyles = makeStyles(() =>
@@ -31,6 +33,11 @@ const Managers: React.VFC = () => {
   const [isManagersFetched, setIsManagersFetched] = useState(false);
   // Lista menedżerów.
   const [managers, setManagers] = useState([]);
+
+  // Flaga określająca, czy okno dialogowe potwierdzające chęć usunięcia menedżera jest otwarte.
+  const [isDeleteManagerDialogWindowOpen, setIsDeleteManagerDialogWindowOpen] = useState(false);
+  // Dane wykorzystywane przez okno dialogowe potwierdzające chęć usunięcia menedżera.
+  const [deleteManagerDialogWindowData, setDeleteManagerDialogWindowData] = useState(null);  
 
   const fetchManagers = async () => {
     await fetch(`${window['env'].API_URL}/users/managers`)
@@ -53,16 +60,32 @@ const Managers: React.VFC = () => {
     // TODO
   };
 
-  const deleteManager = async (id: string) => {
+  const deleteManager = (id: string, fullName: string) => {
+    setDeleteManagerDialogWindowData({
+      id,
+      fullName,
+    });
+    setIsDeleteManagerDialogWindowOpen(true);
+  };
+
+  const deleteManagerConfirmed = async () => {
     await fetch(
-      `${window['env'].API_URL}/users/${id}`,
+      `${window['env'].API_URL}/users/${deleteManagerDialogWindowData?.id}`,
       {
         method: 'DELETE',
       },
     )
     .then(() => {
+      setIsDeleteManagerDialogWindowOpen(false);
+      setDeleteManagerDialogWindowData(null);
+
       fetchManagers();
     });
+  };
+
+  const deleteManagerCanceled = () => {
+    setIsDeleteManagerDialogWindowOpen(false);
+    setDeleteManagerDialogWindowData(null);
   };
 
   return (
@@ -100,6 +123,14 @@ const Managers: React.VFC = () => {
           </Box>
         </Paper>
       </Box>
+      <DialogWindow
+        isOpen={isDeleteManagerDialogWindowOpen}
+        title="Usunięcie menedżera"
+        onConfirm={deleteManagerConfirmed}
+        onCancel={deleteManagerCanceled}
+      >
+        Czy na pewno chcesz usunąć menedżera <strong>{deleteManagerDialogWindowData?.fullName}</strong>?
+      </DialogWindow>
     </>
   );
 }
