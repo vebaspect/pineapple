@@ -12,6 +12,8 @@ import Paper from '@material-ui/core/Paper';
 
 import AddIcon from '@material-ui/icons/Add';
 
+import DialogWindow from '../../windows/DialogWindow';
+
 import List from './List';
 
 const useStyles = makeStyles(() =>
@@ -31,6 +33,11 @@ const SoftwareApplications: React.VFC = () => {
   const [isSoftwareApplicationsFetched, setIsSoftwareApplicationsFetched] = useState(false);
   // Lista oprogramowania.
   const [softwareApplications, setSoftwareApplications] = useState([]);
+
+  // Flaga określająca, czy okno dialogowe potwierdzające chęć usunięcia oprogramowania jest otwarte.
+  const [isDeleteSoftwareApplicationDialogWindowOpen, setIsDeleteSoftwareApplicationDialogWindowOpen] = useState(false);
+  // Dane wykorzystywane przez okno dialogowe potwierdzające chęć usunięcia oprogramowania.
+  const [deleteSoftwareApplicationDialogWindowData, setDeleteSoftwareApplicationDialogWindowData] = useState(null);
 
   const fetchSoftwareApplications = async () => {
     await fetch(`${window['env'].API_URL}/configuration/software-applications`)
@@ -53,16 +60,32 @@ const SoftwareApplications: React.VFC = () => {
     // TODO
   };
 
-  const deleteSoftwareApplication = async (id: string) => {
+  const deleteSoftwareApplication = (id: string, fullName: string) => {
+    setDeleteSoftwareApplicationDialogWindowData({
+      id,
+      fullName,
+    });
+    setIsDeleteSoftwareApplicationDialogWindowOpen(true);
+  };
+
+  const deleteSoftwareApplicationConfirmed = async () => {
     await fetch(
-      `${window['env'].API_URL}/configuration/software-applications/${id}`,
+      `${window['env'].API_URL}/configuration/software-applications/${deleteSoftwareApplicationDialogWindowData?.id}`,
       {
         method: 'DELETE',
       },
     )
     .then(() => {
+      setIsDeleteSoftwareApplicationDialogWindowOpen(false);
+      setDeleteSoftwareApplicationDialogWindowData(null);
+
       fetchSoftwareApplications();
     });
+  };
+
+  const deleteSoftwareApplicationCanceled = () => {
+    setIsDeleteSoftwareApplicationDialogWindowOpen(false);
+    setDeleteSoftwareApplicationDialogWindowData(null);
   };
 
   return (
@@ -100,6 +123,14 @@ const SoftwareApplications: React.VFC = () => {
           </Box>
         </Paper>
       </Box>
+      <DialogWindow
+        isOpen={isDeleteSoftwareApplicationDialogWindowOpen}
+        title="Usunięcie oprogramowania"
+        onConfirm={deleteSoftwareApplicationConfirmed}
+        onCancel={deleteSoftwareApplicationCanceled}
+      >
+        Czy na pewno chcesz usunąć oprogramowanie <strong>{deleteSoftwareApplicationDialogWindowData?.fullName}</strong>?
+      </DialogWindow>
     </>
   );
 }
