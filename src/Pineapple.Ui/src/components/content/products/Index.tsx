@@ -13,7 +13,9 @@ import Paper from '@material-ui/core/Paper';
 
 import AddIcon from '@material-ui/icons/Add';
 
+import DialogWindow from '../../windows/DialogWindow';
 import Logs from '../../logs';
+
 import List from './List';
 
 const useStyles = makeStyles(() =>
@@ -33,6 +35,11 @@ const Products: React.VFC = () => {
   const [isProductsFetched, setIsProductsFetched] = useState(false);
   // Lista produktów.
   const [products, setProducts] = useState([]);
+
+  // Flaga określająca, czy okno dialogowe potwierdzające chęć usunięcia produktu jest otwarte.
+  const [isDeleteProductDialogWindowOpen, setIsDeleteProductDialogWindowOpen] = useState(false);
+  // Dane wykorzystywane przez okno dialogowe potwierdzające chęć usunięcia produktu.
+  const [deleteProductDialogWindowData, setDeleteProductDialogWindowData] = useState(null);
 
   // Flaga określająca, czy lista logów została pobrana z API.
   const [isLogsFetched, setIsLogsFetched] = useState(false);
@@ -81,17 +88,33 @@ const Products: React.VFC = () => {
     // TODO
   };
 
-  const deleteProduct = async (id: string) => {
+  const deleteProduct = (id: string, name: string) => {
+    setDeleteProductDialogWindowData({
+      id,
+      name,
+    });
+    setIsDeleteProductDialogWindowOpen(true);
+  };
+
+  const deleteProductConfirmed = async () => {
     await fetch(
-      `${window['env'].API_URL}/products/${id}`,
+      `${window['env'].API_URL}/products/${deleteProductDialogWindowData?.id}`,
       {
         method: 'DELETE',
       },
     )
     .then(() => {
+      setIsDeleteProductDialogWindowOpen(false);
+      setDeleteProductDialogWindowData(null);
+
       fetchProducts();
       fetchLogs();
     });
+  };
+
+  const deleteProductCanceled = () => {
+    setIsDeleteProductDialogWindowOpen(false);
+    setDeleteProductDialogWindowData(null);
   };
 
   return (
@@ -167,6 +190,14 @@ const Products: React.VFC = () => {
           </Box>
         </Paper>
       </Box>
+      <DialogWindow
+        isOpen={isDeleteProductDialogWindowOpen}
+        title="Usunięcie produktu"
+        onConfirm={deleteProductConfirmed}
+        onCancel={deleteProductCanceled}
+      >
+        Czy na pewno chcesz usunąć produkt <strong>{deleteProductDialogWindowData?.name}</strong>?
+      </DialogWindow>
     </>
   );
 }

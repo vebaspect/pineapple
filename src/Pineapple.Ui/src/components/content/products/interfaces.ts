@@ -15,5 +15,5 @@ export interface ListProps {
   // Zdarzenie edycji produktu.
   onEdit: (id: string) => void,
   // Zdarzenie usunięcia produktu.
-  onDelete: (id: string) => void,
+  onDelete: (id: string, name: string) => void,
 }
