@@ -13,6 +13,7 @@ import Paper from '@material-ui/core/Paper';
 
 import AddIcon from '@material-ui/icons/Add';
 
+import DialogWindow from '../../windows/DialogWindow';
 import Logs from '../../logs';
 
 import Details from './Details';
@@ -43,6 +44,11 @@ const Product: React.VFC = () => {
   const [isComponentsFetched, setIsComponentsFetched] = useState(false);
   // Lista komponentów.
   const [components, setComponents] = useState([]);
+
+  // Flaga określająca, czy okno dialogowe potwierdzające chęć usunięcia komponentu jest otwarte.
+  const [isDeleteComponentDialogWindowOpen, setIsDeleteComponentDialogWindowOpen] = useState(false);
+  // Dane wykorzystywane przez okno dialogowe potwierdzające chęć usunięcia komponentu.
+  const [deleteComponentDialogWindowData, setDeleteComponentDialogWindowData] = useState(null);
 
   // Flaga określająca, czy lista logów została pobrana z API.
   const [isLogsFetched, setIsLogsFetched] = useState(false);
@@ -104,17 +110,33 @@ const Product: React.VFC = () => {
     // TODO
   };
 
-  const deleteComponent = async (id: string) => {
+  const deleteComponent = (id: string, name: string) => {
+    setDeleteComponentDialogWindowData({
+      id,
+      name,
+    });
+    setIsDeleteComponentDialogWindowOpen(true);
+  };
+
+  const deleteComponentConfirmed = async () => {
     await fetch(
-      `${window['env'].API_URL}/products/${productId}/components/${id}`,
+      `${window['env'].API_URL}/products/${productId}/components/${deleteComponentDialogWindowData?.id}`,
       {
         method: 'DELETE',
       },
     )
     .then(() => {
+      setIsDeleteComponentDialogWindowOpen(false);
+      setDeleteComponentDialogWindowData(null);
+
       fetchComponents();
       fetchLogs();
     });
+  };
+
+  const deleteComponentCanceled = () => {
+    setIsDeleteComponentDialogWindowOpen(false);
+    setDeleteComponentDialogWindowData(null);
   };
 
   return (
@@ -236,6 +258,14 @@ const Product: React.VFC = () => {
           </Box>
         </Paper>
       </Box>
+      <DialogWindow
+        isOpen={isDeleteComponentDialogWindowOpen}
+        title="Usunięcie komponentu"
+        onConfirm={deleteComponentConfirmed}
+        onCancel={deleteComponentCanceled}
+      >
+        Czy na pewno chcesz usunąć komponent <strong>{deleteComponentDialogWindowData?.name}</strong>?
+      </DialogWindow>
     </>
   );
 }

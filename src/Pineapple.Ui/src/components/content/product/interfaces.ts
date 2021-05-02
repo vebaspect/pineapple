@@ -30,5 +30,5 @@ export interface ListProps {
   // Zdarzenie edycji komponentu.
   onEdit: (id: string) => void,
   // Zdarzenie usunięcia komponentu.
-  onDelete: (id: string) => void,
+  onDelete: (id: string, name: string) => void,
 }
