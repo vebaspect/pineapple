@@ -12,6 +12,8 @@ import Paper from '@material-ui/core/Paper';
 
 import AddIcon from '@material-ui/icons/Add';
 
+import DialogWindow from '../../windows/DialogWindow';
+
 import List from './List';
 
 const useStyles = makeStyles(() =>
@@ -31,6 +33,12 @@ const Operators: React.VFC = () => {
   const [isOperatorsFetched, setIsOperatorsFetched] = useState(false);
   // Lista wdrożeniowców.
   const [operators, setOperators] = useState([]);
+
+  // Flaga określająca, czy okno dialogowe potwierdzające chęć usunięcia wdrożeniowca jest otwarte.
+  const [isDeleteOperatorDialogWindowOpen, setIsDeleteOperatorDialogWindowOpen] = useState(false);
+  // Dane wykorzystywane przez okno dialogowe potwierdzające chęć usunięcia wdrożeniowca.
+  const [deleteOperatorDialogWindowData, setDeleteOperatorDialogWindowData] = useState(null);
+  
 
   const fetchOperators = async () => {
     await fetch(`${window['env'].API_URL}/users/operators`)
@@ -53,16 +61,32 @@ const Operators: React.VFC = () => {
     // TODO
   };
 
-  const deleteOperator = async (id: string) => {
+  const deleteOperator = (id: string, fullName: string) => {
+    setDeleteOperatorDialogWindowData({
+      id,
+      fullName,
+    });
+    setIsDeleteOperatorDialogWindowOpen(true);
+  };
+
+  const deleteOperatorConfirmed = async () => {
     await fetch(
-      `${window['env'].API_URL}/users/${id}`,
+      `${window['env'].API_URL}/users/${deleteOperatorDialogWindowData?.id}`,
       {
         method: 'DELETE',
       },
     )
     .then(() => {
+      setIsDeleteOperatorDialogWindowOpen(false);
+      setDeleteOperatorDialogWindowData(null);
+
       fetchOperators();
     });
+  };
+
+  const deleteOperatorCanceled = () => {
+    setIsDeleteOperatorDialogWindowOpen(false);
+    setDeleteOperatorDialogWindowData(null);
   };
 
   return (
@@ -100,6 +124,14 @@ const Operators: React.VFC = () => {
           </Box>
         </Paper>
       </Box>
+      <DialogWindow
+        isOpen={isDeleteOperatorDialogWindowOpen}
+        title="Usunięcie wdrożeniowca"
+        onConfirm={deleteOperatorConfirmed}
+        onCancel={deleteOperatorCanceled}
+      >
+        Czy na pewno chcesz usunąć programistę <strong>{deleteOperatorDialogWindowData?.fullName}</strong>?
+      </DialogWindow>
     </>
   );
 }
