@@ -12,6 +12,8 @@ import Paper from '@material-ui/core/Paper';
 
 import AddIcon from '@material-ui/icons/Add';
 
+import DialogWindow from '../../windows/DialogWindow';
+
 import Details from './Details';
 import List from './List';
 
@@ -43,6 +45,11 @@ const Component: React.VFC = () => {
   // Lista wersji komponentu.
   const [componentVersions, setComponentVersions] = useState([]);
 
+  // Flaga określająca, czy okno dialogowe potwierdzające chęć usunięcia wersji komponentu jest otwarte.
+  const [isDeleteComponentVersionDialogWindowOpen, setIsDeleteComponentVersionDialogWindowOpen] = useState(false);
+  // Dane wykorzystywane przez okno dialogowe potwierdzające chęć usunięcia wersji komponentu.
+  const [deleteComponentVersionDialogWindowData, setDeleteComponentVersionDialogWindowData] = useState(null);
+  
   const fetchComponent = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/products/${productId}/components/${componentId}`)
       .then((response) => response.json())
@@ -77,16 +84,32 @@ const Component: React.VFC = () => {
     // TODO
   };
 
-  const deleteComponentVersion = async (id: string) => {
+  const deleteComponentVersion = (id: string, number: string) => {
+    setDeleteComponentVersionDialogWindowData({
+      id,
+      number,
+    });
+    setIsDeleteComponentVersionDialogWindowOpen(true);
+  };
+
+  const deleteComponentVersionConfirmed = async () => {
     await fetch(
-      `${window['env'].API_URL}/products/${productId}/components/${componentId}/component-versions/${id}`,
+      `${window['env'].API_URL}/products/${productId}/components/${componentId}/component-versions/${deleteComponentVersionDialogWindowData?.id}`,
       {
         method: 'DELETE',
       },
     )
     .then(() => {
+      setIsDeleteComponentVersionDialogWindowOpen(false);
+      setDeleteComponentVersionDialogWindowData(null);
+
       fetchComponentVersions();
     });
+  };
+
+  const deleteComponentVersionCanceled = () => {
+    setIsDeleteComponentVersionDialogWindowOpen(false);
+    setDeleteComponentVersionDialogWindowData(null);
   };
 
   return (
@@ -173,6 +196,14 @@ const Component: React.VFC = () => {
           </Box>
         </Paper>
       </Box>
+      <DialogWindow
+        isOpen={isDeleteComponentVersionDialogWindowOpen}
+        title="Usunięcie wersji"
+        onConfirm={deleteComponentVersionConfirmed}
+        onCancel={deleteComponentVersionCanceled}
+      >
+        Czy na pewno chcesz usunąć wersję <strong>{deleteComponentVersionDialogWindowData?.number}</strong>?
+      </DialogWindow>
     </>
   );
 }

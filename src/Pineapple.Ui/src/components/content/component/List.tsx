@@ -75,7 +75,7 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, productId, componentId
                   <IconButton
                     color="secondary"
                     size="small"
-                    onClick={() => onDelete(componentVersion.id)}
+                    onClick={() => onDelete(componentVersion.id, formatNumber(componentVersion.major, componentVersion.minor, componentVersion.patch, componentVersion.suffix))}
                   >
                     <DeleteIcon />
                   </IconButton>
