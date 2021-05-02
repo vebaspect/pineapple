@@ -18,15 +18,26 @@ import TableRow from '@material-ui/core/TableRow';
 import Tooltip from '@material-ui/core/Tooltip';
 
 import DeleteIcon from '@material-ui/icons/Delete';
+import WarningIcon from '@material-ui/icons/Warning';
 
 const useStyles = makeStyles(() =>
   createStyles({
+    componentVersion: {
+      paddingRight: '5px',
+    },
+    componentVersionWrapper: {
+      alignItems: 'center',
+      display: 'flex',
+    },
     product: {
       color: '#90a4ae',
     },
     separator: {
       paddingLeft: '5px',
       paddingRight: '5px',
+    },
+    warningIcon: {
+      color: '#f50057',
     },
   }),
 );
@@ -86,12 +97,24 @@ const InstalledComponentsList: React.FC<InstalledComponentsListProps> = ({ isDat
                 </Link>
               </TableCell>
               <TableCell>
-                <Link
-                  component={RouterLink}
-                  to={`/products/${installedComponent.productId}/components/${installedComponent.componentId}/component-versions/${installedComponent.componentVersionId}`}
-                >
-                  {installedComponent.componentVersionNumber}
-                </Link>
+                <Box className={styles.componentVersionWrapper}>
+                  <Link
+                    className={styles.componentVersion}
+                    component={RouterLink}
+                    to={`/products/${installedComponent.productId}/components/${installedComponent.componentId}/component-versions/${installedComponent.componentVersionId}`}
+                  >
+                    {installedComponent.componentVersionNumber}
+                  </Link>
+                  {
+                    installedComponent.isNewerComponentVersionAvailable
+                      ? (
+                        <Tooltip title="Dostępna jest nowsza wersja komponentu!">
+                          <WarningIcon className={styles.warningIcon} />
+                        </Tooltip>
+                      )
+                      : null
+                  }
+                </Box>
               </TableCell>
               <TableCell align="right">
                 <Tooltip title="Usuń">

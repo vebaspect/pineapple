@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Pineapple.Core.Domain.Exceptions;
 
 namespace Pineapple.Core.Domain.Entities
@@ -77,6 +78,18 @@ namespace Pineapple.Core.Domain.Entities
             }
 
             return new Component(id, name, description, productId, componentTypeId);
+        }
+
+        /// <summary>
+        /// Zwróć ostatnią wersję komponentu.
+        /// </summary>
+        public ComponentVersion GetLatestVersion()
+        {
+            return ComponentVersions?
+                .OrderByDescending(x => x.Major)
+                .ThenByDescending(x => x.Minor)
+                .ThenByDescending(x => x.Patch)
+                .FirstOrDefault();
         }
     }
 }

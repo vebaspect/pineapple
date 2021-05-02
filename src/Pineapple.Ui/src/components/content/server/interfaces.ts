@@ -32,6 +32,8 @@ export interface InstalledComponentsListProps {
     componentVersionId: string,
     // Numer wersji komponentu.
     componentVersionNumber: string,
+    // Flaga określająca, czy dostępna jest nowsza wersja komponentu.
+    isNewerComponentVersionAvailable: boolean,
   }[],
   // Zdarzenie odinstalowania komponentu.
   onUninstall: (id: string, name: string) => void,

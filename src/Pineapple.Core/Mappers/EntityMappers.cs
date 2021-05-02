@@ -361,7 +361,8 @@ namespace Pineapple.Core.Mappers
                             installedComponent.ComponentVersion.ComponentId,
                             installedComponent.ComponentVersion.Component.Name,
                             installedComponent.ComponentVersionId,
-                            installedComponent.ComponentVersion.GetFormattedNumber()
+                            installedComponent.ComponentVersion.GetFormattedNumber(),
+                            installedComponent.ComponentVersion != installedComponent.ComponentVersion.Component.GetLatestVersion()
                         );
                     })
                     .ToList()
