@@ -130,7 +130,7 @@ const Operators: React.VFC = () => {
         onConfirm={deleteOperatorConfirmed}
         onCancel={deleteOperatorCanceled}
       >
-        Czy na pewno chcesz usunąć programistę <strong>{deleteOperatorDialogWindowData?.fullName}</strong>?
+        Czy na pewno chcesz usunąć wdrożeniowca <strong>{deleteOperatorDialogWindowData?.fullName}</strong>?
       </DialogWindow>
     </>
   );
