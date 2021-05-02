@@ -12,6 +12,8 @@ import Paper from '@material-ui/core/Paper';
 
 import AddIcon from '@material-ui/icons/Add';
 
+import DialogWindow from '../../windows/DialogWindow';
+
 import Details from './Details';
 import InstalledComponentsList from './InstalledComponentsList';
 
@@ -40,6 +42,11 @@ const Server: React.VFC = () => {
   // Serwer.
   const [server, setServer] = useState(null);
 
+  // Flaga określająca, czy okno dialogowe potwierdzające chęć odinstalowania komponentu jest otwarte.
+  const [isUninstallComponentDialogWindowOpen, setIsUninstallComponentDialogWindowOpen] = useState(false);
+  // Dane wykorzystywane przez okno dialogowe potwierdzające chęć odinstalowania komponentu.
+  const [uninstallComponentDialogWindowData, setUninstallComponentDialogWindowData] = useState(null);  
+
   const fetchServer = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/implementations/${implementationId}/environments/${environmentId}/servers/${serverId}`)
       .then((response) => response.json())
@@ -57,12 +64,20 @@ const Server: React.VFC = () => {
     history.push(`/implementations/${implementationId}/environments/${environmentId}/servers/${serverId}/components/create`);
   };
 
-  const uninstallComponent = async (id: string) => {
+  const uninstallComponent = (id: string, name: string) => {
+    setUninstallComponentDialogWindowData({
+      id,
+      name,
+    });
+    setIsUninstallComponentDialogWindowOpen(true);
+  };
+
+  const uninstallComponentConfirmed = async () => {
     await fetch(
       `${window['env'].API_URL}/implementations/${implementationId}/environments/${environmentId}/servers/${serverId}/components`,
       {
         body: JSON.stringify({
-          componentVersionId: id,
+          componentVersionId: uninstallComponentDialogWindowData.id,
         }),
         headers: {
           'Content-Type': 'application/json',
@@ -71,8 +86,16 @@ const Server: React.VFC = () => {
       },
     )
     .then(() => {
+      setIsUninstallComponentDialogWindowOpen(false);
+      setUninstallComponentDialogWindowData(null);
+
       fetchServer();
     });
+  };
+
+  const uninstallComponentCanceled = () => {
+    setIsUninstallComponentDialogWindowOpen(false);
+    setUninstallComponentDialogWindowData(null);
   };
 
   return (
@@ -158,6 +181,14 @@ const Server: React.VFC = () => {
           </Box>
         </Paper>
       </Box>
+      <DialogWindow
+        isOpen={isUninstallComponentDialogWindowOpen}
+        title="Odinstalowanie komponentu"
+        onConfirm={uninstallComponentConfirmed}
+        onCancel={uninstallComponentCanceled}
+      >
+        Czy na pewno chcesz odinstalować komponent <strong>{uninstallComponentDialogWindowData?.name}</strong>?
+      </DialogWindow>
     </>
   );
 }
