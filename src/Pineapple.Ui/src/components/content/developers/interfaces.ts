@@ -19,5 +19,5 @@ export interface ListProps {
   // Zdarzenie edycji programisty.
   onEdit: (id: string) => void,
   // Zdarzenie usunięcia programisty.
-  onDelete: (id: string) => void,
+  onDelete: (id: string, fullName: string) => void,
 }

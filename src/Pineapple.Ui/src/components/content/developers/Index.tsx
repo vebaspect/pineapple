@@ -12,6 +12,8 @@ import Paper from '@material-ui/core/Paper';
 
 import AddIcon from '@material-ui/icons/Add';
 
+import DialogWindow from '../../windows/DialogWindow';
+
 import List from './List';
 
 const useStyles = makeStyles(() =>
@@ -31,6 +33,11 @@ const Developers: React.VFC = () => {
   const [isDevelopersFetched, setIsDevelopersFetched] = useState(false);
   // Lista programistów.
   const [developers, setDevelopers] = useState([]);
+
+  // Flaga określająca, czy okno dialogowe potwierdzające chęć usunięcia programisty jest otwarte.
+  const [isDeleteDeveloperDialogWindowOpen, setIsDeleteDeveloperDialogWindowOpen] = useState(false);
+  // Dane wykorzystywane przez okno dialogowe potwierdzające chęć usunięcia programisty.
+  const [deleteDeveloperDialogWindowData, setDeleteDeveloperDialogWindowData] = useState(null);
 
   const fetchDevelopers = async () => {
     await fetch(`${window['env'].API_URL}/users/developers`)
@@ -53,16 +60,32 @@ const Developers: React.VFC = () => {
     // TODO
   };
 
-  const deleteDeveloper = async (id: string) => {
+  const deleteDeveloper = (id: string, fullName: string) => {
+    setDeleteDeveloperDialogWindowData({
+      id,
+      fullName,
+    });
+    setIsDeleteDeveloperDialogWindowOpen(true);
+  };
+
+  const deleteDeveloperConfirmed = async () => {
     await fetch(
-      `${window['env'].API_URL}/users/${id}`,
+      `${window['env'].API_URL}/users/${deleteDeveloperDialogWindowData?.id}`,
       {
         method: 'DELETE',
       },
     )
     .then(() => {
+      setIsDeleteDeveloperDialogWindowOpen(false);
+      setDeleteDeveloperDialogWindowData(null);
+
       fetchDevelopers();
     });
+  };
+
+  const deleteDeveloperCanceled = () => {
+    setIsDeleteDeveloperDialogWindowOpen(false);
+    setDeleteDeveloperDialogWindowData(null);
   };
 
   return (
@@ -100,6 +123,14 @@ const Developers: React.VFC = () => {
           </Box>
         </Paper>
       </Box>
+      <DialogWindow
+        isOpen={isDeleteDeveloperDialogWindowOpen}
+        title="Usunięcie programisty"
+        onConfirm={deleteDeveloperConfirmed}
+        onCancel={deleteDeveloperCanceled}
+      >
+        Czy na pewno chcesz usunąć programistę <strong>{deleteDeveloperDialogWindowData?.fullName}</strong>?
+      </DialogWindow>
     </>
   );
 }
