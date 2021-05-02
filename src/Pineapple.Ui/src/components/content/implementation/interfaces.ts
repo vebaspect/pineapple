@@ -36,5 +36,5 @@ export interface ListProps {
   // Zdarzenie edycji środowiska.
   onEdit: (id: string) => void,
   // Zdarzenie usunięcia środowiska.
-  onDelete: (id: string) => void,
+  onDelete: (id: string, name: string) => void,
 }

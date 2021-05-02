@@ -13,6 +13,7 @@ import Paper from '@material-ui/core/Paper';
 
 import AddIcon from '@material-ui/icons/Add';
 
+import DialogWindow from '../../windows/DialogWindow';
 import Logs from '../../logs';
 
 import Details from './Details';
@@ -43,6 +44,11 @@ const Implementation: React.VFC = () => {
   const [isEnvironmentsFetched, setIsEnvironmentsFetched] = useState(false);
   // Lista środowisk.
   const [environments, setEnvironments] = useState([]);
+
+  // Flaga określająca, czy okno dialogowe potwierdzające chęć usunięcia środowiska jest otwarte.
+  const [isDeleteEnvironmentDialogWindowOpen, setIsDeleteEnvironmentDialogWindowOpen] = useState(false);
+  // Dane wykorzystywane przez okno dialogowe potwierdzające chęć usunięcia środowiska.
+  const [deleteEnvironmentDialogWindowData, setDeleteEnvironmentDialogWindowData] = useState(null);
 
   // Flaga określająca, czy lista logów została pobrana z API.
   const [isLogsFetched, setIsLogsFetched] = useState(false);
@@ -104,17 +110,33 @@ const Implementation: React.VFC = () => {
     // TODO
   };
 
-  const deleteEnvironment = async (id: string) => {
+  const deleteEnvironment = (id: string, name: string) => {
+    setDeleteEnvironmentDialogWindowData({
+      id,
+      name,
+    });
+    setIsDeleteEnvironmentDialogWindowOpen(true);
+  };
+
+  const deleteEnvironmentConfirmed = async () => {
     await fetch(
-      `${window['env'].API_URL}/implementations/${implementationId}/environments/${id}`,
+      `${window['env'].API_URL}/implementations/${implementationId}/environments/${deleteEnvironmentDialogWindowData?.id}`,
       {
         method: 'DELETE',
       },
     )
     .then(() => {
+      setIsDeleteEnvironmentDialogWindowOpen(false);
+      setDeleteEnvironmentDialogWindowData(null);
+
       fetchEnvironments();
       fetchLogs();
     });
+  };
+
+  const deleteEnvironmentCanceled = () => {
+    setIsDeleteEnvironmentDialogWindowOpen(false);
+    setDeleteEnvironmentDialogWindowData(null);
   };
 
   return (
@@ -238,6 +260,14 @@ const Implementation: React.VFC = () => {
           </Box>
         </Paper>
       </Box>
+      <DialogWindow
+        isOpen={isDeleteEnvironmentDialogWindowOpen}
+        title="Usunięcie środowiska"
+        onConfirm={deleteEnvironmentConfirmed}
+        onCancel={deleteEnvironmentCanceled}
+      >
+        Czy na pewno chcesz usunąć środowisko <strong>{deleteEnvironmentDialogWindowData?.name}</strong>?
+      </DialogWindow>
     </>
   );
 }
