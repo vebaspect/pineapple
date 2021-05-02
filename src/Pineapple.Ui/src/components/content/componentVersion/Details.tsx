@@ -8,6 +8,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 
 import {
+  formatNumber,
   translateKind,
 } from '../../../helpers/componentVersionHelpers';
 
@@ -33,6 +34,18 @@ const Details: React.FC<DetailsProps> = ({ isDataFetched, kind, major, minor, pa
         <TableRow>
           <TableCell style={{ fontWeight: 500, width: 200 }}>Rodzaj</TableCell>
           <TableCell>{translateKind(kind)}</TableCell>
+          <TableCell
+            align="center"
+            rowSpan={6}
+            style={{
+              borderLeft: '1px',
+              borderLeftColor: '#e0e0e0',
+              borderLeftStyle: 'solid',
+              fontSize: '2rem',
+            }}
+          >
+            {formatNumber(major, minor, patch, suffix)}
+          </TableCell>
         </TableRow>
         <TableRow>
           <TableCell style={{ fontWeight: 500, width: 200 }}>Major</TableCell>
