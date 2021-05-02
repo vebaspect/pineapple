@@ -13,6 +13,7 @@ import Paper from '@material-ui/core/Paper';
 
 import AddIcon from '@material-ui/icons/Add';
 
+import DialogWindow from '../../windows/DialogWindow';
 import Logs from '../../logs';
 
 import List from './List';
@@ -34,6 +35,11 @@ const Implementations: React.VFC = () => {
   const [isImplementationsFetched, setIsImplementationsFetched] = useState(false);
   // Lista wdrożeń.
   const [implementations, setImplementations] = useState([]);
+
+  // Flaga określająca, czy okno dialogowe potwierdzające chęć usunięcia wdrożenia jest otwarte.
+  const [isDeleteImplementationDialogWindowOpen, setIsDeleteImplementationDialogWindowOpen] = useState(false);
+  // Dane wykorzystywane przez okno dialogowe potwierdzające chęć usunięcia wdrożenia.
+  const [deleteImplementationDialogWindowData, setDeleteImplementationDialogWindowData] = useState(null);
 
   // Flaga określająca, czy lista logów została pobrana z API.
   const [isLogsFetched, setIsLogsFetched] = useState(false);
@@ -82,17 +88,33 @@ const Implementations: React.VFC = () => {
     // TODO
   };
 
-  const deleteImplementation = async (id: string) => {
+  const deleteImplementation = (id: string, name: string) => {
+    setDeleteImplementationDialogWindowData({
+      id,
+      name,
+    });
+    setIsDeleteImplementationDialogWindowOpen(true);
+  };
+
+  const deleteImplementationConfirmed = async () => {
     await fetch(
-      `${window['env'].API_URL}/implementations/${id}`,
+      `${window['env'].API_URL}/implementations/${deleteImplementationDialogWindowData?.id}`,
       {
         method: 'DELETE',
       },
     )
     .then(() => {
+      setIsDeleteImplementationDialogWindowOpen(false);
+      setDeleteImplementationDialogWindowData(null);
+
       fetchImplementations();
       fetchLogs();
     });
+  };
+
+  const deleteImplementationCanceled = () => {
+    setIsDeleteImplementationDialogWindowOpen(false);
+    setDeleteImplementationDialogWindowData(null);
   };
 
   return (
@@ -168,6 +190,14 @@ const Implementations: React.VFC = () => {
           </Box>
         </Paper>
       </Box>
+      <DialogWindow
+        isOpen={isDeleteImplementationDialogWindowOpen}
+        title="Usunięcie wdrożenia"
+        onConfirm={deleteImplementationConfirmed}
+        onCancel={deleteImplementationCanceled}
+      >
+        Czy na pewno chcesz usunąć wdrożenie <strong>{deleteImplementationDialogWindowData?.name}</strong>?
+      </DialogWindow>
     </>
   );
 }

@@ -19,5 +19,5 @@ export interface ListProps {
   // Zdarzenie edycji wdrożenia.
   onEdit: (id: string) => void,
   // Zdarzenie usunięcia wdrożenia.
-  onDelete: (id: string) => void,
+  onDelete: (id: string, name: string) => void,
 }
