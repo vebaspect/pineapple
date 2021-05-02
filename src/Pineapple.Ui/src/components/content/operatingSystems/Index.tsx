@@ -12,6 +12,8 @@ import Paper from '@material-ui/core/Paper';
 
 import AddIcon from '@material-ui/icons/Add';
 
+import DialogWindow from '../../windows/DialogWindow';
+
 import List from './List';
 
 const useStyles = makeStyles(() =>
@@ -31,6 +33,11 @@ const OperatingSystems: React.VFC = () => {
   const [isOperatingSystemsFetched, setIsOperatingSystemsFetched] = useState(false);
   // Lista systemów operacyjnych.
   const [operatingSystems, setOperatingSystems] = useState([]);
+
+  // Flaga określająca, czy okno dialogowe potwierdzające chęć usunięcia systemu operacyjnego jest otwarte.
+  const [isDeleteOperatingSystemDialogWindowOpen, setIsDeleteOperatingSystemDialogWindowOpen] = useState(false);
+  // Dane wykorzystywane przez okno dialogowe potwierdzające chęć usunięcia systemu operacyjnego.
+  const [deleteOperatingSystemDialogWindowData, setDeleteOperatingSystemDialogWindowData] = useState(null);
 
   const fetchOperatingSystems = async () => {
     await fetch(`${window['env'].API_URL}/configuration/operating-systems`)
@@ -53,16 +60,32 @@ const OperatingSystems: React.VFC = () => {
     // TODO
   };
 
-  const deleteOperatingSystem = async (id: string) => {
+  const deleteOperatingSystem = (id: string, fullName: string) => {
+    setDeleteOperatingSystemDialogWindowData({
+      id,
+      fullName,
+    });
+    setIsDeleteOperatingSystemDialogWindowOpen(true);
+  };
+
+  const deleteOperatingSystemConfirmed = async () => {
     await fetch(
-      `${window['env'].API_URL}/configuration/operating-systems/${id}`,
+      `${window['env'].API_URL}/configuration/operating-systems/${deleteOperatingSystemDialogWindowData?.id}`,
       {
         method: 'DELETE',
       },
     )
     .then(() => {
+      setIsDeleteOperatingSystemDialogWindowOpen(false);
+      setDeleteOperatingSystemDialogWindowData(null);
+
       fetchOperatingSystems();
     });
+  };
+
+  const deleteOperatingSystemCanceled = () => {
+    setIsDeleteOperatingSystemDialogWindowOpen(false);
+    setDeleteOperatingSystemDialogWindowData(null);
   };
 
   return (
@@ -100,6 +123,14 @@ const OperatingSystems: React.VFC = () => {
           </Box>
         </Paper>
       </Box>
+      <DialogWindow
+        isOpen={isDeleteOperatingSystemDialogWindowOpen}
+        title="Usunięcie systemu operacyjnego"
+        onConfirm={deleteOperatingSystemConfirmed}
+        onCancel={deleteOperatingSystemCanceled}
+      >
+        Czy na pewno chcesz usunąć system operacyjny <strong>{deleteOperatingSystemDialogWindowData?.fullName}</strong>?
+      </DialogWindow>
     </>
   );
 }

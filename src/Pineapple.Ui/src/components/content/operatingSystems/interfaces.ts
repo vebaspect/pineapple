@@ -17,5 +17,5 @@ export interface ListProps {
   // Zdarzenie edycji systemu operacyjnego.
   onEdit: (id: string) => void,
   // Zdarzenie usunięcia systemu operacyjnego.
-  onDelete: (id: string) => void,
+  onDelete: (id: string, name: string) => void,
 }
