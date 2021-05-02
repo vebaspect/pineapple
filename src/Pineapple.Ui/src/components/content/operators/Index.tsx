@@ -38,7 +38,6 @@ const Operators: React.VFC = () => {
   const [isDeleteOperatorDialogWindowOpen, setIsDeleteOperatorDialogWindowOpen] = useState(false);
   // Dane wykorzystywane przez okno dialogowe potwierdzające chęć usunięcia wdrożeniowca.
   const [deleteOperatorDialogWindowData, setDeleteOperatorDialogWindowData] = useState(null);
-  
 
   const fetchOperators = async () => {
     await fetch(`${window['env'].API_URL}/users/operators`)
