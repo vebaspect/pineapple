@@ -22,8 +22,12 @@ export interface ListProps {
     componentTypeName: string,
     // Opis.
     description: string,
-    // Flaga określająca, czy komponent zostało usunięte.
+    // Flaga określająca, czy komponent został usunięty.
     isDeleted: boolean,
+    // Identyfikator aktualnej wersji komponentu.
+    actualComponentVersionId: string,
+    // Numer aktualnej wersji komponentu.
+    actualComponentVersionNumber: string,
   }[],
   // Identyfikator produktu.
   productId: string,

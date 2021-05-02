@@ -19,7 +19,9 @@ namespace Pineapple.Core.Mappers
                 component.Name,
                 component.Description,
                 component.ComponentTypeId,
-                component.ComponentType.Name
+                component.ComponentType.Name,
+                component.GetLatestVersion()?.Id,
+                component.GetLatestVersion()?.GetFormattedNumber()
             );
         }
 

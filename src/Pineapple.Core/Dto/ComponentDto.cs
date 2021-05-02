@@ -47,7 +47,17 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public string ComponentTypeName { get; }
 
-        public ComponentDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string name, string description, Guid componentTypeId, string componentTypeName)
+        /// <summary>
+        /// Identyfikator aktualnej wersji komponentu.
+        /// </summary>
+        public Guid? ActualComponentVersionId { get; }
+
+        /// <summary>
+        /// Numer aktualnej wersji komponentu.
+        /// </summary>
+        public string ActualComponentVersionNumber { get; }
+
+        public ComponentDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string name, string description, Guid componentTypeId, string componentTypeName, Guid? actualComponentVersionId, string actualComponentVersionNumber)
         {
             Id = id;
             CreationDate = creationDate;
@@ -57,6 +67,8 @@ namespace Pineapple.Core.Dto
             Description = description;
             ComponentTypeId = componentTypeId;
             ComponentTypeName = componentTypeName;
+            ActualComponentVersionId = actualComponentVersionId;
+            ActualComponentVersionNumber = actualComponentVersionNumber;
         }
     }
 }

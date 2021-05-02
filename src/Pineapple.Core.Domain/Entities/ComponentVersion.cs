@@ -73,7 +73,7 @@ namespace Pineapple.Core.Domain.Entities
         }
 
         /// <summary>
-        /// Zwróć numer wersji komponentu w postaci sformatowanej (zgodnej z Semantic Versioning).
+        /// Zwróć numer wersji komponentu (zgodnej z Semantic Versioning).
         /// </summary>
         public string GetFormattedNumber()
         {

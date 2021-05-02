@@ -37,6 +37,7 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, productId, onEdit, onD
         <TableRow>
           <TableCell style={{ width: 60 }}>Lp</TableCell>
           <TableCell>Nazwa</TableCell>
+          <TableCell>Aktualna wersja</TableCell>
           <TableCell>Typ</TableCell>
           <TableCell>Opis</TableCell>
           <TableCell style={{ width: 100 }} />
@@ -53,6 +54,14 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, productId, onEdit, onD
                   to={`/products/${productId}/components/${component.id}`}
                 >
                   {component.name}
+                </Link>
+              </TableCell>
+              <TableCell>
+                <Link
+                  component={RouterLink}
+                  to={`/products/${productId}/components/${component.id}/component-versions/${component.actualComponentVersionId}`}
+                >
+                  {component.actualComponentVersionNumber}
                 </Link>
               </TableCell>
               <TableCell>
