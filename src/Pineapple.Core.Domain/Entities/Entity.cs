@@ -42,5 +42,15 @@ namespace Pineapple.Core.Domain.Entities
         {
             IsDeleted = true;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is not Entity entity)
+            {
+                return false;
+            }
+
+            return Id == entity.Id;
+        }
     }
 }
