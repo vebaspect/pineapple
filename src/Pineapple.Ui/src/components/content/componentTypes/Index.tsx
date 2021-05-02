@@ -12,6 +12,8 @@ import Paper from '@material-ui/core/Paper';
 
 import AddIcon from '@material-ui/icons/Add';
 
+import DialogWindow from '../../windows/DialogWindow';
+
 import List from './List';
 
 const useStyles = makeStyles(() =>
@@ -32,6 +34,11 @@ const ComponentTypes: React.VFC = () => {
   // Lista typów komponentów.
   const [componentTypes, setComponentTypes] = useState([]);
 
+  // Flaga określająca, czy okno dialogowe potwierdzające chęć usunięcia typu komponentu jest otwarte.
+  const [isDeleteComponentTypeDialogWindowOpen, setIsDeleteComponentTypeDialogWindowOpen] = useState(false);
+  // Dane wykorzystywane przez okno dialogowe potwierdzające chęć usunięcia typu komponentu.
+  const [deleteComponentTypeDialogWindowData, setDeleteComponentTypeDialogWindowData] = useState(null);
+  
   const fetchComponentTypes = async () => {
     await fetch(`${window['env'].API_URL}/configuration/component-types`)
       .then((response) => response.json())
@@ -53,16 +60,32 @@ const ComponentTypes: React.VFC = () => {
     // TODO
   };
 
-  const deleteComponentType = async (id: string) => {
+  const deleteComponentType = (id: string, name: string) => {
+    setDeleteComponentTypeDialogWindowData({
+      id,
+      name,
+    });
+    setIsDeleteComponentTypeDialogWindowOpen(true);
+  };
+
+  const deleteComponentTypeConfirmed = async () => {
     await fetch(
-      `${window['env'].API_URL}/configuration/component-types/${id}`,
+      `${window['env'].API_URL}/configuration/component-types/${deleteComponentTypeDialogWindowData?.id}`,
       {
         method: 'DELETE',
       },
     )
     .then(() => {
+      setIsDeleteComponentTypeDialogWindowOpen(false);
+      setDeleteComponentTypeDialogWindowData(null);
+
       fetchComponentTypes();
     });
+  };
+
+  const deleteComponentTypeCanceled = () => {
+    setIsDeleteComponentTypeDialogWindowOpen(false);
+    setDeleteComponentTypeDialogWindowData(null);
   };
 
   return (
@@ -100,6 +123,14 @@ const ComponentTypes: React.VFC = () => {
           </Box>
         </Paper>
       </Box>
+      <DialogWindow
+        isOpen={isDeleteComponentTypeDialogWindowOpen}
+        title="Usunięcie typu komponentu"
+        onConfirm={deleteComponentTypeConfirmed}
+        onCancel={deleteComponentTypeCanceled}
+      >
+        Czy na pewno chcesz usunąć typ komponentu <strong>{deleteComponentTypeDialogWindowData?.name}</strong>?
+      </DialogWindow>
     </>
   );
 }

@@ -17,5 +17,5 @@ export interface ListProps {
   // Zdarzenie edycji typu komponentu.
   onEdit: (id: string) => void,
   // Zdarzenie usunięcia typu komponentu.
-  onDelete: (id: string) => void,
+  onDelete: (id: string, name: string) => void,
 }
