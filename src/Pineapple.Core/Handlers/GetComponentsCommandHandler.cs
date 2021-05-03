@@ -45,7 +45,9 @@ namespace Pineapple.Core.Handler
 
             if (product.Components?.Count > 0)
             {
-                return product.Components.Select(component => component.ToDto()).ToArray();
+                return product.Components
+                    .OrderBy(component => component.Name)
+                    .Select(component => component.ToDto()).ToArray();
             }
 
             return Enumerable.Empty<ComponentDto>().ToArray();

@@ -50,7 +50,9 @@ namespace Pineapple.Core.Handler
 
             if (operators?.Length > 0)
             {
-                return operators.Select(@operator =>@operator.ToDto()).ToArray();
+                return operators
+                    .OrderBy(@operator => @operator.FullName)
+                    .Select(@operator =>@operator.ToDto()).ToArray();
             }
 
             return Enumerable.Empty<UserDto>().ToArray();

@@ -50,7 +50,9 @@ namespace Pineapple.Core.Handler
 
             if (implementations?.Length > 0)
             {
-                return implementations.Select(implementation => implementation.ToDto()).ToArray();
+                return implementations
+                    .OrderBy(implementation => implementation.Name)
+                    .Select(implementation => implementation.ToDto()).ToArray();
             }
 
             return Enumerable.Empty<ImplementationDto>().ToArray();

@@ -43,7 +43,9 @@ namespace Pineapple.Core.Handler
 
             if (implementation.Environments?.Count > 0)
             {
-                return implementation.Environments.Select(environment => environment.ToDto()).ToArray();
+                return implementation.Environments
+                    .OrderBy(environment => environment.Name)
+                    .Select(environment => environment.ToDto()).ToArray();
             }
 
             return Enumerable.Empty<EnvironmentDto>().ToArray();

@@ -53,7 +53,9 @@ namespace Pineapple.Core.Handler
 
             if (environment.Servers?.Count > 0)
             {
-                return environment.Servers.Select(server => server.ToDto()).ToArray();
+                return environment.Servers
+                    .OrderBy(server => server.Name)
+                    .Select(server => server.ToDto()).ToArray();
             }
 
             return Enumerable.Empty<ServerDto>().ToArray();

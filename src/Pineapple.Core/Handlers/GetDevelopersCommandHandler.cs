@@ -50,7 +50,9 @@ namespace Pineapple.Core.Handler
 
             if (developers?.Length > 0)
             {
-                return developers.Select(developer => developer.ToDto()).ToArray();
+                return developers
+                    .OrderBy(developer => developer.FullName)
+                    .Select(developer => developer.ToDto()).ToArray();
             }
 
             return Enumerable.Empty<UserDto>().ToArray();

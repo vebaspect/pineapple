@@ -35,7 +35,9 @@ namespace Pineapple.Core.Handler
 
             if (users?.Length > 0)
             {
-                return users.Select(user => user.ToDto()).ToArray();
+                return users
+                    .OrderBy(user => user.FullName)
+                    .Select(user => user.ToDto()).ToArray();
             }
 
             return Enumerable.Empty<UserDto>().ToArray();

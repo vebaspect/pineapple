@@ -48,7 +48,9 @@ namespace Pineapple.Core.Handler
 
             if (componentTypes?.Length > 0)
             {
-                return componentTypes.Select(componentType => componentType.ToDto()).ToArray();
+                return componentTypes
+                    .OrderBy(componentType => componentType.Name)
+                    .Select(componentType => componentType.ToDto()).ToArray();
             }
 
             return Enumerable.Empty<ComponentTypeDto>().ToArray();

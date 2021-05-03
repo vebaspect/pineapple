@@ -48,7 +48,9 @@ namespace Pineapple.Core.Handler
 
             if (products?.Length > 0)
             {
-                return products.Select(product => product.ToDto()).ToArray();
+                return products
+                    .OrderBy(product => product.Name)
+                    .Select(product => product.ToDto()).ToArray();
             }
 
             return Enumerable.Empty<ProductDto>().ToArray();

@@ -48,7 +48,9 @@ namespace Pineapple.Core.Handler
 
             if (softwareApplications?.Length > 0)
             {
-                return softwareApplications.Select(softwareApplication => softwareApplication.ToDto()).ToArray();
+                return softwareApplications
+                    .OrderBy(softwareApplication => softwareApplication.Name)
+                    .Select(softwareApplication => softwareApplication.ToDto()).ToArray();
             }
 
             return Enumerable.Empty<SoftwareApplicationDto>().ToArray();

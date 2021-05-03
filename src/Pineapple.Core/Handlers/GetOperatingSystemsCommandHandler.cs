@@ -48,7 +48,9 @@ namespace Pineapple.Core.Handler
 
             if (operatingSystems?.Length > 0)
             {
-                return operatingSystems.Select(operatingSystem =>operatingSystem.ToDto()).ToArray();
+                return operatingSystems
+                    .OrderBy(operatingSystem => operatingSystem.Name)
+                    .Select(operatingSystem => operatingSystem.ToDto()).ToArray();
             }
 
             return Enumerable.Empty<OperatingSystemDto>().ToArray();

@@ -50,7 +50,9 @@ namespace Pineapple.Core.Handler
 
             if (administrators?.Length > 0)
             {
-                return administrators.Select(administrator => administrator.ToDto()).ToArray();
+                return administrators
+                    .OrderBy(administrator => administrator.FullName)
+                    .Select(administrator => administrator.ToDto()).ToArray();
             }
 
             return Enumerable.Empty<UserDto>().ToArray();
