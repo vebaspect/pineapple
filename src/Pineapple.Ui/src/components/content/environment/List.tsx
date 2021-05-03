@@ -38,7 +38,6 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, implementationId, envi
           <TableCell style={{ width: 60 }}>Lp</TableCell>
           <TableCell>Nazwa</TableCell>
           <TableCell>Symbol</TableCell>
-          <TableCell>Opis</TableCell>
           <TableCell style={{ width: 100 }} />
         </TableRow>
       </TableHead>
@@ -56,7 +55,6 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, implementationId, envi
                 </Link>
               </TableCell>
               <TableCell>{server.symbol}</TableCell>
-              <TableCell>{server.description || '–'}</TableCell>
               <TableCell align="right">
                 <Tooltip title="Edytuj">
                   <IconButton

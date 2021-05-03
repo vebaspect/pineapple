@@ -45,7 +45,6 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, productId, componentId
           <TableCell>Numer</TableCell>
           <TableCell>Rodzaj</TableCell>
           <TableCell>Data wydania</TableCell>
-          <TableCell>Opis</TableCell>
           <TableCell style={{ width: 100 }} />
         </TableRow>
       </TableHead>
@@ -64,7 +63,6 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, productId, componentId
               </TableCell>
               <TableCell>{translateKind(componentVersion.kind)}</TableCell>
               <TableCell>{moment(componentVersion.releaseDate).format('LLL')}</TableCell>
-              <TableCell>{componentVersion.description || '–'}</TableCell>
               <TableCell align="right">
                 <Tooltip title="Edytuj">
                   <IconButton

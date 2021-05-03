@@ -37,7 +37,6 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, onEdit, onDelete }: Li
         <TableRow>
           <TableCell style={{ width: 60 }}>Lp</TableCell>
           <TableCell>Nazwa</TableCell>
-          <TableCell>Opis</TableCell>
           <TableCell style={{ width: 100 }} />
         </TableRow>
       </TableHead>
@@ -54,7 +53,6 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, onEdit, onDelete }: Li
                   {product.name}
                 </Link>
               </TableCell>
-              <TableCell>{product.description || '–'}</TableCell>
               <TableCell align="right">
                 <Tooltip title="Edytuj">
                   <IconButton

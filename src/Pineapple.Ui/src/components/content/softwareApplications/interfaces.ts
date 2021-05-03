@@ -9,8 +9,6 @@ export interface ListProps {
     name: string,
     // Symbol.
     symbol: string,
-    // Opis.
-    description: string,
     // Flaga określająca, czy oprogramowanie zostało usunięte.
     isDeleted: boolean,
   }[],

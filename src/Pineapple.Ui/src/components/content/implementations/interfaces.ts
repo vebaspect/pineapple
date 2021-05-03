@@ -11,8 +11,6 @@ export interface ListProps {
     managerId: string,
     // Imię i nazwisko menedżera.
     managerFullName: string,
-    // Opis.
-    description: string,
     // Flaga określająca, czy wdrożenie zostało usunięte.
     isDeleted: boolean,
   }[],

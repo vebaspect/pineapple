@@ -39,7 +39,6 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, productId, onEdit, onD
           <TableCell>Nazwa</TableCell>
           <TableCell>Aktualna wersja</TableCell>
           <TableCell>Typ</TableCell>
-          <TableCell>Opis</TableCell>
           <TableCell style={{ width: 100 }} />
         </TableRow>
       </TableHead>
@@ -72,7 +71,6 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, productId, onEdit, onD
                   {component.componentTypeName}
                 </Link>
               </TableCell>
-              <TableCell>{component.description || '–'}</TableCell>
               <TableCell align="right">
                 <Tooltip title="Edytuj">
                   <IconButton

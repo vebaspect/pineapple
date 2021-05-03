@@ -26,8 +26,6 @@ export interface ListProps {
     operatorId: string,
     // Imię i nazwisko wdrożeniowca.
     operatorFullName: string,
-    // Opis.
-    description: string,
     // Flaga określająca, czy środowisko zostało usunięte.
     isDeleted: boolean,
   }[],

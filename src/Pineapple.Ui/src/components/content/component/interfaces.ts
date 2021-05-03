@@ -30,8 +30,6 @@ export interface ListProps {
     patch: number,
     // Przyrostek.
     suffix: string,
-    // Opis.
-    description: string,
     // Flaga określająca, czy wersja komponentu została usunięta.
     isDeleted: boolean,
   }[],

@@ -7,8 +7,6 @@ export interface ListProps {
     id: string,
     // Nazwa.
     name: string,
-    // Opis.
-    description: string,
     // Flaga określająca, czy produkt został usunięty.
     isDeleted: boolean,
   }[],

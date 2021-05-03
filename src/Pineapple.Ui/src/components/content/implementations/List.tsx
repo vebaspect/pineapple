@@ -38,7 +38,6 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, onEdit, onDelete }: Li
           <TableCell style={{ width: 60 }}>Lp</TableCell>
           <TableCell>Nazwa</TableCell>
           <TableCell>Menedżer</TableCell>
-          <TableCell>Opis</TableCell>
           <TableCell style={{ width: 100 }} />
         </TableRow>
       </TableHead>
@@ -63,7 +62,6 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, onEdit, onDelete }: Li
                   {implementation.managerFullName}
                 </Link>
               </TableCell>
-              <TableCell>{implementation.description || '–'}</TableCell>
               <TableCell align="right">
                 <Tooltip title="Edytuj">
                   <IconButton
