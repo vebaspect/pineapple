@@ -1,3 +1,5 @@
+import moment from 'moment-timezone';
+
 import {
   ApiFormat,
   FormState,
@@ -6,6 +8,7 @@ import {
 
 export const convertFormStateToApiFormat = (formState: FormState) : ApiFormat => {
   const requestBody: ApiFormat = {
+    releaseDate: formState.releaseDate,
     major: parseInt(formState.major),
     minor: parseInt(formState.minor),
     patch: parseInt(formState.patch),
@@ -18,6 +21,7 @@ export const convertFormStateToApiFormat = (formState: FormState) : ApiFormat =>
 
 export const initialFormState = () : FormState => {
   const formState: FormState = {
+    releaseDate: moment().tz('Poland').format(),
     major: '',
     minor: '',
     patch: '',
@@ -31,12 +35,17 @@ export const validateFormState = (formState: FormState) : FormStateValidationRes
   const formStateValidationResult: FormStateValidationResult = {
     isValid: true,
     details: {
+      releaseDate: null,
       major: null,
       minor: null,
       patch: null,
     },
   };
 
+  if (!formState.releaseDate) {
+    formStateValidationResult.isValid = false;
+    formStateValidationResult.details.releaseDate = 'Pole wymagane.';
+  }
   if (!formState.major) {
     formStateValidationResult.isValid = false;
     formStateValidationResult.details.major = 'Pole wymagane.';

@@ -1,3 +1,4 @@
+import moment from 'moment-timezone';
 import React, { useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
@@ -6,6 +7,8 @@ import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
+
+import { DateTimePicker } from '@material-ui/pickers';
 
 import SaveIcon from '@material-ui/icons/Save';
 
@@ -31,6 +34,13 @@ const CreateComponentVersionEditor: React.VFC = () => {
   const [formState, setFormState] = useState(initialFormState());
   // Wynik walidacji stanu formularza.
   const [formStateValidationResult, setFormStateValidationResult] = useState(null);
+
+  const onReleaseDateChange = (value: moment.Moment) => {
+    setFormState({
+      ...formState,
+      releaseDate: value.tz('Poland').format(),
+    });
+  };
 
   const onMajorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormState({
@@ -119,6 +129,20 @@ const CreateComponentVersionEditor: React.VFC = () => {
             px={4}
             pb={2}
             pt={4}
+          >
+            <DateTimePicker
+              format="LLL"
+              variant="inline"
+              label="Data wydania"
+              helperText={formStateValidationResult?.releaseDate}
+              error={formStateValidationResult && formStateValidationResult.releaseDate !== undefined && formStateValidationResult.releaseDate !== null}
+              value={formState.releaseDate}
+              onChange={onReleaseDateChange}
+            />
+          </Box>
+          <Box
+            px={4}
+            pb={2}
           >
             <FormControl fullWidth>
               <TextField

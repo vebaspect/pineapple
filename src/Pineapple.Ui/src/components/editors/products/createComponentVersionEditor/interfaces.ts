@@ -1,4 +1,6 @@
 export interface ApiFormat {
+  // Data wydania.
+  releaseDate: string,
   // Major.
   major: number,
   // Minor.
@@ -12,6 +14,8 @@ export interface ApiFormat {
 }
 
 export interface FormState {
+  // Data wydania.
+  releaseDate: string,
   // Major.
   major: string,
   // Minor.
@@ -29,6 +33,8 @@ export interface FormStateValidationResult {
   isValid: boolean,
   // Stan poszczególnych pól formularza.
   details: {
+    // Data wydania.
+    releaseDate: string,
     // Major.
     major: string,
     // Minor.
