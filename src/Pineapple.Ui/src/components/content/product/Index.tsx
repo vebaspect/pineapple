@@ -55,20 +55,26 @@ const Product: React.VFC = () => {
   // Lista logów.
   const [logs, setLogs] = useState([]);
   // Liczba logów, które mają zostać zwrócone.
-  const [count, setCount] = useState(10);
+  const [logsCount, setLogsCount] = useState(10);
 
   const fetchLogs = useCallback(async () => {
-    await fetch(`${window['env'].API_URL}/logs/products/${productId}?count=${count}`)
+    await fetch(`${window['env'].API_URL}/logs/products/${productId}?count=${logsCount}`)
       .then((response) => response.json())
       .then((data) => {
         setIsLogsFetched(true);
         setLogs(data);
       });
-  }, [productId, count]);
+  }, [productId, logsCount]);
 
   useEffect(() => {
     fetchLogs();
-  }, [productId, count, fetchLogs]);
+  }, [productId, logsCount, fetchLogs]);
+
+  const fetchMoreLogs = () => {
+    if (logsCount <= logs.length) {
+      setLogsCount(logsCount + 10);
+    }
+  };
 
   const fetchProduct = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/products/${productId}`)
@@ -95,12 +101,6 @@ const Product: React.VFC = () => {
   useEffect(() => {
     fetchComponents();
   }, [fetchComponents]);
-
-  const fetchMoreLogs = () => {
-    if (count <= logs.length) {
-      setCount(count + 10);
-    }
-  };
 
   const addComponent = () => {
     history.push(`/products/${productId}/components/create`);

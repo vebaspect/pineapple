@@ -61,6 +61,12 @@ const Products: React.VFC = () => {
     fetchLogs();
   }, [logsCount, fetchLogs]);
 
+  const fetchMoreLogs = () => {
+    if (logsCount <= logs.length) {
+      setLogsCount(logsCount + 10);
+    }
+  };
+
   const fetchProducts = async () => {
     await fetch(`${window['env'].API_URL}/products`)
       .then((response) => response.json())
@@ -73,12 +79,6 @@ const Products: React.VFC = () => {
   useEffect(() => {
     fetchProducts();
   }, []);
-
-  const fetchMoreLogs = () => {
-    if (logsCount <= logs.length) {
-      setLogsCount(logsCount + 10);
-    }
-  };
 
   const addProduct = () => {
     history.push('/products/create');

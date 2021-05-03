@@ -12,24 +12,24 @@ const Configuration: React.VFC = () => {
   // Lista logów.
   const [logs, setLogs] = useState([]);
   // Liczba logów, które mają zostać zwrócone.
-  const [count, setCount] = useState(10);
+  const [logsCount, setLogsCount] = useState(10);
 
   const fetchLogs = useCallback(async () => {
-    await fetch(`${window['env'].API_URL}/logs/configuration?count=${count}`)
+    await fetch(`${window['env'].API_URL}/logs/configuration?count=${logsCount}`)
       .then((response) => response.json())
       .then((data) => {
         setIsLogsFetched(true);
         setLogs(data);
       });
-  }, [count]);
+  }, [logsCount]);
 
   useEffect(() => {
     fetchLogs();
-  }, [count, fetchLogs]);
+  }, [logsCount, fetchLogs]);
 
   const fetchMoreLogs = () => {
-    if (count <= logs.length) {
-      setCount(count + 10);
+    if (logsCount <= logs.length) {
+      setLogsCount(logsCount + 10);
     }
   };
 

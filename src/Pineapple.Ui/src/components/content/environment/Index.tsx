@@ -57,20 +57,26 @@ const Environment: React.VFC = () => {
   // Lista logów.
   const [logs, setLogs] = useState([]);
   // Liczba logów, które mają zostać zwrócone.
-  const [count, setCount] = useState(10);
+  const [logsCount, setLogsCount] = useState(10);
 
   const fetchLogs = useCallback(async () => {
-    await fetch(`${window['env'].API_URL}/logs/environments/${environmentId}?count=${count}`)
+    await fetch(`${window['env'].API_URL}/logs/environments/${environmentId}?count=${logsCount}`)
       .then((response) => response.json())
       .then((data) => {
         setIsLogsFetched(true);
         setLogs(data);
       });
-  }, [environmentId, count]);
+  }, [environmentId, logsCount]);
 
   useEffect(() => {
     fetchLogs();
-  }, [environmentId, count, fetchLogs]);
+  }, [environmentId, logsCount, fetchLogs]);
+
+  const fetchMoreLogs = () => {
+    if (logsCount <= logs.length) {
+      setLogsCount(logsCount + 10);
+    }
+  };
 
   const fetchEnvironment = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/implementations/${implementationId}/environments/${environmentId}`)
@@ -97,12 +103,6 @@ const Environment: React.VFC = () => {
   useEffect(() => {
     fetchServers();
   }, [fetchServers]);
-
-  const fetchMoreLogs = () => {
-    if (count <= logs.length) {
-      setCount(count + 10);
-    }
-  };
 
   const addServer = () => {
     history.push(`/implementations/${implementationId}/environments/${environmentId}/servers/create`);

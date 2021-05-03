@@ -61,6 +61,12 @@ const Implementations: React.VFC = () => {
     fetchLogs();
   }, [logsCount, fetchLogs]);
 
+  const fetchMoreLogs = () => {
+    if (logsCount <= logs.length) {
+      setLogsCount(logsCount + 10);
+    }
+  };
+
   const fetchImplementations = async () => {
     await fetch(`${window['env'].API_URL}/implementations`)
       .then((response) => response.json())
@@ -73,12 +79,6 @@ const Implementations: React.VFC = () => {
   useEffect(() => {
     fetchImplementations();
   }, []);
-
-  const fetchMoreLogs = () => {
-    if (logsCount <= logs.length) {
-      setLogsCount(logsCount + 10);
-    }
-  };
 
   const addImplementation = () => {
     history.push('/implementations/create');
