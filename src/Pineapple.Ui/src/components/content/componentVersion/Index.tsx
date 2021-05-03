@@ -75,6 +75,7 @@ const ComponentVersion: React.VFC = () => {
           <Details
             isDataFetched={isComponentVersionFetched}
             kind={componentVersion?.kind}
+            releaseDate={componentVersion?.releaseDate}
             major={componentVersion?.major}
             minor={componentVersion?.minor}
             patch={componentVersion?.patch}

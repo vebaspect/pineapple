@@ -20,6 +20,8 @@ export interface ListProps {
     id: string,
     // Rodzaj.
     kind: string,
+    // Data wydania.
+    releaseDate: string,
     // Major.
     major: number,
     // Minor.

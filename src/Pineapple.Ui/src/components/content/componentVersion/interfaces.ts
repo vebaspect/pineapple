@@ -3,6 +3,8 @@ export interface DetailsProps {
   isDataFetched: boolean,
   // Rodzaj.
   kind: string,
+  // Data wydania.
+  releaseDate: string,
   // Major.
   major: number,
   // Minor.

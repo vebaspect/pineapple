@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React from 'react';
 
 import Box from '@material-ui/core/Box';
@@ -16,7 +17,7 @@ import {
   DetailsProps,
 } from './interfaces';
 
-const Details: React.FC<DetailsProps> = ({ isDataFetched, kind, major, minor, patch, suffix, description }: DetailsProps) => {
+const Details: React.FC<DetailsProps> = ({ isDataFetched, kind, releaseDate, major, minor, patch, suffix, description }: DetailsProps) => {
   if (!isDataFetched) {
     return (
       <Box
@@ -46,6 +47,10 @@ const Details: React.FC<DetailsProps> = ({ isDataFetched, kind, major, minor, pa
           >
             {formatNumber(major, minor, patch, suffix)}
           </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell style={{ fontWeight: 500, width: 200 }}>Data wydania</TableCell>
+          <TableCell>{moment(releaseDate).format('LLL')}</TableCell>
         </TableRow>
         <TableRow>
           <TableCell style={{ fontWeight: 500, width: 200 }}>Major</TableCell>

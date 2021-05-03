@@ -46,6 +46,7 @@ namespace Pineapple.Core.Mappers
                 componentVersion.ModificationDate,
                 componentVersion.IsDeleted,
                 componentVersion.GetKind(),
+                componentVersion.ReleaseDate,
                 componentVersion.Major,
                 componentVersion.Minor,
                 componentVersion.Patch,
