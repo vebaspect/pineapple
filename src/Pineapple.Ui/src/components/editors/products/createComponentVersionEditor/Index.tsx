@@ -77,6 +77,10 @@ const CreateComponentVersionEditor: React.VFC = () => {
     });
   };
 
+  const onCancel = () => {
+    history.push(`/products/${productId}/components/${componentId}/component-versions`);
+  };
+
   const onSave = async () => {
     const validationResult = validateFormState(formState);
     if (validationResult.isValid) {
@@ -218,6 +222,14 @@ const CreateComponentVersionEditor: React.VFC = () => {
             pt={1}
             textAlign="right"
           >
+            <Button
+              size="small"
+              style={{ marginRight: '15px' }}
+              variant="contained"
+              onClick={onCancel}
+            >
+              Anuluj
+            </Button>
             <Button
               color="primary"
               size="small"

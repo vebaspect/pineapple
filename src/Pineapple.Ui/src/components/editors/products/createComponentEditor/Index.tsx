@@ -82,6 +82,10 @@ const CreateComponentEditor: React.VFC = () => {
     });
   };
 
+  const onCancel = () => {
+    history.push(`/products/${productId}`);
+  };
+
   const onSave = async () => {
     const validationResult = validateFormState(formState);
     if (validationResult.isValid) {
@@ -209,6 +213,14 @@ const CreateComponentEditor: React.VFC = () => {
             pt={1}
             textAlign="right"
           >
+            <Button
+              size="small"
+              style={{ marginRight: '15px' }}
+              variant="contained"
+              onClick={onCancel}
+            >
+              Anuluj
+            </Button>
             <Button
               color="primary"
               size="small"
