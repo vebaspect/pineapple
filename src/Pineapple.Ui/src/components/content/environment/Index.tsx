@@ -8,11 +8,13 @@ import {
 
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 
 import AddIcon from '@material-ui/icons/Add';
 
 import DialogWindow from '../../windows/DialogWindow';
+import Logs from '../../logs';
 
 import Details from './Details';
 import List from './List';
@@ -50,6 +52,26 @@ const Environment: React.VFC = () => {
   // Dane wykorzystywane przez okno dialogowe potwierdzające chęć usunięcia serwera.
   const [deleteServerDialogWindowData, setDeleteServerDialogWindowData] = useState(null);
 
+  // Flaga określająca, czy lista logów została pobrana z API.
+  const [isLogsFetched, setIsLogsFetched] = useState(false);
+  // Lista logów.
+  const [logs, setLogs] = useState([]);
+  // Liczba logów, które mają zostać zwrócone.
+  const [count, setCount] = useState(10);
+
+  const fetchLogs = useCallback(async () => {
+    await fetch(`${window['env'].API_URL}/logs/environments/${environmentId}?count=${count}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setIsLogsFetched(true);
+        setLogs(data);
+      });
+  }, [environmentId, count]);
+
+  useEffect(() => {
+    fetchLogs();
+  }, [environmentId, count, fetchLogs]);
+
   const fetchEnvironment = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/implementations/${implementationId}/environments/${environmentId}`)
       .then((response) => response.json())
@@ -75,6 +97,12 @@ const Environment: React.VFC = () => {
   useEffect(() => {
     fetchServers();
   }, [fetchServers]);
+
+  const fetchMoreLogs = () => {
+    if (count <= logs.length) {
+      setCount(count + 10);
+    }
+  };
 
   const addServer = () => {
     history.push(`/implementations/${implementationId}/environments/${environmentId}/servers/create`);
@@ -104,6 +132,7 @@ const Environment: React.VFC = () => {
       setDeleteServerDialogWindowData(null);
 
       fetchServers();
+      fetchLogs();
     });
   };
 
@@ -194,6 +223,44 @@ const Environment: React.VFC = () => {
             >
               Dodaj
             </Button>
+          </Box>
+        </Paper>
+      </Box>
+      <Box
+        mb={3}
+      >
+        <Paper>
+          <Box
+            border={1}
+            borderLeft={0}
+            borderRight={0}
+            borderTop={0}
+            borderColor="#e0e0e0"
+            py={1.5}
+            textAlign="center"
+          >
+            Ostatnie aktywności
+          </Box>
+          <Box
+            mx={2}
+          >
+            <Logs
+              isDataFetched={isLogsFetched}
+              data={logs}
+            />
+          </Box>
+          <Box
+            border={1}
+            borderBottom={0}
+            borderLeft={0}
+            borderRight={0}
+            borderColor="#e0e0e0"
+            py={1.5}
+            textAlign="center"
+          >
+            <Link onClick={fetchMoreLogs}>
+              Pobierz więcej
+            </Link>
           </Box>
         </Paper>
       </Box>
