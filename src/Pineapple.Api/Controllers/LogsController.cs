@@ -155,6 +155,33 @@ namespace Pineapple.Api.Controllers
         }
 
         [HttpGet]
+        [Route("servers")]
+        public async Task<IActionResult> GetServersLogs([FromQuery]int? count)
+        {
+            GetServersLogsCommand command = new(count);
+            Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            LogDto[] result = await resultTask.ConfigureAwait(false);
+
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("servers/{serverId}")]
+        public async Task<IActionResult> GetServerLogs(string serverId, [FromQuery]int? count)
+        {
+            if (serverId is null || !Guid.TryParse(serverId, out _))
+            {
+                return BadRequest("Server identifier has not been provided");
+            }
+
+            GetServerLogsCommand command = new(Guid.Parse(serverId), count);
+            Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            LogDto[] result = await resultTask.ConfigureAwait(false);
+
+            return Ok(result);
+        }
+
+        [HttpGet]
         [Route("users")]
         public async Task<IActionResult> GetUsersLogs([FromQuery]int? count)
         {

@@ -8,11 +8,13 @@ import {
 
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 
 import AddIcon from '@material-ui/icons/Add';
 
 import DialogWindow from '../../windows/DialogWindow';
+import Logs from '../../logs';
 
 import Details from './Details';
 import InstalledComponentsList from './InstalledComponentsList';
@@ -47,6 +49,26 @@ const Server: React.VFC = () => {
   // Dane wykorzystywane przez okno dialogowe potwierdzające chęć odinstalowania komponentu.
   const [uninstallComponentDialogWindowData, setUninstallComponentDialogWindowData] = useState(null);  
 
+  // Flaga określająca, czy lista logów została pobrana z API.
+  const [isLogsFetched, setIsLogsFetched] = useState(false);
+  // Lista logów.
+  const [logs, setLogs] = useState([]);
+  // Liczba logów, które mają zostać zwrócone.
+  const [count, setCount] = useState(10);
+
+  const fetchLogs = useCallback(async () => {
+    await fetch(`${window['env'].API_URL}/logs/servers/${serverId}?count=${count}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setIsLogsFetched(true);
+        setLogs(data);
+      });
+  }, [serverId, count]);
+
+  useEffect(() => {
+    fetchLogs();
+  }, [serverId, count, fetchLogs]);
+
   const fetchServer = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/implementations/${implementationId}/environments/${environmentId}/servers/${serverId}`)
       .then((response) => response.json())
@@ -59,6 +81,12 @@ const Server: React.VFC = () => {
   useEffect(() => {
     fetchServer();
   }, [fetchServer]);
+
+  const fetchMoreLogs = () => {
+    if (count <= logs.length) {
+      setCount(count + 10);
+    }
+  };
 
   const installComponent = () => {
     history.push(`/implementations/${implementationId}/environments/${environmentId}/servers/${serverId}/components/create`);
@@ -90,6 +118,7 @@ const Server: React.VFC = () => {
       setUninstallComponentDialogWindowData(null);
 
       fetchServer();
+      fetchLogs();
     });
   };
 
@@ -178,6 +207,44 @@ const Server: React.VFC = () => {
             >
               Zainstaluj
             </Button>
+          </Box>
+        </Paper>
+      </Box>
+      <Box
+        mb={3}
+      >
+        <Paper>
+          <Box
+            border={1}
+            borderLeft={0}
+            borderRight={0}
+            borderTop={0}
+            borderColor="#e0e0e0"
+            py={1.5}
+            textAlign="center"
+          >
+            Ostatnie aktywności
+          </Box>
+          <Box
+            mx={2}
+          >
+            <Logs
+              isDataFetched={isLogsFetched}
+              data={logs}
+            />
+          </Box>
+          <Box
+            border={1}
+            borderBottom={0}
+            borderLeft={0}
+            borderRight={0}
+            borderColor="#e0e0e0"
+            py={1.5}
+            textAlign="center"
+          >
+            <Link onClick={fetchMoreLogs}>
+              Pobierz więcej
+            </Link>
           </Box>
         </Paper>
       </Box>

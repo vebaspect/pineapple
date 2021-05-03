@@ -9,6 +9,8 @@
 @implementationId = 
 # Identyfikator produktu.
 @productId = 
+# Identyfikator serwera.
+@serverId = 
 
 # Liczba elementów, które mają zostać zwrócone.
 @count = 
@@ -51,6 +53,14 @@ Content-Type: application/json
 
 ### /logs/products/{productId}?count={count}
 GET {{url}}/logs/products/{{productId}}?count={{count}}
+Content-Type: application/json
+
+### /logs/servers?count={count}
+GET {{url}}/logs/servers?count={{count}}
+Content-Type: application/json
+
+### /logs/servers/{serverId}?count={count}
+GET {{url}}/logs/servers/{{serverId}}?count={{count}}
 Content-Type: application/json
 
 ### /logs/users?count={count}
