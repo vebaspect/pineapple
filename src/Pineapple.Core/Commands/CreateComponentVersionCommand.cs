@@ -12,6 +12,11 @@ namespace Pineapple.Core.Commands
         public Guid ComponentId { get; }
 
         /// <summary>
+        /// Data wydania.
+        /// </summary>
+        public DateTime ReleaseDate { get; }
+
+        /// <summary>
         /// Major.
         /// </summary>
         public int Major { get; }
@@ -36,9 +41,10 @@ namespace Pineapple.Core.Commands
         /// </summary>
         public string Description { get; }
 
-        public CreateComponentVersionCommand(Guid componentId, int major, int minor, int patch, string suffix, string description)
+        public CreateComponentVersionCommand(Guid componentId, DateTime releaseDate, int major, int minor, int patch, string suffix, string description)
         {
             ComponentId = componentId;
+            ReleaseDate = releaseDate;
             Major = major;
             Minor = minor;
             Patch = patch;

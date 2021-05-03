@@ -6,6 +6,11 @@ namespace Pineapple.Api.Controllers.Dto
     public class CreateComponentVersionDto
     {
         /// <summary>
+        /// Data wydania.
+        /// </summary>
+        public string ReleaseDate { get; set; }
+
+        /// <summary>
         /// Major.
         /// </summary>
         public int Major { get; set; }

@@ -10,7 +10,7 @@ using Pineapple.Core.Storage.Database;
 namespace Pineapple.Core.Storage.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210502190852_Initial")]
+    [Migration("20210503121923_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -127,6 +127,9 @@ namespace Pineapple.Core.Storage.Migrations
 
                     b.Property<int>("Patch")
                         .HasColumnType("integer");
+
+                    b.Property<DateTime>("ReleaseDate")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Suffix")
                         .HasMaxLength(30)

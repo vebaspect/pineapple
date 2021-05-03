@@ -148,6 +148,7 @@ namespace Pineapple.Core.Storage.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    ReleaseDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     Major = table.Column<int>(type: "integer", nullable: false),
                     Minor = table.Column<int>(type: "integer", nullable: false),
                     Patch = table.Column<int>(type: "integer", nullable: false),

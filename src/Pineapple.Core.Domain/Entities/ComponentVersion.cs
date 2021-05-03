@@ -9,6 +9,11 @@ namespace Pineapple.Core.Domain.Entities
     public sealed class ComponentVersion : Entity
     {
         /// <summary>
+        /// Data wydania.
+        /// </summary>
+        public DateTime ReleaseDate { get; }
+
+        /// <summary>
         /// Major.
         /// </summary>
         public int Major { get; }
@@ -53,9 +58,10 @@ namespace Pineapple.Core.Domain.Entities
         /// </summary>
         public List<ComponentVersionLog> EntityLogs { get; }
 
-        private ComponentVersion(Guid id, int major, int minor, int patch, string suffix, string description, Guid componentId)
+        private ComponentVersion(Guid id, DateTime releaseDate, int major, int minor, int patch, string suffix, string description, Guid componentId)
             : base(id)
         {
+            ReleaseDate = releaseDate;
             Major = major;
             Minor = minor;
             Patch = patch;
@@ -67,9 +73,9 @@ namespace Pineapple.Core.Domain.Entities
         /// <summary>
         /// Stwórz wersję komponentu.
         /// </summary>
-        public static ComponentVersion Create(Guid id, int major, int minor, int patch, string suffix, string description, Guid componentId)
+        public static ComponentVersion Create(Guid id, DateTime releaseDate, int major, int minor, int patch, string suffix, string description, Guid componentId)
         {
-            return new ComponentVersion(id, major, minor, patch, suffix, description, componentId);
+            return new ComponentVersion(id, releaseDate, major, minor, patch, suffix, description, componentId);
         }
 
         /// <summary>

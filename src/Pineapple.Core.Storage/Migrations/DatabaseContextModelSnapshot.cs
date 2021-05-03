@@ -126,6 +126,9 @@ namespace Pineapple.Core.Storage.Migrations
                     b.Property<int>("Patch")
                         .HasColumnType("integer");
 
+                    b.Property<DateTime>("ReleaseDate")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("Suffix")
                         .HasMaxLength(30)
                         .HasColumnType("character varying(30)");

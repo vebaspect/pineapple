@@ -63,6 +63,7 @@ POST {{url}}/products/{{productId}}/components/{{componentId}}/component-version
 Content-Type: application/json
 
 {
+    "ReleaseDate": "",
     "Major": 0,
     "Minor": 0,
     "Patch": 0,
