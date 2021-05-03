@@ -64,7 +64,7 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, productId, componentId
               </TableCell>
               <TableCell>{translateKind(componentVersion.kind)}</TableCell>
               <TableCell>{moment(componentVersion.releaseDate).format('LLL')}</TableCell>
-              <TableCell>{componentVersion.description}</TableCell>
+              <TableCell>{componentVersion.description || '–'}</TableCell>
               <TableCell align="right">
                 <Tooltip title="Edytuj">
                   <IconButton

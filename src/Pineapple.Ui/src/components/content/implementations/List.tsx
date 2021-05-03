@@ -63,7 +63,7 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, onEdit, onDelete }: Li
                   {implementation.managerFullName}
                 </Link>
               </TableCell>
-              <TableCell>{implementation.description}</TableCell>
+              <TableCell>{implementation.description || '–'}</TableCell>
               <TableCell align="right">
                 <Tooltip title="Edytuj">
                   <IconButton

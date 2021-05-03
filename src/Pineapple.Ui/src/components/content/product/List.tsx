@@ -61,7 +61,7 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, productId, onEdit, onD
                   component={RouterLink}
                   to={`/products/${productId}/components/${component.id}/component-versions/${component.actualComponentVersionId}`}
                 >
-                  {component.actualComponentVersionNumber}
+                  {component.actualComponentVersionNumber || '–'}
                 </Link>
               </TableCell>
               <TableCell>
@@ -72,7 +72,7 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, productId, onEdit, onD
                   {component.componentTypeName}
                 </Link>
               </TableCell>
-              <TableCell>{component.description}</TableCell>
+              <TableCell>{component.description || '–'}</TableCell>
               <TableCell align="right">
                 <Tooltip title="Edytuj">
                   <IconButton

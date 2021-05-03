@@ -57,8 +57,8 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, onEdit, onDelete }: Li
                 </Link>
               </TableCell>
               <TableCell>{administrator.login}</TableCell>
-              <TableCell>{administrator.phone}</TableCell>
-              <TableCell>{administrator.email}</TableCell>
+              <TableCell>{administrator.phone || '–'}</TableCell>
+              <TableCell>{administrator.email || '–'}</TableCell>
               <TableCell align="right">
                 <Tooltip title="Edytuj">
                   <IconButton
