@@ -273,7 +273,7 @@ namespace Pineapple.Api.Controllers
             }
             if (dto.ComponentVersionId is null || !Guid.TryParse(dto.ComponentVersionId, out _))
             {
-                return BadRequest("Component version has not been provided");
+                return BadRequest("ComponentVersion has not been provided");
             }
 
             InstallComponentCommand command = new(Guid.Parse(serverId), Guid.Parse(dto.ComponentVersionId));
@@ -305,7 +305,7 @@ namespace Pineapple.Api.Controllers
             }
             if (dto.ComponentVersionId is null || !Guid.TryParse(dto.ComponentVersionId, out _))
             {
-                return BadRequest("Component version has not been provided");
+                return BadRequest("ComponentVersion has not been provided");
             }
 
             UninstallComponentCommand command = new(Guid.Parse(serverId), Guid.Parse(dto.ComponentVersionId));
