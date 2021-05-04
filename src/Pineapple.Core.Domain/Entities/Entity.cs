@@ -52,5 +52,10 @@ namespace Pineapple.Core.Domain.Entities
 
             return Id == entity.Id;
         }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id);
+        }
     }
 }
