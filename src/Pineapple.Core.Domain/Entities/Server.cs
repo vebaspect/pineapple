@@ -54,6 +54,11 @@ namespace Pineapple.Core.Domain.Entities
         public List<ServerComponent> InstalledComponents { get; }
 
         /// <summary>
+        /// Zainstalowane oprogramowanie.
+        /// </summary>
+        public List<ServerSoftwareApplication> InstalledSoftwareApplications { get; }
+
+        /// <summary>
         /// Logi dotyczące serwera.
         /// </summary>
         public List<ServerLog> EntityLogs { get; }
@@ -96,17 +101,17 @@ namespace Pineapple.Core.Domain.Entities
         /// <summary>
         /// Zainstaluj oprogramowanie.
         /// </summary>
-        // public void InstallSoftwareApplication()
-        // {
-        //     // TODO
-        // }
+        public void InstallSoftwareApplication(ServerSoftwareApplication softwareApplication)
+        {
+            InstalledSoftwareApplications?.Add(softwareApplication);
+        }
 
         /// <summary>
         /// Odinstaluj oprogramowanie.
         /// </summary>
-        // public void UninstallSoftwareApplication()
-        // {
-        //     // TODO
-        // }
+        public void UninstallSoftwareApplication(ServerSoftwareApplication softwareApplication)
+        {
+            InstalledSoftwareApplications?.Remove(softwareApplication);
+        }
     }
 }

@@ -62,6 +62,11 @@ namespace Pineapple.Core.Storage.Database
         public DbSet<ServerComponent> ServerComponents { get; set; }
 
         /// <summary>
+        /// Oprogramowanie zainstalowane na serwerach.
+        /// </summary>
+        public DbSet<ServerSoftwareApplication> ServerSoftwareApplications { get; set; }
+
+        /// <summary>
         /// Oprogramowanie.
         /// </summary>
         public DbSet<SoftwareApplication> SoftwareApplications { get; set; }
@@ -98,6 +103,7 @@ namespace Pineapple.Core.Storage.Database
                 .ApplyConfiguration(new ServerComponentConfiguration())
                 .ApplyConfiguration(new ServerConfiguration())
                 .ApplyConfiguration(new ServerLogConfiguration())
+                .ApplyConfiguration(new ServerSoftwareApplicationConfiguration())
                 .ApplyConfiguration(new SoftwareApplicationConfiguration())
                 .ApplyConfiguration(new SoftwareApplicationLogConfiguration())
                 .ApplyConfiguration(new UserConfiguration())

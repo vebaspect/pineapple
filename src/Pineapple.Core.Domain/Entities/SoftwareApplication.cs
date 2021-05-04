@@ -25,9 +25,9 @@ namespace Pineapple.Core.Domain.Entities
         public string Description { get; }
 
         /// <summary>
-        /// Serwery.
+        /// Serwery na których jest zainstalowane.
         /// </summary>
-        public List<Server> Servers { get; }
+        public List<ServerSoftwareApplication> Servers { get; }
 
         /// <summary>
         /// Logi dotyczące oprogramowania.
