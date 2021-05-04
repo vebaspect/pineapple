@@ -95,3 +95,19 @@ Content-Type: application/json
 {
     "ComponentVersionId": ""
 }
+
+### /implementations/{implementationId}/environments/{environmentId}/servers/{serverId}/software-applications
+POST {{url}}/implementations/{{implementationId}}/environments/{{environmentId}}/servers/{{serverId}}/software-applications
+Content-Type: application/json
+
+{
+    "SoftwareApplicationId": ""
+}
+
+### /implementations/{implementationId}/environments/{environmentId}/servers/{serverId}/software-applications
+DELETE {{url}}/implementations/{{implementationId}}/environments/{{environmentId}}/servers/{{serverId}}/software-applications
+Content-Type: application/json
+
+{
+    "SoftwareApplicationId": ""
+}

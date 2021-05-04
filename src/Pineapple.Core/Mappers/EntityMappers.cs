@@ -368,6 +368,16 @@ namespace Pineapple.Core.Mappers
                             installedComponent.ComponentVersion != installedComponent.ComponentVersion.Component.GetLatestVersion()
                         );
                     })
+                    .ToList(),
+                server
+                    .InstalledSoftwareApplications?
+                    .Select(installedSoftwareApplication =>
+                    {
+                        return new InstalledSoftwareApplicationDto(
+                            installedSoftwareApplication.SoftwareApplicationId,
+                            installedSoftwareApplication.SoftwareApplication.Name
+                        );
+                    })
                     .ToList()
             );
         }

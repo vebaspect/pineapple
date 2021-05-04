@@ -29,7 +29,10 @@ namespace Pineapple.Core.Handler
 
             var componentVersion = await databaseContext
                 .ComponentVersions
-                .FirstOrDefaultAsync(componentVersion => componentVersion.Id == request.ComponentVersionId, cancellationToken: cancellationToken)
+                .FirstOrDefaultAsync(componentVersion =>
+                    componentVersion.Id == request.ComponentVersionId,
+                    cancellationToken: cancellationToken
+                )
                 .ConfigureAwait(false);
 
             if (componentVersion is null)
@@ -40,7 +43,10 @@ namespace Pineapple.Core.Handler
             var server = await databaseContext
                 .Servers
                 .Include(server => server.InstalledComponents)
-                .FirstOrDefaultAsync(server => server.Id == request.ServerId, cancellationToken: cancellationToken)
+                .FirstOrDefaultAsync(server =>
+                    server.Id == request.ServerId,
+                    cancellationToken: cancellationToken
+                )
                 .ConfigureAwait(false);
 
             if (server is null)
@@ -48,25 +54,25 @@ namespace Pineapple.Core.Handler
                 throw new ServerNotFoundException($"Server {request.ServerId} has not been found");
             }
 
-            var existingComponent = await databaseContext
+            var existingServerComponent = await databaseContext
                 .ServerComponents
-                .FirstOrDefaultAsync(component =>
-                    component.ComponentVersionId == request.ComponentVersionId
-                    && component.ServerId == request.ServerId,
+                .FirstOrDefaultAsync(serverComponent =>
+                    serverComponent.ComponentVersionId == request.ComponentVersionId
+                    && serverComponent.ServerId == request.ServerId,
                     cancellationToken: cancellationToken
                 )
                 .ConfigureAwait(false);
 
-            if (!(existingComponent is null))
+            if (!(existingServerComponent is null))
             {
                 throw new ServerComponentAlreadyExistsException($"ServerComponent {request.ServerId}|{request.ComponentVersionId} already exists");
             }
 
-            var component = new Domain.Entities.ServerComponent(server.Id, componentVersion.Id);
+            var serverComponent = new Domain.Entities.ServerComponent(server.Id, componentVersion.Id);
 
-            await databaseContext.ServerComponents.AddAsync(component, cancellationToken).ConfigureAwait(false);
+            await databaseContext.ServerComponents.AddAsync(serverComponent, cancellationToken).ConfigureAwait(false);
 
-            server.InstallComponent(component);
+            server.InstallComponent(serverComponent);
 
             databaseContext.SaveChanges();
 

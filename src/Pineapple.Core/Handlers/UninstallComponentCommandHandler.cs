@@ -29,7 +29,10 @@ namespace Pineapple.Core.Handler
 
             var componentVersion = await databaseContext
                 .ComponentVersions
-                .FirstOrDefaultAsync(componentVersion => componentVersion.Id == request.ComponentVersionId, cancellationToken: cancellationToken)
+                .FirstOrDefaultAsync(componentVersion =>
+                    componentVersion.Id == request.ComponentVersionId,
+                    cancellationToken: cancellationToken
+                )
                 .ConfigureAwait(false);
 
             if (componentVersion is null)
@@ -40,7 +43,10 @@ namespace Pineapple.Core.Handler
             var server = await databaseContext
                 .Servers
                 .Include(server => server.InstalledComponents)
-                .FirstOrDefaultAsync(server => server.Id == request.ServerId, cancellationToken: cancellationToken)
+                .FirstOrDefaultAsync(server =>
+                    server.Id == request.ServerId,
+                    cancellationToken: cancellationToken
+                )
                 .ConfigureAwait(false);
 
             if (server is null)
@@ -48,17 +54,21 @@ namespace Pineapple.Core.Handler
                 throw new ServerNotFoundException($"Server {request.ServerId} has not been found");
             }
 
-            var component = await databaseContext
+            var serverComponent = await databaseContext
                 .ServerComponents
-                .FirstOrDefaultAsync(component => component.ServerId == request.ServerId && component.ComponentVersionId == request.ComponentVersionId, cancellationToken: cancellationToken)
+                .FirstOrDefaultAsync(serverComponent =>
+                    serverComponent.ServerId == request.ServerId
+                    && serverComponent.ComponentVersionId == request.ComponentVersionId,
+                    cancellationToken: cancellationToken
+                )
                 .ConfigureAwait(false);
 
-            if (component is null)
+            if (serverComponent is null)
             {
                 throw new ServerComponentNotFoundException($"ServerComponent {request.ServerId}|{request.ComponentVersionId} has not been found");
             }
 
-            server.UninstallComponent(component);
+            server.UninstallComponent(serverComponent);
 
             databaseContext.SaveChanges();
 

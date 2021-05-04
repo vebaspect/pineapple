@@ -63,7 +63,12 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public List<InstalledComponentDto> InstalledComponents { get; }
 
-        public ServerDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string name, string symbol, string ipAddress, string description, Guid operatingSystemId, string operatingSystemName, List<InstalledComponentDto> installedComponents)
+        /// <summary>
+        /// Zainstalowane oprogramowanie.
+        /// </summary>
+        public List<InstalledSoftwareApplicationDto> InstalledSoftwareApplications { get; }
+
+        public ServerDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string name, string symbol, string ipAddress, string description, Guid operatingSystemId, string operatingSystemName, List<InstalledComponentDto> installedComponents, List<InstalledSoftwareApplicationDto> installedSoftwareApplications)
         {
             Id = id;
             CreationDate = creationDate;
@@ -76,6 +81,7 @@ namespace Pineapple.Core.Dto
             OperatingSystemId = operatingSystemId;
             OperatingSystemName = operatingSystemName;
             InstalledComponents = installedComponents;
+            InstalledSoftwareApplications = installedSoftwareApplications;
         }
     }
 }

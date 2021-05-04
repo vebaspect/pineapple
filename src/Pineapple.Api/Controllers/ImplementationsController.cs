@@ -269,7 +269,7 @@ namespace Pineapple.Api.Controllers
 
             if (dto is null)
             {
-                return BadRequest("Component installation data has not been provided");
+                return BadRequest("ComponentVersion installation data has not been provided");
             }
             if (dto.ComponentVersionId is null || !Guid.TryParse(dto.ComponentVersionId, out _))
             {
@@ -284,7 +284,7 @@ namespace Pineapple.Api.Controllers
 
         [HttpDelete]
         [Route("{implementationId}/environments/{environmentId}/servers/{serverId}/components")]
-        public async Task<IActionResult> UninstallComponent(string implementationId, string environmentId, string serverId, [FromBody]InstallComponentDto dto)
+        public async Task<IActionResult> UninstallComponent(string implementationId, string environmentId, string serverId, [FromBody]UninstallComponentDto dto)
         {
             if (implementationId is null || !Guid.TryParse(implementationId, out _))
             {
@@ -301,7 +301,7 @@ namespace Pineapple.Api.Controllers
 
             if (dto is null)
             {
-                return BadRequest("Component uninstallation data has not been provided");
+                return BadRequest("ComponentVersion uninstallation data has not been provided");
             }
             if (dto.ComponentVersionId is null || !Guid.TryParse(dto.ComponentVersionId, out _))
             {
@@ -309,6 +309,70 @@ namespace Pineapple.Api.Controllers
             }
 
             UninstallComponentCommand command = new(Guid.Parse(serverId), Guid.Parse(dto.ComponentVersionId));
+            await mediator.Send(command).ConfigureAwait(false);
+
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("{implementationId}/environments/{environmentId}/servers/{serverId}/software-applications")]
+        public async Task<IActionResult> InstallSoftwareApplication(string implementationId, string environmentId, string serverId, [FromBody]InstallSoftwareApplicationDto dto)
+        {
+            if (implementationId is null || !Guid.TryParse(implementationId, out _))
+            {
+                return BadRequest("Implementation identifier has not been provided");
+            }
+            if (environmentId is null || !Guid.TryParse(environmentId, out _))
+            {
+                return BadRequest("Environment identifier has not been provided");
+            }
+            if (serverId is null || !Guid.TryParse(serverId, out _))
+            {
+                return BadRequest("Server identifier has not been provided");
+            }
+
+            if (dto is null)
+            {
+                return BadRequest("SoftwareApplication installation data has not been provided");
+            }
+            if (dto.SoftwareApplicationId is null || !Guid.TryParse(dto.SoftwareApplicationId, out _))
+            {
+                return BadRequest("SoftwareApplication has not been provided");
+            }
+
+            InstallSoftwareApplicationCommand command = new(Guid.Parse(serverId), Guid.Parse(dto.SoftwareApplicationId));
+            await mediator.Send(command).ConfigureAwait(false);
+
+            return Ok();
+        }
+
+        [HttpDelete]
+        [Route("{implementationId}/environments/{environmentId}/servers/{serverId}/software-applications")]
+        public async Task<IActionResult> UninstallSoftwareApplication(string implementationId, string environmentId, string serverId, [FromBody]UninstallSoftwareApplicationDto dto)
+        {
+            if (implementationId is null || !Guid.TryParse(implementationId, out _))
+            {
+                return BadRequest("Implementation identifier has not been provided");
+            }
+            if (environmentId is null || !Guid.TryParse(environmentId, out _))
+            {
+                return BadRequest("Environment identifier has not been provided");
+            }
+            if (serverId is null || !Guid.TryParse(serverId, out _))
+            {
+                return BadRequest("Server identifier has not been provided");
+            }
+
+            if (dto is null)
+            {
+                return BadRequest("SoftwareApplication uninstallation data has not been provided");
+            }
+            if (dto.SoftwareApplicationId is null || !Guid.TryParse(dto.SoftwareApplicationId, out _))
+            {
+                return BadRequest("SoftwareApplication has not been provided");
+            }
+
+            UninstallSoftwareApplicationCommand command = new(Guid.Parse(serverId), Guid.Parse(dto.SoftwareApplicationId));
             await mediator.Send(command).ConfigureAwait(false);
 
             return Ok();

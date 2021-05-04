@@ -85,33 +85,33 @@ namespace Pineapple.Core.Domain.Entities
         /// <summary>
         /// Zainstaluj komponent.
         /// </summary>
-        public void InstallComponent(ServerComponent component)
+        public void InstallComponent(ServerComponent serverComponent)
         {
-            InstalledComponents?.Add(component);
+            InstalledComponents?.Add(serverComponent);
         }
 
         /// <summary>
         /// Odinstaluj komponent.
         /// </summary>
-        public void UninstallComponent(ServerComponent component)
+        public void UninstallComponent(ServerComponent serverComponent)
         {
-            InstalledComponents?.Remove(component);
+            InstalledComponents?.Remove(serverComponent);
         }
 
         /// <summary>
         /// Zainstaluj oprogramowanie.
         /// </summary>
-        public void InstallSoftwareApplication(ServerSoftwareApplication softwareApplication)
+        public void InstallSoftwareApplication(ServerSoftwareApplication serverSoftwareApplication)
         {
-            InstalledSoftwareApplications?.Add(softwareApplication);
+            InstalledSoftwareApplications?.Add(serverSoftwareApplication);
         }
 
         /// <summary>
         /// Odinstaluj oprogramowanie.
         /// </summary>
-        public void UninstallSoftwareApplication(ServerSoftwareApplication softwareApplication)
+        public void UninstallSoftwareApplication(ServerSoftwareApplication serverSoftwareApplication)
         {
-            InstalledSoftwareApplications?.Remove(softwareApplication);
+            InstalledSoftwareApplications?.Remove(serverSoftwareApplication);
         }
     }
 }
