@@ -267,6 +267,8 @@ namespace Pineapple.Core.Storage.Migrations
                     OperatingSystemId = table.Column<Guid>(type: "uuid", nullable: true),
                     ProductId = table.Column<Guid>(type: "uuid", nullable: true),
                     ServerId = table.Column<Guid>(type: "uuid", nullable: true),
+                    ServerComponentVersionId = table.Column<Guid>(type: "uuid", nullable: true),
+                    ServerSoftwareApplicationId = table.Column<Guid>(type: "uuid", nullable: true),
                     SoftwareApplicationId = table.Column<Guid>(type: "uuid", nullable: true),
                     UserId = table.Column<Guid>(type: "uuid", nullable: true),
                     CreationDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
@@ -294,6 +296,13 @@ namespace Pineapple.Core.Storage.Migrations
                         principalSchema: "pineapple",
                         principalTable: "ComponentVersions",
                         principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Logs_ComponentVersions_ServerComponentVersionId",
+                        column: x => x.ServerComponentVersionId,
+                        principalSchema: "pineapple",
+                        principalTable: "ComponentVersions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Logs_Environments_EnvironmentId",
                         column: x => x.EnvironmentId,
@@ -324,6 +333,13 @@ namespace Pineapple.Core.Storage.Migrations
                         principalSchema: "pineapple",
                         principalTable: "Servers",
                         principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Logs_SoftwareApplications_ServerSoftwareApplicationId",
+                        column: x => x.ServerSoftwareApplicationId,
+                        principalSchema: "pineapple",
+                        principalTable: "SoftwareApplications",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Logs_SoftwareApplications_SoftwareApplicationId",
                         column: x => x.SoftwareApplicationId,
@@ -492,10 +508,22 @@ namespace Pineapple.Core.Storage.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Logs_ServerComponentVersionId",
+                schema: "pineapple",
+                table: "Logs",
+                column: "ServerComponentVersionId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Logs_ServerId",
                 schema: "pineapple",
                 table: "Logs",
                 column: "ServerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Logs_ServerSoftwareApplicationId",
+                schema: "pineapple",
+                table: "Logs",
+                column: "ServerSoftwareApplicationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Logs_SoftwareApplicationId",

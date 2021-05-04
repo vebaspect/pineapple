@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Pineapple.Core.Commands;
+using Pineapple.Core.Domain;
 using Pineapple.Core.Exceptions;
 using Pineapple.Core.Storage.Database;
 
@@ -73,6 +74,12 @@ namespace Pineapple.Core.Handler
             await databaseContext.ServerSoftwareApplications.AddAsync(serverSoftwareApplication, cancellationToken).ConfigureAwait(false);
 
             server.InstallSoftwareApplication(serverSoftwareApplication);
+
+            var serverSoftwareApplicationLogId = Guid.NewGuid();
+
+            var serverSoftwareApplicationLog = Domain.Entities.ServerSoftwareApplicationLog.Create(serverSoftwareApplicationLogId, AvailableLogCategories.AddEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), server.Id, softwareApplication.Id); // Mock!
+
+            await databaseContext.Logs.AddAsync(serverSoftwareApplicationLog, cancellationToken).ConfigureAwait(false);
 
             databaseContext.SaveChanges();
 

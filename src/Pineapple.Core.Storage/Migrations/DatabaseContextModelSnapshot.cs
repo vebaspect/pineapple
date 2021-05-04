@@ -647,6 +647,30 @@ namespace Pineapple.Core.Storage.Migrations
                     b.HasDiscriminator().HasValue("Operator");
                 });
 
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.ServerComponentLog", b =>
+                {
+                    b.HasBaseType("Pineapple.Core.Domain.Entities.ServerLog");
+
+                    b.Property<Guid>("ServerComponentVersionId")
+                        .HasColumnType("uuid");
+
+                    b.HasIndex("ServerComponentVersionId");
+
+                    b.HasDiscriminator().HasValue("ServerComponentLog");
+                });
+
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.ServerSoftwareApplicationLog", b =>
+                {
+                    b.HasBaseType("Pineapple.Core.Domain.Entities.ServerLog");
+
+                    b.Property<Guid>("ServerSoftwareApplicationId")
+                        .HasColumnType("uuid");
+
+                    b.HasIndex("ServerSoftwareApplicationId");
+
+                    b.HasDiscriminator().HasValue("ServerSoftwareApplicationLog");
+                });
+
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Component", b =>
                 {
                     b.HasOne("Pineapple.Core.Domain.Entities.ComponentType", "ComponentType")
@@ -883,6 +907,28 @@ namespace Pineapple.Core.Storage.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.ServerComponentLog", b =>
+                {
+                    b.HasOne("Pineapple.Core.Domain.Entities.ComponentVersion", "ServerComponentVersion")
+                        .WithMany()
+                        .HasForeignKey("ServerComponentVersionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ServerComponentVersion");
+                });
+
+            modelBuilder.Entity("Pineapple.Core.Domain.Entities.ServerSoftwareApplicationLog", b =>
+                {
+                    b.HasOne("Pineapple.Core.Domain.Entities.SoftwareApplication", "ServerSoftwareApplication")
+                        .WithMany()
+                        .HasForeignKey("ServerSoftwareApplicationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ServerSoftwareApplication");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Component", b =>

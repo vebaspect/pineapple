@@ -5,7 +5,7 @@ namespace Pineapple.Core.Domain.Entities
     /// <summary>
     /// Log dotyczący serwera.
     /// </summary>
-    public sealed class ServerLog : Log
+    public class ServerLog : Log
     {
         /// <summary>
         /// Identyfikator serwera.
@@ -17,7 +17,7 @@ namespace Pineapple.Core.Domain.Entities
         /// </summary>
         public Server Server { get; }
 
-        private ServerLog(Guid id, string category, Guid ownerId, Guid serverId)
+        protected ServerLog(Guid id, string category, Guid ownerId, Guid serverId)
             : base(id)
         {
             Category = category;

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Pineapple.Core.Commands;
+using Pineapple.Core.Domain;
 using Pineapple.Core.Exceptions;
 using Pineapple.Core.Storage.Database;
 
@@ -69,6 +70,12 @@ namespace Pineapple.Core.Handler
             }
 
             server.UninstallComponent(serverComponent);
+
+            var serverComponentLogId = Guid.NewGuid();
+
+            var serverComponentLog = Domain.Entities.ServerComponentLog.Create(serverComponentLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), server.Id, componentVersion.Id); // Mock!
+
+            await databaseContext.Logs.AddAsync(serverComponentLog, cancellationToken).ConfigureAwait(false);
 
             databaseContext.SaveChanges();
 
