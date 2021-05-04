@@ -8,7 +8,7 @@ namespace Pineapple.Core.Storage.Database.Configurations
     {
         public void Configure(EntityTypeBuilder<OperatingSystem> builder)
         {
-            builder.ToTable("OperatingSystems");
+            builder.ToTable("OperatingSystems", "pineapple");
 
             builder
                 .Property(operatingSystem => operatingSystem.ModificationDate)

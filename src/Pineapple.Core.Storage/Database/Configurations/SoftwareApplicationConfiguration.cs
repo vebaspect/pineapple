@@ -8,7 +8,7 @@ namespace Pineapple.Core.Storage.Database.Configurations
     {
         public void Configure(EntityTypeBuilder<SoftwareApplication> builder)
         {
-            builder.ToTable("SoftwareApplications");
+            builder.ToTable("SoftwareApplications", "pineapple");
 
             builder
                 .Property(softwareApplication => softwareApplication.ModificationDate)

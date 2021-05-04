@@ -8,7 +8,7 @@ namespace Pineapple.Core.Storage.Database.Configurations
     {
         public void Configure(EntityTypeBuilder<Log> builder)
         {
-            builder.ToTable("Logs");
+            builder.ToTable("Logs", "pineapple");
 
             builder.HasDiscriminator(log => log.Type);
 

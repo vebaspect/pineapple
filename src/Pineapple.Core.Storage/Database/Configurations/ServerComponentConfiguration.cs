@@ -8,7 +8,7 @@ namespace Pineapple.Core.Storage.Database.Configurations
     {
         public void Configure(EntityTypeBuilder<ServerComponent> builder)
         {
-            builder.ToTable("ServerComponents");
+            builder.ToTable("ServerComponents", "pineapple");
 
             builder
                 .HasOne(serverComponent => serverComponent.Server)
