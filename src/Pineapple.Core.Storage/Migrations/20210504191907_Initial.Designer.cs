@@ -10,7 +10,7 @@ using Pineapple.Core.Storage.Database;
 namespace Pineapple.Core.Storage.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210504113908_Initial")]
+    [Migration("20210504191907_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,7 +57,7 @@ namespace Pineapple.Core.Storage.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Components");
+                    b.ToTable("Components", "pineapple");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.ComponentType", b =>
@@ -94,7 +94,7 @@ namespace Pineapple.Core.Storage.Migrations
                     b.HasIndex("Symbol")
                         .IsUnique();
 
-                    b.ToTable("ComponentTypes");
+                    b.ToTable("ComponentTypes", "pineapple");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.ComponentVersion", b =>
@@ -139,7 +139,7 @@ namespace Pineapple.Core.Storage.Migrations
 
                     b.HasIndex("ComponentId");
 
-                    b.ToTable("ComponentVersions");
+                    b.ToTable("ComponentVersions", "pineapple");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Environment", b =>
@@ -183,7 +183,7 @@ namespace Pineapple.Core.Storage.Migrations
 
                     b.HasIndex("OperatorId");
 
-                    b.ToTable("Environments");
+                    b.ToTable("Environments", "pineapple");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Implementation", b =>
@@ -217,7 +217,7 @@ namespace Pineapple.Core.Storage.Migrations
 
                     b.HasIndex("ManagerId");
 
-                    b.ToTable("Implementations");
+                    b.ToTable("Implementations", "pineapple");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Log", b =>
@@ -255,7 +255,7 @@ namespace Pineapple.Core.Storage.Migrations
 
                     b.HasIndex("OwnerId");
 
-                    b.ToTable("Logs");
+                    b.ToTable("Logs", "pineapple");
 
                     b.HasDiscriminator<string>("Type").HasValue("Log");
                 });
@@ -294,7 +294,7 @@ namespace Pineapple.Core.Storage.Migrations
                     b.HasIndex("Symbol")
                         .IsUnique();
 
-                    b.ToTable("OperatingSystems");
+                    b.ToTable("OperatingSystems", "pineapple");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Product", b =>
@@ -323,7 +323,7 @@ namespace Pineapple.Core.Storage.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", "pineapple");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.Server", b =>
@@ -371,7 +371,7 @@ namespace Pineapple.Core.Storage.Migrations
 
                     b.HasIndex("OperatingSystemId");
 
-                    b.ToTable("Servers");
+                    b.ToTable("Servers", "pineapple");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.ServerComponent", b =>
@@ -392,7 +392,7 @@ namespace Pineapple.Core.Storage.Migrations
 
                     b.HasIndex("ServerId");
 
-                    b.ToTable("ServerComponents");
+                    b.ToTable("ServerComponents", "pineapple");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.ServerSoftwareApplication", b =>
@@ -413,7 +413,7 @@ namespace Pineapple.Core.Storage.Migrations
 
                     b.HasIndex("SoftwareApplicationId");
 
-                    b.ToTable("ServerSoftwareApplications");
+                    b.ToTable("ServerSoftwareApplications", "pineapple");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.SoftwareApplication", b =>
@@ -450,7 +450,7 @@ namespace Pineapple.Core.Storage.Migrations
                     b.HasIndex("Symbol")
                         .IsUnique();
 
-                    b.ToTable("SoftwareApplications");
+                    b.ToTable("SoftwareApplications", "pineapple");
                 });
 
             modelBuilder.Entity("Pineapple.Core.Domain.Entities.User", b =>
@@ -496,7 +496,7 @@ namespace Pineapple.Core.Storage.Migrations
                     b.HasIndex("Login")
                         .IsUnique();
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", "pineapple");
 
                     b.HasDiscriminator<string>("Type").HasValue("User");
                 });

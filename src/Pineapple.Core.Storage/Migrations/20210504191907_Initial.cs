@@ -7,8 +7,12 @@ namespace Pineapple.Core.Storage.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "pineapple");
+
             migrationBuilder.CreateTable(
                 name: "ComponentTypes",
+                schema: "pineapple",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -26,6 +30,7 @@ namespace Pineapple.Core.Storage.Migrations
 
             migrationBuilder.CreateTable(
                 name: "OperatingSystems",
+                schema: "pineapple",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -43,6 +48,7 @@ namespace Pineapple.Core.Storage.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Products",
+                schema: "pineapple",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -59,6 +65,7 @@ namespace Pineapple.Core.Storage.Migrations
 
             migrationBuilder.CreateTable(
                 name: "SoftwareApplications",
+                schema: "pineapple",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -76,6 +83,7 @@ namespace Pineapple.Core.Storage.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Users",
+                schema: "pineapple",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -95,6 +103,7 @@ namespace Pineapple.Core.Storage.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Components",
+                schema: "pineapple",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -112,17 +121,20 @@ namespace Pineapple.Core.Storage.Migrations
                     table.ForeignKey(
                         name: "FK_Components_ComponentTypes_ComponentTypeId",
                         column: x => x.ComponentTypeId,
+                        principalSchema: "pineapple",
                         principalTable: "ComponentTypes",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Components_Products_ProductId",
                         column: x => x.ProductId,
+                        principalSchema: "pineapple",
                         principalTable: "Products",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
                 name: "Implementations",
+                schema: "pineapple",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -139,12 +151,14 @@ namespace Pineapple.Core.Storage.Migrations
                     table.ForeignKey(
                         name: "FK_Implementations_Users_ManagerId",
                         column: x => x.ManagerId,
+                        principalSchema: "pineapple",
                         principalTable: "Users",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
                 name: "ComponentVersions",
+                schema: "pineapple",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -165,12 +179,14 @@ namespace Pineapple.Core.Storage.Migrations
                     table.ForeignKey(
                         name: "FK_ComponentVersions_Components_ComponentId",
                         column: x => x.ComponentId,
+                        principalSchema: "pineapple",
                         principalTable: "Components",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
                 name: "Environments",
+                schema: "pineapple",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -189,17 +205,20 @@ namespace Pineapple.Core.Storage.Migrations
                     table.ForeignKey(
                         name: "FK_Environments_Implementations_ImplementationId",
                         column: x => x.ImplementationId,
+                        principalSchema: "pineapple",
                         principalTable: "Implementations",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Environments_Users_OperatorId",
                         column: x => x.OperatorId,
+                        principalSchema: "pineapple",
                         principalTable: "Users",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
                 name: "Servers",
+                schema: "pineapple",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -219,17 +238,20 @@ namespace Pineapple.Core.Storage.Migrations
                     table.ForeignKey(
                         name: "FK_Servers_Environments_EnvironmentId",
                         column: x => x.EnvironmentId,
+                        principalSchema: "pineapple",
                         principalTable: "Environments",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Servers_OperatingSystems_OperatingSystemId",
                         column: x => x.OperatingSystemId,
+                        principalSchema: "pineapple",
                         principalTable: "OperatingSystems",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
                 name: "Logs",
+                schema: "pineapple",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -257,62 +279,74 @@ namespace Pineapple.Core.Storage.Migrations
                     table.ForeignKey(
                         name: "FK_Logs_Components_ComponentId",
                         column: x => x.ComponentId,
+                        principalSchema: "pineapple",
                         principalTable: "Components",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Logs_ComponentTypes_ComponentTypeId",
                         column: x => x.ComponentTypeId,
+                        principalSchema: "pineapple",
                         principalTable: "ComponentTypes",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Logs_ComponentVersions_ComponentVersionId",
                         column: x => x.ComponentVersionId,
+                        principalSchema: "pineapple",
                         principalTable: "ComponentVersions",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Logs_Environments_EnvironmentId",
                         column: x => x.EnvironmentId,
+                        principalSchema: "pineapple",
                         principalTable: "Environments",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Logs_Implementations_ImplementationId",
                         column: x => x.ImplementationId,
+                        principalSchema: "pineapple",
                         principalTable: "Implementations",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Logs_OperatingSystems_OperatingSystemId",
                         column: x => x.OperatingSystemId,
+                        principalSchema: "pineapple",
                         principalTable: "OperatingSystems",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Logs_Products_ProductId",
                         column: x => x.ProductId,
+                        principalSchema: "pineapple",
                         principalTable: "Products",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Logs_Servers_ServerId",
                         column: x => x.ServerId,
+                        principalSchema: "pineapple",
                         principalTable: "Servers",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Logs_SoftwareApplications_SoftwareApplicationId",
                         column: x => x.SoftwareApplicationId,
+                        principalSchema: "pineapple",
                         principalTable: "SoftwareApplications",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Logs_Users_OwnerId",
                         column: x => x.OwnerId,
+                        principalSchema: "pineapple",
                         principalTable: "Users",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Logs_Users_UserId",
                         column: x => x.UserId,
+                        principalSchema: "pineapple",
                         principalTable: "Users",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
                 name: "ServerComponents",
+                schema: "pineapple",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -325,12 +359,14 @@ namespace Pineapple.Core.Storage.Migrations
                     table.ForeignKey(
                         name: "FK_ServerComponents_ComponentVersions_ComponentVersionId",
                         column: x => x.ComponentVersionId,
+                        principalSchema: "pineapple",
                         principalTable: "ComponentVersions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ServerComponents_Servers_ServerId",
                         column: x => x.ServerId,
+                        principalSchema: "pineapple",
                         principalTable: "Servers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -338,6 +374,7 @@ namespace Pineapple.Core.Storage.Migrations
 
             migrationBuilder.CreateTable(
                 name: "ServerSoftwareApplications",
+                schema: "pineapple",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -350,12 +387,14 @@ namespace Pineapple.Core.Storage.Migrations
                     table.ForeignKey(
                         name: "FK_ServerSoftwareApplications_Servers_ServerId",
                         column: x => x.ServerId,
+                        principalSchema: "pineapple",
                         principalTable: "Servers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ServerSoftwareApplications_SoftwareApplications_SoftwareApp~",
                         column: x => x.SoftwareApplicationId,
+                        principalSchema: "pineapple",
                         principalTable: "SoftwareApplications",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -363,139 +402,166 @@ namespace Pineapple.Core.Storage.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Components_ComponentTypeId",
+                schema: "pineapple",
                 table: "Components",
                 column: "ComponentTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Components_ProductId",
+                schema: "pineapple",
                 table: "Components",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ComponentTypes_Symbol",
+                schema: "pineapple",
                 table: "ComponentTypes",
                 column: "Symbol",
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ComponentVersions_ComponentId",
+                schema: "pineapple",
                 table: "ComponentVersions",
                 column: "ComponentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Environments_ImplementationId",
+                schema: "pineapple",
                 table: "Environments",
                 column: "ImplementationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Environments_OperatorId",
+                schema: "pineapple",
                 table: "Environments",
                 column: "OperatorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Implementations_ManagerId",
+                schema: "pineapple",
                 table: "Implementations",
                 column: "ManagerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Logs_ComponentId",
+                schema: "pineapple",
                 table: "Logs",
                 column: "ComponentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Logs_ComponentTypeId",
+                schema: "pineapple",
                 table: "Logs",
                 column: "ComponentTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Logs_ComponentVersionId",
+                schema: "pineapple",
                 table: "Logs",
                 column: "ComponentVersionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Logs_EnvironmentId",
+                schema: "pineapple",
                 table: "Logs",
                 column: "EnvironmentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Logs_ImplementationId",
+                schema: "pineapple",
                 table: "Logs",
                 column: "ImplementationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Logs_OperatingSystemId",
+                schema: "pineapple",
                 table: "Logs",
                 column: "OperatingSystemId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Logs_OwnerId",
+                schema: "pineapple",
                 table: "Logs",
                 column: "OwnerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Logs_ProductId",
+                schema: "pineapple",
                 table: "Logs",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Logs_ServerId",
+                schema: "pineapple",
                 table: "Logs",
                 column: "ServerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Logs_SoftwareApplicationId",
+                schema: "pineapple",
                 table: "Logs",
                 column: "SoftwareApplicationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Logs_UserId",
+                schema: "pineapple",
                 table: "Logs",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OperatingSystems_Symbol",
+                schema: "pineapple",
                 table: "OperatingSystems",
                 column: "Symbol",
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ServerComponents_ComponentVersionId",
+                schema: "pineapple",
                 table: "ServerComponents",
                 column: "ComponentVersionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ServerComponents_ServerId",
+                schema: "pineapple",
                 table: "ServerComponents",
                 column: "ServerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Servers_EnvironmentId",
+                schema: "pineapple",
                 table: "Servers",
                 column: "EnvironmentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Servers_OperatingSystemId",
+                schema: "pineapple",
                 table: "Servers",
                 column: "OperatingSystemId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ServerSoftwareApplications_ServerId",
+                schema: "pineapple",
                 table: "ServerSoftwareApplications",
                 column: "ServerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ServerSoftwareApplications_SoftwareApplicationId",
+                schema: "pineapple",
                 table: "ServerSoftwareApplications",
                 column: "SoftwareApplicationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SoftwareApplications_Symbol",
+                schema: "pineapple",
                 table: "SoftwareApplications",
                 column: "Symbol",
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_Login",
+                schema: "pineapple",
                 table: "Users",
                 column: "Login",
                 unique: true);
@@ -504,43 +570,56 @@ namespace Pineapple.Core.Storage.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Logs");
+                name: "Logs",
+                schema: "pineapple");
 
             migrationBuilder.DropTable(
-                name: "ServerComponents");
+                name: "ServerComponents",
+                schema: "pineapple");
 
             migrationBuilder.DropTable(
-                name: "ServerSoftwareApplications");
+                name: "ServerSoftwareApplications",
+                schema: "pineapple");
 
             migrationBuilder.DropTable(
-                name: "ComponentVersions");
+                name: "ComponentVersions",
+                schema: "pineapple");
 
             migrationBuilder.DropTable(
-                name: "Servers");
+                name: "Servers",
+                schema: "pineapple");
 
             migrationBuilder.DropTable(
-                name: "SoftwareApplications");
+                name: "SoftwareApplications",
+                schema: "pineapple");
 
             migrationBuilder.DropTable(
-                name: "Components");
+                name: "Components",
+                schema: "pineapple");
 
             migrationBuilder.DropTable(
-                name: "Environments");
+                name: "Environments",
+                schema: "pineapple");
 
             migrationBuilder.DropTable(
-                name: "OperatingSystems");
+                name: "OperatingSystems",
+                schema: "pineapple");
 
             migrationBuilder.DropTable(
-                name: "ComponentTypes");
+                name: "ComponentTypes",
+                schema: "pineapple");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "Products",
+                schema: "pineapple");
 
             migrationBuilder.DropTable(
-                name: "Implementations");
+                name: "Implementations",
+                schema: "pineapple");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Users",
+                schema: "pineapple");
         }
     }
 }
