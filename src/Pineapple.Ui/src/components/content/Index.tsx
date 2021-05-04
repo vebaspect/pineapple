@@ -41,6 +41,7 @@ import CreateProductEditor from '../editors/products/createProductEditor';
 import CreateServerEditor from '../editors/implementations/createServerEditor';
 import CreateSoftwareApplicationEditor from '../editors/configuration/createSoftwareApplicationEditor';
 import InstallServerComponentEditor from '../editors/implementations/installServerComponentEditor';
+import InstallServerSoftwareApplicationEditor from '../editors/implementations/installServerSoftwareApplicationEditor';
 
 const Title: React.VFC = () => {
   return (
@@ -72,8 +73,11 @@ const Title: React.VFC = () => {
       <Route path="/implementations/create">
         <CreateImplementationEditor />
       </Route>
-      <Route path="/implementations/:implementationId/environments/:environmentId/servers/:serverId/components/create">
+      <Route path="/implementations/:implementationId/environments/:environmentId/servers/:serverId/components/install">
         <InstallServerComponentEditor />
+      </Route>
+      <Route path="/implementations/:implementationId/environments/:environmentId/servers/:serverId/software-applications/install">
+        <InstallServerSoftwareApplicationEditor />
       </Route>
       <Route path="/implementations/:implementationId/environments/:environmentId/servers/create">
         <CreateServerEditor />

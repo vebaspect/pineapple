@@ -38,3 +38,17 @@ export interface InstalledComponentsListProps {
   // Zdarzenie odinstalowania komponentu.
   onUninstall: (id: string, name: string) => void,
 }
+
+export interface InstalledSoftwareApplicationsListProps {
+  // Flaga określająca, czy serwer został pobrany z API.
+  isDataFetched: boolean,
+  // Lista zainstalowanego oprogramowania.
+  data: {
+    // Identyfikator oprogramowania.
+    softwareApplicationId: string,
+    // Nazwa oprogramowania.
+    softwareApplicationName: string,
+  }[],
+  // Zdarzenie odinstalowania oprogramowania.
+  onUninstall: (id: string, name: string) => void,
+}

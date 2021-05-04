@@ -18,6 +18,7 @@ import Logs from '../../logs';
 
 import Details from './Details';
 import InstalledComponentsList from './InstalledComponentsList';
+import InstalledSoftwareApplicationsList from './InstalledSoftwareApplicationsList';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -47,7 +48,12 @@ const Server: React.VFC = () => {
   // Flaga określająca, czy okno dialogowe potwierdzające chęć odinstalowania komponentu jest otwarte.
   const [isUninstallComponentDialogWindowOpen, setIsUninstallComponentDialogWindowOpen] = useState(false);
   // Dane wykorzystywane przez okno dialogowe potwierdzające chęć odinstalowania komponentu.
-  const [uninstallComponentDialogWindowData, setUninstallComponentDialogWindowData] = useState(null);  
+  const [uninstallComponentDialogWindowData, setUninstallComponentDialogWindowData] = useState(null);
+
+  // Flaga określająca, czy okno dialogowe potwierdzające chęć odinstalowania oprogramowania jest otwarte.
+  const [isUninstallSoftwareApplicationDialogWindowOpen, setIsUninstallSoftwareApplicationDialogWindowOpen] = useState(false);
+  // Dane wykorzystywane przez okno dialogowe potwierdzające chęć odinstalowania oprogramowania.
+  const [uninstallSoftwareApplicationDialogWindowData, setUninstallSoftwareApplicationDialogWindowData] = useState(null);
 
   // Flaga określająca, czy lista logów została pobrana z API.
   const [isLogsFetched, setIsLogsFetched] = useState(false);
@@ -89,7 +95,7 @@ const Server: React.VFC = () => {
   }, [fetchServer]);
 
   const installComponent = () => {
-    history.push(`/implementations/${implementationId}/environments/${environmentId}/servers/${serverId}/components/create`);
+    history.push(`/implementations/${implementationId}/environments/${environmentId}/servers/${serverId}/components/install`);
   };
 
   const uninstallComponent = (id: string, name: string) => {
@@ -125,6 +131,45 @@ const Server: React.VFC = () => {
   const uninstallComponentCanceled = () => {
     setIsUninstallComponentDialogWindowOpen(false);
     setUninstallComponentDialogWindowData(null);
+  };
+
+  const installSoftwareApplication = () => {
+    history.push(`/implementations/${implementationId}/environments/${environmentId}/servers/${serverId}/software-applications/install`);
+  };
+
+  const uninstallSoftwareApplication = (id: string, name: string) => {
+    setUninstallSoftwareApplicationDialogWindowData({
+      id,
+      name,
+    });
+    setIsUninstallSoftwareApplicationDialogWindowOpen(true);
+  };
+
+  const uninstallSoftwareApplicationConfirmed = async () => {
+    await fetch(
+      `${window['env'].API_URL}/implementations/${implementationId}/environments/${environmentId}/servers/${serverId}/software-applications`,
+      {
+        body: JSON.stringify({
+          softwareApplicationId: uninstallSoftwareApplicationDialogWindowData.id,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'DELETE',
+      },
+    )
+    .then(() => {
+      setIsUninstallSoftwareApplicationDialogWindowOpen(false);
+      setUninstallSoftwareApplicationDialogWindowData(null);
+
+      fetchServer();
+      fetchLogs();
+    });
+  };
+
+  const uninstallSoftwareApplicationCanceled = () => {
+    setIsUninstallSoftwareApplicationDialogWindowOpen(false);
+    setUninstallSoftwareApplicationDialogWindowData(null);
   };
 
   return (
@@ -223,6 +268,42 @@ const Server: React.VFC = () => {
             py={1.5}
             textAlign="center"
           >
+            Zainstalowane oprogramowanie
+          </Box>
+          <InstalledSoftwareApplicationsList
+            isDataFetched={isServerFetched}
+            data={server?.installedSoftwareApplications}
+            onUninstall={uninstallSoftwareApplication}
+          />
+          <Box
+            p={1.5}
+            textAlign="right"
+          >
+            <Button
+              className={styles.install}
+              size="small"
+              startIcon={<AddIcon />}
+              variant="contained"
+              onClick={installSoftwareApplication}
+            >
+              Zainstaluj
+            </Button>
+          </Box>
+        </Paper>
+      </Box>
+      <Box
+        mb={3}
+      >
+        <Paper>
+          <Box
+            border={1}
+            borderLeft={0}
+            borderRight={0}
+            borderTop={0}
+            borderColor="#e0e0e0"
+            py={1.5}
+            textAlign="center"
+          >
             Ostatnie aktywności
           </Box>
           <Box
@@ -255,6 +336,14 @@ const Server: React.VFC = () => {
         onCancel={uninstallComponentCanceled}
       >
         Czy na pewno chcesz odinstalować komponent <strong>{uninstallComponentDialogWindowData?.name}</strong>?
+      </DialogWindow>
+      <DialogWindow
+        isOpen={isUninstallSoftwareApplicationDialogWindowOpen}
+        title="Odinstalowanie oprogramowania"
+        onConfirm={uninstallSoftwareApplicationConfirmed}
+        onCancel={uninstallSoftwareApplicationCanceled}
+      >
+        Czy na pewno chcesz odinstalować oprogramowanie <strong>{uninstallSoftwareApplicationDialogWindowData?.name}</strong>?
       </DialogWindow>
     </>
   );
