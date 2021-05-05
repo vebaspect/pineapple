@@ -56,6 +56,8 @@ import {
   LOG_TYPE__OPERATING_SYSTEM,
   LOG_TYPE__PRODUCT,
   LOG_TYPE__SERVER,
+  LOG_TYPE__SERVER_COMPONENT,
+  LOG_TYPE__SERVER_SOFTWARE_APPLICATION,
   LOG_TYPE__SOFTWARE_APPLICATION,
   LOG_TYPE__USER,
   LOG_CATEGORY__ADD_ENTITY,
@@ -725,6 +727,174 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                   to={`/implementations/${parentEntities[1].id}/environments/${parentEntities[0].id}`}
                 >
                   {`«${parentEntities[0].name}»`}
+                </Link>
+              </Box>
+              .
+            </>
+          );
+        default:
+          return null;
+      }
+    }
+    case LOG_TYPE__SERVER_COMPONENT: {
+      switch (category) {
+        case LOG_CATEGORY__ADD_ENTITY:
+          return (
+            <>
+              Użytkownik
+              <Box
+                component="span"
+                mx={0.5}
+              >
+                <Link
+                  className={styles.owner}
+                  component={RouterLink}
+                  to={`/users/${ownerId}`}
+                >
+                  {`«${ownerFullName}»`}
+                </Link>
+              </Box>
+              zainstalował komponent
+              <Box
+                component="span"
+                mx={0.5}
+              >
+                TODO
+              </Box>
+              na serwerze
+              <Box
+                component="span"
+                ml={0.5}
+              >
+                <Link
+                  className={styles.server}
+                  component={RouterLink}
+                  to={`/implementations/${parentEntities[1].id}/environments/${parentEntities[0].id}/servers/${entity.id}`}
+                >
+                  {`«${entity.name}»`}
+                </Link>
+              </Box>
+              .
+            </>
+          );
+        case LOG_CATEGORY__REMOVE_ENTITY:
+          return (
+            <>
+              Użytkownik
+              <Box
+                component="span"
+                mx={0.5}
+              >
+                <Link
+                  className={styles.owner}
+                  component={RouterLink}
+                  to={`/users/${ownerId}`}
+                >
+                  {`«${ownerFullName}»`}
+                </Link>
+              </Box>
+              odinstalował komponent
+              <Box
+                component="span"
+                mx={0.5}
+              >
+                TODO
+              </Box>
+              z serwera
+              <Box
+                component="span"
+                ml={0.5}
+              >
+                <Link
+                  className={styles.server}
+                  component={RouterLink}
+                  to={`/implementations/${parentEntities[1].id}/environments/${parentEntities[0].id}/servers/${entity.id}`}
+                >
+                  {`«${entity.name}»`}
+                </Link>
+              </Box>
+              .
+            </>
+          );
+        default:
+          return null;
+      }
+    }
+    case LOG_TYPE__SERVER_SOFTWARE_APPLICATION: {
+      switch (category) {
+        case LOG_CATEGORY__ADD_ENTITY:
+          return (
+            <>
+              Użytkownik
+              <Box
+                component="span"
+                mx={0.5}
+              >
+                <Link
+                  className={styles.owner}
+                  component={RouterLink}
+                  to={`/users/${ownerId}`}
+                >
+                  {`«${ownerFullName}»`}
+                </Link>
+              </Box>
+              zainstalował oprogramowanie
+              <Box
+                component="span"
+                mx={0.5}
+              >
+                TODO
+              </Box>
+              na serwerze
+              <Box
+                component="span"
+                ml={0.5}
+              >
+                <Link
+                  className={styles.server}
+                  component={RouterLink}
+                  to={`/implementations/${parentEntities[1].id}/environments/${parentEntities[0].id}/servers/${entity.id}`}
+                >
+                  {`«${entity.name}»`}
+                </Link>
+              </Box>
+              .
+            </>
+          );
+        case LOG_CATEGORY__REMOVE_ENTITY:
+          return (
+            <>
+              Użytkownik
+              <Box
+                component="span"
+                mx={0.5}
+              >
+                <Link
+                  className={styles.owner}
+                  component={RouterLink}
+                  to={`/users/${ownerId}`}
+                >
+                  {`«${ownerFullName}»`}
+                </Link>
+              </Box>
+              odinstalował oprogramowanie
+              <Box
+                component="span"
+                mx={0.5}
+              >
+                TODO
+              </Box>
+              z serwera
+              <Box
+                component="span"
+                ml={0.5}
+              >
+                <Link
+                  className={styles.server}
+                  component={RouterLink}
+                  to={`/implementations/${parentEntities[1].id}/environments/${parentEntities[0].id}/servers/${entity.id}`}
+                >
+                  {`«${entity.name}»`}
                 </Link>
               </Box>
               .

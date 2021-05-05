@@ -11,6 +11,7 @@ import Box from '@material-ui/core/Box';
 
 import AddIcon from '@material-ui/icons/Add';
 import AppsIcon from '@material-ui/icons/Apps';
+import BuildIcon from '@material-ui/icons/Build';
 import CategoryIcon from '@material-ui/icons/Category';
 import DeleteIcon from '@material-ui/icons/Delete';
 import DesktopWindowsIcon from '@material-ui/icons/DesktopWindows';
@@ -32,6 +33,8 @@ import {
   LOG_TYPE__OPERATING_SYSTEM,
   LOG_TYPE__PRODUCT,
   LOG_TYPE__SERVER,
+  LOG_TYPE__SERVER_COMPONENT,
+  LOG_TYPE__SERVER_SOFTWARE_APPLICATION,
   LOG_TYPE__SOFTWARE_APPLICATION,
   LOG_TYPE__USER,
   LOG_CATEGORY__ADD_ENTITY,
@@ -80,6 +83,14 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     server: {
       backgroundColor: '#33ab9f',
+      color: '#fff',
+    },
+    serverComponent: {
+      backgroundColor: '#ff784e',
+      color: '#fff',
+    },
+    serverSoftwareApplication: {
+      backgroundColor: '#ff784e',
       color: '#fff',
     },
     softwareApplication: {
@@ -149,6 +160,14 @@ const Icon: React.FC<IconProps> = ({ type, category }: IconProps) => {
     case LOG_TYPE__SERVER:
       typeIcon = <StorageIcon />;
       typeClassName = styles.server;
+      break;
+    case LOG_TYPE__SERVER_COMPONENT:
+      typeIcon = <BuildIcon />;
+      typeClassName = styles.serverComponent;
+      break;
+    case LOG_TYPE__SERVER_SOFTWARE_APPLICATION:
+      typeIcon = <BuildIcon />;
+      typeClassName = styles.serverSoftwareApplication;
       break;
     case LOG_TYPE__SOFTWARE_APPLICATION:
       typeIcon = <SaveIcon />;
