@@ -35,6 +35,12 @@ const useStyles = makeStyles(() =>
     server: {
       color: '#33ab9f',
     },
+    serverComponent: {
+      color: '#ff784e',
+    },
+    serverSoftwareApplication: {
+      color: '#ff784e',
+    },
     softwareApplication: {
       color: '#ffac33',
     },
@@ -759,7 +765,7 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 component="span"
                 mx={0.5}
               >
-                TODO
+                {`«${entity.name}»`}
               </Box>
               na serwerze
               <Box
@@ -769,9 +775,9 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 <Link
                   className={styles.server}
                   component={RouterLink}
-                  to={`/implementations/${parentEntities[1].id}/environments/${parentEntities[0].id}/servers/${entity.id}`}
+                  to={`/implementations/${parentEntities[2].id}/environments/${parentEntities[1].id}/servers/${parentEntities[0].id}`}
                 >
-                  {`«${entity.name}»`}
+                  {`«${parentEntities[0].name}»`}
                 </Link>
               </Box>
               .
@@ -798,7 +804,7 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 component="span"
                 mx={0.5}
               >
-                TODO
+                {`«${entity.name}»`}
               </Box>
               z serwera
               <Box
@@ -808,9 +814,9 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 <Link
                   className={styles.server}
                   component={RouterLink}
-                  to={`/implementations/${parentEntities[1].id}/environments/${parentEntities[0].id}/servers/${entity.id}`}
+                  to={`/implementations/${parentEntities[2].id}/environments/${parentEntities[1].id}/servers/${parentEntities[0].id}`}
                 >
-                  {`«${entity.name}»`}
+                  {`«${parentEntities[0].name}»`}
                 </Link>
               </Box>
               .
@@ -843,7 +849,7 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 component="span"
                 mx={0.5}
               >
-                TODO
+                {`«${entity.name}»`}
               </Box>
               na serwerze
               <Box
@@ -853,9 +859,9 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 <Link
                   className={styles.server}
                   component={RouterLink}
-                  to={`/implementations/${parentEntities[1].id}/environments/${parentEntities[0].id}/servers/${entity.id}`}
+                  to={`/implementations/${parentEntities[2].id}/environments/${parentEntities[1].id}/servers/${parentEntities[0].id}`}
                 >
-                  {`«${entity.name}»`}
+                  {`«${parentEntities[0].name}»`}
                 </Link>
               </Box>
               .
@@ -882,7 +888,7 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 component="span"
                 mx={0.5}
               >
-                TODO
+                {`«${entity.name}»`}
               </Box>
               z serwera
               <Box
@@ -892,9 +898,9 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 <Link
                   className={styles.server}
                   component={RouterLink}
-                  to={`/implementations/${parentEntities[1].id}/environments/${parentEntities[0].id}/servers/${entity.id}`}
+                  to={`/implementations/${parentEntities[2].id}/environments/${parentEntities[1].id}/servers/${parentEntities[0].id}`}
                 >
-                  {`«${entity.name}»`}
+                  {`«${parentEntities[0].name}»`}
                 </Link>
               </Box>
               .
