@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Pineapple.Core.Commands
 {
-    public class GetImplementationLogsCommand : IRequest<Task<LogDto[]>>, ICommand
+    public class GetImplementationLogsCommand : IRequest<Task<ILogDto[]>>, ICommand
     {
         /// <summary>
         /// Identyfikator wdrożenia.

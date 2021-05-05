@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Pineapple.Core.Commands
 {
-    public class GetComponentLogsCommand : IRequest<Task<LogDto[]>>, ICommand
+    public class GetComponentLogsCommand : IRequest<Task<ILogDto[]>>, ICommand
     {
         /// <summary>
         /// Identyfikator komponentu.

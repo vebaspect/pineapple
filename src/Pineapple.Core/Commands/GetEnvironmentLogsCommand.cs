@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Pineapple.Core.Commands
 {
-    public class GetEnvironmentLogsCommand : IRequest<Task<LogDto[]>>, ICommand
+    public class GetEnvironmentLogsCommand : IRequest<Task<ILogDto[]>>, ICommand
     {
         /// <summary>
         /// Identyfikator środowiska.

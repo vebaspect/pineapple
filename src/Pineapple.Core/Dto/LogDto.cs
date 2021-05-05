@@ -6,7 +6,7 @@ namespace Pineapple.Core.Dto
     /// <summary>
     /// Log.
     /// </summary>
-    public class LogDto : IDto
+    public class LogDto : ILogDto
     {
         /// <summary>
         /// Identyfikator.

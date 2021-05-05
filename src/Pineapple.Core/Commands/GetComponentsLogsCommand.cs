@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Pineapple.Core.Commands
 {
-    public class GetComponentsLogsCommand : IRequest<Task<LogDto[]>>, ICommand
+    public class GetComponentsLogsCommand : IRequest<Task<ILogDto[]>>, ICommand
     {
         /// <summary>
         /// Liczba logów, które mają zostać zwrócone.

@@ -1,8 +1,7 @@
 using System;
 using System.Threading.Tasks;
-using Pineapple.Api.Controllers.Dto;
+using Pineapple.Core;
 using Pineapple.Core.Commands;
-using Pineapple.Core.Dto;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,8 +28,8 @@ namespace Pineapple.Api.Controllers
         public async Task<IActionResult> GetLogs([FromQuery]int? count)
         {
             GetLogsCommand command = new(count);
-            Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
-            LogDto[] result = await resultTask.ConfigureAwait(false);
+            Task<ILogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            ILogDto[] result = await resultTask.ConfigureAwait(false);
 
             return Ok(result);
         }
@@ -40,8 +39,8 @@ namespace Pineapple.Api.Controllers
         public async Task<IActionResult> GetComponentsLogs([FromQuery]int? count)
         {
             GetComponentsLogsCommand command = new(count);
-            Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
-            LogDto[] result = await resultTask.ConfigureAwait(false);
+            Task<ILogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            ILogDto[] result = await resultTask.ConfigureAwait(false);
 
             return Ok(result);
         }
@@ -56,8 +55,8 @@ namespace Pineapple.Api.Controllers
             }
 
             GetComponentLogsCommand command = new(Guid.Parse(componentId), count);
-            Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
-            LogDto[] result = await resultTask.ConfigureAwait(false);
+            Task<ILogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            ILogDto[] result = await resultTask.ConfigureAwait(false);
 
             return Ok(result);
         }
@@ -67,8 +66,8 @@ namespace Pineapple.Api.Controllers
         public async Task<IActionResult> GetConfigurationLogs([FromQuery]int? count)
         {
             GetConfigurationLogsCommand command = new(count);
-            Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
-            LogDto[] result = await resultTask.ConfigureAwait(false);
+            Task<ILogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            ILogDto[] result = await resultTask.ConfigureAwait(false);
 
             return Ok(result);
         }
@@ -78,8 +77,8 @@ namespace Pineapple.Api.Controllers
         public async Task<IActionResult> GetEnvironmentsLogs([FromQuery]int? count)
         {
             GetEnvironmentsLogsCommand command = new(count);
-            Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
-            LogDto[] result = await resultTask.ConfigureAwait(false);
+            Task<ILogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            ILogDto[] result = await resultTask.ConfigureAwait(false);
 
             return Ok(result);
         }
@@ -94,8 +93,8 @@ namespace Pineapple.Api.Controllers
             }
 
             GetEnvironmentLogsCommand command = new(Guid.Parse(environmentId), count);
-            Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
-            LogDto[] result = await resultTask.ConfigureAwait(false);
+            Task<ILogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            ILogDto[] result = await resultTask.ConfigureAwait(false);
 
             return Ok(result);
         }
@@ -105,8 +104,8 @@ namespace Pineapple.Api.Controllers
         public async Task<IActionResult> GetImplementationsLogs([FromQuery]int? count)
         {
             GetImplementationsLogsCommand command = new(count);
-            Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
-            LogDto[] result = await resultTask.ConfigureAwait(false);
+            Task<ILogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            ILogDto[] result = await resultTask.ConfigureAwait(false);
 
             return Ok(result);
         }
@@ -121,8 +120,8 @@ namespace Pineapple.Api.Controllers
             }
 
             GetImplementationLogsCommand command = new(Guid.Parse(implementationId), count);
-            Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
-            LogDto[] result = await resultTask.ConfigureAwait(false);
+            Task<ILogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            ILogDto[] result = await resultTask.ConfigureAwait(false);
 
             return Ok(result);
         }
@@ -132,8 +131,8 @@ namespace Pineapple.Api.Controllers
         public async Task<IActionResult> GetProductsLogs([FromQuery]int? count)
         {
             GetProductsLogsCommand command = new(count);
-            Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
-            LogDto[] result = await resultTask.ConfigureAwait(false);
+            Task<ILogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            ILogDto[] result = await resultTask.ConfigureAwait(false);
 
             return Ok(result);
         }
@@ -148,8 +147,8 @@ namespace Pineapple.Api.Controllers
             }
 
             GetProductLogsCommand command = new(Guid.Parse(productId), count);
-            Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
-            LogDto[] result = await resultTask.ConfigureAwait(false);
+            Task<ILogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            ILogDto[] result = await resultTask.ConfigureAwait(false);
 
             return Ok(result);
         }
@@ -159,8 +158,8 @@ namespace Pineapple.Api.Controllers
         public async Task<IActionResult> GetServersLogs([FromQuery]int? count)
         {
             GetServersLogsCommand command = new(count);
-            Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
-            LogDto[] result = await resultTask.ConfigureAwait(false);
+            Task<ILogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            ILogDto[] result = await resultTask.ConfigureAwait(false);
 
             return Ok(result);
         }
@@ -175,8 +174,8 @@ namespace Pineapple.Api.Controllers
             }
 
             GetServerLogsCommand command = new(Guid.Parse(serverId), count);
-            Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
-            LogDto[] result = await resultTask.ConfigureAwait(false);
+            Task<ILogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            ILogDto[] result = await resultTask.ConfigureAwait(false);
 
             return Ok(result);
         }
@@ -186,8 +185,8 @@ namespace Pineapple.Api.Controllers
         public async Task<IActionResult> GetUsersLogs([FromQuery]int? count)
         {
             GetUsersLogsCommand command = new(count);
-            Task<LogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
-            LogDto[] result = await resultTask.ConfigureAwait(false);
+            Task<ILogDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            ILogDto[] result = await resultTask.ConfigureAwait(false);
 
             return Ok(result);
         }

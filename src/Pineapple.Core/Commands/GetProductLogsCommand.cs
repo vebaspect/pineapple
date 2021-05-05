@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Pineapple.Core.Commands
 {
-    public class GetProductLogsCommand : IRequest<Task<LogDto[]>>, ICommand
+    public class GetProductLogsCommand : IRequest<Task<ILogDto[]>>, ICommand
     {
         /// <summary>
         /// Identyfikator produktu.

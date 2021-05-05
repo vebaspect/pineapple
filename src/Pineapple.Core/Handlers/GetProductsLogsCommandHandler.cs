@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Pineapple.Core.Handler
 {
-    public class GetProductsLogsCommandHandler : RequestHandler<GetProductsLogsCommand, Task<LogDto[]>>, ICommandHandler
+    public class GetProductsLogsCommandHandler : RequestHandler<GetProductsLogsCommand, Task<ILogDto[]>>, ICommandHandler
     {
         private readonly DatabaseContextFactory databaseContextFactory;
 
@@ -25,7 +25,7 @@ namespace Pineapple.Core.Handler
             this.databaseContextFactory = databaseContextFactory;
         }
 
-        protected override async Task<LogDto[]> Handle(GetProductsLogsCommand request)
+        protected override async Task<ILogDto[]> Handle(GetProductsLogsCommand request)
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
 
@@ -55,7 +55,7 @@ namespace Pineapple.Core.Handler
                 .ToArrayAsync()
                 .ConfigureAwait(false);
 
-            var logs = new List<LogDto>();
+            var logs = new List<ILogDto>();
 
             if (componentLogs?.Length > 0)
             {

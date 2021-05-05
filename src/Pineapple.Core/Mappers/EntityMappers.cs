@@ -84,7 +84,7 @@ namespace Pineapple.Core.Mappers
             );
         }
 
-        public static LogDto ToDto(this Domain.Entities.ComponentLog componentLog)
+        public static ILogDto ToDto(this Domain.Entities.ComponentLog componentLog)
         {
             return new LogDto(
                 componentLog.Id,
@@ -110,7 +110,7 @@ namespace Pineapple.Core.Mappers
             );
         }
 
-        public static LogDto ToDto(this Domain.Entities.ComponentTypeLog componentTypeLog)
+        public static ILogDto ToDto(this Domain.Entities.ComponentTypeLog componentTypeLog)
         {
             return new LogDto(
                 componentTypeLog.Id,
@@ -130,7 +130,7 @@ namespace Pineapple.Core.Mappers
             );
         }
 
-        public static LogDto ToDto(this Domain.Entities.ComponentVersionLog componentVersionLog)
+        public static ILogDto ToDto(this Domain.Entities.ComponentVersionLog componentVersionLog)
         {
             return new LogDto(
                 componentVersionLog.Id,
@@ -160,7 +160,7 @@ namespace Pineapple.Core.Mappers
             );
         }
 
-        public static LogDto ToDto(this Domain.Entities.EnvironmentLog environmentLog)
+        public static ILogDto ToDto(this Domain.Entities.EnvironmentLog environmentLog)
         {
             return new LogDto(
                 environmentLog.Id,
@@ -186,7 +186,7 @@ namespace Pineapple.Core.Mappers
             );
         }
 
-        public static LogDto ToDto(this Domain.Entities.ImplementationLog implementationLog)
+        public static ILogDto ToDto(this Domain.Entities.ImplementationLog implementationLog)
         {
             return new LogDto(
                 implementationLog.Id,
@@ -206,7 +206,7 @@ namespace Pineapple.Core.Mappers
             );
         }
 
-        public static LogDto ToDto(this Domain.Entities.OperatingSystemLog operatingSystemLog)
+        public static ILogDto ToDto(this Domain.Entities.OperatingSystemLog operatingSystemLog)
         {
             return new LogDto(
                 operatingSystemLog.Id,
@@ -226,7 +226,7 @@ namespace Pineapple.Core.Mappers
             );
         }
 
-        public static LogDto ToDto(this Domain.Entities.ProductLog productLog)
+        public static ILogDto ToDto(this Domain.Entities.ProductLog productLog)
         {
             return new LogDto(
                 productLog.Id,
@@ -246,37 +246,100 @@ namespace Pineapple.Core.Mappers
             );
         }
 
-        public static LogDto ToDto(this Domain.Entities.ServerLog serverLog)
+        public static ILogDto ToDto(this Domain.Entities.ServerLog serverLog)
         {
-            return new LogDto(
-                serverLog.Id,
-                serverLog.CreationDate,
-                serverLog.ModificationDate,
-                serverLog.IsDeleted,
-                serverLog.Type,
-                serverLog.Category,
-                serverLog.OwnerId,
-                serverLog.Owner.FullName,
-                new EntityDto(
-                    serverLog.ServerId,
-                    serverLog.Server.Name
+            return serverLog.Type switch
+            {
+                "ServerComponentLog" => new LogDto(
+                    serverLog.Id,
+                    serverLog.CreationDate,
+                    serverLog.ModificationDate,
+                    serverLog.IsDeleted,
+                    serverLog.Type,
+                    serverLog.Category,
+                    serverLog.OwnerId,
+                    serverLog.Owner.FullName,
+                    new EntityDto(
+                        ((Domain.Entities.ServerComponentLog)serverLog).ServerComponentVersionId,
+                        ((Domain.Entities.ServerComponentLog)serverLog).ServerComponentVersion.GetFormattedNumber()
+                    ),
+                    new List<EntityDto>()
+                    {
+                        new EntityDto(
+                            serverLog.ServerId,
+                            serverLog.Server.Name
+                        ),
+                        new EntityDto(
+                            serverLog.Server.EnvironmentId,
+                            serverLog.Server.Environment.Name
+                        ),
+                        new EntityDto(
+                            serverLog.Server.Environment.ImplementationId,
+                            serverLog.Server.Environment.Implementation.Name
+                        ),
+                    },
+                    serverLog.Description
                 ),
-                new List<EntityDto>()
-                {
+                "ServerSoftwareApplicationLog" => new LogDto(
+                    serverLog.Id,
+                    serverLog.CreationDate,
+                    serverLog.ModificationDate,
+                    serverLog.IsDeleted,
+                    serverLog.Type,
+                    serverLog.Category,
+                    serverLog.OwnerId,
+                    serverLog.Owner.FullName,
                     new EntityDto(
-                        serverLog.Server.EnvironmentId,
-                        serverLog.Server.Environment.Name
+                        ((Domain.Entities.ServerSoftwareApplicationLog)serverLog).ServerSoftwareApplicationId,
+                        ((Domain.Entities.ServerSoftwareApplicationLog)serverLog).ServerSoftwareApplication.Name
                     ),
+                    new List<EntityDto>()
+                    {
+                        new EntityDto(
+                            serverLog.ServerId,
+                            serverLog.Server.Name
+                        ),
+                        new EntityDto(
+                            serverLog.Server.EnvironmentId,
+                            serverLog.Server.Environment.Name
+                        ),
+                        new EntityDto(
+                            serverLog.Server.Environment.ImplementationId,
+                            serverLog.Server.Environment.Implementation.Name
+                        ),
+                    },
+                    serverLog.Description
+                ),
+                _ => new LogDto(
+                    serverLog.Id,
+                    serverLog.CreationDate,
+                    serverLog.ModificationDate,
+                    serverLog.IsDeleted,
+                    serverLog.Type,
+                    serverLog.Category,
+                    serverLog.OwnerId,
+                    serverLog.Owner.FullName,
                     new EntityDto(
-                        serverLog.Server.Environment.ImplementationId,
-                        serverLog.Server.Environment.Implementation.Name
+                        serverLog.ServerId,
+                        serverLog.Server.Name
                     ),
-                },
-                serverLog.Description
-            );
+                    new List<EntityDto>()
+                    {
+                        new EntityDto(
+                            serverLog.Server.EnvironmentId,
+                            serverLog.Server.Environment.Name
+                        ),
+                        new EntityDto(
+                            serverLog.Server.Environment.ImplementationId,
+                            serverLog.Server.Environment.Implementation.Name
+                        ),
+                    },
+                    serverLog.Description
+              ),
+            };
         }
 
-        public static LogDto ToDto(this Domain.Entities.SoftwareApplicationLog softwareApplicationLog)
+        public static ILogDto ToDto(this Domain.Entities.SoftwareApplicationLog softwareApplicationLog)
         {
             return new LogDto(
                 softwareApplicationLog.Id,
@@ -296,7 +359,7 @@ namespace Pineapple.Core.Mappers
             );
         }
 
-        public static LogDto ToDto(this Domain.Entities.UserLog userLog)
+        public static ILogDto ToDto(this Domain.Entities.UserLog userLog)
         {
             return new LogDto(
                 userLog.Id,

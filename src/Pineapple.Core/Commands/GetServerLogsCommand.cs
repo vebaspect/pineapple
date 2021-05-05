@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Pineapple.Core.Commands
 {
-    public class GetServerLogsCommand : IRequest<Task<LogDto[]>>, ICommand
+    public class GetServerLogsCommand : IRequest<Task<ILogDto[]>>, ICommand
     {
         /// <summary>
         /// Identyfikator serwera.
