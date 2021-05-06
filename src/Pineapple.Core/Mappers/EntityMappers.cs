@@ -442,6 +442,8 @@ namespace Pineapple.Core.Mappers
                 server.OperatingSystem.Name,
                 server
                     .InstalledComponents?
+                    .OrderBy(installedComponent => installedComponent.ComponentVersion.Component.Product.Name)
+                    .ThenBy(installedComponent => installedComponent.ComponentVersion.Component.Name)
                     .Select(installedComponent =>
                     {
                         return new InstalledComponentDto(
@@ -457,6 +459,7 @@ namespace Pineapple.Core.Mappers
                     .ToList(),
                 server
                     .InstalledSoftwareApplications?
+                    .OrderBy(installedSoftwareApplication => installedSoftwareApplication.SoftwareApplication.Name)
                     .Select(installedSoftwareApplication =>
                     {
                         return new InstalledSoftwareApplicationDto(
