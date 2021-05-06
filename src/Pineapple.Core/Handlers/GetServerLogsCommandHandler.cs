@@ -49,6 +49,8 @@ namespace Pineapple.Core.Handler
                     .ThenInclude(server => server.Environment)
                         .ThenInclude(environment => environment.Implementation)
                 .Include(log => log.ServerComponentVersion)
+                    .ThenInclude(componentVersion => componentVersion.Component)
+                        .ThenInclude(component => component.Product)
                 .Where(log => log.ServerId == request.ServerId)
                 .ToArrayAsync()
                 .ConfigureAwait(false);

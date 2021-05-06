@@ -63,6 +63,8 @@ namespace Pineapple.Core.Handler
                 .Include(log => log.Server)
                     .ThenInclude(server => server.Environment)
                 .Include(log => log.ServerComponentVersion)
+                    .ThenInclude(componentVersion => componentVersion.Component)
+                        .ThenInclude(component => component.Product)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
 
