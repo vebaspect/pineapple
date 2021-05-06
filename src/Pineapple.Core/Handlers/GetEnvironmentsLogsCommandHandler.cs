@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
-using Pineapple.Core.Dto;
+using Pineapple.Core.Dto.Logs;
 using Pineapple.Core.Mappers;
 using Pineapple.Core.Storage.Database;
 using MediatR;

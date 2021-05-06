@@ -1,9 +1,9 @@
 using System;
 
-namespace Pineapple.Core.Dto
+namespace Pineapple.Core.Dto.Logs
 {
     /// <summary>
-    /// Encja.
+    /// Informacje nt. encji.
     /// </summary>
     public class EntityDto
     {

@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using Pineapple.Core.Dto;
+using Pineapple.Core.Dto.Logs;
 using MediatR;
 
 namespace Pineapple.Core.Commands

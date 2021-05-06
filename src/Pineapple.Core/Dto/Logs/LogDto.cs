@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Pineapple.Core.Dto
+namespace Pineapple.Core.Dto.Logs
 {
     /// <summary>
     /// Log.
@@ -51,7 +51,7 @@ namespace Pineapple.Core.Dto
         /// <summary>
         /// Encja.
         /// </summary>
-        public EntityDto Entity { get; }
+        public ExtendedEntityDto Entity { get; }
 
         /// <summary>
         /// Encje nadrzędne.
@@ -63,7 +63,7 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public string Description { get; }
 
-        public LogDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string type, string category, Guid ownerId, string ownerFullName, EntityDto entity, List<EntityDto> parentEntities, string description)
+        public LogDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string type, string category, Guid ownerId, string ownerFullName, ExtendedEntityDto entity, List<EntityDto> parentEntities, string description)
         {
             Id = id;
             CreationDate = creationDate;

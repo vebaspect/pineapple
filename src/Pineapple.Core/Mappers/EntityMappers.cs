@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Pineapple.Core.Dto;
+using Pineapple.Core.Dto.Logs;
 
 namespace Pineapple.Core.Mappers
 {
@@ -95,9 +96,10 @@ namespace Pineapple.Core.Mappers
                 componentLog.Category,
                 componentLog.OwnerId,
                 componentLog.Owner.FullName,
-                new EntityDto(
+                new ExtendedEntityDto(
                     componentLog.ComponentId,
-                    componentLog.Component.Name
+                    componentLog.Component.Name,
+                    null
                 ),
                 new List<EntityDto>()
                 {
@@ -110,7 +112,7 @@ namespace Pineapple.Core.Mappers
             );
         }
 
-        public static ILogDto ToDto(this Domain.Entities.ComponentTypeLog componentTypeLog)
+        public static LogDto ToDto(this Domain.Entities.ComponentTypeLog componentTypeLog)
         {
             return new LogDto(
                 componentTypeLog.Id,
@@ -121,16 +123,17 @@ namespace Pineapple.Core.Mappers
                 componentTypeLog.Category,
                 componentTypeLog.OwnerId,
                 componentTypeLog.Owner.FullName,
-                new EntityDto(
+                new ExtendedEntityDto(
                     componentTypeLog.ComponentTypeId,
-                    componentTypeLog.ComponentType.Name
+                    componentTypeLog.ComponentType.Name,
+                    null
                 ),
                 null,
                 componentTypeLog.Description
             );
         }
 
-        public static ILogDto ToDto(this Domain.Entities.ComponentVersionLog componentVersionLog)
+        public static LogDto ToDto(this Domain.Entities.ComponentVersionLog componentVersionLog)
         {
             return new LogDto(
                 componentVersionLog.Id,
@@ -141,9 +144,10 @@ namespace Pineapple.Core.Mappers
                 componentVersionLog.Category,
                 componentVersionLog.OwnerId,
                 componentVersionLog.Owner.FullName,
-                new EntityDto(
+                new ExtendedEntityDto(
                     componentVersionLog.ComponentVersionId,
-                    componentVersionLog.ComponentVersion.GetFormattedNumber()
+                    componentVersionLog.ComponentVersion.GetFormattedNumber(),
+                    null
                 ),
                 new List<EntityDto>()
                 {
@@ -160,7 +164,7 @@ namespace Pineapple.Core.Mappers
             );
         }
 
-        public static ILogDto ToDto(this Domain.Entities.EnvironmentLog environmentLog)
+        public static LogDto ToDto(this Domain.Entities.EnvironmentLog environmentLog)
         {
             return new LogDto(
                 environmentLog.Id,
@@ -171,9 +175,10 @@ namespace Pineapple.Core.Mappers
                 environmentLog.Category,
                 environmentLog.OwnerId,
                 environmentLog.Owner.FullName,
-                new EntityDto(
+                new ExtendedEntityDto(
                     environmentLog.EnvironmentId,
-                    environmentLog.Environment.Name
+                    environmentLog.Environment.Name,
+                    null
                 ),
                 new List<EntityDto>()
                 {
@@ -186,7 +191,7 @@ namespace Pineapple.Core.Mappers
             );
         }
 
-        public static ILogDto ToDto(this Domain.Entities.ImplementationLog implementationLog)
+        public static LogDto ToDto(this Domain.Entities.ImplementationLog implementationLog)
         {
             return new LogDto(
                 implementationLog.Id,
@@ -197,16 +202,17 @@ namespace Pineapple.Core.Mappers
                 implementationLog.Category,
                 implementationLog.OwnerId,
                 implementationLog.Owner.FullName,
-                new EntityDto(
+                new ExtendedEntityDto(
                     implementationLog.ImplementationId,
-                    implementationLog.Implementation.Name
+                    implementationLog.Implementation.Name,
+                    null
                 ),
                 null,
                 implementationLog.Description
             );
         }
 
-        public static ILogDto ToDto(this Domain.Entities.OperatingSystemLog operatingSystemLog)
+        public static LogDto ToDto(this Domain.Entities.OperatingSystemLog operatingSystemLog)
         {
             return new LogDto(
                 operatingSystemLog.Id,
@@ -217,16 +223,17 @@ namespace Pineapple.Core.Mappers
                 operatingSystemLog.Category,
                 operatingSystemLog.OwnerId,
                 operatingSystemLog.Owner.FullName,
-                new EntityDto(
+                new ExtendedEntityDto(
                     operatingSystemLog.OperatingSystemId,
-                    operatingSystemLog.OperatingSystem.Name
+                    operatingSystemLog.OperatingSystem.Name,
+                    null
                 ),
                 null,
                 operatingSystemLog.Description
             );
         }
 
-        public static ILogDto ToDto(this Domain.Entities.ProductLog productLog)
+        public static LogDto ToDto(this Domain.Entities.ProductLog productLog)
         {
             return new LogDto(
                 productLog.Id,
@@ -237,16 +244,17 @@ namespace Pineapple.Core.Mappers
                 productLog.Category,
                 productLog.OwnerId,
                 productLog.Owner.FullName,
-                new EntityDto(
+                new ExtendedEntityDto(
                     productLog.ProductId,
-                    productLog.Product.Name
+                    productLog.Product.Name,
+                    null
                 ),
                 null,
                 productLog.Description
             );
         }
 
-        public static ILogDto ToDto(this Domain.Entities.ServerLog serverLog)
+        public static LogDto ToDto(this Domain.Entities.ServerLog serverLog)
         {
             return serverLog.Type switch
             {
@@ -259,16 +267,24 @@ namespace Pineapple.Core.Mappers
                     serverLog.Category,
                     serverLog.OwnerId,
                     serverLog.Owner.FullName,
-                    new EntityDto(
-                        ((Domain.Entities.ServerComponentLog)serverLog).ServerComponentVersionId,
-                        ((Domain.Entities.ServerComponentLog)serverLog).ServerComponentVersion.GetFormattedNumber()
+                    new ExtendedEntityDto(
+                        serverLog.ServerId,
+                        serverLog.Server.Name,
+                        new EntityDetailsDto
+                        {
+                            ServerComponent = new ServerComponentEntityDetailsDto
+                            {
+                                ProductId = ((Domain.Entities.ServerComponentLog)serverLog).ServerComponentVersion.Component.ProductId,
+                                ProductName = ((Domain.Entities.ServerComponentLog)serverLog).ServerComponentVersion.Component.Product.Name,
+                                ComponentId = ((Domain.Entities.ServerComponentLog)serverLog).ServerComponentVersion.ComponentId,
+                                ComponentName = ((Domain.Entities.ServerComponentLog)serverLog).ServerComponentVersion.Component.Name,
+                                ComponentVersionId = ((Domain.Entities.ServerComponentLog)serverLog).ServerComponentVersionId,
+                                ComponentVersionNumber = ((Domain.Entities.ServerComponentLog)serverLog).ServerComponentVersion.GetFormattedNumber()
+                            }
+                        }
                     ),
                     new List<EntityDto>()
                     {
-                        new EntityDto(
-                            serverLog.ServerId,
-                            serverLog.Server.Name
-                        ),
                         new EntityDto(
                             serverLog.Server.EnvironmentId,
                             serverLog.Server.Environment.Name
@@ -289,16 +305,20 @@ namespace Pineapple.Core.Mappers
                     serverLog.Category,
                     serverLog.OwnerId,
                     serverLog.Owner.FullName,
-                    new EntityDto(
-                        ((Domain.Entities.ServerSoftwareApplicationLog)serverLog).ServerSoftwareApplicationId,
-                        ((Domain.Entities.ServerSoftwareApplicationLog)serverLog).ServerSoftwareApplication.Name
+                    new ExtendedEntityDto(
+                        serverLog.ServerId,
+                        serverLog.Server.Name,
+                        new EntityDetailsDto
+                        {
+                            ServerSoftwareApplication = new ServerSoftwareApplicationEntityDetailsDto
+                            {
+                                SoftwareApplicationId = ((Domain.Entities.ServerSoftwareApplicationLog)serverLog).ServerSoftwareApplicationId,
+                                SoftwareApplicationName = ((Domain.Entities.ServerSoftwareApplicationLog)serverLog).ServerSoftwareApplication.Name
+                            }
+                        }
                     ),
                     new List<EntityDto>()
                     {
-                        new EntityDto(
-                            serverLog.ServerId,
-                            serverLog.Server.Name
-                        ),
                         new EntityDto(
                             serverLog.Server.EnvironmentId,
                             serverLog.Server.Environment.Name
@@ -319,9 +339,10 @@ namespace Pineapple.Core.Mappers
                     serverLog.Category,
                     serverLog.OwnerId,
                     serverLog.Owner.FullName,
-                    new EntityDto(
+                    new ExtendedEntityDto(
                         serverLog.ServerId,
-                        serverLog.Server.Name
+                        serverLog.Server.Name,
+                        null
                     ),
                     new List<EntityDto>()
                     {
@@ -339,7 +360,7 @@ namespace Pineapple.Core.Mappers
             };
         }
 
-        public static ILogDto ToDto(this Domain.Entities.SoftwareApplicationLog softwareApplicationLog)
+        public static LogDto ToDto(this Domain.Entities.SoftwareApplicationLog softwareApplicationLog)
         {
             return new LogDto(
                 softwareApplicationLog.Id,
@@ -350,16 +371,17 @@ namespace Pineapple.Core.Mappers
                 softwareApplicationLog.Category,
                 softwareApplicationLog.OwnerId,
                 softwareApplicationLog.Owner.FullName,
-                new EntityDto(
+                new ExtendedEntityDto(
                     softwareApplicationLog.SoftwareApplicationId,
-                    softwareApplicationLog.SoftwareApplication.Name
+                    softwareApplicationLog.SoftwareApplication.Name,
+                    null
                 ),
                 null,
                 softwareApplicationLog.Description
             );
         }
 
-        public static ILogDto ToDto(this Domain.Entities.UserLog userLog)
+        public static LogDto ToDto(this Domain.Entities.UserLog userLog)
         {
             return new LogDto(
                 userLog.Id,
@@ -370,9 +392,10 @@ namespace Pineapple.Core.Mappers
                 userLog.Category,
                 userLog.OwnerId,
                 userLog.Owner.FullName,
-                new EntityDto(
+                new ExtendedEntityDto(
                     userLog.UserId,
-                    userLog.User.FullName
+                    userLog.User.FullName,
+                    null
                 ),
                 null,
                 userLog.Description

@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Pineapple.Core.Dto;
 
-namespace Pineapple.Core
+namespace Pineapple.Core.Dto.Logs
 {
-    public interface ILogDto : IDto
+    public interface ILogDto
     {
         /// <summary>
         /// Identyfikator.
@@ -49,7 +48,7 @@ namespace Pineapple.Core
         /// <summary>
         /// Encja.
         /// </summary>
-        EntityDto Entity { get; }
+        ExtendedEntityDto Entity { get; }
 
         /// <summary>
         /// Encje nadrzędne.

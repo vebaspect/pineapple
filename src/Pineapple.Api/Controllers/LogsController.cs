@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using Pineapple.Core;
+using Pineapple.Core.Dto.Logs;
 using Pineapple.Core.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
