@@ -10,7 +10,7 @@ namespace Pineapple.Core.Dto
         /// <summary>
         /// Identyfikator.
         /// </summary>
-        public Guid? Id { get; }
+        public Guid Id { get; }
 
         /// <summary>
         /// Nazwa.
