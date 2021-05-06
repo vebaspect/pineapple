@@ -15,6 +15,31 @@ export interface LogProps {
     id: string,
     // Nazwa.
     name: string,
+    // Szczegóły.
+    details: {
+      // Komponent zainstalowany na serwerze.
+      serverComponent: {
+        // Identyfikator produktu.
+        productId: string,
+        // Nazwa produktu.
+        productName: string,
+        // Identyfikator komponentu.
+        componentId: string,
+        // Nazwa komponentu.
+        componentName: string,
+        // Identyfikator wersji komponentu.
+        componentVersionId: string,
+        // Numer wersji komponentu.
+        componentVersionNumber: string,
+      },
+      // Oprogramowanie zainstalowane na serwerze.
+      serverSoftwareApplication: {
+        // Identyfikator oprogramowania.
+        softwareApplicationId: string,
+        // Nazwa oprogramowania.
+        softwareApplicationName: string,
+      },
+    },
   },
   // Encje nadrzędne.
   parentEntities: {
@@ -40,6 +65,31 @@ export interface TextProps {
     id: string,
     // Nazwa.
     name: string,
+    // Szczegóły.
+    details: {
+      // Komponent zainstalowany na serwerze.
+      serverComponent: {
+        // Identyfikator produktu.
+        productId: string,
+        // Nazwa produktu.
+        productName: string,
+        // Identyfikator komponentu.
+        componentId: string,
+        // Nazwa komponentu.
+        componentName: string,
+        // Identyfikator wersji komponentu.
+        componentVersionId: string,
+        // Numer wersji komponentu.
+        componentVersionNumber: string,
+      },
+      // Oprogramowanie zainstalowane na serwerze.
+      serverSoftwareApplication: {
+        // Identyfikator oprogramowania.
+        softwareApplicationId: string,
+        // Nazwa oprogramowania.
+        softwareApplicationName: string,
+      },
+    },
   },
   // Encje nadrzędne.
   parentEntities: {

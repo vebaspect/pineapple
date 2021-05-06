@@ -765,7 +765,13 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 component="span"
                 mx={0.5}
               >
-                {`«${entity.name}»`}
+                <Link
+                  className={styles.serverComponent}
+                  component={RouterLink}
+                  to={`/products/${entity.details.serverComponent.productId}/components/${entity.details.serverComponent.componentId}/component-versions/${entity.details.serverComponent.componentVersionId}`}
+                >
+                  {`«${entity.details.serverComponent.componentVersionNumber}»`}
+                </Link>
               </Box>
               na serwerze
               <Box
@@ -775,9 +781,9 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 <Link
                   className={styles.server}
                   component={RouterLink}
-                  to={`/implementations/${parentEntities[2].id}/environments/${parentEntities[1].id}/servers/${parentEntities[0].id}`}
+                  to={`/implementations/${parentEntities[1].id}/environments/${parentEntities[0].id}/servers/${entity.id}`}
                 >
-                  {`«${parentEntities[0].name}»`}
+                  {`«${entity.name}»`}
                 </Link>
               </Box>
               .
@@ -804,7 +810,13 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 component="span"
                 mx={0.5}
               >
-                {`«${entity.name}»`}
+                <Link
+                  className={styles.serverComponent}
+                  component={RouterLink}
+                  to={`/products/${entity.details.serverComponent.productId}/components/${entity.details.serverComponent.componentId}/component-versions/${entity.details.serverComponent.componentVersionId}`}
+                >
+                  {`«${entity.details.serverComponent.componentVersionNumber}»`}
+                </Link>
               </Box>
               z serwera
               <Box
@@ -814,9 +826,9 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 <Link
                   className={styles.server}
                   component={RouterLink}
-                  to={`/implementations/${parentEntities[2].id}/environments/${parentEntities[1].id}/servers/${parentEntities[0].id}`}
+                  to={`/implementations/${parentEntities[1].id}/environments/${parentEntities[0].id}/servers/${entity.id}`}
                 >
-                  {`«${parentEntities[0].name}»`}
+                  {`«${entity.name}»`}
                 </Link>
               </Box>
               .
@@ -849,7 +861,13 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 component="span"
                 mx={0.5}
               >
-                {`«${entity.name}»`}
+                <Link
+                  className={styles.serverSoftwareApplication}
+                  component={RouterLink}
+                  to={`/software-applications/${entity.details.serverSoftwareApplication.softwareApplicationId}`}
+                >
+                  {`«${entity.details.serverSoftwareApplication.softwareApplicationName}»`}
+                </Link>
               </Box>
               na serwerze
               <Box
@@ -859,9 +877,9 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 <Link
                   className={styles.server}
                   component={RouterLink}
-                  to={`/implementations/${parentEntities[2].id}/environments/${parentEntities[1].id}/servers/${parentEntities[0].id}`}
+                  to={`/implementations/${parentEntities[1].id}/environments/${parentEntities[0].id}/servers/${entity.id}`}
                 >
-                  {`«${parentEntities[0].name}»`}
+                  {`«${entity.name}»`}
                 </Link>
               </Box>
               .
@@ -888,7 +906,13 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 component="span"
                 mx={0.5}
               >
-                {`«${entity.name}»`}
+                <Link
+                  className={styles.serverSoftwareApplication}
+                  component={RouterLink}
+                  to={`/software-applications/${entity.details.serverSoftwareApplication.softwareApplicationId}`}
+                >
+                  {`«${entity.details.serverSoftwareApplication.softwareApplicationName}»`}
+                </Link>
               </Box>
               z serwera
               <Box
@@ -898,9 +922,9 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 <Link
                   className={styles.server}
                   component={RouterLink}
-                  to={`/implementations/${parentEntities[2].id}/environments/${parentEntities[1].id}/servers/${parentEntities[0].id}`}
+                  to={`/implementations/${parentEntities[1].id}/environments/${parentEntities[0].id}/servers/${entity.id}`}
                 >
-                  {`«${parentEntities[0].name}»`}
+                  {`«${entity.name}»`}
                 </Link>
               </Box>
               .
