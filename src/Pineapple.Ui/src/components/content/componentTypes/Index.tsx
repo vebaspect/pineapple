@@ -58,7 +58,7 @@ const ComponentTypes: React.VFC = () => {
   }, []);
 
   const addComponentType = () => {
-    history.push('/component-types/create');
+    history.push('/configuration/component-types/create');
   };
 
   const editComponentType = () => {

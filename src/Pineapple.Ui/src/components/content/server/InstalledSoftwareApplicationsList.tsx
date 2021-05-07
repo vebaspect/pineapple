@@ -47,7 +47,7 @@ const InstalledSoftwareApplicationsList: React.FC<InstalledSoftwareApplicationsL
               <TableCell>
                 <Link
                   component={RouterLink}
-                  to={`/software-applications/${installedSoftwareApplication.softwareApplicationId}`}
+                  to={`/configuration/software-applications/${installedSoftwareApplication.softwareApplicationId}`}
                 > 
                   {installedSoftwareApplication.softwareApplicationName}
                 </Link>

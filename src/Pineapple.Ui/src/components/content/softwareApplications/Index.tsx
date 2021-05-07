@@ -58,7 +58,7 @@ const SoftwareApplications: React.VFC = () => {
   }, []);
 
   const addSoftwareApplication = () => {
-    history.push('/software-applications/create');
+    history.push('/configuration/software-applications/create');
   };
 
   const editSoftwareApplication = () => {

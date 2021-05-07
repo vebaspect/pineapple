@@ -37,7 +37,7 @@ const Details: React.FC<DetailsProps> = ({ isDataFetched, name, componentTypeId,
           <TableCell>
             <Link
               component={RouterLink}
-              to={`/component-types/${componentTypeId}`}
+              to={`/configuration/component-types/${componentTypeId}`}
             >
               {componentTypeName}
             </Link>

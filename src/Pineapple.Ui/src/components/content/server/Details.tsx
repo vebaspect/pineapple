@@ -45,7 +45,7 @@ const Details: React.FC<DetailsProps> = ({ isDataFetched, name, symbol, ipAddres
           <TableCell>
             <Link
               component={RouterLink}
-              to={`/operating-systems/${operatingSystemId}`}
+              to={`/configuration/operating-systems/${operatingSystemId}`}
             >
               {operatingSystemName}
             </Link>

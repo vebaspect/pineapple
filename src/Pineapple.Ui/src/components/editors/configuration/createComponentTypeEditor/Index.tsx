@@ -48,7 +48,7 @@ const CreateComponentTypeEditor: React.VFC = () => {
   };
 
   const onCancel = () => {
-    history.push('/component-types');
+    history.push('/configuration/component-types');
   };
 
   const onSave = async () => {
@@ -66,7 +66,7 @@ const CreateComponentTypeEditor: React.VFC = () => {
       )
       .then((response) => {
         if (response.ok) {
-          history.push('/component-types');
+          history.push('/configuration/component-types');
         } else {
           return response.json();
         }

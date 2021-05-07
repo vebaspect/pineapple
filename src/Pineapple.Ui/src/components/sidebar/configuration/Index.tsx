@@ -68,7 +68,7 @@ const Configuration: React.FC<ConfigurationProps> = ({ isComponentTypesCountFetc
             <ListItemText>
               <Link
                 component={RouterLink}
-                to="/component-types"
+                to="/configuration/component-types"
                 style={{ fontSize: '0.9rem' }}
               >
                 Typy komponentów ({componentTypesCount})
@@ -79,7 +79,7 @@ const Configuration: React.FC<ConfigurationProps> = ({ isComponentTypesCountFetc
             <ListItemText>
               <Link
                 component={RouterLink}
-                to="/operating-systems"
+                to="/configuration/operating-systems"
                 style={{ fontSize: '0.9rem' }}
               >
                 Systemy operacyjne ({operatingSystemsCount})
@@ -90,7 +90,7 @@ const Configuration: React.FC<ConfigurationProps> = ({ isComponentTypesCountFetc
             <ListItemText>
               <Link
                 component={RouterLink}
-                to="/software-applications"
+                to="/configuration/software-applications"
                 style={{ fontSize: '0.9rem' }}
               >
                 Oprogramowanie ({softwareApplicationsCount})

@@ -49,7 +49,7 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, onEdit, onDelete }: Li
               <TableCell>
                 <Link
                   component={RouterLink}
-                  to={`/software-applications/${softwareApplication.id}`}
+                  to={`/configuration/software-applications/${softwareApplication.id}`}
                 >
                   {softwareApplication.name}
                 </Link>

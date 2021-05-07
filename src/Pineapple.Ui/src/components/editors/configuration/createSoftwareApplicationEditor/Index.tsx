@@ -48,7 +48,7 @@ const CreateSoftwareApplicationEditor: React.VFC = () => {
   };
 
   const onCancel = () => {
-    history.push('/software-applications');
+    history.push('/configuration/software-applications');
   };
 
   const onSave = async () => {
@@ -66,7 +66,7 @@ const CreateSoftwareApplicationEditor: React.VFC = () => {
       )
       .then((response) => {
         if (response.ok) {
-          history.push('/software-applications');
+          history.push('/configuration/software-applications');
         } else {
           return response.json();
         }

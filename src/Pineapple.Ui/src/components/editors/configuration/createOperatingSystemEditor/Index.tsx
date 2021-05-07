@@ -48,7 +48,7 @@ const CreateOperatingSystemEditor: React.VFC = () => {
   };
 
   const onCancel = () => {
-    history.push('/operating-systems');
+    history.push('/configuration/operating-systems');
   };
 
   const onSave = async () => {
@@ -66,7 +66,7 @@ const CreateOperatingSystemEditor: React.VFC = () => {
       )
       .then((response) => {
         if (response.ok) {
-          history.push('/operating-systems');
+          history.push('/configuration/operating-systems');
         } else {
           return response.json();
         }

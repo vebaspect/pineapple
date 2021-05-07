@@ -58,7 +58,7 @@ const OperatingSystems: React.VFC = () => {
   }, []);
 
   const addOperatingSystem = () => {
-    history.push('/operating-systems/create');
+    history.push('/configuration/operating-systems/create');
   };
 
   const editOperatingSystem = () => {

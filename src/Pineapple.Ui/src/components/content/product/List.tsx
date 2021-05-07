@@ -66,7 +66,7 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, productId, onEdit, onD
               <TableCell>
                 <Link
                   component={RouterLink}
-                  to={`/component-types/${component.componentTypeId}`}
+                  to={`/configuration/component-types/${component.componentTypeId}`}
                 >
                   {component.componentTypeName}
                 </Link>

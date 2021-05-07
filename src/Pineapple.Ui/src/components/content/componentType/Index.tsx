@@ -44,7 +44,7 @@ const ComponentType: React.VFC = () => {
         <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
         <Link
           component={RouterLink}
-          to="/component-types"
+          to="/configuration/component-types"
         >
           Typy komponentów
         </Link>

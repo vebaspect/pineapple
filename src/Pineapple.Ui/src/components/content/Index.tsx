@@ -52,14 +52,32 @@ const Title: React.VFC = () => {
       <Route path="/administrators">
         <Administrators />
       </Route>
-      <Route path="/component-types/create">
+      <Route path="/configuration/component-types/create">
         <CreateComponentTypeEditor />
       </Route>
-      <Route path="/component-types/:componentTypeId">
+      <Route path="/configuration/component-types/:componentTypeId">
         <ComponentType />
       </Route>
-      <Route path="/component-types">
+      <Route path="/configuration/component-types">
         <ComponentTypes />
+      </Route>
+      <Route path="/configuration/operating-systems/create">
+        <CreateOperatingSystemEditor />
+      </Route>
+      <Route path="/configuration/operating-systems/:operatingSystemId">
+        <OperatingSystem />
+      </Route>
+      <Route path="/configuration/operating-systems">
+        <OperatingSystems />
+      </Route>
+      <Route path="/configuration/software-applications/create">
+        <CreateSoftwareApplicationEditor />
+      </Route>
+      <Route path="/configuration/software-applications/:softwareApplicationId">
+        <SoftwareApplication />
+      </Route>
+      <Route path="/configuration/software-applications">
+        <SoftwareApplications />
       </Route>
       <Route path="/configuration">
         <Configuration />
@@ -103,15 +121,6 @@ const Title: React.VFC = () => {
       <Route path="/managers">
         <Managers />
       </Route>
-      <Route path="/operating-systems/create">
-        <CreateOperatingSystemEditor />
-      </Route>
-      <Route path="/operating-systems/:operatingSystemId">
-        <OperatingSystem />
-      </Route>
-      <Route path="/operating-systems">
-        <OperatingSystems />
-      </Route>
       <Route path="/operators/create">
         <CreateOperatorEditor />
       </Route>
@@ -138,15 +147,6 @@ const Title: React.VFC = () => {
       </Route>
       <Route path="/products">
         <Products />
-      </Route>
-      <Route path="/software-applications/create">
-        <CreateSoftwareApplicationEditor />
-      </Route>
-      <Route path="/software-applications/:softwareApplicationId">
-        <SoftwareApplication />
-      </Route>
-      <Route path="/software-applications">
-        <SoftwareApplications />
       </Route>
       <Route path="/users/:userId">
         <User />
