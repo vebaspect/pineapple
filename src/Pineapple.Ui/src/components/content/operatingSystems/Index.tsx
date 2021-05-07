@@ -13,6 +13,7 @@ import Paper from '@material-ui/core/Paper';
 import AddIcon from '@material-ui/icons/Add';
 
 import DialogWindow from '../../windows/DialogWindow';
+import ErrorWindow from '../../windows/ErrorWindow';
 
 import List from './List';
 
@@ -38,6 +39,9 @@ const OperatingSystems: React.VFC = () => {
   const [isDeleteOperatingSystemDialogWindowOpen, setIsDeleteOperatingSystemDialogWindowOpen] = useState(false);
   // Dane wykorzystywane przez okno dialogowe potwierdzające chęć usunięcia systemu operacyjnego.
   const [deleteOperatingSystemDialogWindowData, setDeleteOperatingSystemDialogWindowData] = useState(null);
+
+  // Flaga określająca, czy okno wyświetlające informacje nt. błędu, który wystąpił podczas próby usunięcia systemu operacyjnego jest otwarte.
+  const [isDeleteOperatingSystemErrorWindowOpen, setIsDeleteOperatingSystemErrorWindowOpen] = useState(false);
 
   const fetchOperatingSystems = async () => {
     await fetch(`${window['env'].API_URL}/configuration/operating-systems`)
@@ -75,11 +79,15 @@ const OperatingSystems: React.VFC = () => {
         method: 'DELETE',
       },
     )
-    .then(() => {
+    .then((response) => {
       setIsDeleteOperatingSystemDialogWindowOpen(false);
       setDeleteOperatingSystemDialogWindowData(null);
 
-      fetchOperatingSystems();
+      if (response.ok) {
+        fetchOperatingSystems();
+      } else {
+        setIsDeleteOperatingSystemErrorWindowOpen(true);
+      }
     });
   };
 
@@ -87,6 +95,10 @@ const OperatingSystems: React.VFC = () => {
     setIsDeleteOperatingSystemDialogWindowOpen(false);
     setDeleteOperatingSystemDialogWindowData(null);
   };
+
+  const deleteOperatingSystemFailed = () => {
+    setIsDeleteOperatingSystemErrorWindowOpen(false);
+  }
 
   return (
     <>
@@ -131,6 +143,12 @@ const OperatingSystems: React.VFC = () => {
       >
         Czy na pewno chcesz usunąć system operacyjny <strong>{deleteOperatingSystemDialogWindowData?.fullName}</strong>?
       </DialogWindow>
+      <ErrorWindow
+        isOpen={isDeleteOperatingSystemErrorWindowOpen}
+        onClose={deleteOperatingSystemFailed}
+      >
+        Próba usunięcia systemu operacyjnego zakończyła się błędem.
+      </ErrorWindow>
     </>
   );
 }

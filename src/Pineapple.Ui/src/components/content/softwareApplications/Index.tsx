@@ -13,6 +13,7 @@ import Paper from '@material-ui/core/Paper';
 import AddIcon from '@material-ui/icons/Add';
 
 import DialogWindow from '../../windows/DialogWindow';
+import ErrorWindow from '../../windows/ErrorWindow';
 
 import List from './List';
 
@@ -38,6 +39,9 @@ const SoftwareApplications: React.VFC = () => {
   const [isDeleteSoftwareApplicationDialogWindowOpen, setIsDeleteSoftwareApplicationDialogWindowOpen] = useState(false);
   // Dane wykorzystywane przez okno dialogowe potwierdzające chęć usunięcia oprogramowania.
   const [deleteSoftwareApplicationDialogWindowData, setDeleteSoftwareApplicationDialogWindowData] = useState(null);
+
+  // Flaga określająca, czy okno wyświetlające informacje nt. błędu, który wystąpił podczas próby usunięcia oprogramowania jest otwarte.
+  const [isDeleteSoftwareApplicationErrorWindowOpen, setIsDeleteSoftwareApplicationErrorWindowOpen] = useState(false);
 
   const fetchSoftwareApplications = async () => {
     await fetch(`${window['env'].API_URL}/configuration/software-applications`)
@@ -75,11 +79,15 @@ const SoftwareApplications: React.VFC = () => {
         method: 'DELETE',
       },
     )
-    .then(() => {
+    .then((response) => {
       setIsDeleteSoftwareApplicationDialogWindowOpen(false);
       setDeleteSoftwareApplicationDialogWindowData(null);
 
-      fetchSoftwareApplications();
+      if (response.ok) {
+        fetchSoftwareApplications();
+      } else {
+        setIsDeleteSoftwareApplicationErrorWindowOpen(true);
+      }
     });
   };
 
@@ -87,6 +95,10 @@ const SoftwareApplications: React.VFC = () => {
     setIsDeleteSoftwareApplicationDialogWindowOpen(false);
     setDeleteSoftwareApplicationDialogWindowData(null);
   };
+
+  const deleteSoftwareApplicationFailed = () => {
+    setIsDeleteSoftwareApplicationErrorWindowOpen(false);
+  }
 
   return (
     <>
@@ -131,6 +143,12 @@ const SoftwareApplications: React.VFC = () => {
       >
         Czy na pewno chcesz usunąć oprogramowanie <strong>{deleteSoftwareApplicationDialogWindowData?.fullName}</strong>?
       </DialogWindow>
+      <ErrorWindow
+        isOpen={isDeleteSoftwareApplicationErrorWindowOpen}
+        onClose={deleteSoftwareApplicationFailed}
+      >
+        Próba usunięcia oprogramowania zakończyła się błędem.
+      </ErrorWindow>
     </>
   );
 }

@@ -13,6 +13,7 @@ import Paper from '@material-ui/core/Paper';
 import AddIcon from '@material-ui/icons/Add';
 
 import DialogWindow from '../../windows/DialogWindow';
+import ErrorWindow from '../../windows/ErrorWindow';
 
 import List from './List';
 
@@ -38,6 +39,9 @@ const Developers: React.VFC = () => {
   const [isDeleteDeveloperDialogWindowOpen, setIsDeleteDeveloperDialogWindowOpen] = useState(false);
   // Dane wykorzystywane przez okno dialogowe potwierdzające chęć usunięcia programisty.
   const [deleteDeveloperDialogWindowData, setDeleteDeveloperDialogWindowData] = useState(null);
+
+  // Flaga określająca, czy okno wyświetlające informacje nt. błędu, który wystąpił podczas próby usunięcia programisty jest otwarte.
+  const [isDeleteDeveloperErrorWindowOpen, setIsDeleteDeveloperErrorWindowOpen] = useState(false);
 
   const fetchDevelopers = async () => {
     await fetch(`${window['env'].API_URL}/users/developers`)
@@ -75,11 +79,15 @@ const Developers: React.VFC = () => {
         method: 'DELETE',
       },
     )
-    .then(() => {
+    .then((response) => {
       setIsDeleteDeveloperDialogWindowOpen(false);
       setDeleteDeveloperDialogWindowData(null);
 
-      fetchDevelopers();
+      if (response.ok) {
+        fetchDevelopers();
+      } else {
+        setIsDeleteDeveloperErrorWindowOpen(true);
+      }
     });
   };
 
@@ -87,6 +95,10 @@ const Developers: React.VFC = () => {
     setIsDeleteDeveloperDialogWindowOpen(false);
     setDeleteDeveloperDialogWindowData(null);
   };
+
+  const deleteDeveloperFailed = () => {
+    setIsDeleteDeveloperErrorWindowOpen(false);
+  }
 
   return (
     <>
@@ -131,6 +143,12 @@ const Developers: React.VFC = () => {
       >
         Czy na pewno chcesz usunąć programistę <strong>{deleteDeveloperDialogWindowData?.fullName}</strong>?
       </DialogWindow>
+      <ErrorWindow
+        isOpen={isDeleteDeveloperErrorWindowOpen}
+        onClose={deleteDeveloperFailed}
+      >
+        Próba usunięcia programisty zakończyła się błędem.
+      </ErrorWindow>
     </>
   );
 }

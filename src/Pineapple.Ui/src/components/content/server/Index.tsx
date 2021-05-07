@@ -14,6 +14,7 @@ import Paper from '@material-ui/core/Paper';
 import AddIcon from '@material-ui/icons/Add';
 
 import DialogWindow from '../../windows/DialogWindow';
+import ErrorWindow from '../../windows/ErrorWindow';
 import Logs from '../../logs';
 
 import Details from './Details';
@@ -54,6 +55,12 @@ const Server: React.VFC = () => {
   const [isUninstallSoftwareApplicationDialogWindowOpen, setIsUninstallSoftwareApplicationDialogWindowOpen] = useState(false);
   // Dane wykorzystywane przez okno dialogowe potwierdzające chęć odinstalowania oprogramowania.
   const [uninstallSoftwareApplicationDialogWindowData, setUninstallSoftwareApplicationDialogWindowData] = useState(null);
+
+  // Flaga określająca, czy okno wyświetlające informacje nt. błędu, który wystąpił podczas próby odinstalowania komponentu jest otwarte.
+  const [isUninstallComponentErrorWindowOpen, setIsUninstallComponentErrorWindowOpen] = useState(false);
+
+  // Flaga określająca, czy okno wyświetlające informacje nt. błędu, który wystąpił podczas próby odinstalowania oprogramowania jest otwarte.
+  const [isUninstallSoftwareApplicationErrorWindowOpen, setIsUninstallSoftwareApplicationErrorWindowOpen] = useState(false);
 
   // Flaga określająca, czy lista logów została pobrana z API.
   const [isLogsFetched, setIsLogsFetched] = useState(false);
@@ -119,12 +126,16 @@ const Server: React.VFC = () => {
         method: 'DELETE',
       },
     )
-    .then(() => {
+    .then((response) => {
       setIsUninstallComponentDialogWindowOpen(false);
       setUninstallComponentDialogWindowData(null);
 
-      fetchServer();
-      fetchLogs();
+      if (response.ok) {
+        fetchServer();
+        fetchLogs();
+      } else {
+        setIsUninstallComponentErrorWindowOpen(true);
+      }
     });
   };
 
@@ -132,6 +143,10 @@ const Server: React.VFC = () => {
     setIsUninstallComponentDialogWindowOpen(false);
     setUninstallComponentDialogWindowData(null);
   };
+
+  const uninstallComponentFailed = () => {
+    setIsUninstallComponentErrorWindowOpen(false);
+  }
 
   const installSoftwareApplication = () => {
     history.push(`/implementations/${implementationId}/environments/${environmentId}/servers/${serverId}/software-applications/install`);
@@ -158,12 +173,16 @@ const Server: React.VFC = () => {
         method: 'DELETE',
       },
     )
-    .then(() => {
+    .then((response) => {
       setIsUninstallSoftwareApplicationDialogWindowOpen(false);
       setUninstallSoftwareApplicationDialogWindowData(null);
 
-      fetchServer();
-      fetchLogs();
+      if (response.ok) {
+        fetchServer();
+        fetchLogs();
+      } else {
+        setIsUninstallSoftwareApplicationErrorWindowOpen(true);
+      }
     });
   };
 
@@ -171,6 +190,10 @@ const Server: React.VFC = () => {
     setIsUninstallSoftwareApplicationDialogWindowOpen(false);
     setUninstallSoftwareApplicationDialogWindowData(null);
   };
+
+  const uninstallSoftwareApplicationFailed = () => {
+    setIsUninstallSoftwareApplicationErrorWindowOpen(false);
+  }
 
   return (
     <>
@@ -337,6 +360,12 @@ const Server: React.VFC = () => {
       >
         Czy na pewno chcesz odinstalować komponent <strong>{uninstallComponentDialogWindowData?.name}</strong>?
       </DialogWindow>
+      <ErrorWindow
+        isOpen={isUninstallComponentErrorWindowOpen}
+        onClose={uninstallComponentFailed}
+      >
+        Próba odinstalowania komponentu zakończyła się błędem.
+      </ErrorWindow>
       <DialogWindow
         isOpen={isUninstallSoftwareApplicationDialogWindowOpen}
         title="Odinstalowanie oprogramowania"
@@ -345,6 +374,12 @@ const Server: React.VFC = () => {
       >
         Czy na pewno chcesz odinstalować oprogramowanie <strong>{uninstallSoftwareApplicationDialogWindowData?.name}</strong>?
       </DialogWindow>
+      <ErrorWindow
+        isOpen={isUninstallSoftwareApplicationErrorWindowOpen}
+        onClose={uninstallSoftwareApplicationFailed}
+      >
+        Próba odinstalowania oprogramowania zakończyła się błędem.
+      </ErrorWindow>
     </>
   );
 }

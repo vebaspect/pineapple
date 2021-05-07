@@ -13,6 +13,7 @@ import Paper from '@material-ui/core/Paper';
 import AddIcon from '@material-ui/icons/Add';
 
 import DialogWindow from '../../windows/DialogWindow';
+import ErrorWindow from '../../windows/ErrorWindow';
 
 import List from './List';
 
@@ -38,6 +39,9 @@ const Managers: React.VFC = () => {
   const [isDeleteManagerDialogWindowOpen, setIsDeleteManagerDialogWindowOpen] = useState(false);
   // Dane wykorzystywane przez okno dialogowe potwierdzające chęć usunięcia menedżera.
   const [deleteManagerDialogWindowData, setDeleteManagerDialogWindowData] = useState(null);  
+
+  // Flaga określająca, czy okno wyświetlające informacje nt. błędu, który wystąpił podczas próby usunięcia menedżera jest otwarte.
+  const [isDeleteManagerErrorWindowOpen, setIsDeleteManagerErrorWindowOpen] = useState(false);
 
   const fetchManagers = async () => {
     await fetch(`${window['env'].API_URL}/users/managers`)
@@ -75,11 +79,15 @@ const Managers: React.VFC = () => {
         method: 'DELETE',
       },
     )
-    .then(() => {
+    .then((response) => {
       setIsDeleteManagerDialogWindowOpen(false);
       setDeleteManagerDialogWindowData(null);
 
-      fetchManagers();
+      if (response.ok) {
+        fetchManagers();
+      } else {
+        setIsDeleteManagerErrorWindowOpen(true);
+      }
     });
   };
 
@@ -87,6 +95,10 @@ const Managers: React.VFC = () => {
     setIsDeleteManagerDialogWindowOpen(false);
     setDeleteManagerDialogWindowData(null);
   };
+
+  const deleteManagerFailed = () => {
+    setIsDeleteManagerErrorWindowOpen(false);
+  }
 
   return (
     <>
@@ -131,6 +143,12 @@ const Managers: React.VFC = () => {
       >
         Czy na pewno chcesz usunąć menedżera <strong>{deleteManagerDialogWindowData?.fullName}</strong>?
       </DialogWindow>
+      <ErrorWindow
+        isOpen={isDeleteManagerErrorWindowOpen}
+        onClose={deleteManagerFailed}
+      >
+        Próba usunięcia menedżera zakończyła się błędem.
+      </ErrorWindow>
     </>
   );
 }

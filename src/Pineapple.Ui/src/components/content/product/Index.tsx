@@ -14,6 +14,7 @@ import Paper from '@material-ui/core/Paper';
 import AddIcon from '@material-ui/icons/Add';
 
 import DialogWindow from '../../windows/DialogWindow';
+import ErrorWindow from '../../windows/ErrorWindow';
 import Logs from '../../logs';
 
 import Details from './Details';
@@ -49,6 +50,9 @@ const Product: React.VFC = () => {
   const [isDeleteComponentDialogWindowOpen, setIsDeleteComponentDialogWindowOpen] = useState(false);
   // Dane wykorzystywane przez okno dialogowe potwierdzające chęć usunięcia komponentu.
   const [deleteComponentDialogWindowData, setDeleteComponentDialogWindowData] = useState(null);
+
+  // Flaga określająca, czy okno wyświetlające informacje nt. błędu, który wystąpił podczas próby usunięcia komponentu jest otwarte.
+  const [isDeleteComponentErrorWindowOpen, setIsDeleteComponentErrorWindowOpen] = useState(false);
 
   // Flaga określająca, czy lista logów została pobrana z API.
   const [isLogsFetched, setIsLogsFetched] = useState(false);
@@ -125,12 +129,16 @@ const Product: React.VFC = () => {
         method: 'DELETE',
       },
     )
-    .then(() => {
+    .then((response) => {
       setIsDeleteComponentDialogWindowOpen(false);
       setDeleteComponentDialogWindowData(null);
 
-      fetchComponents();
-      fetchLogs();
+      if (response.ok) {
+        fetchComponents();
+        fetchLogs();
+      } else {
+        setIsDeleteComponentErrorWindowOpen(true);
+      }
     });
   };
 
@@ -138,6 +146,10 @@ const Product: React.VFC = () => {
     setIsDeleteComponentDialogWindowOpen(false);
     setDeleteComponentDialogWindowData(null);
   };
+
+  const deleteComponentFailed = () => {
+    setIsDeleteComponentErrorWindowOpen(false);
+  }
 
   return (
     <>
@@ -266,6 +278,12 @@ const Product: React.VFC = () => {
       >
         Czy na pewno chcesz usunąć komponent <strong>{deleteComponentDialogWindowData?.name}</strong>?
       </DialogWindow>
+      <ErrorWindow
+        isOpen={isDeleteComponentErrorWindowOpen}
+        onClose={deleteComponentFailed}
+      >
+        Próba usunięcia komponentu zakończyła się błędem.
+      </ErrorWindow>
     </>
   );
 }

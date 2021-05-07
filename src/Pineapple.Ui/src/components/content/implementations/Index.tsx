@@ -14,6 +14,7 @@ import Paper from '@material-ui/core/Paper';
 import AddIcon from '@material-ui/icons/Add';
 
 import DialogWindow from '../../windows/DialogWindow';
+import ErrorWindow from '../../windows/ErrorWindow';
 import Logs from '../../logs';
 
 import List from './List';
@@ -40,6 +41,9 @@ const Implementations: React.VFC = () => {
   const [isDeleteImplementationDialogWindowOpen, setIsDeleteImplementationDialogWindowOpen] = useState(false);
   // Dane wykorzystywane przez okno dialogowe potwierdzające chęć usunięcia wdrożenia.
   const [deleteImplementationDialogWindowData, setDeleteImplementationDialogWindowData] = useState(null);
+
+  // Flaga określająca, czy okno wyświetlające informacje nt. błędu, który wystąpił podczas próby usunięcia wdrożenia jest otwarte.
+  const [isDeleteImplementationErrorWindowOpen, setIsDeleteImplementationErrorWindowOpen] = useState(false);
 
   // Flaga określająca, czy lista logów została pobrana z API.
   const [isLogsFetched, setIsLogsFetched] = useState(false);
@@ -103,12 +107,16 @@ const Implementations: React.VFC = () => {
         method: 'DELETE',
       },
     )
-    .then(() => {
+    .then((response) => {
       setIsDeleteImplementationDialogWindowOpen(false);
       setDeleteImplementationDialogWindowData(null);
 
-      fetchImplementations();
-      fetchLogs();
+      if (response.ok) {
+        fetchImplementations();
+        fetchLogs();
+      } else {
+        setIsDeleteImplementationErrorWindowOpen(true);
+      }
     });
   };
 
@@ -116,6 +124,10 @@ const Implementations: React.VFC = () => {
     setIsDeleteImplementationDialogWindowOpen(false);
     setDeleteImplementationDialogWindowData(null);
   };
+
+  const deleteImplementationFailed = () => {
+    setIsDeleteImplementationErrorWindowOpen(false);
+  }
 
   return (
     <>
@@ -198,6 +210,12 @@ const Implementations: React.VFC = () => {
       >
         Czy na pewno chcesz usunąć wdrożenie <strong>{deleteImplementationDialogWindowData?.name}</strong>?
       </DialogWindow>
+      <ErrorWindow
+        isOpen={isDeleteImplementationErrorWindowOpen}
+        onClose={deleteImplementationFailed}
+      >
+        Próba usunięcia wdrożenia zakończyła się błędem.
+      </ErrorWindow>
     </>
   );
 }

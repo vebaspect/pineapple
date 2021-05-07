@@ -13,6 +13,7 @@ import Paper from '@material-ui/core/Paper';
 import AddIcon from '@material-ui/icons/Add';
 
 import DialogWindow from '../../windows/DialogWindow';
+import ErrorWindow from '../../windows/ErrorWindow';
 
 import Details from './Details';
 import List from './List';
@@ -50,6 +51,9 @@ const Component: React.VFC = () => {
   // Dane wykorzystywane przez okno dialogowe potwierdzające chęć usunięcia wersji komponentu.
   const [deleteComponentVersionDialogWindowData, setDeleteComponentVersionDialogWindowData] = useState(null);
   
+  // Flaga określająca, czy okno wyświetlające informacje nt. błędu, który wystąpił podczas próby usunięcia wersji komponentu jest otwarte.
+  const [isDeleteComponentVersionErrorWindowOpen, setIsDeleteComponentVersionErrorWindowOpen] = useState(false);
+
   const fetchComponent = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/products/${productId}/components/${componentId}`)
       .then((response) => response.json())
@@ -99,11 +103,15 @@ const Component: React.VFC = () => {
         method: 'DELETE',
       },
     )
-    .then(() => {
+    .then((response) => {
       setIsDeleteComponentVersionDialogWindowOpen(false);
       setDeleteComponentVersionDialogWindowData(null);
 
-      fetchComponentVersions();
+      if (response.ok) {
+        fetchComponentVersions();
+      } else {
+        setIsDeleteComponentVersionErrorWindowOpen(true);
+      }
     });
   };
 
@@ -111,6 +119,10 @@ const Component: React.VFC = () => {
     setIsDeleteComponentVersionDialogWindowOpen(false);
     setDeleteComponentVersionDialogWindowData(null);
   };
+
+  const deleteComponentVersionFailed = () => {
+    setIsDeleteComponentVersionErrorWindowOpen(false);
+  }
 
   return (
     <>
@@ -204,6 +216,12 @@ const Component: React.VFC = () => {
       >
         Czy na pewno chcesz usunąć wersję <strong>{deleteComponentVersionDialogWindowData?.number}</strong>?
       </DialogWindow>
+      <ErrorWindow
+        isOpen={isDeleteComponentVersionErrorWindowOpen}
+        onClose={deleteComponentVersionFailed}
+      >
+        Próba usunięcia wersji zakończyła się błędem.
+      </ErrorWindow>
     </>
   );
 }

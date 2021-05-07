@@ -13,6 +13,7 @@ import Paper from '@material-ui/core/Paper';
 import AddIcon from '@material-ui/icons/Add';
 
 import DialogWindow from '../../windows/DialogWindow';
+import ErrorWindow from '../../windows/ErrorWindow';
 
 import List from './List';
 
@@ -39,6 +40,9 @@ const ComponentTypes: React.VFC = () => {
   // Dane wykorzystywane przez okno dialogowe potwierdzające chęć usunięcia typu komponentu.
   const [deleteComponentTypeDialogWindowData, setDeleteComponentTypeDialogWindowData] = useState(null);
   
+  // Flaga określająca, czy okno wyświetlające informacje nt. błędu, który wystąpił podczas próby usunięcia typu komponentu jest otwarte.
+  const [isDeleteComponentTypeErrorWindowOpen, setIsDeleteComponentTypeErrorWindowOpen] = useState(false);
+
   const fetchComponentTypes = async () => {
     await fetch(`${window['env'].API_URL}/configuration/component-types`)
       .then((response) => response.json())
@@ -75,11 +79,15 @@ const ComponentTypes: React.VFC = () => {
         method: 'DELETE',
       },
     )
-    .then(() => {
+    .then((response) => {
       setIsDeleteComponentTypeDialogWindowOpen(false);
       setDeleteComponentTypeDialogWindowData(null);
 
-      fetchComponentTypes();
+      if (response.ok) {
+        fetchComponentTypes();
+      } else {
+        setIsDeleteComponentTypeErrorWindowOpen(true);
+      }
     });
   };
 
@@ -87,6 +95,10 @@ const ComponentTypes: React.VFC = () => {
     setIsDeleteComponentTypeDialogWindowOpen(false);
     setDeleteComponentTypeDialogWindowData(null);
   };
+
+  const deleteComponentTypeFailed = () => {
+    setIsDeleteComponentTypeErrorWindowOpen(false);
+  }
 
   return (
     <>
@@ -131,6 +143,12 @@ const ComponentTypes: React.VFC = () => {
       >
         Czy na pewno chcesz usunąć typ komponentu <strong>{deleteComponentTypeDialogWindowData?.name}</strong>?
       </DialogWindow>
+      <ErrorWindow
+        isOpen={isDeleteComponentTypeErrorWindowOpen}
+        onClose={deleteComponentTypeFailed}
+      >
+        Próba usunięcia typu komponentu zakończyła się błędem.
+      </ErrorWindow>
     </>
   );
 }

@@ -14,6 +14,7 @@ import Paper from '@material-ui/core/Paper';
 import AddIcon from '@material-ui/icons/Add';
 
 import DialogWindow from '../../windows/DialogWindow';
+import ErrorWindow from '../../windows/ErrorWindow';
 import Logs from '../../logs';
 
 import Details from './Details';
@@ -49,6 +50,9 @@ const Implementation: React.VFC = () => {
   const [isDeleteEnvironmentDialogWindowOpen, setIsDeleteEnvironmentDialogWindowOpen] = useState(false);
   // Dane wykorzystywane przez okno dialogowe potwierdzające chęć usunięcia środowiska.
   const [deleteEnvironmentDialogWindowData, setDeleteEnvironmentDialogWindowData] = useState(null);
+
+  // Flaga określająca, czy okno wyświetlające informacje nt. błędu, który wystąpił podczas próby usunięcia środowiska jest otwarte.
+  const [isDeleteEnvironmentErrorWindowOpen, setIsDeleteEnvironmentErrorWindowOpen] = useState(false);
 
   // Flaga określająca, czy lista logów została pobrana z API.
   const [isLogsFetched, setIsLogsFetched] = useState(false);
@@ -125,12 +129,16 @@ const Implementation: React.VFC = () => {
         method: 'DELETE',
       },
     )
-    .then(() => {
+    .then((response) => {
       setIsDeleteEnvironmentDialogWindowOpen(false);
       setDeleteEnvironmentDialogWindowData(null);
 
-      fetchEnvironments();
-      fetchLogs();
+      if (response.ok) {
+        fetchEnvironments();
+        fetchLogs();
+      } else {
+        setIsDeleteEnvironmentErrorWindowOpen(true);
+      }
     });
   };
 
@@ -138,6 +146,10 @@ const Implementation: React.VFC = () => {
     setIsDeleteEnvironmentDialogWindowOpen(false);
     setDeleteEnvironmentDialogWindowData(null);
   };
+
+  const deleteEnvironmentFailed = () => {
+    setIsDeleteEnvironmentErrorWindowOpen(false);
+  }
 
   return (
     <>
@@ -268,6 +280,12 @@ const Implementation: React.VFC = () => {
       >
         Czy na pewno chcesz usunąć środowisko <strong>{deleteEnvironmentDialogWindowData?.name}</strong>?
       </DialogWindow>
+      <ErrorWindow
+        isOpen={isDeleteEnvironmentErrorWindowOpen}
+        onClose={deleteEnvironmentFailed}
+      >
+        Próba usunięcia środowiska zakończyła się błędem.
+      </ErrorWindow>
     </>
   );
 }

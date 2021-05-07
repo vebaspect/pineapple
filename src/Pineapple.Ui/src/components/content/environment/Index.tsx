@@ -14,6 +14,7 @@ import Paper from '@material-ui/core/Paper';
 import AddIcon from '@material-ui/icons/Add';
 
 import DialogWindow from '../../windows/DialogWindow';
+import ErrorWindow from '../../windows/ErrorWindow';
 import Logs from '../../logs';
 
 import Details from './Details';
@@ -51,6 +52,9 @@ const Environment: React.VFC = () => {
   const [isDeleteServerDialogWindowOpen, setIsDeleteServerDialogWindowOpen] = useState(false);
   // Dane wykorzystywane przez okno dialogowe potwierdzające chęć usunięcia serwera.
   const [deleteServerDialogWindowData, setDeleteServerDialogWindowData] = useState(null);
+
+  // Flaga określająca, czy okno wyświetlające informacje nt. błędu, który wystąpił podczas próby usunięcia serwera jest otwarte.
+  const [isDeleteServerErrorWindowOpen, setIsDeleteServerErrorWindowOpen] = useState(false);
 
   // Flaga określająca, czy lista logów została pobrana z API.
   const [isLogsFetched, setIsLogsFetched] = useState(false);
@@ -127,12 +131,16 @@ const Environment: React.VFC = () => {
         method: 'DELETE',
       },
     )
-    .then(() => {
+    .then((response) => {
       setIsDeleteServerDialogWindowOpen(false);
       setDeleteServerDialogWindowData(null);
 
-      fetchServers();
-      fetchLogs();
+      if (response.ok) {
+        fetchServers();
+        fetchLogs();
+      } else {
+        setIsDeleteServerErrorWindowOpen(true);
+      }
     });
   };
 
@@ -140,6 +148,10 @@ const Environment: React.VFC = () => {
     setIsDeleteServerDialogWindowOpen(false);
     setDeleteServerDialogWindowData(null);
   };
+
+  const deleteServerFailed = () => {
+    setIsDeleteServerErrorWindowOpen(false);
+  }
 
   return (
     <>
@@ -272,6 +284,12 @@ const Environment: React.VFC = () => {
       >
         Czy na pewno chcesz usunąć serwer <strong>{deleteServerDialogWindowData?.number}</strong>?
       </DialogWindow>
+      <ErrorWindow
+        isOpen={isDeleteServerErrorWindowOpen}
+        onClose={deleteServerFailed}
+      >
+        Próba usunięcia serwera zakończyła się błędem.
+      </ErrorWindow>
     </>
   );
 }

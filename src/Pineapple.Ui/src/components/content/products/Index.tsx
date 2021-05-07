@@ -14,6 +14,7 @@ import Paper from '@material-ui/core/Paper';
 import AddIcon from '@material-ui/icons/Add';
 
 import DialogWindow from '../../windows/DialogWindow';
+import ErrorWindow from '../../windows/ErrorWindow';
 import Logs from '../../logs';
 
 import List from './List';
@@ -40,6 +41,9 @@ const Products: React.VFC = () => {
   const [isDeleteProductDialogWindowOpen, setIsDeleteProductDialogWindowOpen] = useState(false);
   // Dane wykorzystywane przez okno dialogowe potwierdzające chęć usunięcia produktu.
   const [deleteProductDialogWindowData, setDeleteProductDialogWindowData] = useState(null);
+
+  // Flaga określająca, czy okno wyświetlające informacje nt. błędu, który wystąpił podczas próby usunięcia produktu jest otwarte.
+  const [isDeleteProductErrorWindowOpen, setIsDeleteProductErrorWindowOpen] = useState(false);
 
   // Flaga określająca, czy lista logów została pobrana z API.
   const [isLogsFetched, setIsLogsFetched] = useState(false);
@@ -103,12 +107,16 @@ const Products: React.VFC = () => {
         method: 'DELETE',
       },
     )
-    .then(() => {
+    .then((response) => {
       setIsDeleteProductDialogWindowOpen(false);
       setDeleteProductDialogWindowData(null);
 
-      fetchProducts();
-      fetchLogs();
+      if (response.ok) {
+        fetchProducts();
+        fetchLogs();
+      } else {
+        setIsDeleteProductErrorWindowOpen(true);
+      }
     });
   };
 
@@ -116,6 +124,10 @@ const Products: React.VFC = () => {
     setIsDeleteProductDialogWindowOpen(false);
     setDeleteProductDialogWindowData(null);
   };
+
+  const deleteProductFailed = () => {
+    setIsDeleteProductErrorWindowOpen(false);
+  }
 
   return (
     <>
@@ -198,6 +210,12 @@ const Products: React.VFC = () => {
       >
         Czy na pewno chcesz usunąć produkt <strong>{deleteProductDialogWindowData?.name}</strong>?
       </DialogWindow>
+      <ErrorWindow
+        isOpen={isDeleteProductErrorWindowOpen}
+        onClose={deleteProductFailed}
+      >
+        Próba usunięcia produktu zakończyła się błędem.
+      </ErrorWindow>
     </>
   );
 }
