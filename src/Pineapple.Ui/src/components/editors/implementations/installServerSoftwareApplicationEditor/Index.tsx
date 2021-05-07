@@ -41,6 +41,11 @@ const InstallServerSoftwareApplicationEditor: React.VFC = () => {
   // Lista oprogramowania.
   const [softwareApplications, setSoftwareApplications] = useState([]);
 
+  // Flaga określająca, czy lista zainstalowanego na serwerze oprogramowania została pobrana z API.
+  const [isInstalledSoftwareApplicationsFetched, setIsInstalledSoftwareApplicationsFetched] = useState(false);
+  // Lista zainstalowanego na serwerze oprogramowania.
+  const [installedSoftwareApplications, setInstalledSoftwareApplications] = useState([]);
+
   const convertFetchedSoftwareApplications = (data) => {
     if (data && data.length > 0) {
       return data
@@ -63,6 +68,28 @@ const InstallServerSoftwareApplicationEditor: React.VFC = () => {
   useEffect(() => {
     fetchSoftwareApplications();
   }, [fetchSoftwareApplications]);
+
+  const convertFetchedInstalledSoftwareApplications = (data) => {
+    if (data && data.length > 0) {
+      return data
+        .map((installedSoftwareApplication) => installedSoftwareApplication.softwareApplicationId);
+    }
+
+    return [];
+  };
+
+  const fetchInstalledSoftwareApplications = useCallback(async () => {
+    await fetch(`${window['env'].API_URL}/implementations/${implementationId}/environments/${environmentId}/servers/${serverId}/software-applications`,)
+      .then((response) => response.json())
+      .then((data) => {
+        setIsInstalledSoftwareApplicationsFetched(true);
+        setInstalledSoftwareApplications(convertFetchedInstalledSoftwareApplications(data));
+      });
+  }, [implementationId, environmentId, serverId]);
+
+  useEffect(() => {
+    fetchInstalledSoftwareApplications();
+  }, [fetchInstalledSoftwareApplications]);
 
   const onSoftwareApplicationChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormState({
@@ -139,18 +166,20 @@ const InstallServerSoftwareApplicationEditor: React.VFC = () => {
                 onChange={onSoftwareApplicationChange}
               >
                 {
-                  isSoftwareApplicationsFetched && softwareApplications.length > 0
+                  isSoftwareApplicationsFetched && softwareApplications.length > 0 && isInstalledSoftwareApplicationsFetched
                     ? (
-                      softwareApplications.map((softwareApplication) => {
-                        return (
-                          <MenuItem
-                            key={softwareApplication.id}
-                            value={softwareApplication.id}
-                          >
-                            {softwareApplication.name}
-                          </MenuItem>
-                        );
-                      })
+                      softwareApplications
+                        .filter((softwareApplication) => !installedSoftwareApplications.includes(softwareApplication.id))
+                        .map((softwareApplication) => {
+                          return (
+                            <MenuItem
+                              key={softwareApplication.id}
+                              value={softwareApplication.id}
+                            >
+                              {softwareApplication.name}
+                            </MenuItem>
+                          );
+                        })
                     )
                     : []
                 }

@@ -55,6 +55,11 @@ const InstallServerComponentEditor: React.VFC = () => {
   // Lista wersji komponentu.
   const [componentVersions, setComponentVersions] = useState([]);
 
+    // Flaga określająca, czy lista zainstalowanych na serwerze komponentów została pobrana z API.
+    const [isInstalledComponentsFetched, setIsInstalledComponentsFetched] = useState(false);
+    // Lista zainstalowanych na serwerze komponentów.
+    const [installedComponents, setInstalledComponents] = useState([]);
+
   const convertFetchedProducts = (data) => {
     if (data && data.length > 0) {
       return data
@@ -127,6 +132,28 @@ const InstallServerComponentEditor: React.VFC = () => {
   useEffect(() => {
     fetchComponentVersions();
   }, [fetchComponentVersions]);
+
+  const convertFetchedInstalledComponents = (data) => {
+    if (data && data.length > 0) {
+      return data
+        .map((installedComponent) => installedComponent.componentId);
+    }
+
+    return [];
+  };
+
+  const fetchInstalledComponents = useCallback(async () => {
+    await fetch(`${window['env'].API_URL}/implementations/${implementationId}/environments/${environmentId}/servers/${serverId}/components`,)
+      .then((response) => response.json())
+      .then((data) => {
+        setIsInstalledComponentsFetched(true);
+        setInstalledComponents(convertFetchedInstalledComponents(data));
+      });
+  }, [implementationId, environmentId, serverId]);
+
+  useEffect(() => {
+    fetchInstalledComponents();
+  }, [fetchInstalledComponents]);
 
   const onProductChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormState({
@@ -255,18 +282,20 @@ const InstallServerComponentEditor: React.VFC = () => {
                 onChange={onComponentChange}
               >
                 {
-                  isComponentsFetched && components.length > 0
+                  isComponentsFetched && components.length > 0 && isInstalledComponentsFetched
                     ? (
-                      components.map((component) => {
-                        return (
-                          <MenuItem
-                            key={component.id}
-                            value={component.id}
-                          >
-                            {component.name}
-                          </MenuItem>
-                        );
-                      })
+                      components
+                        .filter((component) => !installedComponents.includes(component.id))
+                        .map((component) => {
+                          return (
+                            <MenuItem
+                              key={component.id}
+                              value={component.id}
+                            >
+                              {component.name}
+                            </MenuItem>
+                          );
+                        })
                     )
                     : []
                 }

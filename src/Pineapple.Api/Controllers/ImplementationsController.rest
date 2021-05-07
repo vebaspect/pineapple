@@ -81,6 +81,10 @@ GET {{url}}/implementations/{{implementationId}}/environments/{{environmentId}}/
 Content-Type: application/json
 
 ### /implementations/{implementationId}/environments/{environmentId}/servers/{serverId}/components
+GET {{url}}/implementations/{{implementationId}}/environments/{{environmentId}}/servers/{{serverId}}/components
+Content-Type: application/json
+
+### /implementations/{implementationId}/environments/{environmentId}/servers/{serverId}/components
 POST {{url}}/implementations/{{implementationId}}/environments/{{environmentId}}/servers/{{serverId}}/components
 Content-Type: application/json
 
@@ -95,6 +99,10 @@ Content-Type: application/json
 {
     "ComponentVersionId": ""
 }
+
+### /implementations/{implementationId}/environments/{environmentId}/servers/{serverId}/software-applications
+GET {{url}}/implementations/{{implementationId}}/environments/{{environmentId}}/servers/{{serverId}}/software-applications
+Content-Type: application/json
 
 ### /implementations/{implementationId}/environments/{environmentId}/servers/{serverId}/software-applications
 POST {{url}}/implementations/{{implementationId}}/environments/{{environmentId}}/servers/{{serverId}}/software-applications
