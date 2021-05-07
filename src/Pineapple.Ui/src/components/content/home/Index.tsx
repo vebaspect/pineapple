@@ -36,9 +36,8 @@ const Home: React.VFC = () => {
   return (
     <>
       <Box
-        fontSize="h6.fontSize"
+        fontSize="0.9rem"
         m={2}
-        textAlign="center"
       >
         Strona główna
       </Box>
