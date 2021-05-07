@@ -18,6 +18,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Tooltip from '@material-ui/core/Tooltip';
 
 import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 import WarningIcon from '@material-ui/icons/Warning';
 
 const useStyles = makeStyles(() =>
@@ -46,7 +47,7 @@ import {
   InstalledComponentsListProps,
 } from './interfaces';
 
-const InstalledComponentsList: React.FC<InstalledComponentsListProps> = ({ isDataFetched, data, onUninstall }: InstalledComponentsListProps) => {
+const InstalledComponentsList: React.FC<InstalledComponentsListProps> = ({ isDataFetched, data, onUpdate, onUninstall }: InstalledComponentsListProps) => {
   const styles = useStyles();
 
   if (!isDataFetched) {
@@ -117,7 +118,15 @@ const InstalledComponentsList: React.FC<InstalledComponentsListProps> = ({ isDat
                 </Box>
               </TableCell>
               <TableCell align="right">
-                <Tooltip title="Usuń">
+                <Tooltip title="Aktualizuj">
+                  <IconButton
+                    size="small"
+                    onClick={() => onUpdate(installedComponent.componentVersionId)}
+                  >
+                    <EditIcon />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title="Odinstaluj">
                   <IconButton
                     color="secondary"
                     size="small"

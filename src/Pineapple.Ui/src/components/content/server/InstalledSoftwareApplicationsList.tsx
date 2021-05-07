@@ -53,7 +53,7 @@ const InstalledSoftwareApplicationsList: React.FC<InstalledSoftwareApplicationsL
                 </Link>
               </TableCell>
               <TableCell align="right">
-                <Tooltip title="Usuń">
+                <Tooltip title="Odinstaluj">
                   <IconButton
                     color="secondary"
                     size="small"

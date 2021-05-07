@@ -105,6 +105,10 @@ const Server: React.VFC = () => {
     history.push(`/implementations/${implementationId}/environments/${environmentId}/servers/${serverId}/components/install`);
   };
 
+  const updateComponent = (id: string) => {
+    // TODO
+  };
+
   const uninstallComponent = (id: string, name: string) => {
     setUninstallComponentDialogWindowData({
       id,
@@ -260,6 +264,7 @@ const Server: React.VFC = () => {
           <InstalledComponentsList
             isDataFetched={isServerFetched}
             data={server?.installedComponents}
+            onUpdate={updateComponent}
             onUninstall={uninstallComponent}
           />
           <Box
