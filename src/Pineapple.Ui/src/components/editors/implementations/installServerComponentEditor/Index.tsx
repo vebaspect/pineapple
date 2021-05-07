@@ -273,6 +273,7 @@ const InstallServerComponentEditor: React.VFC = () => {
           >
             <FormControl
               error={formStateValidationResult && formStateValidationResult.componentId !== undefined && formStateValidationResult.componentId !== null}
+              disabled={!(formState.productId)}
               fullWidth
             >
               <InputLabel id="component-label">Komponent</InputLabel>
@@ -313,6 +314,7 @@ const InstallServerComponentEditor: React.VFC = () => {
           >
             <FormControl
               error={formStateValidationResult && formStateValidationResult.componentVersionId !== undefined && formStateValidationResult.componentVersionId !== null}
+              disabled={!(formState.productId) || !(formState.componentId)}
               fullWidth
             >
               <InputLabel id="component-version-label">Wersja</InputLabel>
