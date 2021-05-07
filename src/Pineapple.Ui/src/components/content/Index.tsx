@@ -46,12 +46,6 @@ import InstallServerSoftwareApplicationEditor from '../editors/implementations/i
 const Title: React.VFC = () => {
   return (
     <Switch>
-      <Route path="/administrators/create">
-        <CreateAdministratorEditor />
-      </Route>
-      <Route path="/administrators">
-        <Administrators />
-      </Route>
       <Route path="/configuration/component-types/create">
         <CreateComponentTypeEditor />
       </Route>
@@ -82,12 +76,6 @@ const Title: React.VFC = () => {
       <Route path="/configuration">
         <Configuration />
       </Route>
-      <Route path="/developers/create">
-        <CreateDeveloperEditor />
-      </Route>
-      <Route path="/developers">
-        <Developers />
-      </Route>
       <Route path="/implementations/create">
         <CreateImplementationEditor />
       </Route>
@@ -115,18 +103,6 @@ const Title: React.VFC = () => {
       <Route path="/implementations">
         <Implementations />
       </Route>
-      <Route path="/managers/create">
-        <CreateManagerEditor />
-      </Route>
-      <Route path="/managers">
-        <Managers />
-      </Route>
-      <Route path="/operators/create">
-        <CreateOperatorEditor />
-      </Route>
-      <Route path="/operators">
-        <Operators />
-      </Route>
       <Route path="/products/create">
         <CreateProductEditor />
       </Route>
@@ -147,6 +123,30 @@ const Title: React.VFC = () => {
       </Route>
       <Route path="/products">
         <Products />
+      </Route>
+      <Route path="/users/administrators/create">
+        <CreateAdministratorEditor />
+      </Route>
+      <Route path="/users/administrators">
+        <Administrators />
+      </Route>
+      <Route path="/users/developers/create">
+        <CreateDeveloperEditor />
+      </Route>
+      <Route path="/users/developers">
+        <Developers />
+      </Route>
+      <Route path="/users/managers/create">
+        <CreateManagerEditor />
+      </Route>
+      <Route path="/users/managers">
+        <Managers />
+      </Route>
+      <Route path="/users/operators/create">
+        <CreateOperatorEditor />
+      </Route>
+      <Route path="/users/operators">
+        <Operators />
       </Route>
       <Route path="/users/:userId">
         <User />

@@ -56,7 +56,7 @@ const CreateOperatorEditor: React.VFC = () => {
   };
 
   const onCancel = () => {
-    history.push('/operators');
+    history.push('/users/operators');
   };
 
   const onSave = async () => {
@@ -74,7 +74,7 @@ const CreateOperatorEditor: React.VFC = () => {
       )
       .then((response) => {
         if (response.ok) {
-          history.push('/operators');
+          history.push('/users/operators');
         } else {
           return response.json();
         }
@@ -111,7 +111,7 @@ const CreateOperatorEditor: React.VFC = () => {
         <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
         <Link
           component={RouterLink}
-          to="/operators"
+          to="/users/operators"
         >
           Wdrożeniowcy
         </Link>

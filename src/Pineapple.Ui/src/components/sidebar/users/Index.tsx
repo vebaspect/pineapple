@@ -68,7 +68,7 @@ const Users: React.FC<UsersProps> = ({ isDevelopersCountFetched, developersCount
             <ListItemText>
               <Link
                 component={RouterLink}
-                to="/developers"
+                to="/users/developers"
                 style={{ fontSize: '0.9rem' }}
               >
                 Programiści ({developersCount})
@@ -79,7 +79,7 @@ const Users: React.FC<UsersProps> = ({ isDevelopersCountFetched, developersCount
             <ListItemText>
               <Link
                 component={RouterLink}
-                to="/operators"
+                to="/users/operators"
                 style={{ fontSize: '0.9rem' }}
               >
                 Wdrożeniowcy ({operatorsCount})
@@ -90,7 +90,7 @@ const Users: React.FC<UsersProps> = ({ isDevelopersCountFetched, developersCount
             <ListItemText>
               <Link
                 component={RouterLink}
-                to="/managers"
+                to="/users/managers"
                 style={{ fontSize: '0.9rem' }}
               >
                 Menedżerowie ({managersCount})
@@ -101,7 +101,7 @@ const Users: React.FC<UsersProps> = ({ isDevelopersCountFetched, developersCount
             <ListItemText>
               <Link
                 component={RouterLink}
-                to="/administrators"
+                to="/users/administrators"
                 style={{ fontSize: '0.9rem' }}
               >
                 Administratorzy ({administratorsCount})

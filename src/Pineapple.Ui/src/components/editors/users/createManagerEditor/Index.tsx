@@ -56,7 +56,7 @@ const CreateManagerEditor: React.VFC = () => {
   };
 
   const onCancel = () => {
-    history.push('/managers');
+    history.push('/users/managers');
   };
 
   const onSave = async () => {
@@ -74,7 +74,7 @@ const CreateManagerEditor: React.VFC = () => {
       )
       .then((response) => {
         if (response.ok) {
-          history.push('/managers');
+          history.push('/users/managers');
         } else {
           return response.json();
         }
@@ -111,7 +111,7 @@ const CreateManagerEditor: React.VFC = () => {
         <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
         <Link
           component={RouterLink}
-          to="/managers"
+          to="/users/managers"
         >
           Menedżerowie
         </Link>

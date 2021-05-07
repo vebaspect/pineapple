@@ -58,7 +58,7 @@ const Operators: React.VFC = () => {
   }, []);
 
   const addOperator = () => {
-    history.push('/operators/create');
+    history.push('/users/operators/create');
   };
 
   const editOperator = () => {

@@ -56,7 +56,7 @@ const CreateAdministratorEditor: React.VFC = () => {
   };
 
   const onCancel = () => {
-    history.push('/administrators');
+    history.push('/users/administrators');
   };
 
   const onSave = async () => {
@@ -74,7 +74,7 @@ const CreateAdministratorEditor: React.VFC = () => {
       )
       .then((response) => {
         if (response.ok) {
-          history.push('/administrators');
+          history.push('/users/administrators');
         } else {
           return response.json();
         }
@@ -111,7 +111,7 @@ const CreateAdministratorEditor: React.VFC = () => {
         <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
         <Link
           component={RouterLink}
-          to="/administrators"
+          to="/users/administrators"
         >
           Administratorzy
         </Link>

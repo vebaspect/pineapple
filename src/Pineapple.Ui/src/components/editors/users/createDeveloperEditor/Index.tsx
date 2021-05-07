@@ -56,7 +56,7 @@ const CreateDeveloperEditor: React.VFC = () => {
   };
 
   const onCancel = () => {
-    history.push('/developers');
+    history.push('/users/developers');
   };
 
   const onSave = async () => {
@@ -74,7 +74,7 @@ const CreateDeveloperEditor: React.VFC = () => {
       )
       .then((response) => {
         if (response.ok) {
-          history.push('/developers');
+          history.push('/users/developers');
         } else {
           return response.json();
         }
@@ -111,7 +111,7 @@ const CreateDeveloperEditor: React.VFC = () => {
         <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
         <Link
           component={RouterLink}
-          to="/developers"
+          to="/users/developers"
         >
           Programiści
         </Link>

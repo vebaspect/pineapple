@@ -58,7 +58,7 @@ const Developers: React.VFC = () => {
   }, []);
 
   const addDeveloper = () => {
-    history.push('/developers/create');
+    history.push('/users/developers/create');
   };
 
   const editDeveloper = () => {

@@ -58,7 +58,7 @@ const Administrators: React.VFC = () => {
   }, []);
 
   const addAdministrator = () => {
-    history.push('/administrators/create');
+    history.push('/users/administrators/create');
   };
 
   const editAdministrator = () => {

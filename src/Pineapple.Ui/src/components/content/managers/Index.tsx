@@ -58,7 +58,7 @@ const Managers: React.VFC = () => {
   }, []);
 
   const addManager = () => {
-    history.push('/managers/create');
+    history.push('/users/managers/create');
   };
 
   const editManager = () => {
