@@ -12,3 +12,12 @@ export interface DialogWindowProps {
   // Treść.
   children: React.ReactNode,
 }
+
+export interface ErrorWindowProps {
+  // Flaga określająca, czy okno jest otwarte.
+  isOpen: boolean,
+  // Zdarzenie kliknięcia na przycisk "Zamknij".
+  onClose: () => void,
+  // Treść.
+  children: React.ReactNode,
+}
