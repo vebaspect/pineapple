@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link as RouterLink, useParams } from 'react-router-dom';
 
 import Box from '@material-ui/core/Box';
+import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 
 import Details from './Details';
@@ -31,19 +32,27 @@ const SoftwareApplication: React.VFC = () => {
   return (
     <>
       <Box
-        fontSize="h6.fontSize"
+        fontSize="0.9rem"
         m={2}
-        textAlign="center"
       >
-        Oprogramowanie
+        <Link
+          component={RouterLink}
+          to="/configuration"
+        >
+          Konfiguracja
+        </Link>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        <Link
+          component={RouterLink}
+          to="/software-applications"
+        >
+          Oprogramowanie
+        </Link>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
         {
           isSoftwareApplicationFetched
             ? (
-              <Box
-                component="span"
-                fontStyle="italic"
-                px={0.5}
-              >
+              <Box component="span">
                 {softwareApplication?.name}
               </Box>)
             : ''
