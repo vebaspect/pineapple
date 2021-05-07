@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link as RouterLink, useHistory } from 'react-router-dom';
 
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
+import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 
@@ -98,11 +99,24 @@ const CreateManagerEditor: React.VFC = () => {
   return (
     <>
       <Box
-        fontSize="h6.fontSize"
+        fontSize="0.9rem"
         m={2}
-        textAlign="center"
       >
-        Dodaj menedżera
+        <Link
+          component={RouterLink}
+          to="/users"
+        >
+          Użytkownicy
+        </Link>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        <Link
+          component={RouterLink}
+          to="/managers"
+        >
+          Menedżerowie
+        </Link>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        Dodaj
       </Box>
       <Box>
         <Paper>
