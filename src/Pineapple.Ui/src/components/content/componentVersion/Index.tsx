@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link as RouterLink, useParams } from 'react-router-dom';
 
 import Box from '@material-ui/core/Box';
+import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 
 import {
@@ -18,10 +19,46 @@ const ComponentVersion: React.VFC = () => {
   // Identyfikator wersji komponentu.
   const { componentVersionId } = useParams();
 
+  // Flaga określająca, czy produkt został pobrany z API.
+  const [isProductFetched, setIsProductFetched] = useState(false);
+  // Produkt.
+  const [product, setProduct] = useState(null);
+
+  // Flaga określająca, czy komponent został pobrany z API.
+  const [isComponentFetched, setIsComponentFetched] = useState(false);
+  // Komponent.
+  const [component, setComponent] = useState(null);
+
   // Flaga określająca, czy wersja komponentu została pobrana z API.
   const [isComponentVersionFetched, setIsComponentVersionFetched] = useState(false);
   // Wersja komponentu.
   const [componentVersion, setComponentVersion] = useState(null);
+
+  const fetchProduct = useCallback(async () => {
+    await fetch(`${window['env'].API_URL}/products/${productId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setIsProductFetched(true);
+        setProduct(data);
+      });
+  }, [productId]);
+
+  useEffect(() => {
+    fetchProduct();
+  }, [fetchProduct]);
+
+  const fetchComponent = useCallback(async () => {
+    await fetch(`${window['env'].API_URL}/products/${productId}/components/${componentId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setIsComponentFetched(true);
+        setComponent(data);
+      });
+  }, [productId, componentId]);
+
+  useEffect(() => {
+    fetchComponent();
+  }, [fetchComponent]);
 
   const fetchComponentVersion = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/products/${productId}/components/${componentId}/component-versions/${componentVersionId}`)
@@ -39,19 +76,56 @@ const ComponentVersion: React.VFC = () => {
   return (
     <>
       <Box
-        fontSize="h6.fontSize"
+        fontSize="0.9rem"
         m={2}
-        textAlign="center"
       >
-        Wersja komponentu
+        <Link
+          component={RouterLink}
+          to="/products"
+        >
+          Produkty
+        </Link>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        <Link
+          component={RouterLink}
+          to={`/products/${productId}`}
+        >
+          {
+            isProductFetched
+              ? (
+                <Box component="span">
+                  {product?.name}
+                </Box>)
+              : ''
+          }
+        </Link>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        <Box component="span">
+          Komponenty
+        </Box>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        <Link
+          component={RouterLink}
+          to={`/products/${productId}/components/${componentId}`}
+        >
+          {
+            isComponentFetched
+              ? (
+                <Box component="span">
+                  {component?.name}
+                </Box>)
+              : ''
+          }
+        </Link>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        <Box component="span">
+          Wersje
+        </Box>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
         {
           isComponentVersionFetched
             ? (
-              <Box
-                component="span"
-                fontStyle="italic"
-                px={0.5}
-              >
+              <Box component="span">
                 {formatNumber(componentVersion?.major, componentVersion?.minor, componentVersion?.patch, componentVersion?.suffix)}
               </Box>)
             : ''

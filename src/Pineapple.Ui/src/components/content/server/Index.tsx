@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { Link as RouterLink, useHistory, useParams } from 'react-router-dom';
 
 import {
   createStyles,
@@ -40,6 +40,16 @@ const Server: React.VFC = () => {
   const { environmentId } = useParams();
   // Identyfikator serwera.
   const { serverId } = useParams();
+
+  // Flaga określająca, czy wdrożenie zostało pobrane z API.
+  const [isImplementationFetched, setIsImplementationFetched] = useState(false);
+  // Wdrożenie.
+  const [implementation, setImplementation] = useState(null);
+
+  // Flaga określająca, czy środowisko zostało pobrane z API.
+  const [isEnvironmentFetched, setIsEnvironmentFetched] = useState(false);
+  // Środowisko.
+  const [environment, setEnvironment] = useState(null);
 
   // Flaga określająca, czy serwer został pobrany z API.
   const [isServerFetched, setIsServerFetched] = useState(false);
@@ -87,6 +97,32 @@ const Server: React.VFC = () => {
       setLogsCount(logsCount + 10);
     }
   };
+
+  const fetchImplementation = useCallback(async () => {
+    await fetch(`${window['env'].API_URL}/implementations/${implementationId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setIsImplementationFetched(true);
+        setImplementation(data);
+      });
+  }, [implementationId]);
+
+  useEffect(() => {
+    fetchImplementation();
+  }, [fetchImplementation]);
+
+  const fetchEnvironment = useCallback(async () => {
+    await fetch(`${window['env'].API_URL}/implementations/${implementationId}/environments/${environmentId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setIsEnvironmentFetched(true);
+        setEnvironment(data);
+      });
+  }, [implementationId, environmentId]);
+
+  useEffect(() => {
+    fetchEnvironment();
+  }, [fetchEnvironment]);
 
   const fetchServer = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/implementations/${implementationId}/environments/${environmentId}/servers/${serverId}`)
@@ -202,19 +238,56 @@ const Server: React.VFC = () => {
   return (
     <>
       <Box
-        fontSize="h6.fontSize"
+        fontSize="0.9rem"
         m={2}
-        textAlign="center"
       >
-        Serwer
+        <Link
+          component={RouterLink}
+          to="/implementations"
+        >
+          Wdrożenia
+        </Link>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        <Link
+          component={RouterLink}
+          to={`/implementations/${implementationId}`}
+        >
+          {
+            isImplementationFetched
+              ? (
+                <Box component="span">
+                  {implementation?.name}
+                </Box>)
+              : ''
+          }
+        </Link>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        <Box component="span">
+          Środowiska
+        </Box>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        <Link
+          component={RouterLink}
+          to={`/implementations/${implementationId}/environments/${environmentId}`}
+        >
+          {
+            isEnvironmentFetched
+              ? (
+                <Box component="span">
+                  {environment?.name}
+                </Box>)
+              : ''
+          }
+        </Link>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        <Box component="span">
+          Serwery
+        </Box>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
         {
           isServerFetched
             ? (
-              <Box
-                component="span"
-                fontStyle="italic"
-                px={0.5}
-              >
+              <Box component="span">
                 {server?.name}
               </Box>)
             : ''
