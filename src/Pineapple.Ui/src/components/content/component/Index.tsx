@@ -15,6 +15,7 @@ import AddIcon from '@material-ui/icons/Add';
 
 import DialogWindow from '../../windows/DialogWindow';
 import ErrorWindow from '../../windows/ErrorWindow';
+import Logs from '../../logs';
 
 import Details from './Details';
 import List from './List';
@@ -59,6 +60,32 @@ const Component: React.VFC = () => {
   
   // Flaga określająca, czy okno wyświetlające informacje nt. błędu, który wystąpił podczas próby usunięcia wersji komponentu jest otwarte.
   const [isDeleteComponentVersionErrorWindowOpen, setIsDeleteComponentVersionErrorWindowOpen] = useState(false);
+
+  // Flaga określająca, czy lista logów została pobrana z API.
+  const [isLogsFetched, setIsLogsFetched] = useState(false);
+  // Lista logów.
+  const [logs, setLogs] = useState([]);
+  // Liczba logów, które mają zostać zwrócone.
+  const [logsCount, setLogsCount] = useState(10);
+
+  const fetchLogs = useCallback(async () => {
+    await fetch(`${window['env'].API_URL}/logs/components/${componentId}?count=${logsCount}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setIsLogsFetched(true);
+        setLogs(data);
+      });
+  }, [componentId, logsCount]);
+
+  useEffect(() => {
+    fetchLogs();
+  }, [componentId, logsCount, fetchLogs]);
+
+  const fetchMoreLogs = () => {
+    if (logsCount <= logs.length) {
+      setLogsCount(logsCount + 10);
+    }
+  };
 
   const fetchProduct = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/products/${productId}`)
@@ -128,6 +155,7 @@ const Component: React.VFC = () => {
 
       if (response.ok) {
         fetchComponentVersions();
+        fetchLogs();
       } else {
         setIsDeleteComponentVersionErrorWindowOpen(true);
       }
@@ -243,6 +271,44 @@ const Component: React.VFC = () => {
             >
               Dodaj
             </Button>
+          </Box>
+        </Paper>
+      </Box>
+      <Box
+        mb={3}
+      >
+        <Paper>
+          <Box
+            border={1}
+            borderLeft={0}
+            borderRight={0}
+            borderTop={0}
+            borderColor="#e0e0e0"
+            py={1.5}
+            textAlign="center"
+          >
+            Ostatnie aktywności
+          </Box>
+          <Box
+            mx={2}
+          >
+            <Logs
+              isDataFetched={isLogsFetched}
+              data={logs}
+            />
+          </Box>
+          <Box
+            border={1}
+            borderBottom={0}
+            borderLeft={0}
+            borderRight={0}
+            borderColor="#e0e0e0"
+            py={1.5}
+            textAlign="center"
+          >
+            <Link onClick={fetchMoreLogs}>
+              Pobierz więcej
+            </Link>
           </Box>
         </Paper>
       </Box>
