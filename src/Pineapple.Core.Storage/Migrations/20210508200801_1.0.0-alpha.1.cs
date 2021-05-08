@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Pineapple.Core.Storage.Migrations
 {
-    public partial class Initial : Migration
+    public partial class _100alpha1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

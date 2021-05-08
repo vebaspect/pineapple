@@ -10,8 +10,8 @@ using Pineapple.Core.Storage.Database;
 namespace Pineapple.Core.Storage.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210504195144_Initial")]
-    partial class Initial
+    [Migration("20210508200801_1.0.0-alpha.1")]
+    partial class _100alpha1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
