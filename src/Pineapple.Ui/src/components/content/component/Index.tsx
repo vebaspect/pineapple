@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { Link as RouterLink, useHistory, useParams } from 'react-router-dom';
 
 import {
   createStyles,
@@ -8,6 +8,7 @@ import {
 
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 
 import AddIcon from '@material-ui/icons/Add';
@@ -36,6 +37,11 @@ const Component: React.VFC = () => {
   // Identyfikator komponentu.
   const { componentId } = useParams();
 
+  // Flaga określająca, czy produkt został pobrany z API.
+  const [isProductFetched, setIsProductFetched] = useState(false);
+  // Produkt.
+  const [product, setProduct] = useState(null);
+
   // Flaga określająca, czy komponent został pobrany z API.
   const [isComponentFetched, setIsComponentFetched] = useState(false);
   // Komponent.
@@ -53,6 +59,19 @@ const Component: React.VFC = () => {
   
   // Flaga określająca, czy okno wyświetlające informacje nt. błędu, który wystąpił podczas próby usunięcia wersji komponentu jest otwarte.
   const [isDeleteComponentVersionErrorWindowOpen, setIsDeleteComponentVersionErrorWindowOpen] = useState(false);
+
+  const fetchProduct = useCallback(async () => {
+    await fetch(`${window['env'].API_URL}/products/${productId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setIsProductFetched(true);
+        setProduct(data);
+      });
+  }, [productId]);
+
+  useEffect(() => {
+    fetchProduct();
+  }, [fetchProduct]);
 
   const fetchComponent = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/products/${productId}/components/${componentId}`)
@@ -127,23 +146,50 @@ const Component: React.VFC = () => {
   return (
     <>
       <Box
+        fontSize="0.9rem"
+        m={2}
+      >
+        <Link
+          component={RouterLink}
+          to="/products"
+        >
+          Produkty
+        </Link>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        <Link
+          component={RouterLink}
+          to={`/products/${productId}`}
+        >
+          {
+            isProductFetched
+              ? (
+                <Box component="span">
+                  {product?.name}
+                </Box>)
+              : ''
+          }
+        </Link>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        <Box component="span">
+          Komponenty
+        </Box>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        {
+          isComponentFetched
+            ? (
+              <Box component="span">
+                {component?.name}
+              </Box>)
+            : ''
+        }
+      </Box>
+      <Box
         fontSize="h6.fontSize"
         m={2}
         textAlign="center"
       >
         Komponent
-        {
-          isComponentFetched
-            ? (
-              <Box
-                component="span"
-                fontStyle="italic"
-                px={0.5}
-              >
-                {component?.name}
-              </Box>)
-            : ''
-        }
+        
       </Box>
       <Box
         mb={3}

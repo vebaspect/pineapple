@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { Link as RouterLink, useHistory, useParams } from 'react-router-dom';
 
 import {
   createStyles,
@@ -37,6 +37,11 @@ const Environment: React.VFC = () => {
   const { implementationId } = useParams();
   // Identyfikator środowiska.
   const { environmentId } = useParams();
+
+  // Flaga określająca, czy wdrożenie zostało pobrane z API.
+  const [isImplementationFetched, setIsImplementationFetched] = useState(false);
+  // Wdrożenie.
+  const [implementation, setImplementation] = useState(null);
 
   // Flaga określająca, czy środowisko zostało pobrane z API.
   const [isEnvironmentFetched, setIsEnvironmentFetched] = useState(false);
@@ -81,6 +86,19 @@ const Environment: React.VFC = () => {
       setLogsCount(logsCount + 10);
     }
   };
+
+  const fetchImplementation = useCallback(async () => {
+    await fetch(`${window['env'].API_URL}/implementations/${implementationId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setIsImplementationFetched(true);
+        setImplementation(data);
+      });
+  }, [implementationId]);
+
+  useEffect(() => {
+    fetchImplementation();
+  }, [fetchImplementation]);
 
   const fetchEnvironment = useCallback(async () => {
     await fetch(`${window['env'].API_URL}/implementations/${implementationId}/environments/${environmentId}`)
@@ -156,19 +174,38 @@ const Environment: React.VFC = () => {
   return (
     <>
       <Box
-        fontSize="h6.fontSize"
+        fontSize="0.9rem"
         m={2}
-        textAlign="center"
       >
-        Środowisko
+        <Link
+          component={RouterLink}
+          to="/implementations"
+        >
+          Wdrożenia
+        </Link>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        <Link
+          component={RouterLink}
+          to={`/implementations/${implementationId}`}
+        >
+          {
+            isImplementationFetched
+              ? (
+                <Box component="span">
+                  {implementation?.name}
+                </Box>)
+              : ''
+          }
+        </Link>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        <Box component="span">
+          Środowiska
+        </Box>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
         {
           isEnvironmentFetched
             ? (
-              <Box
-                component="span"
-                fontStyle="italic"
-                px={0.5}
-              >
+              <Box component="span">
                 {environment?.name}
               </Box>)
             : ''
