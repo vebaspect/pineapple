@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { Link as RouterLink, useHistory, useParams } from 'react-router-dom';
 
 import {
   createStyles,
@@ -154,19 +154,20 @@ const Implementation: React.VFC = () => {
   return (
     <>
       <Box
-        fontSize="h6.fontSize"
+        fontSize="0.9rem"
         m={2}
-        textAlign="center"
       >
-        Wdrożenie
+        <Link
+          component={RouterLink}
+          to="/implementations"
+        >
+          Wdrożenia
+        </Link>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
         {
           isImplementationFetched
             ? (
-              <Box
-                component="span"
-                fontStyle="italic"
-                px={0.5}
-              >
+              <Box component="span">
                 {implementation?.name}
               </Box>)
             : ''
