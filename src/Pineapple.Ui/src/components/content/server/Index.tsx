@@ -105,7 +105,7 @@ const Server: React.VFC = () => {
     history.push(`/implementations/${implementationId}/environments/${environmentId}/servers/${serverId}/components/install`);
   };
 
-  const updateComponent = (id: string) => {
+  const updateComponent = () => {
     // TODO
   };
 

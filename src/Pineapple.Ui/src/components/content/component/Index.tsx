@@ -184,14 +184,6 @@ const Component: React.VFC = () => {
         }
       </Box>
       <Box
-        fontSize="h6.fontSize"
-        m={2}
-        textAlign="center"
-      >
-        Komponent
-        
-      </Box>
-      <Box
         mb={3}
       >
         <Paper>
