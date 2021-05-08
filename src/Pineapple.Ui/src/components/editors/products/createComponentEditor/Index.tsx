@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { Link as RouterLink, useHistory, useParams } from 'react-router-dom';
 
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import InputLabel from '@material-ui/core/InputLabel';
+import Link from '@material-ui/core/Link';
 import MenuItem from '@material-ui/core/MenuItem';
 import Paper from '@material-ui/core/Paper';
 import Select from '@material-ui/core/Select';
@@ -28,6 +29,11 @@ const CreateComponentEditor: React.VFC = () => {
   // Identyfikator produktu.
   const { productId } = useParams();
 
+  // Flaga określająca, czy produkt został pobrany z API.
+  const [isProductFetched, setIsProductFetched] = useState(false);
+  // Produkt.
+  const [product, setProduct] = useState(null);
+
   // Stan formularza.
   const [formState, setFormState] = useState(initialFormState());
   // Wynik walidacji stanu formularza.
@@ -37,6 +43,19 @@ const CreateComponentEditor: React.VFC = () => {
   const [isComponentTypesFetched, setIsComponentTypesFetched] = useState(false);
   // Lista typów komponentów.
   const [componentTypes, setComponentTypes] = useState([]);
+
+  const fetchProduct = useCallback(async () => {
+    await fetch(`${window['env'].API_URL}/products/${productId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setIsProductFetched(true);
+        setProduct(data);
+      });
+  }, [productId]);
+
+  useEffect(() => {
+    fetchProduct();
+  }, [fetchProduct]);
 
   const convertFetchedComponentTypes = (data) => {
     if (data && data.length > 0) {
@@ -126,11 +145,37 @@ const CreateComponentEditor: React.VFC = () => {
   return (
     <>
       <Box
-        fontSize="h6.fontSize"
+        fontSize="0.9rem"
         m={2}
-        textAlign="center"
       >
-        Dodaj komponent
+        <Link
+          component={RouterLink}
+          to="/products"
+        >
+          Produkty
+        </Link>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        <Link
+          component={RouterLink}
+          to={`/products/${productId}`}
+        >
+          {
+            isProductFetched
+              ? (
+                <Box component="span">
+                  {product?.name}
+                </Box>)
+              : ''
+          }
+        </Link>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        <Box component="span">
+          Komponenty
+        </Box>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        <Box component="span">
+          Dodaj
+        </Box>
       </Box>
       <Box>
         <Paper>

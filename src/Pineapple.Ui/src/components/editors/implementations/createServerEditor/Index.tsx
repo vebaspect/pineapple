@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { Link as RouterLink, useHistory, useParams } from 'react-router-dom';
 
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import InputLabel from '@material-ui/core/InputLabel';
+import Link from '@material-ui/core/Link';
 import MenuItem from '@material-ui/core/MenuItem';
 import Paper from '@material-ui/core/Paper';
 import Select from '@material-ui/core/Select';
@@ -30,6 +31,16 @@ const CreateServerEditor: React.VFC = () => {
   // Identyfikator środowiska.
   const { environmentId } = useParams();
 
+  // Flaga określająca, czy wdrożenie zostało pobrane z API.
+  const [isImplementationFetched, setIsImplementationFetched] = useState(false);
+  // Wdrożenie.
+  const [implementation, setImplementation] = useState(null);
+
+  // Flaga określająca, czy środowisko zostało pobrane z API.
+  const [isEnvironmentFetched, setIsEnvironmentFetched] = useState(false);
+  // Środowisko.
+  const [environment, setEnvironment] = useState(null);
+
   // Stan formularza.
   const [formState, setFormState] = useState(initialFormState());
   // Wynik walidacji stanu formularza.
@@ -39,6 +50,32 @@ const CreateServerEditor: React.VFC = () => {
   const [isOperatingSystemsFetched, setIsOperatingSystemsFetched] = useState(false);
   // Lista systemów operacyjnych.
   const [operatingSystems, setOperatingSystems] = useState([]);
+
+  const fetchImplementation = useCallback(async () => {
+    await fetch(`${window['env'].API_URL}/implementations/${implementationId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setIsImplementationFetched(true);
+        setImplementation(data);
+      });
+  }, [implementationId]);
+
+  useEffect(() => {
+    fetchImplementation();
+  }, [fetchImplementation]);
+
+  const fetchEnvironment = useCallback(async () => {
+    await fetch(`${window['env'].API_URL}/implementations/${implementationId}/environments/${environmentId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setIsEnvironmentFetched(true);
+        setEnvironment(data);
+      });
+  }, [implementationId, environmentId]);
+
+  useEffect(() => {
+    fetchEnvironment();
+  }, [fetchEnvironment]);
 
   const convertFetchedOperatingSystems = (data) => {
     if (data && data.length > 0) {
@@ -142,11 +179,55 @@ const CreateServerEditor: React.VFC = () => {
   return (
     <>
       <Box
-        fontSize="h6.fontSize"
+        fontSize="0.9rem"
         m={2}
-        textAlign="center"
       >
-        Dodaj serwer
+        <Link
+          component={RouterLink}
+          to="/implementations"
+        >
+          Wdrożenia
+        </Link>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        <Link
+          component={RouterLink}
+          to={`/implementations/${implementationId}`}
+        >
+          {
+            isImplementationFetched
+              ? (
+                <Box component="span">
+                  {implementation?.name}
+                </Box>)
+              : ''
+          }
+        </Link>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        <Box component="span">
+          Środowiska
+        </Box>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        <Link
+          component={RouterLink}
+          to={`/implementations/${implementationId}/environments/${environmentId}`}
+        >
+          {
+            isEnvironmentFetched
+              ? (
+                <Box component="span">
+                  {environment?.name}
+                </Box>)
+              : ''
+          }
+        </Link>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        <Box component="span">
+          Serwery
+        </Box>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        <Box component="span">
+          Dodaj
+        </Box>
       </Box>
       <Box>
         <Paper>

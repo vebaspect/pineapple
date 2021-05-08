@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { Link as RouterLink, useHistory, useParams } from 'react-router-dom';
 
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import InputLabel from '@material-ui/core/InputLabel';
+import Link from '@material-ui/core/Link';
 import MenuItem from '@material-ui/core/MenuItem';
 import Paper from '@material-ui/core/Paper';
 import Select from '@material-ui/core/Select';
@@ -28,6 +29,11 @@ const CreateEnvironmentEditor: React.VFC = () => {
   // Identyfikator wdrożenia.
   const { implementationId } = useParams();
 
+  // Flaga określająca, czy wdrożenie zostało pobrane z API.
+  const [isImplementationFetched, setIsImplementationFetched] = useState(false);
+  // Wdrożenie.
+  const [implementation, setImplementation] = useState(null);
+
   // Stan formularza.
   const [formState, setFormState] = useState(initialFormState());
   // Wynik walidacji stanu formularza.
@@ -37,6 +43,19 @@ const CreateEnvironmentEditor: React.VFC = () => {
   const [isOperatorsFetched, setIsOperatorsFetched] = useState(false);
   // Lista wdrożeniowców.
   const [operators, setOperators] = useState([]);
+
+  const fetchImplementation = useCallback(async () => {
+    await fetch(`${window['env'].API_URL}/implementations/${implementationId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setIsImplementationFetched(true);
+        setImplementation(data);
+      });
+  }, [implementationId]);
+
+  useEffect(() => {
+    fetchImplementation();
+  }, [fetchImplementation]);
 
   const convertFetchedOperators = (data) => {
     if (data && data.length > 0) {
@@ -133,11 +152,37 @@ const CreateEnvironmentEditor: React.VFC = () => {
   return (
     <>
       <Box
-        fontSize="h6.fontSize"
+        fontSize="0.9rem"
         m={2}
-        textAlign="center"
       >
-        Dodaj środowisko
+        <Link
+          component={RouterLink}
+          to="/implementations"
+        >
+          Wdrożenia
+        </Link>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        <Link
+          component={RouterLink}
+          to={`/implementations/${implementationId}`}
+        >
+          {
+            isImplementationFetched
+              ? (
+                <Box component="span">
+                  {implementation?.name}
+                </Box>)
+              : ''
+          }
+        </Link>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        <Box component="span">
+          Środowiska
+        </Box>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        <Box component="span">
+          Dodaj
+        </Box>
       </Box>
       <Box>
         <Paper>

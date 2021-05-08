@@ -1,10 +1,11 @@
 import moment from 'moment-timezone';
-import React, { useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Link as RouterLink, useHistory, useParams } from 'react-router-dom';
 
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
+import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 
@@ -30,10 +31,46 @@ const CreateComponentVersionEditor: React.VFC = () => {
   // Identyfikator komponentu.
   const { componentId } = useParams();
 
+  // Flaga określająca, czy produkt został pobrany z API.
+  const [isProductFetched, setIsProductFetched] = useState(false);
+  // Produkt.
+  const [product, setProduct] = useState(null);
+
+  // Flaga określająca, czy komponent został pobrany z API.
+  const [isComponentFetched, setIsComponentFetched] = useState(false);
+  // Komponent.
+  const [component, setComponent] = useState(null);
+
   // Stan formularza.
   const [formState, setFormState] = useState(initialFormState());
   // Wynik walidacji stanu formularza.
   const [formStateValidationResult, setFormStateValidationResult] = useState(null);
+
+  const fetchProduct = useCallback(async () => {
+    await fetch(`${window['env'].API_URL}/products/${productId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setIsProductFetched(true);
+        setProduct(data);
+      });
+  }, [productId]);
+
+  useEffect(() => {
+    fetchProduct();
+  }, [fetchProduct]);
+
+  const fetchComponent = useCallback(async () => {
+    await fetch(`${window['env'].API_URL}/products/${productId}/components/${componentId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setIsComponentFetched(true);
+        setComponent(data);
+      });
+  }, [productId, componentId]);
+
+  useEffect(() => {
+    fetchComponent();
+  }, [fetchComponent]);
 
   const onReleaseDateChange = (value: moment.Moment) => {
     setFormState({
@@ -121,11 +158,55 @@ const CreateComponentVersionEditor: React.VFC = () => {
   return (
     <>
       <Box
-        fontSize="h6.fontSize"
+        fontSize="0.9rem"
         m={2}
-        textAlign="center"
       >
-        Dodaj wersję komponentu
+        <Link
+          component={RouterLink}
+          to="/products"
+        >
+          Produkty
+        </Link>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        <Link
+          component={RouterLink}
+          to={`/products/${productId}`}
+        >
+          {
+            isProductFetched
+              ? (
+                <Box component="span">
+                  {product?.name}
+                </Box>)
+              : ''
+          }
+        </Link>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        <Box component="span">
+          Komponenty
+        </Box>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        <Link
+          component={RouterLink}
+          to={`/products/${productId}/components/${componentId}`}
+        >
+          {
+            isComponentFetched
+              ? (
+                <Box component="span">
+                  {component?.name}
+                </Box>)
+              : ''
+          }
+        </Link>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        <Box component="span">
+          Wersje
+        </Box>
+        <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
+        <Box component="span">
+          Dodaj
+        </Box>
       </Box>
       <Box>
         <Paper>
