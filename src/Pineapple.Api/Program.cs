@@ -60,6 +60,7 @@ namespace Pineapple.Api
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .UseSystemd()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseKestrel((context, config) => config.Listen(IPAddress.Any, context.Configuration.GetSection("Hosting:Port").Get<int>()));
