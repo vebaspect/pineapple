@@ -28,10 +28,16 @@ namespace Pineapple.Core.Storage.Database
             switch (databaseType)
             {
                 case "PostgreSQL":
-                    optionsBuilder.UseNpgsql(databaseConnectionString);
+                    optionsBuilder.UseNpgsql(
+                        databaseConnectionString,
+                        options => options.MigrationsHistoryTable("__EFMigrationsHistory", "pineapple")
+                    );
                     break;
                 case "SqlServer":
-                    optionsBuilder.UseSqlServer(databaseConnectionString);
+                    optionsBuilder.UseSqlServer(
+                        databaseConnectionString,
+                        options => options.MigrationsHistoryTable("__EFMigrationsHistory", "pineapple")
+                    );
                     break;
                 default:
                     throw new StorageSettingsException($"Database type ${databaseType} is invalid");
