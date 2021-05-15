@@ -54,7 +54,7 @@ const Users: React.FC<UsersProps> = ({ isDevelopersCountFetched, developersCount
             component={RouterLink}
             to="/users"
           >
-            Użytkownicy ({developersCount + operatorsCount + managersCount + administratorsCount})
+            Użytkownicy
           </Link>
         </ListItemText>
         {isExpanded ? <ExpandLess onClick={onExpandLessButtonClick} /> : <ExpandMore onClick={onExpandMoreButtonClick} />}
