@@ -8,10 +8,12 @@ import {
 
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 
 import AddIcon from '@material-ui/icons/Add';
+import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 
 import DialogWindow from '../../windows/DialogWindow';
 import ErrorWindow from '../../windows/ErrorWindow';
@@ -25,6 +27,14 @@ const useStyles = makeStyles(() =>
     add: {
       backgroundColor: '#4caf50',
       color: '#fff',
+    },
+    implementationFetchingFailureIcon: {
+      color: '#f50057',
+      fontSize: 12,
+    },
+    environmentFetchingFailureIcon: {
+      color: '#f50057',
+      fontSize: 12,
     },
   }),
 );
@@ -40,16 +50,22 @@ const Environment: React.VFC = () => {
 
   // Flaga określająca, czy wdrożenie zostało pobrane z API.
   const [isImplementationFetched, setIsImplementationFetched] = useState(false);
+  // Flaga określająca, czy pobieranie wdrożenia z API zakończyło się błędem.
+  const [isImplementationFetchingFailure, setIsImplementationFetchingFailure] = useState(false);
   // Wdrożenie.
   const [implementation, setImplementation] = useState(null);
 
   // Flaga określająca, czy środowisko zostało pobrane z API.
   const [isEnvironmentFetched, setIsEnvironmentFetched] = useState(false);
+  // Flaga określająca, czy pobieranie środowiska z API zakończyło się błędem.
+  const [isEnvironmentFetchingFailure, setIsEnvironmentFetchingFailure] = useState(false);
   // Środowisko.
   const [environment, setEnvironment] = useState(null);
 
   // Flaga określająca, czy lista serwerów została pobrana z API.
   const [isServersFetched, setIsServersFetched] = useState(false);
+  // Flaga określająca, czy pobieranie listy serwerów z API zakończyło się błędem.
+  const [isServersFetchingFailure, setIsServersFetchingFailure] = useState(false);
   // Lista serwerów.
   const [servers, setServers] = useState([]);
 
@@ -93,6 +109,10 @@ const Environment: React.VFC = () => {
       .then((data) => {
         setIsImplementationFetched(true);
         setImplementation(data);
+      })
+      .catch(() => {
+        setIsImplementationFetched(true);
+        setIsImplementationFetchingFailure(true);
       });
   }, [implementationId]);
 
@@ -106,6 +126,10 @@ const Environment: React.VFC = () => {
       .then((data) => {
         setIsEnvironmentFetched(true);
         setEnvironment(data);
+      })
+      .catch(() => {
+        setIsEnvironmentFetched(true);
+        setIsEnvironmentFetchingFailure(true);
       });
   }, [implementationId, environmentId]);
 
@@ -119,6 +143,10 @@ const Environment: React.VFC = () => {
       .then((data) => {
         setIsServersFetched(true);
         setServers(data);
+      })
+      .catch(() => {
+        setIsServersFetched(true);
+        setIsServersFetchingFailure(true);
       });
   }, [implementationId, environmentId]);
 
@@ -192,9 +220,18 @@ const Environment: React.VFC = () => {
             isImplementationFetched
               ? (
                 <Box component="span">
-                  {implementation?.name}
-                </Box>)
-              : ''
+                  {
+                    isImplementationFetchingFailure
+                      ? <SentimentVeryDissatisfiedIcon className={styles.implementationFetchingFailureIcon} />
+                      : implementation?.name
+                  }
+                </Box>
+              )
+              : (
+                <Box component="span">
+                  <CircularProgress size={10} />
+                </Box>
+              )
           }
         </Link>
         <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
@@ -206,112 +243,181 @@ const Environment: React.VFC = () => {
           isEnvironmentFetched
             ? (
               <Box component="span">
-                {environment?.name}
-              </Box>)
-            : ''
+                {
+                  isEnvironmentFetchingFailure
+                    ? <SentimentVeryDissatisfiedIcon className={styles.environmentFetchingFailureIcon} />
+                    : environment?.name
+                }
+              </Box>
+            )
+            : (
+              <Box component="span">
+                <CircularProgress size={10} />
+              </Box>
+            )
         }
       </Box>
       <Box
         mb={3}
       >
-        <Paper>
-          <Box
-            border={1}
-            borderLeft={0}
-            borderRight={0}
-            borderTop={0}
-            borderColor="#e0e0e0"
-            py={1.5}
-            textAlign="center"
-          >
-            Szczegóły
-          </Box>
-          <Details
-            isDataFetched={isEnvironmentFetched}
-            name={environment?.name}
-            symbol={environment?.symbol}
-            operatorId={environment?.operatorId}
-            operatorFullName={environment?.operatorFullName}
-            description={environment?.description}
-          />
-        </Paper>
+        {
+          isEnvironmentFetchingFailure
+            ? (
+              <Paper>
+                <Box
+                  border={1}
+                  borderLeft={0}
+                  borderRight={0}
+                  borderTop={0}
+                  borderColor="#e0e0e0"
+                  py={1.5}
+                  textAlign="center"
+                >
+                  Pobieranie informacji nt. środowiska zakończyło się błędem.
+                </Box>
+              </Paper>
+            )
+            : (
+              <Paper>
+                <Box
+                  border={1}
+                  borderLeft={0}
+                  borderRight={0}
+                  borderTop={0}
+                  borderColor="#e0e0e0"
+                  py={1.5}
+                  textAlign="center"
+                >
+                  Szczegóły
+                </Box>
+                <Details
+                  isDataFetched={isEnvironmentFetched}
+                  name={environment?.name}
+                  symbol={environment?.symbol}
+                  operatorId={environment?.operatorId}
+                  operatorFullName={environment?.operatorFullName}
+                  description={environment?.description}
+                />
+              </Paper>
+            )
+        }
       </Box>
       <Box
         mb={3}
       >
-        <Paper>
-          <Box
-            border={1}
-            borderLeft={0}
-            borderRight={0}
-            borderTop={0}
-            borderColor="#e0e0e0"
-            py={1.5}
-            textAlign="center"
-          >
-            Serwery
-          </Box>
-          <List
-            isDataFetched={isServersFetched}
-            data={servers}
-            implementationId={implementationId}
-            environmentId={environmentId}
-            onEdit={editServer}
-            onDelete={deleteServer}
-          />
-          <Box
-            p={1.5}
-            textAlign="right"
-          >
-            <Button
-              className={styles.add}
-              size="small"
-              startIcon={<AddIcon />}
-              variant="contained"
-              onClick={addServer}
-            >
-              Dodaj
-            </Button>
-          </Box>
-        </Paper>
+        {
+          isServersFetchingFailure
+            ? (
+              <Paper>
+                <Box
+                  border={1}
+                  borderLeft={0}
+                  borderRight={0}
+                  borderTop={0}
+                  borderColor="#e0e0e0"
+                  py={1.5}
+                  textAlign="center"
+                >
+                  Pobieranie informacji nt. serwerów zakończyło się błędem.
+                </Box>
+              </Paper>
+            )
+            : (
+              <Paper>
+                <Box
+                  border={1}
+                  borderLeft={0}
+                  borderRight={0}
+                  borderTop={0}
+                  borderColor="#e0e0e0"
+                  py={1.5}
+                  textAlign="center"
+                >
+                  Serwery
+                </Box>
+                <List
+                  isDataFetched={isServersFetched}
+                  data={servers}
+                  implementationId={implementationId}
+                  environmentId={environmentId}
+                  onEdit={editServer}
+                  onDelete={deleteServer}
+                />
+                <Box
+                  p={1.5}
+                  textAlign="right"
+                >
+                  <Button
+                    className={styles.add}
+                    size="small"
+                    startIcon={<AddIcon />}
+                    variant="contained"
+                    onClick={addServer}
+                  >
+                    Dodaj
+                  </Button>
+                </Box>
+              </Paper>
+            )
+        }
       </Box>
       <Box
         mb={3}
       >
-        <Paper>
-          <Box
-            border={1}
-            borderLeft={0}
-            borderRight={0}
-            borderTop={0}
-            borderColor="#e0e0e0"
-            py={1.5}
-            textAlign="center"
-          >
-            Ostatnie aktywności
-          </Box>
-          <Box
-            mx={2}
-          >
-            <Logs
-              isDataFetched={isLogsFetched}
-              data={logs}
-            />
-          </Box>
-          <Box
-            border={1}
-            borderBottom={0}
-            borderLeft={0}
-            borderRight={0}
-            borderColor="#e0e0e0"
-            py={1.5}
-            textAlign="center"
-          >
-            <Link onClick={fetchMoreLogs}>
-              Pobierz więcej
-            </Link>
-          </Box>
-        </Paper>
+        {
+          isEnvironmentFetchingFailure
+            ? (
+              <Paper>
+                <Box
+                  border={1}
+                  borderLeft={0}
+                  borderRight={0}
+                  borderTop={0}
+                  borderColor="#e0e0e0"
+                  py={1.5}
+                  textAlign="center"
+                >
+                  Pobieranie informacji nt. logów zakończyło się błędem.
+                </Box>
+              </Paper>
+            )
+            : (
+              <Paper>
+                <Box
+                  border={1}
+                  borderLeft={0}
+                  borderRight={0}
+                  borderTop={0}
+                  borderColor="#e0e0e0"
+                  py={1.5}
+                  textAlign="center"
+                >
+                  Ostatnie aktywności
+                </Box>
+                <Box
+                  mx={2}
+                >
+                  <Logs
+                    isDataFetched={isLogsFetched}
+                    data={logs}
+                  />
+                </Box>
+                <Box
+                  border={1}
+                  borderBottom={0}
+                  borderLeft={0}
+                  borderRight={0}
+                  borderColor="#e0e0e0"
+                  py={1.5}
+                  textAlign="center"
+                >
+                  <Link onClick={fetchMoreLogs}>
+                    Pobierz więcej
+                  </Link>
+                </Box>
+              </Paper>
+            )
+        }
       </Box>
       <DialogWindow
         isOpen={isDeleteServerDialogWindowOpen}
