@@ -21,6 +21,10 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import WarningIcon from '@material-ui/icons/Warning';
 
+import {
+  InstalledComponentsListProps,
+} from './interfaces';
+
 const useStyles = makeStyles(() =>
   createStyles({
     componentVersion: {
@@ -42,10 +46,6 @@ const useStyles = makeStyles(() =>
     },
   }),
 );
-
-import {
-  InstalledComponentsListProps,
-} from './interfaces';
 
 const InstalledComponentsList: React.FC<InstalledComponentsListProps> = ({ isDataFetched, data, onUpdate, onUninstall }: InstalledComponentsListProps) => {
   const styles = useStyles();

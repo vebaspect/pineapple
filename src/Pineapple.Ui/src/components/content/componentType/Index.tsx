@@ -13,6 +13,8 @@ import Paper from '@material-ui/core/Paper';
 
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 
+import Details from './Details';
+
 const useStyles = makeStyles(() =>
   createStyles({
     componentTypeFetchingFailureIcon: {
@@ -21,8 +23,6 @@ const useStyles = makeStyles(() =>
     },
   }),
 );
-
-import Details from './Details';
 
 const ComponentType: React.VFC = () => {
   const styles = useStyles();

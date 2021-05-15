@@ -9,6 +9,27 @@ import {
 import Box from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';
 
+import {
+  LOG_TYPE__COMPONENT,
+  LOG_TYPE__COMPONENT_TYPE,
+  LOG_TYPE__COMPONENT_VERSION,
+  LOG_TYPE__ENVIRONMENT,
+  LOG_TYPE__IMPLEMENTATION,
+  LOG_TYPE__OPERATING_SYSTEM,
+  LOG_TYPE__PRODUCT,
+  LOG_TYPE__SERVER,
+  LOG_TYPE__SERVER_COMPONENT,
+  LOG_TYPE__SERVER_SOFTWARE_APPLICATION,
+  LOG_TYPE__SOFTWARE_APPLICATION,
+  LOG_TYPE__USER,
+  LOG_CATEGORY__ADD_ENTITY,
+  LOG_CATEGORY__REMOVE_ENTITY,
+} from './constants';
+
+import {
+  TextProps,
+} from './interfaces';
+
 const useStyles = makeStyles(() =>
   createStyles({
     component: {
@@ -52,27 +73,6 @@ const useStyles = makeStyles(() =>
     },
   }),
 );
-
-import {
-  LOG_TYPE__COMPONENT,
-  LOG_TYPE__COMPONENT_TYPE,
-  LOG_TYPE__COMPONENT_VERSION,
-  LOG_TYPE__ENVIRONMENT,
-  LOG_TYPE__IMPLEMENTATION,
-  LOG_TYPE__OPERATING_SYSTEM,
-  LOG_TYPE__PRODUCT,
-  LOG_TYPE__SERVER,
-  LOG_TYPE__SERVER_COMPONENT,
-  LOG_TYPE__SERVER_SOFTWARE_APPLICATION,
-  LOG_TYPE__SOFTWARE_APPLICATION,
-  LOG_TYPE__USER,
-  LOG_CATEGORY__ADD_ENTITY,
-  LOG_CATEGORY__REMOVE_ENTITY,
-} from './constants';
-
-import {
-  TextProps,
-} from './interfaces';
 
 const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, entity, parentEntities }: TextProps) => {
   const styles = useStyles();

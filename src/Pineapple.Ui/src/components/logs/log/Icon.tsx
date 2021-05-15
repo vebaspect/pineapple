@@ -41,6 +41,10 @@ import {
   LOG_CATEGORY__REMOVE_ENTITY,
 } from './constants';
 
+import {
+  IconProps,
+} from './interfaces';
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     unknownType: {
@@ -115,10 +119,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
-
-import {
-  IconProps,
-} from './interfaces';
 
 const Icon: React.FC<IconProps> = ({ type, category }: IconProps) => {
   const styles = useStyles();
