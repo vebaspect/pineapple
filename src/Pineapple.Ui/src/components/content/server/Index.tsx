@@ -8,10 +8,12 @@ import {
 
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 
 import AddIcon from '@material-ui/icons/Add';
+import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 
 import DialogWindow from '../../windows/DialogWindow';
 import ErrorWindow from '../../windows/ErrorWindow';
@@ -26,6 +28,18 @@ const useStyles = makeStyles(() =>
     install: {
       backgroundColor: '#4caf50',
       color: '#fff',
+    },
+    implementationFetchingFailureIcon: {
+      color: '#f50057',
+      fontSize: 12,
+    },
+    environmentFetchingFailureIcon: {
+      color: '#f50057',
+      fontSize: 12,
+    },
+    serverFetchingFailureIcon: {
+      color: '#f50057',
+      fontSize: 12,
     },
   }),
 );
@@ -43,16 +57,22 @@ const Server: React.VFC = () => {
 
   // Flaga określająca, czy wdrożenie zostało pobrane z API.
   const [isImplementationFetched, setIsImplementationFetched] = useState(false);
+  // Flaga określająca, czy pobieranie wdrożenia z API zakończyło się błędem.
+  const [isImplementationFetchingFailure, setIsImplementationFetchingFailure] = useState(false);
   // Wdrożenie.
   const [implementation, setImplementation] = useState(null);
 
   // Flaga określająca, czy środowisko zostało pobrane z API.
   const [isEnvironmentFetched, setIsEnvironmentFetched] = useState(false);
+  // Flaga określająca, czy pobieranie środowiska z API zakończyło się błędem.
+  const [isEnvironmentFetchingFailure, setIsEnvironmentFetchingFailure] = useState(false);
   // Środowisko.
   const [environment, setEnvironment] = useState(null);
 
   // Flaga określająca, czy serwer został pobrany z API.
   const [isServerFetched, setIsServerFetched] = useState(false);
+  // Flaga określająca, czy pobieranie serwera z API zakończyło się błędem.
+  const [isServerFetchingFailure, setIsServerFetchingFailure] = useState(false);
   // Serwer.
   const [server, setServer] = useState(null);
 
@@ -104,6 +124,10 @@ const Server: React.VFC = () => {
       .then((data) => {
         setIsImplementationFetched(true);
         setImplementation(data);
+      })
+      .catch(() => {
+        setIsImplementationFetched(true);
+        setIsImplementationFetchingFailure(true);
       });
   }, [implementationId]);
 
@@ -117,6 +141,10 @@ const Server: React.VFC = () => {
       .then((data) => {
         setIsEnvironmentFetched(true);
         setEnvironment(data);
+      })
+      .catch(() => {
+        setIsEnvironmentFetched(true);
+        setIsEnvironmentFetchingFailure(true);
       });
   }, [implementationId, environmentId]);
 
@@ -130,6 +158,10 @@ const Server: React.VFC = () => {
       .then((data) => {
         setIsServerFetched(true);
         setServer(data);
+      })
+      .catch(() => {
+        setIsServerFetched(true);
+        setIsServerFetchingFailure(true);
       });
   }, [implementationId, environmentId, serverId]);
 
@@ -254,11 +286,20 @@ const Server: React.VFC = () => {
         >
           {
             isImplementationFetched
-              ? (
-                <Box component="span">
-                  {implementation?.name}
-                </Box>)
-              : ''
+            ? (
+              <Box component="span">
+                {
+                  isImplementationFetchingFailure
+                    ? <SentimentVeryDissatisfiedIcon className={styles.implementationFetchingFailureIcon} />
+                    : implementation?.name
+                }
+              </Box>
+            )
+            : (
+              <Box component="span">
+                <CircularProgress size={10} />
+              </Box>
+            )
           }
         </Link>
         <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
@@ -272,11 +313,20 @@ const Server: React.VFC = () => {
         >
           {
             isEnvironmentFetched
-              ? (
-                <Box component="span">
-                  {environment?.name}
-                </Box>)
-              : ''
+            ? (
+              <Box component="span">
+                {
+                  isEnvironmentFetchingFailure
+                    ? <SentimentVeryDissatisfiedIcon className={styles.environmentFetchingFailureIcon} />
+                    : environment?.name
+                }
+              </Box>
+            )
+            : (
+              <Box component="span">
+                <CircularProgress size={10} />
+              </Box>
+            )
           }
         </Link>
         <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
@@ -288,147 +338,236 @@ const Server: React.VFC = () => {
           isServerFetched
             ? (
               <Box component="span">
-                {server?.name}
-              </Box>)
-            : ''
+                {
+                  isServerFetchingFailure
+                    ? <SentimentVeryDissatisfiedIcon className={styles.serverFetchingFailureIcon} />
+                    : server?.name
+                }
+              </Box>
+            )
+            : (
+              <Box component="span">
+                <CircularProgress size={10} />
+              </Box>
+            )
         }
       </Box>
       <Box
         mb={3}
       >
-        <Paper>
-          <Box
-            border={1}
-            borderLeft={0}
-            borderRight={0}
-            borderTop={0}
-            borderColor="#e0e0e0"
-            py={1.5}
-            textAlign="center"
-          >
-            Szczegóły
-          </Box>
-          <Details
-            isDataFetched={isServerFetched}
-            name={server?.name}
-            symbol={server?.symbol}
-            ipAddress={server?.ipAddress}
-            operatingSystemId={server?.operatingSystemId}
-            operatingSystemName={server?.operatingSystemName}
-            description={server?.description}
-          />
-        </Paper>
+        {
+          isServerFetchingFailure
+            ? (
+              <Paper>
+                <Box
+                  border={1}
+                  borderLeft={0}
+                  borderRight={0}
+                  borderTop={0}
+                  borderColor="#e0e0e0"
+                  py={1.5}
+                  textAlign="center"
+                >
+                  Pobieranie informacji nt. serwera zakończyło się błędem.
+                </Box>
+              </Paper>
+            )
+            : (
+              <Paper>
+                <Box
+                  border={1}
+                  borderLeft={0}
+                  borderRight={0}
+                  borderTop={0}
+                  borderColor="#e0e0e0"
+                  py={1.5}
+                  textAlign="center"
+                >
+                  Szczegóły
+                </Box>
+                <Details
+                  isDataFetched={isServerFetched}
+                  name={server?.name}
+                  symbol={server?.symbol}
+                  ipAddress={server?.ipAddress}
+                  operatingSystemId={server?.operatingSystemId}
+                  operatingSystemName={server?.operatingSystemName}
+                  description={server?.description}
+                />
+              </Paper>
+            )
+        }
       </Box>
       <Box
         mb={3}
       >
-        <Paper>
-          <Box
-            border={1}
-            borderLeft={0}
-            borderRight={0}
-            borderTop={0}
-            borderColor="#e0e0e0"
-            py={1.5}
-            textAlign="center"
-          >
-            Zainstalowane komponenty
-          </Box>
-          <InstalledComponentsList
-            isDataFetched={isServerFetched}
-            data={server?.installedComponents}
-            onUpdate={updateComponent}
-            onUninstall={uninstallComponent}
-          />
-          <Box
-            p={1.5}
-            textAlign="right"
-          >
-            <Button
-              className={styles.install}
-              size="small"
-              startIcon={<AddIcon />}
-              variant="contained"
-              onClick={installComponent}
-            >
-              Zainstaluj
-            </Button>
-          </Box>
-        </Paper>
+        {
+          isServerFetchingFailure
+            ? (
+              <Paper>
+                <Box
+                  border={1}
+                  borderLeft={0}
+                  borderRight={0}
+                  borderTop={0}
+                  borderColor="#e0e0e0"
+                  py={1.5}
+                  textAlign="center"
+                >
+                  Pobieranie informacji nt. zainstalowanych komponentów zakończyło się błędem.
+                </Box>
+              </Paper>
+            )
+            : (
+              <Paper>
+                <Box
+                  border={1}
+                  borderLeft={0}
+                  borderRight={0}
+                  borderTop={0}
+                  borderColor="#e0e0e0"
+                  py={1.5}
+                  textAlign="center"
+                >
+                  Zainstalowane komponenty
+                </Box>
+                <InstalledComponentsList
+                  isDataFetched={isServerFetched}
+                  data={server?.installedComponents}
+                  onUpdate={updateComponent}
+                  onUninstall={uninstallComponent}
+                />
+                <Box
+                  p={1.5}
+                  textAlign="right"
+                >
+                  <Button
+                    className={styles.install}
+                    size="small"
+                    startIcon={<AddIcon />}
+                    variant="contained"
+                    onClick={installComponent}
+                  >
+                    Zainstaluj
+                  </Button>
+                </Box>
+              </Paper>
+            )
+        }
       </Box>
       <Box
         mb={3}
       >
-        <Paper>
-          <Box
-            border={1}
-            borderLeft={0}
-            borderRight={0}
-            borderTop={0}
-            borderColor="#e0e0e0"
-            py={1.5}
-            textAlign="center"
-          >
-            Zainstalowane oprogramowanie
-          </Box>
-          <InstalledSoftwareApplicationsList
-            isDataFetched={isServerFetched}
-            data={server?.installedSoftwareApplications}
-            onUninstall={uninstallSoftwareApplication}
-          />
-          <Box
-            p={1.5}
-            textAlign="right"
-          >
-            <Button
-              className={styles.install}
-              size="small"
-              startIcon={<AddIcon />}
-              variant="contained"
-              onClick={installSoftwareApplication}
-            >
-              Zainstaluj
-            </Button>
-          </Box>
-        </Paper>
+        {
+          isServerFetchingFailure
+            ? (
+              <Paper>
+                <Box
+                  border={1}
+                  borderLeft={0}
+                  borderRight={0}
+                  borderTop={0}
+                  borderColor="#e0e0e0"
+                  py={1.5}
+                  textAlign="center"
+                >
+                  Pobieranie informacji nt. zainstalowanego oprogramowania zakończyło się błędem.
+                </Box>
+              </Paper>
+            )
+            : (
+              <Paper>
+                <Box
+                  border={1}
+                  borderLeft={0}
+                  borderRight={0}
+                  borderTop={0}
+                  borderColor="#e0e0e0"
+                  py={1.5}
+                  textAlign="center"
+                >
+                  Zainstalowane oprogramowanie
+                </Box>
+                <InstalledSoftwareApplicationsList
+                  isDataFetched={isServerFetched}
+                  data={server?.installedSoftwareApplications}
+                  onUninstall={uninstallSoftwareApplication}
+                />
+                <Box
+                  p={1.5}
+                  textAlign="right"
+                >
+                  <Button
+                    className={styles.install}
+                    size="small"
+                    startIcon={<AddIcon />}
+                    variant="contained"
+                    onClick={installSoftwareApplication}
+                  >
+                    Zainstaluj
+                  </Button>
+                </Box>
+              </Paper>
+            )
+        }
       </Box>
       <Box
         mb={3}
       >
-        <Paper>
-          <Box
-            border={1}
-            borderLeft={0}
-            borderRight={0}
-            borderTop={0}
-            borderColor="#e0e0e0"
-            py={1.5}
-            textAlign="center"
-          >
-            Ostatnie aktywności
-          </Box>
-          <Box
-            mx={2}
-          >
-            <Logs
-              isDataFetched={isLogsFetched}
-              data={logs}
-            />
-          </Box>
-          <Box
-            border={1}
-            borderBottom={0}
-            borderLeft={0}
-            borderRight={0}
-            borderColor="#e0e0e0"
-            py={1.5}
-            textAlign="center"
-          >
-            <Link onClick={fetchMoreLogs}>
-              Pobierz więcej
-            </Link>
-          </Box>
-        </Paper>
+        {
+          isServerFetchingFailure
+            ? (
+              <Paper>
+                <Box
+                  border={1}
+                  borderLeft={0}
+                  borderRight={0}
+                  borderTop={0}
+                  borderColor="#e0e0e0"
+                  py={1.5}
+                  textAlign="center"
+                >
+                  Pobieranie informacji nt. logów zakończyło się błędem.
+                </Box>
+              </Paper>
+            )
+            : (
+              <Paper>
+                <Box
+                  border={1}
+                  borderLeft={0}
+                  borderRight={0}
+                  borderTop={0}
+                  borderColor="#e0e0e0"
+                  py={1.5}
+                  textAlign="center"
+                >
+                  Ostatnie aktywności
+                </Box>
+                <Box
+                  mx={2}
+                >
+                  <Logs
+                    isDataFetched={isLogsFetched}
+                    data={logs}
+                  />
+                </Box>
+                <Box
+                  border={1}
+                  borderBottom={0}
+                  borderLeft={0}
+                  borderRight={0}
+                  borderColor="#e0e0e0"
+                  py={1.5}
+                  textAlign="center"
+                >
+                  <Link onClick={fetchMoreLogs}>
+                    Pobierz więcej
+                  </Link>
+                </Box>
+              </Paper>
+            )
+        }
       </Box>
       <DialogWindow
         isOpen={isUninstallComponentDialogWindowOpen}
