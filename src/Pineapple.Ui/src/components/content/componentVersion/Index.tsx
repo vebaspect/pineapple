@@ -1,9 +1,17 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Link as RouterLink, useParams } from 'react-router-dom';
 
+import {
+  createStyles,
+  makeStyles,
+} from '@material-ui/core/styles';
+
 import Box from '@material-ui/core/Box';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
+
+import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 
 import {
   formatNumber,
@@ -11,7 +19,26 @@ import {
 
 import Details from './Details';
 
+const useStyles = makeStyles(() =>
+  createStyles({
+    productFetchingFailureIcon: {
+      color: '#f50057',
+      fontSize: 12,
+    },
+    componentFetchingFailureIcon: {
+      color: '#f50057',
+      fontSize: 12,
+    },
+    componentVersionFetchingFailureIcon: {
+      color: '#f50057',
+      fontSize: 12,
+    },
+  }),
+);
+
 const ComponentVersion: React.VFC = () => {
+  const styles = useStyles();
+
   // Identyfikator produktu.
   const { productId } = useParams();
   // Identyfikator komponentu.
@@ -21,16 +48,22 @@ const ComponentVersion: React.VFC = () => {
 
   // Flaga określająca, czy produkt został pobrany z API.
   const [isProductFetched, setIsProductFetched] = useState(false);
+  // Flaga określająca, czy pobieranie produktu z API zakończyło się błędem.
+  const [isProductFetchingFailure, setIsProductFetchingFailure] = useState(false);
   // Produkt.
   const [product, setProduct] = useState(null);
 
   // Flaga określająca, czy komponent został pobrany z API.
   const [isComponentFetched, setIsComponentFetched] = useState(false);
+  // Flaga określająca, czy pobieranie komponentu z API zakończyło się błędem.
+  const [isComponentFetchingFailure, setIsComponentFetchingFailure] = useState(false);
   // Komponent.
   const [component, setComponent] = useState(null);
 
   // Flaga określająca, czy wersja komponentu została pobrana z API.
   const [isComponentVersionFetched, setIsComponentVersionFetched] = useState(false);
+  // Flaga określająca, czy pobieranie wersji komponentu z API zakończyło się błędem.
+  const [isComponentVersionFetchingFailure, setIsComponentVersionFetchingFailure] = useState(false);
   // Wersja komponentu.
   const [componentVersion, setComponentVersion] = useState(null);
 
@@ -40,6 +73,10 @@ const ComponentVersion: React.VFC = () => {
       .then((data) => {
         setIsProductFetched(true);
         setProduct(data);
+      })
+      .catch(() => {
+        setIsProductFetched(true);
+        setIsProductFetchingFailure(true);
       });
   }, [productId]);
 
@@ -53,6 +90,10 @@ const ComponentVersion: React.VFC = () => {
       .then((data) => {
         setIsComponentFetched(true);
         setComponent(data);
+      })
+      .catch(() => {
+        setIsComponentFetched(true);
+        setIsComponentFetchingFailure(true);
       });
   }, [productId, componentId]);
 
@@ -66,6 +107,10 @@ const ComponentVersion: React.VFC = () => {
       .then((data) => {
         setIsComponentVersionFetched(true);
         setComponentVersion(data);
+      })
+      .catch(() => {
+        setIsComponentVersionFetched(true);
+        setIsComponentVersionFetchingFailure(true);
       });
   }, [productId, componentId, componentVersionId]);
 
@@ -94,9 +139,18 @@ const ComponentVersion: React.VFC = () => {
             isProductFetched
               ? (
                 <Box component="span">
-                  {product?.name}
-                </Box>)
-              : ''
+                  {
+                    isProductFetchingFailure
+                      ? <SentimentVeryDissatisfiedIcon className={styles.productFetchingFailureIcon} />
+                      : product?.name
+                  }
+                </Box>
+              )
+              : (
+                <Box component="span">
+                  <CircularProgress size={10} />
+                </Box>
+              )
           }
         </Link>
         <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
@@ -112,9 +166,18 @@ const ComponentVersion: React.VFC = () => {
             isComponentFetched
               ? (
                 <Box component="span">
-                  {component?.name}
-                </Box>)
-              : ''
+                  {
+                    isComponentFetchingFailure
+                      ? <SentimentVeryDissatisfiedIcon className={styles.componentFetchingFailureIcon} />
+                      : component?.name
+                  }
+                </Box>
+              )
+              : (
+                <Box component="span">
+                  <CircularProgress size={10} />
+                </Box>
+              )
           }
         </Link>
         <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
@@ -126,37 +189,66 @@ const ComponentVersion: React.VFC = () => {
           isComponentVersionFetched
             ? (
               <Box component="span">
-                {formatNumber(componentVersion?.major, componentVersion?.minor, componentVersion?.patch, componentVersion?.suffix)}
-              </Box>)
-            : ''
+                {
+                  isComponentVersionFetchingFailure
+                    ? <SentimentVeryDissatisfiedIcon className={styles.componentVersionFetchingFailureIcon} />
+                    : formatNumber(componentVersion?.major, componentVersion?.minor, componentVersion?.patch, componentVersion?.suffix)
+                }
+              </Box>
+            )
+            : (
+              <Box component="span">
+                <CircularProgress size={10} />
+              </Box>
+            )
         }
       </Box>
       <Box
         mb={3}
       >
-        <Paper>
-          <Box
-            border={1}
-            borderLeft={0}
-            borderRight={0}
-            borderTop={0}
-            borderColor="#e0e0e0"
-            py={1.5}
-            textAlign="center"
-          >
-            Szczegóły
-          </Box>
-          <Details
-            isDataFetched={isComponentVersionFetched}
-            kind={componentVersion?.kind}
-            releaseDate={componentVersion?.releaseDate}
-            major={componentVersion?.major}
-            minor={componentVersion?.minor}
-            patch={componentVersion?.patch}
-            suffix={componentVersion?.suffix}
-            description={componentVersion?.description}
-          />
-        </Paper>
+        {
+          isComponentVersionFetchingFailure
+            ? (
+              <Paper>
+                <Box
+                  border={1}
+                  borderLeft={0}
+                  borderRight={0}
+                  borderTop={0}
+                  borderColor="#e0e0e0"
+                  py={1.5}
+                  textAlign="center"
+                >
+                  Pobieranie informacji nt. wersji zakończyło się błędem.
+                </Box>
+              </Paper>
+            )
+            : (
+              <Paper>
+                <Box
+                  border={1}
+                  borderLeft={0}
+                  borderRight={0}
+                  borderTop={0}
+                  borderColor="#e0e0e0"
+                  py={1.5}
+                  textAlign="center"
+                >
+                  Szczegóły
+                </Box>
+                <Details
+                  isDataFetched={isComponentVersionFetched}
+                  kind={componentVersion?.kind}
+                  releaseDate={componentVersion?.releaseDate}
+                  major={componentVersion?.major}
+                  minor={componentVersion?.minor}
+                  patch={componentVersion?.patch}
+                  suffix={componentVersion?.suffix}
+                  description={componentVersion?.description}
+                />
+              </Paper>
+            )
+        }
       </Box>
     </>
   );
