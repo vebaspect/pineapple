@@ -37,7 +37,7 @@ namespace Pineapple.Core.Domain.Entities
         /// <summary>
         /// Identyfikator wdrożeniowca.
         /// </summary>
-        public Guid OperatorId { get; }
+        public Guid? OperatorId { get; }
 
         /// <summary>
         /// Wdrożeniowiec.
@@ -54,7 +54,7 @@ namespace Pineapple.Core.Domain.Entities
         /// </summary>
         public List<EnvironmentLog> EntityLogs { get; }
 
-        private Environment(Guid id, string name, string symbol, string description, Guid implementationId, Guid operatorId)
+        private Environment(Guid id, string name, string symbol, string description, Guid implementationId, Guid? operatorId)
             : base(id)
         {
             Name = name;
@@ -67,7 +67,7 @@ namespace Pineapple.Core.Domain.Entities
         /// <summary>
         /// Stwórz środowisko.
         /// </summary>
-        public static Environment Create(Guid id, string name, string symbol, string description, Guid implementationId, Guid operatorId)
+        public static Environment Create(Guid id, string name, string symbol, string description, Guid implementationId, Guid? operatorId)
         {
             if (string.IsNullOrEmpty(name))
             {
@@ -80,10 +80,6 @@ namespace Pineapple.Core.Domain.Entities
             if (implementationId == Guid.Empty)
             {
                 throw new ValueRequiredValidationException(nameof(implementationId));
-            }
-            if (operatorId == Guid.Empty)
-            {
-                throw new ValueRequiredValidationException(nameof(operatorId));
             }
 
             return new Environment(id, name, symbol, description, implementationId, operatorId);

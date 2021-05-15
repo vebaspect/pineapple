@@ -19,7 +19,6 @@ export const validateFormState = (formState: FormState) : FormStateValidationRes
     details: {
       name: null,
       symbol: null,
-      operatorId: null,
     },
   };
 
@@ -30,10 +29,6 @@ export const validateFormState = (formState: FormState) : FormStateValidationRes
   if (!formState.symbol) {
     formStateValidationResult.isValid = false;
     formStateValidationResult.details.symbol = 'Pole wymagane.';
-  }
-  if (!formState.operatorId) {
-    formStateValidationResult.isValid = false;
-    formStateValidationResult.details.operatorId = 'Pole wymagane.';
   }
 
   return formStateValidationResult;

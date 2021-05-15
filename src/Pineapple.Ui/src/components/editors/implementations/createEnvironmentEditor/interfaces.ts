@@ -18,7 +18,5 @@ export interface FormStateValidationResult {
     name: string,
     // Symbol.
     symbol: string,
-    // Identyfikator wdrożeniowca.
-    operatorId: string,
   },
 }

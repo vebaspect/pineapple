@@ -29,9 +29,9 @@ namespace Pineapple.Core.Commands
         /// <summary>
         /// Identyfikator wdrożeniowca.
         /// </summary>
-        public Guid OperatorId { get; }
+        public Guid? OperatorId { get; }
 
-        public CreateEnvironmentCommand(Guid implementationId, string name, string symbol, string description, Guid operatorId)
+        public CreateEnvironmentCommand(Guid implementationId, string name, string symbol, string description, Guid? operatorId)
         {
             ImplementationId = implementationId;
             Name = name;

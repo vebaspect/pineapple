@@ -22,7 +22,7 @@ namespace Pineapple.Core.Domain.Entities
         /// <summary>
         /// Identyfikator menedżera.
         /// </summary>
-        public Guid ManagerId { get; }
+        public Guid? ManagerId { get; }
 
         /// <summary>
         /// Menedżer.
@@ -39,7 +39,7 @@ namespace Pineapple.Core.Domain.Entities
         /// </summary>
         public List<ImplementationLog> EntityLogs { get; }
 
-        private Implementation(Guid id, string name, string description, Guid managerId)
+        private Implementation(Guid id, string name, string description, Guid? managerId)
             : base(id)
         {
             Name = name;
@@ -50,15 +50,11 @@ namespace Pineapple.Core.Domain.Entities
         /// <summary>
         /// Stwórz wdrożenie.
         /// </summary>
-        public static Implementation Create(Guid id, string name, string description, Guid managerId)
+        public static Implementation Create(Guid id, string name, string description, Guid? managerId)
         {
             if (string.IsNullOrEmpty(name))
             {
                 throw new ValueRequiredValidationException(nameof(name));
-            }
-            if (managerId == Guid.Empty)
-            {
-                throw new ValueRequiredValidationException(nameof(managerId));
             }
 
             return new Implementation(id, name, description, managerId);

@@ -4,7 +4,6 @@ import { Link as RouterLink, useHistory, useParams } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import InputLabel from '@material-ui/core/InputLabel';
 import Link from '@material-ui/core/Link';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -219,10 +218,7 @@ const CreateEnvironmentEditor: React.VFC = () => {
             px={4}
             pb={2}
           >
-            <FormControl
-              error={formStateValidationResult && formStateValidationResult.operatorId !== undefined && formStateValidationResult.operatorId !== null}
-              fullWidth
-            >
+            <FormControl fullWidth>
               <InputLabel id="operator-label">Wdrożeniowiec</InputLabel>
               <Select
                 labelId="operator-label"
@@ -253,11 +249,6 @@ const CreateEnvironmentEditor: React.VFC = () => {
                     : []
                 }
               </Select>
-              {
-                formStateValidationResult && formStateValidationResult.operatorId !== undefined && formStateValidationResult.operatorId !== null
-                  ? (<FormHelperText>{formStateValidationResult.operatorId}</FormHelperText>)
-                  : null
-              }
             </FormControl>
           </Box>
           <Box

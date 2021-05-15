@@ -44,7 +44,7 @@ namespace Pineapple.Api.Controllers
                 return BadRequest("Implementation data has not been provided");
             }
 
-            CreateImplementationCommand command = new(dto.Name, dto.Description, dto.ManagerId);
+            CreateImplementationCommand command = new(dto.Name, dto.Description, !string.IsNullOrEmpty(dto.ManagerId) ? Guid.Parse(dto.ManagerId) : null);
             Task<Guid> resultTask = await mediator.Send(command).ConfigureAwait(false);
             Guid result = await resultTask.ConfigureAwait(false);
 
@@ -112,7 +112,7 @@ namespace Pineapple.Api.Controllers
                 return BadRequest("Environment data has not been provided");
             }
 
-            CreateEnvironmentCommand command = new(Guid.Parse(implementationId), dto.Name, dto.Symbol, dto.Description, dto.OperatorId);
+            CreateEnvironmentCommand command = new(Guid.Parse(implementationId), dto.Name, dto.Symbol, dto.Description, !string.IsNullOrEmpty(dto.OperatorId) ? Guid.Parse(dto.OperatorId) : null);
             Task<Guid> resultTask = await mediator.Send(command).ConfigureAwait(false);
             Guid result = await resultTask.ConfigureAwait(false);
 

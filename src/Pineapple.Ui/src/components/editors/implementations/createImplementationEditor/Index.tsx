@@ -4,7 +4,6 @@ import { Link as RouterLink, useHistory } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import InputLabel from '@material-ui/core/InputLabel';
 import Link from '@material-ui/core/Link';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -157,10 +156,7 @@ const CreateImplementationEditor: React.VFC = () => {
             px={4}
             pb={2}
           >
-            <FormControl
-              error={formStateValidationResult && formStateValidationResult.managerId !== undefined && formStateValidationResult.managerId !== null}
-              fullWidth
-            >
+            <FormControl fullWidth>
               <InputLabel id="manager-label">Menedżer</InputLabel>
               <Select
                 labelId="manager-label"
@@ -191,11 +187,6 @@ const CreateImplementationEditor: React.VFC = () => {
                     : []
                 }
               </Select>
-              {
-                formStateValidationResult && formStateValidationResult.managerId !== undefined && formStateValidationResult.managerId !== null
-                  ? (<FormHelperText>{formStateValidationResult.managerId}</FormHelperText>)
-                  : null
-              }
             </FormControl>
           </Box>
           <Box

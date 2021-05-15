@@ -27,7 +27,6 @@ namespace Pineapple.Core.Storage.Database.Configurations
                 .HasOne(implementation => implementation.Manager)
                 .WithMany(manager => manager.Implementations)
                 .HasForeignKey(implementation => implementation.ManagerId)
-                .IsRequired()
                 .OnDelete(DeleteBehavior.NoAction);
             builder
                 .HasMany(implementation => implementation.EntityLogs)

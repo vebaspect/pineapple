@@ -1,5 +1,3 @@
-using System;
-
 namespace Pineapple.Api.Controllers.Dto
 {
     /// <summary>
@@ -20,6 +18,6 @@ namespace Pineapple.Api.Controllers.Dto
         /// <summary>
         /// Identyfikator menedżera.
         /// </summary>
-        public Guid ManagerId { get; set; }
+        public string ManagerId { get; set; }
     }
 }

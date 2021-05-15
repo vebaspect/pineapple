@@ -67,7 +67,7 @@ namespace Pineapple.Core.Mappers
                 environment.Symbol,
                 environment.Description,
                 environment.OperatorId,
-                environment.Operator.FullName
+                environment.Operator?.FullName
             );
         }
 
@@ -81,7 +81,7 @@ namespace Pineapple.Core.Mappers
                 implementation.Name,
                 implementation.Description,
                 implementation.ManagerId,
-                implementation.Manager.FullName
+                implementation.Manager?.FullName
             );
         }
 

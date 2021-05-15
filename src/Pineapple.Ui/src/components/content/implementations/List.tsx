@@ -55,12 +55,18 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, onEdit, onDelete }: Li
                 </Link>
               </TableCell>
               <TableCell>
-                <Link
-                  component={RouterLink}
-                  to={`/users/${implementation.managerId}`}
-                >
-                  {implementation.managerFullName}
-                </Link>
+                {
+                  implementation.managerId
+                    ? (
+                      <Link
+                        component={RouterLink}
+                        to={`/users/${implementation.managerId}`}
+                      >
+                        {implementation.managerFullName}
+                      </Link>
+                    )
+                    : '–'
+                }
               </TableCell>
               <TableCell align="right">
                 <Tooltip title="Edytuj">

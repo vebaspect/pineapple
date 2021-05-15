@@ -35,12 +35,18 @@ const Details: React.FC<DetailsProps> = ({ isDataFetched, name, managerId, manag
         <TableRow>
           <TableCell style={{ fontWeight: 500, width: 200 }}>Menedżer</TableCell>
           <TableCell>
-            <Link
-              component={RouterLink}
-              to={`/users/${managerId}`}
-            >
-              {managerFullName}
-            </Link>
+            {
+              managerId
+                ? (
+                  <Link
+                    component={RouterLink}
+                    to={`/users/${managerId}`}
+                  >
+                    {managerFullName}
+                  </Link>
+                )
+                : '–'
+            }
           </TableCell>
         </TableRow>
         <TableRow>

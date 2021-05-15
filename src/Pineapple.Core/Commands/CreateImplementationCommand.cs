@@ -19,9 +19,9 @@ namespace Pineapple.Core.Commands
         /// <summary>
         /// Identyfikator menedżera.
         /// </summary>
-        public Guid ManagerId { get; }
+        public Guid? ManagerId { get; }
 
-        public CreateImplementationCommand(string name, string description, Guid managerId)
+        public CreateImplementationCommand(string name, string description, Guid? managerId)
         {
             Name = name;
             Description = description;

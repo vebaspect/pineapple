@@ -39,12 +39,18 @@ const Details: React.FC<DetailsProps> = ({ isDataFetched, name, symbol, operator
         <TableRow>
           <TableCell style={{ fontWeight: 500, width: 200 }}>Wdrożeniowiec</TableCell>
           <TableCell>
-            <Link
-              component={RouterLink}
-              to={`/users/${operatorId}`}
-            >
-              {operatorFullName}
-            </Link>
+            {
+              operatorId
+                ? (
+                  <Link
+                    component={RouterLink}
+                    to={`/users/${operatorId}`}
+                  >
+                    {operatorFullName}
+                  </Link>
+                )
+                : '–'
+            }
           </TableCell>
         </TableRow>
         <TableRow>

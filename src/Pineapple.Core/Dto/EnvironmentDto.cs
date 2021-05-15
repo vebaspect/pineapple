@@ -45,14 +45,14 @@ namespace Pineapple.Core.Dto
         /// <summary>
         /// Identyfikator wdrożeniowca.
         /// </summary>
-        public Guid OperatorId { get; }
+        public Guid? OperatorId { get; }
 
         /// <summary>
         /// Imię i nazwisko wdrożeniowca.
         /// </summary>
         public string OperatorFullName { get; }
 
-        public EnvironmentDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string name, string symbol, string description, Guid operatorId, string operatorFullName)
+        public EnvironmentDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string name, string symbol, string description, Guid? operatorId, string operatorFullName)
         {
             Id = id;
             CreationDate = creationDate;

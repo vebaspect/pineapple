@@ -14,7 +14,5 @@ export interface FormStateValidationResult {
   details: {
     // Nazwa.
     name: string,
-    // Identyfikator menedżera.
-    managerId: string,
   },
 }
