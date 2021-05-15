@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Dto.Logs;
+using Pineapple.Core.Exceptions;
 using Pineapple.Core.Mappers;
 using Pineapple.Core.Storage.Database;
 using MediatR;
@@ -28,6 +29,16 @@ namespace Pineapple.Core.Handler
         protected override async Task<ILogDto[]> Handle(GetServerLogsCommand request)
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
+
+            var server = await databaseContext
+                .Servers
+                .FirstOrDefaultAsync(server => server.Id == request.ServerId)
+                .ConfigureAwait(false);
+
+            if (server is null)
+            {
+                throw new ServerNotFoundException($"Server {request.ServerId} has not been found");
+            }
 
             var serverLogs = await databaseContext
                 .Logs

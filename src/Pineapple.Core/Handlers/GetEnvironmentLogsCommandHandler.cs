@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Dto.Logs;
+using Pineapple.Core.Exceptions;
 using Pineapple.Core.Mappers;
 using Pineapple.Core.Storage.Database;
 using MediatR;
@@ -28,6 +29,16 @@ namespace Pineapple.Core.Handler
         protected override async Task<ILogDto[]> Handle(GetEnvironmentLogsCommand request)
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
+
+            var environment = await databaseContext
+                .Environments
+                .FirstOrDefaultAsync(environment => environment.Id == request.EnvironmentId)
+                .ConfigureAwait(false);
+
+            if (environment is null)
+            {
+                throw new EnvironmentNotFoundException($"Environment {request.EnvironmentId} has not been found");
+            }
 
             var environmentLogs = await databaseContext
                 .Logs

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Dto.Logs;
+using Pineapple.Core.Exceptions;
 using Pineapple.Core.Mappers;
 using Pineapple.Core.Storage.Database;
 using MediatR;
@@ -29,15 +30,16 @@ namespace Pineapple.Core.Handler
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
 
-            var environmentLogs = await databaseContext
-                .Logs
-                .OfType<Domain.Entities.EnvironmentLog>()
-                .Include(log => log.Owner)
-                .Include(log => log.Environment)
-                    .ThenInclude(environment => environment.Implementation)
-                .Where(log => log.Environment.ImplementationId == request.ImplementationId)
-                .ToArrayAsync()
+            var implementation = await databaseContext
+                .Implementations
+                .Include(implementation => implementation.Manager)
+                .FirstOrDefaultAsync(implementation => implementation.Id == request.ImplementationId)
                 .ConfigureAwait(false);
+
+            if (implementation is null)
+            {
+                throw new ImplementationNotFoundException($"Implementation {request.ImplementationId} has not been found");
+            }
 
             var implementationLogs = await databaseContext
                 .Logs
@@ -45,6 +47,16 @@ namespace Pineapple.Core.Handler
                 .Include(log => log.Owner)
                 .Include(log => log.Implementation)
                 .Where(log => log.ImplementationId == request.ImplementationId)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
+
+            var environmentLogs = await databaseContext
+                .Logs
+                .OfType<Domain.Entities.EnvironmentLog>()
+                .Include(log => log.Owner)
+                .Include(log => log.Environment)
+                    .ThenInclude(environment => environment.Implementation)
+                .Where(log => log.Environment.ImplementationId == request.ImplementationId)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
 
@@ -85,13 +97,13 @@ namespace Pineapple.Core.Handler
 
             var logs = new List<ILogDto>();
 
-            if (environmentLogs?.Length > 0)
-            {
-                logs.AddRange(environmentLogs.Select(environmentLog => environmentLog.ToDto()));
-            }
             if (implementationLogs?.Length > 0)
             {
                 logs.AddRange(implementationLogs.Select(implementationLog => implementationLog.ToDto()));
+            }
+            if (environmentLogs?.Length > 0)
+            {
+                logs.AddRange(environmentLogs.Select(environmentLog => environmentLog.ToDto()));
             }
             if (serverLogs?.Length > 0)
             {

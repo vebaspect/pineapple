@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Dto.Logs;
+using Pineapple.Core.Exceptions;
 using Pineapple.Core.Mappers;
 using Pineapple.Core.Storage.Database;
 using MediatR;
@@ -28,6 +29,16 @@ namespace Pineapple.Core.Handler
         protected override async Task<ILogDto[]> Handle(GetComponentLogsCommand request)
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
+
+            var component = await databaseContext
+                .Components
+                .FirstOrDefaultAsync(component => component.Id == request.ComponentId)
+                .ConfigureAwait(false);
+
+            if (component is null)
+            {
+                throw new ComponentNotFoundException($"Component {request.ComponentId} has not been found");
+            }
 
             var componentLogs = await databaseContext
                 .Logs
