@@ -8,10 +8,12 @@ import {
 
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 
 import AddIcon from '@material-ui/icons/Add';
+import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 
 import DialogWindow from '../../windows/DialogWindow';
 import ErrorWindow from '../../windows/ErrorWindow';
@@ -25,6 +27,14 @@ const useStyles = makeStyles(() =>
     add: {
       backgroundColor: '#4caf50',
       color: '#fff',
+    },
+    productFetchingFailureIcon: {
+      color: '#f50057',
+      fontSize: 12,
+    },
+    componentFetchingFailureIcon: {
+      color: '#f50057',
+      fontSize: 12,
     },
   }),
 );
@@ -40,16 +50,22 @@ const Component: React.VFC = () => {
 
   // Flaga określająca, czy produkt został pobrany z API.
   const [isProductFetched, setIsProductFetched] = useState(false);
+  // Flaga określająca, czy pobieranie produktu z API zakończyło się błędem.
+  const [isProductFetchingFailure, setIsProductFetchingFailure] = useState(false);
   // Produkt.
   const [product, setProduct] = useState(null);
 
   // Flaga określająca, czy komponent został pobrany z API.
   const [isComponentFetched, setIsComponentFetched] = useState(false);
+  // Flaga określająca, czy pobieranie komponentu z API zakończyło się błędem.
+  const [isComponentFetchingFailure, setIsComponentFetchingFailure] = useState(false);
   // Komponent.
   const [component, setComponent] = useState(null);
 
   // Flaga określająca, czy lista wersji komponentu została pobrana z API.
   const [isComponentVersionsFetched, setIsComponentVersionsFetched] = useState(false);
+  // Flaga określająca, czy pobieranie listy wersji komponentu z API zakończyło się błędem.
+  const [isComponentVersionsFetchingFailure, setIsComponentVersionsFetchingFailure] = useState(false);
   // Lista wersji komponentu.
   const [componentVersions, setComponentVersions] = useState([]);
 
@@ -93,6 +109,10 @@ const Component: React.VFC = () => {
       .then((data) => {
         setIsProductFetched(true);
         setProduct(data);
+      })
+      .catch(() => {
+        setIsProductFetched(true);
+        setIsProductFetchingFailure(true);
       });
   }, [productId]);
 
@@ -106,6 +126,10 @@ const Component: React.VFC = () => {
       .then((data) => {
         setIsComponentFetched(true);
         setComponent(data);
+      })
+      .catch(() => {
+        setIsComponentFetched(true);
+        setIsComponentFetchingFailure(true);
       });
   }, [productId, componentId]);
 
@@ -119,6 +143,10 @@ const Component: React.VFC = () => {
       .then((data) => {
         setIsComponentVersionsFetched(true);
         setComponentVersions(data);
+      })
+      .catch(() => {
+        setIsComponentVersionsFetched(true);
+        setIsComponentVersionsFetchingFailure(true);
       });
   }, [productId, componentId]);
 
@@ -192,9 +220,18 @@ const Component: React.VFC = () => {
             isProductFetched
               ? (
                 <Box component="span">
-                  {product?.name}
-                </Box>)
-              : ''
+                  {
+                    isProductFetchingFailure
+                      ? <SentimentVeryDissatisfiedIcon className={styles.productFetchingFailureIcon} />
+                      : product?.name
+                  }
+                </Box>
+              )
+              : (
+                <Box component="span">
+                  <CircularProgress size={10} />
+                </Box>
+              )
           }
         </Link>
         <Box component="span" style={{ paddingLeft: '5px', paddingRight: '5px' }}>/</Box>
@@ -206,111 +243,180 @@ const Component: React.VFC = () => {
           isComponentFetched
             ? (
               <Box component="span">
-                {component?.name}
-              </Box>)
-            : ''
+                {
+                  isComponentFetchingFailure
+                    ? <SentimentVeryDissatisfiedIcon className={styles.componentFetchingFailureIcon} />
+                    : component?.name
+                }
+              </Box>
+            )
+            : (
+              <Box component="span">
+                <CircularProgress size={10} />
+              </Box>
+            )
         }
       </Box>
       <Box
         mb={3}
       >
-        <Paper>
-          <Box
-            border={1}
-            borderLeft={0}
-            borderRight={0}
-            borderTop={0}
-            borderColor="#e0e0e0"
-            py={1.5}
-            textAlign="center"
-          >
-            Szczegóły
-          </Box>
-          <Details
-            isDataFetched={isComponentFetched}
-            name={component?.name}
-            componentTypeId={component?.componentTypeId}
-            componentTypeName={component?.componentTypeName}
-            description={component?.description}
-          />
-        </Paper>
+        {
+          isComponentFetchingFailure
+            ? (
+              <Paper>
+                <Box
+                  border={1}
+                  borderLeft={0}
+                  borderRight={0}
+                  borderTop={0}
+                  borderColor="#e0e0e0"
+                  py={1.5}
+                  textAlign="center"
+                >
+                  Pobieranie informacji nt. komponentu zakończyło się błędem.
+                </Box>
+              </Paper>
+            )
+            : (
+              <Paper>
+                <Box
+                  border={1}
+                  borderLeft={0}
+                  borderRight={0}
+                  borderTop={0}
+                  borderColor="#e0e0e0"
+                  py={1.5}
+                  textAlign="center"
+                >
+                  Szczegóły
+                </Box>
+                <Details
+                  isDataFetched={isComponentFetched}
+                  name={component?.name}
+                  componentTypeId={component?.componentTypeId}
+                  componentTypeName={component?.componentTypeName}
+                  description={component?.description}
+                />
+              </Paper>
+            )
+        }
       </Box>
       <Box
         mb={3}
       >
-        <Paper>
-          <Box
-            border={1}
-            borderLeft={0}
-            borderRight={0}
-            borderTop={0}
-            borderColor="#e0e0e0"
-            py={1.5}
-            textAlign="center"
-          >
-            Wersje
-          </Box>
-          <List
-            isDataFetched={isComponentVersionsFetched}
-            data={componentVersions}
-            productId={productId}
-            componentId={componentId}
-            onEdit={editComponentVersion}
-            onDelete={deleteComponentVersion}
-          />
-          <Box
-            p={1.5}
-            textAlign="right"
-          >
-            <Button
-              className={styles.add}
-              size="small"
-              startIcon={<AddIcon />}
-              variant="contained"
-              onClick={addComponentVersion}
-            >
-              Dodaj
-            </Button>
-          </Box>
-        </Paper>
+        {
+          isComponentVersionsFetchingFailure
+            ? (
+              <Paper>
+                <Box
+                  border={1}
+                  borderLeft={0}
+                  borderRight={0}
+                  borderTop={0}
+                  borderColor="#e0e0e0"
+                  py={1.5}
+                  textAlign="center"
+                >
+                  Pobieranie informacji nt. wersji zakończyło się błędem.
+                </Box>
+              </Paper>
+            )
+            : (
+              <Paper>
+                <Box
+                  border={1}
+                  borderLeft={0}
+                  borderRight={0}
+                  borderTop={0}
+                  borderColor="#e0e0e0"
+                  py={1.5}
+                  textAlign="center"
+                >
+                  Wersje
+                </Box>
+                <List
+                  isDataFetched={isComponentVersionsFetched}
+                  data={componentVersions}
+                  productId={productId}
+                  componentId={componentId}
+                  onEdit={editComponentVersion}
+                  onDelete={deleteComponentVersion}
+                />
+                <Box
+                  p={1.5}
+                  textAlign="right"
+                >
+                  <Button
+                    className={styles.add}
+                    size="small"
+                    startIcon={<AddIcon />}
+                    variant="contained"
+                    onClick={addComponentVersion}
+                  >
+                    Dodaj
+                  </Button>
+                </Box>
+              </Paper>
+            )
+        }
       </Box>
       <Box
         mb={3}
       >
-        <Paper>
-          <Box
-            border={1}
-            borderLeft={0}
-            borderRight={0}
-            borderTop={0}
-            borderColor="#e0e0e0"
-            py={1.5}
-            textAlign="center"
-          >
-            Ostatnie aktywności
-          </Box>
-          <Box
-            mx={2}
-          >
-            <Logs
-              isDataFetched={isLogsFetched}
-              data={logs}
-            />
-          </Box>
-          <Box
-            border={1}
-            borderBottom={0}
-            borderLeft={0}
-            borderRight={0}
-            borderColor="#e0e0e0"
-            py={1.5}
-            textAlign="center"
-          >
-            <Link onClick={fetchMoreLogs}>
-              Pobierz więcej
-            </Link>
-          </Box>
-        </Paper>
+        {
+          isComponentFetchingFailure
+            ? (
+              <Paper>
+                <Box
+                  border={1}
+                  borderLeft={0}
+                  borderRight={0}
+                  borderTop={0}
+                  borderColor="#e0e0e0"
+                  py={1.5}
+                  textAlign="center"
+                >
+                  Pobieranie informacji nt. logów zakończyło się błędem.
+                </Box>
+              </Paper>
+            )
+            : (
+              <Paper>
+                <Box
+                  border={1}
+                  borderLeft={0}
+                  borderRight={0}
+                  borderTop={0}
+                  borderColor="#e0e0e0"
+                  py={1.5}
+                  textAlign="center"
+                >
+                  Ostatnie aktywności
+                </Box>
+                <Box
+                  mx={2}
+                >
+                  <Logs
+                    isDataFetched={isLogsFetched}
+                    data={logs}
+                  />
+                </Box>
+                <Box
+                  border={1}
+                  borderBottom={0}
+                  borderLeft={0}
+                  borderRight={0}
+                  borderColor="#e0e0e0"
+                  py={1.5}
+                  textAlign="center"
+                >
+                  <Link onClick={fetchMoreLogs}>
+                    Pobierz więcej
+                  </Link>
+                </Box>
+              </Paper>
+            )
+        }
       </Box>
       <DialogWindow
         isOpen={isDeleteComponentVersionDialogWindowOpen}
