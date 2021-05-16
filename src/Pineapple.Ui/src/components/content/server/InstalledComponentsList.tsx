@@ -47,7 +47,7 @@ const useStyles = makeStyles(() =>
   }),
 );
 
-const InstalledComponentsList: React.FC<InstalledComponentsListProps> = ({ isDataFetched, data, onUpdate, onUninstall }: InstalledComponentsListProps) => {
+const InstalledComponentsList: React.FC<InstalledComponentsListProps> = ({ isDataFetched, data, onEdit, onUninstall }: InstalledComponentsListProps) => {
   const styles = useStyles();
 
   if (!isDataFetched) {
@@ -118,10 +118,10 @@ const InstalledComponentsList: React.FC<InstalledComponentsListProps> = ({ isDat
                 </Box>
               </TableCell>
               <TableCell align="right">
-                <Tooltip title="Aktualizuj">
+                <Tooltip title="Edytuj">
                   <IconButton
                     size="small"
-                    onClick={() => onUpdate(installedComponent.componentVersionId)}
+                    onClick={() => onEdit(installedComponent.componentVersionId)}
                   >
                     <EditIcon />
                   </IconButton>

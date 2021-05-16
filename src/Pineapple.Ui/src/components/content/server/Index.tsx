@@ -173,7 +173,7 @@ const Server: React.VFC = () => {
     history.push(`/implementations/${implementationId}/environments/${environmentId}/servers/${serverId}/components/install`);
   };
 
-  const updateComponent = () => {
+  const editComponent = () => {
     // TODO
   };
 
@@ -434,7 +434,7 @@ const Server: React.VFC = () => {
                 <InstalledComponentsList
                   isDataFetched={isServerFetched}
                   data={server?.installedComponents}
-                  onUpdate={updateComponent}
+                  onEdit={editComponent}
                   onUninstall={uninstallComponent}
                 />
                 <Box
