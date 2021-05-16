@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Pineapple.Api.Controllers.Dto;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Dto;
+using Pineapple.Core.Dto.ImplementationsTree;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,6 +32,17 @@ namespace Pineapple.Api.Controllers
             GetImplementationsCommand command = new(count);
             Task<ImplementationDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             ImplementationDto[] result = await resultTask.ConfigureAwait(false);
+
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("tree")]
+        public async Task<IActionResult> GetImplementationsTree()
+        {
+            GetImplementationsTreeCommand command = new();
+            Task<ImplementationsTreeDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            ImplementationsTreeDto result = await resultTask.ConfigureAwait(false);
 
             return Ok(result);
         }

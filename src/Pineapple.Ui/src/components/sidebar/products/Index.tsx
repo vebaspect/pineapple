@@ -55,7 +55,7 @@ const Products: React.FC<ProductsProps> = ({ isDataFetched, data }: ProductsProp
             component={RouterLink}
             to="/products"
           >
-            Produkty ({data.filter(product => !product.isDeleted).length})
+            Produkty ({data.filter((product) => !product.isDeleted).length})
           </Link>
         </ListItemText>
         {
@@ -71,21 +71,26 @@ const Products: React.FC<ProductsProps> = ({ isDataFetched, data }: ProductsProp
         <List component="div">
           {
             data.length > 0
-              ? data.filter(product => !product.isDeleted).map(product => {
+              ? data.filter((product) => !product.isDeleted).map((product) => {
                 return (
-                  <Tooltip key={product.id} title={product.description} placement="right">
-                    <ListItem button>
+                  <React.Fragment key={product.id}>
+                    <ListItem
+                      button
+                      style={{ paddingBottom: '4px', paddingTop: '4px' }}
+                    >
                       <ListItemText>
-                        <Link
-                          component={RouterLink}
-                          to={`/products/${product.id}`}
-                          style={{ fontSize: '0.9rem' }}
-                        >
-                          {product.name}
-                        </Link>
+                        <Tooltip title={product.description} placement="right">
+                          <Link
+                            component={RouterLink}
+                            to={`/products/${product.id}`}
+                            style={{ fontSize: '0.9rem' }}
+                          >
+                            {product.name}
+                          </Link>
+                        </Tooltip>
                       </ListItemText>
                     </ListItem>
-                  </Tooltip>
+                  </React.Fragment>
                 )
               })
               : null

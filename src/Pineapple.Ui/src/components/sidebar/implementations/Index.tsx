@@ -55,11 +55,11 @@ const Implementations: React.FC<ImplementationsProps> = ({ isDataFetched, data }
             component={RouterLink}
             to="/implementations"
           >
-            Wdrożenia ({data.filter(implementation => !implementation.isDeleted).length})
+            Wdrożenia ({data.implementations?.filter((implementation) => !implementation.isDeleted).length})
           </Link>
         </ListItemText>
         {
-          data.length > 0
+          data.implementations?.length > 0
             ? (isExpanded ? <ExpandLess onClick={onExpandLessButtonClick} /> : <ExpandMore onClick={onExpandMoreButtonClick} />)
             : null 
         }
@@ -70,22 +70,53 @@ const Implementations: React.FC<ImplementationsProps> = ({ isDataFetched, data }
       >
         <List component="div">
           {
-            data.length > 0
-              ? data.filter(implementation => !implementation.isDeleted).map(implementation => {
+            data.implementations?.length > 0
+              ? data.implementations.filter((implementation) => !implementation.isDeleted).map((implementation) => {
                 return (
-                  <Tooltip key={implementation.id} title={implementation.description} placement="right">
-                    <ListItem button>
+                  <React.Fragment key={implementation.id}>
+                    <ListItem
+                      button
+                      style={{ paddingBottom: '4px', paddingTop: '4px' }}
+                    >
                       <ListItemText>
-                        <Link
-                          component={RouterLink}
-                          to={`/implementations/${implementation.id}`}
-                          style={{ fontSize: '0.9rem' }}
-                        >
-                          {implementation.name}
-                        </Link>
+                        <Tooltip title={implementation.description} placement="right">
+                          <Link
+                            component={RouterLink}
+                            to={`/implementations/${implementation.id}`}
+                            style={{ fontSize: '0.9rem' }}
+                          >
+                            {implementation.name}
+                          </Link>
+                        </Tooltip>
                       </ListItemText>
                     </ListItem>
-                  </Tooltip>
+                    {
+                      implementation.environments?.length > 0
+                        ? implementation.environments.filter((environment) => !environment.isDeleted).map((environment) => {
+                          return (
+                            <React.Fragment key={environment.id}>
+                              <ListItem
+                                button
+                                style={{ paddingBottom: '2px', paddingLeft: '32px', paddingTop: '2px' }}
+                              >
+                                <ListItemText style={{ marginBottom: '0', marginTop: '0' }}>
+                                  <Tooltip title={environment.description} placement="right">
+                                    <Link
+                                      component={RouterLink}
+                                      to={`/implementations/${implementation.id}/environments/${environment.id}`}
+                                      style={{ fontSize: '0.75rem' }}
+                                    >
+                                      {environment.name}
+                                    </Link>
+                                  </Tooltip>
+                                </ListItemText>
+                              </ListItem>
+                            </React.Fragment>
+                          );
+                        })
+                        : null
+                    }
+                  </React.Fragment>
                 )
               })
               : null

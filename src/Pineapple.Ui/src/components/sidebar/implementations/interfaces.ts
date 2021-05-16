@@ -1,15 +1,29 @@
 export interface ImplementationsProps {
-  // Flaga określająca, czy lista wdrożeń została pobrana z API.
+  // Flaga określająca, czy drzewo wdrożeń zostało pobrane z API.
   isDataFetched: boolean,
-  // Lista wdrożeń.
+  // Drzewo wdrożeń.
   data: {
-    // Identyfikator.
-    id: string,
-    // Nazwa.
-    name: string,
-    // Opis.
-    description: string,
-    // Flaga określająca, czy wdrożenie zostało usunięte.
-    isDeleted: boolean,
-  }[],
+    // Węzły reprezentujące wdrożenia.
+    implementations: {
+      // Identyfikator.
+      id: string,
+      // Nazwa.
+      name: string,
+      // Opis.
+      description: string,
+      // Flaga określająca, czy wdrożenie zostało usunięte.
+      isDeleted: boolean,
+      // Węzły reprezentujące środowiska.
+      environments: {
+        // Identyfikator.
+        id: string,
+        // Nazwa.
+        name: string,
+        // Opis.
+        description: string,
+        // Flaga określająca, czy środowisko zostało usunięte.
+        isDeleted: boolean,
+      }[],
+    }[],
+  },
 }

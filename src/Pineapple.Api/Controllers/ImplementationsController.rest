@@ -15,6 +15,10 @@
 GET {{url}}/implementations?count={{count}}
 Content-Type: application/json
 
+### /implementations/tree
+GET {{url}}/implementations/tree
+Content-Type: application/json
+
 ### /implementations
 POST {{url}}/implementations
 Content-Type: application/json

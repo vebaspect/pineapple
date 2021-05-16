@@ -10,10 +10,10 @@ import Products from './products';
 import Users from './users';
 
 const Sidebar: React.VFC = () => {
-  // Flaga określająca, czy lista wdrożeń została pobrana z API.
-  const [isImplementationsFetched, setIsImplementationsFetched] = useState(false);
-  // Lista wdrożeń.
-  const [implementations, setImplementations] = useState([]);
+  // Flaga określająca, czy drzewo wdrożeń zostało pobrane z API.
+  const [isImplementationsTreeFetched, setIsImplementationsTreeFetched] = useState(false);
+  // Drzewo wdrożeń.
+  const [implementationsTree, setImplementationsTree] = useState({ implementations: [] });
 
   // Flaga określająca, czy lista produktów została pobrana z API.
   const [isProductsFetched, setIsProductsFetched] = useState(false);
@@ -50,12 +50,12 @@ const Sidebar: React.VFC = () => {
   // Liczba administratorów.
   const [administratorsCount, setAdministratorsCount] = useState(0);
 
-  const fetchImplementations = async () => {
-    await fetch(`${window['env'].API_URL}/implementations`)
+  const fetchImplementationsTree = async () => {
+    await fetch(`${window['env'].API_URL}/implementations/tree`)
       .then((response) => response.json())
       .then((data) => {
-        setIsImplementationsFetched(true);
-        setImplementations(data);
+        setIsImplementationsTreeFetched(true);
+        setImplementationsTree(data);
       });
   };
 
@@ -132,7 +132,7 @@ const Sidebar: React.VFC = () => {
   }
 
   useEffect(() => {
-    fetchImplementations();
+    fetchImplementationsTree();
     fetchProducts();
     fetchComponentTypesCount();
     fetchOperatingSystemsCount();
@@ -148,8 +148,8 @@ const Sidebar: React.VFC = () => {
       <List component="nav">
         <Home />
         <Implementations
-          isDataFetched={isImplementationsFetched}
-          data={implementations}
+          isDataFetched={isImplementationsTreeFetched}
+          data={implementationsTree}
         />
         <Products
           isDataFetched={isProductsFetched}
