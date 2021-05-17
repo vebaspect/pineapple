@@ -15,6 +15,10 @@
 GET {{url}}/products?count={{count}}
 Content-Type: application/json
 
+### /products/tree
+GET {{url}}/products/tree
+Content-Type: application/json
+
 ### /products
 POST {{url}}/products
 Content-Type: application/json

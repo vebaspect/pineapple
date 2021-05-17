@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Pineapple.Api.Controllers.Dto;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Dto;
+using Pineapple.Core.Dto.ProductsTree;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,6 +32,17 @@ namespace Pineapple.Api.Controllers
             GetProductsCommand command = new(count);
             Task<ProductDto[]> resultTask = await mediator.Send(command).ConfigureAwait(false);
             ProductDto[] result = await resultTask.ConfigureAwait(false);
+
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("tree")]
+        public async Task<IActionResult> GetProductsTree()
+        {
+            GetProductsTreeCommand command = new();
+            Task<ProductsTreeDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            ProductsTreeDto result = await resultTask.ConfigureAwait(false);
 
             return Ok(result);
         }

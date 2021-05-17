@@ -55,11 +55,11 @@ const Products: React.FC<ProductsProps> = ({ isDataFetched, data }: ProductsProp
             component={RouterLink}
             to="/products"
           >
-            Produkty ({data.filter((product) => !product.isDeleted).length})
+            Produkty ({data.products?.filter((product) => !product.isDeleted).length})
           </Link>
         </ListItemText>
         {
-          data.length
+          data.products?.length
             ? (isExpanded ? <ExpandLess onClick={onExpandLessButtonClick} /> : <ExpandMore onClick={onExpandMoreButtonClick} />)
             : null 
         }
@@ -70,8 +70,8 @@ const Products: React.FC<ProductsProps> = ({ isDataFetched, data }: ProductsProp
       >
         <List component="div">
           {
-            data.length > 0
-              ? data.filter((product) => !product.isDeleted).map((product) => {
+            data.products?.length > 0
+              ? data.products.filter((product) => !product.isDeleted).map((product) => {
                 return (
                   <React.Fragment key={product.id}>
                     <ListItem
@@ -90,6 +90,32 @@ const Products: React.FC<ProductsProps> = ({ isDataFetched, data }: ProductsProp
                         </Tooltip>
                       </ListItemText>
                     </ListItem>
+                    {
+                      product.components?.length > 0
+                        ? product.components.filter((component) => !component.isDeleted).map((component) => {
+                          return (
+                            <React.Fragment key={component.id}>
+                              <ListItem
+                                button
+                                style={{ paddingBottom: '2px', paddingLeft: '32px', paddingTop: '2px' }}
+                              >
+                                <ListItemText style={{ marginBottom: '0', marginTop: '0' }}>
+                                  <Tooltip title={component.description} placement="right">
+                                    <Link
+                                      component={RouterLink}
+                                      to={`/products/${product.id}/components/${component.id}`}
+                                      style={{ fontSize: '0.75rem' }}
+                                    >
+                                      {component.name}
+                                    </Link>
+                                  </Tooltip>
+                                </ListItemText>
+                              </ListItem>
+                            </React.Fragment>
+                          );
+                        })
+                        : null
+                    }
                   </React.Fragment>
                 )
               })
