@@ -124,7 +124,7 @@ const Implementation: React.VFC = () => {
     fetchEnvironments();
   }, [fetchEnvironments]);
 
-  const addEnvironment = () => {
+  const createEnvironment = () => {
     history.push(`/implementations/${implementationId}/environments/create`);
   };
 
@@ -293,7 +293,7 @@ const Implementation: React.VFC = () => {
                     size="small"
                     startIcon={<AddIcon />}
                     variant="contained"
-                    onClick={addEnvironment}
+                    onClick={createEnvironment}
                   >
                     Dodaj
                   </Button>

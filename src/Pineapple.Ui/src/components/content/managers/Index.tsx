@@ -57,7 +57,7 @@ const Managers: React.VFC = () => {
     fetchManagers();
   }, []);
 
-  const addManager = () => {
+  const createManager = () => {
     history.push('/users/managers/create');
   };
 
@@ -135,7 +135,7 @@ const Managers: React.VFC = () => {
               size="small"
               startIcon={<AddIcon />}
               variant="contained"
-              onClick={addManager}
+              onClick={createManager}
             >
               Dodaj
             </Button>

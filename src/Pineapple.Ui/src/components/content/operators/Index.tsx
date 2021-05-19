@@ -57,7 +57,7 @@ const Operators: React.VFC = () => {
     fetchOperators();
   }, []);
 
-  const addOperator = () => {
+  const createOperator = () => {
     history.push('/users/operators/create');
   };
 
@@ -135,7 +135,7 @@ const Operators: React.VFC = () => {
               size="small"
               startIcon={<AddIcon />}
               variant="contained"
-              onClick={addOperator}
+              onClick={createOperator}
             >
               Dodaj
             </Button>

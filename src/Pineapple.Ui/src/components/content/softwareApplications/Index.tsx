@@ -57,7 +57,7 @@ const SoftwareApplications: React.VFC = () => {
     fetchSoftwareApplications();
   }, []);
 
-  const addSoftwareApplication = () => {
+  const createSoftwareApplication = () => {
     history.push('/configuration/software-applications/create');
   };
 
@@ -135,7 +135,7 @@ const SoftwareApplications: React.VFC = () => {
               size="small"
               startIcon={<AddIcon />}
               variant="contained"
-              onClick={addSoftwareApplication}
+              onClick={createSoftwareApplication}
             >
               Dodaj
             </Button>

@@ -154,7 +154,7 @@ const Component: React.VFC = () => {
     fetchComponentVersions();
   }, [fetchComponentVersions]);
 
-  const addComponentVersion = () => {
+  const createComponentVersion = () => {
     history.push(`/products/${productId}/components/${componentId}/component-versions/create`);
   };
 
@@ -351,7 +351,7 @@ const Component: React.VFC = () => {
                     size="small"
                     startIcon={<AddIcon />}
                     variant="contained"
-                    onClick={addComponentVersion}
+                    onClick={createComponentVersion}
                   >
                     Dodaj
                   </Button>

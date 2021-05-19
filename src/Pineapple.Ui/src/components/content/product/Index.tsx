@@ -124,7 +124,7 @@ const Product: React.VFC = () => {
     fetchComponents();
   }, [fetchComponents]);
 
-  const addComponent = () => {
+  const createComponent = () => {
     history.push(`/products/${productId}/components/create`);
   };
 
@@ -291,7 +291,7 @@ const Product: React.VFC = () => {
                     size="small"
                     startIcon={<AddIcon />}
                     variant="contained"
-                    onClick={addComponent}
+                    onClick={createComponent}
                   >
                     Dodaj
                   </Button>

@@ -57,7 +57,7 @@ const OperatingSystems: React.VFC = () => {
     fetchOperatingSystems();
   }, []);
 
-  const addOperatingSystem = () => {
+  const createOperatingSystem = () => {
     history.push('/configuration/operating-systems/create');
   };
 
@@ -135,7 +135,7 @@ const OperatingSystems: React.VFC = () => {
               size="small"
               startIcon={<AddIcon />}
               variant="contained"
-              onClick={addOperatingSystem}
+              onClick={createOperatingSystem}
             >
               Dodaj
             </Button>

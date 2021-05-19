@@ -57,7 +57,7 @@ const ComponentTypes: React.VFC = () => {
     fetchComponentTypes();
   }, []);
 
-  const addComponentType = () => {
+  const createComponentType = () => {
     history.push('/configuration/component-types/create');
   };
 
@@ -135,7 +135,7 @@ const ComponentTypes: React.VFC = () => {
               size="small"
               startIcon={<AddIcon />}
               variant="contained"
-              onClick={addComponentType}
+              onClick={createComponentType}
             >
               Dodaj
             </Button>

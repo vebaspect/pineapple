@@ -84,7 +84,7 @@ const Implementations: React.VFC = () => {
     fetchImplementations();
   }, []);
 
-  const addImplementation = () => {
+  const createImplementation = () => {
     history.push('/implementations/create');
   };
 
@@ -156,7 +156,7 @@ const Implementations: React.VFC = () => {
               size="small"
               startIcon={<AddIcon />}
               variant="contained"
-              onClick={addImplementation}
+              onClick={createImplementation}
             >
               Dodaj
             </Button>

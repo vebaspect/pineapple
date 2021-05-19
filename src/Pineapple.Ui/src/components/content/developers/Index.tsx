@@ -57,7 +57,7 @@ const Developers: React.VFC = () => {
     fetchDevelopers();
   }, []);
 
-  const addDeveloper = () => {
+  const createDeveloper = () => {
     history.push('/users/developers/create');
   };
 
@@ -135,7 +135,7 @@ const Developers: React.VFC = () => {
               size="small"
               startIcon={<AddIcon />}
               variant="contained"
-              onClick={addDeveloper}
+              onClick={createDeveloper}
             >
               Dodaj
             </Button>

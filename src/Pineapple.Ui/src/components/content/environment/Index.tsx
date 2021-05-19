@@ -154,7 +154,7 @@ const Environment: React.VFC = () => {
     fetchServers();
   }, [fetchServers]);
 
-  const addServer = () => {
+  const createServer = () => {
     history.push(`/implementations/${implementationId}/environments/${environmentId}/servers/create`);
   };
 
@@ -352,7 +352,7 @@ const Environment: React.VFC = () => {
                     size="small"
                     startIcon={<AddIcon />}
                     variant="contained"
-                    onClick={addServer}
+                    onClick={createServer}
                   >
                     Dodaj
                   </Button>

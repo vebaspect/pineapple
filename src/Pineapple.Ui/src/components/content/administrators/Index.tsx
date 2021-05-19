@@ -57,7 +57,7 @@ const Administrators: React.VFC = () => {
     fetchAdministrators();
   }, []);
 
-  const addAdministrator = () => {
+  const createAdministrator = () => {
     history.push('/users/administrators/create');
   };
 
@@ -135,7 +135,7 @@ const Administrators: React.VFC = () => {
               size="small"
               startIcon={<AddIcon />}
               variant="contained"
-              onClick={addAdministrator}
+              onClick={createAdministrator}
             >
               Dodaj
             </Button>
