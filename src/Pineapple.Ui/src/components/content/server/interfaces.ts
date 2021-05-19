@@ -33,7 +33,7 @@ export interface InstalledComponentsListProps {
     // Numer wersji komponentu.
     componentVersionNumber: string,
     // Flaga określająca, czy dostępna jest nowsza wersja komponentu.
-    isNewerComponentVersionAvailable: boolean,
+    isUpdateAvailable: boolean,
   }[],
   // Zdarzenie edycji komponentu.
   onEdit: (id: string) => void,

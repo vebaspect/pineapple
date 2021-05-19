@@ -107,7 +107,7 @@ const InstalledComponentsList: React.FC<InstalledComponentsListProps> = ({ isDat
                     {installedComponent.componentVersionNumber}
                   </Link>
                   {
-                    installedComponent.isNewerComponentVersionAvailable
+                    installedComponent.isUpdateAvailable
                       ? (
                         <Tooltip title="Dostępna jest nowsza wersja komponentu!">
                           <WarningIcon className={styles.warningIcon} />

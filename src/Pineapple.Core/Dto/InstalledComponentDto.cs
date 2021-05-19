@@ -40,9 +40,9 @@ namespace Pineapple.Core.Dto
         /// <summary>
         /// Flaga określająca, czy dostępna jest nowsza wersja komponentu.
         /// </summary>
-        public bool IsNewerComponentVersionAvailable { get; }
+        public bool IsUpdateAvailable { get; }
 
-        public InstalledComponentDto(Guid productId, string productName, Guid componentId, string componentName, Guid componentVersionId, string componentVersionNumber, bool isNewerComponentVersionAvailable)
+        public InstalledComponentDto(Guid productId, string productName, Guid componentId, string componentName, Guid componentVersionId, string componentVersionNumber, bool isUpdateAvailable)
         {
             ProductId = productId;
             ProductName = productName;
@@ -50,7 +50,7 @@ namespace Pineapple.Core.Dto
             ComponentName = componentName;
             ComponentVersionId = componentVersionId;
             ComponentVersionNumber = componentVersionNumber;
-            IsNewerComponentVersionAvailable = isNewerComponentVersionAvailable;
+            IsUpdateAvailable = isUpdateAvailable;
         }
     }
 }
