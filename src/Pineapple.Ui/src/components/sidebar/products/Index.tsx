@@ -19,7 +19,7 @@ import {
 } from './interfaces';
 
 const Products: React.FC<ProductsProps> = ({ isDataFetched, data }: ProductsProps) => {
-  // Flaga określająca, czy lista produktów jest rozwinięta.
+  // Flaga określająca, czy gałąź "Produkty" jest rozwinięta.
   const [isExpanded, setIsExpanded] = useState(false);
 
   const onExpandLessButtonClick = () => {

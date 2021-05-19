@@ -18,7 +18,7 @@ import {
 } from './interfaces';
 
 const Configuration: React.FC<ConfigurationProps> = ({ isComponentTypesCountFetched, componentTypesCount, isOperatingSystemsCountFetched, operatingSystemsCount, isSoftwareApplicationsCountFetched, softwareApplicationsCount }: ConfigurationProps) => {
-  // Flaga określająca, czy konfiguracja jest rozwinięta.
+  // Flaga określająca, czy gałąź "Konfiguracja" jest rozwinięta.
   const [isExpanded, setIsExpanded] = useState(false);
 
   const onExpandLessButtonClick = () => {

@@ -23,6 +23,8 @@ export interface ImplementationsProps {
         description: string,
         // Flaga określająca, czy środowisko zostało usunięte.
         isDeleted: boolean,
+        // Flaga określająca, czy dostępne są nowsze wersje zainstalowanych komponentów.
+        isUpdateAvailable: boolean,
       }[],
     }[],
   },

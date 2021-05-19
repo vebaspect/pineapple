@@ -26,5 +26,10 @@ namespace Pineapple.Core.Dto.ImplementationsTree
         /// Opis.
         /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Flaga określająca, czy dostępne są nowsze wersje zainstalowanych komponentów.
+        /// </summary>
+        public bool IsUpdateAvailable { get; set; }
     }
 }

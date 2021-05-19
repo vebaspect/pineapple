@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
+import {
+  createStyles,
+  makeStyles,
+} from '@material-ui/core/styles';
+
+import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
@@ -13,14 +19,34 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Tooltip from '@material-ui/core/Tooltip';
 
 import PowerIcon from '@material-ui/icons/Power';
+import WarningIcon from '@material-ui/icons/Warning';
 
 import {
   ImplementationsProps,
 } from './interfaces';
 
+const useStyles = makeStyles(() =>
+  createStyles({
+    outdatedEnvironmentNodeWrapper: {
+      alignItems: 'center',
+      display: 'flex',
+    },
+    outdatedEnvironmentName: {
+      paddingRight: '5px',
+    },
+    outdatedEnvironmentIcon: {
+      color: '#f50057',
+      height: '0.7em',
+      width: '0.7em',
+    },
+  }),
+);
+
 const Implementations: React.FC<ImplementationsProps> = ({ isDataFetched, data }: ImplementationsProps) => {
-  // Flaga określająca, czy lista produktów jest rozwinięta.
-  const [isExpanded, setIsExpanded] = useState(false);
+  const styles = useStyles();
+
+  // Flaga określająca, czy gałąź "Wdrożenia" jest rozwinięta.
+  const [isExpanded, setIsExpanded] = useState(true);
 
   const onExpandLessButtonClick = () => {
     setIsExpanded(false);
@@ -106,7 +132,24 @@ const Implementations: React.FC<ImplementationsProps> = ({ isDataFetched, data }
                                       to={`/implementations/${implementation.id}/environments/${environment.id}`}
                                       style={{ fontSize: '0.75rem' }}
                                     >
-                                      {environment.name}
+                                      {
+                                        environment.isUpdateAvailable
+                                          ? (
+                                            <Box className={styles.outdatedEnvironmentNodeWrapper}>
+                                              <strong className={styles.outdatedEnvironmentName}>
+                                                {environment.name}
+                                              </strong>
+                                              <Tooltip title="Dostępne są nowsze wersje zainstalowanych komponentów!">
+                                                <WarningIcon className={styles.outdatedEnvironmentIcon} />
+                                              </Tooltip>
+                                            </Box>
+                                          )
+                                          : (
+                                            <Box>
+                                              {environment.name}
+                                            </Box>
+                                          )
+                                      }
                                     </Link>
                                   </Tooltip>
                                 </ListItemText>

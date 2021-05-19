@@ -18,7 +18,7 @@ import {
 } from './interfaces';
 
 const Users: React.FC<UsersProps> = ({ isDevelopersCountFetched, developersCount, isOperatorsCountFetched, operatorsCount, isManagersCountFetched, managersCount, isAdministratorsCountFetched, administratorsCount }: UsersProps) => {
-  // Flaga określająca, czy konfiguracja jest rozwinięta.
+  // Flaga określająca, czy gałąź "Użytkownicy" jest rozwinięta.
   const [isExpanded, setIsExpanded] = useState(false);
 
   const onExpandLessButtonClick = () => {

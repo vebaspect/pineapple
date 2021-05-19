@@ -30,6 +30,16 @@ namespace Pineapple.Core.Handler
             var implementations = await databaseContext
                 .Implementations
                 .Include(implementation => implementation.Environments)
+                    .ThenInclude(environment => environment.Servers)
+                        .ThenInclude(server => server.InstalledComponents)
+                            .ThenInclude(installedComponent => installedComponent.ComponentVersion)
+                                .ThenInclude(componentVersion => componentVersion.Component)
+                .Include(implementation => implementation.Environments)
+                    .ThenInclude(environment => environment.Servers)
+                        .ThenInclude(server => server.InstalledComponents)
+                            .ThenInclude(installedComponent => installedComponent.ComponentVersion)
+                                .ThenInclude(componentVersion => componentVersion.Component)
+                                    .ThenInclude(component => component.ComponentVersions)
                 .ToListAsync()
                 .ConfigureAwait(false);
 
@@ -53,12 +63,37 @@ namespace Pineapple.Core.Handler
                     {
                         foreach (var environment in implementation.Environments)
                         {
+                            bool isUpdateAvailable = false;
+                            if (environment.Servers.Count > 0)
+                            {
+                                foreach (var server in environment.Servers)
+                                {
+                                    if (server.InstalledComponents.Count > 0)
+                                    {
+                                        foreach (var installedComponent in server.InstalledComponents)
+                                        {
+                                            if (installedComponent.ComponentVersion != installedComponent.ComponentVersion.Component.GetLatestVersion())
+                                            {
+                                                isUpdateAvailable = true;
+                                                break;
+                                            }
+                                        }
+                                    }
+
+                                    if (isUpdateAvailable)
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
+
                             EnvironmentNodeDto environmentNode = new()
                             {
                                 Id = environment.Id,
                                 IsDeleted = environment.IsDeleted,
                                 Name = environment.Name,
-                                Description = environment.Description
+                                Description = environment.Description,
+                                IsUpdateAvailable = isUpdateAvailable
                             };
 
                             implementationNode.Environments.Add(environmentNode);
