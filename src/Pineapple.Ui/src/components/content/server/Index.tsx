@@ -190,7 +190,7 @@ const Server: React.VFC = () => {
       `${window['env'].API_URL}/implementations/${implementationId}/environments/${environmentId}/servers/${serverId}/components`,
       {
         body: JSON.stringify({
-          componentVersionId: uninstallComponentDialogWindowData.id,
+          serverComponentId: uninstallComponentDialogWindowData.id,
         }),
         headers: {
           'Content-Type': 'application/json',
@@ -237,7 +237,7 @@ const Server: React.VFC = () => {
       `${window['env'].API_URL}/implementations/${implementationId}/environments/${environmentId}/servers/${serverId}/software-applications`,
       {
         body: JSON.stringify({
-          softwareApplicationId: uninstallSoftwareApplicationDialogWindowData.id,
+          serverSoftwareApplicationId: uninstallSoftwareApplicationDialogWindowData.id,
         }),
         headers: {
           'Content-Type': 'application/json',

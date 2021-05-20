@@ -101,7 +101,7 @@ DELETE {{url}}/implementations/{{implementationId}}/environments/{{environmentId
 Content-Type: application/json
 
 {
-    "ComponentVersionId": ""
+    "ServerComponentId": ""
 }
 
 ### /implementations/{implementationId}/environments/{environmentId}/servers/{serverId}/software-applications
@@ -121,5 +121,5 @@ DELETE {{url}}/implementations/{{implementationId}}/environments/{{environmentId
 Content-Type: application/json
 
 {
-    "SoftwareApplicationId": ""
+    "ServerSoftwareApplicationId": ""
 }

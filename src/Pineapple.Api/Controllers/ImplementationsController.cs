@@ -320,7 +320,7 @@ namespace Pineapple.Api.Controllers
 
         [HttpDelete]
         [Route("{implementationId}/environments/{environmentId}/servers/{serverId}/components")]
-        public async Task<IActionResult> UninstallComponent(string implementationId, string environmentId, string serverId, [FromBody]UninstallComponentDto dto)
+        public async Task<IActionResult> UninstallServerComponent(string implementationId, string environmentId, string serverId, [FromBody]UninstallServerComponentDto dto)
         {
             if (implementationId is null || !Guid.TryParse(implementationId, out _))
             {
@@ -337,14 +337,14 @@ namespace Pineapple.Api.Controllers
 
             if (dto is null)
             {
-                return BadRequest("ComponentVersion uninstallation data has not been provided");
+                return BadRequest("ServerComponent uninstallation data has not been provided");
             }
-            if (dto.ComponentVersionId is null || !Guid.TryParse(dto.ComponentVersionId, out _))
+            if (dto.ServerComponentId is null || !Guid.TryParse(dto.ServerComponentId, out _))
             {
-                return BadRequest("ComponentVersion has not been provided");
+                return BadRequest("ServerComponent has not been provided");
             }
 
-            UninstallComponentCommand command = new(Guid.Parse(serverId), Guid.Parse(dto.ComponentVersionId));
+            UninstallServerComponentCommand command = new(Guid.Parse(dto.ServerComponentId));
             await mediator.Send(command).ConfigureAwait(false);
 
             return Ok();
@@ -408,7 +408,7 @@ namespace Pineapple.Api.Controllers
 
         [HttpDelete]
         [Route("{implementationId}/environments/{environmentId}/servers/{serverId}/software-applications")]
-        public async Task<IActionResult> UninstallSoftwareApplication(string implementationId, string environmentId, string serverId, [FromBody]UninstallSoftwareApplicationDto dto)
+        public async Task<IActionResult> UninstallServerSoftwareApplication(string implementationId, string environmentId, string serverId, [FromBody]UninstallServerSoftwareApplicationDto dto)
         {
             if (implementationId is null || !Guid.TryParse(implementationId, out _))
             {
@@ -425,14 +425,14 @@ namespace Pineapple.Api.Controllers
 
             if (dto is null)
             {
-                return BadRequest("SoftwareApplication uninstallation data has not been provided");
+                return BadRequest("ServerSoftwareApplication uninstallation data has not been provided");
             }
-            if (dto.SoftwareApplicationId is null || !Guid.TryParse(dto.SoftwareApplicationId, out _))
+            if (dto.ServerSoftwareApplicationId is null || !Guid.TryParse(dto.ServerSoftwareApplicationId, out _))
             {
-                return BadRequest("SoftwareApplication has not been provided");
+                return BadRequest("ServerSoftwareApplication has not been provided");
             }
 
-            UninstallSoftwareApplicationCommand command = new(Guid.Parse(serverId), Guid.Parse(dto.SoftwareApplicationId));
+            UninstallServerSoftwareApplicationCommand command = new(Guid.Parse(dto.ServerSoftwareApplicationId));
             await mediator.Send(command).ConfigureAwait(false);
 
             return Ok();

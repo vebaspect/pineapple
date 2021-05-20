@@ -130,7 +130,7 @@ const InstalledComponentsList: React.FC<InstalledComponentsListProps> = ({ isDat
                   <IconButton
                     color="secondary"
                     size="small"
-                    onClick={() => onUninstall(installedComponent.componentVersionId, installedComponent.componentName)}
+                    onClick={() => onUninstall(installedComponent.id, installedComponent.componentName)}
                   >
                     <DeleteIcon />
                   </IconButton>

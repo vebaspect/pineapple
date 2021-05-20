@@ -57,7 +57,7 @@ const InstalledSoftwareApplicationsList: React.FC<InstalledSoftwareApplicationsL
                   <IconButton
                     color="secondary"
                     size="small"
-                    onClick={() => onUninstall(installedSoftwareApplication.softwareApplicationId, installedSoftwareApplication.softwareApplicationName)}
+                    onClick={() => onUninstall(installedSoftwareApplication.id, installedSoftwareApplication.softwareApplicationName)}
                   >
                     <DeleteIcon />
                   </IconButton>
