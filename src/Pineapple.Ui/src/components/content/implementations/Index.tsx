@@ -21,7 +21,7 @@ import List from './List';
 
 const useStyles = makeStyles(() =>
   createStyles({
-    add: {
+    create: {
       backgroundColor: '#4caf50',
       color: '#fff',
     },
@@ -152,7 +152,7 @@ const Implementations: React.VFC = () => {
             textAlign="right"
           >
             <Button
-              className={styles.add}
+              className={styles.create}
               size="small"
               startIcon={<AddIcon />}
               variant="contained"

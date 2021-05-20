@@ -6,9 +6,9 @@ namespace Pineapple.Core.Domain
     public static class AvailableLogCategories
     {
         /// <summary>
-        /// Dodanie encji.
+        /// Stworzenie encji.
         /// </summary>
-        public const string AddEntity = "AddEntity";
+        public const string CreateEntity = "CreateEntity";
 
         /// <summary>
         /// Usunięcie encji.

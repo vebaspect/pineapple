@@ -48,7 +48,7 @@ namespace Pineapple.Core.Handler
 
             var environmentLogId = Guid.NewGuid();
 
-            var environmentLog = Domain.Entities.EnvironmentLog.Create(environmentLogId, AvailableLogCategories.AddEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), environmentId); // Mock!
+            var environmentLog = Domain.Entities.EnvironmentLog.Create(environmentLogId, AvailableLogCategories.CreateEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), environmentId); // Mock!
 
             await databaseContext.Logs.AddAsync(environmentLog).ConfigureAwait(false);
 

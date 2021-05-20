@@ -45,7 +45,7 @@ namespace Pineapple.Core.Handler
 
             var userLogId = Guid.NewGuid();
 
-            var userLog = Domain.Entities.UserLog.Create(userLogId, AvailableLogCategories.AddEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), managerId); // Mock!
+            var userLog = Domain.Entities.UserLog.Create(userLogId, AvailableLogCategories.CreateEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), managerId); // Mock!
 
             await databaseContext.Logs.AddAsync(userLog).ConfigureAwait(false);
 

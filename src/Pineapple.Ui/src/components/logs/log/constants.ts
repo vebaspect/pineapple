@@ -23,7 +23,7 @@ export const LOG_TYPE__SOFTWARE_APPLICATION = 'SoftwareApplicationLog';
 // Typ logu: log dotyczący użytkownika.
 export const LOG_TYPE__USER = 'UserLog';
 
-// Kategoria logu: dodanie encji.
-export const LOG_CATEGORY__ADD_ENTITY = 'AddEntity';
+// Kategoria logu: stworzenie encji.
+export const LOG_CATEGORY__CREATE_ENTITY = 'CreateEntity';
 // Kategoria logu: usunięcie encji.
 export const LOG_CATEGORY__REMOVE_ENTITY = 'RemoveEntity';

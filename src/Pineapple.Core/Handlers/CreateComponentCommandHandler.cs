@@ -33,7 +33,7 @@ namespace Pineapple.Core.Handler
 
             var componentLogId = Guid.NewGuid();
 
-            var componentLog = Domain.Entities.ComponentLog.Create(componentLogId, AvailableLogCategories.AddEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), componentId); // Mock!
+            var componentLog = Domain.Entities.ComponentLog.Create(componentLogId, AvailableLogCategories.CreateEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), componentId); // Mock!
 
             await databaseContext.Logs.AddAsync(componentLog).ConfigureAwait(false);
 

@@ -22,7 +22,7 @@ import {
   LOG_TYPE__SERVER_SOFTWARE_APPLICATION,
   LOG_TYPE__SOFTWARE_APPLICATION,
   LOG_TYPE__USER,
-  LOG_CATEGORY__ADD_ENTITY,
+  LOG_CATEGORY__CREATE_ENTITY,
   LOG_CATEGORY__REMOVE_ENTITY,
 } from './constants';
 
@@ -80,7 +80,7 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
   switch (type) {
     case LOG_TYPE__COMPONENT: {
       switch (category) {
-        case LOG_CATEGORY__ADD_ENTITY:
+        case LOG_CATEGORY__CREATE_ENTITY:
           return (
             <>
               Użytkownik
@@ -176,7 +176,7 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
     }
     case LOG_TYPE__COMPONENT_TYPE: {
       switch (category) {
-        case LOG_CATEGORY__ADD_ENTITY:
+        case LOG_CATEGORY__CREATE_ENTITY:
           return (
             <>
               Użytkownik
@@ -246,7 +246,7 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
     }
     case LOG_TYPE__COMPONENT_VERSION: {
       switch (category) {
-        case LOG_CATEGORY__ADD_ENTITY:
+        case LOG_CATEGORY__CREATE_ENTITY:
           return (
             <>
               Użytkownik
@@ -342,7 +342,7 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
     }
     case LOG_TYPE__ENVIRONMENT: {
       switch (category) {
-        case LOG_CATEGORY__ADD_ENTITY:
+        case LOG_CATEGORY__CREATE_ENTITY:
           return (
             <>
               Użytkownik
@@ -438,7 +438,7 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
     }
     case LOG_TYPE__IMPLEMENTATION: {
       switch (category) {
-        case LOG_CATEGORY__ADD_ENTITY:
+        case LOG_CATEGORY__CREATE_ENTITY:
           return (
             <>
               Użytkownik
@@ -508,7 +508,7 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
     }
     case LOG_TYPE__OPERATING_SYSTEM: {
       switch (category) {
-        case LOG_CATEGORY__ADD_ENTITY:
+        case LOG_CATEGORY__CREATE_ENTITY:
           return (
             <>
               Użytkownik
@@ -578,7 +578,7 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
     }
     case LOG_TYPE__PRODUCT: {
       switch (category) {
-        case LOG_CATEGORY__ADD_ENTITY:
+        case LOG_CATEGORY__CREATE_ENTITY:
           return (
             <>
               Użytkownik
@@ -648,7 +648,7 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
     }
     case LOG_TYPE__SERVER: {
       switch (category) {
-        case LOG_CATEGORY__ADD_ENTITY:
+        case LOG_CATEGORY__CREATE_ENTITY:
           return (
             <>
               Użytkownik
@@ -744,7 +744,7 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
     }
     case LOG_TYPE__SERVER_COMPONENT: {
       switch (category) {
-        case LOG_CATEGORY__ADD_ENTITY:
+        case LOG_CATEGORY__CREATE_ENTITY:
           return (
             <>
               Użytkownik
@@ -840,7 +840,7 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
     }
     case LOG_TYPE__SERVER_SOFTWARE_APPLICATION: {
       switch (category) {
-        case LOG_CATEGORY__ADD_ENTITY:
+        case LOG_CATEGORY__CREATE_ENTITY:
           return (
             <>
               Użytkownik
@@ -936,7 +936,7 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
     }
     case LOG_TYPE__SOFTWARE_APPLICATION: {
       switch (category) {
-        case LOG_CATEGORY__ADD_ENTITY:
+        case LOG_CATEGORY__CREATE_ENTITY:
           return (
             <>
               Użytkownik
@@ -1006,7 +1006,7 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
     }
     case LOG_TYPE__USER: {
       switch (category) {
-        case LOG_CATEGORY__ADD_ENTITY:
+        case LOG_CATEGORY__CREATE_ENTITY:
           return (
             <>
               Użytkownik

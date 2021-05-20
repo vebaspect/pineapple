@@ -77,7 +77,7 @@ namespace Pineapple.Core.Handler
 
             var serverSoftwareApplicationLogId = Guid.NewGuid();
 
-            var serverSoftwareApplicationLog = Domain.Entities.ServerSoftwareApplicationLog.Create(serverSoftwareApplicationLogId, AvailableLogCategories.AddEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), server.Id, softwareApplication.Id); // Mock!
+            var serverSoftwareApplicationLog = Domain.Entities.ServerSoftwareApplicationLog.Create(serverSoftwareApplicationLogId, AvailableLogCategories.CreateEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), server.Id, softwareApplication.Id); // Mock!
 
             await databaseContext.Logs.AddAsync(serverSoftwareApplicationLog, cancellationToken).ConfigureAwait(false);
 

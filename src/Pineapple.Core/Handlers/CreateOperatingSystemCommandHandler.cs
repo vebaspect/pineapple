@@ -45,7 +45,7 @@ namespace Pineapple.Core.Handler
 
             var operatingSystemLogId = Guid.NewGuid();
 
-            var operatingSystemLog = Domain.Entities.OperatingSystemLog.Create(operatingSystemLogId, AvailableLogCategories.AddEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), operatingSystemId); // Mock!
+            var operatingSystemLog = Domain.Entities.OperatingSystemLog.Create(operatingSystemLogId, AvailableLogCategories.CreateEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), operatingSystemId); // Mock!
 
             await databaseContext.Logs.AddAsync(operatingSystemLog).ConfigureAwait(false);
 

@@ -37,7 +37,7 @@ import {
   LOG_TYPE__SERVER_SOFTWARE_APPLICATION,
   LOG_TYPE__SOFTWARE_APPLICATION,
   LOG_TYPE__USER,
-  LOG_CATEGORY__ADD_ENTITY,
+  LOG_CATEGORY__CREATE_ENTITY,
   LOG_CATEGORY__REMOVE_ENTITY,
 } from './constants';
 
@@ -105,7 +105,7 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: '#af52bf',
       color: '#fff',
     },
-    addEntity: {
+    createEntity: {
       backgroundColor: '#4caf50',
       color: '#fff',
       height: theme.spacing(2.75),
@@ -184,9 +184,9 @@ const Icon: React.FC<IconProps> = ({ type, category }: IconProps) => {
   }
 
   switch (category) {
-    case LOG_CATEGORY__ADD_ENTITY:
+    case LOG_CATEGORY__CREATE_ENTITY:
       categoryIcon = <AddIcon style={{ fontSize: 18 }} />;
-      categoryClassName = styles.addEntity;
+      categoryClassName = styles.createEntity;
       break;
     case LOG_CATEGORY__REMOVE_ENTITY:
       categoryIcon = <DeleteIcon style={{ fontSize: 18 }} />;

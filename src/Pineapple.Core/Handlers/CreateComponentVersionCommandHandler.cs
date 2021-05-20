@@ -52,7 +52,7 @@ namespace Pineapple.Core.Handler
 
             var componentVersionLogId = Guid.NewGuid();
 
-            var componentVersionLog = Domain.Entities.ComponentVersionLog.Create(componentVersionLogId, AvailableLogCategories.AddEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), componentVersionId); // Mock!
+            var componentVersionLog = Domain.Entities.ComponentVersionLog.Create(componentVersionLogId, AvailableLogCategories.CreateEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), componentVersionId); // Mock!
 
             await databaseContext.Logs.AddAsync(componentVersionLog).ConfigureAwait(false);
 
