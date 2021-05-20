@@ -288,7 +288,7 @@ namespace Pineapple.Api.Controllers
 
         [HttpPost]
         [Route("{implementationId}/environments/{environmentId}/servers/{serverId}/components")]
-        public async Task<IActionResult> InstallComponent(string implementationId, string environmentId, string serverId, [FromBody]InstallComponentDto dto)
+        public async Task<IActionResult> InstallServerComponent(string implementationId, string environmentId, string serverId, [FromBody]InstallServerComponentDto dto)
         {
             if (implementationId is null || !Guid.TryParse(implementationId, out _))
             {
@@ -312,7 +312,7 @@ namespace Pineapple.Api.Controllers
                 return BadRequest("ComponentVersion has not been provided");
             }
 
-            InstallComponentCommand command = new(Guid.Parse(serverId), Guid.Parse(dto.ComponentVersionId));
+            InstallServerComponentCommand command = new(Guid.Parse(serverId), Guid.Parse(dto.ComponentVersionId));
             await mediator.Send(command).ConfigureAwait(false);
 
             return Ok();
@@ -376,7 +376,7 @@ namespace Pineapple.Api.Controllers
 
         [HttpPost]
         [Route("{implementationId}/environments/{environmentId}/servers/{serverId}/software-applications")]
-        public async Task<IActionResult> InstallSoftwareApplication(string implementationId, string environmentId, string serverId, [FromBody]InstallSoftwareApplicationDto dto)
+        public async Task<IActionResult> InstallServerSoftwareApplication(string implementationId, string environmentId, string serverId, [FromBody]InstallServerSoftwareApplicationDto dto)
         {
             if (implementationId is null || !Guid.TryParse(implementationId, out _))
             {
@@ -400,7 +400,7 @@ namespace Pineapple.Api.Controllers
                 return BadRequest("SoftwareApplication has not been provided");
             }
 
-            InstallSoftwareApplicationCommand command = new(Guid.Parse(serverId), Guid.Parse(dto.SoftwareApplicationId));
+            InstallServerSoftwareApplicationCommand command = new(Guid.Parse(serverId), Guid.Parse(dto.SoftwareApplicationId));
             await mediator.Send(command).ConfigureAwait(false);
 
             return Ok();

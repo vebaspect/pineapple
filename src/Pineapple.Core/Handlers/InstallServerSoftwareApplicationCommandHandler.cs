@@ -10,11 +10,11 @@ using Pineapple.Core.Storage.Database;
 
 namespace Pineapple.Core.Handler
 {
-    public class InstallSoftwareApplicationCommandHandler : AsyncRequestHandler<InstallSoftwareApplicationCommand>, ICommandHandler
+    public class InstallServerSoftwareApplicationCommandHandler : AsyncRequestHandler<InstallServerSoftwareApplicationCommand>, ICommandHandler
     {
         private readonly DatabaseContextFactory databaseContextFactory;
 
-        public InstallSoftwareApplicationCommandHandler(DatabaseContextFactory databaseContextFactory)
+        public InstallServerSoftwareApplicationCommandHandler(DatabaseContextFactory databaseContextFactory)
         {
             if (databaseContextFactory is null)
             {
@@ -24,7 +24,7 @@ namespace Pineapple.Core.Handler
             this.databaseContextFactory = databaseContextFactory;
         }
 
-        protected override async Task<Task> Handle(InstallSoftwareApplicationCommand request, CancellationToken cancellationToken)
+        protected override async Task<Task> Handle(InstallServerSoftwareApplicationCommand request, CancellationToken cancellationToken)
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
 

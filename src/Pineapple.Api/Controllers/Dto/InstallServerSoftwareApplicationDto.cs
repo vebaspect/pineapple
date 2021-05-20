@@ -1,6 +1,6 @@
 namespace Pineapple.Api.Controllers.Dto
 {
-    public class InstallSoftwareApplicationDto
+    public class InstallServerSoftwareApplicationDto
     {
         /// <summary>
         /// Identyfikator oprogramowania.

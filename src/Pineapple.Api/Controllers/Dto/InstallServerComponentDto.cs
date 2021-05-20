@@ -1,6 +1,6 @@
 namespace Pineapple.Api.Controllers.Dto
 {
-    public class InstallComponentDto
+    public class InstallServerComponentDto
     {
         /// <summary>
         /// Identyfikator wersji komponentu.

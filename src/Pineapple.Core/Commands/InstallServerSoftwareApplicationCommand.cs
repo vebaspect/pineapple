@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Pineapple.Core.Commands
 {
-    public class InstallSoftwareApplicationCommand : IRequest, ICommand
+    public class InstallServerSoftwareApplicationCommand : IRequest, ICommand
     {
         /// <summary>
         /// Identyfikator serwera.
@@ -15,7 +15,7 @@ namespace Pineapple.Core.Commands
         /// </summary>
         public Guid SoftwareApplicationId { get; }
 
-        public InstallSoftwareApplicationCommand(Guid serverId, Guid softwareApplicationId)
+        public InstallServerSoftwareApplicationCommand(Guid serverId, Guid softwareApplicationId)
         {
             ServerId = serverId;
             SoftwareApplicationId = softwareApplicationId;
