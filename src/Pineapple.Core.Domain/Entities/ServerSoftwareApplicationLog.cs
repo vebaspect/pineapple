@@ -10,12 +10,12 @@ namespace Pineapple.Core.Domain.Entities
         /// <summary>
         /// Identyfikator oprogramowania.
         /// </summary>
-        public Guid ServerSoftwareApplicationId { get; protected set; }
+        public Guid ServerSoftwareApplicationId { get; private set; }
 
         /// <summary>
         /// Oprogramowanie.
         /// </summary>
-        public SoftwareApplication ServerSoftwareApplication { get; protected set; }
+        public SoftwareApplication ServerSoftwareApplication { get; internal set; }
 
         private ServerSoftwareApplicationLog(Guid id, string category, Guid ownerId, Guid serverId, Guid serverSoftwareApplicationId)
             : base(id, category, ownerId, serverId)

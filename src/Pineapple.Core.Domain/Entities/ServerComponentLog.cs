@@ -10,12 +10,12 @@ namespace Pineapple.Core.Domain.Entities
         /// <summary>
         /// Identyfikator wersji komponentu.
         /// </summary>
-        public Guid ServerComponentVersionId { get; protected set; }
+        public Guid ServerComponentVersionId { get; private set; }
 
         /// <summary>
         /// Wersja komponentu.
         /// </summary>
-        public ComponentVersion ServerComponentVersion { get; protected set; }
+        public ComponentVersion ServerComponentVersion { get; internal set; }
 
         private ServerComponentLog(Guid id, string category, Guid ownerId, Guid serverId, Guid serverComponentVersionId)
             : base(id, category, ownerId, serverId)
