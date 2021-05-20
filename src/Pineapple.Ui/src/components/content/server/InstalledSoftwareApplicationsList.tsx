@@ -42,7 +42,7 @@ const InstalledSoftwareApplicationsList: React.FC<InstalledSoftwareApplicationsL
       <TableBody>
         {
           data?.map((installedSoftwareApplication, index) => (
-            <TableRow key={installedSoftwareApplication.softwareApplicationId}>
+            <TableRow key={installedSoftwareApplication.id}>
               <TableCell>{index + 1}.</TableCell>
               <TableCell>
                 <Link

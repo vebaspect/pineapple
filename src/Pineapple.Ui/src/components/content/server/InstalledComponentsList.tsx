@@ -74,7 +74,7 @@ const InstalledComponentsList: React.FC<InstalledComponentsListProps> = ({ isDat
       <TableBody>
         {
           data?.map((installedComponent, index) => (
-            <TableRow key={`${installedComponent.productId}_${installedComponent.componentId}_${installedComponent.componentVersionId}`}>
+            <TableRow key={installedComponent.id}>
               <TableCell>{index + 1}.</TableCell>
               <TableCell>
                 <Link

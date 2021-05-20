@@ -447,6 +447,7 @@ namespace Pineapple.Core.Mappers
                     .Select(installedComponent =>
                     {
                         return new InstalledComponentDto(
+                            installedComponent.Id,
                             installedComponent.ComponentVersion.Component.ProductId,
                             installedComponent.ComponentVersion.Component.Product.Name,
                             installedComponent.ComponentVersion.ComponentId,
@@ -463,6 +464,7 @@ namespace Pineapple.Core.Mappers
                     .Select(installedSoftwareApplication =>
                     {
                         return new InstalledSoftwareApplicationDto(
+                            installedSoftwareApplication.Id,
                             installedSoftwareApplication.SoftwareApplicationId,
                             installedSoftwareApplication.SoftwareApplication.Name
                         );

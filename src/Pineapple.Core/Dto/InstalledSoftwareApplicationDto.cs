@@ -8,6 +8,11 @@ namespace Pineapple.Core.Dto
     public class InstalledSoftwareApplicationDto : IDto
     {
         /// <summary>
+        /// Identyfikator.
+        /// </summary>
+        public Guid Id { get; }
+
+        /// <summary>
         /// Identyfikator oprogramowania.
         /// </summary>
         public Guid SoftwareApplicationId { get; }
@@ -17,8 +22,9 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public string SoftwareApplicationName { get; }
 
-        public InstalledSoftwareApplicationDto(Guid softwareApplicationId, string softwareApplicationName)
+        public InstalledSoftwareApplicationDto(Guid id, Guid softwareApplicationId, string softwareApplicationName)
         {
+            Id = id;
             SoftwareApplicationId = softwareApplicationId;
             SoftwareApplicationName = softwareApplicationName;
         }

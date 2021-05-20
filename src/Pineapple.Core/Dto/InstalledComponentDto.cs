@@ -8,6 +8,11 @@ namespace Pineapple.Core.Dto
     public class InstalledComponentDto : IDto
     {
         /// <summary>
+        /// Identyfikator.
+        /// </summary>
+        public Guid Id { get; }
+
+        /// <summary>
         /// Identyfikator produktu.
         /// </summary>
         public Guid ProductId { get; }
@@ -42,8 +47,9 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public bool IsUpdateAvailable { get; }
 
-        public InstalledComponentDto(Guid productId, string productName, Guid componentId, string componentName, Guid componentVersionId, string componentVersionNumber, bool isUpdateAvailable)
+        public InstalledComponentDto(Guid id, Guid productId, string productName, Guid componentId, string componentName, Guid componentVersionId, string componentVersionNumber, bool isUpdateAvailable)
         {
+            Id = id;
             ProductId = productId;
             ProductName = productName;
             ComponentId = componentId;

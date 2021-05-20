@@ -20,6 +20,8 @@ export interface InstalledComponentsListProps {
   isDataFetched: boolean,
   // Lista zainstalowanych komponentów.
   data: {
+    // Identyfikator.
+    id: string,
     // Identyfikator produktu.
     productId: string,
     // Nazwa produktu.
@@ -46,6 +48,8 @@ export interface InstalledSoftwareApplicationsListProps {
   isDataFetched: boolean,
   // Lista zainstalowanego oprogramowania.
   data: {
+    // Identyfikator.
+    id: string,
     // Identyfikator oprogramowania.
     softwareApplicationId: string,
     // Nazwa oprogramowania.
