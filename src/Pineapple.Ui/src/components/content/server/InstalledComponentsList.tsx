@@ -47,7 +47,7 @@ const useStyles = makeStyles(() =>
   }),
 );
 
-const InstalledComponentsList: React.FC<InstalledComponentsListProps> = ({ isDataFetched, data, onEdit, onUninstall }: InstalledComponentsListProps) => {
+const InstalledComponentsList: React.FC<InstalledComponentsListProps> = ({ isDataFetched, data, onUpdate, onUninstall }: InstalledComponentsListProps) => {
   const styles = useStyles();
 
   if (!isDataFetched) {
@@ -121,7 +121,7 @@ const InstalledComponentsList: React.FC<InstalledComponentsListProps> = ({ isDat
                 <Tooltip title="Edytuj">
                   <IconButton
                     size="small"
-                    onClick={() => onEdit(installedComponent.componentVersionId)}
+                    onClick={() => onUpdate(installedComponent.id)}
                   >
                     <EditIcon />
                   </IconButton>

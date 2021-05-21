@@ -37,8 +37,8 @@ export interface InstalledComponentsListProps {
     // Flaga określająca, czy dostępna jest nowsza wersja komponentu.
     isUpdateAvailable: boolean,
   }[],
-  // Zdarzenie edycji komponentu.
-  onEdit: (id: string) => void,
+  // Zdarzenie aktualizacji komponentu.
+  onUpdate: (id: string) => void,
   // Zdarzenie odinstalowania komponentu.
   onUninstall: (id: string, name: string) => void,
 }
