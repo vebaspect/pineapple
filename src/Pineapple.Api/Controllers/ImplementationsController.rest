@@ -101,6 +101,14 @@ Content-Type: application/json
 }
 
 ### /implementations/{implementationId}/environments/{environmentId}/servers/{serverId}/components/{serverComponentId}
+PATCH {{url}}/implementations/{{implementationId}}/environments/{{environmentId}}/servers/{{serverId}}/components/{{serverComponentId}}
+Content-Type: application/json
+
+{
+    "ComponentVersionId": ""
+}
+
+### /implementations/{implementationId}/environments/{environmentId}/servers/{serverId}/components/{serverComponentId}
 DELETE {{url}}/implementations/{{implementationId}}/environments/{{environmentId}}/servers/{{serverId}}/components/{{serverComponentId}}
 Content-Type: application/json
 

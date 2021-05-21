@@ -318,6 +318,42 @@ namespace Pineapple.Api.Controllers
             return Ok();
         }
 
+        [HttpPatch]
+        [Route("{implementationId}/environments/{environmentId}/servers/{serverId}/components/{serverComponentId}")]
+        public async Task<IActionResult> InstallServerComponent(string implementationId, string environmentId, string serverId, string serverComponentId, [FromBody]UpdateServerComponentDto dto)
+        {
+            if (implementationId is null || !Guid.TryParse(implementationId, out _))
+            {
+                return BadRequest("Implementation identifier has not been provided");
+            }
+            if (environmentId is null || !Guid.TryParse(environmentId, out _))
+            {
+                return BadRequest("Environment identifier has not been provided");
+            }
+            if (serverId is null || !Guid.TryParse(serverId, out _))
+            {
+                return BadRequest("Server identifier has not been provided");
+            }
+            if (serverComponentId is null || !Guid.TryParse(serverComponentId, out _))
+            {
+                return BadRequest("ServerComponent identifier has not been provided");
+            }
+
+            if (dto is null)
+            {
+                return BadRequest("ComponentVersion installation data has not been provided");
+            }
+            if (dto.ComponentVersionId is null || !Guid.TryParse(dto.ComponentVersionId, out _))
+            {
+                return BadRequest("ComponentVersion has not been provided");
+            }
+
+            UpdateServerComponentCommand command = new(Guid.Parse(serverComponentId), Guid.Parse(dto.ComponentVersionId));
+            await mediator.Send(command).ConfigureAwait(false);
+
+            return Ok();
+        }
+
         [HttpDelete]
         [Route("{implementationId}/environments/{environmentId}/servers/{serverId}/components/{serverComponentId}")]
         public async Task<IActionResult> UninstallServerComponent(string implementationId, string environmentId, string serverId, string serverComponentId)
@@ -457,7 +493,7 @@ namespace Pineapple.Api.Controllers
         }
 
         [HttpGet]
-        [Route("{implementationId}/environments/{environmentId}/servers/{serverId}/components/{serverSoftwareApplicationId}")]
+        [Route("{implementationId}/environments/{environmentId}/servers/{serverId}/software-applications/{serverSoftwareApplicationId}")]
         public async Task<IActionResult> GetServerSoftwareApplication(string implementationId, string environmentId, string serverId, string serverSoftwareApplicationId)
         {
             if (implementationId is null || !Guid.TryParse(implementationId, out _))
