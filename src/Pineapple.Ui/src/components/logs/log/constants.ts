@@ -25,5 +25,7 @@ export const LOG_TYPE__USER = 'UserLog';
 
 // Kategoria logu: stworzenie encji.
 export const LOG_CATEGORY__CREATE_ENTITY = 'CreateEntity';
+// Kategoria logu: zmodyfikowanie encji.
+export const LOG_CATEGORY__MODIFY_ENTITY = 'ModifyEntity';
 // Kategoria logu: usunięcie encji.
 export const LOG_CATEGORY__REMOVE_ENTITY = 'RemoveEntity';

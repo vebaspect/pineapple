@@ -28,6 +28,19 @@ namespace Pineapple.Core.Handler
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
 
+            var componentVersion = await databaseContext
+                .ComponentVersions
+                .FirstOrDefaultAsync(componentVersion =>
+                    componentVersion.Id == request.ComponentVersionId,
+                    cancellationToken: cancellationToken
+                )
+                .ConfigureAwait(false);
+
+            if (componentVersion is null)
+            {
+                throw new ComponentVersionNotFoundException($"ComponentVersion {request.ComponentVersionId} has not been found");
+            }
+
             var serverComponent = await databaseContext
                 .ServerComponents
                 .FirstOrDefaultAsync(serverComponent =>
@@ -43,11 +56,11 @@ namespace Pineapple.Core.Handler
 
             serverComponent.UpdateComponent(request.ComponentVersionId);
 
-            // var serverComponentLogId = Guid.NewGuid();
+            var serverComponentLogId = Guid.NewGuid();
 
-            // var serverComponentLog = Domain.Entities.ServerComponentLog.Create(serverComponentLogId, AvailableLogCategories.RemoveEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), serverComponent.ServerId, serverComponent.ComponentVersionId); // Mock!
+            var serverComponentLog = Domain.Entities.ServerComponentLog.Create(serverComponentLogId, AvailableLogCategories.ModifyEntity, Guid.Parse("00000000-0000-0000-0000-000000000000"), serverComponent.ServerId, serverComponent.ComponentVersionId); // Mock!
 
-            // await databaseContext.Logs.AddAsync(serverComponentLog, cancellationToken).ConfigureAwait(false);
+            await databaseContext.Logs.AddAsync(serverComponentLog, cancellationToken).ConfigureAwait(false);
 
             databaseContext.SaveChanges();
 

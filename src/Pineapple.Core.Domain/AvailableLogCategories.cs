@@ -11,6 +11,11 @@ namespace Pineapple.Core.Domain
         public const string CreateEntity = "CreateEntity";
 
         /// <summary>
+        /// Zmodyfikowanie encji.
+        /// </summary>
+        public const string ModifyEntity = "ModifyEntity";
+
+        /// <summary>
         /// Usunięcie encji.
         /// </summary>
         public const string RemoveEntity = "RemoveEntity";

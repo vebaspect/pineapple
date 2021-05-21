@@ -23,6 +23,7 @@ import {
   LOG_TYPE__SOFTWARE_APPLICATION,
   LOG_TYPE__USER,
   LOG_CATEGORY__CREATE_ENTITY,
+  LOG_CATEGORY__MODIFY_ENTITY,
   LOG_CATEGORY__REMOVE_ENTITY,
 } from './constants';
 
@@ -761,6 +762,51 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 </Link>
               </Box>
               zainstalował komponent
+              <Box
+                component="span"
+                mx={0.5}
+              >
+                <Link
+                  className={styles.serverComponent}
+                  component={RouterLink}
+                  to={`/products/${entity.details.serverComponent.productId}/components/${entity.details.serverComponent.componentId}/component-versions/${entity.details.serverComponent.componentVersionId}`}
+                >
+                  {`«${entity.details.serverComponent.componentVersionNumber}»`}
+                </Link>
+              </Box>
+              na serwerze
+              <Box
+                component="span"
+                ml={0.5}
+              >
+                <Link
+                  className={styles.server}
+                  component={RouterLink}
+                  to={`/implementations/${parentEntities[1].id}/environments/${parentEntities[0].id}/servers/${entity.id}`}
+                >
+                  {`«${entity.name}»`}
+                </Link>
+              </Box>
+              .
+            </>
+          );
+        case LOG_CATEGORY__MODIFY_ENTITY:
+          return (
+            <>
+              Użytkownik
+              <Box
+                component="span"
+                mx={0.5}
+              >
+                <Link
+                  className={styles.owner}
+                  component={RouterLink}
+                  to={`/users/${ownerId}`}
+                >
+                  {`«${ownerFullName}»`}
+                </Link>
+              </Box>
+              zaktualizował komponent
               <Box
                 component="span"
                 mx={0.5}

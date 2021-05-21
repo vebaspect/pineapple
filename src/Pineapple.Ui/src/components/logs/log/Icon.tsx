@@ -15,6 +15,7 @@ import BuildIcon from '@material-ui/icons/Build';
 import CategoryIcon from '@material-ui/icons/Category';
 import DeleteIcon from '@material-ui/icons/Delete';
 import DesktopWindowsIcon from '@material-ui/icons/DesktopWindows';
+import EditIcon from '@material-ui/icons/Edit';
 import ExtensionIcon from '@material-ui/icons/Extension';
 import NewReleasesIcon from '@material-ui/icons/NewReleases';
 import PersonIcon from '@material-ui/icons/Person';
@@ -38,6 +39,7 @@ import {
   LOG_TYPE__SOFTWARE_APPLICATION,
   LOG_TYPE__USER,
   LOG_CATEGORY__CREATE_ENTITY,
+  LOG_CATEGORY__MODIFY_ENTITY,
   LOG_CATEGORY__REMOVE_ENTITY,
 } from './constants';
 
@@ -107,6 +109,12 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     createEntity: {
       backgroundColor: '#4caf50',
+      color: '#fff',
+      height: theme.spacing(2.75),
+      width: theme.spacing(2.75),
+    },
+    modifyEntity: {
+      backgroundColor: '#ffc107',
       color: '#fff',
       height: theme.spacing(2.75),
       width: theme.spacing(2.75),
@@ -187,6 +195,10 @@ const Icon: React.FC<IconProps> = ({ type, category }: IconProps) => {
     case LOG_CATEGORY__CREATE_ENTITY:
       categoryIcon = <AddIcon style={{ fontSize: 18 }} />;
       categoryClassName = styles.createEntity;
+      break;
+    case LOG_CATEGORY__MODIFY_ENTITY:
+      categoryIcon = <EditIcon style={{ fontSize: 18 }} />;
+      categoryClassName = styles.modifyEntity;
       break;
     case LOG_CATEGORY__REMOVE_ENTITY:
       categoryIcon = <DeleteIcon style={{ fontSize: 18 }} />;
