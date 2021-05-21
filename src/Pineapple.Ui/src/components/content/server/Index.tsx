@@ -187,14 +187,8 @@ const Server: React.VFC = () => {
 
   const uninstallComponentConfirmed = async () => {
     await fetch(
-      `${window['env'].API_URL}/implementations/${implementationId}/environments/${environmentId}/servers/${serverId}/components`,
+      `${window['env'].API_URL}/implementations/${implementationId}/environments/${environmentId}/servers/${serverId}/components/${uninstallComponentDialogWindowData.id}`,
       {
-        body: JSON.stringify({
-          serverComponentId: uninstallComponentDialogWindowData.id,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
         method: 'DELETE',
       },
     )
@@ -234,14 +228,8 @@ const Server: React.VFC = () => {
 
   const uninstallSoftwareApplicationConfirmed = async () => {
     await fetch(
-      `${window['env'].API_URL}/implementations/${implementationId}/environments/${environmentId}/servers/${serverId}/software-applications`,
+      `${window['env'].API_URL}/implementations/${implementationId}/environments/${environmentId}/servers/${serverId}/software-applications/${uninstallSoftwareApplicationDialogWindowData.id}`,
       {
-        body: JSON.stringify({
-          serverSoftwareApplicationId: uninstallSoftwareApplicationDialogWindowData.id,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
         method: 'DELETE',
       },
     )

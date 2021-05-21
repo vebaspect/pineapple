@@ -7,6 +7,10 @@
 @environmentId = 
 # Identyfikator serwera.
 @serverId = 
+# Identyfikator komponentu zainstalowanego na serwerze.
+@serverComponentId = 
+# Identyfikator oprogramowania zainstalowanego na serwerze.
+@serverSoftwareApplicationId = 
 
 # Liczba elementów, które mają zostać zwrócone.
 @count = 
@@ -96,13 +100,9 @@ Content-Type: application/json
     "ComponentVersionId": ""
 }
 
-### /implementations/{implementationId}/environments/{environmentId}/servers/{serverId}/components
-DELETE {{url}}/implementations/{{implementationId}}/environments/{{environmentId}}/servers/{{serverId}}/components
+### /implementations/{implementationId}/environments/{environmentId}/servers/{serverId}/components/{serverComponentId}
+DELETE {{url}}/implementations/{{implementationId}}/environments/{{environmentId}}/servers/{{serverId}}/components/{{serverComponentId}}
 Content-Type: application/json
-
-{
-    "ServerComponentId": ""
-}
 
 ### /implementations/{implementationId}/environments/{environmentId}/servers/{serverId}/software-applications
 GET {{url}}/implementations/{{implementationId}}/environments/{{environmentId}}/servers/{{serverId}}/software-applications
@@ -116,10 +116,6 @@ Content-Type: application/json
     "SoftwareApplicationId": ""
 }
 
-### /implementations/{implementationId}/environments/{environmentId}/servers/{serverId}/software-applications
-DELETE {{url}}/implementations/{{implementationId}}/environments/{{environmentId}}/servers/{{serverId}}/software-applications
+### /implementations/{implementationId}/environments/{environmentId}/servers/{serverId}/software-applications/{serverSoftwareApplicationId}
+DELETE {{url}}/implementations/{{implementationId}}/environments/{{environmentId}}/servers/{{serverId}}/software-applications/{{serverSoftwareApplicationId}}
 Content-Type: application/json
-
-{
-    "ServerSoftwareApplicationId": ""
-}
