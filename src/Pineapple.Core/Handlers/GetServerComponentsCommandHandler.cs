@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Pineapple.Core.Commands;
 using Pineapple.Core.Dto;
 using Pineapple.Core.Exceptions;
+using Pineapple.Core.Mappers;
 using Pineapple.Core.Storage.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -34,6 +35,8 @@ namespace Pineapple.Core.Handler
                     .ThenInclude(environment => environment.Servers)
                         .ThenInclude(server => server.InstalledComponents)
                             .ThenInclude(installedComponent => installedComponent.ComponentVersion)
+                                .ThenInclude(componentVersion => componentVersion.Component)
+                                    .ThenInclude(component => component.Product)
                 .FirstOrDefaultAsync(implementation => implementation.Id == request.ImplementationId)
                 .ConfigureAwait(false);
 
@@ -62,9 +65,10 @@ namespace Pineapple.Core.Handler
 
             if (server.InstalledComponents?.Count > 0)
             {
-                return server
-                    .InstalledComponents
-                    .Select(installedComponent => new ServerComponentDto(installedComponent.ComponentVersion.ComponentId))
+                return server.InstalledComponents
+                    .OrderBy(installedComponent => installedComponent.ComponentVersion.Component.Product.Name)
+                        .ThenBy(installedComponent => installedComponent.ComponentVersion.Component.Name)
+                    .Select(installedComponent => installedComponent.ToDto())
                     .ToArray();
             }
 

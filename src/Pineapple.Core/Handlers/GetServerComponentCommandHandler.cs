@@ -11,11 +11,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Pineapple.Core.Handler
 {
-    public class GetServerSoftwareApplicationsCommandHandler : RequestHandler<GetServerSoftwareApplicationsCommand, Task<ServerSoftwareApplicationDto[]>>, ICommandHandler
+    public class GetServerComponentCommandHandler : RequestHandler<GetServerComponentCommand, Task<ServerComponentDto>>, ICommandHandler
     {
         private readonly DatabaseContextFactory databaseContextFactory;
 
-        public GetServerSoftwareApplicationsCommandHandler(DatabaseContextFactory databaseContextFactory)
+        public GetServerComponentCommandHandler(DatabaseContextFactory databaseContextFactory)
         {
             if (databaseContextFactory is null)
             {
@@ -25,7 +25,7 @@ namespace Pineapple.Core.Handler
             this.databaseContextFactory = databaseContextFactory;
         }
 
-        protected override async Task<ServerSoftwareApplicationDto[]> Handle(GetServerSoftwareApplicationsCommand request)
+        protected override async Task<ServerComponentDto> Handle(GetServerComponentCommand request)
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
 
@@ -33,8 +33,9 @@ namespace Pineapple.Core.Handler
                 .Implementations
                 .Include(implementation => implementation.Environments)
                     .ThenInclude(environment => environment.Servers)
-                        .ThenInclude(server => server.InstalledSoftwareApplications)
-                            .ThenInclude(installedSoftwareApplication => installedSoftwareApplication.SoftwareApplication)
+                        .ThenInclude(server => server.InstalledComponents)
+                            .ThenInclude(installedComponent => installedComponent.ComponentVersion)
+                                .ThenInclude(componentVersion => componentVersion.Component)
                 .FirstOrDefaultAsync(implementation => implementation.Id == request.ImplementationId)
                 .ConfigureAwait(false);
 
@@ -61,17 +62,16 @@ namespace Pineapple.Core.Handler
                 throw new ServerNotFoundException($"Server {request.ServerId} has not been found");
             }
 
-            if (server.InstalledSoftwareApplications?.Count > 0)
+            var serverComponent = server
+                .InstalledComponents?
+                .FirstOrDefault(serverComponent => serverComponent.Id == request.ServerComponentId);
+
+            if (serverComponent is null)
             {
-                return server.InstalledSoftwareApplications
-                    .OrderBy(installedSoftwareApplication => installedSoftwareApplication.SoftwareApplication.Name)
-                    .Select(installedSoftwareApplication => installedSoftwareApplication.ToDto())
-                    .ToArray();
+                throw new ServerComponentNotFoundException($"ServerComponent {request.ServerComponentId} has not been found");
             }
 
-            return Enumerable
-                .Empty<ServerSoftwareApplicationDto>()
-                .ToArray();
+            return serverComponent.ToDto();
         }
     }
 }

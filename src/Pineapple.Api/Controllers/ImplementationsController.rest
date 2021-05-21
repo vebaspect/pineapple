@@ -104,6 +104,10 @@ Content-Type: application/json
 DELETE {{url}}/implementations/{{implementationId}}/environments/{{environmentId}}/servers/{{serverId}}/components/{{serverComponentId}}
 Content-Type: application/json
 
+### /implementations/{implementationId}/environments/{environmentId}/servers/{serverId}/components/{serverComponentId}
+GET {{url}}/implementations/{{implementationId}}/environments/{{environmentId}}/servers/{{serverId}}/components/{{serverComponentId}}
+Content-Type: application/json
+
 ### /implementations/{implementationId}/environments/{environmentId}/servers/{serverId}/software-applications
 GET {{url}}/implementations/{{implementationId}}/environments/{{environmentId}}/servers/{{serverId}}/software-applications
 Content-Type: application/json
@@ -118,4 +122,8 @@ Content-Type: application/json
 
 ### /implementations/{implementationId}/environments/{environmentId}/servers/{serverId}/software-applications/{serverSoftwareApplicationId}
 DELETE {{url}}/implementations/{{implementationId}}/environments/{{environmentId}}/servers/{{serverId}}/software-applications/{{serverSoftwareApplicationId}}
+Content-Type: application/json
+
+### /implementations/{implementationId}/environments/{environmentId}/servers/{serverId}/software-applications/{serverSoftwareApplicationId}
+GET {{url}}/implementations/{{implementationId}}/environments/{{environmentId}}/servers/{{serverId}}/software-applications/{{serverSoftwareApplicationId}}
 Content-Type: application/json

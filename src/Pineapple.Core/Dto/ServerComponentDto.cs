@@ -8,13 +8,25 @@ namespace Pineapple.Core.Dto
     public class ServerComponentDto : IDto
     {
         /// <summary>
+        /// Identyfikator produktu.
+        /// </summary>
+        public Guid ProductId { get; }
+
+        /// <summary>
         /// Identyfikator komponentu.
         /// </summary>
         public Guid ComponentId { get; }
 
-        public ServerComponentDto(Guid componentId)
+        /// <summary>
+        /// Identyfikator wersji komponentu.
+        /// </summary>
+        public Guid ComponentVersionId { get; }
+
+        public ServerComponentDto(Guid productId, Guid componentId, Guid componentVersionId)
         {
+            ProductId = productId;
             ComponentId = componentId;
+            ComponentVersionId = componentVersionId;
         }
     }
 }

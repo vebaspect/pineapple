@@ -112,6 +112,22 @@ const UpdateServerComponentEditor: React.VFC = () => {
     fetchServer();
   }, [fetchServer]);
 
+  const fetchInstalledComponent = useCallback(async () => {
+    await fetch(`${window['env'].API_URL}/implementations/${implementationId}/environments/${environmentId}/servers/${serverId}/components/${serverComponentId}`,)
+      .then((response) => response.json())
+      .then((data) => {
+        setFormState({
+          productId: data.productId,
+          componentId: data.componentId,
+          componentVersionId: data.componentVersionId,
+        });
+      });
+  }, [implementationId, environmentId, serverId, serverComponentId]);
+
+  useEffect(() => {
+    fetchInstalledComponent();
+  }, [fetchInstalledComponent]);
+
   const convertFetchedProducts = (data) => {
     if (data && data.length > 0) {
       return data
@@ -200,7 +216,7 @@ const UpdateServerComponentEditor: React.VFC = () => {
     const validationResult = validateFormState(formState);
     if (validationResult.isValid) {
       await fetch(
-        `${window['env'].API_URL}/implementations/${implementationId}/environments/${environmentId}/servers/${serverId}/components`,
+        `${window['env'].API_URL}/implementations/${implementationId}/environments/${environmentId}/servers/${serverId}/components/${serverComponentId}`,
         {
           body: JSON.stringify(formState),
           headers: {

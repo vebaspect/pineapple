@@ -346,6 +346,34 @@ namespace Pineapple.Api.Controllers
         }
 
         [HttpGet]
+        [Route("{implementationId}/environments/{environmentId}/servers/{serverId}/components/{serverComponentId}")]
+        public async Task<IActionResult> GetServerComponent(string implementationId, string environmentId, string serverId, string serverComponentId)
+        {
+            if (implementationId is null || !Guid.TryParse(implementationId, out _))
+            {
+                return BadRequest("Implementation identifier has not been provided");
+            }
+            if (environmentId is null || !Guid.TryParse(environmentId, out _))
+            {
+                return BadRequest("Environment identifier has not been provided");
+            }
+            if (serverId is null || !Guid.TryParse(serverId, out _))
+            {
+                return BadRequest("Server identifier has not been provided");
+            }
+            if (serverComponentId is null || !Guid.TryParse(serverComponentId, out _))
+            {
+                return BadRequest("ServerComponent identifier has not been provided");
+            }
+
+            GetServerComponentCommand command = new(Guid.Parse(implementationId), Guid.Parse(environmentId), Guid.Parse(serverId), Guid.Parse(serverComponentId));
+            Task<ServerComponentDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            ServerComponentDto result = await resultTask.ConfigureAwait(false);
+
+            return Ok(result);
+        }
+
+        [HttpGet]
         [Route("{implementationId}/environments/{environmentId}/servers/{serverId}/software-applications")]
         public async Task<IActionResult> GetServerSoftwareApplications(string implementationId, string environmentId, string serverId)
         {
@@ -426,6 +454,34 @@ namespace Pineapple.Api.Controllers
             await mediator.Send(command).ConfigureAwait(false);
 
             return Ok();
+        }
+
+        [HttpGet]
+        [Route("{implementationId}/environments/{environmentId}/servers/{serverId}/components/{serverSoftwareApplicationId}")]
+        public async Task<IActionResult> GetServerSoftwareApplication(string implementationId, string environmentId, string serverId, string serverSoftwareApplicationId)
+        {
+            if (implementationId is null || !Guid.TryParse(implementationId, out _))
+            {
+                return BadRequest("Implementation identifier has not been provided");
+            }
+            if (environmentId is null || !Guid.TryParse(environmentId, out _))
+            {
+                return BadRequest("Environment identifier has not been provided");
+            }
+            if (serverId is null || !Guid.TryParse(serverId, out _))
+            {
+                return BadRequest("Server identifier has not been provided");
+            }
+            if (serverSoftwareApplicationId is null || !Guid.TryParse(serverSoftwareApplicationId, out _))
+            {
+                return BadRequest("ServerSoftwareApplication identifier has not been provided");
+            }
+
+            GetServerSoftwareApplicationCommand command = new(Guid.Parse(implementationId), Guid.Parse(environmentId), Guid.Parse(serverId), Guid.Parse(serverSoftwareApplicationId));
+            Task<ServerSoftwareApplicationDto> resultTask = await mediator.Send(command).ConfigureAwait(false);
+            ServerSoftwareApplicationDto result = await resultTask.ConfigureAwait(false);
+
+            return Ok(result);
         }
     }
 }

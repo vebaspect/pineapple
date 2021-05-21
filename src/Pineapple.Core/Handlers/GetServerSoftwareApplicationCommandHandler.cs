@@ -11,11 +11,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Pineapple.Core.Handler
 {
-    public class GetServerSoftwareApplicationsCommandHandler : RequestHandler<GetServerSoftwareApplicationsCommand, Task<ServerSoftwareApplicationDto[]>>, ICommandHandler
+    public class GetServerSoftwareApplicationCommandHandler : RequestHandler<GetServerSoftwareApplicationCommand, Task<ServerSoftwareApplicationDto>>, ICommandHandler
     {
         private readonly DatabaseContextFactory databaseContextFactory;
 
-        public GetServerSoftwareApplicationsCommandHandler(DatabaseContextFactory databaseContextFactory)
+        public GetServerSoftwareApplicationCommandHandler(DatabaseContextFactory databaseContextFactory)
         {
             if (databaseContextFactory is null)
             {
@@ -25,7 +25,7 @@ namespace Pineapple.Core.Handler
             this.databaseContextFactory = databaseContextFactory;
         }
 
-        protected override async Task<ServerSoftwareApplicationDto[]> Handle(GetServerSoftwareApplicationsCommand request)
+        protected override async Task<ServerSoftwareApplicationDto> Handle(GetServerSoftwareApplicationCommand request)
         {
             using var databaseContext = databaseContextFactory.CreateDbContext();
 
@@ -34,7 +34,6 @@ namespace Pineapple.Core.Handler
                 .Include(implementation => implementation.Environments)
                     .ThenInclude(environment => environment.Servers)
                         .ThenInclude(server => server.InstalledSoftwareApplications)
-                            .ThenInclude(installedSoftwareApplication => installedSoftwareApplication.SoftwareApplication)
                 .FirstOrDefaultAsync(implementation => implementation.Id == request.ImplementationId)
                 .ConfigureAwait(false);
 
@@ -61,17 +60,16 @@ namespace Pineapple.Core.Handler
                 throw new ServerNotFoundException($"Server {request.ServerId} has not been found");
             }
 
-            if (server.InstalledSoftwareApplications?.Count > 0)
+            var serverSoftwareApplication = server
+                .InstalledSoftwareApplications?
+                .FirstOrDefault(serverSoftwareApplication => serverSoftwareApplication.Id == request.ServerSoftwareApplicationId);
+
+            if (serverSoftwareApplication is null)
             {
-                return server.InstalledSoftwareApplications
-                    .OrderBy(installedSoftwareApplication => installedSoftwareApplication.SoftwareApplication.Name)
-                    .Select(installedSoftwareApplication => installedSoftwareApplication.ToDto())
-                    .ToArray();
+                throw new ServerSoftwareApplicationNotFoundException($"ServerSoftwareApplication {request.ServerSoftwareApplicationId} has not been found");
             }
 
-            return Enumerable
-                .Empty<ServerSoftwareApplicationDto>()
-                .ToArray();
+            return serverSoftwareApplication.ToDto();
         }
     }
 }

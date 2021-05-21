@@ -443,7 +443,7 @@ namespace Pineapple.Core.Mappers
                 server
                     .InstalledComponents?
                     .OrderBy(installedComponent => installedComponent.ComponentVersion.Component.Product.Name)
-                    .ThenBy(installedComponent => installedComponent.ComponentVersion.Component.Name)
+                        .ThenBy(installedComponent => installedComponent.ComponentVersion.Component.Name)
                     .Select(installedComponent =>
                     {
                         return new InstalledComponentDto(
@@ -470,6 +470,22 @@ namespace Pineapple.Core.Mappers
                         );
                     })
                     .ToList()
+            );
+        }
+
+        public static ServerComponentDto ToDto(this Domain.Entities.ServerComponent serverComponent)
+        {
+            return new ServerComponentDto(
+                serverComponent.ComponentVersion.Component.ProductId,
+                serverComponent.ComponentVersion.ComponentId,
+                serverComponent.ComponentVersionId
+            );
+        }
+
+        public static ServerSoftwareApplicationDto ToDto(this Domain.Entities.ServerSoftwareApplication serverSoftwareApplication)
+        {
+            return new ServerSoftwareApplicationDto(
+                serverSoftwareApplication.SoftwareApplicationId
             );
         }
 
