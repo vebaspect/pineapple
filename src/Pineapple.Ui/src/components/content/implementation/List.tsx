@@ -55,7 +55,7 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, implementationId, onEd
                   {environment.name}
                 </Link>
               </TableCell>
-              <TableCell>{environment.symbol}</TableCell>
+              <TableCell style={{ fontFamily: 'Consolas' }}>{environment.symbol}</TableCell>
               <TableCell>
                 {
                   environment.operatorId

@@ -54,7 +54,7 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, onEdit, onDelete }: Li
                   {operatingSystem.name}
                 </Link>
               </TableCell>
-              <TableCell>{operatingSystem.symbol}</TableCell>
+              <TableCell style={{ fontFamily: 'Consolas' }}>{operatingSystem.symbol}</TableCell>
               <TableCell align="right">
                 <Tooltip title="Edytuj">
                   <IconButton

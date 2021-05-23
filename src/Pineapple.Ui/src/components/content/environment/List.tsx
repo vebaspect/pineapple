@@ -54,7 +54,7 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, implementationId, envi
                   {server.name}
                 </Link>
               </TableCell>
-              <TableCell>{server.symbol}</TableCell>
+              <TableCell style={{ fontFamily: 'Consolas' }}>{server.symbol}</TableCell>
               <TableCell align="right">
                 <Tooltip title="Edytuj">
                   <IconButton
