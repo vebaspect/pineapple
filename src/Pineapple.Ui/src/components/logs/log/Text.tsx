@@ -57,12 +57,6 @@ const useStyles = makeStyles(() =>
     server: {
       color: '#33ab9f',
     },
-    serverComponent: {
-      color: '#ff784e',
-    },
-    serverSoftwareApplication: {
-      color: '#ff784e',
-    },
     softwareApplication: {
       color: '#ffac33',
     },
@@ -767,7 +761,20 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 mx={0.5}
               >
                 <Link
-                  className={styles.serverComponent}
+                  className={styles.component}
+                  component={RouterLink}
+                  to={`/products/${entity.details.serverComponent.productId}/components/${entity.details.serverComponent.componentId}`}
+                >
+                  {`«${entity.details.serverComponent.componentName}»`}
+                </Link>
+              </Box>
+              w wersji
+              <Box
+                component="span"
+                mx={0.5}
+              >
+                <Link
+                  className={styles.componentVersion}
                   component={RouterLink}
                   to={`/products/${entity.details.serverComponent.productId}/components/${entity.details.serverComponent.componentId}/component-versions/${entity.details.serverComponent.componentVersionId}`}
                 >
@@ -812,7 +819,20 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 mx={0.5}
               >
                 <Link
-                  className={styles.serverComponent}
+                  className={styles.component}
+                  component={RouterLink}
+                  to={`/products/${entity.details.serverComponent.productId}/components/${entity.details.serverComponent.componentId}`}
+                >
+                  {`«${entity.details.serverComponent.componentName}»`}
+                </Link>
+              </Box>
+              do wersji
+              <Box
+                component="span"
+                mx={0.5}
+              >
+                <Link
+                  className={styles.componentVersion}
                   component={RouterLink}
                   to={`/products/${entity.details.serverComponent.productId}/components/${entity.details.serverComponent.componentId}/component-versions/${entity.details.serverComponent.componentVersionId}`}
                 >
@@ -857,11 +877,11 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 mx={0.5}
               >
                 <Link
-                  className={styles.serverComponent}
+                  className={styles.component}
                   component={RouterLink}
-                  to={`/products/${entity.details.serverComponent.productId}/components/${entity.details.serverComponent.componentId}/component-versions/${entity.details.serverComponent.componentVersionId}`}
+                  to={`/products/${entity.details.serverComponent.productId}/components/${entity.details.serverComponent.componentId}`}
                 >
-                  {`«${entity.details.serverComponent.componentVersionNumber}»`}
+                  {`«${entity.details.serverComponent.componentName}»`}
                 </Link>
               </Box>
               z serwera
@@ -908,7 +928,7 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 mx={0.5}
               >
                 <Link
-                  className={styles.serverSoftwareApplication}
+                  className={styles.softwareApplication}
                   component={RouterLink}
                   to={`/configuration/software-applications/${entity.details.serverSoftwareApplication.softwareApplicationId}`}
                 >
@@ -953,7 +973,7 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                 mx={0.5}
               >
                 <Link
-                  className={styles.serverSoftwareApplication}
+                  className={styles.softwareApplication}
                   component={RouterLink}
                   to={`/configuration/software-applications/${entity.details.serverSoftwareApplication.softwareApplicationId}`}
                 >

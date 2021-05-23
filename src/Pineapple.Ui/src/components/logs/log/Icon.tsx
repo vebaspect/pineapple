@@ -114,7 +114,7 @@ const useStyles = makeStyles((theme: Theme) =>
       width: theme.spacing(2.75),
     },
     modifyEntity: {
-      backgroundColor: '#ffc107',
+      backgroundColor: '#fbc02d',
       color: '#fff',
       height: theme.spacing(2.75),
       width: theme.spacing(2.75),
