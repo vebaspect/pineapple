@@ -31,9 +31,6 @@ namespace Pineapple.Core.Storage.Database.Configurations
                 .HasForeignKey(log => log.OwnerId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.NoAction);
-            builder
-                .Property(log => log.Description)
-                .HasMaxLength(4000);
         }
     }
 }

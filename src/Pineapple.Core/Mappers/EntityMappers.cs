@@ -107,8 +107,7 @@ namespace Pineapple.Core.Mappers
                         componentLog.Component.ProductId,
                         componentLog.Component.Product.Name
                     ),
-                },
-                componentLog.Description
+                }
             );
         }
 
@@ -128,8 +127,7 @@ namespace Pineapple.Core.Mappers
                     componentTypeLog.ComponentType.Name,
                     null
                 ),
-                null,
-                componentTypeLog.Description
+                null
             );
         }
 
@@ -159,8 +157,7 @@ namespace Pineapple.Core.Mappers
                         componentVersionLog.ComponentVersion.Component.ProductId,
                         componentVersionLog.ComponentVersion.Component.Product.Name
                     ),
-                },
-                componentVersionLog.Description
+                }
             );
         }
 
@@ -186,8 +183,7 @@ namespace Pineapple.Core.Mappers
                         environmentLog.Environment.ImplementationId,
                         environmentLog.Environment.Implementation.Name
                     ),
-                },
-                environmentLog.Description
+                }
             );
         }
 
@@ -207,8 +203,7 @@ namespace Pineapple.Core.Mappers
                     implementationLog.Implementation.Name,
                     null
                 ),
-                null,
-                implementationLog.Description
+                null
             );
         }
 
@@ -228,8 +223,7 @@ namespace Pineapple.Core.Mappers
                     operatingSystemLog.OperatingSystem.Name,
                     null
                 ),
-                null,
-                operatingSystemLog.Description
+                null
             );
         }
 
@@ -249,8 +243,7 @@ namespace Pineapple.Core.Mappers
                     productLog.Product.Name,
                     null
                 ),
-                null,
-                productLog.Description
+                null
             );
         }
 
@@ -293,8 +286,7 @@ namespace Pineapple.Core.Mappers
                             serverLog.Server.Environment.ImplementationId,
                             serverLog.Server.Environment.Implementation.Name
                         ),
-                    },
-                    serverLog.Description
+                    }
                 ),
                 "ServerSoftwareApplicationLog" => new LogDto(
                     serverLog.Id,
@@ -327,8 +319,7 @@ namespace Pineapple.Core.Mappers
                             serverLog.Server.Environment.ImplementationId,
                             serverLog.Server.Environment.Implementation.Name
                         ),
-                    },
-                    serverLog.Description
+                    }
                 ),
                 _ => new LogDto(
                     serverLog.Id,
@@ -354,8 +345,7 @@ namespace Pineapple.Core.Mappers
                             serverLog.Server.Environment.ImplementationId,
                             serverLog.Server.Environment.Implementation.Name
                         ),
-                    },
-                    serverLog.Description
+                    }
               ),
             };
         }
@@ -376,8 +366,7 @@ namespace Pineapple.Core.Mappers
                     softwareApplicationLog.SoftwareApplication.Name,
                     null
                 ),
-                null,
-                softwareApplicationLog.Description
+                null
             );
         }
 
@@ -397,8 +386,7 @@ namespace Pineapple.Core.Mappers
                     userLog.User.FullName,
                     null
                 ),
-                null,
-                userLog.Description
+                null
             );
         }
 

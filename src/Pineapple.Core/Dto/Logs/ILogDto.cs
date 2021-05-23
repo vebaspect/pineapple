@@ -54,10 +54,5 @@ namespace Pineapple.Core.Dto.Logs
         /// Encje nadrzędne.
         /// </summary>
         List<EntityDto> ParentEntities { get; }
-
-        /// <summary>
-        /// Opis.
-        /// </summary>
-        string Description { get; }
     }
 }

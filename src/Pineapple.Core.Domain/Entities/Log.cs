@@ -27,11 +27,6 @@ namespace Pineapple.Core.Domain.Entities
         /// </summary>
         public User Owner { get; protected set; }
 
-        /// <summary>
-        /// Opis.
-        /// </summary>
-        public string Description { get; protected set; }
-
         protected Log(Guid id)
             : base(id)
         {

@@ -58,12 +58,7 @@ namespace Pineapple.Core.Dto.Logs
         /// </summary>
         public List<EntityDto> ParentEntities { get; }
 
-        /// <summary>
-        /// Opis.
-        /// </summary>
-        public string Description { get; }
-
-        public LogDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string type, string category, Guid ownerId, string ownerFullName, ExtendedEntityDto entity, List<EntityDto> parentEntities, string description)
+        public LogDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string type, string category, Guid ownerId, string ownerFullName, ExtendedEntityDto entity, List<EntityDto> parentEntities)
         {
             Id = id;
             CreationDate = creationDate;
@@ -75,7 +70,6 @@ namespace Pineapple.Core.Dto.Logs
             OwnerFullName = ownerFullName;
             Entity = entity;
             ParentEntities = parentEntities;
-            Description = description;
         }
     }
 }
