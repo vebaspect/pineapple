@@ -55,7 +55,7 @@ const Details: React.FC<DetailsProps> = ({ isDataFetched, name, symbol, operator
         </TableRow>
         <TableRow>
           <TableCell style={{ fontWeight: 500, width: 200 }}>Opis</TableCell>
-          <TableCell>{description || '–'}</TableCell>
+          <TableCell style={{ fontStyle: 'italic' }}>{description || '–'}</TableCell>
         </TableRow>
       </TableBody>
     </Table>
