@@ -109,21 +109,24 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     createEntity: {
       backgroundColor: '#4caf50',
+      border: '3px solid #fff',
       color: '#fff',
-      height: theme.spacing(2.75),
-      width: theme.spacing(2.75),
+      height: theme.spacing(3),
+      width: theme.spacing(3),
     },
     modifyEntity: {
       backgroundColor: '#fbc02d',
+      border: '3px solid #fff',
       color: '#fff',
-      height: theme.spacing(2.75),
-      width: theme.spacing(2.75),
+      height: theme.spacing(3),
+      width: theme.spacing(3),
     },
     removeEntity: {
       backgroundColor: '#f44336',
+      border: '3px solid #fff',
       color: '#fff',
-      height: theme.spacing(2.75),
-      width: theme.spacing(2.75),
+      height: theme.spacing(3),
+      width: theme.spacing(3),
     },
   }),
 );
@@ -193,19 +196,19 @@ const Icon: React.FC<IconProps> = ({ type, category }: IconProps) => {
 
   switch (category) {
     case LOG_CATEGORY__CREATE_ENTITY:
-      categoryIcon = <AddIcon style={{ fontSize: 18 }} />;
+      categoryIcon = <AddIcon style={{ fontSize: 16 }} />;
       categoryClassName = styles.createEntity;
       break;
     case LOG_CATEGORY__MODIFY_ENTITY:
-      categoryIcon = <EditIcon style={{ fontSize: 18 }} />;
+      categoryIcon = <EditIcon style={{ fontSize: 16 }} />;
       categoryClassName = styles.modifyEntity;
       break;
     case LOG_CATEGORY__REMOVE_ENTITY:
-      categoryIcon = <DeleteIcon style={{ fontSize: 18 }} />;
+      categoryIcon = <DeleteIcon style={{ fontSize: 16 }} />;
       categoryClassName = styles.removeEntity;
       break;
     default:
-      categoryIcon = <ReportProblemIcon style={{ fontSize: 18 }} />;
+      categoryIcon = <ReportProblemIcon style={{ fontSize: 16 }} />;
       categoryClassName = styles.unknownCategory;
       break;
   }
