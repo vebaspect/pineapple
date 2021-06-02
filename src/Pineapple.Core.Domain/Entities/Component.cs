@@ -86,9 +86,10 @@ namespace Pineapple.Core.Domain.Entities
         public ComponentVersion GetLatestVersion()
         {
             return ComponentVersions?
-                .OrderByDescending(x => x.Major)
-                .ThenByDescending(x => x.Minor)
-                .ThenByDescending(x => x.Patch)
+                .Where(componentVersion => !componentVersion.IsDeleted)
+                .OrderByDescending(componentVersion => componentVersion.Major)
+                .ThenByDescending(componentVersion => componentVersion.Minor)
+                .ThenByDescending(componentVersion => componentVersion.Patch)
                 .FirstOrDefault();
         }
     }
