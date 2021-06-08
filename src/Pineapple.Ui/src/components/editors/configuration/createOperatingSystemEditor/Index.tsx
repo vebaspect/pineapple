@@ -151,6 +151,8 @@ const CreateOperatingSystemEditor: React.VFC = () => {
                 label="Opis"
                 helperText="Maksymalnie 4000 znaków."
                 value={formState.description}
+                multiline
+                rows={4}
                 onChange={onDescriptionChange}
               />
             </FormControl>
