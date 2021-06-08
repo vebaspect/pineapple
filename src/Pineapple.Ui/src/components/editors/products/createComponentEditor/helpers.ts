@@ -6,6 +6,7 @@ import {
 export const initialFormState = () : FormState => {
   const formState: FormState = {
     name: '',
+    sourceCodeRepositoryUrl: '',
     description: '',
     componentTypeId: '',
   };

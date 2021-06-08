@@ -46,6 +46,7 @@ Content-Type: application/json
 
 {
     "Name": "",
+    "SourceCodeRepositoryUrl": "",
     "Description": "",
     "ComponentTypeId": ""
 }

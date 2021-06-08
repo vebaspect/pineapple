@@ -21,6 +21,9 @@ namespace Pineapple.Core.Storage.Database.Configurations
                 .IsRequired()
                 .HasMaxLength(200);
             builder
+                .Property(component => component.SourceCodeRepositoryUrl)
+                .HasMaxLength(300);
+            builder
                 .Property(component => component.Description)
                 .HasMaxLength(4000);
             builder

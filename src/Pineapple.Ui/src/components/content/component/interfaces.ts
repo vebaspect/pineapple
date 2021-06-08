@@ -3,6 +3,8 @@ export interface DetailsProps {
   isDataFetched: boolean,
   // Nazwa.
   name: string,
+  // Repozytorium kodu źródłowego (adres URL).
+  sourceCodeRepositoryUrl: string,
   // Identyfikator typu komponentu.
   componentTypeId: string,
   // Nazwa typu komponentu.

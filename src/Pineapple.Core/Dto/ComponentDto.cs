@@ -33,6 +33,11 @@ namespace Pineapple.Core.Dto
         public string Name { get; }
 
         /// <summary>
+        /// Repozytorium kodu źródłowego (adres URL).
+        /// </summary>
+        public string SourceCodeRepositoryUrl { get; }
+
+        /// <summary>
         /// Opis.
         /// </summary>
         public string Description { get; }
@@ -57,13 +62,14 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public string ActualComponentVersionNumber { get; }
 
-        public ComponentDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string name, string description, Guid componentTypeId, string componentTypeName, Guid? actualComponentVersionId, string actualComponentVersionNumber)
+        public ComponentDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string name, string sourceCodeRepositoryUrl, string description, Guid componentTypeId, string componentTypeName, Guid? actualComponentVersionId, string actualComponentVersionNumber)
         {
             Id = id;
             CreationDate = creationDate;
             ModificationDate = modificationDate;
             IsDeleted = isDeleted;
             Name = name;
+            SourceCodeRepositoryUrl = sourceCodeRepositoryUrl;
             Description = description;
             ComponentTypeId = componentTypeId;
             ComponentTypeName = componentTypeName;

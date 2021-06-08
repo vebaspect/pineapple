@@ -13,7 +13,7 @@ import {
   DetailsProps,
 } from './interfaces';
 
-const Details: React.FC<DetailsProps> = ({ isDataFetched, name, componentTypeId, componentTypeName, description }: DetailsProps) => {
+const Details: React.FC<DetailsProps> = ({ isDataFetched, name, sourceCodeRepositoryUrl, componentTypeId, componentTypeName, description }: DetailsProps) => {
   if (!isDataFetched) {
     return (
       <Box
@@ -29,11 +29,11 @@ const Details: React.FC<DetailsProps> = ({ isDataFetched, name, componentTypeId,
     <Table size="small">
       <TableBody>
         <TableRow>
-          <TableCell style={{ fontWeight: 500, width: 200 }}>Nazwa</TableCell>
+          <TableCell style={{ fontWeight: 500, width: 250 }}>Nazwa</TableCell>
           <TableCell>{name}</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell style={{ fontWeight: 500, width: 200 }}>Typ</TableCell>
+          <TableCell style={{ fontWeight: 500, width: 250 }}>Typ</TableCell>
           <TableCell>
             <Link
               component={RouterLink}
@@ -44,7 +44,18 @@ const Details: React.FC<DetailsProps> = ({ isDataFetched, name, componentTypeId,
           </TableCell>
         </TableRow>
         <TableRow>
-          <TableCell style={{ fontWeight: 500, width: 200 }}>Opis</TableCell>
+          <TableCell style={{ fontWeight: 500, width: 250 }}>Repozytorium kodu źródłowego</TableCell>
+          <TableCell>
+            <Link
+              href={sourceCodeRepositoryUrl}
+              target="_blank"
+            >
+              {sourceCodeRepositoryUrl}
+            </Link>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell style={{ fontWeight: 500, width: 250 }}>Opis</TableCell>
           <TableCell style={{ fontStyle: 'italic' }}>{description || '–'}</TableCell>
         </TableRow>
       </TableBody>

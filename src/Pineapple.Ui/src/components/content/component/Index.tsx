@@ -293,6 +293,7 @@ const Component: React.VFC = () => {
                 <Details
                   isDataFetched={isComponentFetched}
                   name={component?.name}
+                  sourceCodeRepositoryUrl={component?.sourceCodeRepositoryUrl}
                   componentTypeId={component?.componentTypeId}
                   componentTypeName={component?.componentTypeName}
                   description={component?.description}

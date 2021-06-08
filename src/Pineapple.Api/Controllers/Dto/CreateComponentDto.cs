@@ -13,6 +13,11 @@ namespace Pineapple.Api.Controllers.Dto
         public string Name { get; set; }
 
         /// <summary>
+        /// Repozytorium kodu źródłowego (adres URL).
+        /// </summary>
+        public string SourceCodeRepositoryUrl { get; set; }
+
+        /// <summary>
         /// Opis.
         /// </summary>
         public string Description { get; set; }

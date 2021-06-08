@@ -87,6 +87,13 @@ const CreateComponentEditor: React.VFC = () => {
     });
   };
 
+  const onSourceCodeRepositoryUrlChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormState({
+      ...formState,
+      sourceCodeRepositoryUrl: event.target.value,
+    });
+  }
+
   const onComponentTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormState({
       ...formState,
@@ -237,6 +244,19 @@ const CreateComponentEditor: React.VFC = () => {
                   ? (<FormHelperText>{formStateValidationResult.componentTypeId}</FormHelperText>)
                   : null
               }
+            </FormControl>
+          </Box>
+          <Box
+            px={4}
+            pb={2}
+          >
+            <FormControl fullWidth>
+              <TextField
+                label="Repozytorium kodu źródłowego"
+                helperText="Adres URL."
+                value={formState.sourceCodeRepositoryUrl}
+                onChange={onSourceCodeRepositoryUrlChange}
+              />
             </FormControl>
           </Box>
           <Box

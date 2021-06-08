@@ -16,6 +16,11 @@ namespace Pineapple.Core.Domain.Entities
         public string Name { get; }
 
         /// <summary>
+        /// Repozytorium kodu źródłowego (adres URL).
+        /// </summary>
+        public string SourceCodeRepositoryUrl { get; }
+
+        /// <summary>
         /// Opis.
         /// </summary>
         public string Description { get; }
@@ -50,10 +55,11 @@ namespace Pineapple.Core.Domain.Entities
         /// </summary>
         public List<ComponentLog> EntityLogs { get; }
 
-        private Component(Guid id, string name, string description, Guid productId, Guid componentTypeId)
+        private Component(Guid id, string name, string sourceCodeRepositoryUrl, string description, Guid productId, Guid componentTypeId)
             : base(id)
         {
             Name = name;
+            SourceCodeRepositoryUrl = sourceCodeRepositoryUrl;
             Description = description;
             ProductId = productId;
             ComponentTypeId = componentTypeId;
@@ -62,7 +68,7 @@ namespace Pineapple.Core.Domain.Entities
         /// <summary>
         /// Stwórz komponent.
         /// </summary>
-        public static Component Create(Guid id, string name, string description, Guid productId, Guid componentTypeId)
+        public static Component Create(Guid id, string name, string sourceCodeRepositoryUrl, string description, Guid productId, Guid componentTypeId)
         {
             if (string.IsNullOrEmpty(name))
             {
@@ -77,7 +83,7 @@ namespace Pineapple.Core.Domain.Entities
                 throw new ValueRequiredValidationException(nameof(componentTypeId));
             }
 
-            return new Component(id, name, description, productId, componentTypeId);
+            return new Component(id, name, sourceCodeRepositoryUrl, description, productId, componentTypeId);
         }
 
         /// <summary>

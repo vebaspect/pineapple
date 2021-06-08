@@ -18,6 +18,7 @@ namespace Pineapple.Core.Mappers
                 component.ModificationDate,
                 component.IsDeleted,
                 component.Name,
+                component.SourceCodeRepositoryUrl,
                 component.Description,
                 component.ComponentTypeId,
                 component.ComponentType.Name,
