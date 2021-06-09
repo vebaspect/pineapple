@@ -27,10 +27,10 @@ import {
 
 const useStyles = makeStyles(() =>
   createStyles({
-    componentVersion: {
+    componentVersionNumber: {
       paddingRight: '5px',
     },
-    componentVersionWrapper: {
+    componentVersionNumberWrapper: {
       alignItems: 'center',
       display: 'flex',
     },
@@ -98,9 +98,9 @@ const InstalledComponentsList: React.FC<InstalledComponentsListProps> = ({ isDat
                 </Link>
               </TableCell>
               <TableCell>
-                <Box className={styles.componentVersionWrapper}>
+                <Box className={styles.componentVersionNumberWrapper}>
                   <Link
-                    className={styles.componentVersion}
+                    className={styles.componentVersionNumber}
                     component={RouterLink}
                     to={`/products/${installedComponent.productId}/components/${installedComponent.componentId}/component-versions/${installedComponent.componentVersionId}`}
                   >
