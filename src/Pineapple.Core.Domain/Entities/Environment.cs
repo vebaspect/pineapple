@@ -94,15 +94,9 @@ namespace Pineapple.Core.Domain.Entities
             {
                 foreach (var server in Servers)
                 {
-                    if (server.InstalledComponents.Count > 0)
+                    if (server.IsUpdateAvailable())
                     {
-                        foreach (var installedComponent in server.InstalledComponents)
-                        {
-                            if (installedComponent.ComponentVersion != installedComponent.ComponentVersion.Component.GetLatestVersion())
-                            {
-                                return true;
-                            }
-                        }
+                        return true;
                     }
                 }
             }
