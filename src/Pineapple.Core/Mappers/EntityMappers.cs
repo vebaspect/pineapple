@@ -459,7 +459,8 @@ namespace Pineapple.Core.Mappers
                             installedSoftwareApplication.SoftwareApplication.Name
                         );
                     })
-                    .ToList()
+                    .ToList(),
+                server.IsUpdateAvailable()
             );
         }
 

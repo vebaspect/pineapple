@@ -113,5 +113,24 @@ namespace Pineapple.Core.Domain.Entities
         {
             InstalledSoftwareApplications?.Remove(serverSoftwareApplication);
         }
+
+        /// <summary>
+        /// Sprawdź, czy dostępne są nowsze wersje zainstalowanych komponentów.
+        /// </summary>
+        public bool IsUpdateAvailable()
+        {
+            if (InstalledComponents?.Count > 0)
+            {
+                foreach (var installedComponent in InstalledComponents)
+                {
+                    if (installedComponent.ComponentVersion != installedComponent.ComponentVersion.Component.GetLatestVersion())
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
     }
 }

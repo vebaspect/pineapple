@@ -26,6 +26,8 @@ export interface ListProps {
     symbol: string,
     // Flaga określająca, czy serwer został usunięty.
     isDeleted: boolean,
+    // Flaga określająca, czy dostępne są nowsze wersje zainstalowanych komponentów.
+    isUpdateAvailable: boolean,
   }[],
   // Identyfikator wdrożenia.
   implementationId: string,

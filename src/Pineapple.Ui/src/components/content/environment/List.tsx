@@ -1,6 +1,11 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
+import {
+  createStyles,
+  makeStyles,
+} from '@material-ui/core/styles';
+
 import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import IconButton from '@material-ui/core/IconButton';
@@ -14,12 +19,30 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import WarningIcon from '@material-ui/icons/Warning';
 
 import {
   ListProps,
 } from './interfaces';
 
+const useStyles = makeStyles(() =>
+  createStyles({
+    serverName: {
+      paddingRight: '5px',
+    },
+    serverNameWrapper: {
+      alignItems: 'center',
+      display: 'flex',
+    },
+    warningIcon: {
+      color: '#f50057',
+    },
+  }),
+);
+
 const List: React.FC<ListProps> = ({ isDataFetched, data, implementationId, environmentId, onEdit, onDelete }: ListProps) => {
+  const styles = useStyles();
+
   if (!isDataFetched) {
     return (
       <Box
@@ -47,12 +70,24 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, implementationId, envi
             <TableRow key={server.id}>
               <TableCell>{index + 1}.</TableCell>
               <TableCell>
-                <Link
-                  component={RouterLink}
-                  to={`/implementations/${implementationId}/environments/${environmentId}/servers/${server.id}`}
-                >
-                  {server.name}
-                </Link>
+                <Box className={styles.serverNameWrapper}>
+                  <Link
+                    className={styles.serverName}
+                    component={RouterLink}
+                    to={`/implementations/${implementationId}/environments/${environmentId}/servers/${server.id}`}
+                  >
+                    {server.name}
+                  </Link>
+                  {
+                    server.isUpdateAvailable
+                      ? (
+                        <Tooltip title="Dostępne są nowsze wersje zainstalowanych komponentów!">
+                          <WarningIcon className={styles.warningIcon} />
+                        </Tooltip>
+                      )
+                      : null
+                  }
+                </Box>
               </TableCell>
               <TableCell style={{ fontFamily: 'Consolas' }}>{server.symbol}</TableCell>
               <TableCell align="right">

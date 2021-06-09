@@ -68,7 +68,12 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public List<InstalledSoftwareApplicationDto> InstalledSoftwareApplications { get; }
 
-        public ServerDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string name, string symbol, string ipAddress, string description, Guid operatingSystemId, string operatingSystemName, List<InstalledComponentDto> installedComponents, List<InstalledSoftwareApplicationDto> installedSoftwareApplications)
+        /// <summary>
+        /// Flaga określająca, czy dostępne są nowsze wersje zainstalowanych komponentów.
+        /// </summary>
+        public bool IsUpdateAvailable { get; }
+
+        public ServerDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string name, string symbol, string ipAddress, string description, Guid operatingSystemId, string operatingSystemName, List<InstalledComponentDto> installedComponents, List<InstalledSoftwareApplicationDto> installedSoftwareApplications, bool isUpdateAvailable)
         {
             Id = id;
             CreationDate = creationDate;
@@ -82,6 +87,7 @@ namespace Pineapple.Core.Dto
             OperatingSystemName = operatingSystemName;
             InstalledComponents = installedComponents;
             InstalledSoftwareApplications = installedSoftwareApplications;
+            IsUpdateAvailable = isUpdateAvailable;
         }
     }
 }
