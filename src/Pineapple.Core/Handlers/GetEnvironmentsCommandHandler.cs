@@ -38,11 +38,6 @@ namespace Pineapple.Core.Handler
                         .ThenInclude(server => server.InstalledComponents)
                             .ThenInclude(installedComponent => installedComponent.ComponentVersion)
                                 .ThenInclude(componentVersion => componentVersion.Component)
-                .Include(implementation => implementation.Environments)
-                    .ThenInclude(environment => environment.Servers)
-                        .ThenInclude(server => server.InstalledComponents)
-                            .ThenInclude(installedComponent => installedComponent.ComponentVersion)
-                                .ThenInclude(componentVersion => componentVersion.Component)
                                     .ThenInclude(component => component.ComponentVersions)
                 .FirstOrDefaultAsync(implementation => implementation.Id == request.ImplementationId)
                 .ConfigureAwait(false);
