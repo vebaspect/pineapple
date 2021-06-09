@@ -31,7 +31,8 @@ namespace Pineapple.Core.Handler
             var existingComponentVersion = await databaseContext
                 .ComponentVersions
                 .FirstOrDefaultAsync(componentVersion =>
-                    componentVersion.ComponentId == request.ComponentId
+                    !componentVersion.IsDeleted
+                    && componentVersion.ComponentId == request.ComponentId
                     && componentVersion.Major == request.Major
                     && componentVersion.Minor == request.Minor
                     && componentVersion.Patch == request.Patch
