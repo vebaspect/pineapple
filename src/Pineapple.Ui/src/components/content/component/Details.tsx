@@ -46,12 +46,18 @@ const Details: React.FC<DetailsProps> = ({ isDataFetched, name, sourceCodeReposi
         <TableRow>
           <TableCell style={{ fontWeight: 500, width: 250 }}>Repozytorium kodu źródłowego</TableCell>
           <TableCell>
-            <Link
-              href={sourceCodeRepositoryUrl}
-              target="_blank"
-            >
-              {sourceCodeRepositoryUrl}
-            </Link>
+            {
+              sourceCodeRepositoryUrl
+                ? (
+                  <Link
+                    href={sourceCodeRepositoryUrl}
+                    target="_blank"
+                  >
+                    {sourceCodeRepositoryUrl}
+                  </Link>
+                )
+                : '–'
+            }
           </TableCell>
         </TableRow>
         <TableRow>
