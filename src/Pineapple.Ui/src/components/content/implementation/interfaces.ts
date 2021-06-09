@@ -28,6 +28,8 @@ export interface ListProps {
     operatorFullName: string,
     // Flaga określająca, czy środowisko zostało usunięte.
     isDeleted: boolean,
+    // Flaga określająca, czy dostępne są nowsze wersje zainstalowanych komponentów.
+    isUpdateAvailable: boolean,
   }[],
   // Identyfikator wdrożenia.
   implementationId: string,

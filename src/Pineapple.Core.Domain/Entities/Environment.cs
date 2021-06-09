@@ -84,5 +84,30 @@ namespace Pineapple.Core.Domain.Entities
 
             return new Environment(id, name, symbol, description, implementationId, operatorId);
         }
+
+        /// <summary>
+        /// Sprawdź, czy dostępne są nowsze wersje zainstalowanych komponentów.
+        /// </summary>
+        public bool IsUpdateAvailable()
+        {
+            if (Servers?.Count > 0)
+            {
+                foreach (var server in Servers)
+                {
+                    if (server.InstalledComponents.Count > 0)
+                    {
+                        foreach (var installedComponent in server.InstalledComponents)
+                        {
+                            if (installedComponent.ComponentVersion != installedComponent.ComponentVersion.Component.GetLatestVersion())
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
     }
 }

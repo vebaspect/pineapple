@@ -52,7 +52,12 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public string OperatorFullName { get; }
 
-        public EnvironmentDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string name, string symbol, string description, Guid? operatorId, string operatorFullName)
+        /// <summary>
+        /// Flaga określająca, czy dostępne są nowsze wersje zainstalowanych komponentów.
+        /// </summary>
+        public bool IsUpdateAvailable { get; }
+
+        public EnvironmentDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string name, string symbol, string description, Guid? operatorId, string operatorFullName, bool isUpdateAvailable)
         {
             Id = id;
             CreationDate = creationDate;
@@ -63,6 +68,7 @@ namespace Pineapple.Core.Dto
             Description = description;
             OperatorId = operatorId;
             OperatorFullName = operatorFullName;
+            IsUpdateAvailable = isUpdateAvailable;
         }
     }
 }

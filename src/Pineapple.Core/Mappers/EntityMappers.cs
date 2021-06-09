@@ -68,7 +68,8 @@ namespace Pineapple.Core.Mappers
                 environment.Symbol,
                 environment.Description,
                 environment.OperatorId,
-                environment.Operator?.FullName
+                environment.Operator?.FullName,
+                environment.IsUpdateAvailable()
             );
         }
 
