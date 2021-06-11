@@ -53,7 +53,9 @@ namespace Pineapple.Core.Handler
             if (component.ComponentVersions?.Count > 0)
             {
                 return component.ComponentVersions
-                    .OrderByDescending(componentVersion => componentVersion.ReleaseDate)
+                    .OrderBy(componentVersion => componentVersion.Major)
+                        .ThenBy(componentVersion => componentVersion.Minor)
+                            .ThenBy(componentVersion => componentVersion.Patch)
                     .Select(componentVersion => componentVersion.ToDto()).ToArray();
             }
 

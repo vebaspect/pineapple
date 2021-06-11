@@ -151,8 +151,8 @@ const UpdateServerComponentEditor: React.VFC = () => {
   const convertFetchedComponentVersions = (data) => {
     if (data && data.length > 0) {
       return data
-        .filter((componentVersion) => !componentVersion.isDeleted);
-        // TODO Sortowanie.
+        .filter((componentVersion) => !componentVersion.isDeleted)
+        .reverse();
     }
 
     return [];
