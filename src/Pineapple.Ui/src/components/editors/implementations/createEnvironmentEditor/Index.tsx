@@ -194,6 +194,7 @@ const CreateEnvironmentEditor: React.VFC = () => {
               <TextField
                 label="Nazwa"
                 helperText={formStateValidationResult?.name || 'Maksymalnie 200 znaków.'}
+                inputProps={{ maxLength: 200 }}
                 error={formStateValidationResult && formStateValidationResult.name !== undefined && formStateValidationResult.name !== null}
                 value={formState.name}
                 onChange={onNameChange}
@@ -208,6 +209,7 @@ const CreateEnvironmentEditor: React.VFC = () => {
               <TextField
                 label="Symbol"
                 helperText={formStateValidationResult?.symbol || 'Maksymalnie 200 znaków.'}
+                inputProps={{ maxLength: 200 }}
                 error={formStateValidationResult && formStateValidationResult.symbol !== undefined && formStateValidationResult.symbol !== null}
                 value={formState.symbol}
                 onChange={onSymbolChange}
@@ -259,6 +261,7 @@ const CreateEnvironmentEditor: React.VFC = () => {
               <TextField
                 label="Opis"
                 helperText="Maksymalnie 4000 znaków."
+                inputProps={{ maxLength: 4000 }}
                 value={formState.description}
                 multiline
                 rows={4}

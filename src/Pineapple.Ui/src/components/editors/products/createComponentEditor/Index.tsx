@@ -195,6 +195,7 @@ const CreateComponentEditor: React.VFC = () => {
               <TextField
                 label="Nazwa"
                 helperText={formStateValidationResult?.name || 'Maksymalnie 200 znaków.'}
+                inputProps={{ maxLength: 200 }}
                 error={formStateValidationResult && formStateValidationResult.name !== undefined && formStateValidationResult.name !== null}
                 value={formState.name}
                 onChange={onNameChange}
@@ -253,7 +254,8 @@ const CreateComponentEditor: React.VFC = () => {
             <FormControl fullWidth>
               <TextField
                 label="Repozytorium kodu źródłowego"
-                helperText="Adres URL."
+                helperText="Adres URL | Maksymalnie 300 znaków."
+                inputProps={{ maxLength: 300 }}
                 value={formState.sourceCodeRepositoryUrl}
                 onChange={onSourceCodeRepositoryUrlChange}
               />
@@ -267,6 +269,7 @@ const CreateComponentEditor: React.VFC = () => {
               <TextField
                 label="Opis"
                 helperText="Maksymalnie 4000 znaków."
+                inputProps={{ maxLength: 4000 }}
                 value={formState.description}
                 multiline
                 rows={4}

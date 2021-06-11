@@ -277,7 +277,8 @@ const CreateComponentVersionEditor: React.VFC = () => {
             <FormControl fullWidth>
               <TextField
                 label="Przyrostek"
-                helperText={formStateValidationResult?.suffix}
+                helperText={formStateValidationResult?.suffix || 'Maksymalnie 30 znaków.'}
+                inputProps={{ maxLength: 30 }}
                 error={formStateValidationResult && formStateValidationResult.suffix !== undefined && formStateValidationResult.suffix !== null}
                 value={formState.suffix}
                 onChange={onSuffixChange}
@@ -292,6 +293,7 @@ const CreateComponentVersionEditor: React.VFC = () => {
               <TextField
                 label="Opis"
                 helperText="Maksymalnie 4000 znaków."
+                inputProps={{ maxLength: 4000 }}
                 value={formState.description}
                 multiline
                 rows={4}

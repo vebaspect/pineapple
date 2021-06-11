@@ -129,6 +129,7 @@ const CreateManagerEditor: React.VFC = () => {
               <TextField
                 label="Imię i nazwisko"
                 helperText={formStateValidationResult?.fullName || 'Maksymalnie 200 znaków.'}
+                inputProps={{ maxLength: 200 }}
                 error={formStateValidationResult && formStateValidationResult.fullName !== undefined && formStateValidationResult.fullName !== null}
                 value={formState.fullName}
                 onChange={onFullNameChange}
@@ -142,7 +143,8 @@ const CreateManagerEditor: React.VFC = () => {
             <FormControl fullWidth>
               <TextField
                 label="Login"
-                helperText={formStateValidationResult?.login || 'Maksymalnie 200 znaków.'}
+                helperText={formStateValidationResult?.login || 'Maksymalnie 100 znaków.'}
+                inputProps={{ maxLength: 100 }}
                 error={formStateValidationResult && formStateValidationResult.login !== undefined && formStateValidationResult.login !== null}
                 value={formState.login}
                 onChange={onLoginChange}
@@ -156,7 +158,8 @@ const CreateManagerEditor: React.VFC = () => {
             <FormControl fullWidth>
               <TextField
                 label="Telefon"
-                helperText={formStateValidationResult?.phone || 'Maksymalnie 200 znaków.'}
+                helperText={formStateValidationResult?.phone || 'Maksymalnie 20 znaków.'}
+                inputProps={{ maxLength: 20 }}
                 error={formStateValidationResult && formStateValidationResult.phone !== undefined && formStateValidationResult.phone !== null}
                 value={formState.phone}
                 onChange={onPhoneChange}
@@ -170,7 +173,8 @@ const CreateManagerEditor: React.VFC = () => {
             <FormControl fullWidth>
               <TextField
                 label="E-mail"
-                helperText={formStateValidationResult?.email || 'Maksymalnie 200 znaków.'}
+                helperText={formStateValidationResult?.email || 'Maksymalnie 100 znaków.'}
+                inputProps={{ maxLength: 100 }}
                 error={formStateValidationResult && formStateValidationResult.email !== undefined && formStateValidationResult.email !== null}
                 value={formState.email}
                 onChange={onEmailChange}
