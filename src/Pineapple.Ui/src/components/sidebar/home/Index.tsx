@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 
 import Link from '@material-ui/core/Link';
 import ListItem from '@material-ui/core/ListItem';
@@ -9,8 +9,25 @@ import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
 
 const Home: React.VFC = () => {
+  const location = useLocation();
+
+  let homeListItemStyle = {};
+  switch (location.pathname) {
+    case '/': {
+      homeListItemStyle = { 
+        backgroundColor: '#f2f4ff',
+      };
+      break;
+    }
+    default:
+      break;
+  }
+
   return (
-    <ListItem button>
+    <ListItem
+      button
+      style={homeListItemStyle}
+    >
       <ListItemIcon>
         <HomeIcon color="primary" />
       </ListItemIcon>
