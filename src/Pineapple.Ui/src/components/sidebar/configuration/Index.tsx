@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Collapse from '@material-ui/core/Collapse';
@@ -18,6 +18,8 @@ import {
 } from './interfaces';
 
 const Configuration: React.FC<ConfigurationProps> = ({ isComponentTypesCountFetched, componentTypesCount, isOperatingSystemsCountFetched, operatingSystemsCount, isSoftwareApplicationsCountFetched, softwareApplicationsCount }: ConfigurationProps) => {
+  const location = useLocation();
+
   // Flaga określająca, czy gałąź "Konfiguracja" jest rozwinięta.
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -43,9 +45,45 @@ const Configuration: React.FC<ConfigurationProps> = ({ isComponentTypesCountFetc
     );
   }
 
+  let configurationListItemStyle = {};
+  let componentTypesListItemStyle = {};
+  let operatingSystemsListItemStyle = {};
+  let softwareApplicationsListItemStyle = {};
+  switch (location.pathname) {
+    case '/configuration': {
+      configurationListItemStyle = { 
+        backgroundColor: '#f2f4ff',
+      };
+      break;
+    }
+    case '/configuration/component-types': {
+      componentTypesListItemStyle = {
+        backgroundColor: '#f2f4ff',
+      };
+      break;
+    }
+    case '/configuration/operating-systems': {
+      operatingSystemsListItemStyle = {
+        backgroundColor: '#f2f4ff',
+      };
+      break;
+    }
+    case '/configuration/software-applications': {
+      softwareApplicationsListItemStyle = {
+        backgroundColor: '#f2f4ff',
+      };
+      break;
+    }
+    default:
+      break;
+  }
+
   return (
     <>
-      <ListItem button>
+      <ListItem
+        button
+        style={configurationListItemStyle}
+      >
         <ListItemIcon>
           <SettingsIcon color="primary" />
         </ListItemIcon>
@@ -64,7 +102,10 @@ const Configuration: React.FC<ConfigurationProps> = ({ isComponentTypesCountFetc
         style={{ paddingLeft: '56px' }}
       >
         <List component="div">
-          <ListItem button>
+          <ListItem
+            button
+            style={componentTypesListItemStyle}
+          >
             <ListItemText>
               <Link
                 component={RouterLink}
@@ -75,7 +116,10 @@ const Configuration: React.FC<ConfigurationProps> = ({ isComponentTypesCountFetc
               </Link>
             </ListItemText>
           </ListItem>
-          <ListItem button>
+          <ListItem
+            button
+            style={operatingSystemsListItemStyle}
+          >
             <ListItemText>
               <Link
                 component={RouterLink}
@@ -86,7 +130,10 @@ const Configuration: React.FC<ConfigurationProps> = ({ isComponentTypesCountFetc
               </Link>
             </ListItemText>
           </ListItem>
-          <ListItem button>
+          <ListItem
+            button
+            style={softwareApplicationsListItemStyle}
+          >
             <ListItemText>
               <Link
                 component={RouterLink}
