@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Collapse from '@material-ui/core/Collapse';
@@ -18,6 +18,8 @@ import {
 } from './interfaces';
 
 const Users: React.FC<UsersProps> = ({ isDevelopersCountFetched, developersCount, isOperatorsCountFetched, operatorsCount, isManagersCountFetched, managersCount, isAdministratorsCountFetched, administratorsCount }: UsersProps) => {
+  const location = useLocation();
+
   // Flaga określająca, czy gałąź "Użytkownicy" jest rozwinięta.
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -43,9 +45,52 @@ const Users: React.FC<UsersProps> = ({ isDevelopersCountFetched, developersCount
     );
   }
 
+  let usersListItemStyle = {};
+  let developersListItemStyle = {};
+  let operatorsListItemStyle = {};
+  let managersListItemStyle = {};
+  let administratorsListItemStyle = {};
+  switch (location.pathname) {
+    case '/users': {
+      usersListItemStyle = { 
+        backgroundColor: '#f2f4ff',
+      };
+      break;
+    }
+    case '/users/developers': {
+      developersListItemStyle = {
+        backgroundColor: '#f2f4ff',
+      };
+      break;
+    }
+    case '/users/operators': {
+      operatorsListItemStyle = {
+        backgroundColor: '#f2f4ff',
+      };
+      break;
+    }
+    case '/users/managers': {
+      managersListItemStyle = {
+        backgroundColor: '#f2f4ff',
+      };
+      break;
+    }
+    case '/users/administrators': {
+      administratorsListItemStyle = {
+        backgroundColor: '#f2f4ff',
+      };
+      break;
+    }
+    default:
+      break;
+  }
+
   return (
     <>
-      <ListItem button>
+      <ListItem
+        button
+        style={usersListItemStyle}
+      >
         <ListItemIcon>
           <SupervisorAccountIcon color="primary" />
         </ListItemIcon>
@@ -64,7 +109,10 @@ const Users: React.FC<UsersProps> = ({ isDevelopersCountFetched, developersCount
         style={{ paddingLeft: '56px' }}
       >
         <List component="div">
-          <ListItem button>
+          <ListItem
+            button
+            style={developersListItemStyle}
+          >
             <ListItemText>
               <Link
                 component={RouterLink}
@@ -75,7 +123,10 @@ const Users: React.FC<UsersProps> = ({ isDevelopersCountFetched, developersCount
               </Link>
             </ListItemText>
           </ListItem>
-          <ListItem button>
+          <ListItem
+            button
+            style={operatorsListItemStyle}
+          >
             <ListItemText>
               <Link
                 component={RouterLink}
@@ -86,7 +137,10 @@ const Users: React.FC<UsersProps> = ({ isDevelopersCountFetched, developersCount
               </Link>
             </ListItemText>
           </ListItem>
-          <ListItem button>
+          <ListItem
+            button
+            style={managersListItemStyle}
+          >
             <ListItemText>
               <Link
                 component={RouterLink}
@@ -97,7 +151,10 @@ const Users: React.FC<UsersProps> = ({ isDevelopersCountFetched, developersCount
               </Link>
             </ListItemText>
           </ListItem>
-          <ListItem button>
+          <ListItem
+            button
+            style={administratorsListItemStyle}
+          >
             <ListItemText>
               <Link
                 component={RouterLink}
