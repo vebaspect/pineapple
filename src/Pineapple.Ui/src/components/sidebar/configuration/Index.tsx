@@ -45,44 +45,15 @@ const Configuration: React.FC<ConfigurationProps> = ({ isComponentTypesCountFetc
     );
   }
 
-  let configurationListItemStyle = {};
-  let componentTypesListItemStyle = {};
-  let operatingSystemsListItemStyle = {};
-  let softwareApplicationsListItemStyle = {};
-  switch (location.pathname) {
-    case '/configuration': {
-      configurationListItemStyle = { 
-        backgroundColor: '#f2f4ff',
-      };
-      break;
-    }
-    case '/configuration/component-types': {
-      componentTypesListItemStyle = {
-        backgroundColor: '#f2f4ff',
-      };
-      break;
-    }
-    case '/configuration/operating-systems': {
-      operatingSystemsListItemStyle = {
-        backgroundColor: '#f2f4ff',
-      };
-      break;
-    }
-    case '/configuration/software-applications': {
-      softwareApplicationsListItemStyle = {
-        backgroundColor: '#f2f4ff',
-      };
-      break;
-    }
-    default:
-      break;
-  }
-
   return (
     <>
       <ListItem
         button
-        style={configurationListItemStyle}
+        style={
+          location.pathname === '/configuration'
+            ? { backgroundColor: '#f2f4ff' }
+            : null
+        }
       >
         <ListItemIcon>
           <SettingsIcon color="primary" />
@@ -104,7 +75,11 @@ const Configuration: React.FC<ConfigurationProps> = ({ isComponentTypesCountFetc
         <List component="div">
           <ListItem
             button
-            style={componentTypesListItemStyle}
+            style={
+              location.pathname === '/configuration/component-types'
+                ? { backgroundColor: '#f2f4ff' }
+                : null
+            }
           >
             <ListItemText>
               <Link
@@ -118,7 +93,11 @@ const Configuration: React.FC<ConfigurationProps> = ({ isComponentTypesCountFetc
           </ListItem>
           <ListItem
             button
-            style={operatingSystemsListItemStyle}
+            style={
+              location.pathname === '/configuration/operating-systems'
+                ? { backgroundColor: '#f2f4ff' }
+                : null
+            }
           >
             <ListItemText>
               <Link
@@ -132,7 +111,11 @@ const Configuration: React.FC<ConfigurationProps> = ({ isComponentTypesCountFetc
           </ListItem>
           <ListItem
             button
-            style={softwareApplicationsListItemStyle}
+            style={
+              location.pathname === '/configuration/software-applications'
+                ? { backgroundColor: '#f2f4ff' }
+                : null
+            }
           >
             <ListItemText>
               <Link

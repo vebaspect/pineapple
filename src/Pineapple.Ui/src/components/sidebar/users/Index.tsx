@@ -45,51 +45,15 @@ const Users: React.FC<UsersProps> = ({ isDevelopersCountFetched, developersCount
     );
   }
 
-  let usersListItemStyle = {};
-  let developersListItemStyle = {};
-  let operatorsListItemStyle = {};
-  let managersListItemStyle = {};
-  let administratorsListItemStyle = {};
-  switch (location.pathname) {
-    case '/users': {
-      usersListItemStyle = { 
-        backgroundColor: '#f2f4ff',
-      };
-      break;
-    }
-    case '/users/developers': {
-      developersListItemStyle = {
-        backgroundColor: '#f2f4ff',
-      };
-      break;
-    }
-    case '/users/operators': {
-      operatorsListItemStyle = {
-        backgroundColor: '#f2f4ff',
-      };
-      break;
-    }
-    case '/users/managers': {
-      managersListItemStyle = {
-        backgroundColor: '#f2f4ff',
-      };
-      break;
-    }
-    case '/users/administrators': {
-      administratorsListItemStyle = {
-        backgroundColor: '#f2f4ff',
-      };
-      break;
-    }
-    default:
-      break;
-  }
-
   return (
     <>
       <ListItem
         button
-        style={usersListItemStyle}
+        style={
+          location.pathname === '/users'
+            ? { backgroundColor: '#f2f4ff' }
+            : null
+        }
       >
         <ListItemIcon>
           <SupervisorAccountIcon color="primary" />
@@ -111,7 +75,11 @@ const Users: React.FC<UsersProps> = ({ isDevelopersCountFetched, developersCount
         <List component="div">
           <ListItem
             button
-            style={developersListItemStyle}
+            style={
+              location.pathname === '/users/developers'
+                ? { backgroundColor: '#f2f4ff' }
+                : null
+            }
           >
             <ListItemText>
               <Link
@@ -125,7 +93,11 @@ const Users: React.FC<UsersProps> = ({ isDevelopersCountFetched, developersCount
           </ListItem>
           <ListItem
             button
-            style={operatorsListItemStyle}
+            style={
+              location.pathname === '/users/operators'
+                ? { backgroundColor: '#f2f4ff' }
+                : null
+            }
           >
             <ListItemText>
               <Link
@@ -139,7 +111,11 @@ const Users: React.FC<UsersProps> = ({ isDevelopersCountFetched, developersCount
           </ListItem>
           <ListItem
             button
-            style={managersListItemStyle}
+            style={
+              location.pathname === '/users/managers'
+                ? { backgroundColor: '#f2f4ff' }
+                : null
+            }
           >
             <ListItemText>
               <Link
@@ -153,7 +129,11 @@ const Users: React.FC<UsersProps> = ({ isDevelopersCountFetched, developersCount
           </ListItem>
           <ListItem
             button
-            style={administratorsListItemStyle}
+            style={
+              location.pathname === '/users/administrators'
+                ? { backgroundColor: '#f2f4ff' }
+                : null
+            }
           >
             <ListItemText>
               <Link

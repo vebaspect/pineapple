@@ -11,22 +11,14 @@ import HomeIcon from '@material-ui/icons/Home';
 const Home: React.VFC = () => {
   const location = useLocation();
 
-  let homeListItemStyle = {};
-  switch (location.pathname) {
-    case '/': {
-      homeListItemStyle = { 
-        backgroundColor: '#f2f4ff',
-      };
-      break;
-    }
-    default:
-      break;
-  }
-
   return (
     <ListItem
       button
-      style={homeListItemStyle}
+      style={
+        location.pathname === '/'
+          ? { backgroundColor: '#f2f4ff' }
+          : null
+      }
     >
       <ListItemIcon>
         <HomeIcon color="primary" />
