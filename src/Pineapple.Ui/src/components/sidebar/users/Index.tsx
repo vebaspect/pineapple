@@ -68,17 +68,14 @@ const Users: React.FC<UsersProps> = ({ isDevelopersCountFetched, developersCount
         </ListItemText>
         {isExpanded ? <ExpandLess onClick={onExpandLessButtonClick} /> : <ExpandMore onClick={onExpandMoreButtonClick} />}
       </ListItem>
-      <Collapse
-        in={isExpanded}
-        style={{ paddingLeft: '56px' }}
-      >
+      <Collapse in={isExpanded}>
         <List component="div">
           <ListItem
             button
             style={
               location.pathname === '/users/developers'
-                ? { backgroundColor: '#f2f4ff' }
-                : null
+                ? { backgroundColor: '#f2f4ff', paddingLeft: '72px' }
+                : { paddingLeft: '72px' }
             }
           >
             <ListItemText>
@@ -95,8 +92,8 @@ const Users: React.FC<UsersProps> = ({ isDevelopersCountFetched, developersCount
             button
             style={
               location.pathname === '/users/operators'
-                ? { backgroundColor: '#f2f4ff' }
-                : null
+                ? { backgroundColor: '#f2f4ff', paddingLeft: '72px' }
+                : { paddingLeft: '72px' }
             }
           >
             <ListItemText>
@@ -113,8 +110,8 @@ const Users: React.FC<UsersProps> = ({ isDevelopersCountFetched, developersCount
             button
             style={
               location.pathname === '/users/managers'
-                ? { backgroundColor: '#f2f4ff' }
-                : null
+                ? { backgroundColor: '#f2f4ff', paddingLeft: '72px' }
+                : { paddingLeft: '72px' }
             }
           >
             <ListItemText>
@@ -131,8 +128,8 @@ const Users: React.FC<UsersProps> = ({ isDevelopersCountFetched, developersCount
             button
             style={
               location.pathname === '/users/administrators'
-                ? { backgroundColor: '#f2f4ff' }
-                : null
+                ? { backgroundColor: '#f2f4ff', paddingLeft: '72px' }
+                : { paddingLeft: '72px' }
             }
           >
             <ListItemText>

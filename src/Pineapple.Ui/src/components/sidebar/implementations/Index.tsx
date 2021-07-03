@@ -98,10 +98,7 @@ const Implementations: React.FC<ImplementationsProps> = ({ isDataFetched, data }
             : null 
         }
       </ListItem>
-      <Collapse
-        in={isExpanded}
-        style={{ paddingLeft: '56px' }}
-      >
+      <Collapse in={isExpanded}>
         <List component="div">
           {
             data.implementations?.length > 0
@@ -112,8 +109,8 @@ const Implementations: React.FC<ImplementationsProps> = ({ isDataFetched, data }
                       button
                       style={
                         location.pathname === `/implementations/${implementation.id}`
-                          ? { backgroundColor: '#f2f4ff', paddingBottom: '4px', paddingTop: '4px' }
-                          : { paddingBottom: '4px', paddingTop: '4px' }
+                          ? { backgroundColor: '#f2f4ff', paddingBottom: '4px', paddingLeft: '72px', paddingTop: '4px' }
+                          : { paddingBottom: '4px', paddingLeft: '72px', paddingTop: '4px' }
                       }
                     >
                       <ListItemText>
@@ -137,8 +134,8 @@ const Implementations: React.FC<ImplementationsProps> = ({ isDataFetched, data }
                                 button
                                 style={
                                   location.pathname === `/implementations/${implementation.id}/environments/${environment.id}`
-                                    ? { backgroundColor: '#f2f4ff', paddingBottom: '2px', paddingLeft: '32px', paddingTop: '2px' }
-                                    : { paddingBottom: '2px', paddingLeft: '32px', paddingTop: '2px' }
+                                    ? { backgroundColor: '#f2f4ff', paddingBottom: '2px', paddingLeft: '92px', paddingTop: '2px' }
+                                    : { paddingBottom: '2px', paddingLeft: '92px', paddingTop: '2px' }
                                 }
                               >
                                 <ListItemText style={{ marginBottom: '0', marginTop: '0' }}>

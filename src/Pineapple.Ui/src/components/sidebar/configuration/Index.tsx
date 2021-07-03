@@ -68,17 +68,14 @@ const Configuration: React.FC<ConfigurationProps> = ({ isComponentTypesCountFetc
         </ListItemText>
         {isExpanded ? <ExpandLess onClick={onExpandLessButtonClick} /> : <ExpandMore onClick={onExpandMoreButtonClick} />}
       </ListItem>
-      <Collapse
-        in={isExpanded}
-        style={{ paddingLeft: '56px' }}
-      >
+      <Collapse in={isExpanded}>
         <List component="div">
           <ListItem
             button
             style={
               location.pathname === '/configuration/component-types'
-                ? { backgroundColor: '#f2f4ff' }
-                : null
+                ? { backgroundColor: '#f2f4ff', paddingLeft: '72px' }
+                : { paddingLeft: '72px' }
             }
           >
             <ListItemText>
@@ -95,8 +92,8 @@ const Configuration: React.FC<ConfigurationProps> = ({ isComponentTypesCountFetc
             button
             style={
               location.pathname === '/configuration/operating-systems'
-                ? { backgroundColor: '#f2f4ff' }
-                : null
+                ? { backgroundColor: '#f2f4ff', paddingLeft: '72px' }
+                : { paddingLeft: '72px' }
             }
           >
             <ListItemText>
@@ -113,8 +110,8 @@ const Configuration: React.FC<ConfigurationProps> = ({ isComponentTypesCountFetc
             button
             style={
               location.pathname === '/configuration/software-applications'
-                ? { backgroundColor: '#f2f4ff' }
-                : null
+                ? { backgroundColor: '#f2f4ff', paddingLeft: '72px' }
+                : { paddingLeft: '72px' }
             }
           >
             <ListItemText>

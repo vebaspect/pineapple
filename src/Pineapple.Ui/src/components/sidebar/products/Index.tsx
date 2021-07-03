@@ -73,10 +73,7 @@ const Products: React.FC<ProductsProps> = ({ isDataFetched, data }: ProductsProp
             : null 
         }
       </ListItem>
-      <Collapse
-        in={isExpanded}
-        style={{ paddingLeft: '56px' }}
-      >
+      <Collapse in={isExpanded}>
         <List component="div">
           {
             data.products?.length > 0
@@ -87,8 +84,8 @@ const Products: React.FC<ProductsProps> = ({ isDataFetched, data }: ProductsProp
                       button
                       style={
                         location.pathname === `/products/${product.id}`
-                          ? { backgroundColor: '#f2f4ff', paddingBottom: '4px', paddingTop: '4px' }
-                          : { paddingBottom: '4px', paddingTop: '4px' }
+                          ? { backgroundColor: '#f2f4ff', paddingBottom: '4px', paddingLeft: '72px', paddingTop: '4px' }
+                          : { paddingBottom: '4px', paddingLeft: '72px', paddingTop: '4px' }
                       }
                     >
                       <ListItemText>
@@ -112,8 +109,8 @@ const Products: React.FC<ProductsProps> = ({ isDataFetched, data }: ProductsProp
                                 button
                                 style={
                                   location.pathname === `/products/${product.id}/components/${component.id}`
-                                    ? { backgroundColor: '#f2f4ff', paddingBottom: '2px', paddingLeft: '32px', paddingTop: '2px' }
-                                    : { paddingBottom: '2px', paddingLeft: '32px', paddingTop: '2px' }
+                                    ? { backgroundColor: '#f2f4ff', paddingBottom: '2px', paddingLeft: '92px', paddingTop: '2px' }
+                                    : { paddingBottom: '2px', paddingLeft: '92px', paddingTop: '2px' }
                                 }
                               >
                                 <ListItemText style={{ marginBottom: '0', marginTop: '0' }}>
