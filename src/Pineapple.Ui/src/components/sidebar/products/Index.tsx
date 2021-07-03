@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Collapse from '@material-ui/core/Collapse';
@@ -19,6 +19,8 @@ import {
 } from './interfaces';
 
 const Products: React.FC<ProductsProps> = ({ isDataFetched, data }: ProductsProps) => {
+  const location = useLocation();
+
   // Flaga określająca, czy gałąź "Produkty" jest rozwinięta.
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -46,7 +48,14 @@ const Products: React.FC<ProductsProps> = ({ isDataFetched, data }: ProductsProp
 
   return (
     <>
-      <ListItem button>
+      <ListItem
+        button
+        style={
+          location.pathname === '/products'
+            ? { backgroundColor: '#f2f4ff' }
+            : null
+        }
+      >
         <ListItemIcon>
           <AppsIcon color="primary" />
         </ListItemIcon>
@@ -76,7 +85,11 @@ const Products: React.FC<ProductsProps> = ({ isDataFetched, data }: ProductsProp
                   <React.Fragment key={product.id}>
                     <ListItem
                       button
-                      style={{ paddingBottom: '4px', paddingTop: '4px' }}
+                      style={
+                        location.pathname === `/products/${product.id}`
+                          ? { backgroundColor: '#f2f4ff', paddingBottom: '4px', paddingTop: '4px' }
+                          : { paddingBottom: '4px', paddingTop: '4px' }
+                      }
                     >
                       <ListItemText>
                         <Tooltip title={product.description} placement="right">
@@ -97,7 +110,11 @@ const Products: React.FC<ProductsProps> = ({ isDataFetched, data }: ProductsProp
                             <React.Fragment key={component.id}>
                               <ListItem
                                 button
-                                style={{ paddingBottom: '2px', paddingLeft: '32px', paddingTop: '2px' }}
+                                style={
+                                  location.pathname === `/products/${product.id}/components/${component.id}`
+                                    ? { backgroundColor: '#f2f4ff', paddingBottom: '2px', paddingLeft: '32px', paddingTop: '2px' }
+                                    : { paddingBottom: '2px', paddingLeft: '32px', paddingTop: '2px' }
+                                }
                               >
                                 <ListItemText style={{ marginBottom: '0', marginTop: '0' }}>
                                   <Tooltip title={component.description} placement="right">

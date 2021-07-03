@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 
 import {
   createStyles,
@@ -43,6 +43,7 @@ const useStyles = makeStyles(() =>
 );
 
 const Implementations: React.FC<ImplementationsProps> = ({ isDataFetched, data }: ImplementationsProps) => {
+  const location = useLocation();
   const styles = useStyles();
 
   // Flaga określająca, czy gałąź "Wdrożenia" jest rozwinięta.
@@ -72,7 +73,14 @@ const Implementations: React.FC<ImplementationsProps> = ({ isDataFetched, data }
 
   return (
     <>
-      <ListItem button>
+      <ListItem
+        button
+        style={
+          location.pathname === '/implementations'
+            ? { backgroundColor: '#f2f4ff' }
+            : null
+        }
+      >
         <ListItemIcon>
           <PowerIcon color="primary" />
         </ListItemIcon>
@@ -102,7 +110,11 @@ const Implementations: React.FC<ImplementationsProps> = ({ isDataFetched, data }
                   <React.Fragment key={implementation.id}>
                     <ListItem
                       button
-                      style={{ paddingBottom: '4px', paddingTop: '4px' }}
+                      style={
+                        location.pathname === `/implementations/${implementation.id}`
+                          ? { backgroundColor: '#f2f4ff', paddingBottom: '4px', paddingTop: '4px' }
+                          : { paddingBottom: '4px', paddingTop: '4px' }
+                      }
                     >
                       <ListItemText>
                         <Tooltip title={implementation.description} placement="right">
@@ -123,7 +135,11 @@ const Implementations: React.FC<ImplementationsProps> = ({ isDataFetched, data }
                             <React.Fragment key={environment.id}>
                               <ListItem
                                 button
-                                style={{ paddingBottom: '2px', paddingLeft: '32px', paddingTop: '2px' }}
+                                style={
+                                  location.pathname === `/implementations/${implementation.id}/environments/${environment.id}`
+                                    ? { backgroundColor: '#f2f4ff', paddingBottom: '2px', paddingLeft: '32px', paddingTop: '2px' }
+                                    : { paddingBottom: '2px', paddingLeft: '32px', paddingTop: '2px' }
+                                }
                               >
                                 <ListItemText style={{ marginBottom: '0', marginTop: '0' }}>
                                   <Tooltip title={environment.description} placement="right">
