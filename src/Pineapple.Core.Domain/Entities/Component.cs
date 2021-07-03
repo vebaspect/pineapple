@@ -89,10 +89,26 @@ namespace Pineapple.Core.Domain.Entities
         /// <summary>
         /// Zwróć ostatnią wersję komponentu.
         /// </summary>
-        public ComponentVersion GetLatestVersion()
+        /// <param name="includePreReleases">Flaga określająca, czy uwzględniane mają być także wersje przedpremierowe.</param>
+        public ComponentVersion GetLatestVersion(bool includePreReleases = false)
         {
+            if (includePreReleases)
+            {
+                return ComponentVersions?
+                    .Where(componentVersion =>
+                        !componentVersion.IsDeleted
+                    )
+                    .OrderByDescending(componentVersion => componentVersion.Major)
+                        .ThenByDescending(componentVersion => componentVersion.Minor)
+                            .ThenByDescending(componentVersion => componentVersion.Patch)
+                    .FirstOrDefault();
+            }
+
             return ComponentVersions?
-                .Where(componentVersion => !componentVersion.IsDeleted)
+                .Where(componentVersion =>
+                    !componentVersion.IsDeleted
+                    && string.IsNullOrEmpty(componentVersion.Suffix)
+                )
                 .OrderByDescending(componentVersion => componentVersion.Major)
                     .ThenByDescending(componentVersion => componentVersion.Minor)
                         .ThenByDescending(componentVersion => componentVersion.Patch)
