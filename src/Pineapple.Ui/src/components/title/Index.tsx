@@ -9,7 +9,7 @@ const Title: React.VFC = () => {
       textAlign="center"
       fontSize="0.9rem"
     >
-      🍍 Pineapple
+      Pineapple
       <Box
         component="span"
         ml={0.5}
