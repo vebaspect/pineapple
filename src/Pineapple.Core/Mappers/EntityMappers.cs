@@ -53,7 +53,8 @@ namespace Pineapple.Core.Mappers
                 componentVersion.Minor,
                 componentVersion.Patch,
                 componentVersion.Suffix,
-                componentVersion.Description
+                componentVersion.Description,
+                componentVersion.IsImportant
             );
         }
 
@@ -147,7 +148,13 @@ namespace Pineapple.Core.Mappers
                 new ExtendedEntityDto(
                     componentVersionLog.ComponentVersionId,
                     componentVersionLog.ComponentVersion.GetFormattedNumber(),
-                    null
+                    new EntityDetailsDto
+                    {
+                        ComponentVersion = new ComponentVersionEntityDetailsDto
+                        {
+                            IsImportant = componentVersionLog.ComponentVersion.IsImportant
+                        }
+                    }
                 ),
                 new List<EntityDto>()
                 {

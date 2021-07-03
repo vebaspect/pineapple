@@ -4,7 +4,10 @@ import { Link as RouterLink, useHistory, useParams } from 'react-router-dom';
 
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import Checkbox from '@material-ui/core/Checkbox';
 import FormControl from '@material-ui/core/FormControl';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
@@ -111,6 +114,13 @@ const CreateComponentVersionEditor: React.VFC = () => {
     setFormState({
       ...formState,
       description: event.target.value,
+    });
+  };
+
+  const onIsImportantChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormState({
+      ...formState,
+      isImportant: event.target.checked,
     });
   };
 
@@ -300,6 +310,22 @@ const CreateComponentVersionEditor: React.VFC = () => {
                 onChange={onDescriptionChange}
               />
             </FormControl>
+          </Box>
+          <Box
+            px={4}
+            pb={2}
+          >
+            <FormControlLabel
+              label="Oznacz jako &quot;Ważną&quot;"
+              control={
+                <Checkbox
+                  color="primary"
+                  checked={formState.isImportant}
+                  onChange={onIsImportantChange}
+                />
+              }
+            />
+            <FormHelperText><strong>Ważna</strong> wersja jest istotna z perspektywy rozwoju komponentu (np. zawiera krytyczne poprawki dotyczące bezpieczeństwa).</FormHelperText>
           </Box>
           <Box
             pb={3}

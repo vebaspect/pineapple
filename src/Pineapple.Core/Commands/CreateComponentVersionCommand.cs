@@ -41,7 +41,12 @@ namespace Pineapple.Core.Commands
         /// </summary>
         public string Description { get; }
 
-        public CreateComponentVersionCommand(Guid componentId, DateTime releaseDate, int major, int minor, int patch, string suffix, string description)
+        /// <summary>
+        /// Flaga określająca, czy wersja komponentu jest oznaczona jako "Ważna".
+        /// </summary>
+        public bool IsImportant { get; }
+
+        public CreateComponentVersionCommand(Guid componentId, DateTime releaseDate, int major, int minor, int patch, string suffix, string description, bool isImportant)
         {
             ComponentId = componentId;
             ReleaseDate = releaseDate;
@@ -50,6 +55,7 @@ namespace Pineapple.Core.Commands
             Patch = patch;
             Suffix = suffix;
             Description = description;
+            IsImportant = isImportant;
         }
     }
 }

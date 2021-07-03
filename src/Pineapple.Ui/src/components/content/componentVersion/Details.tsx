@@ -17,7 +17,7 @@ import {
   DetailsProps,
 } from './interfaces';
 
-const Details: React.FC<DetailsProps> = ({ isDataFetched, kind, releaseDate, major, minor, patch, suffix, description }: DetailsProps) => {
+const Details: React.FC<DetailsProps> = ({ isDataFetched, kind, releaseDate, major, minor, patch, suffix, description, isImportant }: DetailsProps) => {
   if (!isDataFetched) {
     return (
       <Box
@@ -37,7 +37,7 @@ const Details: React.FC<DetailsProps> = ({ isDataFetched, kind, releaseDate, maj
           <TableCell>{translateKind(kind)}</TableCell>
           <TableCell
             align="center"
-            rowSpan={6}
+            rowSpan={8}
             style={{
               borderLeft: '1px',
               borderLeftColor: '#e0e0e0',
@@ -71,6 +71,10 @@ const Details: React.FC<DetailsProps> = ({ isDataFetched, kind, releaseDate, maj
         <TableRow>
           <TableCell style={{ fontWeight: 500, width: 200 }}>Opis</TableCell>
           <TableCell style={{ fontStyle: 'italic' }}>{description || '–'}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell style={{ fontWeight: 500, width: 200 }}>Oznaczona jako &quot;Ważna&quot;</TableCell>
+          <TableCell>{isImportant ? 'Tak' : 'Nie'}</TableCell>
         </TableRow>
       </TableBody>
     </Table>

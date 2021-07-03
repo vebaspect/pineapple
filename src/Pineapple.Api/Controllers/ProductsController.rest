@@ -73,7 +73,8 @@ Content-Type: application/json
     "Minor": 0,
     "Patch": 0,
     "Suffix": "",
-    "Description": ""
+    "Description": "",
+    "IsImportant": false
 }
 
 ### /products/{productId}/components/{componentId}/component-versions/{componentVersionId}

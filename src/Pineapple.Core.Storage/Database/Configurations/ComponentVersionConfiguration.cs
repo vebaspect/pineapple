@@ -35,6 +35,9 @@ namespace Pineapple.Core.Storage.Database.Configurations
                 .Property(componentVersion => componentVersion.Description)
                 .HasMaxLength(4000);
             builder
+                .Property(componentVersion => componentVersion.IsImportant)
+                .IsRequired();
+            builder
                 .HasOne(componentVersion => componentVersion.Component)
                 .WithMany(component => component.ComponentVersions)
                 .HasForeignKey(componentVersion => componentVersion.ComponentId)

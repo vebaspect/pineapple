@@ -15,4 +15,6 @@ export interface DetailsProps {
   suffix: string,
   // Opis.
   description: string,
+  // Flaga określająca, czy wersja komponentu jest oznaczona jako "Ważna".
+  isImportant: boolean,
 }

@@ -51,7 +51,14 @@ const List: React.FC<ListProps> = ({ isDataFetched, data, productId, componentId
       <TableBody>
         {
           data.filter((componentVersion) => !componentVersion.isDeleted).map((componentVersion, index) => (
-            <TableRow key={componentVersion.id}>
+            <TableRow
+              key={componentVersion.id}
+              style={
+                componentVersion.isImportant
+                  ? { backgroundColor: '#ffebee' }
+                  : null
+              }
+            >
               <TableCell>{index + 1}.</TableCell>
               <TableCell>
                 <Link

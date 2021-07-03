@@ -11,6 +11,8 @@ export interface ApiFormat {
   suffix: string,
   // Opis.
   description: string,
+  // Flaga określająca, czy wersja komponentu jest oznaczona jako "Ważna".
+  isImportant: boolean,
 }
 
 export interface FormState {
@@ -26,6 +28,8 @@ export interface FormState {
   suffix: string,
   // Opis.
   description: string,
+  // Flaga określająca, czy wersja komponentu jest oznaczona jako "Ważna".
+  isImportant: boolean,
 }
 
 export interface FormStateValidationResult {

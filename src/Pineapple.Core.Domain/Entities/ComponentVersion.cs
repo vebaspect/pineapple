@@ -39,6 +39,11 @@ namespace Pineapple.Core.Domain.Entities
         public string Description { get; }
 
         /// <summary>
+        /// Flaga określająca, czy wersja komponentu jest oznaczona jako "Ważna".
+        /// </summary>
+        public bool IsImportant { get; }
+
+        /// <summary>
         /// Identyfikator komponentu.
         /// </summary>
         public Guid ComponentId { get; }
@@ -58,7 +63,7 @@ namespace Pineapple.Core.Domain.Entities
         /// </summary>
         public List<ComponentVersionLog> EntityLogs { get; }
 
-        private ComponentVersion(Guid id, DateTime releaseDate, int major, int minor, int patch, string suffix, string description, Guid componentId)
+        private ComponentVersion(Guid id, DateTime releaseDate, int major, int minor, int patch, string suffix, string description, bool isImportant, Guid componentId)
             : base(id)
         {
             ReleaseDate = releaseDate;
@@ -67,15 +72,16 @@ namespace Pineapple.Core.Domain.Entities
             Patch = patch;
             Suffix = suffix;
             Description = description;
+            IsImportant = isImportant;
             ComponentId = componentId;
         }
 
         /// <summary>
         /// Stwórz wersję komponentu.
         /// </summary>
-        public static ComponentVersion Create(Guid id, DateTime releaseDate, int major, int minor, int patch, string suffix, string description, Guid componentId)
+        public static ComponentVersion Create(Guid id, DateTime releaseDate, int major, int minor, int patch, string suffix, string description, bool isImportant, Guid componentId)
         {
-            return new ComponentVersion(id, releaseDate, major, minor, patch, suffix, description, componentId);
+            return new ComponentVersion(id, releaseDate, major, minor, patch, suffix, description, isImportant, componentId);
         }
 
         /// <summary>

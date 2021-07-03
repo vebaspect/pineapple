@@ -34,6 +34,8 @@ export interface ListProps {
     suffix: string,
     // Flaga określająca, czy wersja komponentu została usunięta.
     isDeleted: boolean,
+    // Flaga określająca, czy wersja komponentu jest oznaczona jako "Ważna".
+    isImportant: boolean,
   }[],
   // Identyfikator produktu.
   productId: string,

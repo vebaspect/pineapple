@@ -14,6 +14,7 @@ export const convertFormStateToApiFormat = (formState: FormState) : ApiFormat =>
     patch: parseInt(formState.patch),
     suffix: formState.suffix,
     description: formState.description,
+    isImportant: formState.isImportant,
   };
 
   return requestBody;
@@ -27,6 +28,7 @@ export const initialFormState = () : FormState => {
     patch: '',
     suffix: '',
     description: '',
+    isImportant: false,
   };
   return formState;
 };

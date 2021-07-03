@@ -34,5 +34,10 @@ namespace Pineapple.Api.Controllers.Dto
         /// Opis.
         /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Flaga określająca, czy wersja komponentu jest oznaczona jako "Ważna".
+        /// </summary>
+        public bool IsImportant { get; set; }
     }
 }

@@ -212,7 +212,7 @@ namespace Pineapple.Api.Controllers
                 return BadRequest("ReleaseDate has not been provided");
             }
 
-            CreateComponentVersionCommand command = new(Guid.Parse(componentId), DateTime.Parse(dto.ReleaseDate), dto.Major, dto.Minor, dto.Patch, dto.Suffix, dto.Description);
+            CreateComponentVersionCommand command = new(Guid.Parse(componentId), DateTime.Parse(dto.ReleaseDate), dto.Major, dto.Minor, dto.Patch, dto.Suffix, dto.Description, dto.IsImportant);
             Task<Guid> resultTask = await mediator.Send(command).ConfigureAwait(false);
             Guid result = await resultTask.ConfigureAwait(false);
 

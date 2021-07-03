@@ -17,6 +17,11 @@ export interface LogProps {
     name: string,
     // Szczegóły.
     details: {
+      // Wersja komponentu.
+      componentVersion: {
+        // Flaga określająca, czy wersja komponentu jest oznaczona jako "Ważna".
+        isImportant: boolean,
+      },
       // Komponent zainstalowany na serwerze.
       serverComponent: {
         // Identyfikator produktu.

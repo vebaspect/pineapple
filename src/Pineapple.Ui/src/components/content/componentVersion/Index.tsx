@@ -245,6 +245,7 @@ const ComponentVersion: React.VFC = () => {
                   patch={componentVersion?.patch}
                   suffix={componentVersion?.suffix}
                   description={componentVersion?.description}
+                  isImportant={componentVersion?.isImportant}
                 />
               </Paper>
             )

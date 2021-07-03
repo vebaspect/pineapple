@@ -62,7 +62,12 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public string Description { get; }
 
-        public ComponentVersionDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string kind, DateTime releaseDate, int major, int minor, int patch, string suffix, string description)
+        /// <summary>
+        /// Flaga określająca, czy wersja komponentu jest oznaczona jako "Ważna".
+        /// </summary>
+        public bool IsImportant { get; }
+
+        public ComponentVersionDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string kind, DateTime releaseDate, int major, int minor, int patch, string suffix, string description, bool isImportant)
         {
             Id = id;
             CreationDate = creationDate;
@@ -75,6 +80,7 @@ namespace Pineapple.Core.Dto
             Patch = patch;
             Suffix = suffix;
             Description = description;
+            IsImportant = isImportant;
         }
     }
 }

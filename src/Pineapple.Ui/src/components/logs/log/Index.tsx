@@ -10,12 +10,33 @@ import Icon from './Icon';
 import Text from './Text';
 
 import {
+  LOG_TYPE__COMPONENT_VERSION,
+} from './constants';
+
+import {
   LogProps,
 } from './interfaces';
 
 const Log: React.FC<LogProps> = ({ modificationDate, type, category, ownerId, ownerFullName, entity, parentEntities }: LogProps) => {
+  let style = {};
+  if (type === LOG_TYPE__COMPONENT_VERSION) {
+    if (entity.details.componentVersion.isImportant) {
+      style = {
+        backgroundColor: '#ffebee',
+        border: '1px solid #ffcdd2',
+        borderRadius: '4px',
+      };
+    }
+  }
+
   return (
-    <ListItem component="div">
+    <ListItem
+      component="div"
+      style={{
+        marginBottom: '4px',
+        ...style,
+      }}
+    >
       <ListItemIcon>
         <Icon
           type={type}
