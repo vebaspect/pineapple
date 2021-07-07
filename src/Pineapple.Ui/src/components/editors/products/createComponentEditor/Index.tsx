@@ -254,8 +254,8 @@ const CreateComponentEditor: React.VFC = () => {
             <FormControl fullWidth>
               <TextField
                 label="Repozytorium kodu źródłowego"
-                helperText="Adres URL | Maksymalnie 300 znaków."
-                inputProps={{ maxLength: 300 }}
+                helperText="Adres URL | Maksymalnie 2000 znaków."
+                inputProps={{ maxLength: 2000 }}
                 value={formState.sourceCodeRepositoryUrl}
                 onChange={onSourceCodeRepositoryUrlChange}
               />

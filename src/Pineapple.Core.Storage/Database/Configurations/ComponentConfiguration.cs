@@ -22,7 +22,7 @@ namespace Pineapple.Core.Storage.Database.Configurations
                 .HasMaxLength(200);
             builder
                 .Property(component => component.SourceCodeRepositoryUrl)
-                .HasMaxLength(300);
+                .HasMaxLength(2000);
             builder
                 .Property(component => component.Description)
                 .HasMaxLength(4000);
