@@ -309,8 +309,8 @@ const CreateComponentVersionEditor: React.VFC = () => {
             <FormControl fullWidth>
               <TextField
                 label="Zgłoszenie w systemie ITS"
-                helperText="Adres URL | Maksymalnie 300 znaków."
-                inputProps={{ maxLength: 300 }}
+                helperText="Adres URL | Maksymalnie 2000 znaków."
+                inputProps={{ maxLength: 2000 }}
                 value={formState.issueTrackingSystemTicketUrl}
                 onChange={onIssueTrackingSystemTicketUrlChange}
               />

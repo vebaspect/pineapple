@@ -33,7 +33,7 @@ namespace Pineapple.Core.Storage.Database.Configurations
                 .HasMaxLength(30);
             builder
                 .Property(componentVersion => componentVersion.IssueTrackingSystemTicketUrl)
-                .HasMaxLength(300);
+                .HasMaxLength(2000);
             builder
                 .Property(componentVersion => componentVersion.Description)
                 .HasMaxLength(4000);
