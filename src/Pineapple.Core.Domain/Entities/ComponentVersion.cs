@@ -34,6 +34,11 @@ namespace Pineapple.Core.Domain.Entities
         public string Suffix { get; }
 
         /// <summary>
+        /// Zgłoszenie w systemie ITS (adres URL).
+        /// </summary>
+        public string IssueTrackingSystemTicketUrl { get; }
+
+        /// <summary>
         /// Opis.
         /// </summary>
         public string Description { get; }
@@ -63,7 +68,7 @@ namespace Pineapple.Core.Domain.Entities
         /// </summary>
         public List<ComponentVersionLog> EntityLogs { get; }
 
-        private ComponentVersion(Guid id, DateTime releaseDate, int major, int minor, int patch, string suffix, string description, bool isImportant, Guid componentId)
+        private ComponentVersion(Guid id, DateTime releaseDate, int major, int minor, int patch, string suffix, string issueTrackingSystemTicketUrl, string description, bool isImportant, Guid componentId)
             : base(id)
         {
             ReleaseDate = releaseDate;
@@ -71,6 +76,7 @@ namespace Pineapple.Core.Domain.Entities
             Minor = minor;
             Patch = patch;
             Suffix = suffix;
+            IssueTrackingSystemTicketUrl = issueTrackingSystemTicketUrl;
             Description = description;
             IsImportant = isImportant;
             ComponentId = componentId;
@@ -79,9 +85,9 @@ namespace Pineapple.Core.Domain.Entities
         /// <summary>
         /// Stwórz wersję komponentu.
         /// </summary>
-        public static ComponentVersion Create(Guid id, DateTime releaseDate, int major, int minor, int patch, string suffix, string description, bool isImportant, Guid componentId)
+        public static ComponentVersion Create(Guid id, DateTime releaseDate, int major, int minor, int patch, string suffix, string issueTrackingSystemTicketUrl, string description, bool isImportant, Guid componentId)
         {
-            return new ComponentVersion(id, releaseDate, major, minor, patch, suffix, description, isImportant, componentId);
+            return new ComponentVersion(id, releaseDate, major, minor, patch, suffix, issueTrackingSystemTicketUrl, description, isImportant, componentId);
         }
 
         /// <summary>

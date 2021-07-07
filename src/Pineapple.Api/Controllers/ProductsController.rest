@@ -73,6 +73,7 @@ Content-Type: application/json
     "Minor": 0,
     "Patch": 0,
     "Suffix": "",
+    "IssueTrackingSystemTicketUrl": "",
     "Description": "",
     "IsImportant": false
 }

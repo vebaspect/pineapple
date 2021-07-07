@@ -3,6 +3,7 @@ import React from 'react';
 
 import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Link from '@material-ui/core/Link';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -17,7 +18,7 @@ import {
   DetailsProps,
 } from './interfaces';
 
-const Details: React.FC<DetailsProps> = ({ isDataFetched, kind, releaseDate, major, minor, patch, suffix, description, isImportant }: DetailsProps) => {
+const Details: React.FC<DetailsProps> = ({ isDataFetched, kind, releaseDate, major, minor, patch, suffix, issueTrackingSystemTicketUrl, description, isImportant }: DetailsProps) => {
   if (!isDataFetched) {
     return (
       <Box
@@ -37,7 +38,7 @@ const Details: React.FC<DetailsProps> = ({ isDataFetched, kind, releaseDate, maj
           <TableCell>{translateKind(kind)}</TableCell>
           <TableCell
             align="center"
-            rowSpan={8}
+            rowSpan={9}
             style={{
               borderLeft: '1px',
               borderLeftColor: '#e0e0e0',
@@ -67,6 +68,23 @@ const Details: React.FC<DetailsProps> = ({ isDataFetched, kind, releaseDate, maj
         <TableRow>
           <TableCell style={{ fontWeight: 500, width: 200 }}>Przyrostek</TableCell>
           <TableCell>{suffix}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell style={{ fontWeight: 500, width: 200 }}>Zgłoszenie w systemie ITS</TableCell>
+          <TableCell>
+            {
+              issueTrackingSystemTicketUrl
+                ? (
+                  <Link
+                    href={issueTrackingSystemTicketUrl}
+                    target="_blank"
+                  >
+                    {issueTrackingSystemTicketUrl}
+                  </Link>
+                )
+                : '–'
+            }
+          </TableCell>
         </TableRow>
         <TableRow>
           <TableCell style={{ fontWeight: 500, width: 200 }}>Opis</TableCell>

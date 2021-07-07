@@ -244,6 +244,7 @@ const ComponentVersion: React.VFC = () => {
                   minor={componentVersion?.minor}
                   patch={componentVersion?.patch}
                   suffix={componentVersion?.suffix}
+                  issueTrackingSystemTicketUrl={componentVersion?.issueTrackingSystemTicketUrl}
                   description={componentVersion?.description}
                   isImportant={componentVersion?.isImportant}
                 />

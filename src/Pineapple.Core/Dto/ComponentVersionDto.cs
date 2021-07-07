@@ -58,6 +58,11 @@ namespace Pineapple.Core.Dto
         public string Suffix { get; }
 
         /// <summary>
+        /// Zgłoszenie w systemie ITS (adres URL).
+        /// </summary>
+        public string IssueTrackingSystemTicketUrl { get; }
+
+        /// <summary>
         /// Opis.
         /// </summary>
         public string Description { get; }
@@ -67,7 +72,7 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public bool IsImportant { get; }
 
-        public ComponentVersionDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string kind, DateTime releaseDate, int major, int minor, int patch, string suffix, string description, bool isImportant)
+        public ComponentVersionDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string kind, DateTime releaseDate, int major, int minor, int patch, string suffix, string issueTrackingSystemTicketUrl, string description, bool isImportant)
         {
             Id = id;
             CreationDate = creationDate;
@@ -79,6 +84,7 @@ namespace Pineapple.Core.Dto
             Minor = minor;
             Patch = patch;
             Suffix = suffix;
+            IssueTrackingSystemTicketUrl = issueTrackingSystemTicketUrl;
             Description = description;
             IsImportant = isImportant;
         }

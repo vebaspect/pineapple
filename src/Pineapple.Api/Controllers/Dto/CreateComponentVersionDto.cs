@@ -31,6 +31,11 @@ namespace Pineapple.Api.Controllers.Dto
         public string Suffix { get; set; }
 
         /// <summary>
+        /// Zgłoszenie w systemie ITS (adres URL).
+        /// </summary>
+        public string IssueTrackingSystemTicketUrl { get; set; }
+
+        /// <summary>
         /// Opis.
         /// </summary>
         public string Description { get; set; }

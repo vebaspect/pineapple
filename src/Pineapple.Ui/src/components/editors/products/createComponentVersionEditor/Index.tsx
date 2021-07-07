@@ -110,6 +110,13 @@ const CreateComponentVersionEditor: React.VFC = () => {
     });
   };
 
+  const onIssueTrackingSystemTicketUrlChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormState({
+      ...formState,
+      issueTrackingSystemTicketUrl: event.target.value,
+    });
+  };
+
   const onDescriptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormState({
       ...formState,
@@ -294,6 +301,21 @@ const CreateComponentVersionEditor: React.VFC = () => {
                 onChange={onSuffixChange}
               />
             </FormControl>
+          </Box>
+          <Box
+            px={4}
+            pb={2}
+          >
+            <FormControl fullWidth>
+              <TextField
+                label="Zgłoszenie w systemie ITS"
+                helperText="Adres URL | Maksymalnie 300 znaków."
+                inputProps={{ maxLength: 300 }}
+                value={formState.issueTrackingSystemTicketUrl}
+                onChange={onIssueTrackingSystemTicketUrlChange}
+              />
+            </FormControl>
+            <FormHelperText><strong>System ITS</strong> (ang. <em>Issue Tracking System</em>) - system obsługi zgłoszeń (np. <em>Jira</em>).</FormHelperText>
           </Box>
           <Box
             px={4}

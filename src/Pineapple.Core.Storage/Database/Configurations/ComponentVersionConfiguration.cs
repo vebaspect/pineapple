@@ -32,6 +32,9 @@ namespace Pineapple.Core.Storage.Database.Configurations
                 .Property(componentVersion => componentVersion.Suffix)
                 .HasMaxLength(30);
             builder
+                .Property(componentVersion => componentVersion.IssueTrackingSystemTicketUrl)
+                .HasMaxLength(300);
+            builder
                 .Property(componentVersion => componentVersion.Description)
                 .HasMaxLength(4000);
             builder

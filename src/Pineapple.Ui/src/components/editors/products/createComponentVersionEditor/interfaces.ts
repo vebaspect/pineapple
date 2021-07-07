@@ -9,6 +9,8 @@ export interface ApiFormat {
   patch: number,
   // Przyrostek.
   suffix: string,
+  // Zgłoszenie w systemie ITS (adres URL).
+  issueTrackingSystemTicketUrl: string,
   // Opis.
   description: string,
   // Flaga określająca, czy wersja komponentu jest oznaczona jako "Ważna".
@@ -26,6 +28,8 @@ export interface FormState {
   patch: string,
   // Przyrostek.
   suffix: string,
+  // Zgłoszenie w systemie ITS (adres URL).
+  issueTrackingSystemTicketUrl: string,
   // Opis.
   description: string,
   // Flaga określająca, czy wersja komponentu jest oznaczona jako "Ważna".

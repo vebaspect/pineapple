@@ -13,6 +13,7 @@ export const convertFormStateToApiFormat = (formState: FormState) : ApiFormat =>
     minor: parseInt(formState.minor),
     patch: parseInt(formState.patch),
     suffix: formState.suffix,
+    issueTrackingSystemTicketUrl: formState.issueTrackingSystemTicketUrl,
     description: formState.description,
     isImportant: formState.isImportant,
   };
@@ -27,6 +28,7 @@ export const initialFormState = () : FormState => {
     minor: '',
     patch: '',
     suffix: '',
+    issueTrackingSystemTicketUrl: '',
     description: '',
     isImportant: false,
   };

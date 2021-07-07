@@ -37,6 +37,11 @@ namespace Pineapple.Core.Commands
         public string Suffix { get; }
 
         /// <summary>
+        /// Zgłoszenie w systemie ITS (adres URL).
+        /// </summary>
+        public string IssueTrackingSystemTicketUrl { get; }
+
+        /// <summary>
         /// Opis.
         /// </summary>
         public string Description { get; }
@@ -46,7 +51,7 @@ namespace Pineapple.Core.Commands
         /// </summary>
         public bool IsImportant { get; }
 
-        public CreateComponentVersionCommand(Guid componentId, DateTime releaseDate, int major, int minor, int patch, string suffix, string description, bool isImportant)
+        public CreateComponentVersionCommand(Guid componentId, DateTime releaseDate, int major, int minor, int patch, string suffix, string issueTrackingSystemTicketUrl, string description, bool isImportant)
         {
             ComponentId = componentId;
             ReleaseDate = releaseDate;
@@ -54,6 +59,7 @@ namespace Pineapple.Core.Commands
             Minor = minor;
             Patch = patch;
             Suffix = suffix;
+            IssueTrackingSystemTicketUrl = issueTrackingSystemTicketUrl;
             Description = description;
             IsImportant = isImportant;
         }

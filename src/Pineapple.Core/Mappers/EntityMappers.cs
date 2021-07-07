@@ -53,6 +53,7 @@ namespace Pineapple.Core.Mappers
                 componentVersion.Minor,
                 componentVersion.Patch,
                 componentVersion.Suffix,
+                componentVersion.IssueTrackingSystemTicketUrl,
                 componentVersion.Description,
                 componentVersion.IsImportant
             );
