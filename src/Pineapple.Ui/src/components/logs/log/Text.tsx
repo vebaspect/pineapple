@@ -833,7 +833,16 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                   component={RouterLink}
                   to={`/implementations/${parentEntities[1].id}/environments/${parentEntities[0].id}/servers/${entity.id}`}
                 >
-                  {`«${entity.name}»`}
+                  {`«`}
+                  <Box
+                    component="span"
+                    style={{ fontSize: '0.75rem' }}
+                  >
+                    {`${entity.name}/${parentEntities[1].name}`}
+                  </Box>
+                  <Box component="span" mx={0.25}>|</Box>
+                  {`${parentEntities[0].name}`}
+                  {`»`}
                 </Link>
               </Box>
               .
@@ -905,7 +914,16 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                   component={RouterLink}
                   to={`/implementations/${parentEntities[1].id}/environments/${parentEntities[0].id}/servers/${entity.id}`}
                 >
-                  {`«${entity.name}»`}
+                  {`«`}
+                  <Box
+                    component="span"
+                    style={{ fontSize: '0.75rem' }}
+                  >
+                    {`${entity.name}/${parentEntities[1].name}`}
+                  </Box>
+                  <Box component="span" mx={0.25}>|</Box>
+                  {`${parentEntities[0].name}`}
+                  {`»`}
                 </Link>
               </Box>
               .
@@ -964,7 +982,16 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                   component={RouterLink}
                   to={`/implementations/${parentEntities[1].id}/environments/${parentEntities[0].id}/servers/${entity.id}`}
                 >
-                  {`«${entity.name}»`}
+                  {`«`}
+                  <Box
+                    component="span"
+                    style={{ fontSize: '0.75rem' }}
+                  >
+                    {`${entity.name}/${parentEntities[1].name}`}
+                  </Box>
+                  <Box component="span" mx={0.25}>|</Box>
+                  {`${parentEntities[0].name}`}
+                  {`»`}
                 </Link>
               </Box>
               .
