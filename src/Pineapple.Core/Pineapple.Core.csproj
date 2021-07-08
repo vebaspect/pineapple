@@ -8,7 +8,7 @@
   <PropertyGroup>
     <PackageId>Pineapple.Core</PackageId>
     <VersionPrefix>1.0.0</VersionPrefix>
-    <VersionSuffix>alpha.4</VersionSuffix>
+    <VersionSuffix>alpha.6</VersionSuffix>
     <AssemblyTitle>Pineapple.Core</AssemblyTitle>
     <AssemblyName>Pineapple.Core</AssemblyName>
     <Copyright>Grzegorz Wodniczak</Copyright>
