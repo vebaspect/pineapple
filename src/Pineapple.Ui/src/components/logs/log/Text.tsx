@@ -793,7 +793,21 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                   component={RouterLink}
                   to={`/products/${entity.details.serverComponent.productId}/components/${entity.details.serverComponent.componentId}`}
                 >
-                  {`«${entity.details.serverComponent.componentName}»`}
+                  {`«`}
+                  <Box
+                    component="span"
+                    style={{ fontSize: '0.75rem' }}
+                  >
+                    {entity.details.serverComponent.productName}
+                  </Box>
+                  <Box
+                    component="span"
+                    mx={0.25}
+                  >
+                    |
+                  </Box>
+                  {`${entity.details.serverComponent.componentName}`}
+                  {`»`}
                 </Link>
               </Box>
               w wersji
@@ -851,7 +865,21 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                   component={RouterLink}
                   to={`/products/${entity.details.serverComponent.productId}/components/${entity.details.serverComponent.componentId}`}
                 >
-                  {`«${entity.details.serverComponent.componentName}»`}
+                  {`«`}
+                  <Box
+                    component="span"
+                    style={{ fontSize: '0.75rem' }}
+                  >
+                    {entity.details.serverComponent.productName}
+                  </Box>
+                  <Box
+                    component="span"
+                    mx={0.25}
+                  >
+                    |
+                  </Box>
+                  {`${entity.details.serverComponent.componentName}`}
+                  {`»`}
                 </Link>
               </Box>
               do wersji
@@ -909,7 +937,21 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                   component={RouterLink}
                   to={`/products/${entity.details.serverComponent.productId}/components/${entity.details.serverComponent.componentId}`}
                 >
-                  {`«${entity.details.serverComponent.componentName}»`}
+                  {`«`}
+                  <Box
+                    component="span"
+                    style={{ fontSize: '0.75rem' }}
+                  >
+                    {entity.details.serverComponent.productName}
+                  </Box>
+                  <Box
+                    component="span"
+                    mx={0.25}
+                  >
+                    |
+                  </Box>
+                  {`${entity.details.serverComponent.componentName}`}
+                  {`»`}
                 </Link>
               </Box>
               z serwera
