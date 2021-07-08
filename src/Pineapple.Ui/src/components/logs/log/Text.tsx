@@ -280,7 +280,21 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                   component={RouterLink}
                   to={`/products/${parentEntities[1].id}/components/${parentEntities[0].id}`}
                 >
-                  {`«${parentEntities[0].name}»`}
+                  {`«`}
+                  <Box
+                    component="span"
+                    style={{ fontSize: '0.75rem' }}
+                  >
+                    {parentEntities[1].name}
+                  </Box>
+                  <Box
+                    component="span"
+                    mx={0.25}
+                  >
+                    |
+                  </Box>
+                  {`${parentEntities[0].name}`}
+                  {`»`}
                 </Link>
               </Box>
               .
@@ -325,7 +339,21 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                   component={RouterLink}
                   to={`/products/${parentEntities[1].id}/components/${parentEntities[0].id}`}
                 >
-                  {`«${parentEntities[0].name}»`}
+                  {`«`}
+                  <Box
+                    component="span"
+                    style={{ fontSize: '0.75rem' }}
+                  >
+                    {parentEntities[1].name}
+                  </Box>
+                  <Box
+                    component="span"
+                    mx={0.25}
+                  >
+                    |
+                  </Box>
+                  {`${parentEntities[0].name}`}
+                  {`»`}
                 </Link>
               </Box>
               .
