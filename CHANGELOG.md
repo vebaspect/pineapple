@@ -1,5 +1,14 @@
 # Changelog
 
+### Wersja `1.0.0-alpha.7`:
+
+- prezentowanie precyzyjniejszych informacji w logach dotyczących:
+  - wydawania wersji komponentu,
+  - usuwania wersji komponentu,
+  - instalowania komponentu na serwerze,
+  - aktualizowania komponentu na serwerze,
+  - dezinstalowania komponentu na serwerze.
+
 ### Wersja `1.0.0-alpha.6`:
 
 - *Wersja komponentu* - dodanie adresu URL do zgłoszenia w systemie ITS,
