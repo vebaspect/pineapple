@@ -1047,10 +1047,10 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                     component="span"
                     style={{ fontSize: '0.75rem' }}
                   >
-                    {`${entity.name}/${parentEntities[1].name}`}
+                    {`${parentEntities[1].name}/${parentEntities[0].name}`}
                   </Box>
                   <Box component="span" mx={0.25}>|</Box>
-                  {`${parentEntities[0].name}`}
+                  {entity.name}
                   {`»`}
                 </Link>
               </Box>
@@ -1101,10 +1101,10 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                     component="span"
                     style={{ fontSize: '0.75rem' }}
                   >
-                    {`${entity.name}/${parentEntities[1].name}`}
+                    {`${parentEntities[1].name}/${parentEntities[0].name}`}
                   </Box>
                   <Box component="span" mx={0.25}>|</Box>
-                  {`${parentEntities[0].name}`}
+                  {entity.name}
                   {`»`}
                 </Link>
               </Box>
