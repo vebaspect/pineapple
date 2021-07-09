@@ -1,5 +1,14 @@
 # Changelog
 
+### Wersja `1.0.0-alpha.8`:
+
+- poprawa prezentowania informacji w logach dotyczących:
+  - instalowania komponentu na serwerze,
+  - aktualizowania komponentu na serwerze,
+  - dezinstalowania komponentu na serwerze,
+  - instalowania oprogamowania na serwerze,
+  - dezinstalowania oprogramowania na serwerze.
+
 ### Wersja `1.0.0-alpha.7`:
 
 - prezentowanie precyzyjniejszych informacji w logach dotyczących:
@@ -7,7 +16,9 @@
   - usuwania wersji komponentu,
   - instalowania komponentu na serwerze,
   - aktualizowania komponentu na serwerze,
-  - dezinstalowania komponentu na serwerze.
+  - dezinstalowania komponentu na serwerze,
+  - instalowania oprogamowania na serwerze,
+  - dezinstalowania oprogramowania na serwerze.
 
 ### Wersja `1.0.0-alpha.6`:
 
