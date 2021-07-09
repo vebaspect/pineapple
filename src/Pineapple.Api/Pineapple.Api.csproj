@@ -8,7 +8,7 @@
   <PropertyGroup>
     <PackageId>Pineapple.Api</PackageId>
     <VersionPrefix>1.0.0</VersionPrefix>
-    <VersionSuffix>alpha.7</VersionSuffix>
+    <VersionSuffix>alpha.8</VersionSuffix>
     <AssemblyTitle>Pineapple.Api</AssemblyTitle>
     <AssemblyName>Pineapple.Api</AssemblyName>
     <Copyright>Grzegorz Wodniczak</Copyright>
