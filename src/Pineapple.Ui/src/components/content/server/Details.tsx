@@ -29,19 +29,19 @@ const Details: React.FC<DetailsProps> = ({ isDataFetched, name, symbol, ipAddres
     <Table size="small">
       <TableBody>
         <TableRow>
-          <TableCell style={{ fontWeight: 500, width: 200 }}>Nazwa</TableCell>
+          <TableCell style={{ fontWeight: 500, width: 220 }}>Nazwa</TableCell>
           <TableCell>{name}</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell style={{ fontWeight: 500, width: 200 }}>Symbol</TableCell>
+          <TableCell style={{ fontWeight: 500, width: 220 }}>Symbol</TableCell>
           <TableCell style={{ fontFamily: 'Consolas' }}>{symbol}</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell style={{ fontWeight: 500, width: 200 }}>Adres IP</TableCell>
+          <TableCell style={{ fontWeight: 500, width: 220 }}>Adres IP</TableCell>
           <TableCell>{ipAddress}</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell style={{ fontWeight: 500, width: 200 }}>System operacyjny</TableCell>
+          <TableCell style={{ fontWeight: 500, width: 220 }}>System operacyjny</TableCell>
           <TableCell>
             <Link
               component={RouterLink}
@@ -52,7 +52,7 @@ const Details: React.FC<DetailsProps> = ({ isDataFetched, name, symbol, ipAddres
           </TableCell>
         </TableRow>
         <TableRow>
-          <TableCell style={{ fontWeight: 500, width: 200 }}>Opis</TableCell>
+          <TableCell style={{ fontWeight: 500, width: 220 }}>Opis</TableCell>
           <TableCell style={{ fontStyle: 'italic' }}>{description || '–'}</TableCell>
         </TableRow>
       </TableBody>

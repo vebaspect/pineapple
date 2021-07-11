@@ -27,19 +27,19 @@ const Details: React.FC<DetailsProps> = ({ isDataFetched, fullName, login, phone
     <Table size="small">
       <TableBody>
         <TableRow>
-          <TableCell style={{ fontWeight: 500, width: 200 }}>Imię i nazwisko</TableCell>
+          <TableCell style={{ fontWeight: 500, width: 220 }}>Imię i nazwisko</TableCell>
           <TableCell>{fullName}</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell style={{ fontWeight: 500, width: 200 }}>Login</TableCell>
+          <TableCell style={{ fontWeight: 500, width: 220 }}>Login</TableCell>
           <TableCell>{login}</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell style={{ fontWeight: 500, width: 200 }}>Telefon</TableCell>
+          <TableCell style={{ fontWeight: 500, width: 220 }}>Telefon</TableCell>
           <TableCell>{phone || '–'}</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell style={{ fontWeight: 500, width: 200 }}>E-mail</TableCell>
+          <TableCell style={{ fontWeight: 500, width: 220 }}>E-mail</TableCell>
           <TableCell>{email || '–'}</TableCell>
         </TableRow>
       </TableBody>

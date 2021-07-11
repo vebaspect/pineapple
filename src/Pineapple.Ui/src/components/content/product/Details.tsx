@@ -27,11 +27,11 @@ const Details: React.FC<DetailsProps> = ({ isDataFetched, name, description }: D
     <Table size="small">
       <TableBody>
         <TableRow>
-          <TableCell style={{ fontWeight: 500, width: 200 }}>Nazwa</TableCell>
+          <TableCell style={{ fontWeight: 500, width: 220 }}>Nazwa</TableCell>
           <TableCell>{name}</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell style={{ fontWeight: 500, width: 200 }}>Opis</TableCell>
+          <TableCell style={{ fontWeight: 500, width: 220 }}>Opis</TableCell>
           <TableCell style={{ fontStyle: 'italic' }}>{description || '–'}</TableCell>
         </TableRow>
       </TableBody>

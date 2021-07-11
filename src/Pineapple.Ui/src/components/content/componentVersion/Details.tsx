@@ -34,7 +34,7 @@ const Details: React.FC<DetailsProps> = ({ isDataFetched, kind, releaseDate, maj
     <Table size="small">
       <TableBody>
         <TableRow>
-          <TableCell style={{ fontWeight: 500, width: 200 }}>Rodzaj</TableCell>
+          <TableCell style={{ fontWeight: 500, width: 220 }}>Rodzaj</TableCell>
           <TableCell>{translateKind(kind)}</TableCell>
           <TableCell
             align="center"
@@ -50,27 +50,27 @@ const Details: React.FC<DetailsProps> = ({ isDataFetched, kind, releaseDate, maj
           </TableCell>
         </TableRow>
         <TableRow>
-          <TableCell style={{ fontWeight: 500, width: 200 }}>Data wydania</TableCell>
+          <TableCell style={{ fontWeight: 500, width: 220 }}>Data wydania</TableCell>
           <TableCell>{moment(releaseDate).format('LLL')}</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell style={{ fontWeight: 500, width: 200 }}>Major</TableCell>
+          <TableCell style={{ fontWeight: 500, width: 220 }}>Major</TableCell>
           <TableCell>{major}</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell style={{ fontWeight: 500, width: 200 }}>Minor</TableCell>
+          <TableCell style={{ fontWeight: 500, width: 220 }}>Minor</TableCell>
           <TableCell>{minor}</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell style={{ fontWeight: 500, width: 200 }}>Patch</TableCell>
+          <TableCell style={{ fontWeight: 500, width: 220 }}>Patch</TableCell>
           <TableCell>{patch}</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell style={{ fontWeight: 500, width: 200 }}>Przyrostek</TableCell>
+          <TableCell style={{ fontWeight: 500, width: 220 }}>Przyrostek</TableCell>
           <TableCell>{suffix}</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell style={{ fontWeight: 500, width: 200 }}>Zgłoszenie w systemie ITS</TableCell>
+          <TableCell style={{ fontWeight: 500, width: 220 }}>Zgłoszenie w systemie ITS</TableCell>
           <TableCell>
             {
               issueTrackingSystemTicketUrl
@@ -87,11 +87,11 @@ const Details: React.FC<DetailsProps> = ({ isDataFetched, kind, releaseDate, maj
           </TableCell>
         </TableRow>
         <TableRow>
-          <TableCell style={{ fontWeight: 500, width: 200 }}>Opis</TableCell>
+          <TableCell style={{ fontWeight: 500, width: 220 }}>Opis</TableCell>
           <TableCell style={{ fontStyle: 'italic' }}>{description || '–'}</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell style={{ fontWeight: 500, width: 200 }}>Oznaczona jako &quot;Ważna&quot;</TableCell>
+          <TableCell style={{ fontWeight: 500, width: 220 }}>Oznaczona jako &quot;Ważna&quot;</TableCell>
           <TableCell>{isImportant ? 'Tak' : 'Nie'}</TableCell>
         </TableRow>
       </TableBody>
