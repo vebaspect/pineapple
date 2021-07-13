@@ -94,6 +94,13 @@ const CreateComponentEditor: React.VFC = () => {
     });
   }
 
+  const onPackagesRepositoryPathChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormState({
+      ...formState,
+      packagesRepositoryPath: event.target.value,
+    });
+  }
+
   const onComponentTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormState({
       ...formState,
@@ -258,6 +265,20 @@ const CreateComponentEditor: React.VFC = () => {
                 inputProps={{ maxLength: 2000 }}
                 value={formState.sourceCodeRepositoryUrl}
                 onChange={onSourceCodeRepositoryUrlChange}
+              />
+            </FormControl>
+          </Box>
+          <Box
+            px={4}
+            pb={2}
+          >
+            <FormControl fullWidth>
+              <TextField
+                label="Repozytorium paczek"
+                helperText="Ścieżka | Maksymalnie 4000 znaków."
+                inputProps={{ maxLength: 4000 }}
+                value={formState.packagesRepositoryPath}
+                onChange={onPackagesRepositoryPathChange}
               />
             </FormControl>
           </Box>

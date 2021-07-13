@@ -7,6 +7,7 @@ export const initialFormState = () : FormState => {
   const formState: FormState = {
     name: '',
     sourceCodeRepositoryUrl: '',
+    packagesRepositoryPath: '',
     description: '',
     componentTypeId: '',
   };

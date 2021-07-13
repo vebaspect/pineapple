@@ -13,7 +13,7 @@ import {
   DetailsProps,
 } from './interfaces';
 
-const Details: React.FC<DetailsProps> = ({ isDataFetched, name, sourceCodeRepositoryUrl, componentTypeId, componentTypeName, description }: DetailsProps) => {
+const Details: React.FC<DetailsProps> = ({ isDataFetched, name, sourceCodeRepositoryUrl, packagesRepositoryPath, componentTypeId, componentTypeName, description }: DetailsProps) => {
   if (!isDataFetched) {
     return (
       <Box
@@ -59,6 +59,10 @@ const Details: React.FC<DetailsProps> = ({ isDataFetched, name, sourceCodeReposi
                 : '–'
             }
           </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell style={{ fontWeight: 500, width: 250 }}>Repozytorium paczek</TableCell>
+          <TableCell>{packagesRepositoryPath || '–'}</TableCell>
         </TableRow>
         <TableRow>
           <TableCell style={{ fontWeight: 500, width: 250 }}>Opis</TableCell>

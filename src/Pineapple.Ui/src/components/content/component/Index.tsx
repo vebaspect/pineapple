@@ -294,6 +294,7 @@ const Component: React.VFC = () => {
                   isDataFetched={isComponentFetched}
                   name={component?.name}
                   sourceCodeRepositoryUrl={component?.sourceCodeRepositoryUrl}
+                  packagesRepositoryPath={component?.packagesRepositoryPath}
                   componentTypeId={component?.componentTypeId}
                   componentTypeName={component?.componentTypeName}
                   description={component?.description}

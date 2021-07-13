@@ -19,6 +19,7 @@ namespace Pineapple.Core.Mappers
                 component.IsDeleted,
                 component.Name,
                 component.SourceCodeRepositoryUrl,
+                component.PackagesRepositoryPath,
                 component.Description,
                 component.ComponentTypeId,
                 component.ComponentType.Name,

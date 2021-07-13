@@ -3,6 +3,8 @@ export interface FormState {
   name: string,
   // Repozytorium kodu źródłowego (adres URL).
   sourceCodeRepositoryUrl: string,
+  // Repozytorium paczek (ścieżka).
+  packagesRepositoryPath: string,
   // Opis.
   description: string,
   // Identyfikator typu komponentu.

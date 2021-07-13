@@ -5,6 +5,8 @@ export interface DetailsProps {
   name: string,
   // Repozytorium kodu źródłowego (adres URL).
   sourceCodeRepositoryUrl: string,
+  // Repozytorium paczek (ścieżka).
+  packagesRepositoryPath: string,
   // Identyfikator typu komponentu.
   componentTypeId: string,
   // Nazwa typu komponentu.

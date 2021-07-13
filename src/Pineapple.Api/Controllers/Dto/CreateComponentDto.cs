@@ -18,6 +18,11 @@ namespace Pineapple.Api.Controllers.Dto
         public string SourceCodeRepositoryUrl { get; set; }
 
         /// <summary>
+        /// Repozytorium paczek (ścieżka).
+        /// </summary>
+        public string PackagesRepositoryPath { get; set; }
+
+        /// <summary>
         /// Opis.
         /// </summary>
         public string Description { get; set; }
