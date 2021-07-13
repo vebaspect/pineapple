@@ -1,8 +1,15 @@
 # Changelog
 
+### Wersja `1.0.0-alpha.9`:
+- *Komponent* - dodanie ścieżki do repozytorium paczek,
+- poprawa prezentowania danych w widokach szczegółów,
+- poprawa prezentowania danych w logach dotyczących:
+  - wydawania wersji komponentu,
+  - usuwania wersji komponentu.
+
 ### Wersja `1.0.0-alpha.8`:
 
-- poprawa prezentowania informacji w logach dotyczących:
+- poprawa prezentowania danych w logach dotyczących:
   - instalowania komponentu na serwerze,
   - aktualizowania komponentu na serwerze,
   - dezinstalowania komponentu na serwerze,
@@ -11,7 +18,7 @@
 
 ### Wersja `1.0.0-alpha.7`:
 
-- prezentowanie precyzyjniejszych informacji w logach dotyczących:
+- prezentowanie precyzyjniejszych danych w logach dotyczących:
   - wydawania wersji komponentu,
   - usuwania wersji komponentu,
   - instalowania komponentu na serwerze,
