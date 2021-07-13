@@ -19,6 +19,8 @@ export interface LogProps {
     details: {
       // Wersja komponentu.
       componentVersion: {
+        // Rodzaj wersji komponentu.
+        kind: string,
         // Flaga określająca, czy wersja komponentu jest oznaczona jako "Ważna".
         isImportant: boolean,
       },
@@ -72,6 +74,13 @@ export interface TextProps {
     name: string,
     // Szczegóły.
     details: {
+      // Wersja komponentu.
+      componentVersion: {
+        // Rodzaj wersji komponentu.
+        kind: string,
+        // Flaga określająca, czy wersja komponentu jest oznaczona jako "Ważna".
+        isImportant: boolean,
+      },
       // Komponent zainstalowany na serwerze.
       serverComponent: {
         // Identyfikator produktu.

@@ -153,6 +153,7 @@ namespace Pineapple.Core.Mappers
                     {
                         ComponentVersion = new ComponentVersionEntityDetailsDto
                         {
+                            Kind = componentVersionLog.ComponentVersion.GetKind(),
                             IsImportant = componentVersionLog.ComponentVersion.IsImportant
                         }
                     }

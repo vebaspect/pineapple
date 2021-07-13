@@ -6,17 +6,17 @@ namespace Pineapple.Core.Domain
     public static class AvailableComponentVersionKinds
     {
         /// <summary>
-        /// Wydanie przedpremierowe.
+        /// Wersja przedpremierowa.
         /// </summary>
         public const string PreRelease = "PreRelease";
 
         /// <summary>
-        /// Wydanie.
+        /// Wersja.
         /// </summary>
         public const string Release = "Release";
 
         /// <summary>
-        /// Łatka.
+        /// Poprawka.
         /// </summary>
         public const string Patch = "Patch";
     }

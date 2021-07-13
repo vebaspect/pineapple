@@ -10,6 +10,10 @@ import Box from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';
 
 import {
+  KIND__PATCH,
+} from '../../../helpers/componentVersionConstants';
+
+import {
   LOG_TYPE__COMPONENT,
   LOG_TYPE__COMPONENT_TYPE,
   LOG_TYPE__COMPONENT_VERSION,
@@ -26,6 +30,10 @@ import {
   LOG_CATEGORY__MODIFY_ENTITY,
   LOG_CATEGORY__REMOVE_ENTITY,
 } from './constants';
+
+import {
+  translateComponentVersionKind,
+} from './helpers';
 
 import {
   TextProps,
@@ -257,7 +265,7 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                   {`«${ownerFullName}»`}
                 </Link>
               </Box>
-              wydał wersję
+              wydał {translateComponentVersionKind(entity.details.componentVersion.kind)}
               <Box
                 component="span"
                 mx={0.5}
@@ -270,7 +278,7 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                   {`«${entity.name}»`}
                 </Link>
               </Box>
-              komponentu
+              {entity.details.componentVersion.kind === KIND__PATCH ? 'dla komponentu' : 'komponentu'}
               <Box
                 component="span"
                 ml={0.5}
@@ -316,7 +324,7 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                   {`«${ownerFullName}»`}
                 </Link>
               </Box>
-              usunął wersję
+              usunął {translateComponentVersionKind(entity.details.componentVersion.kind)}
               <Box
                 component="span"
                 mx={0.5}
@@ -329,7 +337,7 @@ const Text: React.FC<TextProps> = ({ type, category, ownerId, ownerFullName, ent
                   {`«${entity.name}»`}
                 </Link>
               </Box>
-              komponentu
+              {entity.details.componentVersion.kind === KIND__PATCH ? 'dla komponentu' : 'komponentu'}
               <Box
                 component="span"
                 ml={0.5}
