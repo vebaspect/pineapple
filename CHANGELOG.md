@@ -1,6 +1,7 @@
 # Changelog
 
 ### Wersja `1.0.0-alpha.10`:
+- [API+UI] *Komponent* - dodanie ścieżki do repozytorium licencji,
 - [UI] poprawa prezentowania ścieżki do repozytorium paczek w widoku szczegółów komponentu,
 - [UI] aktualizacja zależności.
 
