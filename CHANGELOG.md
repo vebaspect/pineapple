@@ -1,15 +1,19 @@
 # Changelog
 
+### Wersja `1.0.0-alpha.10`:
+- [UI] poprawa prezentowania ścieżki do repozytorium paczek w widoku szczegółów komponentu,
+- [UI] aktualizacja zależności.
+
 ### Wersja `1.0.0-alpha.9`:
-- *Komponent* - dodanie ścieżki do repozytorium paczek,
-- poprawa prezentowania danych w widokach szczegółów,
-- poprawa prezentowania danych w logach dotyczących:
+- [API+UI] *Komponent* - dodanie ścieżki do repozytorium paczek,
+- [UI] poprawa prezentowania danych w widokach szczegółów (zwiększenie szerokości kolumny z etykietami),
+- [UI] poprawa prezentowania danych w logach dotyczących:
   - wydawania wersji komponentu,
   - usuwania wersji komponentu.
 
 ### Wersja `1.0.0-alpha.8`:
 
-- poprawa prezentowania danych w logach dotyczących:
+- [UI] poprawa prezentowania danych w logach dotyczących:
   - instalowania komponentu na serwerze,
   - aktualizowania komponentu na serwerze,
   - dezinstalowania komponentu na serwerze,
@@ -18,7 +22,7 @@
 
 ### Wersja `1.0.0-alpha.7`:
 
-- prezentowanie precyzyjniejszych danych w logach dotyczących:
+- [API+UI] prezentowanie precyzyjniejszych danych w logach dotyczących:
   - wydawania wersji komponentu,
   - usuwania wersji komponentu,
   - instalowania komponentu na serwerze,
@@ -29,8 +33,8 @@
 
 ### Wersja `1.0.0-alpha.6`:
 
-- *Wersja komponentu* - dodanie adresu URL do zgłoszenia w systemie ITS,
-- *Komponent* - zwiększenie maksymalnej długości adresu URL do repozytorium kodu źródłowego,
+- [API+UI] *Wersja komponentu* - dodanie adresu URL do zgłoszenia w systemie ITS,
+- [API+UI] *Komponent* - zwiększenie maksymalnej długości adresu URL do repozytorium kodu źródłowego,
 - [UI] aktualizacja zależności,
 - [API] aktualizacja zależności,
 - [API] aktualizacja *.NET SDK* - `5.0.301`.
