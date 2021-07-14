@@ -62,7 +62,7 @@ const Details: React.FC<DetailsProps> = ({ isDataFetched, name, sourceCodeReposi
         </TableRow>
         <TableRow>
           <TableCell style={{ fontWeight: 500, width: 250 }}>Repozytorium paczek</TableCell>
-          <TableCell>{packagesRepositoryPath || '–'}</TableCell>
+          <TableCell style={{ fontFamily: 'Consolas' }}>{packagesRepositoryPath || '–'}</TableCell>
         </TableRow>
         <TableRow>
           <TableCell style={{ fontWeight: 500, width: 250 }}>Opis</TableCell>
