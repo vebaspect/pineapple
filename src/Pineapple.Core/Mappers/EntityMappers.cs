@@ -20,6 +20,7 @@ namespace Pineapple.Core.Mappers
                 component.Name,
                 component.SourceCodeRepositoryUrl,
                 component.PackagesRepositoryPath,
+                component.LicensesRepositoryPath,
                 component.Description,
                 component.ComponentTypeId,
                 component.ComponentType.Name,

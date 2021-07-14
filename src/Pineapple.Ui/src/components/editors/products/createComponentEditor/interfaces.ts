@@ -5,6 +5,8 @@ export interface FormState {
   sourceCodeRepositoryUrl: string,
   // Repozytorium paczek (ścieżka).
   packagesRepositoryPath: string,
+  // Repozytorium licencji (ścieżka).
+  licensesRepositoryPath: string,
   // Opis.
   description: string,
   // Identyfikator typu komponentu.

@@ -27,6 +27,9 @@ namespace Pineapple.Core.Storage.Database.Configurations
                 .Property(component => component.PackagesRepositoryPath)
                 .HasMaxLength(4000);
             builder
+                .Property(component => component.LicensesRepositoryPath)
+                .HasMaxLength(4000);
+            builder
                 .Property(component => component.Description)
                 .HasMaxLength(4000);
             builder

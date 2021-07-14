@@ -43,6 +43,11 @@ namespace Pineapple.Core.Dto
         public string PackagesRepositoryPath { get; }
 
         /// <summary>
+        /// Repozytorium licencji (ścieżka).
+        /// </summary>
+        public string LicensesRepositoryPath { get; }
+
+        /// <summary>
         /// Opis.
         /// </summary>
         public string Description { get; }
@@ -67,7 +72,7 @@ namespace Pineapple.Core.Dto
         /// </summary>
         public string ActualComponentVersionNumber { get; }
 
-        public ComponentDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string name, string sourceCodeRepositoryUrl, string packagesRepositoryPath, string description, Guid componentTypeId, string componentTypeName, Guid? actualComponentVersionId, string actualComponentVersionNumber)
+        public ComponentDto(Guid id, DateTime creationDate, DateTime modificationDate, bool isDeleted, string name, string sourceCodeRepositoryUrl, string packagesRepositoryPath, string licensesRepositoryPath, string description, Guid componentTypeId, string componentTypeName, Guid? actualComponentVersionId, string actualComponentVersionNumber)
         {
             Id = id;
             CreationDate = creationDate;
@@ -76,6 +81,7 @@ namespace Pineapple.Core.Dto
             Name = name;
             SourceCodeRepositoryUrl = sourceCodeRepositoryUrl;
             PackagesRepositoryPath = packagesRepositoryPath;
+            LicensesRepositoryPath = licensesRepositoryPath;
             Description = description;
             ComponentTypeId = componentTypeId;
             ComponentTypeName = componentTypeName;

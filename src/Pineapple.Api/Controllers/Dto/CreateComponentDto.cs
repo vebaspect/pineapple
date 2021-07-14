@@ -23,6 +23,11 @@ namespace Pineapple.Api.Controllers.Dto
         public string PackagesRepositoryPath { get; set; }
 
         /// <summary>
+        /// Repozytorium licencji (ścieżka).
+        /// </summary>
+        public string LicensesRepositoryPath { get; set; }
+
+        /// <summary>
         /// Opis.
         /// </summary>
         public string Description { get; set; }

@@ -295,6 +295,7 @@ const Component: React.VFC = () => {
                   name={component?.name}
                   sourceCodeRepositoryUrl={component?.sourceCodeRepositoryUrl}
                   packagesRepositoryPath={component?.packagesRepositoryPath}
+                  licensesRepositoryPath={component?.licensesRepositoryPath}
                   componentTypeId={component?.componentTypeId}
                   componentTypeName={component?.componentTypeName}
                   description={component?.description}

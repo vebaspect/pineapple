@@ -124,7 +124,7 @@ namespace Pineapple.Api.Controllers
                 return BadRequest("Component data has not been provided");
             }
 
-            CreateComponentCommand command = new(Guid.Parse(productId), dto.Name, dto.SourceCodeRepositoryUrl, dto.PackagesRepositoryPath, dto.Description, dto.ComponentTypeId);
+            CreateComponentCommand command = new(Guid.Parse(productId), dto.Name, dto.SourceCodeRepositoryUrl, dto.PackagesRepositoryPath, dto.LicensesRepositoryPath, dto.Description, dto.ComponentTypeId);
             Task<Guid> resultTask = await mediator.Send(command).ConfigureAwait(false);
             Guid result = await resultTask.ConfigureAwait(false);
 

@@ -27,6 +27,11 @@ namespace Pineapple.Core.Commands
         public string PackagesRepositoryPath { get; }
 
         /// <summary>
+        /// Repozytorium licencji (ścieżka).
+        /// </summary>
+        public string LicensesRepositoryPath { get; }
+
+        /// <summary>
         /// Opis.
         /// </summary>
         public string Description { get; }
@@ -36,12 +41,13 @@ namespace Pineapple.Core.Commands
         /// </summary>
         public Guid ComponentTypeId { get; }
 
-        public CreateComponentCommand(Guid productId, string name, string sourceCodeRepositoryUrl, string packagesRepositoryPath, string description, Guid componentTypeId)
+        public CreateComponentCommand(Guid productId, string name, string sourceCodeRepositoryUrl, string packagesRepositoryPath, string licensesRepositoryPath, string description, Guid componentTypeId)
         {
             ProductId = productId;
             Name = name;
             SourceCodeRepositoryUrl = sourceCodeRepositoryUrl;
             PackagesRepositoryPath = packagesRepositoryPath;
+            LicensesRepositoryPath = licensesRepositoryPath;
             Description = description;
             ComponentTypeId = componentTypeId;
         }

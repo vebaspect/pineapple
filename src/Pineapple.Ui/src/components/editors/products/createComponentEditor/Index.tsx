@@ -101,6 +101,13 @@ const CreateComponentEditor: React.VFC = () => {
     });
   }
 
+  const onLicensesRepositoryPathChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormState({
+      ...formState,
+      licensesRepositoryPath: event.target.value,
+    });
+  }
+
   const onComponentTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormState({
       ...formState,
@@ -279,6 +286,20 @@ const CreateComponentEditor: React.VFC = () => {
                 inputProps={{ maxLength: 4000 }}
                 value={formState.packagesRepositoryPath}
                 onChange={onPackagesRepositoryPathChange}
+              />
+            </FormControl>
+          </Box>
+          <Box
+            px={4}
+            pb={2}
+          >
+            <FormControl fullWidth>
+              <TextField
+                label="Repozytorium licencji"
+                helperText="Ścieżka | Maksymalnie 4000 znaków."
+                inputProps={{ maxLength: 4000 }}
+                value={formState.licensesRepositoryPath}
+                onChange={onLicensesRepositoryPathChange}
               />
             </FormControl>
           </Box>
