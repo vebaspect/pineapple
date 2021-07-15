@@ -15,7 +15,7 @@ const Title: React.VFC = () => {
         ml={0.5}
         fontSize="0.65rem"
       >
-        (1.0.0-alpha.9)
+        (1.0.0-alpha.10)
       </Box>
     </Box>
   );
